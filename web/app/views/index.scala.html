@@ -1,0 +1,94 @@
+@()(implicit flash: Flash)
+
+@layout("") {
+
+<div id="index">
+
+    <hr class="soften"/>
+    <h3>Schulungen | Trainings | Kurse</h3>
+    <hr class="soften"/>
+
+    <br/>
+
+    <div class='alert hidden alert-@flash.get("type")'>
+        @flash.get("message")
+    </div>
+
+    <div class="row-fluid">
+        <div class="span12">
+
+            <div class="row-fluid">
+
+                <div class="span1">&nbsp;</div>
+
+                @*<!--<div class="span5">
+                    <h4>
+                        <a href="@routes.Home.advjs">Modernes Javascript</a>
+                    </h4>
+                    <p>
+                        Javascript ist &uuml;berall. Durch immer schnellere Computer und Browser kann jede Webseite
+                        mit Hilfe von Javascript so interaktiv gestaltet werden wie nie zuvor.
+                        Doch Javascript war nicht gedacht f&uuml;r diese Zwecke und ohne die richtigen Werkzeuge
+                        kann es schnell im Chaos enden.
+                    </p>
+                    <p>
+                        Lernen Sie:
+                        <ul>
+                            <li>Coffeescript - das bessere Javascript</li>
+                            <li></li>
+                        </ul>
+                    </p>
+                    <p>
+                        <a href="@routes.Home.advjs">Lernen Sie modernes Javascript</a>
+                    </p>
+                </div>-->*@
+
+                <div class="span5">
+                    <h4>
+                        <a href="@routes.Home.scala">Einf&uumlhrung in Scala</a>
+                    </h4>
+                    <p>
+                        Scala ist das "neue" Java.
+                        Es erweitert die Plattform um revolution&auml;re Konzepte aus der funktionalen Sprachwelt
+                        und bleibt dabei doch kompatibel zur Java-Welt - selbst Twitter setzt bereits darauf.
+                    </p>
+                    <p>
+                        Lernen Sie:
+                        <ul>
+                            <li>funktionale Programmierung anzuwenden</li>
+                            <li>bis zu 30% weniger Code zu schreiben</li>
+                            <li>Scala-Tools zu nutzen</li>
+                            <li>Entwickeln von Tests</li>
+                        </ul>
+                    </p>
+                    <p>
+                        <a href="@routes.Home.scala">Lernen Sie Scala</a>
+                    </p>
+                </div>
+
+                <div class="span1">&nbsp;</div>
+
+                <div class="span4">
+                    <h4>
+                        Au&szlig;erdem ...
+                    </h4>
+                    <p>
+                        Weitere m&ouml;gliche Themen beinhalten
+                        <a href="http://www.playframework.org/" target="_blank">Play2-Framework</a>,
+                        <a href="http://backbonejs.org/" target="_blank">BackboneJS</a>,
+                        <a href="http://coffeescript.org/" target="_blank">Coffeescript</a> und
+                        <a href="http://mongodb.org" target="_blank">MongoDB</a>.
+                    </p>
+
+                    <p>
+                        Bei Interesse melden Sie sich bitte per E-Mail bei
+                        mir: <a href="mailto:stephan@@101loops.de">Stephan Behnke</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+}

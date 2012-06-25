@@ -1,0 +1,73 @@
+@(title: String, crawl: Boolean = true,
+  subtitle: Html = sub.subtitle())(content: Html)
+<!DOCTYPE html>
+
+<html>
+    <head>
+        @t = @{
+            if(title.isEmpty) "" else "| " + title
+        }
+        <title>Schulungen für Softwareentwickler in Berlin @t</title>
+        <link href='/assets/stylesheets/main.css?@Home.v' type="text/css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        @*<!-- ROBOTS -->*@
+        @if(crawl) {
+        <meta name="robots" content="INDEX, FOLLOW"/>
+        } else {
+        <meta name="robots" content="NOINDEX"/>
+        }
+
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="/assets/js/vanadium.js"></script>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <header id="top">
+                <header class="shoutout">
+                    <div class="inner">
+                        <h1>
+                            <a href="/">
+                                <span>101</span>learn
+                            </a>
+                        </h1>
+
+                        <h2>
+                            @subtitle
+                        </h2>
+                    </div>
+                </header>
+            </header>
+
+            <section id="main">
+                @content
+            </section>
+
+            <footer id="bottom">
+                <div>
+                    <a href="/">Home</a> | <a href="/imprint">Impressum</a>
+                </div>
+                <div>
+                    Copyright 2011 - 2012, 101 Loops
+                </div>
+            </footer>
+        </div>
+
+        @if(controllers.Home.isProduction) {
+            <script type="text/javascript">
+                var _gaq = _gaq || [];
+                _gaq.push(['_setAccount', 'UA-32865821-1']);
+                _gaq.push(['_setDomainName', '101loops.de']);
+                _gaq.push(['_trackPageview']);
+
+                (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                })();
+            </script>
+        }
+    </body>
+</html>

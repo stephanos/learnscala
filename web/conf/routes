@@ -1,0 +1,12 @@
+GET     /                               controllers.Home.index
+GET     /imprint                        controllers.Home.imprint
+GET     /backdoor                       controllers.Home.backdoor
+GET     /google1388dbffebf166ff.html    controllers.Home.gverify
+
+POST    /mail.do                        controllers.Home.doMail
+GET     /schulung/einfuehrung-in-scala  controllers.Home.scala
+#GET     /schulung/modernes-javascript   controllers.Home.advjs
+
+# === ASSETS
+
+GET     /assets/*file                   controllers.Assets.at(path="/public", file)
