@@ -1,0 +1,6 @@
+# API
+web: apps/app-api/target/start -api.port=$PORT
+
+# WEB
+web: apps/app-web/target/start
+worker: apps/app-worker/target/start
