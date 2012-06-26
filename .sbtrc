@@ -1,0 +1,2 @@
+alias web=;project web ;run
+alias play=web
