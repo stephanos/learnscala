@@ -2,15 +2,17 @@
  * SLIDES
  *********************************************/
 
+@w: 900px;
+@h: 600px;
+
 .reveal .slides {
 	position: absolute;
-	width: 900px;
-	height: 600px;
+	width: @w;
+	height: @h;
 
-	left: 50%;
-	top: 50%;
-	margin-left: -450px;
-	margin-top: -320px;
+	left: 50%; top: 50%;
+	margin-left: @w / 2 * -1;
+	margin-top: @h / 2 * -1;
 	padding: 20px 0px;
 
 	text-align: center;
