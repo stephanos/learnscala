@@ -6,6 +6,8 @@ trait BaseAssets {
 
     self: WebUtil =>
 
+    def domain: String
+
     //~ INTERFACE =================================================================================
 
     lazy val robots_yes = Assets.at("/public", "robots.txt")
@@ -55,7 +57,7 @@ trait BaseAssets {
 
     //~ INTERNALS =================================================================================
 
-    private lazy val baseDomain = if (isProduction) "static.crashnote.com" else ""
+    private lazy val baseDomain = if (isProduction) "static." + domain else ""
     private lazy val httpDomain = if (isProduction) "http://" + baseDomain else baseDomain
     private lazy val httpsDomain = if (isProduction) "https://" + baseDomain else baseDomain
 }

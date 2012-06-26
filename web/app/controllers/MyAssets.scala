@@ -5,6 +5,8 @@ import base.MyController
 object MyAssets
     extends MyController with BaseAssets {
 
+    def domain = "learnscala.de"
+
     // ==== JS
 
     lazy val js_slide = jsUrl("/reveal.min.js")

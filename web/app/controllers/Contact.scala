@@ -17,8 +17,8 @@ object Contact extends MyController {
                 m => {
                     println("SIGNUP: " + m)
                     if (isProduction)
-                        Mail.sendMail(m, List("subscribe@learnscala.de"), Some(m), "BERLEARN: " + m, m, None)
-                    Redirect("/").flashing(("type", "success"), ("message", "Vielen Dank für Ihr Interesse, wir melden uns bei Neuigkeiten!"))
+                        Mail.sendMail(m, List("subscribe@learnscala.de"), Some(m), "SUBSCRIBE: " + m, m, None)
+                    Redirect("/").flashing(("type", "success"), ("message", "Vielen Dank für Ihr Interesse - Sie bekommen als Erster bescheid!"))
                 }
             )
     }
