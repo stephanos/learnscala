@@ -10,7 +10,11 @@ object ProjectBuild extends MyBuild {
     lazy val crashnote =
         MyProject("learnscala", file("."))
             .settings(moduleSettings: _*)
-            .aggregate(app_web)
+            .aggregate(
+            app_web, // apps
+            mod_data_cache, mod_data_mongo, // data
+            mod_test_unit, mod_util, mod_web_play // util
+        )
 
 
     // ==== APPS

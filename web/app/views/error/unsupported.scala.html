@@ -1,0 +1,40 @@
+@onLoad = {
+    // TODO
+    var agent = navigator.userAgent;
+    if(agent.indexOf("MSIE") != -1)
+        $("div.ie").show();
+    else
+        $("div.other").show();
+}
+
+@layout.main("Unsupported Browser") {
+
+    <div class="box header-box alert-box">
+        <header class="warn">
+            <h2><span>Unsupported Browser</span></h2>
+        </header>
+        <section>
+            <div>
+                This website <strong>requires a modern browser</strong><br/>
+                - and, well, you don't seem to use one.
+            </div>
+
+            @*<!-- REPLY FOR NON-IE -->*@
+            <div class="other hide">
+                Sorry to be so blunt.<br/>
+                But please update your browser, it is worth it.
+            </div>
+
+            @*<!-- REPLY FOR IE -->*@
+            <div class="ie hide">
+                Apparently your version of the Internet Explorer is too old -
+                at least 9.0 is required here.
+                <br/><br/>
+                If you have the rights to update it, it is very recommended to do so.
+                Alternatively you could use another browser,
+                <a href="https://www.google.com/chrome">Chrome</a> is great.
+            </div>
+        </section>
+        <footer></footer>
+    </div>
+}

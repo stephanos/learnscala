@@ -7,8 +7,8 @@
         @t = @{
             if(title.isEmpty) "" else "| " + title
         }
-        <title>Schulungen für Softwareentwickler in Berlin @t</title>
-        <link href='/assets/stylesheets/main.css?@Home.v' type="text/css" rel="stylesheet">
+        <title>Scala Lernen: Schulung für Softwareentwickler @t</title>
+        <link href='@MyAssets.css_main._1' type="text/css" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         @*<!-- ROBOTS -->*@
@@ -18,8 +18,8 @@
         <meta name="robots" content="NOINDEX"/>
         }
 
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script type="text/javascript" src="/assets/js/vanadium.js"></script>
+        <script type="text/javascript" src="@MyAssets.js_jquery._1"></script>
+        <script type="text/javascript" src="@MyAssets.js_formval._1"></script>
     </head>
 
     <body>
@@ -30,7 +30,7 @@
                     <div class="inner">
                         <h1>
                             <a href="/">
-                                <span>101</span>learn
+                                <span>Learn</span>Scala
                             </a>
                         </h1>
 
@@ -59,7 +59,7 @@
             <script type="text/javascript">
                 var _gaq = _gaq || [];
                 _gaq.push(['_setAccount', 'UA-32865821-1']);
-                _gaq.push(['_setDomainName', '101loops.de']);
+                _gaq.push(['_setDomainName', 'learnscala.de']);
                 _gaq.push(['_trackPageview']);
 
                 (function() {

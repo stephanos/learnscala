@@ -1,0 +1,9 @@
+/*
+package com.crashnote.spec
+
+interface ClasspathElements {
+
+    def SPRING_REMOTE = "spring/remote/"
+    def lumberjack_BACKEND_API = "backend/ctrl/api/"
+}
+*/

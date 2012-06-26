@@ -1,0 +1,31 @@
+@(err: Option[Throwable] = None)
+
+@layout.main("Internal Error") {
+
+<div class="box header-box alert-box error-box">
+
+    <header class="error">
+        <h2><span>Well. Ehm. That's embarrassing.</span></h2>
+    </header>
+
+    <section>
+        <div>
+            An unexpected error occurred. Sorry you had to see this.
+        </div>
+
+        <div>
+            But don't worry, after all this is Crashnote, so the admin
+            is notified about this and will look into it.
+        </div>
+
+        <div>
+            If this isn't the first time this has happened, please be so kind to take
+            a minute and <a href="/contact">report this</a>
+            - including a short description of what you were trying to do. Thank you!
+        </div>
+    </section>
+
+    <footer></footer>
+
+</div>
+}

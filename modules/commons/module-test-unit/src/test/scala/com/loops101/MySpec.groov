@@ -1,0 +1,121 @@
+/*
+package com.crashnote.spec
+
+import com.crashnote.Convert
+import scala.Some
+import spock.lang.*
+import org.slf4j.LoggerFactory
+import org.slf4j.Logger
+import scala.None
+import scala.Option
+
+abstract class Spec extends Specification {
+
+    protected def Class targetClass
+    @Shared protected def Object target
+
+    protected def Logger log = LoggerFactory.getLogger(this.class.toString())
+
+    //~ HELPER METHODS =================================================================================================
+
+    def sleep(Integer sec) {
+        Thread.sleep(sec)
+    }
+
+    // ==== CONTEXT
+
+    def createTarget(Class clazz) {
+        targetClass = clazz
+        target = bean(targetClass)
+    }
+
+    def bean(Class clazz) {
+        clazz.newInstance()
+    }
+
+    // ==== SCALA CONVERTING
+
+    def Some some(Object o) {
+        new Some(o)
+    }
+
+    def Object none() {
+        Option.empty()
+    }
+
+    def static scala.collection.Map map(java.util.Map m) {
+        Convert.map(m)
+    }
+
+    def static scala.collection.Seq list(java.util.List l) {
+        scalaj.collection.j2s.Wrappers.ListWrapper(l).toList()
+    }
+
+    def static java.util.List list(scala.collection.Seq s) {
+        java.util.Arrays.asList(array(s))
+    }
+
+    def static java.util.List list(scala.collection.Set s) {
+        java.util.Arrays.asList(array(s))
+    }
+
+    def static Object[] array(java.util.List l) {
+        l.toArray()
+    }
+
+    def static Object[] array(scala.collection.Set s) {
+        def ar = new Object[s.size()]
+        s.copyToArray(ar)
+        ar
+    }
+
+    def static Object[] array(scala.collection.Seq s) {
+        def ar = new Object[s.length()]
+        s.copyToArray(ar)
+        ar
+    }
+
+    */
+/*
+    def static Object[] array(scalaj.collection.j2s.CollectionWrapper w) {
+        def ar = new Object[w.length()]
+        w.copyToArray(ar)
+        ar
+    }
+    *//*
+
+
+    // ==== ASSERTS
+
+    def boolean isNone(scala.Option option) {
+        option.isEmpty()
+    }
+
+    def boolean isSome(scala.Option option) {
+        !isNone(option)
+    }
+
+    def boolean isEmpty(scala.collection.Seq s) {
+        s.empty
+    }
+
+    def boolean isNotEmpty(scala.collection.Seq s) {
+        !isEmpty(s)
+    }
+
+    */
+/*
+    def x = { println 'base field initializer' }()
+
+    def setupSpec() { println 'base setupSpec()' }
+
+    def cleanupSpec() { println 'base cleanupSpec()' }
+
+    def setup() { println 'base setup()' }
+
+    def cleanup() { println 'base cleanup()' }
+
+    def baseSpecMethod() { setup: println 'base spec method' }
+    *//*
+
+}*/

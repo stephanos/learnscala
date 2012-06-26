@@ -1,16 +1,53 @@
-import controllers.Home
+import controllers.base.MyController
+import controllers._
 import play.api._
-import play.api.mvc.RequestHeader
-import play.api.mvc.Results._
 
-object Global extends GlobalSettings {
+object Global
+    extends MyController with BaseGlobal with Errors {
 
-    override def onStart(app: Application) {
+    def NAME = "WEB"
+
+    //~ INTERFACE =================================================================================
+
+    override def beforeStart(app: Application) {
+        println("Application starting ... ")
+
+        // init database
+        //MyDocDB.initDB()
     }
 
-    override def onHandlerNotFound(req: RequestHeader) =
-        Home.isProduction match {
-            case true => NotFound(views.html.notfound())
-            case _ => super.onHandlerNotFound(req)
+    override def onStart(app: Application) {
+        println("Application has started (" + build + ")")
+
+        // start up
+        onStartup()
+    }
+
+    override def onStop(app: Application) {
+        println("Application shutdown ...")
+
+        // stop database
+        //if (isProduction) MyDocDB.stopDB()
+
+        // shut down
+        onShutdown()
+    }
+
+    //~ SHARED ====================================================================================
+
+    protected def configBoot() {
+
+        // === boot sub-module
+        if (!isCloud) {
+            addBoot("com.crashnote.api.Boot")
+            addBoot("com.crashnote.worker.Boot")
+            addBoot("com.crashnote.simulator.Boot")
         }
+    }
+
+    override protected def afterBoot() {
+
+        // === initialize debug sequence
+        //DebugModule.launch()
+    }
 }

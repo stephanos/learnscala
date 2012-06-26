@@ -1,12 +1,20 @@
-GET     /                               controllers.Home.index
-GET     /imprint                        controllers.Home.imprint
-GET     /backdoor                       controllers.Home.backdoor
-GET     /google1388dbffebf166ff.html    controllers.Home.gverify
+GET     /                                           controllers.Home.index
+GET     /imprint                                    controllers.Home.imprint
+GET     /backdoor                                   controllers.Home.backdoor
+GET     /google1388dbffebf166ff.html                controllers.Home.gverify
 
-POST    /mail.do                        controllers.Home.doMail
-GET     /schulung/einfuehrung-in-scala  controllers.Home.scala
-#GET     /schulung/modernes-javascript   controllers.Home.advjs
+POST    /mail.do                                    controllers.Contact.doMail
+
+GET     /test                                       controllers.Slide.test
+
 
 # === ASSETS
 
-GET     /assets/*file                   controllers.Assets.at(path="/public", file)
+GET     /assets/img/*file                           controllers.Assets.at(path="/public/images", file)
+GET     /assets/font/*file                          controllers.Assets.at(path="/public/font", file)
+GET     /assets/:ver/:typeOf/*file                  controllers.MyAssets.at(typeOf, file, ver)
+
+GET     /robots.txt                                 controllers.MyAssets.robots
+GET     /favicon.ico                                controllers.Assets.at(path="/public/images", file="favicon.ico")
+GET     /crossdomain.xml                            controllers.Assets.at(path="/public", file="crossdomain.xml")
+#GET     /manifest.appcache                         controllers.MyAssets.frontManifest

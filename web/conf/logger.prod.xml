@@ -1,0 +1,27 @@
+<configuration debug="false">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{HH:mm:ss.SSS}  [%-30.30thread]  %-5level  %-65(%logger{60}:%line)  %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+    <!--<appender name="CLOUD" class="com.crashnote.logback.CloudAppender">
+        <enabled>true</enabled>
+        <async>false</async>
+        <strategy>manual</strategy>
+    </appender>-->
+
+    <!--<appender name="QUEUE" class="com.lumberjack.actor._logging.DatabaseAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+    </appender>-->
+
+</configuration>

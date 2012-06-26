@@ -1,0 +1,15 @@
+/*
+package com.crashnote.spec
+
+*/
+/**
+ * Note: Due to the way Spring's TestContext framework is designed,
+ * @Shared fields cannot currently be injected. This also means that
+ * setupSpec() and cleanupSpec() cannot get access to Spring beans.
+ * see http://code.google.com/p/spock/source/browse/trunk/spock-spring/src/test/groovy/org/spockframework/spring/TransactionalExample.groovy
+ *//*
+
+//@ContextConfiguration(locations = ["/context-test.xml"])
+abstract class ContextSpec extends Spec {
+}
+*/
