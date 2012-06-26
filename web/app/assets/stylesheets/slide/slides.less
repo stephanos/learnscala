@@ -1,0 +1,61 @@
+/*********************************************
+ * SLIDES
+ *********************************************/
+
+.reveal .slides {
+	position: absolute;
+	width: 900px;
+	height: 600px;
+
+	left: 50%;
+	top: 50%;
+	margin-left: -450px;
+	margin-top: -320px;
+	padding: 20px 0px;
+
+	text-align: center;
+
+	-webkit-transition: -webkit-perspective .4s ease;
+	   -moz-transition: -moz-perspective .4s ease;
+	    -ms-transition: -ms-perspective .4s ease;
+	     -o-transition: -o-perspective .4s ease;
+	        transition: perspective .4s ease;
+
+	-webkit-perspective: 600px;
+	   -moz-perspective: 600px;
+	    -ms-perspective: 600px;
+	        perspective: 600px;
+
+ 	-webkit-perspective-origin: 50% 25%;
+ 	   -moz-perspective-origin: 50% 25%;
+ 	    -ms-perspective-origin: 50% 25%;
+ 	        perspective-origin: 50% 25%;
+
+
+    &>section,
+    &>section>section {
+        display: none;
+        position: absolute;
+        width: 100%;
+        min-height: 600px;
+
+        z-index: 10;
+
+        -webkit-transform-style: preserve-3d;
+           -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+                transform-style: preserve-3d;
+
+        -webkit-transition: all 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
+           -moz-transition: all 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
+            -ms-transition: all 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
+             -o-transition: all 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
+                transition: all 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
+    }
+
+    &>section.present {
+        display: block;
+        z-index: 11;
+        opacity: 1;
+    }
+}

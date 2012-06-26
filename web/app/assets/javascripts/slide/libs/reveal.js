@@ -1,3 +1,6 @@
+goog.provide("lib.reveal");
+//goog.require("lib.classlist");
+
 /*!
  * reveal.js 1.4
  * http://lab.hakim.se/reveal-js

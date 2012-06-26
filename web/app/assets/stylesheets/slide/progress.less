@@ -1,0 +1,27 @@
+/*********************************************
+ * PROGRESS BAR
+ *********************************************/
+
+.reveal .progress {
+	position: fixed;
+	display: none;
+	height: 6px;
+	width: 100%;
+	top: 0;
+	left: 0;
+
+	background: rgba(0,0,0,0.2);
+}
+
+	span {
+		display: block;
+		background: @c_emph;
+		height: 100%;
+		width: 6px;
+
+		-webkit-transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
+		   -moz-transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
+		    -ms-transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
+		     -o-transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
+		        transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
+	}

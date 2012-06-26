@@ -1,0 +1,46 @@
+/*********************************************
+ * OVERVIEW
+ *********************************************/
+
+.reveal .overview {
+    .slides {
+        -webkit-perspective: 700px;
+        -moz-perspective: 700px;
+        -ms-perspective: 700px;
+        perspective: 700px;
+    }
+
+    .slides section {
+        padding: 20px 0;
+        opacity: 1;
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.1);
+    }
+
+    .slides section .fragment {
+        opacity: 1;
+    }
+
+    .slides section:after,
+    .slides section:before {
+        display: none !important;
+    }
+
+    .slides section>section {
+        opacity: 1;
+        cursor: pointer;
+    }
+
+    .slides section:hover {
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .slides section.present {
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    .slides>section.stack {
+        background: none;
+        padding: 0;
+    }
+}

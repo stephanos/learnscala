@@ -9,7 +9,7 @@ object MyAssets
 
     // ==== JS
 
-    lazy val js_slide = jsUrl("/reveal.min.js")
+    lazy val js_slide = jsUrl("/slide/script.min.js")
     lazy val js_formval = jsUrl("/vanadium.min.js")
 
     lazy val js_jquery: (String, String) =
@@ -18,6 +18,7 @@ object MyAssets
                 "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js")
         else
             (jsUrl("/jquery.js")._1, jsUrl("/jquery.js")._2)
+
 
     // ==== CSS
 
