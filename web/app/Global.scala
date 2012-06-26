@@ -50,4 +50,16 @@ object Global
         // === initialize debug sequence
         //DebugModule.launch()
     }
+
+    override protected def isHiddenForLoggedInUsers(p: String) =
+        p.startsWith("/users")
+
+    override protected def isRestrictedPath(p: String) =
+        p.startsWith("/app") || p.startsWith("/user/") || p.startsWith("/api/")
+
+    override protected def isEncryptedWhenLoggedOut(path: String): Boolean =
+        path.startsWith("/users") || path.endsWith("/contact") || path.contains("/interface")
+
+    override protected def isAdminPath(path: String) =
+        path.startsWith("/mysecretadmin")
 }

@@ -75,13 +75,13 @@ trait BaseGlobal
     }
 
     protected def isHiddenForLoggedInUsers(p: String) =
-        p.startsWith("/users")
+        false
 
     protected def isRestrictedPath(p: String) =
-        p.startsWith("/app") || p.startsWith("/user/") || p.startsWith("/api/")
+        false
 
     protected def isEncryptedWhenLoggedOut(path: String): Boolean =
-        path.startsWith("/users") || path.endsWith("/contact") || path.contains("/interface")
+        false
 
     protected def isAdminPath(path: String) =
         path.startsWith("/mysecretadmin")
