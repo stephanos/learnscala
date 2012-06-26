@@ -30,16 +30,6 @@
                 query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
             } );
 
-            // Fires when a slide with data-state=customevent is activated
-            Reveal.addEventListener( 'customevent', function() {
-                //alert( '"customevent" has fired' );
-            } );
-
-            // Fires each time a new slide is activated
-            Reveal.addEventListener( 'slidechanged', function( event ) {
-                // event.previousSlide, event.currentSlide, event.indexh, event.indexv
-            } );
-
             Reveal.initialize({
                 // Display controls in the bottom right corner
                 controls: false,
