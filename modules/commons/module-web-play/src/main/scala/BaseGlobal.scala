@@ -62,7 +62,7 @@ trait BaseGlobal
                                     case p if isAdminPath(p) => // require HTTPS and ADMIN
                                         Encrypted(Admin(action))
                                     case p if isHiddenForLoggedInUsers(p) =>
-                                        Action(redirectToHttps(req, "/", reason = Some("hidden")))
+                                        Action(redirectToHttps(req, getAppPath, reason = Some("hidden")))
                                     case _ =>
                                         Encrypted(action)
                                 }
@@ -73,6 +73,9 @@ trait BaseGlobal
     override protected def addShutdownHook() {
         // do nothing, let framework handle it
     }
+
+    protected def getAppPath =
+        "/"
 
     protected def isHiddenForLoggedInUsers(p: String) =
         false

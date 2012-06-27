@@ -60,6 +60,9 @@ object Global
             super.onRouteRequest(req)
     }
 
+    override protected def getAppPath =
+        "/app"
+
     override protected def redirectToLogin =
         Redirect("/users/login").flashing(("message", "Please login in order to access the members area"), ("type", "info"))
 

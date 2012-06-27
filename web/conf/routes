@@ -19,6 +19,7 @@ GET     /users/oauth                                controllers.Auth.oauth
 
 GET     /app                                        controllers.App.index
 GET     /app/                                       controllers.App.index2
+GET     /app/logout                                 controllers.Auth.logout
 
 
 # === ASSETS

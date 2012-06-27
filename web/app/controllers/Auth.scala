@@ -7,8 +7,13 @@ import play.api.data.Forms._
 import controllers.base.MyController
 import service._
 import com.loops101.util.EnvUtil
+import scala.Some
 
 object Auth extends MyController {
+
+    def logout = Action {
+        Redirect("/").withNewSession
+    }
 
     // ===== CREDENTIALS
 
@@ -24,7 +29,7 @@ object Auth extends MyController {
         implicit req =>
             loginForm.bindFromRequest.fold(
                 errForm => {
-                    goToLoginPage(("message" , "Please fill in your email address and password"), ("type", "warn"))
+                    goToLoginPage(("message", "Please fill in your email address and password"), ("type", "warn"))
                 },
                 form => {
                     Ok(views.html.login()) // TODO
@@ -66,13 +71,13 @@ object Auth extends MyController {
                                                     .withSession((USER_ID, "TODO"), (USER_MAIL, "TODO"), (USER_NAME, "TODO"))
                                             } else {
                                                 log.warn("unable to get GitHub user data: {}", userData)
-                                                goToLoginPage(("message", "Communication with GitHub failed"), ("type" , "error"))
+                                                goToLoginPage(("message", "Communication with GitHub failed"), ("type", "error"))
                                             }
                                     }
                                 }
                             case _ =>
                                 log.warn("unable to get access token from GitHub: {}", authData)
-                                goToLoginPage(("message", "Communication with GitHub failed"), ("type" , "error"))
+                                goToLoginPage(("message", "Communication with GitHub failed"), ("type", "error"))
                         }
                 }
             }
