@@ -80,7 +80,7 @@ trait BaseGlobal
     protected def isRestrictedPath(p: String) =
         false
 
-    protected def isEncryptedWhenLoggedOut(path: String): Boolean =
+    protected def isEncryptedWhenLoggedOut(p: String): Boolean =
         false
 
     protected def isAdminPath(path: String) =

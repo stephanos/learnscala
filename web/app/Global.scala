@@ -69,6 +69,6 @@ object Global
     override protected def isRestrictedPath(p: String) =
         p.startsWith("/app")
 
-    override protected def isEncryptedWhenLoggedOut(path: String): Boolean =
-        false
+    override protected def isEncryptedWhenLoggedOut(p: String): Boolean =
+        p.startsWith("/users")
 }
