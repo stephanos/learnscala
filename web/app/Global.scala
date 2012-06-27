@@ -64,7 +64,7 @@ object Global
         Redirect("/users/login").flashing(("message", "Please login in order to access the members area"), ("type", "info"))
 
     override protected def isHiddenForLoggedInUsers(p: String) =
-        p.startsWith("/users")
+        !isRestrictedPath(p)
 
     override protected def isRestrictedPath(p: String) =
         p.startsWith("/app")
