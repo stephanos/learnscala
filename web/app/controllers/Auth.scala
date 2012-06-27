@@ -29,10 +29,10 @@ object Auth extends MyController {
         implicit req =>
             loginForm.bindFromRequest.fold(
                 errForm => {
-                    goToLoginPage(("message", "Please fill in your email address and password"), ("type", "warn"))
+                    goToLoginPage(("message", "Please fill in your e-mail and password"), ("type", "warn"))
                 },
                 form => {
-                    Ok(views.html.login()) // TODO
+                    goToLoginPage(("message", "Your e-mail or password is incorrect"), ("type", "warn"))
                 }
             )
     }

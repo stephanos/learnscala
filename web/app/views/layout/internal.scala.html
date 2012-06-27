@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String, open: Boolean = false)(content: Html)
 <!DOCTYPE html>
 
 <html>
@@ -18,6 +18,14 @@
 
     <body>
         @content
+
+        @if(!open) {
+            <div id="navi">
+                <a href="@routes.Auth.logout">
+                    <span>Logout</span>
+                </a>
+            </div>
+        }
     </body>
 
 </html>

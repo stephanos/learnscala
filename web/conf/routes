@@ -5,8 +5,6 @@ GET     /google1388dbffebf166ff.html                controllers.Home.gverify
 
 POST    /mail.do                                    controllers.Contact.doMail
 
-GET     /test                                       controllers.Slide.test
-
 
 # === AUTH
 
@@ -20,6 +18,8 @@ GET     /users/oauth                                controllers.Auth.oauth
 GET     /app                                        controllers.App.index
 GET     /app/                                       controllers.App.index2
 GET     /app/logout                                 controllers.Auth.logout
+
+GET     /app/test                                   controllers.Slide.test
 
 
 # === ASSETS
