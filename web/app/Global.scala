@@ -73,5 +73,5 @@ object Global
         p.startsWith("/app")
 
     override protected def isEncryptedWhenLoggedOut(p: String): Boolean =
-        p.startsWith("/users")
+        true // encrypt everything
 }
