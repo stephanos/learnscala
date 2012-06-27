@@ -1,0 +1,137 @@
+// ================================================================================================
+// ============================================= SIZES ============================================
+
+// ==== layout
+@minw:          940px; // TODO: 768px
+@maxw:          940px; // TODO: 1200px
+
+@h_header:      40px;
+@h_header_ext:  300px;
+@h_header_b:    4px;
+@h_header_t:    @h_header + @h_header_b;
+
+@h_footer:      30px;
+@h_footer_s:    30px;
+
+@h_notify:      28px;
+@h_t-err:       20px;
+@p_t-err:       5px;
+
+@h_board_bar:   @h_header * 1.5;
+
+// ==== boxes
+@w_box_small:   320px;
+@w_box:         400px;
+@w_box_big:     450px;
+@w_box_huge:    640px;
+@w_box_gigantic: 800px;
+
+// ==== lines/borders
+//@l_
+
+// ==== round
+@r_big:     5px;
+@r_small:   2px;
+
+
+// ================================================================================================
+// ============================================= FONT =============================================
+
+// ==== font size
+
+// general
+@fs_h1:         40px;
+@fs_h2:         21px;
+@fs_h3:         16px;
+
+@fs_huge:       17px;
+@fs_big:        16px;
+@fs_bigger:     15px;
+@fs:            14px;   @baseFontSize: @fs;
+@fs_smaller:    13px;
+@fs_small:      12px;
+@fs_tiny:       11px;
+
+// specific
+@fs_header:     @fs;
+@fs_footer:     @fs_small;
+@fs_tt:         @fs;
+
+// ==== line height
+
+@lh:        1.5;
+@lh_big:    1.75;
+
+
+// ==== font family
+
+/*  Helvetica Neue  = MacOS X
+    Lucida Grande   = MacOS
+    Nimbus Sans L   = Unix (another option might be "Bitstream Vera Sans")
+    Segoe UI        = Windows 7+
+    Arial           = Windows
+    Sans-serif      = cover-all fallback
+*/
+//@baseFontFamily: "Segoe UI", "Lucida Grande", "Nimbus Sans L", "Dejavu Sans", Arial, sans-serif, "Droid Sans";
+
+.headFont()  { font-family: Graublau, Tahoma, Geneva, sans-serif; }
+.textFont()  { font-family: Arial, sans-serif; }
+
+.naviFont()  { font-family: Arial, sans-serif; }
+.inputFont() { font-family: Arial, sans-serif; }
+.handFont()  { font-family: "Coming Soon", cursive; }
+.codeFont()  { font-family: Menlo, Monaco, "Courier New", monospace, "Droid Sans Mono"; }
+
+
+// ================================================================================================
+// ============================================ COLORS ============================================
+
+@c_base:            #B8D30B;
+@c_base:            darken(saturate(#9CC276, 15%), 5%); // #6F9034;
+@c_base:            #3BC261;
+//@c_base: darken(#80CEFF, 10%);
+
+@c_link:            #3B5998;
+@c_link_hover:      #3B5998;
+
+@c_selection:       #a8d1ff;
+@c_txt_err:         #f00;
+
+// ==== Text
+@tc:                #444; // better than 'regular' black
+@tc_ttip:           #fff;
+
+@tc_header:         #999; //darken(#fff, 15%);
+@tc_header_hover:   #ccc;
+
+@tc_footer:         gray;
+@tc_footer_hover:   @tc_footer;
+
+// ==== Background
+@bg:                #F9F9F9; //#FAFAFA //#F1F1F1 //#EBEAE7 //#f5f6f7
+@bg_ttip:           #000;
+
+@bg_header:         #232323;
+@bg_header1:        #333; //#555; //#333;
+@bg_header2:        #222; //#111;
+
+@bg_footer:         @bg_header;
+@bg_footer1:        #333;
+@bg_footer2:        #111;
+
+// ==== Lines
+@c_border:          #D7D7D7;
+@c_border_thick:    @c_base;
+
+// ==== Alerts
+@warningBackground: darken(#fcf8e3, 10%);
+@warningText:       darken(#c09853, 5%);
+
+
+// ================================================================================================
+// ============================================= PATHS ============================================
+
+@basePath: "";
+
+@imgPath:  e(%("%s%s", @basePath, "/assets/img/"));
+@fontPath: e(%("%s%s", @basePath, "/assets/font/"));

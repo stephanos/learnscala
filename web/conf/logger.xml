@@ -8,6 +8,7 @@
         </encoder>
     </appender>
 
+    <logger name="service" level="DEBUG"/>
     <logger name="controllers" level="DEBUG"/>
     <logger name="application" level="DEBUG"/>
     <logger name="com.learnscala" level="DEBUG"/>

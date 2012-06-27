@@ -1,5 +1,4 @@
-@(title: String, crawl: Boolean = true,
-  subtitle: Html = sub.subtitle())(content: Html)
+@(title: String, crawl: Boolean = true, subtitle: Html = null)(content: Html)
 <!DOCTYPE html>
 
 <html>
@@ -8,16 +7,19 @@
             if(title.isEmpty) "" else "| " + title
         }
         <title>Scala Lernen: Schulung für Softwareentwickler @t</title>
-        <link href='@MyAssets.css_main._1' type="text/css" rel="stylesheet">
+
+        @*<!-- META -->*@
+        @if(crawl) {
+            <meta name="robots" content="INDEX, FOLLOW"/>
+        } else {
+            <meta name="robots" content="NOINDEX"/>
+        }
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        @*<!-- ROBOTS -->*@
-        @if(crawl) {
-        <meta name="robots" content="INDEX, FOLLOW"/>
-        } else {
-        <meta name="robots" content="NOINDEX"/>
-        }
+        @*<!-- STYLE -->*@
+        <link href='@MyAssets.css_main._1' type="text/css" rel="stylesheet">
 
+        @*<!-- SCRIPT -->*@
         <script type="text/javascript" src="@MyAssets.js_jquery._1"></script>
         <script type="text/javascript" src="@MyAssets.js_formval._1"></script>
     </head>
@@ -35,7 +37,11 @@
                         </h1>
 
                         <h2>
-                            @subtitle
+                            @if(subtitle == null) {
+                                <span>Praxisnahe Schulung <br/>f&uuml;r den Einstieg in Scala</span>
+                            } else {
+                                @subtitle
+                            }
                         </h2>
                     </div>
                 </header>
@@ -43,6 +49,10 @@
 
             <section id="main">
                 @content
+
+                <!--<a href="@routes.Auth.login" id="loginBtn">
+                    <span>Login</span>
+                </a>-->
             </section>
 
             <footer id="bottom">
@@ -56,6 +66,7 @@
         </div>
 
         @if(controllers.Home.isProduction) {
+            @*<!-- ANALYTICS -->*@
             <script type="text/javascript">
                 var _gaq = _gaq || [];
                 _gaq.push(['_setAccount', 'UA-32865821-1']);

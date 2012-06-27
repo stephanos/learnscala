@@ -1,6 +1,5 @@
 package controllers
 
-import java.util.Date
 import play.api.mvc._
 import play.api.mvc.Results._
 import com.loops101.util._
@@ -69,7 +68,8 @@ trait BaseSecure {
 
     // ==== AUTH
 
-    protected def userId(req: RequestHeader) = req.session.get(USER_ID)
+    protected def userId(req: RequestHeader) =
+        req.session.get(USER_ID)
 
     protected case class Authenticated[A](action: Action[A]) extends Action[A] {
 
@@ -77,12 +77,15 @@ trait BaseSecure {
             userId(req).map {
                 uid => action(req)
             }.getOrElse(
-                Redirect("/users/login#required")
-                    //.withCookies(Cookie("PLAY_REDIRECT", navdata)(REDIRECT_TO, req.path), (REDIRECT_ON, new Date().getTime.toString))
+                redirectToLogin
+                //.withCookies(Cookie("PLAY_REDIRECT", navdata)(REDIRECT_TO, req.path), (REDIRECT_ON, new Date().getTime.toString))
             )
 
         lazy val parser = action.parser
     }
+
+    protected def redirectToLogin: Result =
+        Redirect("/users/login#required")
 
     protected case class Admin[A](action: Action[A]) extends Action[A] {
 

@@ -4,6 +4,7 @@ import play.api.mvc._
 import play.api.data.Form
 import play.api.data.Forms._
 import controllers.base.MyController
+import service.Mail
 
 object Contact extends MyController {
 

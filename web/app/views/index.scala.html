@@ -1,6 +1,6 @@
 @()(implicit flash: Flash)
 
-@layout.main("") {
+@layout.public("") {
 
 <div id="index">
 
@@ -10,7 +10,7 @@
 
     <br/>
 
-    <div class='alert hidden alert-@flash.get("type")'>
+    <div class='alert hide alert-@flash.get("type")'>
         @flash.get("message")
     </div>
 
@@ -178,7 +178,7 @@
         <div id="entermail">
             <form action="@routes.Contact.doMail" method="POST">
                 <input type="text" class=":required;;label :email;;label :only_on_submit" name="mail"/>
-                <input type="submit" value="Senden"/>
+                <input type="submit"  value="Senden"/>
 
                 <div id="label" style="display:none">Bitte geben Sie eine g&uuml;ltige E-Mail-Adresse ein</div>
             </form>
@@ -189,7 +189,6 @@
             Behnke</a>
         </p>
     </div>
-
 </div>
 
 }

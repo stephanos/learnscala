@@ -5,11 +5,11 @@
 
 // STYLE
 @import "style/common.less";
+@import "style/box.less";
 
 // PAGE
-@import "page/contact.less";
 @import "page/imprint.less";
-@import "page/index.less";
+@import "page/login.less";
 
 body {
     font-size: 14px;
@@ -108,4 +108,15 @@ ul {
     li {
         line-height: 22px;
     }
+}
+
+#loginBtn {
+    position: absolute;
+    top: 6px; right: 20px;
+    .bg(lighten(@c_emph, 20%));
+    padding: 10px 15px;
+    .round-bottom(5px);
+    .no-underline();
+    .border(@c_emph);
+    border-top: 0;
 }

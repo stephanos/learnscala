@@ -1,6 +1,8 @@
+import com.loops101.util.EnvUtil
 import controllers.base.MyController
 import controllers._
 import play.api._
+import play.api.mvc._
 
 object Global
     extends MyController with BaseGlobal with Errors {
@@ -51,15 +53,22 @@ object Global
         //DebugModule.launch()
     }
 
+    override def onRouteRequest(req: RequestHeader): Option[Action[_]] = {
+        if(req.path.endsWith("/do_oauth"))
+            Some(Action(Auth.doOAuth))
+        else
+            super.onRouteRequest(req)
+    }
+
+    override protected def redirectToLogin =
+        Redirect("/users/login").flashing(("message", "Please login in order to access the members area"), ("type", "info"))
+
     override protected def isHiddenForLoggedInUsers(p: String) =
         p.startsWith("/users")
 
     override protected def isRestrictedPath(p: String) =
-        p.startsWith("/app") || p.startsWith("/user/") || p.startsWith("/api/")
+        p.startsWith("/app")
 
     override protected def isEncryptedWhenLoggedOut(path: String): Boolean =
-        path.startsWith("/users") || path.endsWith("/contact") || path.contains("/interface")
-
-    override protected def isAdminPath(path: String) =
-        path.startsWith("/mysecretadmin")
+        false
 }

@@ -1,0 +1,44 @@
+@()(implicit flash: Flash)
+
+@layout.internal("Login") {
+
+<section id="main">
+
+    <div class="box box-filled" id="login">
+
+        <header>
+            <h2>Login</h2><br/>
+        </header>
+
+        <div class='alert hide alert-@flash.get("type")'>
+            @flash.get("message")
+        </div>
+
+        <form class="form-horizontal" action="@routes.Auth.doLogin" method="POST">
+            <fieldset>
+                <div class="control-group">
+
+                    <label class="control-label">E-Mail</label>
+
+                    <div class="controls">
+                        <input type="text" name="mail"/>
+                    </div>
+
+                    <label class="control-label">Password</label>
+
+                    <div class="controls">
+                        <input type="text" name="pass"/>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn">Login</button>
+                    <a href="@routes.Auth.oauth">Login with Github</a>
+                </div>
+            </fieldset>
+        </form>
+
+    </div>
+
+</section>
+}

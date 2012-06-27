@@ -8,6 +8,19 @@ POST    /mail.do                                    controllers.Contact.doMail
 GET     /test                                       controllers.Slide.test
 
 
+# === AUTH
+
+GET     /users/login                                controllers.Auth.login
+POST    /users/do_login                             controllers.Auth.doLogin
+GET     /users/oauth                                controllers.Auth.oauth
+
+
+# === APP
+
+GET     /app                                        controllers.App.index
+GET     /app/                                       controllers.App.index2
+
+
 # === ASSETS
 
 GET     /assets/img/*file                           controllers.Assets.at(path="/public/images", file)

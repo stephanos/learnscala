@@ -1,4 +1,4 @@
-package controllers
+package service
 
 import javax.mail._
 import javax.mail.internet._

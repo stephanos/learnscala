@@ -1,0 +1,23 @@
+@(title: String)(content: Html)
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="robots" content="NOINDEX"/>
+
+        <title>@title</title>
+
+        @*<!-- STYLE -->*@
+        <link href='@MyAssets.css_main._1' type="text/css" rel="stylesheet">
+
+        @*<!-- SCRIPT -->*@
+        <script type="text/javascript" src="@MyAssets.js_jquery._1"></script>
+    </head>
+
+    <body>
+        @content
+    </body>
+
+</html>
