@@ -26,6 +26,9 @@ trait MyBaseField {
     // NAMING
     def naming: (String, String)
 
+    protected def n(s: String) =
+        (s, s)
+
     override def name =
         if(asJSON) naming._1 else naming._2 // for DB persisting
 

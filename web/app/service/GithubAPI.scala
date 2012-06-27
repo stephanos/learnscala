@@ -1,7 +1,9 @@
 package service
 
 import play.api.libs.ws.WS
+import net.liftweb.json._
 import com.loops101.util.Logging
+import com.learnscala.data.model.UserDoc
 
 object GithubAPI extends Logging {
 
@@ -18,4 +20,28 @@ object GithubAPI extends Logging {
 
     def getUser(id: Option[String] = None) =
         Request("/user" + id.map("s/" + _).getOrElse(""))
+
+    def parseUser(s: String) = {
+        val json = parse(s)
+
+        val id = (json \ "id") match {
+            case JInt(v) => Some(v.toInt)
+            case _ => None
+        }
+        val login = (json \ "login") match {
+            case JString(v) => Some(v)
+            case _ => None
+        }
+        val email = (json \ "email") match {
+            case JString(v) => Some(v)
+            case _ => None
+        }
+        val name = (json \ "name") match {
+            case JString(v) => Some(v)
+            case _ => None
+        }
+
+        UserDoc.create
+            .gid(id).email(email).name(Option(name.getOrElse(login.getOrElse(null))))
+    }
 }

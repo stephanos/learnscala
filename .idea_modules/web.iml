@@ -94,9 +94,6 @@
     <orderEntry type="library" name="cc.spray_spray-io_1.0-M2" level="project" />
     <orderEntry type="library" name="com.typesafe.akka_akka-actor_2.0.2" level="project" />
     <orderEntry type="library" name="com.typesafe.akka_akka-slf4j_2.0.2" level="project" />
-    <orderEntry type="library" name="org.apache.httpcomponents_httpclient_4.2" level="project" />
-    <orderEntry type="library" name="org.apache.httpcomponents_httpcore_4.2" level="project" />
-    <orderEntry type="library" name="commons-logging_commons-logging_1.1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="org.specs2_specs2_2.9.1_1.11" level="project" />
     <orderEntry type="library" scope="TEST" name="org.specs2_specs2-scalaz-core_2.9.1_6.0.1" level="project" />
     <orderEntry type="library" scope="TEST" name="org.mockito_mockito-all_1.9.0" level="project" />

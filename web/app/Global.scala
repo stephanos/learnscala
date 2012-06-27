@@ -1,8 +1,8 @@
+import com.learnscala.data._
 import com.loops101.util.EnvUtil
 import controllers.base.MyController
 import controllers._
 import play.api._
-import play.api.mvc._
 
 object Global
     extends MyController with BaseGlobal with Errors {
@@ -15,7 +15,7 @@ object Global
         println("Application starting ... ")
 
         // init database
-        //MyDocDB.initDB()
+        MyDocDB.initDB()
     }
 
     override def onStart(app: Application) {
@@ -29,7 +29,7 @@ object Global
         println("Application shutdown ...")
 
         // stop database
-        //if (isProduction) MyDocDB.stopDB()
+        if (isProduction) MyDocDB.stopDB()
 
         // shut down
         onShutdown()
@@ -50,14 +50,8 @@ object Global
     override protected def afterBoot() {
 
         // === initialize debug sequence
-        //DebugModule.launch()
-    }
-
-    override def onRouteRequest(req: RequestHeader): Option[Action[_]] = {
-        if(req.path.endsWith("/do_oauth"))
-            Some(Action(Auth.doOAuth))
-        else
-            super.onRouteRequest(req)
+        if (!EnvUtil.isProduction)
+            DebugData.reset()
     }
 
     override protected def getAppPath =

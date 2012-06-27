@@ -13,7 +13,7 @@ object ProjectBuild extends MyBuild {
             .aggregate(
             app_web, app_api, // apps
             mod_core, // modules
-            mod_data_cache, mod_data_mongo, // data
+            mod_data_mongo, // data
             mod_test_unit, mod_util, mod_web_play // util
         )
 
@@ -44,7 +44,7 @@ object ProjectBuild extends MyBuild {
     lazy val mod_core =
         MyProject("core", file("modules/core"))
             .settings(moduleSettings: _*)
-            .dependsOn(mod_test_unit % "test->test")
+            .dependsOn(mod_data_mongo, mod_test_unit % "test->test")
 
 
     // ==== SETTINGS
