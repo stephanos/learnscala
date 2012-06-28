@@ -7,12 +7,8 @@
         $("div.other").show();
 }
 
-@layout.public("Unsupported Browser") {
-
+@layout.public("Unsupported Browser", crawl = false, subtitle = Html("Unsupported Browser")) {
     <div class="box header-box alert-box">
-        <header class="warn">
-            <h2><span>Unsupported Browser</span></h2>
-        </header>
         <section>
             <div>
                 This website <strong>requires a modern browser</strong><br/>

@@ -1,25 +1,21 @@
-@layout.public("Access Denied") {
+@layout.public("Access Denied", crawl = false, subtitle = Html("Well, ehm. You are not allowed here.")) {
 
-<div class="box header-box alert-box error-box">
+    <div class="box header-box alert-box error-box">
 
-    <header class="warn">
-        <h2><span>Well, ehm. You are not allowed here.</span></h2>
-    </header>
+        <section>
+            <div>
+                Apparently you tried to open a site you don't have access rights to. Bummer.
+            </div>
 
-    <section>
-        <div>
-            Apparently you tried to open a site you don't have access rights to. Bummer.
-        </div>
+            <div>
+                If this is not right and you should actually have access,
+                please <a href="mailto:stephan@@learnscala.de">report this</a>
+                - including a short description of what you tried to do. Thank you!
+            </div>
+        </section>
 
-        <div>
-            If this is not right and you should actually have access,
-            please <a href="/contact">report this</a>
-            - including a short description of what you tried to do. Thank you!
-        </div>
-    </section>
+        <footer></footer>
 
-    <footer></footer>
-
-</div>
+    </div>
 
 }

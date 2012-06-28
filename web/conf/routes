@@ -12,7 +12,7 @@ GET     /users/login                                controllers.Auth.login
 POST    /users/do_login                             controllers.Auth.doLogin
 
 GET     /users/oauth                                controllers.Auth.oauth
-POST    /users/do_oauth                             controllers.Auth.doOAuth
+GET     /users/do_oauth                             controllers.Auth.doOAuth
 
 
 # === APP

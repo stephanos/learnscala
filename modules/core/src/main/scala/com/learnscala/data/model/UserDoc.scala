@@ -30,11 +30,8 @@ class UserDoc
     object email extends OptionalTextField(this) with MyOptField {
         def naming = n("email")
     }
-    object firstname extends OptionalTextField(this) with MyOptField {
-        def naming = n("firstname")
-    }
-    object lastname extends OptionalTextField(this) with MyOptField {
-        def naming = n("lastname")
+    object fullname extends OptionalTextField(this) with MyOptField {
+        def naming = n("fullname")
     }
 }
 
