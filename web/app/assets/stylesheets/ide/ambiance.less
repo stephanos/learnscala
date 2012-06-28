@@ -3,14 +3,16 @@
 
 @c_shadow: fade(#000, 50%);
 
+.CodeMirror {
+    background-color: #ffffff;
+    .box-shadow(inset 0 0 10px @c_shadow);
+}
+
 .cm-s-ambiance {
     font-size: 28px;
     line-height: 1.40em;
     font-family: Monaco, Menlo, "Andale Mono", "lucida console", "Courier New", monospace !important;
     color: darken(#E6E1DC, 40%);
-    background-color: #ffffff;
-
-    .box-shadow(inset 0 0 10px @c_shadow);
 
     .CodeMirror-gutter {
         background: #ddd;
