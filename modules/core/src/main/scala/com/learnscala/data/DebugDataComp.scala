@@ -10,7 +10,7 @@ object DebugData {
             MyDocDB.recreateDB()
 
             UserDoc.create
-                .gid(159852).name("stephanos").password(PassUtil.encode("tbsdZjqFBdxXrkt8Gm2Z7MqA"))
+                .gid(159852).name("stephanos").password(PassUtil.encode("stephanos"))
                 .githubToken("84fcbeedc955429ba2e14105f60be8d9715f1c23")
                 .save(safe = true)
 

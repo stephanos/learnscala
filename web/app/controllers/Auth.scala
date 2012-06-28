@@ -6,8 +6,10 @@ import play.api.data.Forms._
 
 import controllers.base.MyController
 import service._
-import com.loops101.util.EnvUtil
+import com.loops101.util._
 import com.learnscala.data.dao.UserRepo
+import scala.Some
+import com.learnscala.data.model.UserDoc
 
 object Auth extends MyController {
 
@@ -32,7 +34,13 @@ object Auth extends MyController {
                     goToLoginPage(("message", "Please fill in your name and password"), ("type", "warn"))
                 },
                 form => {
-                    goToLoginPage(("message", "Your name or password is incorrect"), ("type", "warn"))
+                    (UserRepo.findUser(form._1) flatMap {
+                        usr =>
+                            if (PassUtil.isValid(usr.password.value.getOrElse(""), form._2))
+                                Some(goToAppPage(usr))
+                            else
+                                None
+                    }).getOrElse(goToLoginPage(("message", "Your name or password is incorrect"), ("type", "warn")))
                 }
             )
     }
@@ -66,10 +74,7 @@ object Auth extends MyController {
 
                                             if (usrStatus == 200) {
                                                 log.info("received GitHub user data: {}", userData)
-                                                val user = UserRepo.findOrCreate(GithubAPI.parseUser(userData).githubToken(t))
-                                                //guser data: {"total_private_repos":5,"type":"User","public_gists":15,"owned_private_repos":5,"login":"stephanos","private_gists":3,"plan":{"space":614400,"collaborators":1,"private_repos":5,"name":"micro"},"following":0,"html_url":"https://github.com/stephanos","gravatar_id":"d6bafd9b596bb96d81a4700489616488","collaborators":1,"avatar_url":"https://secure.gravatar.com/avatar/d6bafd9b596bb96d81a4700489616488?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png","followers":1,"created_at":"2009-11-30T12:09:10Z","disk_usage":24240,"url":"https://api.github.com/users/stephanos","id":159852,"public_repos":6}
-                                                Redirect(oauthDomain + routes.App.index().url)
-                                                    .withSession((USER_ID, user.gid.value.toString), (USER_NAME, user.name.value))
+                                                goToAppPage(UserRepo.findOrCreate(GithubAPI.parseUser(userData).githubToken(t)))
                                             } else {
                                                 log.warn("unable to get GitHub user data: {}", userData)
                                                 goToLoginPage(("message", "Communication with GitHub failed"), ("type", "error"))
@@ -86,6 +91,10 @@ object Auth extends MyController {
 
     private def oauthDomain =
         "http://" + (if (EnvUtil.isProduction) "learnscala.de" else "localhost:9000")
+
+    private def goToAppPage(user: UserDoc) =
+        Redirect(oauthDomain + routes.App.index().url)
+            .withSession((USER_ID, user.gid.value.toString), (USER_NAME, user.name.value))
 
     private def goToLoginPage(flash: (String, String)*)(implicit f: Flash) =
         Redirect(oauthDomain + routes.Auth.login().url).flashing(flash: _*)

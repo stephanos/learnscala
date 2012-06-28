@@ -14,6 +14,11 @@ object UserRepo extends CommonDAO {
             .where(_.gid eqs gid)
             .get()
 
+    def findUser(name: String) =
+        UserDoc
+            .where(_.name eqs name)
+            .get()
+
     def findOrCreate(d: UserDoc) =
         findUser(d.gid.value) match {
             case Some(u) =>
