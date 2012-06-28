@@ -1,9 +1,11 @@
 $ ->
   $('textarea.editor').each(
     (idx, elem) ->
-      CodeMirror.fromTextArea(elem, {
+      editor = CodeMirror.fromTextArea(elem, {
         autofocus: false,
-        theme: 'ambiance',
+        theme: "ambiance",
+        mode: "text/x-scala",
+        matchBrackets: true,
         autoClearEmptyLines: true
       })
   )

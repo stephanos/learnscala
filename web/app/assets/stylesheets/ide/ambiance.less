@@ -1,22 +1,23 @@
 /******************/
 /* Editor styling */
 
+@c_shadow: fade(#000, 50%);
+
 .cm-s-ambiance {
+    font-size: 28px;
     line-height: 1.40em;
     font-family: Monaco, Menlo, "Andale Mono", "lucida console", "Courier New", monospace !important;
-    color: #E6E1DC;
+    color: darken(#E6E1DC, 40%);
     background-color: #ffffff;
-    -webkit-box-shadow: inset 0 0 10px black;
-    -moz-box-shadow: inset 0 0 10px black;
-    -o-box-shadow: inset 0 0 10px black;
-    box-shadow: inset 0 0 10px black;
+
+    .box-shadow(inset 0 0 10px @c_shadow);
 
     .CodeMirror-gutter {
-        background: #ffffff;
+        background: #ddd;
         padding: 0 5px;
-        text-shadow: #333 1px 1px;
-        border-right: 1px solid #4D4D4D;
-        box-shadow: 0 10px 20px black;
+        //text-shadow: #333 1px 1px;
+        //border-right: 1px solid #4D4D4D;
+        box-shadow: 0 10px 20px @c_shadow;
     }
 
     .CodeMirror-gutter .CodeMirror-gutter-text {
@@ -29,7 +30,7 @@
     }
 
     .CodeMirror-lines .CodeMirror-cursor {
-        border-left: 1px solid #7991E8;
+        border-left: 4px solid @c_emph;
     }
 
     .activeline {
