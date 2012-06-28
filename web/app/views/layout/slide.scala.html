@@ -6,13 +6,18 @@
     <head>
         <meta charset="utf-8">
 
+        @*<!-- STYLE -->*@
         <link rel="stylesheet" href="@MyAssets.css_slide._2">
         <link href="http://fonts.googleapis.com/css?family=PT+Sans:400italic,400,700,700italic"
               rel="stylesheet" type="text/css">
+
+        @*<!-- SCRIPT -->*@
+        <script type="text/javascript" src="@MyAssets.js_jquery._2"></script>
+        <script type="text/javascript" src="@MyAssets.js_ide._2"></script>
     </head>
 
     <body>
-        <div class="reveal">
+        <div id="slidedeck" class="reveal">
             <!-- slides -->
             @content
 
@@ -21,6 +26,12 @@
                 <span style="width: 0px; "></span>
             </div>
         </div>
+
+        <!--<div id="navi">
+            <a href="#" id="fullscreenBtn">
+                <span>Fullscreen</span>
+            </a>
+        </div>-->
 
         <script src="@MyAssets.js_slide._2"></script>
 
@@ -59,6 +70,8 @@
 
             <!--hljs.initHighlightingOnLoad();-->
         </script>
+
+        @comp.analytics()
     </body>
 
 </html>

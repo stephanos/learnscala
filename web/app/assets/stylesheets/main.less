@@ -70,21 +70,6 @@ body {
     }
 }
 
-
-a {
-    @c: #690;
-    color: @c;
-    -moz-outline: none;
-
-    &:link, &:visited, &a:active {
-        text-decoration: none;
-    }
-    &:hover {
-        color: @c;
-        text-decoration: underline; /*color: lighten(@c, 10%);*/
-    }
-}
-
 p {
     font-size: 1em;
     line-height: 1.6;
@@ -96,12 +81,6 @@ p {
         text-align: center;
         #label { color: #b94a48; }
     }
-}
-
-input:focus,
-textarea:focus {
-    border-color: #8cc84b;
-    .box-shadow(0 0 2px #8cc84b);
 }
 
 ul {

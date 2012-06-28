@@ -15,9 +15,18 @@ body {
 	padding: 0; margin: 0;
 	overflow: hidden;
 
-	font-size: 36px;
-	font-weight: 200;
-	letter-spacing: -0.02em;
-    font-family: 'PT Sans', sans-serif;
+    .reveal {
+        font-size: 36px;
+        font-weight: 200;
+        letter-spacing: -0.02em;
+        font-family: 'PT Sans', sans-serif;
+    }
 }
 
+#fullScreen {
+    &:fullscreen,
+    &:-moz-full-screen,
+    &:-webkit-full-screen {
+        background: yellow;
+    }
+}

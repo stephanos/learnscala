@@ -10,4 +10,7 @@ object Slide extends MyController {
         Ok(views.html.slides.test())
     }
 
+    def docs = Action {
+        Ok(views.html.slides.docs())
+    }
 }

@@ -22,6 +22,7 @@ GET     /app/                                       controllers.App.index2
 GET     /app/logout                                 controllers.Auth.logout
 
 GET     /app/test                                   controllers.Slide.test
+GET     /app/docs                                   controllers.Slide.docs
 
 
 # === ASSETS
