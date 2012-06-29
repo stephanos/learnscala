@@ -2,7 +2,7 @@ package com.learnscala.data
 
 import net.liftweb.mongodb._
 import com.loops101.data.mongo.conf.DocDatabase
-import com.learnscala.data.model.UserDoc
+import com.learnscala.data.model._
 
 object MyDocDB
     extends DocDatabase with MongoIdentifier {
@@ -14,5 +14,5 @@ object MyDocDB
         DefaultMongoIdentifier.jndiName
 
     lazy val docs =
-        List(UserDoc)
+        List(UserDoc, SessionDoc)
 }

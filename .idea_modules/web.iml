@@ -100,7 +100,6 @@
     <orderEntry type="module" module-name="core" exported="" />
     <orderEntry type="module" module-name="module-web-play" exported="" />
     <orderEntry type="module" module-name="module-test-unit" exported="" />
-    <orderEntry type="module" module-name="api" exported="" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">

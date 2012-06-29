@@ -11,7 +11,7 @@ object ProjectBuild extends MyBuild {
         MyProject("learnscala", file("."))
             .settings(moduleSettings: _*)
             .aggregate(
-            app_web, app_api, // apps
+            app_web, // apps
             mod_core, // modules
             mod_data_mongo, // data
             mod_test_unit, mod_util, mod_web_play // util
@@ -20,23 +20,10 @@ object ProjectBuild extends MyBuild {
 
     // ==== APPS
 
-    lazy val devDeps: List[ClasspathDep[ProjectReference]] =
-        if (isCloud)
-            List()
-        else
-            List(app_api)
-
     lazy val app_web =
         MyProject("web", file("web"))
             .settings(myPlaySettings: _*)
             .dependsOn(mod_core, mod_web_play, mod_test_unit % "test->test")
-            .dependsOn(devDeps: _*)
-
-    lazy val app_api =
-        MyProject("api", file("api"))
-            .settings(appSettings: _*)
-            .settings(libraryDependencies ++= (Seq(jetty) ++ apiKit))
-            .dependsOn(mod_core, mod_test_unit % "test->test")
 
 
     // ==== MODULES
@@ -52,10 +39,5 @@ object ProjectBuild extends MyBuild {
     override lazy val settings =
         super.settings ++ buildSettings
 
-
-    // ==== DEPENDENCIES
-
-    val apiKit =
-        Seq(spray, sprayIo, akka2, akka2Slfj4)
 }
             
