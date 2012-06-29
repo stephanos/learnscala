@@ -1,6 +1,6 @@
-package com.learnscala.data
+package services.data
 
-import com.learnscala.data.model.UserDoc
+import services.data.model.UserDoc
 import com.loops101.util._
 
 object DebugData {

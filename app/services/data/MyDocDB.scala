@@ -1,8 +1,8 @@
-package com.learnscala.data
+package services.data
 
 import net.liftweb.mongodb._
 import com.loops101.data.mongo.conf.DocDatabase
-import com.learnscala.data.model._
+import services.data.model._
 
 object MyDocDB
     extends DocDatabase with MongoIdentifier {

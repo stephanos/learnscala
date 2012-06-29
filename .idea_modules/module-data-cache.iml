@@ -10,17 +10,17 @@
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/../modules/commons/module-data-cache/target/scala-2.9.1/classes" />
-    <output-test url="file://$MODULE_DIR$/../modules/commons/module-data-cache/target/scala-2.9.1/test-classes" />
+    <output url="file://$MODULE_DIR$/../modules/module-data-cache/target/scala-2.9.1/classes" />
+    <output-test url="file://$MODULE_DIR$/../modules/module-data-cache/target/scala-2.9.1/test-classes" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../modules/commons/module-data-cache">
-      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-data-cache/src/main/scala" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-data-cache/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-data-cache/src/main/resources" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-data-cache/src/test/scala" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-data-cache/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-data-cache/src/test/resources" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/../modules/commons/module-data-cache/target" />
+    <content url="file://$MODULE_DIR$/../modules/module-data-cache">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/module-data-cache/src/main/scala" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/module-data-cache/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/module-data-cache/src/main/resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/module-data-cache/src/test/scala" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/module-data-cache/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/module-data-cache/src/test/resources" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/module-data-cache/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

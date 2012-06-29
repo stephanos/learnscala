@@ -5,11 +5,10 @@ import play.api.data.Form
 import play.api.data.Forms._
 
 import controllers.base.MyController
-import service._
+import services._
 import com.loops101.util._
-import com.learnscala.data.dao.UserRepo
-import scala.Some
-import com.learnscala.data.model.UserDoc
+import services.data.dao.UserRepo
+import services.data.model.UserDoc
 
 object Auth extends MyController {
 

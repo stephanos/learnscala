@@ -1,6 +1,6 @@
-package com.learnscala.data.dao
+package services.data.dao
 
-import com.learnscala.data.model.UserDoc
+import services.data.model.UserDoc
 
 import com.loops101.data.mongo.dao._
 import com.loops101.data.mongo.dao.Query._

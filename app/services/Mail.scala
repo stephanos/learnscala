@@ -1,4 +1,4 @@
-package service
+package services
 
 import javax.mail._
 import javax.mail.internet._

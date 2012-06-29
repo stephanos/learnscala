@@ -1,7 +1,7 @@
-package com.learnscala.data.model
+package services.data.model
 
 import com.loops101.data.mongo.model._
-import com.learnscala.data.MyDocDB
+import services.data.MyDocDB
 
 import com.foursquare.rogue.Rogue._
 
@@ -16,12 +16,14 @@ class SessionDoc
     object name extends TextField(this) with MyField {
         def naming = n("name")
     }
+
 }
 
 object SessionDoc
     extends SessionDoc with MongoMetaRecord[SessionDoc] with MyMongoMetaRecord[SessionDoc] {
 
     override def mongoIdentifier = MyDocDB
+
     override def collectionName = name("users", "ls")
 
     val nameIdx = SessionDoc.index(_.name, Asc)

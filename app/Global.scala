@@ -1,4 +1,4 @@
-import com.learnscala.data._
+import services.data._
 import com.loops101.util.EnvUtil
 import controllers.base.MyController
 import controllers._

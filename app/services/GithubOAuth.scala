@@ -1,4 +1,4 @@
-package service
+package services
 
 import play.api.libs.ws.WS
 

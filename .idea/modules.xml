@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea_modules/core.iml" filepath="$PROJECT_DIR$/.idea_modules/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/learnscala.iml" filepath="$PROJECT_DIR$/.idea_modules/learnscala.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-data-cache.iml" filepath="$PROJECT_DIR$/.idea_modules/module-data-cache.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-data-mongo.iml" filepath="$PROJECT_DIR$/.idea_modules/module-data-mongo.iml" />
@@ -14,7 +13,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-util.iml" filepath="$PROJECT_DIR$/.idea_modules/module-util.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-web-play.iml" filepath="$PROJECT_DIR$/.idea_modules/module-web-play.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/project.iml" filepath="$PROJECT_DIR$/.idea_modules/project.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea_modules/web.iml" filepath="$PROJECT_DIR$/.idea_modules/web.iml" />
     </modules>
   </component>
 </project>

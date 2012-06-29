@@ -1,9 +1,9 @@
-package service
+package services
 
 import play.api.libs.ws.WS
 import net.liftweb.json._
 import com.loops101.util.Logging
-import com.learnscala.data.model.UserDoc
+import services.data.model.UserDoc
 
 object GithubAPI extends Logging {
 
