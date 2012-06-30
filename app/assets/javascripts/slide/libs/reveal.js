@@ -576,7 +576,7 @@ var Reveal = (function(){
 					// and last slides
 					var distance = Math.abs( ( index - i ) % ( slidesLength - 3 ) ) || 0;
 
-					slide.style.display = distance > 3 ? 'none' : 'block';
+					slide.style.display = distance > 3 ? 'none' : '';
 				}
 
 				slides[i].classList.remove( 'past' );

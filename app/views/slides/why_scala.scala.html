@@ -1,4 +1,4 @@
-@layout.slide("test") {
+@layout.slide("Why Scala") {
 
 <div class="state-background"></div>
 
@@ -11,31 +11,169 @@
     </section>
 
 
-    <section>
-        <h2>Heads <var>Up</var></h2>
-        <h2>Heads <em>Down</em></h2>
-
-        <p>
-            bla bla bla
-        </p>
+    <section class="vcenter">
+        <blockquote>
+            <p>
+                The name Scala stands for <em>scalable language</em>.
+            </p>
+            <p>
+                The language is designed to grow with the demands of its users.
+                You can apply Scala to a wide range of programming tasks, from writing small scripts to building large systems.
+            </p>
+            <var class="who">
+                - Martin Odersky, creator of Scala
+            </var>
+        </blockquote>
     </section>
 
 
     <section>
-        <textarea class="editor" id="code">
+        <h2>Scala is ... <span><em>a scripting language</em></span></h2>
+
+        <br/>
+        <div class="indent">
+            <ul>
+                <li class="">
+                    no semicolons
+                    <div class="editor small">
+                        ^val say = "Hello World"
+                        println(say)
+                    </div>
+                </li>
+                <li class="fragment">
+                    type inference
+                </li>
+                <li class="fragment">
+                    lightweight classes
+                </li>
+            </ul>
+        </div>
+    </section>
+
+
+    <section>
+        <h2>Scala is ... <span class="fragment"><em>object-oriented</em></span></h2>
+
+    </section>
+
+
+    <section>
+        <h2>Scala is ... <span><em>functional</em></span></h2>
+
+    </section>
+
+
+    <section>
+        <h2>Scala is ... <span><em>interoperable</em></span></h2>
+
+    </section>
+
+
+    <section>
+        <h2>Scala is ... <span><em>statically typed</em></span></h2>
+
+    </section>
+
+
+    <section>
+        <h2>Scala is ... <span><em>composable</em></span></h2>
+
+    </section>
+
+
+    <section>
+        <h2>Scala is ... <span><em>extensible</em></span></h2>
+
+    </section>
+
+
+    <section>
+        <h2>Scala is ... <span><em>fast</em></span></h2>
+        <br/>
+        <div class="indent">
+            <ul>
+                <li class="fragment">
+                    runs on the Java Virtual Machine
+                </li>
+            </ul>
+        </div>
+    </section>
+
+
+    <section>
+        <h2>Scala <var><></var> Java</h2>
+
+    </section>
+
+
+    <section>
+        <h2 class="inline"><em>Compiling</em></h2>
+        <h2 class="inline right"><var>Running</var></h2>
+
+    </section>
+
+
+    <section>
+        <h2>Who is using Scala ?</h2>
+        <br/>
+        <div class="fragment indent">
+            <table>
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <tr>
+                    <td><var>LinkedIn</var></td>
+                    <td><var>Localytics</var></td>
+                    <td><em>Novell</em></td>
+                    <td><em>EDF</em></td>
+                </tr>
+                <tr>
+                    <td><var>Tumlbr</var></td>
+                    <td><var>StumbleUpon</var></td>
+                    <td><em>VMware</em></td>
+                    <td><em>AOL</em></td>
+                </tr>
+                <tr>
+                    <td><var>RememberTheMilk</var></td>
+                    <td><var>Klout</var></td>
+                    <td><em>Siemens</em></td>
+                    <td><em>SAP</em></td>
+                </tr>
+                <tr>
+                    <td><var>StackMob</var></td>
+                    <td><var>foursquare</var></td>
+                    <td><em>Sony</em></td>
+                    <td><em>o2 Telphonica</em></td>
+
+                </tr>
+                <tr>
+                    <td><var>eHarmony</var></td>
+                    <td><var>Twitter</var></td>
+                    <td><em>UK Guardian</em></td>
+                    <td><em>Xerox</em></td>
+                </tr>
+            </table>
+            <br/>
+            <h3 class="center">
+                <var>Startups</var> <big>&nbsp;&&nbsp;</big> <em>Enterprises</em>
+            </h3>
+        </div>
+    </section>
+
+
+    <section>
+        <h2>Code</h2>
+
+        <div class="editor">
 def partition(p: A => Boolean): (Repr, Repr) = {
     val l, r = newBuilder
     for (x <- this) (if (p(x)) l else r) += x
     (l.result, r.result)
 }
-        </textarea>
-    </section>
-
-
-    <section>
-        <h2>La
-            <emp>Fin</emp>
-        </h2>
+        </div>
     </section>
 
 
