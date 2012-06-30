@@ -1,11 +1,13 @@
 .editor {
 
     .ace_editor {
+        width: 100%;
+        //overflow-x: auto;
+        //overflow-y: auto;
+        border: 3px dashed @c_text_light;
+
         .ace_scroller {
-            width: 100%;
-            overflow-x: auto;
-            overflow-y: auto;
-            border: 3px dashed @c_text_light;
+            padding: 5px 20px;
         }
     }
 
@@ -14,10 +16,11 @@
 
         .ace_editor {
             .ace_gutter {
-                width: 0;
-                height: 0;
                 display: none;
             }
+        }
+        .ace_sb {
+            display: none;
         }
     }
 }

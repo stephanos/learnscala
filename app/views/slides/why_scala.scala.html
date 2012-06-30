@@ -35,16 +35,18 @@
             <ul>
                 <li class="">
                     no semicolons
+
                     <div class="editor small">
-                        ^val say = "Hello World"
-                        println(say)
+                        |val say = "Hello World"
+                        |println(say)
                     </div>
                 </li>
                 <li class="fragment">
                     type inference
-                </li>
-                <li class="fragment">
-                    lightweight classes
+
+                    <div class="editor small">
+                        |
+                    </div>
                 </li>
             </ul>
         </div>
@@ -168,11 +170,11 @@
         <h2>Code</h2>
 
         <div class="editor">
-def partition(p: A => Boolean): (Repr, Repr) = {
-    val l, r = newBuilder
-    for (x <- this) (if (p(x)) l else r) += x
-    (l.result, r.result)
-}
+            |def partition(p: A => Boolean): (Repr, Repr) = {
+            |    val l, r = newBuilder
+            |    for (x <- this) (if (p(x)) l else r) += x
+            |    (l.result, r.result)
+            |}
         </div>
     </section>
 

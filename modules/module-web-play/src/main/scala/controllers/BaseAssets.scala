@@ -26,7 +26,7 @@ trait BaseAssets {
     }
 
     def urlsOf(path: String) = {
-        val uri = "/assets/" + build + path
+        val uri = "/assets/" + build + path + randomHash
         (httpDomain + uri, httpsDomain + uri)
     }
 
@@ -36,12 +36,7 @@ trait BaseAssets {
     }
 
     def embed(secure: Boolean, urls: (String, String) *): String = {
-        val paths: Seq[String] =
-            urls.map{
-                u =>
-                    val p = if(secure) u._2 else u._1
-                    if (isCloud) p else (p + "?" + new Date().getTime)
-            }
+        val paths: Seq[String] = urls.map(u => (if(secure) u._2 else u._1) + randomHash)
         paths.mkString("','")
     }
 
@@ -56,6 +51,9 @@ trait BaseAssets {
 
 
     //~ INTERNALS =================================================================================
+
+    private def randomHash =
+        if (isCloud) "" else "?" + new Date().getTime
 
     private lazy val baseDomain = if (isProduction) "static." + domain else ""
     private lazy val httpDomain = if (isProduction) "http://" + baseDomain else baseDomain

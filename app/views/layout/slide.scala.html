@@ -70,7 +70,9 @@
                 transition: query.transition || 'linear' // default/cube/page/concave/linear(2d)
             });
 
-            <!--hljs.initHighlightingOnLoad();-->
+            Reveal.addEventListener('slidechanged', function (event) {
+                window.resizeEditors();
+            });
         </script>
 
         @comp.analytics()
