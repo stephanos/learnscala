@@ -24,10 +24,10 @@ object SessionDoc
 
     override def mongoIdentifier = MyDocDB
 
-    override def collectionName = name("users", "ls")
+    override def collectionName = name("sessions", "ls")
 
     val nameIdx = SessionDoc.index(_.name, Asc)
-    override val mongoIndexList = List()
+    override val mongoIndexList = List(nameIdx)
 
     override protected def initColl() {
         ensureIndex(idx(nameIdx), unique)

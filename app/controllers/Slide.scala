@@ -10,6 +10,9 @@ object Slide extends MyController {
         Ok(views.html.app.slides())
     }
 
+    def index2 =
+        index
+
     def redirect(id: String) = Action {
         Redirect(routes.Slide.load(id))
     }

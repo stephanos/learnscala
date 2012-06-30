@@ -21,12 +21,18 @@ GET     /app                                        controllers.App.index
 GET     /app/                                       controllers.App.index2
 
 GET     /app/slides                                 controllers.Slide.index
+GET     /app/slides/                                controllers.Slide.index2
 GET     /app/slides/:id                             controllers.Slide.redirect(id)
 GET     /app/slides/:id/                            controllers.Slide.load(id)
 GET     /app/slides/:id1/:id2                       controllers.Slide.redirect2(id1, id2)
 GET     /app/slides/:id1/:id2/                      controllers.Slide.load2(id1, id2)
 
 GET     /app/logout                                 controllers.Auth.logout
+
+
+# === APP
+
+POST    /api/compile                                controllers.API.compile
 
 
 # === ASSETS

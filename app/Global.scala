@@ -64,7 +64,7 @@ object Global
         !isRestrictedPath(p) && !p.startsWith("/assets")
 
     override protected def isRestrictedPath(p: String) =
-        p.startsWith("/app")
+        p.startsWith("/app") || (if (EnvUtil.isLocal) false else p.startsWith("/api"))
 
     override protected def isEncryptedWhenLoggedOut(p: String): Boolean =
         true // encrypt everything

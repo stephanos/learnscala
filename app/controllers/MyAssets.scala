@@ -12,6 +12,7 @@ object MyAssets
     lazy val js_ide = jsUrl("/ide/script.min.js")
     lazy val js_slide = jsUrl("/slide/script.min.js")
     lazy val js_formval = jsUrl("/vanadium.min.js")
+    lazy val js_modernizr = jsUrl("/modernizr.min.js")
 
     lazy val js_jquery: (String, String) =
         if (isCloud)
