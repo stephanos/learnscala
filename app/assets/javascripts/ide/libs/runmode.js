@@ -1,5 +1,5 @@
 goog.provide("lib.codemirror.runmode");
-goog.require("lib.codemirror");
+//goog.require("lib.codemirror");
 
 CodeMirror.runMode = function(string, modespec, callback, options) {
   var mode = CodeMirror.getMode(CodeMirror.defaults, modespec);

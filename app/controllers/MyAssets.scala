@@ -9,7 +9,7 @@ object MyAssets
 
     // ==== JS
 
-    lazy val js_ace = jsUrl("/ace.min.js")
+    lazy val js_codemirror = jsUrl("/codemirror.min.js")
     lazy val js_ide = jsUrl("/ide/script.min.js")
     lazy val js_util = jsUrl("/util/script.min.js")
     lazy val js_slide = jsUrl("/slide/script.min.js")

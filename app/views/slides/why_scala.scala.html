@@ -103,29 +103,31 @@
     <section>
         <h2>Scala is ... <span><em>functional</em></span></h2>
 
-        <ul class="indent">
-            <li class="fragment">
-                re-usable blocks of code that have no side effects
-                @comp.snippet {
-                    |val names = users.map(_.username)
-                }
-                <div class="fragment">
+        <div class="indent">
+            <ul>
+                <li class="fragment">
+                    re-usable blocks of code that have no side effects
                     @comp.snippet {
-                        |val minors = users.map(_.age()).filter(_ < 18)
+                        |val names = users.map(_.username)
                     }
-                </div>
-            </li>
-            <li class="fragment">
-                pattern matching
-                @comp.snippet {
-                    |def matchTest(arg: String, value: Any) = (arg, value) match {
-                    |   case ("-h" | "--help", _) => displayHelp()
-                    |   case ("-v" | "--version", _) => displayVersion()
-                    |   case (a,v) => sys.error("unknown argument:" + a)
-                    |}
-                }
-            </li>
-        </ul>
+                    <div class="fragment">
+                        @comp.snippet {
+                            |val minors = users.map(_.age()).filter(_ < 18)
+                        }
+                    </div>
+                </li>
+                <li class="fragment">
+                    pattern matching
+                    @comp.snippet {
+                        |def matchTest(arg: String, value: Any) = (arg, value) match {
+                        |   case ("-h" | "--help", _) => displayHelp()
+                        |   case ("-v" | "--version", _) => displayVersion()
+                        |   case (a,v) => sys.error("unknown argument:" + a)
+                        |}
+                    }
+                </li>
+            </ul>
+        </div>
     </section>
 
 
