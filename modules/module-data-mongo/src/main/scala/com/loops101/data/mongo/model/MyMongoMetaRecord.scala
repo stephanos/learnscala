@@ -18,17 +18,20 @@ trait MyMongoMetaRecord[T <: MongoRecord[T]]
     self: MongoMetaRecord[T] with MongoMeta[T] =>
 
     val maxSize: Int = 0
+    val maxLength: Int = 0
 
     def createColl() {
         useDb {
             db =>
                 if (!db.getCollectionNames.find(_ == collectionName).isDefined) {
                     val opt: DBObject =
-                        if (maxSize > 0)
-                            BasicDBObjectBuilder.start
+                        if (maxSize > 0) {
+                            val r = BasicDBObjectBuilder.start
                                 .append("capped", true)
-                                .append("size", maxSize * 1024 * 1024).get
-                        else
+                                .append("size", maxSize * 1024 * 1024)
+                            if(maxLength > 0) r.append("max", maxLength)
+                            r.get
+                        } else
                             BasicDBObjectBuilder.start.get()
                     db.createCollection(collectionName, opt)
                 }

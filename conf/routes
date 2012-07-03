@@ -34,6 +34,7 @@ GET     /app/logout                                 controllers.Auth.logout
 
 POST    /api/compile                                controllers.API.compile
 POST    /api/interpret                              controllers.API.interpret
+POST    /api/decompile                              controllers.API.decompile
 
 
 # === ASSETS

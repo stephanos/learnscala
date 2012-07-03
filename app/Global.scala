@@ -1,4 +1,6 @@
 import services.data._
+import util.MyPrintStream
+import java.io.PrintStream
 import com.loops101.util.EnvUtil
 import controllers.base.MyController
 import controllers._
@@ -21,12 +23,18 @@ object Global
     override def onStart(app: Application) {
         println("Application has started (" + build + ")")
 
+        // init custom stdout
+        //setStdOut(MyPrintStream.stdout)
+
         // start up
         onStartup()
     }
 
     override def onStop(app: Application) {
         println("Application shutdown ...")
+
+        // close custom stdout
+        //setStdOut(MyPrintStream.stdout.orig)
 
         // stop database
         if (isProduction) MyDocDB.stopDB()
@@ -64,8 +72,18 @@ object Global
         !isRestrictedPath(p) && !p.startsWith("/assets")
 
     override protected def isRestrictedPath(p: String) =
-        p.startsWith("/app") || (if (EnvUtil.isLocal) false else p.startsWith("/api"))
+        p.startsWith("/app") || p.startsWith("/api")
 
     override protected def isEncryptedWhenLoggedOut(p: String): Boolean =
         true // encrypt everything
+
+
+    //~ INTERNALS ====================================================================================
+
+    /*
+    private def setStdOut(out: PrintStream) {
+        //System.setOut(out)
+        Console.setOut(out)
+    }
+    */
 }

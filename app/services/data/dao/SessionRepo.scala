@@ -1,5 +1,7 @@
 package services.data.dao
 
-object SessionRepo {
+import com.loops101.data.mongo.dao.CommonDAO
+
+object SessionRepo extends CommonDAO {
 
 }

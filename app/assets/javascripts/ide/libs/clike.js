@@ -1,4 +1,4 @@
-goog.provide("lib.codemirror.mode");
+goog.provide("lib.codemirror.clike");
 goog.require("lib.codemirror");
 
 CodeMirror.defineMode("clike", function(config, parserConfig) {

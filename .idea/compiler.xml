@@ -17,5 +17,9 @@
     </wildcardResourcePatterns>
     <annotationProcessing enabled="false" useClasspath="true" />
   </component>
+  <component name="SbtSettings">
+    <option name="sbtLauncherJarPath" value="$PROJECT_DIR$/../../tools/sbt/sbt-launch.jar" />
+    <option name="sbtLauncherVmParameters" value="-cp &quot;.;$JRE_HOME\lib\*;$SCALA_HOME\lib\*&quot; -Dfile.encoding=UTF8 -Dlocal -Xmx512M -XX:MaxPermSize=256M -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005" />
+  </component>
 </project>
 

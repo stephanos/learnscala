@@ -254,13 +254,13 @@ var Reveal = (function(){
 			// n, page down
 			/*case 78:*/ case 34: navigatePrev(); triggered = true; break;
 			// h, left, F7
-			/*case 72: case 37:*/ case 118: navigateLeft(); triggered = true; break;
+			/*case 72:*/ case 37: case 118: navigateLeft(); triggered = true; break;
 			// l, right, F9
-			/*case 76: case 39:*/ case 120: navigateRight(); triggered = true; break;
+			/*case 76:*/ case 39: case 120: navigateRight(); triggered = true; break;
 			// k, up
-			//case 75: case 38: navigateUp(); triggered = true; break;
+			/*case 75:*/ case 38: navigateUp(); triggered = true; break;
 			// j, down
-			//case 74: case 40: navigateDown(); triggered = true; break;
+			/*case 74:*/ case 40: navigateDown(); triggered = true; break;
 			// home
 			//case 36: navigateTo( 0 ); triggered = true; break;
 			// end

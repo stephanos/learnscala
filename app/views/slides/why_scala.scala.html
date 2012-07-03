@@ -19,7 +19,7 @@
         <div class="left w60p">
             <blockquote>
                 <p>
-                    The name Scala stands for <em>scalable language</em>.
+                    The name Scala stands for <br/><em>scalable language</em>.
                 </p>
                 <p>
                     The language is designed to grow with the demands of its users.
@@ -51,7 +51,6 @@
     <section>
         <h2>Scala is ... <span class="fragment"><em>a scripting language</em></span></h2>
 
-        <br/>
         <ul class="indent">
             <li class="fragment">
                 interactive Read-Eval-Print-Loop (REPL)
@@ -59,17 +58,17 @@
             <li class="fragment">
                 no semicolons
 
-                <div class="editor small">
+                @comp.snippet {
                     |println("Hello World")
-                </div>
+                }
             </li>
             <li class="fragment">
-                <var>type inference</var>
+                type inference
 
-                <div class="editor small">
+                @comp.snippet {
                     |val i = 1 + 2 * 3      // the type of i is Int
                     |val s = "Scala rocks"  // the type of s is String
-                </div>
+                }
             </li>
         </ul>
     </section>
@@ -78,21 +77,24 @@
     <section>
         <h2>Scala is ... <span><em>object-oriented</em></span></h2>
 
-        <br/>
         <ul class="indent">
             <li class="fragment">
-                classes
-                <div class="editor small">
-                    |class Car
-                    |class MonsterTruck extends Car
-                </div>
+                every (!) value is an object (no Java primitives like 'int')
+                @comp.snippet {
+                    |42.toFloat
+                }
             </li>
             <li class="fragment">
-                every (!) value is an object
-                <div class="editor small">
-                    |val meaning_of_life = 42
-                    |val my_new_car = new MonsterTruck
-                </div>
+                classes and inheritance
+                @comp.snippet {
+                    |class MonsterTruck extends Car
+                }
+            </li>
+            <li class="fragment">
+                mixin-based composition
+                @comp.snippet {
+                    |class FlyingCar extends Car with Wings
+                }
             </li>
         </ul>
     </section>
@@ -101,46 +103,81 @@
     <section>
         <h2>Scala is ... <span><em>functional</em></span></h2>
 
-        <br/>
         <ul class="indent">
-            <li>
-                every block of code is an expression
+            <li class="fragment">
+                re-usable blocks of code that have no side effects
+                @comp.snippet {
+                    |val names = users.map(_.username)
+                }
+                <div class="fragment">
+                    @comp.snippet {
+                        |val minors = users.map(_.age()).filter(_ < 18)
+                    }
+                </div>
+            </li>
+            <li class="fragment">
+                pattern matching
+                @comp.snippet {
+                    |def matchTest(arg: String, value: Any) = (arg, value) match {
+                    |   case ("-h" | "--help", _) => displayHelp()
+                    |   case ("-v" | "--version", _) => displayVersion()
+                    |   case (a,v) => sys.error("unknown argument:" + a)
+                    |}
+                }
             </li>
         </ul>
     </section>
 
 
     <section>
-        <h2>Scala is ... <span><em>interoperable</em></span></h2>
+        <h2>Scala is ... <span><em>Java</em></span></h2>
 
-        <br/>
         <ul class="indent">
             <li class="fragment">
-                compiles to regular Java-compatible byte code
-            </li>
-            <li class="fragment">
-                compatible with thousands of Java libraries
+                compiles to regular Java byte code
+                <ul>
+                    <li>
+                        as fast as Java (sometimes faster!)
+                    </li>
+                    <li class="fragment">
+                        calling & extending <em>Java</em> class from <var>Scala</var>? - works perfectly
+                    </li>
+                    <li class="fragment">
+                        calling & extending <var>Scala</var> class from <em>Java</em>? - works mostly, a few exceptions
+                    </li>
+                </ul>
             </li>
         </ul>
+        <br/><br/>
+        <div class="indent fragment">
+            => compatible with the thousands of Java libraries - no glue code needed
+        </div>
     </section>
 
 
     <section>
         <h2>Scala is ... <span><em>statically typed</em></span></h2>
 
-        <br/>
-        <ul class="indent">
-
-        </ul>
-    </section>
-
-
-    <section>
-        <h2>Scala is ... <span><em>composable</em></span></h2>
-
-        <br/>
-        <ul class="indent">
-
+        <ul class="indent fragment">
+            <li class="fragment">
+                very advanced static type system<br/>
+                <ul>
+                    <li class="fragment">
+                        type inference
+                        @comp.snippet {
+                            |val i = 1 + 2 * 3      // the type of i is Int
+                        }
+                    </li>
+                    <li class="fragment">
+                        compound types
+                        @comp.snippet {
+                            |def cloneAndReset(obj: Cloneable with Resetable) = ..
+                        }
+                    </li>
+                </ul>
+            </li>
+            <li class="fragment"><em>benefits</em>: less mistakes, reduced testing and safe refactoring</li>
+            <li class="fragment"><var>drawbacks</var>: increased compilation time</li>
         </ul>
     </section>
 
@@ -148,9 +185,27 @@
     <section>
         <h2>Scala is ... <span><em>extensible</em></span></h2>
 
-        <br/>
         <ul class="indent">
-
+            <li class="fragment">
+                add your own control structures
+                @comp.snippet {
+                    |def retry[T](n: Int)(fn: => T): T =
+                    |  try   { fn }
+                    |  catch { case e => if (n > 1) retry(n - 1)(fn) else throw e }
+                }
+            </li>
+            <li class="fragment">
+                create a complete Domain Specific Language (DSL)
+                @comp.snippet {
+                    @Html("""
+                    |class HelloWorldSpec extends Specification {
+                    |   "The 'Hello world' string" should {
+                    |       "contain 11 characters" in {
+                    |           "Hello world" must have size(11)
+                    |       }
+                    """)
+                }
+            </li>
         </ul>
     </section>
 
@@ -158,41 +213,37 @@
     <section>
         <h2>Scala is ... <span><em>concise</em></span></h2>
 
-        <br/>
         <ul class="indent">
-
+            <li class="fragment">
+                reduces lines of code by at least 50%
+                <ul>
+                    <li class="fragment">
+                        less boilerplate
+                        @comp.snippet {
+                            |class MyCar(wheels: Int = 4)
+                        }
+                    </li>
+                    <li class="fragment">
+                        factor out common behaviour by using traits and closures
+                        @comp.snippet {
+                            |trait Logging
+                            |def getAttributeFromAllUsers[T](fn: (User) => List[T])
+                        }
+                    </li>
+                </ul>
+            </li>
+            <li class="fragment">
+                <em>quicker</em> to write
+                <span class="fragment">, <em>easier</em> to read</span>
+                <span class="fragment"> and <em>less error</em> prone</span>
+            </li>
         </ul>
     </section>
 
 
     <section>
-        <h2>Scala is ... <span><em>fast</em></span></h2>
-        <br/>
-        <div class="indent">
-            <ul>
-                <li class="fragment">
-                    runs on the Java Virtual Machine
-                </li>
-            </ul>
-        </div>
-    </section>
+        <h2>Scala is ... <span><em>actively used</em></span></h2>
 
-
-    <section>
-        <h2>Scala <var><></var> Java</h2>
-
-    </section>
-
-
-    <section>
-        <h2 class="inline"><em>Compiling</em></h2>
-        <h2 class="inline right"><var>Running</var></h2>
-
-    </section>
-
-
-    <section>
-        <h2>Who is using Scala ?</h2>
         <br/>
         <div class="fragment indent">
             <table>
@@ -243,17 +294,28 @@
 
 
     <section>
-        <h2>Code</h2>
-
-        <div class="editor">
-            |def partition(p: A => Boolean): (Repr, Repr) = {
-            |    val l, r = newBuilder
-            |    for (x <- this) (if (p(x)) l else r) += x
-            |    (l.result, r.result)
-            |}
-        </div>
+        <h2>Scala is ...</h2>
+        <h4>
+            <ul class="indent w40p left">
+                <li><em>Java</em></li>
+                <li><em>functional</em></li>
+                <li><em>statically typed</em></li>
+                <li><em>actively used</em></li>
+                <li><em>concise</em></li>
+                <li><em>extensible</em></li>
+                <li><em>object oriented</em></li>
+            </ul>
+            <ul class="fragment w40p left">
+                <li><var>cool</var></li>
+                <li><var>challenging</var></li>
+                <li><var>fun</var></li>
+                <li><var>new way of thinking</var></li>
+                <li><var>exciting</var></li>
+                <li><var>gorgeous</var></li>
+                <li><var>complex at first</var></li>
+            </ul>
+        </h4>
     </section>
-
 
 </div>
 }

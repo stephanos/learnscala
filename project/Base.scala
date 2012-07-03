@@ -331,6 +331,11 @@ trait TaskStage extends Env {
 
     lazy val stage = TaskKey[Unit]("stage")
 
+    lazy val libFilter =
+        (fname: String) => true
+
+    //fname.contains("-compiler") || projName.contains("worker") // compiler is required in 'worker'
+
     def stageDummyTask = (streams, update, packageProjects, baseDirectory, mainClass) map {
         (s, updateReport, packaged, root, mainClass) =>
             () // do nothing
@@ -353,7 +358,7 @@ trait TaskStage extends Env {
             libs foreach {
                 jar =>
                     val fname = jar.getName
-                    if (!fname.contains("-compiler") || projName.contains("worker")) // compiler is required in 'worker'
+                    if (libFilter(fname))
                         IO.copyFile(jar, new File(destPath, fname))
             }
 

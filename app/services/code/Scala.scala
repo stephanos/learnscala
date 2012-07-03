@@ -1,18 +1,32 @@
 package services.code
 
+import java.io.PrintStream
+import scala.actors.Futures._
+
 // see https://github.com/vydra/gae-scala/tree/master/src
 class Scala {
 
     import CodeUtil._
 
-    def compile(code: String, fname: String = "Code.scala") = {
-        val scala = instance()
-        (scala._1.compileString(code), new String(scala._2.toByteArray, "UTF-8"))
+    def compile(code: String) = {
+        val scala = encoder()
+        (scala._1.compileString(code), asString(scala._2))
+    }
+
+    def decode(code: String) = {
+        val scala = decoder()
+        scala.exec(code)
     }
 
     def interpret(code: String) = {
-        val scala = instance()
-        (scala._1.interpret(code), new String(scala._2.toByteArray, "UTF-8"))
+        future {
+            val (compiler, out) = encoder()
+            val r = Console.withOut(new PrintStream(out, true)) {
+                compiler.interpret(code)
+            }
+            val s = asString(out)
+            (r, s)
+        }()
     }
 }
 
@@ -22,8 +36,16 @@ object Compiler {
         new Scala().compile(code)
 }
 
-object Interpreter {
+object Decoder {
 
     def apply(code: String) =
-        new Scala().interpret(code)
+        new Scala().decode(code)
+}
+
+object Interpreter {
+
+    import CodeUtil._
+
+    def apply(code: String, session: Option[String] = None) =
+        new Scala().interpret(withSession(code, session))
 }

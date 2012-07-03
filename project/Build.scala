@@ -19,4 +19,5 @@ object ProjectBuild extends MyBuild {
         super.settings ++ buildSettings
 
 }
-            
+
+//[search path for class files: D:\Applications\Java\jre7\lib\resources.jar;D:\Applications\Java\jre7\lib\rt.jar;D:\Applications\Java\jre7\lib\jsse.jar;D:\Applications\Java\jre7\lib\jce.jar;D:\Applications\Java\jre7\lib\charsets.jar;D:\Applications\Java\jre7\lib\ext\dnsns.jar;D:\Applications\Java\jre7\lib\ext\localedata.jar;D:\Applications\Java\jre7\lib\ext\sunec.jar;D:\Applications\Java\jre7\lib\ext\sunjce_provider.jar;D:\Applications\Java\jre7\lib\ext\sunmscapi.jar;D:\Applications\Java\jre7\lib\ext\zipfs.jar;D:\work\dev\tools\sbt\sbt-launch.jar;.]
