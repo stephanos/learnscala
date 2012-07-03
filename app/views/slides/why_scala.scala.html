@@ -51,52 +51,56 @@
     <section>
         <h2>Scala is ... <span class="fragment"><em>a scripting language</em></span></h2>
 
-        <ul class="indent">
-            <li class="fragment">
-                interactive Read-Eval-Print-Loop (REPL)
-            </li>
-            <li class="fragment">
-                no semicolons
+        <div>
+            <ul class="indent">
+                <li class="fragment">
+                    interactive Read-Eval-Print-Loop (REPL)
+                </li>
+                <li class="fragment">
+                    no semicolons
 
-                @comp.snippet {
-                    |println("Hello World")
-                }
-            </li>
-            <li class="fragment">
-                type inference
+                    @comp.snippet {
+                        |println("Hello World")
+                    }
+                </li>
+                <li class="fragment">
+                    type inference
 
-                @comp.snippet {
-                    |val i = 1 + 2 * 3      // the type of i is Int
-                    |val s = "Scala rocks"  // the type of s is String
-                }
-            </li>
-        </ul>
+                    @comp.snippet {
+                        |val i = 1 + 2 * 3      // the type of i is Int
+                        |val s = "Scala rocks"  // the type of s is String
+                    }
+                </li>
+            </ul>
+        </div>
     </section>
 
 
     <section>
         <h2>Scala is ... <span><em>object-oriented</em></span></h2>
 
-        <ul class="indent">
-            <li class="fragment">
-                every (!) value is an object (no Java primitives like 'int')
-                @comp.snippet {
-                    |42.toFloat
-                }
-            </li>
-            <li class="fragment">
-                classes and inheritance
-                @comp.snippet {
-                    |class MonsterTruck extends Car
-                }
-            </li>
-            <li class="fragment">
-                mixin-based composition
-                @comp.snippet {
-                    |class FlyingCar extends Car with Wings
-                }
-            </li>
-        </ul>
+        <div class="indent">
+            <ul>
+                <li class="fragment">
+                    every (!) value is an object (no Java primitives like 'int')
+                    @comp.snippet {
+                        |42.toFloat
+                    }
+                </li>
+                <li class="fragment">
+                    classes and inheritance
+                    @comp.snippet {
+                        |class MonsterTruck extends Car
+                    }
+                </li>
+                <li class="fragment">
+                    mixin-based composition
+                    @comp.snippet {
+                        |class FlyingCar extends Car with Wings
+                    }
+                </li>
+            </ul>
+        </div>
     </section>
 
 
@@ -134,25 +138,27 @@
     <section>
         <h2>Scala is ... <span><em>Java</em></span></h2>
 
-        <ul class="indent">
-            <li class="fragment">
-                compiles to regular Java byte code
-                <ul>
-                    <li>
-                        as fast as Java (sometimes faster!)
-                    </li>
-                    <li class="fragment">
-                        calling & extending <em>Java</em> class from <var>Scala</var>? - works perfectly
-                    </li>
-                    <li class="fragment">
-                        calling & extending <var>Scala</var> class from <em>Java</em>? - works mostly, a few exceptions
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <br/><br/>
-        <div class="indent fragment">
-            => compatible with all the thousands of Java libraries - no glue code needed
+        <div class="indent">
+            <ul>
+                <li class="fragment">
+                    compiles to regular Java byte code
+                    <ul>
+                        <li>
+                            as fast as Java (sometimes faster!)
+                        </li>
+                        <li class="fragment">
+                            calling & extending <em>Java</em> class from <var>Scala</var>? - works perfectly
+                        </li>
+                        <li class="fragment">
+                            calling & extending <var>Scala</var> class from <em>Java</em>? - works mostly, a few exceptions
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <br/><br/>
+            <div class="fragment">
+                ⇨ compatible with all the thousands of Java libraries - no glue code needed
+            </div>
         </div>
     </section>
 
@@ -160,86 +166,92 @@
     <section>
         <h2>Scala is ... <span><em>statically typed</em></span></h2>
 
-        <ul class="indent fragment">
-            <li class="fragment">
-                very advanced static type system<br/>
-                <ul>
-                    <li class="fragment">
-                        type inference
-                        @comp.snippet {
-                            |val i = 1 + 2 * 3      // the type of i is Int
-                        }
-                    </li>
-                    <li class="fragment">
-                        compound types
-                        @comp.snippet {
-                            |def cloneAndReset(obj: Cloneable with Resetable) = ..
-                        }
-                    </li>
-                </ul>
-            </li>
-            <li class="fragment"><em>benefits</em>: less mistakes, reduced testing and safe refactoring</li>
-            <li class="fragment"><var>drawbacks</var>: increased compilation time</li>
-        </ul>
+        <div class="indent">
+            <ul>
+                <li class="fragment">
+                    very advanced static type system<br/>
+                    <ul>
+                        <li class="fragment">
+                            type inference
+                            @comp.snippet {
+                                |val i = 1 + 2 * 3      // the type of i is Int
+                            }
+                        </li>
+                        <li class="fragment">
+                            compound types
+                            @comp.snippet {
+                                |def cloneAndReset(obj: Cloneable with Resetable) = ..
+                            }
+                        </li>
+                    </ul>
+                </li>
+                <li class="fragment"><em>benefits</em>: less mistakes, reduced testing and safe refactoring</li>
+                <li class="fragment"><var>drawbacks</var>: increased compilation time</li>
+            </ul>
+        </div>
     </section>
 
 
     <section>
         <h2>Scala is ... <span><em>extensible</em></span></h2>
 
-        <ul class="indent">
-            <li class="fragment">
-                add your own control structures
-                @comp.snippet {
-                    |def retry[T](n: Int)(fn: => T): T =
-                    |  try   { fn }
-                    |  catch { case e => if (n > 1) retry(n - 1)(fn) else throw e }
-                }
-            </li>
-            <li class="fragment">
-                create a complete Domain Specific Language (DSL)
-                @comp.snippet {
-                    @Html("""
-                    |class HelloWorldSpec extends Specification {
-                    |   "The 'Hello world' string" should {
-                    |       "contain 11 characters" in {
-                    |           "Hello world" must have size(11)
-                    |       }
-                    """)
-                }
-            </li>
-        </ul>
+        <div class="indent">
+            <ul>
+                <li class="fragment">
+                    add your own control structures
+                    @comp.snippet {
+                        |def retry[T](n: Int)(fn: => T): T =
+                        |  try   { fn }
+                        |  catch { case e => if (n > 1) retry(n - 1)(fn) else throw e }
+                    }
+                </li>
+                <li class="fragment">
+                    create a complete Domain Specific Language (DSL)
+                    @comp.snippet {
+                        @Html("""
+                        |class HelloWorldSpec extends Specification {
+                        |   "The 'Hello world' string" should {
+                        |       "contain 11 characters" in {
+                        |           "Hello world" must have size(11)
+                        |       }
+                        """)
+                    }
+                </li>
+            </ul>
+        </div>
     </section>
 
 
     <section>
         <h2>Scala is ... <span><em>concise</em></span></h2>
 
-        <ul class="indent">
-            <li class="fragment">
-                reduces lines of code by at least 50%
-                <ul>
-                    <li class="fragment">
-                        less boilerplate
-                        @comp.snippet {
-                            |class MyCar(wheels: Int = 4)
-                        }
-                    </li>
-                    <li class="fragment">
-                        factor out common behaviour by using traits and closures
-                        @comp.snippet {
-                            |trait Logging
-                            |def getAttributeFromAllUsers[T](fn: (User) => List[T])
-                        }
-                    </li>
-                </ul>
-            </li>
-            <li class="fragment">
-                <em>quicker</em> to write
-                <span class="fragment">, <em>easier</em> to read</span>
-                <span class="fragment"> and <em>less error</em> prone</span>
-            </li>
-        </ul>
+        <div class="indent">
+            <ul>
+                <li class="fragment">
+                    reduces lines of code by at least 50%
+                    <ul>
+                        <li class="fragment">
+                            less boilerplate
+                            @comp.snippet {
+                                |class MyCar(wheels: Int = 4)
+                            }
+                        </li>
+                        <li class="fragment">
+                            factor out common behaviour by using traits and closures
+                            @comp.snippet {
+                                |trait Logging
+                                |def getAttributeFromAllUsers[T](fn: (User) => List[T])
+                            }
+                        </li>
+                    </ul>
+                </li>
+                <li class="fragment">
+                    <em>quicker</em> to write
+                    <span class="fragment">, <em>easier</em> to read</span>
+                    <span class="fragment"> and <em>less error</em> prone</span>
+                </li>
+            </ul>
+        </div>
     </section>
 
 
