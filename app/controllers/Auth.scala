@@ -88,13 +88,13 @@ object Auth extends MyController {
             }
     }
 
-    private def oauthDomain =
-        "http://" + (if (EnvUtil.isProduction) "learnscala.de" else "localhost:9000")
+    //private def oauthDomain =
+    //    "http://" + (if (EnvUtil.isProduction) "learnscala.de" else "localhost:9000")
 
     private def goToAppPage(user: UserDoc) =
-        Redirect(oauthDomain + routes.App.index().url)
+        Redirect(routes.App.index().url)
             .withSession((USER_ID, user.gid.value.toString), (USER_NAME, user.name.value))
 
     private def goToLoginPage(flash: (String, String)*)(implicit f: Flash) =
-        Redirect(oauthDomain + routes.Auth.login().url).flashing(flash: _*)
+        Redirect(routes.Auth.login().url).flashing(flash: _*)
 }
