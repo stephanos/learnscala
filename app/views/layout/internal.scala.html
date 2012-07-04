@@ -21,20 +21,7 @@
         @content
 
         @if(!open) {
-            <div id="navi">
-                <ul>
-                    <li>
-                        <a href="@routes.Slide.index2">
-                            <span>Slides</span>
-                        </a>
-                    </li>
-                    <li class="last">
-                        <a href="@routes.Auth.logout">
-                            <span>Logout</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+            @comp.navi()
         }
 
         @comp.analytics()
