@@ -7,7 +7,7 @@
 
     <section>
         <h1>Scala</h1>
-        <h3 class="banner">A <em>scalable</em> language</h3>
+        <h3 class="banner fragment">A <em>sca</em>lable <em>la</em>nguage</h3>
     </section>
 
 
@@ -105,6 +105,41 @@
 
 
     <section>
+        <h2>Scala is ... <span><em>concise</em></span></h2>
+
+        <div class="indent">
+            <ul>
+                <li class="fragment">
+                    reduces lines of code by at least 50%
+                    <div class="indent">
+                        <ul>
+                            <li class="fragment">
+                                less boilerplate
+                                @comp.snippet {
+                                    |class MyCar(wheels: Int = 4)
+                                }
+                            </li>
+                            <li class="fragment">
+                                factor out common behaviour by using traits and closures
+                                @comp.snippet {
+                                    |trait Logging
+                                    |def getAttributeFromAllUsers[T](fn: (User) => List[T])
+                                }
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="fragment">
+                    <em>quicker</em> to write
+                    <span class="fragment">, <em>easier</em> to read</span>
+                    <span class="fragment"> and <em>less error</em> prone</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+
+    <section>
         <h2>Scala is ... <span><em>functional</em></span></h2>
 
         <div class="indent">
@@ -131,36 +166,6 @@
                     }
                 </li>
             </ul>
-        </div>
-    </section>
-
-
-    <section>
-        <h2>Scala is ... <span><em>Java</em></span></h2>
-
-        <div class="indent">
-            <ul>
-                <li class="fragment">
-                    compiles to regular Java byte code
-                    <div class="indent">
-                        <ul>
-                            <li>
-                                as fast as Java (sometimes faster!)
-                            </li>
-                            <li class="fragment">
-                                calling & extending <em>Java</em> class from <var>Scala</var>? - works perfectly
-                            </li>
-                            <li class="fragment">
-                                calling & extending <var>Scala</var> class from <em>Java</em>? - works mostly, a few exceptions
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-            </ul>
-            <br/><br/>
-            <div class="fragment">
-                ⇨ compatible with all the thousands of Java libraries - no glue code needed
-            </div>
         </div>
     </section>
 
@@ -197,6 +202,36 @@
 
 
     <section>
+        <h2>Scala is ... <span><em>Java</em></span></h2>
+
+        <div class="indent">
+            <ul>
+                <li class="fragment">
+                    compiles to regular Java byte code
+                    <div class="indent">
+                        <ul>
+                            <li>
+                                as fast as Java (sometimes faster!)
+                            </li>
+                            <li class="fragment">
+                                calling & extending <em>Java</em> class from <var>Scala</var>? - works perfectly
+                            </li>
+                            <li class="fragment">
+                                calling & extending <var>Scala</var> class from <em>Java</em>? - works mostly, a few exceptions
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <br/><br/>
+            <div class="fragment">
+                ⇨ compatible with all the thousands of Java libraries - no glue code needed
+            </div>
+        </div>
+    </section>
+
+
+    <section>
         <h2>Scala is ... <span><em>extensible</em></span></h2>
 
         <div class="indent">
@@ -220,41 +255,6 @@
                         |       }
                         """)
                     }
-                </li>
-            </ul>
-        </div>
-    </section>
-
-
-    <section>
-        <h2>Scala is ... <span><em>concise</em></span></h2>
-
-        <div class="indent">
-            <ul>
-                <li class="fragment">
-                    reduces lines of code by at least 50%
-                    <div class="indent">
-                        <ul>
-                            <li class="fragment">
-                                less boilerplate
-                                @comp.snippet {
-                                    |class MyCar(wheels: Int = 4)
-                                }
-                            </li>
-                            <li class="fragment">
-                                factor out common behaviour by using traits and closures
-                                @comp.snippet {
-                                    |trait Logging
-                                    |def getAttributeFromAllUsers[T](fn: (User) => List[T])
-                                }
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="fragment">
-                    <em>quicker</em> to write
-                    <span class="fragment">, <em>easier</em> to read</span>
-                    <span class="fragment"> and <em>less error</em> prone</span>
                 </li>
             </ul>
         </div>
@@ -316,24 +316,26 @@
     <section>
         <h2>Scala is ...</h2>
         <h4>
-            <ul class="indent w40p left">
-                <li><em>Java</em></li>
-                <li><em>functional</em></li>
-                <li><em>statically typed</em></li>
-                <li><em>actively used</em></li>
-                <li><em>concise</em></li>
-                <li><em>extensible</em></li>
-                <li><em>object oriented</em></li>
-            </ul>
-            <ul class="fragment w40p left">
-                <li><var>cool</var></li>
-                <li><var>challenging</var></li>
-                <li><var>fun</var></li>
-                <li><var>new way of thinking</var></li>
-                <li><var>exciting</var></li>
-                <li><var>gorgeous</var></li>
-                <li><var>complex at first</var></li>
-            </ul>
+            <div class="indent90">
+                <ul class="fragment w40p left">
+                    <li><em>Java</em></li>
+                    <li><em>functional</em></li>
+                    <li><em>statically typed</em></li>
+                    <li><em>actively used</em></li>
+                    <li><em>concise</em></li>
+                    <li><em>extensible</em></li>
+                    <li><em>object oriented</em></li>
+                </ul>
+                <ul class="fragment w40p left">
+                    <li><var>cool</var></li>
+                    <li><var>challenging</var></li>
+                    <li><var>fun</var></li>
+                    <li><var>new way of thinking</var></li>
+                    <li><var>exciting</var></li>
+                    <li><var>gorgeous</var></li>
+                    <li><var>complex at first</var></li>
+                </ul>
+            </div>
         </h4>
     </section>
 
