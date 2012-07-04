@@ -1,0 +1,97 @@
+#editorModal {
+    @m: 20px;
+    top: @m; bottom: @m; left: @m; right: @m;
+
+    padding: 0; margin: 0;
+    width: auto; height: auto;
+    max-height: 100%;
+
+    .round(3px);
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+    background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#eaeaea));
+
+    .modal-body {
+        @m: 15px;
+        padding: 0;
+        position: absolute;
+        left: @m; right: @m; top: @m; bottom: @m;
+
+        .pane {
+            position: relative;
+        }
+
+        .input-wrap {
+            height: @phi_gt - 1%;
+
+            .input {
+                position: relative;
+                .CodeMirror-scroll {
+                    height: auto;
+                    overflow-y: auto;
+                }
+            }
+        }
+
+        .output-wrap {
+            height: @phi_lt - 1%;
+            overflow: auto;
+
+            .bg(#ddd);
+            border: 3px dashed #aaa;
+
+            &.success {
+                border-color: @c_emph;
+            }
+            &.error {
+                border-color: @c_hlight;
+            }
+
+            .cm-s-ambiance {
+                font-size: 95%;
+            }
+
+            .output {
+                padding: 10px;
+            }
+        }
+
+        /*
+        .output, .input-wrap {
+            position: absolute;
+            top: 10px; left: 10px; right: 10px; bottom: 15px;
+            width: auto; height: auto;
+        }
+        .input-wrap {
+            float: left;
+            margin-left: 5px;
+            width: @phi_gt - 3%;
+            right: @phi_gt;
+        }
+        .input {
+            height: auto;
+        }
+        .output {
+            .bg(fade(#ddd, 50%));
+            padding: 10px;
+            overflow-y: auto;
+            left: @phi_gt;
+            border: 3px dashed #ccc;
+        }
+        */
+    }
+
+    /*
+    .modal-footer {
+        .round(5px);
+        position: absolute;
+        bottom: 0; left: 0; right: 0;
+        padding: 6px 10px 6px;
+    }
+    */
+}
+
+.modal-backdrop {
+    &.in {
+        .opacity(20);
+    }
+}

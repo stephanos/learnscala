@@ -15,17 +15,7 @@ initSnippet = (elem) ->
     (evt) ->
       snippet = $(evt.target).parent().parent()
       content = readRawCode(snippet)
-
-      # setup modal
-      m = $('#editorModal')
-      body = m.find(".modal-body")
-      body.find(".pane>div").empty()
-
-      # editor (with console)
-      initEditor(content, $(body))
-
-      # show modal
-      m.modal()
+      initModalEditor(content)
   )
 
 createSnippet = (data, elem, status, clear) ->
@@ -36,6 +26,21 @@ createSnippet = (data, elem, status, clear) ->
 
 
 #######################################################################################################################
+# initialize a code editor in a modal
+initModalEditor = (data, m) ->
+
+  # setup modal
+  m ?= $('#editorModal')
+  body = m.find(".modal-body")
+  body.find(".pane>div").empty()
+
+  # editor (with console)
+  initEditor(data ? "", $(body))
+
+  # show modal
+  m.modal()
+
+
 # initialize a code editor
 initEditor = (data, elem) ->
 
@@ -112,4 +117,8 @@ readRawCode = (elem) ->
 $ ->
   $('div.snippet').each(
     (idx, elem) -> initSnippet(elem)
+  )
+  $("a.openEditor").bind("click",
+    () ->
+      initModalEditor()
   )

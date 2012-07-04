@@ -1,3 +1,5 @@
+goog.provide("bootstrap.modal");
+
 /* ===================================================
  * bootstrap-transition.js v2.0.4
  * http://twitter.github.com/bootstrap/javascript.html#transitions
