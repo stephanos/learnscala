@@ -14,7 +14,7 @@ object GithubOAuth {
 
     def getAuthorizeUrl =
         "https://github.com/login/oauth/authorize?client_id=%s&scope=%s"
-            .format(clientId, "user,public_repo")
+            .format(clientId, "user") // TODO: user,public_repo
 
     def getAccessTokenEndpoint(code: String) =
         WS.url("https://github.com/login/oauth/access_token")
