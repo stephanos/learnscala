@@ -1,0 +1,5 @@
+@(code: String, name: String = null)
+
+<a class="slidedeck" href="/app/slides/@{code.toLowerCase()}/">
+    <span>@{Option(name).getOrElse(code.replaceAllLiterally("-", " "))}</span>
+</a>

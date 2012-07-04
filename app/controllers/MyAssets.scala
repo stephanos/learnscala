@@ -26,6 +26,7 @@ object MyAssets
 
     // ==== CSS
 
-    lazy val css_main = cssUrl("/main.min.css")
+    lazy val css_pub = cssUrl("/pub.min.css")
+    lazy val css_app = cssUrl("/app.min.css")
     lazy val css_slide = cssUrl("/slide.min.css")
 }
