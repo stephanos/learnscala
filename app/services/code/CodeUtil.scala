@@ -28,7 +28,7 @@ object CodeUtil {
         s.deprecation.value = deprecation
         s.unchecked.value = unchecked
 
-        (new Encoder(s, new PrintWriter(new OutputStreamWriter(out))) {
+        (new Encoder(s, new PrintWriter(new OutputStreamWriter(out), true)) {
             // customize compiler initialization: remove SBT from classpath
             override protected def newCompiler(settings: Settings, reporter: Reporter) = {
                 if (EnvUtil.isLocal) {

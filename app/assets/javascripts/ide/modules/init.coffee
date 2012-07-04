@@ -30,19 +30,19 @@ createSnippet = (data, elem, status, clear) ->
 initModalEditor = (data, m) ->
 
   # setup modal
-  m ?= $('#editorModal')
+  m ?= $('#ideModal')
   body = m.find(".modal-body")
   body.find(".pane>div").empty()
 
   # editor (with console)
-  initEditor(data ? "", $(body))
+  initEditor($(body), data)
 
   # show modal
   m.modal()
 
 
 # initialize a code editor
-initEditor = (data, elem) ->
+initEditor = (elem, data) ->
 
   input = $(elem).find(".input-wrap div")
   output = $(elem).find(".output-wrap div")
@@ -52,7 +52,7 @@ initEditor = (data, elem) ->
   textarea.val(data ? "")
   editor =
     CodeMirror.fromTextArea(textarea[0], {
-      autofocus: false,
+      autofocus: true,
       theme: "ambiance",
       mode: "text/x-scala",
       indentWithTabs: true,
@@ -74,18 +74,35 @@ initEditor = (data, elem) ->
     .appendTo($(toolbar))
 
 callAPI = (target, editor, output) ->
+  # clear output
+  $(output).empty()
+
+  # show spinner
+  opts = {
+    lines: 13, length: 7, width: 4, radius: 10, rotate: 0,
+    color: '#000', speed: 1, trail: 60, shadow: false,  hwaccel: false,
+    className: 'spinner', zIndex: 2e9,
+  }
+  spinner = new Spinner(opts).spin($(output).parent()[0])
+
+  # issue call
   $.ajax(
     type: 'POST',
     timeout: 15000,
     url: "/api/" + target,
     data: "code=" + encodeURIComponent(editor.getValue()),
     success: (data, status) ->
+      spinner.stop()
       text = if(_.str.isBlank(data)) then "compiled and executed successfully" else data
       createSnippet(text, output, "success", true)
       console.log(data)
     error: (jqXHR, status, err) ->
+      spinner.stop()
       data = jqXHR.responseText
-      text = if(_.str.isBlank(data)) then "unable to compile" else data
+      text =
+        if(status == "timeout") then "request timed out"
+        else if(_.str.isBlank(data)) then "an unkown error occurred"
+        else data
       createSnippet(text, output, "error", true)
       console.log(text)
       console.log(status)
@@ -114,11 +131,18 @@ readRawCode = (elem) ->
 
 #######################################################################################################################
 # init snippets on page load
-$ ->
+initSlides = ->
+  subtleToolbar();
+
   $('div.snippet').each(
     (idx, elem) -> initSnippet(elem)
   )
+
   $("a.openEditor").bind("click",
-    () ->
+    (evt) ->
       initModalEditor()
+      evt.preventDefault()
   )
+
+subtleToolbar = ->
+  $("#navi").addClass("subtle")

@@ -1,4 +1,4 @@
-@(title: String, open: Boolean = false)(content: Html)
+@(title: String, open: Boolean = false, head: Html = Html(""))(content: Html)
 <!DOCTYPE html>
 
 <html>
@@ -11,8 +11,13 @@
 
         @*<!-- STYLE -->*@
         <link href='@MyAssets.css_app._2' type="text/css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700' rel='stylesheet' type='text/css'>
+        <!--<link href='https://fonts.googleapis.com/css?family=Signika:400,700' rel='stylesheet' type='text/css'>-->
+
+        @head
 
         @*<!-- SCRIPT -->*@
+        <script type="text/javascript" src="@MyAssets.js_util._2"></script>
         <script type="text/javascript" src="@MyAssets.js_jquery._2"></script>
         <script type="text/javascript" src="@MyAssets.js_modernizr._2"></script>
         <script type="text/javascript" src="@MyAssets.js_codemirror._2"></script>
@@ -23,11 +28,10 @@
         @content
 
         @if(!open) {
-            @comp.navi()
+            @sub.navi()
         }
 
-        @comp.analytics()
-        @comp.modal_ide()
+        @sub.analytics()
     </body>
 
 </html>

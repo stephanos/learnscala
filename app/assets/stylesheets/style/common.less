@@ -1,9 +1,3 @@
-@c_emph: #8cc84b;
-@c_head: rgba(78, 68, 60, 0.9);
-@c_text: #4e443c;
-@c_hlight: #fc6b35;
-@c_text_light: #cda869;
-
 body {
     background: #EFEFEF;
     background: url(/assets/img/bg.jpg) fixed;
@@ -60,6 +54,7 @@ em {
 }
 
 #navi {
+    z-index: @zindexPopover;
     position: absolute;
     top: 6px; right: 20px;
     .bg(lighten(@c_emph, 20%));
@@ -69,7 +64,7 @@ em {
     border-top: 0;
 
     ul {
-        margin: 0;
+        margin: 0; padding: 0;
         list-style-type: none;
 
         li {
@@ -95,6 +90,15 @@ em {
             }
         }
     }
+
+    &.subtle {
+        .opacity(20);
+        .linear-transition(opacity);
+
+        &:hover {
+            .opacity(100);
+        }
+    }
 }
 
 a {
@@ -115,4 +119,10 @@ textarea:focus,
 input[type="text"]:focus {
     border-color: #8cc84b;
     .box-shadow(0 0 2px #8cc84b);
+}
+
+.modal-backdrop {
+    &.in {
+        .opacity(20);
+    }
 }

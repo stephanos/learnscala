@@ -241,6 +241,9 @@ var Reveal = (function(){
 	 * @param {Object} event
 	 */
 	function onDocumentKeyDown( event ) {
+        // HACK: modal visible? don't react!
+        if($("#ideModal").is(':visible')) return;
+
 		// FFT: Use document.querySelector( ':focus' ) === null 
 		// instead of checking contentEditable?
 

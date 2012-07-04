@@ -1,83 +1,62 @@
 @(title: String)(content: Html)
-<!DOCTYPE html>
 
-<html>
+@head = {
+    <link href='@MyAssets.css_slide._2' type="text/css" rel="stylesheet">
+}
 
-    <head>
-        <meta charset="utf-8">
+@internal(title, head=head) {
+    <div id="slidedeck" class="reveal">
+        <!-- slides -->
+        @content
 
-        @*<!-- STYLE -->*@
-        <link rel="stylesheet" href="@MyAssets.css_slide._2">
-        <link href='https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700' rel='stylesheet' type='text/css'>
-        <!--<link href='https://fonts.googleapis.com/css?family=Signika:400,700' rel='stylesheet' type='text/css'>-->
-
-        @*<!-- SCRIPT -->*@
-        <script type="text/javascript" src="@MyAssets.js_util._2"></script>
-        <script type="text/javascript" src="@MyAssets.js_jquery._2"></script>
-        <script type="text/javascript" src="@MyAssets.js_codemirror._2"></script>
-        <script type="text/javascript" src="@MyAssets.js_ide._2"></script>
-    </head>
-
-    <body>
-        <div id="slidedeck" class="reveal">
-            <!-- slides -->
-            @content
-
-            <!-- progress bar -->
-            <div class="progress" style="display: block; ">
-                <span style="width: 0px; "></span>
-            </div>
+        <!-- progress bar -->
+        <div class="progress" style="display: block; ">
+            <span style="width: 0;"></span>
         </div>
+    </div>
 
-        <!--<div id="navi">
-            <a href="#" id="fullscreenBtn">
-                <span>Fullscreen</span>
-            </a>
-        </div>-->
+    <script src="@MyAssets.js_slide._2" type="text/javascript"></script>
+    <script type="text/javascript">
+        // Parse the query string into a key/value object
+        var query = {};
+        location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+            query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+        } );
 
-        <script src="@MyAssets.js_slide._2"></script>
+        Reveal.initialize({
+            // Display controls in the bottom right corner
+            controls: false,
 
-        <script>
-            // Parse the query string into a key/value object
-            var query = {};
-            location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
-                query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
-            } );
+            // Display a presentation progress bar
+            progress: true,
 
-            Reveal.initialize({
-                // Display controls in the bottom right corner
-                controls: false,
+            // If true; each slide will be pushed to the browser history
+            history: true,
 
-                // Display a presentation progress bar
-                progress: true,
+            // Loops the presentation, defaults to false
+            loop: false,
 
-                // If true; each slide will be pushed to the browser history
-                history: true,
+            // Flags if mouse wheel navigation should be enabled
+            mouseWheel: false,
 
-                // Loops the presentation, defaults to false
-                loop: false,
+            // Apply a 3D roll to links on hover
+            rollingLinks: false,
 
-                // Flags if mouse wheel navigation should be enabled
-                mouseWheel: false,
+            // UI style
+            theme: query.theme || 'default', // default/neon
 
-                // Apply a 3D roll to links on hover
-                rollingLinks: false,
+            // Transition style
+            transition: query.transition || 'linear' // default/cube/page/concave/linear(2d)
+        });
 
-                // UI style
-                theme: query.theme || 'default', // default/neon
+        Reveal.addEventListener('slidechanged', function (event) {
+            // do nothing
+        });
 
-                // Transition style
-                transition: query.transition || 'linear' // default/cube/page/concave/linear(2d)
-            });
+        $(document).ready(function() {
+            window.initSlides()
+        });
+    </script>
 
-            Reveal.addEventListener('slidechanged', function (event) {
-                // do nothing
-            });
-        </script>
-
-        @comp.navi()
-        @comp.analytics()
-        @comp.modal_ide()
-    </body>
-
-</html>
+    @comp.modal_ide()
+}

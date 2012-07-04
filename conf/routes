@@ -20,6 +20,9 @@ GET     /users/do_oauth                             controllers.Auth.doOAuth
 GET     /app                                        controllers.App.index
 GET     /app/                                       controllers.App.index2
 
+GET     /app/editor                                 controllers.Editor.index
+GET     /app/editor/                                controllers.Editor.index2
+
 GET     /app/slides                                 controllers.Slide.index
 GET     /app/slides/                                controllers.Slide.index2
 GET     /app/slides/:id                             controllers.Slide.redirect(id)

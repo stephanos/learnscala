@@ -1,0 +1,12 @@
+@layout.internal("") {
+    <div id="editor" class="ide">
+        @comp.ide()
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            initEditor($("#editor"));
+            subtleToolbar();
+        });
+    </script>
+}
