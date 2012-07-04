@@ -144,6 +144,7 @@ var Reveal = (function(){
 			dom.wrapper.classList.add( config.theme );
 		}
 
+        /*
 		if( config.mouseWheel ) {
 			document.addEventListener( 'DOMMouseScroll', onDocumentMouseScroll, false ); // FF
 			document.addEventListener( 'mousewheel', onDocumentMouseScroll, false );
@@ -153,6 +154,7 @@ var Reveal = (function(){
 			// Add some 3D magic to our anchors
 			linkify();
 		}
+		*/
 	}
 
 	function addEventListeners() {
@@ -274,17 +276,15 @@ var Reveal = (function(){
 		if( triggered ) {
 			event.preventDefault();
 		}
-		else if ( event.keyCode === 27 && supports3DTransforms ) {
+		/*else if ( event.keyCode === 27 && supports3DTransforms ) {
 			if( overviewIsActive() ) {
 				deactivateOverview();
 			}
 			else {
 				activateOverview();
 			}
-	
 			event.preventDefault();
-		}
-
+		}*/
 	}
 
 	/**
@@ -383,6 +383,7 @@ var Reveal = (function(){
 	 * Handles mouse wheel scrolling, throttled to avoid 
 	 * skipping multiple slides.
 	 */
+    /*
 	function onDocumentMouseScroll( event ){
 		clearTimeout( mouseWheelTimeout );
 
@@ -396,6 +397,7 @@ var Reveal = (function(){
 			}
 		}, 100 );
 	}
+	*/
 	
 	/**
 	 * Handler for the window level 'hashchange' event.
@@ -409,6 +411,7 @@ var Reveal = (function(){
 	/**
 	 * Wrap all links in 3D goodness.
 	 */
+    /*
 	function linkify() {
         if( supports3DTransforms ) {
         	var nodes = document.querySelectorAll( '.reveal .slides section a:not(.image)' );
@@ -423,6 +426,7 @@ var Reveal = (function(){
 	        };
         }
 	}
+	*/
 
 	/**
 	 * Displays the overview of slides (quick nav) by 
@@ -431,6 +435,7 @@ var Reveal = (function(){
 	 * Experimental feature, might be dropped if perf 
 	 * can't be improved.
 	 */
+    /*
 	function activateOverview() {
 
         return; // disable
@@ -477,11 +482,13 @@ var Reveal = (function(){
 			
 		}
 	}
+	*/
 	
 	/**
 	 * Exits the slide overview and enters the currently
 	 * active slide.
 	 */
+    /*
 	function deactivateOverview() {
 		dom.wrapper.classList.remove( 'overview' );
 
@@ -502,6 +509,7 @@ var Reveal = (function(){
 
 		slide();
 	}
+	*/
 
 	/**
 	 * Checks if the overview is currently active.
@@ -510,12 +518,13 @@ var Reveal = (function(){
 	 * false otherwise
 	 */
 	function overviewIsActive() {
-		return dom.wrapper.classList.contains( 'overview' );
+		return false; //return dom.wrapper.classList.contains( 'overview' );
 	}
 
 	/**
 	 * Invoked when a slide is and we're in the overview.
 	 */
+    /*
 	function onOverviewSlideClicked( event ) {
 		// TODO There's a bug here where the event listeners are not 
 		// removed after deactivating the overview.
@@ -530,6 +539,7 @@ var Reveal = (function(){
 			slide();
 		}
 	}
+	*/
 
 	/**
 	 * Updates one dimension of slides by showing the slide
@@ -575,7 +585,7 @@ var Reveal = (function(){
 					// and last slides
 					var distance = Math.abs( ( index - i ) % ( slidesLength - 3 ) ) || 0;
 
-					slide.style.display = distance > 3 ? 'none' : 'block';
+					slide.style.display = distance > 1 ? 'none' : 'block';
 				}
 
 				slides[i].classList.remove( 'past' );
@@ -663,9 +673,9 @@ var Reveal = (function(){
 		}
 
 		// Close the overview if it's active
-		if( overviewIsActive() ) {
+		/*if( overviewIsActive() ) {
 			activateOverview();
-		}
+		}*/
 
 		updateControls();
 		
@@ -918,6 +928,7 @@ var Reveal = (function(){
 	/**
 	 * Toggles the slide overview mode on and off.
 	 */
+    /*
 	function toggleOverview() {
 		if( overviewIsActive() ) {
 			deactivateOverview();
@@ -926,6 +937,7 @@ var Reveal = (function(){
 			activateOverview();
 		}
 	}
+	*/
 	
 	// Expose some methods publicly
 	return {
@@ -937,7 +949,7 @@ var Reveal = (function(){
 		navigateDown: navigateDown,
 		navigatePrev: navigatePrev,
 		navigateNext: navigateNext,
-		toggleOverview: toggleOverview,
+		//toggleOverview: toggleOverview,
 
 		addEventListeners: addEventListeners,
 		removeEventListeners: removeEventListeners,

@@ -2,6 +2,7 @@
  * DEFAULT TRANSITION
  *********************************************/
 
+/*
 .reveal .slides>section.past {
 	display: block;
 	opacity: 0;
@@ -39,12 +40,14 @@
 	    -ms-transform: translate3d(0, 50%, 0) rotateX(-70deg) translate3d(0, 50%, 0);
 	        transform: translate3d(0, 50%, 0) rotateX(-70deg) translate3d(0, 50%, 0);
 }
+*/
 
 
 /*********************************************
  * CONCAVE TRANSITION
  *********************************************/
 
+/*
 .reveal.concave  .slides>section.past {
 	-webkit-transform: translate3d(-100%, 0, 0) rotateY(90deg) translate3d(-100%, 0, 0);
 	   -moz-transform: translate3d(-100%, 0, 0) rotateY(90deg) translate3d(-100%, 0, 0);
@@ -70,46 +73,47 @@
 	    -ms-transform: translate3d(0, 80%, 0) rotateX(70deg) translate3d(0, 80%, 0);
 	        transform: translate3d(0, 80%, 0) rotateX(70deg) translate3d(0, 80%, 0);
 }
-
+*/
 
 /*********************************************
- * LINEAR TRANSITION
+ * LINEAR TRANSITION // http://stackoverflow.com/questions/9570858/chrome-screen-flash-when-applying-a-css3-animation-only-the-first-time
  *********************************************/
 
 .reveal.linear .slides>section.past {
-	-webkit-transform: translate(-150%, 0);
+	-webkit-transform: translate3d(-150%, 0, 0);
 	   -moz-transform: translate(-150%, 0);
 	    -ms-transform: translate(-150%, 0);
 	     -o-transform: translate(-150%, 0);
-	        transform: translate(-150%, 0);
+	        transform: translate3d(-150%, 0, 0);
 }
 .reveal.linear .slides>section.future {
-	-webkit-transform: translate(150%, 0);
+	-webkit-transform: translate3d(150%, 0, 0);
 	   -moz-transform: translate(150%, 0);
 	    -ms-transform: translate(150%, 0);
 	     -o-transform: translate(150%, 0);
-	        transform: translate(150%, 0);
+	        transform: translate3d(150%, 0, 0);
 }
 
 .reveal.linear .slides>section>section.past {
-	-webkit-transform: translate(0, -150%);
+	-webkit-transform: translate3d(0, -150%, 0);
 	   -moz-transform: translate(0, -150%);
 	    -ms-transform: translate(0, -150%);
 	     -o-transform: translate(0, -150%);
-	        transform: translate(0, -150%);
+	        transform: translate3d(0, -150%, 0);
 }
 .reveal.linear .slides>section>section.future {
-	-webkit-transform: translate(0, 150%);
+	-webkit-transform: translate3d(0, 150%, 0);
 	   -moz-transform: translate(0, 150%);
 	    -ms-transform: translate(0, 150%);
 	     -o-transform: translate(0, 150%);
-	        transform: translate(0, 150%);
+	        transform: translate3d(0, 150%, 0);
 }
 
 /*********************************************
  * BOX TRANSITION
  *********************************************/
 
+/*
 .reveal.cube .slides {
 	margin-top: -350px;
 
@@ -226,11 +230,13 @@
 	    -ms-transform: translate3d(0, 100%, 0) rotateX(-90deg);
 	        transform: translate3d(0, 100%, 0) rotateX(-90deg);
 }
+*/
 
 /*********************************************
  * PAGE TRANSITION
  *********************************************/
 
+/*
 .reveal.page .slides {
 	margin-top: -350px;
 
@@ -340,6 +346,7 @@
 	    -ms-transform: translate3d(0, 0, 0);
 	        transform: translate3d(0, 0, 0);
 }
+*/
 
 /*********************************************
  * FALLBACK

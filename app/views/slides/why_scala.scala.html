@@ -51,8 +51,8 @@
     <section>
         <h2>Scala is ... <span class="fragment"><em>a scripting language</em></span></h2>
 
-        <div>
-            <ul class="indent">
+        <div class="indent">
+            <ul>
                 <li class="fragment">
                     interactive Read-Eval-Print-Loop (REPL)
                 </li>
@@ -142,17 +142,19 @@
             <ul>
                 <li class="fragment">
                     compiles to regular Java byte code
-                    <ul>
-                        <li>
-                            as fast as Java (sometimes faster!)
-                        </li>
-                        <li class="fragment">
-                            calling & extending <em>Java</em> class from <var>Scala</var>? - works perfectly
-                        </li>
-                        <li class="fragment">
-                            calling & extending <var>Scala</var> class from <em>Java</em>? - works mostly, a few exceptions
-                        </li>
-                    </ul>
+                    <div class="indent">
+                        <ul>
+                            <li>
+                                as fast as Java (sometimes faster!)
+                            </li>
+                            <li class="fragment">
+                                calling & extending <em>Java</em> class from <var>Scala</var>? - works perfectly
+                            </li>
+                            <li class="fragment">
+                                calling & extending <var>Scala</var> class from <em>Java</em>? - works mostly, a few exceptions
+                            </li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
             <br/><br/>
@@ -170,20 +172,22 @@
             <ul>
                 <li class="fragment">
                     very advanced static type system<br/>
-                    <ul>
-                        <li class="fragment">
-                            type inference
-                            @comp.snippet {
-                                |val i = 1 + 2 * 3      // the type of i is Int
-                            }
-                        </li>
-                        <li class="fragment">
-                            compound types
-                            @comp.snippet {
-                                |def cloneAndReset(obj: Cloneable with Resetable) = ..
-                            }
-                        </li>
-                    </ul>
+                    <div class="indent">
+                        <ul>
+                            <li class="fragment">
+                                type inference
+                                @comp.snippet {
+                                    |val i = 1 + 2 * 3      // the type of i is Int
+                                }
+                            </li>
+                            <li class="fragment">
+                                compound types
+                                @comp.snippet {
+                                    |def cloneAndReset(obj: Cloneable with Resetable) = ..
+                                }
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="fragment"><em>benefits</em>: less mistakes, reduced testing and safe refactoring</li>
                 <li class="fragment"><var>drawbacks</var>: increased compilation time</li>
@@ -229,21 +233,23 @@
             <ul>
                 <li class="fragment">
                     reduces lines of code by at least 50%
-                    <ul>
-                        <li class="fragment">
-                            less boilerplate
-                            @comp.snippet {
-                                |class MyCar(wheels: Int = 4)
-                            }
-                        </li>
-                        <li class="fragment">
-                            factor out common behaviour by using traits and closures
-                            @comp.snippet {
-                                |trait Logging
-                                |def getAttributeFromAllUsers[T](fn: (User) => List[T])
-                            }
-                        </li>
-                    </ul>
+                    <div class="indent">
+                        <ul>
+                            <li class="fragment">
+                                less boilerplate
+                                @comp.snippet {
+                                    |class MyCar(wheels: Int = 4)
+                                }
+                            </li>
+                            <li class="fragment">
+                                factor out common behaviour by using traits and closures
+                                @comp.snippet {
+                                    |trait Logging
+                                    |def getAttributeFromAllUsers[T](fn: (User) => List[T])
+                                }
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="fragment">
                     <em>quicker</em> to write
