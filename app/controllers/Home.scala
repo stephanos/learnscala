@@ -10,12 +10,34 @@ object Home extends MyController {
             Ok(views.html.index())
     }
 
+    def contact = Action {
+        implicit req =>
+            Ok(views.html.contact())
+    }
+
+    def booking = Action {
+        implicit req =>
+            Ok(views.html.booking())
+    }
+
+    def events = Action {
+        implicit req =>
+            Ok(views.html.events())
+    }
+
+    def details = Action {
+            implicit req =>
+                Ok(views.html.details())
+        }
+
     def imprint = Action {
-        Ok(views.html.imprint())
+        implicit req =>
+            Ok(views.html.imprint())
     }
 
     def backdoor = Action {
-        Ok(views.html.backdoor())
+        implicit req =>
+            Ok(views.html.backdoor())
     }
 
     def gverify = Action {

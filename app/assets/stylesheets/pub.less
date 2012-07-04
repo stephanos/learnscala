@@ -1,5 +1,7 @@
 // LIB
 @import "bootstrap/bootstrap.less";
+@import "bootstrap/type.less";
+
 @import "lib/const.less";
 @import "lib/mixins.less";
 
@@ -50,22 +52,20 @@ body {
     }
 }
 
+#pubnav {
+    margin: 35px 0;
+    text-align: center;
+    h3 { display: inline; .capitalize(); padding: 0 20px; }
+}
+
 .shoutout {
-    padding-top: 36px;
-    margin-bottom: 50px;
+    margin: 20px 0;
 
-    h1 {
-        margin-bottom: 18px;
-        letter-spacing: -1px;
-        line-height: 1;
-
-        span { color: #4e443c; }
-        &:hover { span { color: #4e443c; } }
-    }
     h2 {
+        font-size: 36px;
         margin-left: 5%;
         margin-right: 5%;
-        line-height: 40px;
+        line-height: 50px;
     }
 }
 

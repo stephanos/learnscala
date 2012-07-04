@@ -32,12 +32,6 @@
             <header id="top">
                 <header class="shoutout">
                     <div class="inner">
-                        <h1>
-                            <a href="/">
-                                <span>Learn</span>Scala
-                            </a>
-                        </h1>
-
                         <h2>
                             @if(subtitle == null) {
                                 <span>Praxisnahe Schulung <br/>f&uuml;r den Einstieg in Scala</span>
@@ -50,6 +44,8 @@
             </header>
 
             <section id="main">
+                @sub.navi_pub()
+
                 @content
 
                 <!--<a href="@routes.Auth.login" id="navi">
@@ -59,7 +55,7 @@
 
             <footer id="bottom">
                 <div>
-                    <a href="/">Home</a> | <a href="/imprint">Impressum</a>
+                    <a href="/">Home</a> | <a href="@routes.Home.imprint">Impressum</a>
                 </div>
                 <div>
                     Copyright 2011 - 2012, 101 Loops

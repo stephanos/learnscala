@@ -1,0 +1,13 @@
+@()(implicit flash: Flash)
+
+@layout.public("Kontakt") {
+
+<div>
+
+    <div class='alert hide alert-@flash.get("type")'>
+        @flash.get("message")
+    </div>
+
+</div>
+
+}
