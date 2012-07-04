@@ -67,6 +67,34 @@ em {
     .round-bottom(5px);
     .border(@c_emph);
     border-top: 0;
+
+    ul {
+        margin: 0;
+        list-style-type: none;
+
+        li {
+            margin: 0 5px;
+            position: relative;
+            display: inline-block;
+
+            &::after {
+                color: #690;
+                content: "|";
+                display: block;
+                width: 0;
+                overflow: visible;
+                position: absolute;
+                top: 0;
+                right: -5px;
+            }
+
+            &.last {
+                &::after {
+                    content: none;
+                }
+            }
+        }
+    }
 }
 
 a {
