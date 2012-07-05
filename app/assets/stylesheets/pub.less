@@ -78,12 +78,31 @@ p {
     form {
         margin: 16px 0 6px 0;
         text-align: center;
-        #label { color: #b94a48; margin-top: 7px; }
     }
 }
 
-ul {
-    li {
-        line-height: 22px;
-    }
+
+form.contact {
+    label { .bold(); }
+    input[type="text"], textarea { width: 280px; }
+    .form-actions { background: transparent; border: 0; }
+}
+
+.vanadium-invalid {
+    color: #b94a48;
+    margin-top: 7px;
+}
+
+div.center {
+    margin: 0 auto;
+}
+
+p.center {
+    text-align: center;
+}
+
+div.contents {
+    h4  { margin: 20px 0 10px 0; }
+    >ul>li { list-style: none; }
+    ul li { line-height: 22px; }
 }

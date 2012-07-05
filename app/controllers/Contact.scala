@@ -8,18 +8,19 @@ import services.Mail
 
 object Contact extends MyController {
 
-    private val mailForm = Form("mail" -> email)
+    private val mailForm = Form(tuple("mail" -> email, "text" -> text))
 
     def doMail = Action {
         implicit req =>
             mailForm.bindFromRequest.fold(
                 errForm =>
-                    Redirect("/").flashing(("type", "error"), ("message", "Es gab einen Fehler bei der Registrierung, bitte senden Sie doch eine Mail an stephan@learnscala.de")),
-                m => {
-                    println("SIGNUP: " + m)
+                    Redirect("/").flashing(("type", "error"), ("message", "Es gab einen Fehler bei der Übertragung, bitte senden Sie doch eine Mail an stephan@learnscala.de")),
+                f => {
+                    val (mail, msg) = f
+                    println("MESSAGE from '" + mail + "'")
                     if (isProduction)
-                        Mail.sendMail(m, List("subscribe@learnscala.de"), Some(m), "SUBSCRIBE: " + m, m, None)
-                    Redirect("/").flashing(("type", "success"), ("message", "Vielen Dank für Ihr Interesse - Sie bekommen als Erster bescheid!"))
+                        Mail.sendMail(mail, List("contact@learnscala.de"), Some(mail), "Kontakt", msg, None)
+                    Redirect(routes.Home.contact()).flashing(("type", "success"), ("message", "Vielen Dank für Ihr Nachricht."))
                 }
             )
     }
