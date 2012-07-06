@@ -1,4 +1,4 @@
-@layout.slide("Why Scala") {
+@layout.slide("Vorstellung von Scala") {
 
 <div class="state-background"></div>
 
@@ -6,8 +6,8 @@
 
 
     <section>
-        <h1><em>About</em> Scala</h1>
-        <h3 class="banner"></h3>
+        <h1><em>Einführung</em></h1>
+        <h3 class="banner">Scala, die unbekannte Spache</h3>
     </section>
 
 
@@ -19,14 +19,14 @@
         <div class="fragment left w60p">
             <blockquote>
                 <p>
-                    The name Scala stands for <br/><em>scalable language</em>.
+                    Der Name Scala steht für <br/><em>scal</em>able <em>la</em>nguage.
                 </p>
                 <p>
-                    The language is designed to grow with the demands of its users.
-                    You can apply Scala to a wide range of programming tasks, from writing small scripts to building large systems.
+                    Die Sprache ist so konzipiert, dass sie mit den Anforderungen des Nutzers wächst.
+                    Man kann sie auf eine Vielzahl von Aufgaben anwenden, von kleinen Skripten bis hin zu großen System.
                 </p>
                 <var class="who">
-                    Martin Odersky, <br/>creator of Scala
+                    Martin Odersky, <br/>Erfinder von Scala
                 </var>
             </blockquote>
         </div>
@@ -34,37 +34,22 @@
 
 
     <section>
-        <blockquote>
-            <p>
-                Scala is a general purpose programming language designed to express common programming patterns in a concise, elegant, and type-safe way.
-            </p>
-            <p>
-                It smoothly integrates features of object-oriented and functional languages, enabling Java and other programmers to be more productive.
-            </p>
-            <p>
-                Code sizes are typically reduced by a factor of two to three when compared to an equivalent Java application
-            </p>
-        </blockquote>
-    </section>
-
-
-    <section>
-        <h2>Scala is ... <span class="fragment"><em>a scripting language</em></span></h2>
+        <h2>Scala ist ... <span class="fragment"><em>eine Skriptsprache</em></span></h2>
 
         <div class="indent">
             <ul>
                 <li class="fragment">
-                    interactive Read-Eval-Print-Loop (REPL)
+                    interaktive Konsole: Read-Eval-Print-Loop (REPL)
                 </li>
                 <li class="fragment">
-                    no semicolons
+                    keine Semikolons
 
                     @comp.snippet {
                         |println("Hello World")
                     }
                 </li>
                 <li class="fragment">
-                    type inference
+                    Type Inference
 
                     @comp.snippet {
                         |val i = 1 + 2 * 3      // the type of i is Int
@@ -77,24 +62,24 @@
 
 
     <section>
-        <h2>Scala is ... <span><em>object-oriented</em></span></h2>
+        <h2>Scala ist ... <span><em>objektorientiert</em></span></h2>
 
         <div class="indent">
             <ul>
                 <li class="fragment">
-                    every (!) value is an object (no Java primitives like 'int')
+                    jeder (!) Wert ist ein Objekt (keine primitiven Typen wie 'int')
                     @comp.snippet {
                         |42.toFloat
                     }
                 </li>
                 <li class="fragment">
-                    classes and inheritance
+                    Klassen und Vererbung
                     @comp.snippet {
                         |class MonsterTruck extends Car
                     }
                 </li>
                 <li class="fragment">
-                    mixin-based composition
+                    Mixin-Mechanismus
                     @comp.snippet {
                         |class FlyingCar extends Car with Wings
                     }
@@ -105,22 +90,22 @@
 
 
     <section>
-        <h2>Scala is ... <span><em>concise</em></span></h2>
+        <h2>Scala ist ... <span><em>knapp und präzise</em></span></h2>
 
         <div class="indent">
             <ul>
                 <li class="fragment">
-                    reduces lines of code by at least 50%
+                    reduziert die Code-Zeilen um mehr als 50%
                     <div class="indent">
                         <ul>
                             <li class="fragment">
-                                less boilerplate
+                                weniger Boilerplate-Code
                                 @comp.snippet {
                                     |class MyCar(wheels: Int = 4)
                                 }
                             </li>
                             <li class="fragment">
-                                factor out common behaviour by using traits and closures
+                                Traits und Closures für Wiederverwendung
                                 @comp.snippet {
                                     |trait Logging
                                     |def getAttributeFromAllUsers[T](fn: (User) => List[T])
@@ -130,9 +115,7 @@
                     </div>
                 </li>
                 <li class="fragment">
-                    <em>quicker</em> to write
-                    <span class="fragment">, <em>easier</em> to read</span>
-                    <span class="fragment"> and <em>less error</em> prone</span>
+                    <em>schneller</em> zu schreiben und <em>leichter</em> zu lesen
                 </li>
             </ul>
         </div>
@@ -140,12 +123,12 @@
 
 
     <section>
-        <h2>Scala is ... <span><em>functional</em></span></h2>
+        <h2>Scala ist ... <span><em>funktional</em></span></h2>
 
         <div class="indent">
             <ul>
                 <li class="fragment">
-                    re-usable blocks of code that have no side effects
+                    wiederverwendbare Code-Blöcke ohne Seiteneffekte
                     @comp.snippet {
                         |val names = users.map(_.username)
                     }
@@ -156,7 +139,7 @@
                     </div>
                 </li>
                 <li class="fragment">
-                    pattern matching
+                    Pattern Matching
                     @comp.snippet {
                         |def matchTest(arg: String, value: Any) = (arg, value) match {
                         |   case ("-h" | "--help", _) => displayHelp()
@@ -171,22 +154,22 @@
 
 
     <section>
-        <h2>Scala is ... <span><em>statically typed</em></span></h2>
+        <h2>Scala ist ... <span><em>statisch typisiert</em></span></h2>
 
         <div class="indent">
             <ul>
                 <li class="fragment">
-                    very advanced static type system<br/>
+                    sehr fortschrittliches Typenmodell<br/>
                     <div class="indent">
                         <ul>
                             <li class="fragment">
-                                type inference
+                                Type Inference
                                 @comp.snippet {
                                     |val i = 1 + 2 * 3      // the type of i is Int
                                 }
                             </li>
                             <li class="fragment">
-                                compound types
+                                Compound Types
                                 @comp.snippet {
                                     |def cloneAndReset(obj: Cloneable with Resetable) = ..
                                 }
@@ -194,30 +177,30 @@
                         </ul>
                     </div>
                 </li>
-                <li class="fragment"><em>benefits</em>: less mistakes, reduced testing and safe refactoring</li>
-                <li class="fragment"><var>drawbacks</var>: increased compilation time</li>
+                <li class="fragment"><em>Vorteil:</em> weniger Flüchtigkeitsfehler & Testaufwand sowie sicheres Refactoring</li>
+                <li class="fragment"><var>Nachteil:</var> erhöhte Kompilierzeit</li>
             </ul>
         </div>
     </section>
 
 
     <section>
-        <h2>Scala is ... <span><em>Java</em></span></h2>
+        <h2>Scala ist ... <span><em>Java</em></span></h2>
 
         <div class="indent">
             <ul>
                 <li class="fragment">
-                    compiles to regular Java byte code
+                    erstellt gewohntem Java byte code
                     <div class="indent">
                         <ul>
                             <li>
-                                as fast as Java (sometimes faster!)
+                                so schnell wie Java (manchmal schneller!)
                             </li>
                             <li class="fragment">
-                                calling & extending <em>Java</em> class from <var>Scala</var>? - works perfectly
+                                Aufrufe & Erweiterung einer <em>Java</em>-Klasse von <var>Scala</var>? - reibungslos
                             </li>
                             <li class="fragment">
-                                calling & extending <var>Scala</var> class from <em>Java</em>? - works mostly, a few exceptions
+                                Aufrufe & Erweiterung einer <var>Scala</var>-Klasse von <em>Java</em>? - geht, mit Ausnahmen
                             </li>
                         </ul>
                     </div>
@@ -225,19 +208,19 @@
             </ul>
             <br/><br/>
             <div class="fragment">
-                ⇨ compatible with all the thousands of Java libraries - no glue code needed
+                ⇨ kompatibel mit den tausenden Java-Bibliotheken - ohne zusätzlichen Code
             </div>
         </div>
     </section>
 
 
     <section>
-        <h2>Scala is ... <span><em>extensible</em></span></h2>
+        <h2>Scala ist ... <span><em>erweiterbar</em></span></h2>
 
         <div class="indent">
             <ul>
                 <li class="fragment">
-                    add your own control structures
+                    eigene Kontrollstrukturen
                     @comp.snippet {
                         |def retry[T](n: Int)(fn: => T): T =
                         |  try   { fn }
@@ -245,7 +228,7 @@
                     }
                 </li>
                 <li class="fragment">
-                    create a complete Domain Specific Language (DSL)
+                    eigene Sprachen: Domain Specific Language (DSL)
                     @comp.snippet {
                         @Html("""
                         |class HelloWorldSpec extends Specification {
@@ -262,7 +245,7 @@
 
 
     <section>
-        <h2>Scala is ... <span><em>actively used</em></span></h2>
+        <h2>Scala ist ... <span><em>in Benutzung</em></span></h2>
 
         <br/>
         <div class="fragment indent">
@@ -307,32 +290,32 @@
             </table>
             <br/>
             <h3 class="center fragment">
-                <var>Startups</var> <big>&nbsp;&&nbsp;</big> <em>Enterprises</em>
+                <var>Startups</var> <big>&nbsp;&&nbsp;</big> <em>Konzerne</em>
             </h3>
         </div>
     </section>
 
 
     <section>
-        <h2>Scala is ...</h2>
+        <h2>Zusammenfassung: Scala ist ...</h2>
         <h4>
             <div class="indent90">
                 <ul class="fragment w40p left">
                     <li><em>Java</em></li>
-                    <li><em>functional</em></li>
-                    <li><em>statically typed</em></li>
-                    <li><em>actively used</em></li>
-                    <li><em>concise</em></li>
-                    <li><em>extensible</em></li>
-                    <li><em>object oriented</em></li>
+                    <li><em>funktional</em></li>
+                    <li><em>statisch typisiert</em></li>
+                    <li><em>in Benutzung</em></li>
+                    <li><em>kurz und präzise</em></li>
+                    <li><em>erweiterbar</em></li>
+                    <li><em>objektorientiert</em></li>
                 </ul>
                 <ul class="fragment w40p left">
-                    <li><var>productive</var></li>
-                    <li><var>complex at first</var></li>
-                    <li><var>challenging</var></li>
-                    <li><var>fun</var></li>
-                    <li><var>new way of thinking</var></li>
-                    <li><var>innovative</var></li>
+                    <li><var>cool</var></li>
+                    <li><var>eine Freude</var></li>
+                    <li><var>produktiv</var></li>
+                    <li><var>anspruchsvoll</var></li>
+                    <li><var>eine neue Denkweise</var></li>
+                    <li><var>flexibel</var></li>
                     <li><var>modern</var></li>
                 </ul>
             </div>
