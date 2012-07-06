@@ -35,18 +35,16 @@ class Scala {
                             }
                         case xs =>
                             val code = xs.mkString("\n")
-                            val log = com.loops101.util.Logger("controllers")
-                            log.info(code)
                             compiler.interpret(code) match {
                                 case ir @ IR.Success =>
                                     lines match {
                                         case Nil => state
-                                        case y :: ys =>  eval(lines.tail, state = ir)
+                                        case y :: ys =>  eval(ys, List(y), state = ir)
                                     }
                                 case ir @ IR.Incomplete =>
                                     lines match {
                                         case Nil => state
-                                        case y :: ys => eval(lines.tail, buffer ::: List(lines.head), state = ir)
+                                        case y :: ys => eval(ys, buffer ::: List(y), state = ir)
                                     }
                                 case ir => ir // stop
                             }

@@ -1,11 +1,23 @@
 .slidedecks {
     margin: 30px;
 
-    a.slidedeck {
-        .round(5px);
-        padding: 30px;
-        background: fade(#fff, 50%);
+    div.slidedeck {
+        margin: 10px;
         display: inline-block;
-        box-shadow: rgba(0,0,0,0.2) 0 0 0 1px,rgba(0,0,0,0.3) 0 2px 5px;
+
+        a {
+            .round(5px);
+            background: fade(#fff, 50%);
+            box-shadow: rgba(0,0,0,0.2) 0 0 0 1px,rgba(0,0,0,0.3) 0 2px 5px;
+
+            @w: 100px;
+            //padding: 20px;
+            width: 90px;
+            height: @w / @tv;
+
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+        }
     }
 }
