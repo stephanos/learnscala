@@ -12,9 +12,8 @@ object API extends MyController {
             val code = req.body("code").mkString("")
             //val session = req.queryString("session").headOption
             try {
-                val r = Interpreter(code, None)
-                val out = r._2
-                if (r._1 == IR.Success)
+                val (r, out) = Interpreter(code, None)
+                if (r == IR.Success)
                     Ok(out)
                 else
                     BadRequest(out)
@@ -29,11 +28,11 @@ object API extends MyController {
         req =>
             val code = req.body("code").mkString("")
             try {
-                val r = Decoder(code)
-                if (r._1 != null)
-                    Ok(r._1)
+                val (out, err) = Decoder(code)
+                if (out != null)
+                    Ok(out)
                 else
-                    BadRequest(r._2)
+                    BadRequest(err)
             } catch {
                 case e =>
                     log.warn("error for API call 'decompile'", e)
@@ -45,9 +44,8 @@ object API extends MyController {
         req =>
             val code = req.body("code").mkString("")
             try {
-                val r = Compiler(code)
-                val out = r._2
-                if (r._1 == true)
+                val (r, out) = Compiler(code)
+                if (r == true)
                     Ok(out)
                 else
                     BadRequest(out)

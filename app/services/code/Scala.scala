@@ -31,24 +31,27 @@ class Scala {
                         case List() =>
                             lines match {
                                 case Nil => state // stop
-                                case x :: xs => eval(xs, List(x))
+                                case x :: xs => eval(xs, List(x), state)
                             }
                         case xs =>
                             val code = xs.mkString("\n")
+                            //val log = com.loops101.util.Logger("controllers")
+                            //log.info(code)
                             compiler.interpret(code) match {
-                                case ir @ IR.Success =>
+                                case ir@IR.Success =>
                                     lines match {
-                                        case Nil => state
-                                        case y :: ys =>  eval(ys, List(y), state = ir)
+                                        case Nil => ir // stop
+                                        case y :: ys => eval(ys, List(y), ir)
                                     }
-                                case ir @ IR.Incomplete =>
+                                case ir@IR.Incomplete =>
                                     lines match {
-                                        case Nil => state
-                                        case y :: ys => eval(ys, buffer ::: List(y), state = ir)
+                                        case Nil => ir // // stop
+                                        case y :: ys => eval(ys, buffer ::: List(y), ir)
                                     }
-                                case ir => ir // stop
+                                case ir =>
+                                    ir // stop
                             }
-                }
+                    }
                 eval(code.split('\n').toList)
             }
             val s = asString(out)

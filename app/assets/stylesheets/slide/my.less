@@ -97,7 +97,7 @@
         .w100p();
     }
 
-    ul {
+    ol, ul {
         .w100p();
         li {
             .w100p();
@@ -106,6 +106,23 @@
             &.no-bullet {
                 list-style: none;
             }
+        }
+    }
+
+    code {
+        font-style: normal;
+        color: @c_hlight;
+        padding: 0 5px;
+        //font-family: monospace;
+        background: fade(@c_text_light, 20%);
+    }
+
+    comment {
+        @f: 30%;
+        font-size: 80%;
+        color: fadeout(@c_text_light, @f);
+        code {
+            color: fadeout(@c_hlight, @f);
         }
     }
 
