@@ -9,6 +9,14 @@ object App extends MyController {
         Ok(views.html.app.index())
     }
 
+    def waitingRoom = Action {
+        Ok(views.html.app.wait())
+    }
+
+    def invalidBrowser = Action {
+        Ok(views.html.error.unsupported())
+    }
+
     def index2 =
         index
 }

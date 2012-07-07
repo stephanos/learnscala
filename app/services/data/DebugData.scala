@@ -11,7 +11,7 @@ object DebugData {
 
             UserDoc.create
                 .gid(159852).name("stephanos").password(PassUtil.encode("execfps2"))
-                .githubToken("84fcbeedc955429ba2e14105f60be8d9715f1c23")
+                .githubToken("84fcbeedc955429ba2e14105f60be8d9715f1c23").confirmed(true)
                 .save(safe = true)
 
             simulate()

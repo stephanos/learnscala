@@ -1,8 +1,10 @@
 import services.data._
+import services.data.dao.UserRepo
 import com.loops101.util.EnvUtil
 import controllers.base.MyController
 import controllers._
 import play.api._
+import play.api.mvc._
 
 object Global
     extends MyController with BaseGlobal with Errors {
@@ -64,7 +66,7 @@ object Global
         "/app"
 
     override protected def redirectToLogin =
-        Redirect("/users/login").flashing(("message", "Please login in order to access the members area"), ("type", "info"))
+        Redirect("/users/login").flashing(("message", "Bitte authentifizieren Sie sich für den Teilnehmerbereich"), ("type", "info"))
 
     override protected def isHiddenForLoggedInUsers(p: String) =
         !isRestrictedPath(p) && !p.startsWith("/assets")
@@ -74,6 +76,14 @@ object Global
 
     override protected def isEncryptedWhenLoggedOut(p: String): Boolean =
         true // encrypt everything
+
+    override protected def onInternalRoute(req: RequestHeader, action: Action[_]): Action[_] = {
+        val path = req.path
+        UserRepo.findUser(currentUserId(req).getOrElse("")).map(_.confirmed.value.getOrElse(false)) match {
+            case None if(isRestrictedPath(path) && !path.endsWith("/wait")) => Action(Redirect("/app/wait"))
+            case _ => super.onInternalRoute(req, action)
+        }
+    }
 
 
     //~ INTERNALS ====================================================================================

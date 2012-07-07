@@ -93,7 +93,7 @@ object Auth extends MyController {
 
     private def goToAppPage(user: UserDoc) =
         Redirect(routes.App.index().url)
-            .withSession((USER_ID, user.gid.value.toString), (USER_NAME, user.name.value))
+            .withSession((USER_ID, user.name.value), (USER_NAME, user.fullname.value.getOrElse("unknown")))
 
     private def goToLoginPage(flash: (String, String)*)(implicit f: Flash) =
         Redirect(routes.Auth.login().url).flashing(flash: _*)

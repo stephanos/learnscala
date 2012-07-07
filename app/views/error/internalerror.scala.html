@@ -1,22 +1,16 @@
 @(err: Option[Throwable] = None)
 
-@layout.public("Internal Error", crawl = false, subtitle = Html("Well. Ehm. That's embarrassing.")) {
+@layout.public("Interner Fehler", crawl = false, hideNav = true, subtitle = Html("Oh. Ehm. Das tut mir leid.")) {
     <div class="box header-box alert-box error-box">
 
         <section>
             <div>
-                An unexpected error occurred. Sorry you had to see this.
+                Ein unerwarteter Fehler ist aufgetreten. Tut mir leid, dass Sie das sehen mussten.
             </div>
 
             <div>
-                But don't worry, after all this is Crashnote, so the admin
-                is notified about this and will look into it.
-            </div>
-
-            <div>
-                If this isn't the first time this has happened, please be so kind to take
-                a minute and <a href="mailto:stephan@@learnscala.de">report this</a>
-                - including a short description of what you were trying to do. Thank you!
+                Ist dies nicht das erste Mal, dass das passiert wenden Sie sich doch bitte an den
+                <a href="mailto:stephan@@learnscala.de">Administrator</a>.
             </div>
         </section>
 

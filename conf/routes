@@ -24,6 +24,9 @@ GET     /users/do_oauth                             controllers.Auth.doOAuth
 GET     /app                                        controllers.App.index
 GET     /app/                                       controllers.App.index2
 
+GET     /app/browser                                controllers.App.invalidBrowser
+GET     /app/wait                                   controllers.App.waitingRoom
+
 GET     /app/editor                                 controllers.Editor.index
 GET     /app/editor/                                controllers.Editor.index2
 

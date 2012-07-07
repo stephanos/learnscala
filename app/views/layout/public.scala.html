@@ -1,4 +1,4 @@
-@(title: String = "", crawl: Boolean = true, subtitle: Html = null)(content: Html)
+@(title: String = "", crawl: Boolean = true, hideNav: Boolean = false, subtitle: Html = null)(content: Html)
 <!DOCTYPE html>
 
 <html>
@@ -44,8 +44,9 @@
             </header>
 
             <section id="main">
-                @sub.navi_pub()
-
+                @if(!hideNav) {
+                    @sub.navi_pub()
+                }
                 @content
             </section>
 

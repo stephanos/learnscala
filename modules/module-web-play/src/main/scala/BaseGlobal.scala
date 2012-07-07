@@ -39,35 +39,40 @@ trait BaseGlobal
         super.onRouteRequest(req).map {
             case action: Action[_] =>
                 req.domain.startsWith("static.") match {
-                    case true =>
-                        // only allow access to /assets on static domain
-                        req.path.startsWith("/assets") match {
-                            case true => action
-                            case false => Action(NotFound)
-                        }
+                    case true => onAssetRoute(req, action)
                     case _ =>
                         currentUserId(req) match {
-                            case None =>
-                                req.path match {
-                                    case p if isRestrictedPath(p) => // requires login
-                                        Authenticated(action)
-                                    case p =>
-                                        if (isEncryptedWhenLoggedOut(p))
-                                            Encrypted(action) // required HTTPS for user/
-                                        else
-                                            Unencrypted(action)
-                                }
-                            case _ =>
-                                req.path match {
-                                    case p if isAdminPath(p) => // require HTTPS and ADMIN
-                                        Encrypted(Admin(action))
-                                    case p if isHiddenForLoggedInUsers(p) =>
-                                        Action(redirectToHttps(req, getAppPath, reason = Some("hidden")))
-                                    case _ =>
-                                        Encrypted(action)
-                                }
+                            case None => onPublicRoute(req, action)
+                            case _ => onInternalRoute(req, action)
                         }
                 }
+        }
+
+    protected def onAssetRoute(req: RequestHeader, action: Action[_]): Action[_] =
+        req.path.startsWith("/assets") match {
+            case true => action
+            case false => Action(NotFound) // only allow access to /assets on static domain
+        }
+
+    protected def onPublicRoute(req: RequestHeader, action: Action[_]): Action[_] =
+        req.path match {
+            case p if isRestrictedPath(p) => // requires login
+                Authenticated(action)
+            case p =>
+                if (isEncryptedWhenLoggedOut(p))
+                    Encrypted(action) // required HTTPS for user/
+                else
+                    Unencrypted(action)
+        }
+
+    protected def onInternalRoute(req: RequestHeader, action: Action[_]): Action[_] =
+        req.path match {
+            case p if isAdminPath(p) => // require HTTPS and ADMIN
+                Encrypted(Admin(action))
+            case p if isHiddenForLoggedInUsers(p) =>
+                Action(redirectToHttps(req, getAppPath, reason = Some("hidden")))
+            case _ =>
+                Encrypted(action)
         }
 
     override protected def addShutdownHook() {

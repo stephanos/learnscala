@@ -26,8 +26,8 @@ class UserDoc
         def naming = n("gh_token")
     }
 
-    object confirmed extends OptionalTimeField(this) with MyOptField {
-        def naming = n("confirmed_on")
+    object confirmed extends OptionalBooleanField(this) with MyOptField {
+        def naming = n("confirmed")
     }
 
     object password extends OptionalTextField(this) with MyOptField {
