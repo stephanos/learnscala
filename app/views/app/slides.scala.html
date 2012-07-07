@@ -1,24 +1,44 @@
 @import comp._
 
 @layout.internal("") {
-    <section id="main" class="slidedecks">
-
-        <h2>Intro</h2>
-
-        @slidebox("intro", "Willkommen")
-
-        @slidebox("About", "Einführung")
-
-        @slidebox("History", "Geschichte")
-
-        @slidebox("Tools", "Werkzeuge")
-
-        @slidebox("Setup", "Installation")
+<section id="main" class="slidedecks">
 
 
-        <h2>Basics</h2>
+    @*<!----------------------------------------------------------------------------------->*@
+    <h2>Intro</h2>
+    @*<!----------------------------------------------------------------------------------->*@
 
-        @slidebox("TBA")
+    @slidebox("intro", "Willkommen", " (TODO)")
 
-    </section>
+    @slidebox("About", "Einführung")
+
+    @slidebox("History", "Geschichte")
+
+    @slidebox("Tools", "Werkzeuge", " (TODO)")
+
+    @slidebox("Setup", "Installation", " (TODO)")
+
+
+    @*<!----------------------------------------------------------------------------------->*@
+    <h2>Beginner</h2>
+    @*<!----------------------------------------------------------------------------------->*@
+
+    @slidebox("TBA")
+
+
+    @*<!----------------------------------------------------------------------------------->*@
+    <h2>Intermediate</h2>
+    @*<!----------------------------------------------------------------------------------->*@
+
+    @slidebox("TBA")
+
+
+    @*<!----------------------------------------------------------------------------------->*@
+    <h2>Expert</h2>
+    @*<!----------------------------------------------------------------------------------->*@
+
+    @slidebox("TBA")
+
+
+</section>
 }

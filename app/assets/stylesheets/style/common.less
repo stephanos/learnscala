@@ -72,7 +72,7 @@ em {
             position: relative;
             display: inline-block;
 
-            &::after {
+            span.divider {
                 color: #690;
                 content: "|";
                 display: block;
@@ -81,12 +81,6 @@ em {
                 position: absolute;
                 top: 0;
                 right: -5px;
-            }
-
-            &.last {
-                &::after {
-                    content: none;
-                }
             }
         }
     }

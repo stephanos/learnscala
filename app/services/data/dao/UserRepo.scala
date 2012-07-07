@@ -9,22 +9,25 @@ import com.mongodb.WriteConcern
 
 object UserRepo extends CommonDAO {
 
-    def findUser(gid: Int) =
-        UserDoc
-            .where(_.gid eqs gid)
-            .get()
-
     def findUser(name: String) =
         UserDoc
             .where(_.name eqs name)
             .get()
 
-    def findOrCreate(d: UserDoc) =
-        findUser(d.gid.value) match {
-            case Some(u) =>
-                u
+    def findOrCreate(d: UserDoc) = {
+        val name = d.name.value
+        findUser(name) match {
+            case Some(_) =>
+                UserDoc
+                    .where(_.name eqs name)
+                    .findAndModifyOpt(d.gid.value)(_.gid setTo _)
+                    .findAndModifyOpt(d.email.value)(_.email setTo _)
+                    .findAndModifyOpt(d.fullname.value)(_.fullname setTo _)
+                    .findAndModifyOpt(d.githubToken.value)(_.githubToken setTo _)
+                    .updateOne(returnNew = true).get
             case _ =>
                 d.save(WriteConcern.JOURNAL_SAFE)
                 d
         }
+    }
 }

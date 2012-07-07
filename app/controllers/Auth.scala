@@ -30,7 +30,7 @@ object Auth extends MyController {
         implicit req =>
             loginForm.bindFromRequest.fold(
                 errForm => {
-                    goToLoginPage(("message", "Please fill in your name and password"), ("type", "warn"))
+                    goToLoginPage(("message", "Bitte geben Sie Name und Passwort ein"), ("type", "warn"))
                 },
                 form => {
                     (UserRepo.findUser(form._1) flatMap {
@@ -39,7 +39,7 @@ object Auth extends MyController {
                                 Some(goToAppPage(usr))
                             else
                                 None
-                    }).getOrElse(goToLoginPage(("message", "Your name or password is incorrect"), ("type", "warn")))
+                    }).getOrElse(goToLoginPage(("message", "Ihr Name oder Password ist falsch"), ("type", "warn")))
                 }
             )
     }
@@ -76,13 +76,13 @@ object Auth extends MyController {
                                                 goToAppPage(UserRepo.findOrCreate(GithubAPI.parseUser(userData).githubToken(t)))
                                             } else {
                                                 log.warn("unable to get GitHub user data: {}", userData)
-                                                goToLoginPage(("message", "Communication with GitHub failed"), ("type", "error"))
+                                                goToLoginPage(("message", "Kommunikation mit GitHub fehlgeschlagen"), ("type", "error"))
                                             }
                                     }
                                 }
                             case _ =>
                                 log.warn("unable to get access token from GitHub: {}", authData)
-                                goToLoginPage(("message", "Communication with GitHub failed"), ("type", "error"))
+                                goToLoginPage(("message", "Kommunikation mit GitHub fehlgeschlagen"), ("type", "error"))
                         }
                 }
             }

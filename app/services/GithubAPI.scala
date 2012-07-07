@@ -42,6 +42,6 @@ object GithubAPI extends Logging {
         }
 
         UserDoc.create
-            .gid(id).email(email).name(Option(name.getOrElse(login.getOrElse(null))))
+            .gid(id).email(email).fullname(name).name(login)
     }
 }

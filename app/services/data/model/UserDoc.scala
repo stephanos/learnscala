@@ -6,7 +6,7 @@ import services.data.MyDocDB
 import com.foursquare.rogue.Rogue._
 
 import net.liftweb.mongodb.record._
-import net.liftweb.record.field.IntField
+import net.liftweb.record.field._
 import com.loops101.data.mongo.dao.Query.Asc
 
 class UserDoc
@@ -18,12 +18,16 @@ class UserDoc
         def naming = n("name")
     }
 
-    object gid extends IntField(this) with MyField {
+    object gid extends OptionalIntField(this) with MyOptField {
         def naming = n("gh_id")
     }
 
-    object githubToken extends TextField(this) with MyField {
+    object githubToken extends OptionalTextField(this) with MyOptField {
         def naming = n("gh_token")
+    }
+
+    object confirmed extends OptionalTimeField(this) with MyOptField {
+        def naming = n("confirmed_on")
     }
 
     object password extends OptionalTextField(this) with MyOptField {
@@ -47,12 +51,10 @@ object UserDoc
 
     override def collectionName = name("users", "ls")
 
-    val gidIdx = UserDoc.index(_.gid, Asc)
     val nameIdx = UserDoc.index(_.name, Asc)
-    override val mongoIndexList = List(gidIdx, nameIdx)
+    override val mongoIndexList = List(nameIdx)
 
     override protected def initColl() {
-        ensureIndex(idx(gidIdx), unique)
         ensureIndex(idx(nameIdx), unique)
     }
 }
