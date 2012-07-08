@@ -80,7 +80,7 @@ object Global
     override protected def onInternalRoute(req: RequestHeader, action: Action[_]): Action[_] = {
         val path = req.path
         UserRepo.findUser(currentUserId(req).getOrElse("")).map(_.confirmed.value.getOrElse(false)).getOrElse(false) match {
-            case false if(isRestrictedPath(path) && !path.endsWith("/wait")) => Action(Redirect("/app/wait"))
+            case false if(isRestrictedPath(path) && !path.endsWith("/logout") && !path.endsWith("/wait")) => Action(Redirect("/app/wait"))
             case _ => super.onInternalRoute(req, action)
         }
     }

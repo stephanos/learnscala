@@ -24,7 +24,7 @@ GET     /users/do_oauth                             controllers.Auth.doOAuth
 GET     /app                                        controllers.App.index
 GET     /app/                                       controllers.App.index2
 
-GET     /app/browser                                controllers.App.invalidBrowser
+GET     /app/browser                                       controllers.App.index2
 GET     /app/wait                                   controllers.App.waitingRoom
 
 GET     /app/editor                                 controllers.Editor.index
@@ -40,7 +40,7 @@ GET     /app/slides/:id1/:id2/                      controllers.Slide.load2(id1,
 GET     /app/logout                                 controllers.Auth.logout
 
 
-# === APP
+# === API
 
 POST    /api/compile                                controllers.API.compile
 POST    /api/interpret                              controllers.API.interpret

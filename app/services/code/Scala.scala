@@ -3,7 +3,7 @@ package services.code
 import java.io.PrintStream
 import scala.actors.Futures._
 import scala.annotation.tailrec
-import scala.tools.nsc.interpreter._
+import scala.tools.nsc.interpreter.IR
 import scala.tools.nsc.interpreter.Results._
 
 // see https://github.com/vydra/gae-scala/tree/master/src
@@ -21,8 +21,8 @@ class Scala {
         scala.exec(code)
     }
 
-    def interpret(code: String) = {
-        future {
+    def interpret(code: String): (Result, String) =
+        runWithTimeout[(Result, String)](10000, (IR.Error, "timeout")) {
             val (compiler, out) = encoder()
             val r = Console.withOut(new PrintStream(out, true)) {
                 @tailrec
@@ -56,7 +56,14 @@ class Scala {
             }
             val s = asString(out)
             (r, s)
-        }()
+        }
+
+    private def runWithTimeout[T](timeoutMs: Long)(f: => T): Option[T] = {
+        awaitAll(timeoutMs, future(f)).head.asInstanceOf[Option[T]]
+    }
+
+    private def runWithTimeout[T](timeoutMs: Long, default: T)(f: => T): T = {
+        runWithTimeout(timeoutMs)(f).getOrElse(default)
     }
 }
 

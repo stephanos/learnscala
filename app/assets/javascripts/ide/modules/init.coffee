@@ -18,11 +18,26 @@ initSnippet = (elem) ->
       initModalEditor(content)
   )
 
-createSnippet = (data, elem, status, clear) ->
-  if(clear == true) then $(elem).empty()
-  if(status) then $(elem).parent().removeClass("success error").addClass(status)
-  code = $("<pre/>", {'class': "pretty cm-s-ambiance "}).appendTo($(elem))
-  CodeMirror.runMode(data ? "", "text/x-scala", code[0])
+createSnippet = (data, elem, status, clear, spin) ->
+  noData = _.str.isBlank(data)
+
+  if(clear == true || noData)
+    $(elem).empty()
+
+  if(status)
+    $(elem).parent().removeClass("success error").addClass(status)
+
+  if(!noData)
+    code = $("<pre/>", {'class': "pretty cm-s-ambiance "}).appendTo($(elem))
+    CodeMirror.runMode(data, "text/x-scala", code[0])
+
+  if(status == "wait")
+    opts = {
+      lines: 13, length: 7, width: 4, radius: 10, rotate: 0,
+      color: '#000', speed: 1, trail: 60, shadow: false,  hwaccel: false,
+      className: 'spinner', zIndex: 2e9,
+    }
+    window.spinner = new Spinner(opts).spin($(elem).parent()[0])
 
 
 #######################################################################################################################
@@ -74,16 +89,8 @@ initEditor = (elem, data) ->
     .appendTo($(toolbar))
 
 callAPI = (target, editor, output) ->
-  # clear output
-  $(output).empty()
-
-  # show spinner
-  opts = {
-    lines: 13, length: 7, width: 4, radius: 10, rotate: 0,
-    color: '#000', speed: 1, trail: 60, shadow: false,  hwaccel: false,
-    className: 'spinner', zIndex: 2e9,
-  }
-  spinner = new Spinner(opts).spin($(output).parent()[0])
+  # clear console
+  createSnippet("", output, "wait")
 
   # issue call
   $.ajax(
@@ -92,12 +99,12 @@ callAPI = (target, editor, output) ->
     url: "/api/" + target,
     data: "code=" + encodeURIComponent(editor.getValue()),
     success: (data, status) ->
-      spinner.stop()
+      window.spinner?.stop()
       text = if(_.str.isBlank(data)) then "compiled and executed successfully" else data
       createSnippet(text, output, "success", true)
       console.log(data)
     error: (jqXHR, status, err) ->
-      spinner.stop()
+      window.spinner?.stop()
       data = jqXHR.responseText
       text =
         if(status == "timeout") then "request timed out"
