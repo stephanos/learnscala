@@ -24,27 +24,12 @@
         height: 48%;
         overflow: auto;
 
-        .bg(#ddd);
-        border: 3px dashed #aaa;
-
-        &.success {
-            border-color: @c_emph;
-        }
-        &.error {
-            border-color: @c_hlight;
-        }
-
-        .cm-s-ambiance {
-            margin: 0;
-            font-size: @fs_code * 0.95;
+        .spinner {
+            display: inline;
         }
 
         .output {
             padding: 10px;
-        }
-
-        .spinner {
-            display: inline;
         }
     }
 }
@@ -64,4 +49,25 @@
     .modal-body {
         max-height: none;
     }
+}
+
+.console, .ide .output-wrap {
+    .bg(#ddd);
+    border: 3px dashed #aaa;
+
+    &.success {
+        border-color: @c_emph;
+    }
+    &.error {
+        border-color: @c_hlight;
+    }
+
+    .cm-s-ambiance {
+        margin: 0;
+        font-size: @fs_code * 0.95;
+    }
+}
+
+.console {
+    padding: 10px;
 }

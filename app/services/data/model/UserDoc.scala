@@ -22,6 +22,10 @@ class UserDoc
         def naming = n("gh_id")
     }
 
+    object githubName extends OptionalTextField(this) with MyOptField {
+        def naming = n("gh_name")
+    }
+
     object githubToken extends OptionalTextField(this) with MyOptField {
         def naming = n("gh_token")
     }
@@ -32,6 +36,10 @@ class UserDoc
 
     object password extends OptionalTextField(this) with MyOptField {
         def naming = n("pass")
+    }
+
+    object active extends OptionalBooleanField(this) with MyOptField {
+        def naming = n("active")
     }
 
     object email extends OptionalTextField(this) with MyOptField {

@@ -1,9 +1,5 @@
-<div class="pane input-wrap">
-    <div class="input"></div>
-</div>
+@(data: Html = Html(""))
 
-<div class="divider"></div>
-
-<div class="pane output-wrap">
-    <div class="output"></div>
+<div id="editor" class="ide">
+    @ide_base(data)
 </div>

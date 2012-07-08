@@ -9,14 +9,15 @@ initSnippet = (elem) ->
   createSnippet(content, elem)
 
   # add
-  toolbar = $('<div class="toolbar">').appendTo($(elem))
-  btn = $("<button class='btn btn-large '>Load</button>").appendTo($(toolbar))
-  $(btn).bind("click",
-    (evt) ->
-      snippet = $(evt.target).parent().parent()
-      content = readRawCode(snippet)
-      initModalEditor(content)
-  )
+  if(!$(elem).hasClass("console"))
+    toolbar = $('<div class="toolbar">').appendTo($(elem))
+    btn = $("<button class='btn btn-large '>Load</button>").appendTo($(toolbar))
+    $(btn).bind("click",
+      (evt) ->
+        snippet = $(evt.target).parent().parent()
+        content = readRawCode(snippet)
+        initModalEditor(content)
+    )
 
 createSnippet = (data, elem, status, clear, spin) ->
   noData = _.str.isBlank(data)
@@ -64,7 +65,7 @@ initEditor = (elem, data) ->
 
   # create the editor
   textarea = $("<textarea/>").appendTo($(input))
-  textarea.val(data ? "")
+  textarea.val(data ? readRawCode(elem))
   editor =
     CodeMirror.fromTextArea(textarea[0], {
       autofocus: true,
@@ -141,11 +142,18 @@ readRawCode = (elem) ->
 initSlides = ->
   subtleToolbar();
 
-  $('div.snippet').each(
+  # init static snippets
+  $('.slides div.snippet, .slides div.console').each(
     (idx, elem) -> initSnippet(elem)
   )
 
-  $("a.openEditor").bind("click",
+  # init dynamic editors
+  $('.slides div.ide').each(
+    (idx, elem) -> initEditor(elem)
+  )
+
+  # hook-up modal editor
+  $(".slides a.openEditor").bind("click",
     (evt) ->
       initModalEditor()
       evt.preventDefault()
