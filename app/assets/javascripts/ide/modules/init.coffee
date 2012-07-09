@@ -153,7 +153,7 @@ initSlides = ->
   )
 
   # hook-up modal editor
-  $(".slides a.openEditor").bind("click",
+  $("#navi a.openEditor").bind("click",
     (evt) ->
       initModalEditor()
       evt.preventDefault()

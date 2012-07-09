@@ -11,23 +11,185 @@
 
 
     <section>
-        <div style="height: 50%; width: 100%;">
-            @comp.ide {
-                |1 + 1
+        <h3>Erste Eingabe in die <em>REPL</em></h3>
+
+        <div class="sidebyside p40_60">
+            @comp.snippet {
+                |"Hello World"
             }
+            @comp.console {
+                |res0: java.lang.String = Hello World
+            }
+        </div>
+
+        <div class="indent fragment">
+            <ul>
+                <li>
+                    <strong>res0</strong><br/>
+                    Name der Variable, fortlaufend nummeriert
+                </li>
+                <li>
+                    <strong>java.lang.String</strong><br/>
+                    Typ der Variable, automatisch ermittelt
+                </li>
+                <li>
+                    <strong>Hello World</strong><br/>
+                    Wert der Variable (via toString())
+                </li>
+            </ul>
         </div>
     </section>
 
 
     <section>
-        @comp.snippet {
-            |1 + 1
-        }
-        @comp.console {
-            |res0: Int = 2
-        }
+        <h3>Werzuweisung mit <em>val</em></h3>
+
+        <div class="sidebyside p40_60">
+            @comp.snippet {
+                |val hello = "Hello World"
+            }
+            @comp.console {
+                |hello: java.lang.String = Hello World
+            }
+        </div>
+        <hr/>
+        <div class="fragment indent">
+            <ul>
+                <li>
+                    Wert ist <em>unveränderlich</em> ("immutable")
+                    <ul>
+                        <li>keine Seiteneffekte und dadurch weniger Komplexität</li>
+                        <li>leichter zu parallelisieren und zu testen</li>
+                    </ul>
+                </li>
+                <li>entspricht <code>final String hello</code> in Java</li>
+            </ul>
+        </div>
+        <div class="fragment indent">
+            <ul>
+                <li><em>Regel:</em> bevorzugte Verwendung von <em>val</em></li>
+                <li><var>Außname</var>: bei <var>sehr großen</var> Daten</li>
+            </ul>
+        </div>
     </section>
 
+
+    <section>
+        <h3>Werzuweisung mit <var>var</var></h3>
+
+        <div class="sidebyside p40_60">
+            @comp.snippet {
+                |var hello = "Hello World"
+                |hello = "Hello Mars"
+            }
+            @comp.console {
+                |hello: java.lang.String = Hello World
+                |hello: java.lang.String = Hello Mars
+            }
+        </div>
+        <hr/>
+        <div class="fragment indent">
+            <ul>
+                <li>Wert ist <var>veränderlich</var> ("mutable")</li>
+                <li>entspricht Standardverhalten in Java</li>
+                <li><em>Regel:</em> <var>zu vermeiden</var> wenn möglich</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <section>
+        <h3><em>Optionale</em> Typenangabe</h3>
+
+        <div class="sidebyside p40_60">
+            @comp.snippet {
+                |val hello: String = "Hello"
+            }
+            @comp.console {
+                |hello: java.lang.String = Hello
+            }
+        </div>
+
+        <div class="fragment indent">
+            <ul>
+                <li><em>Regel:</em> Typen für temporäre Variablen werden weggelassen</li>
+                <li class="fragment">
+                    <var>Ausnahme:</var> Dokumentationszwecke oder falsche Erkennung
+                </li>
+            </ul>
+        </div>
+
+        <br/>
+
+        <div class="fragment sidebyside p40_60">
+            @comp.snippet {
+                |val hello: Int = "Hello"
+            }
+            @comp.console {
+                |<console>:7: error: type mismatch;
+                |   found : java.lang.String("Hello")
+                | required: Int
+                |       val hello: Int = "Hello"
+                |                  ^
+            }
+        </div>
+
+        <div class="fragment indent">
+            <ul>
+                <li>Fehlererkennung durch den Compiler dank Typen<em>sicherheit</em></li>
+            </ul>
+        </div>
+    </section>
+
+
+    <section>
+        <h3><em>Optionale</em> Semikolons</h3>
+
+        <div class="sidebyside p40_60">
+            @comp.snippet {
+                |val hello  = "Hello"
+                |val hello2 = "Hello";
+            }
+            @comp.console {
+                |hello: java.lang.String = Hello
+                |hello2: java.lang.String = Hello
+            }
+        </div>
+
+        <div class="fragment indent">
+            <ul>
+                <li><em>Regel:</em> Semikolons werden weglassen</li>
+            </ul>
+        </div>
+
+        <hr/>
+
+        <div class="sidebyside p40_60 fragment">
+            @comp.snippet {
+                |val h1="Hi"; val h2="Hi"
+            }
+            @comp.console {
+                |hello: java.lang.String = Hello
+                |hello2: java.lang.String = Hello
+            }
+        </div>
+
+        <div class="fragment indent">
+            <ul>
+                <li><var>Außnahme:</var> mehrere Anweisungen in einer Zeile</li>
+            </ul>
+        </div>
+    </section>
+
+
+    <section>
+        <h3>Zusammenfassung</h3>
+        <div class="fragment indent">
+            <ul>
+                <li></li>
+            </ul>
+        </div>
+    </section>
 
 </div>
 }

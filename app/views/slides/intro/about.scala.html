@@ -32,7 +32,7 @@
 
 
     <section>
-        <h2>Scala ist ... <span class="fragment"><em>eine Skriptsprache</em></span></h2>
+        <h3>Scala ist ... <span class="fragment"><em>eine Skriptsprache</em></span></h3>
 
         <div class="indent">
             <ul>
@@ -60,7 +60,7 @@
 
 
     <section>
-        <h2>Scala ist ... <span><em>objektorientiert</em></span></h2>
+        <h3>Scala ist ... <span><em>objektorientiert</em></span></h3>
 
         <div class="indent">
             <ul>
@@ -88,29 +88,27 @@
 
 
     <section>
-        <h2>Scala ist ... <span><em>knapp und präzise</em></span></h2>
+        <h3>Scala ist ... <span><em>knapp und präzise</em></span></h3>
 
         <div class="indent">
             <ul>
                 <li class="fragment">
                     reduziert die Code-Zeilen um mehr als 50%
-                    <div class="indent">
-                        <ul>
-                            <li class="fragment">
-                                weniger Boilerplate-Code
-                                @comp.snippet {
-                                    |class MyCar(wheels: Int = 4)
-                                }
-                            </li>
-                            <li class="fragment">
-                                Traits und Closures für Wiederverwendung
-                                @comp.snippet {
-                                    |trait Logging
-                                    |def getAttributeFromAllUsers[T](fn: (User) => List[T])
-                                }
-                            </li>
-                        </ul>
-                    </div>
+                    <ul>
+                        <li class="fragment">
+                            weniger Boilerplate-Code
+                            @comp.snippet {
+                                |class MyCar(wheels: Int = 4)
+                            }
+                        </li>
+                        <li class="fragment">
+                            Traits und Closures für Wiederverwendung
+                            @comp.snippet {
+                                |trait Logging
+                                |def getAttributeFromAllUsers[T](fn: (User) => List[T])
+                            }
+                        </li>
+                    </ul>
                 </li>
                 <li class="fragment">
                     <em>schneller</em> zu schreiben und <em>leichter</em> zu lesen
@@ -121,7 +119,7 @@
 
 
     <section>
-        <h2>Scala ist ... <span><em>funktional</em></span></h2>
+        <h3>Scala ist ... <span><em>funktional</em></span></h3>
 
         <div class="indent">
             <ul>
@@ -152,28 +150,26 @@
 
 
     <section>
-        <h2>Scala ist ... <span><em>statisch typisiert</em></span></h2>
+        <h3>Scala ist ... <span><em>statisch typisiert</em></span></h3>
 
         <div class="indent">
             <ul>
                 <li class="fragment">
                     sehr fortschrittliches Typenmodell<br/>
-                    <div class="indent">
-                        <ul>
-                            <li class="fragment">
-                                Type Inference
-                                @comp.snippet {
-                                    |val i = 1 + 2 * 3      // the type of i is Int
-                                }
-                            </li>
-                            <li class="fragment">
-                                Compound Types
-                                @comp.snippet {
-                                    |def cloneAndReset(obj: Cloneable with Resetable) = ..
-                                }
-                            </li>
-                        </ul>
-                    </div>
+                    <ul>
+                        <li class="fragment">
+                            Type Inference
+                            @comp.snippet {
+                                |val i = 1 + 2 * 3      // the type of i is Int
+                            }
+                        </li>
+                        <li class="fragment">
+                            Compound Types
+                            @comp.snippet {
+                                |def cloneAndReset(obj: Cloneable with Resetable) = ..
+                            }
+                        </li>
+                    </ul>
                 </li>
                 <li class="fragment"><em>Vorteil:</em> weniger Flüchtigkeitsfehler & Testaufwand sowie sicheres Refactoring</li>
                 <li class="fragment"><var>Nachteil:</var> erhöhte Kompilierzeit</li>
@@ -183,25 +179,23 @@
 
 
     <section>
-        <h2>Scala ist ... <span><em>Java</em></span></h2>
+        <h3>Scala ist ... <span><em>Java</em></span></h3>
 
         <div class="indent">
             <ul>
                 <li class="fragment">
                     erstellt gewohntem Java byte code
-                    <div class="indent">
-                        <ul>
-                            <li>
-                                so schnell wie Java (manchmal schneller!)
-                            </li>
-                            <li class="fragment">
-                                Aufrufe & Erweiterung einer <em>Java</em>-Klasse von <var>Scala</var>? - reibungslos
-                            </li>
-                            <li class="fragment">
-                                Aufrufe & Erweiterung einer <var>Scala</var>-Klasse von <em>Java</em>? - geht, mit Ausnahmen
-                            </li>
-                        </ul>
-                    </div>
+                    <ul>
+                        <li>
+                            so schnell wie Java (manchmal schneller!)
+                        </li>
+                        <li class="fragment">
+                            Aufrufe & Erweiterung einer <em>Java</em>-Klasse von <var>Scala</var>? - reibungslos
+                        </li>
+                        <li class="fragment">
+                            Aufrufe & Erweiterung einer <var>Scala</var>-Klasse von <em>Java</em>? - geht, mit Ausnahmen
+                        </li>
+                    </ul>
                 </li>
             </ul>
             <br/><br/>
@@ -213,7 +207,7 @@
 
 
     <section>
-        <h2>Scala ist ... <span><em>erweiterbar</em></span></h2>
+        <h3>Scala ist ... <span><em>erweiterbar</em></span></h3>
 
         <div class="indent">
             <ul>
@@ -243,7 +237,7 @@
 
 
     <section>
-        <h2>Scala ist ... <span><em>in Benutzung</em></span></h2>
+        <h3>Scala ist ... <span><em>in Benutzung</em></span></h3>
 
         <br/>
         <div class="fragment indent">
@@ -295,7 +289,7 @@
 
 
     <section>
-        <h2>Zusammenfassung: Scala ist ...</h2>
+        <h3>Zusammenfassung: Scala ist ...</h3>
         <h4>
             <div class="indent90">
                 <ul class="fragment w40p left">

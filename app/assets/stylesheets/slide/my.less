@@ -59,6 +59,32 @@
         margin: 0 auto;
     }
 
+    .sidebyside {
+        .partition(@left, @right) {
+            >div {
+                &:first-child {
+                    width: @left - 2;
+                    float: left;
+                }
+                &:last-child {
+                    width: @right - 2;
+                    float: right;
+                }
+            }
+        }
+
+        .partition(50%, 50%);
+        &.p50_50 { .partition(50%, 50%); }
+        &.p33_66 { .partition(33%, 66%); }
+        &.p66_33 { .partition(66%, 33%); }
+        &.p60_40 { .partition(60%, 40%); }
+        &.p40_60 { .partition(40%, 60%); }
+
+        width: 96%;
+        margin: 0 auto;
+        clear: both; &:after { clear: both; }
+    }
+
     .left { float: left; }
     .right { float: right; }
 
@@ -66,6 +92,7 @@
     .w20p { width: 20% }
     .w30p { width: 30% }
     .w40p { width: 40% }
+    .w45p { width: 45% }
     .w50p { width: 50% }
     .w60p { width: 60% }
     .w70p { width: 70% }
@@ -93,6 +120,15 @@
         }
     }
 
+    hr {
+        @h: 0.5em;
+        display: block;
+        height: @h;
+        line-height: @h;
+        visibility: hidden;
+        clear: both;
+    }
+
     .stretch-wide {
         .w100p();
     }
@@ -105,6 +141,10 @@
 
             &.no-bullet {
                 list-style: none;
+            }
+
+            >ul {
+                margin-left: 50px;
             }
         }
     }
@@ -126,12 +166,15 @@
         }
     }
 
-    .snippet {
+    .snippet, .console {
         position: relative;
         margin-top: 20px;
 
         .pretty {
             padding: 10px;
+        }
+        pre {
+            overflow: hidden;
         }
     }
 
