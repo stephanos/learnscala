@@ -17,26 +17,27 @@
             @comp.snippet {
                 |"Hello World"
             }
-            @comp.console {
-                |res0: java.lang.String = Hello World
-            }
-        </div>
-
-        <div class="indent fragment">
-            <ul>
-                <li>
-                    <strong>res0</strong><br/>
-                    Name der Variable, fortlaufend nummeriert
-                </li>
-                <li>
-                    <strong>java.lang.String</strong><br/>
-                    Typ der Variable, automatisch ermittelt
-                </li>
-                <li>
-                    <strong>Hello World</strong><br/>
-                    Wert der Variable (via <code>toString()</code>)
-                </li>
-            </ul>
+            <div>
+                @comp.console {
+                    |res0: java.lang.String = Hello World
+                }
+                <div class="indent">
+                    <ul>
+                        <li class="fragment">
+                            <code>res0</code> ist der Name der Variable <br/>
+                            <comment>(fortlaufend nummeriert)</comment>
+                        </li>
+                        <li class="fragment">
+                            <code>java.lang.String</code> ist Typ der Variable <br/>
+                            <comment>(automatisch ermittelt)</comment>
+                        </li>
+                        <li class="fragment">
+                            <code>Hello World</code> ist Wert der Variable <br/>
+                            <comment>(via <code>toString()</code>)</comment>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
