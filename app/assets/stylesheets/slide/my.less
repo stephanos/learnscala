@@ -147,11 +147,14 @@
                 margin-left: 50px;
             }
         }
+        &.no-bullets {
+            li { list-style: none; }
+        }
     }
 
     code {
         font-style: normal;
-        color: @c_hlight;
+        color: @c_code;
         padding: 0 5px;
         //font-family: monospace;
         background: fade(@c_text_light, 20%);
@@ -162,8 +165,12 @@
         font-size: 80%;
         color: fadeout(@c_text_light, @f);
         code {
-            color: fadeout(@c_hlight, @f);
+            color: fadeout(@c_code, @f);
         }
+    }
+
+    details {
+        display: none;
     }
 
     .snippet, .console {

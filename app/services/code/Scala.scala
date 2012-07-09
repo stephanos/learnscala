@@ -37,7 +37,7 @@ class Scala {
                             val code = xs.mkString("\n")
                             //val log = com.loops101.util.Logger("controllers")
                             //log.info(code)
-                            compiler.interpret(code) match {
+                            (if(code.isEmpty) state else compiler.interpret(code)) match {
                                 case ir@IR.Success =>
                                     lines match {
                                         case Nil => ir // stop

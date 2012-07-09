@@ -34,7 +34,7 @@
                 </li>
                 <li>
                     <strong>Hello World</strong><br/>
-                    Wert der Variable (via toString())
+                    Wert der Variable (via <code>toString()</code>)
                 </li>
             </ul>
         </div>
@@ -42,7 +42,7 @@
 
 
     <section>
-        <h3>Werzuweisung mit <em>val</em></h3>
+        <h3>Wertzuweisung mit <em>val</em></h3>
 
         <div class="sidebyside p40_60">
             @comp.snippet {
@@ -58,24 +58,24 @@
                 <li>
                     Wert ist <em>unveränderlich</em> ("immutable")
                     <ul>
-                        <li>keine Seiteneffekte und dadurch weniger Komplexität</li>
+                        <li>entspricht <code>final String hello</code> in Java</li>
+                        <li>keine Nebeneffekte und dadurch weniger Komplexität</li>
                         <li>leichter zu parallelisieren und zu testen</li>
                     </ul>
                 </li>
-                <li>entspricht <code>final String hello</code> in Java</li>
             </ul>
         </div>
+        <hr/>
         <div class="fragment indent">
             <ul>
-                <li><em>Regel:</em> bevorzugte Verwendung von <em>val</em></li>
-                <li><var>Außname</var>: bei <var>sehr großen</var> Daten</li>
+                <li><strong><em>Tipp:</em></strong> bevorzugt <code>val</code> verwenden - im Gegensatz zu ...</li>
             </ul>
         </div>
     </section>
 
 
     <section>
-        <h3>Werzuweisung mit <var>var</var></h3>
+        <h3>Wertzuweisung mit <var>var</var></h3>
 
         <div class="sidebyside p40_60">
             @comp.snippet {
@@ -90,11 +90,27 @@
         <hr/>
         <div class="fragment indent">
             <ul>
-                <li>Wert ist <var>veränderlich</var> ("mutable")</li>
-                <li>entspricht Standardverhalten in Java</li>
-                <li><em>Regel:</em> <var>zu vermeiden</var> wenn möglich</li>
+                <li>
+                    Wert ist <var>veränderlich</var> ("mutable")
+                    <ul>
+                        <li>entspricht Standardverhalten in Java</li>
+                        <li>problematisch bei Zugriff von mehreren Threads</li>
+                    </ul>
+                </li>
             </ul>
+            <hr/>
+            <div class="fragment">
+                <ul>
+                    <li><strong><em>Tipp:</em></strong> nur in Ausnahmen verwenden (z.B. Performance)</li>
+                </ul>
+            </div>
         </div>
+
+        <details>
+            <a href="http://stackoverflow.com/questions/1791408/what-is-the-difference-between-a-var-and-val-definition-in-scala">
+                What is the difference between a var and val definition in Scala?
+            </a>
+        </details>
     </section>
 
 
@@ -112,9 +128,9 @@
 
         <div class="fragment indent">
             <ul>
-                <li><em>Regel:</em> Typen für temporäre Variablen werden weggelassen</li>
+                <li><strong><em>Tipp:</em></strong> Typen für temporäre Variablen weggelassen</li>
                 <li class="fragment">
-                    <var>Ausnahme:</var> Dokumentationszwecke oder falsche Erkennung
+                    <strong><var>Ausnahme:</var></strong> Dokumentationszwecke oder falsche Erkennung
                 </li>
             </ul>
         </div>
@@ -158,7 +174,7 @@
 
         <div class="fragment indent">
             <ul>
-                <li><em>Regel:</em> Semikolons werden weglassen</li>
+                <li><strong><em>Tipp:</em></strong> Semikolons weglassen</li>
             </ul>
         </div>
 
@@ -176,17 +192,274 @@
 
         <div class="fragment indent">
             <ul>
-                <li><var>Außnahme:</var> mehrere Anweisungen in einer Zeile</li>
+                <li><strong><var>Ausnahme:</var></strong> mehrere Anweisungen in einer Zeile</li>
             </ul>
         </div>
     </section>
 
 
     <section>
-        <h3>Zusammenfassung</h3>
+        <h3>Methoden<em>def</em>inition</h3>
+
+        <div class="sidebyside p40_60">
+            <div>
+                @comp.snippet {
+                    |def hello(): String = {
+                    |   return "Hello World"
+                    |}
+                }
+                @comp.console {
+                    |hello: String
+                }
+            </div>
+            <div>
+                <ul class="indent">
+                    <li class="fragment">
+                        <code>def</code> startet die Definition
+                    </li>
+                    <li class="fragment">
+                        <code>hello</code> ist der Name der Method
+                    </li>
+                    <li class="fragment">
+                        <code>()</code> beinhaltet die Liste der Parameter
+                    </li>
+                    <li class="fragment">
+                        <code>String</code> ist der Rückgabetyp der Methode
+                    </li>
+                    <li class="fragment">
+                        <code>{ .. }</code> enthält Implementierung der Methode
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <hr/>
+
         <div class="fragment indent">
             <ul>
-                <li></li>
+                <li><strong><em>Regel:</em></strong> Jede Methode hat einen Rückgabewert.</li>
+            </ul>
+        </div>
+
+        <details>
+            <a href="http://stackoverflow.com/questions/2529184/difference-between-method-and-function-in-scala">
+                Difference between method and function in Scala
+            </a>
+        </details>
+    </section>
+
+
+    <section>
+        <h3>Methoden<em>def</em>inition: Typ <code>Unit</code></h3>
+
+        <div class="sidebyside p40_60">
+            <div>
+                @comp.snippet {
+                    |def hello() {
+                    |   println("Hello World")
+                    |}
+                }
+                @comp.console {
+                    |hello: Unit
+                }
+            </div>
+            <div>
+                <ul class="fragment indent">
+                    <li>Definition ohne <code>=</code></li>
+                    <li>entspricht <code>void</code> aus Java</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr/>
+
+        <div class="fragment sidebyside p40_60">
+            <div>
+                @comp.snippet {
+                    |def hello(): Unit {
+                    |   println("Hello World")
+                    |}
+                }
+                @comp.console {
+                    |hello: Unit
+                }
+            </div>
+            <div>
+                <ul class="indent">
+                    <li>
+                        kann auch explizit angegeben werden<br/>
+                        <comment>(ist aber sehr unüblich)</comment>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <details>
+            <a href="http://stackoverflow.com/questions/2529184/difference-between-method-and-function-in-scala">
+                Difference between method and function in Scala
+            </a>
+        </details>
+    </section>
+
+
+    <section>
+        <h3>Methoden<em>def</em>inition: Optionales</h3>
+
+        <div class="fragment sidebyside p40_60">
+            @comp.snippet {
+                |def hello(): String =
+                |   return "Hello World"
+            }
+            <div>
+                <ul class="no-bullets indent10">
+                    <li>
+                        <strong><em>ohne</em></strong> geschweifte Klammern<br/>
+                        <comment>Wann? Nur eine Zeile</comment>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="fragment sidebyside p40_60">
+            @comp.snippet {
+                |def hello(): String =
+                |   "Hello World"
+            }
+            <div>
+                <ul class="no-bullets indent10">
+                    <li>
+                        <strong><em>ohne</em></strong> <code>return</code><br/>
+                        <comment>Wann? Immer, Rückgabe ist Ergebnis des letzten Ausdrucks</comment>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="fragment sidebyside p40_60">
+            @comp.snippet {
+                |def hello: String =
+                |   "Hello World"
+            }
+            <div>
+                <ul class="no-bullets indent10">
+                    <li>
+                        <strong><em>ohne</em></strong> Parameterliste<br/>
+                        <comment>Wann? Keine Parameter</comment>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="fragment sidebyside p40_60">
+            @comp.snippet {
+                |def hello =
+                |   "Hello World"
+            }
+            <div>
+                <ul class="no-bullets indent10">
+                    <li>
+                        <strong><em>ohne</em></strong> Rückgabetyp<br/>
+                        <comment>Wann? Nicht rekursiv oder überladen</comment>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="fragment sidebyside p40_60">
+            @comp.snippet {
+                |def hello = "Hello World"
+            }
+            <div>
+                <ul class="no-bullets indent10">
+                    <li>
+                        <strong><em>ohne</em></strong> Zeilenumbruch
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <h3>Methoden<em>def</em>inition: Parameter</h3>
+
+        <div class="sidebyside">
+            <div>
+                @comp.snippet {
+                    |def add(x: Int, y: Int) = x + y
+                }
+                @comp.console {
+                    |add: (x: Int, y: Int)Int
+                }
+            </div>
+            <div>
+                <ul class="fragment indent30">
+                    <li>erwartet 2 Parameter vom Typ <code>Int</code></li>
+                    <li>Trennung durch Komma</li>
+                    <li>Typen <em>müssen</em> definiert werden</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <h3>Vergleich von <code>def</code>, <code>val</code> und <code>var</code></h3>
+
+        <div>
+            <div class="sidebyside p60_40">
+                @comp.snippet {
+                    |val rand = util.Random.nextInt(10)
+                    |println(rand)
+                    |println(rand)
+                }
+                @comp.console {
+                    |rand: Int = 6
+                    |6
+                    |6
+                }
+            </div>
+
+            <div class="fragment indent">
+                <ul class="no-bullets">
+                    <li>⇨ <code>var</code> / <code>val</code> wird <em>einmal</em> ausgeführt</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr/>
+
+        <div class="fragment">
+            <div class="sidebyside p60_40">
+                @comp.snippet {
+                    |def rand = util.Random.nextInt(10)
+                    |println(rand)
+                    |println(rand)
+                }
+                @comp.console {
+                    |rand: Int
+                    |3
+                    |9
+                }
+            </div>
+
+            <div class="fragment indent">
+                <ul class="no-bullets">
+                    <li>⇨ <code>def</code> wird einmal <em>bei jedem Aufruf</em> ausgeführt</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section>
+        <h3>Zusammenfassung</h3>
+        <div class="indent">
+            <ul>
+                <li>bevorzugt <em>unveränderliche</em> Variablen via <code>val</code></li>
+                <li>Datentypdefinition stets am Ende (z.B. <code>def hello(name: String): String</code>)</li>
+                <li><em>optionale</em> Semikolons, Datentypen und Klammern</li>
             </ul>
         </div>
     </section>
