@@ -43,40 +43,154 @@
 
 
     <section>
-        <h3>Wertzuweisung mit <em>val</em></h3>
+        <h3><em>Va</em>riab<em>l</em>en</h3>
 
-        <div class="sidebyside p40_60">
-            @comp.snippet {
-                |val hello = "Hello World"
-            }
-            @comp.console {
-                |hello: java.lang.String = Hello World
-            }
-        </div>
         <hr/>
-        <div class="fragment indent">
-            <ul>
-                <li>
-                    Wert ist <em>unveränderlich</em> ("immutable")
+
+        <div class="sidebyside">
+            <div>
+                @comp.snippet {
+                    |val hello: String = "Hello"
+                }
+                <br/>
+                <div class="indent">
                     <ul>
-                        <li>entspricht <code>final String hello</code> in Java</li>
-                        <li>keine Nebeneffekte und dadurch weniger Komplexität</li>
-                        <li>leichter zu parallelisieren und zu testen</li>
+                        <li class="fragment">
+                            <code>val</code> beginnt Variable
+                        </li>
+                        <li class="fragment">
+                            <code>hello</code> ist der Name
+                        </li>
+                        <li class="fragment">
+                            <code>:</code> trennt Name und Typ
+                        </li>
+                        <li class="fragment">
+                            <code>String</code> ist der Typ
+                        </li>
+                        <li class="fragment">
+                            <code>=</code> weist Wert zu
+                        </li>
+                        <li class="fragment">
+                            <code>"Hello"</code> ist der Wert
+                        </li>
                     </ul>
-                </li>
-            </ul>
+                </div>
+            </div>
+            <div>
+                @comp.console {
+                    |hello: java.lang.String = Hello
+                }
+                <br/>
+                @comp.shout("info-circle") {
+                    <code>val</code> leitet eine Variable ein, <br/>der Typ wird hinter dem <br/>Namen angegeben.
+                }
+            </div>
         </div>
-        <hr/>
-        <div class="fragment indent">
-            <ul>
-                <li><strong><em>Tipp:</em></strong> bevorzugt <code>val</code> verwenden - im Gegensatz zu ...</li>
-            </ul>
-        </div>
+
     </section>
 
 
     <section>
-        <h3>Wertzuweisung mit <var>var</var></h3>
+        <h3><em>Va</em>riab<em>l</em>en</h3>
+
+        <hr/>
+
+        <div class="sidebyside">
+            <div>
+                @comp.snippet {
+                    |val hello: String = "Hello"
+                    |
+                    |hello = "Goodbye"
+                }
+            </div>
+            <div>
+                @comp.console {
+                    |hello: String = Hello
+                    |
+                    |<console>:8: error: reassignment to val
+                    |       hello = "Goodbye"
+                }
+                <br/>
+                @comp.shout("info-circle") {
+                    <code>val</code> kann nicht überschrieben werden, sie ist unveränderlich (engl. "immutable").
+                }
+            </div>
+        </div>
+
+    </section>
+
+
+    <section>
+        <h3><em>Va</em>riab<em>l</em>en</h3>
+
+        <div class="sidebyside p45_55">
+            @comp.snippet {
+                |val hello: Int = "Hello"
+            }
+            <div>
+                @comp.console {
+                    |<console>:7: error: type mismatch;
+                    |   found : java.lang.String("Hello")
+                    | required: Int
+                    |       val hello: Int = "Hello"
+                    |                  ^
+                }
+                <br/>
+                @comp.shout("info-circle") {
+                    Der Compiler steht sicher, dass Variablentyp und -wert zusammenpassen.
+                }
+            </div>
+        </div>
+
+    </section>
+
+
+    <section>
+        <h3><em>Va</em>riab<em>l</em>en</h3>
+
+        <div class="sidebyside p45_55">
+            @comp.snippet {
+                |val hello1: String = "Hello"
+                |val hello2         = "Hello"
+            }
+            @comp.console {
+                |hello1: java.lang.String = Hello
+                |hello2: java.lang.String = Hello
+            }
+        </div>
+
+        <div class="fragment sidebyside p45_55">
+            @comp.snippet {
+                |val meaningOfLife = 42
+                |val pi = 3.14f
+            }
+            <div>
+                @comp.console {
+                    |
+                }
+
+                @comp.shout("info-circle") {
+                    Der Variablentyp kann weggelassen werden, der Compiler leitet ihn ab.
+                }
+            </div>
+        </div>
+
+        <!--<div class="fragment indent">
+            <ul>
+                <li><strong><em>Tipp:</em></strong> Typen für temporäre Variablen weggelassen</li>
+                <li class="fragment">
+                    <strong><var>Ausnahme:</var></strong> Dokumentationszwecke oder falsche Erkennung
+                </li>
+            </ul>
+        </div>
+
+        <br/>-->
+
+    </section>
+
+
+    <section>
+        <h3>Variablen mit <var>var</var></h3>
 
         <div class="sidebyside p40_60">
             @comp.snippet {
@@ -118,68 +232,35 @@
     <section>
         <h3><em>Optionale</em> Typenangabe</h3>
 
-        <div class="sidebyside p40_60">
-            @comp.snippet {
-                |val hello: String = "Hello"
-            }
-            @comp.console {
-                |hello: java.lang.String = Hello
-            }
-        </div>
+        <hr/>
 
-        <div class="fragment indent">
-            <ul>
-                <li><strong><em>Tipp:</em></strong> Typen für temporäre Variablen weggelassen</li>
-                <li class="fragment">
-                    <strong><var>Ausnahme:</var></strong> Dokumentationszwecke oder falsche Erkennung
-                </li>
-            </ul>
-        </div>
 
-        <br/>
 
-        <div class="fragment sidebyside p40_60">
-            @comp.snippet {
-                |val hello: Int = "Hello"
-            }
-            @comp.console {
-                |<console>:7: error: type mismatch;
-                |   found : java.lang.String("Hello")
-                | required: Int
-                |       val hello: Int = "Hello"
-                |                  ^
-            }
-        </div>
-
-        <div class="fragment indent">
+        <!--<div class="fragment indent">
             <ul>
                 <li>Fehlererkennung durch den Compiler dank Typen<em>sicherheit</em></li>
             </ul>
-        </div>
+        </div>-->
     </section>
 
 
     <section>
         <h3><em>Optionale</em> Semikolons</h3>
 
+        <hr/>
+
         <div class="sidebyside p40_60">
             @comp.snippet {
-                |val hello  = "Hello"
+                |val hello1 = "Hello"
                 |val hello2 = "Hello";
             }
             @comp.console {
-                |hello: java.lang.String = Hello
+                |hello1: java.lang.String = Hello
                 |hello2: java.lang.String = Hello
             }
         </div>
 
-        <div class="fragment indent">
-            <ul>
-                <li><strong><em>Tipp:</em></strong> Semikolons weglassen</li>
-            </ul>
-        </div>
-
-        <hr/>
+        <hr/><hr/>
 
         <div class="sidebyside p40_60 fragment">
             @comp.snippet {
@@ -191,8 +272,11 @@
             }
         </div>
 
-        <div class="fragment indent">
-            <ul>
+        <hr/>
+
+        <div class="fragment indent20">
+            <ul class="no-bullets">
+                <li><strong><em>Tipp:</em></strong> Semikolons weglassen</li>
                 <li><strong><var>Ausnahme:</var></strong> mehrere Anweisungen in einer Zeile</li>
             </ul>
         </div>
@@ -274,7 +358,7 @@
 
         <hr/>
 
-        <div class="fragment sidebyside p40_60">
+        <!--<div class="fragment sidebyside p40_60">
             <div>
                 @comp.snippet {
                     |def hello(): Unit {
@@ -293,7 +377,7 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </div>-->
 
         <details>
             <a href="http://stackoverflow.com/questions/2529184/difference-between-method-and-function-in-scala">

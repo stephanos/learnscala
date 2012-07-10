@@ -1,0 +1,14 @@
+@(typeOf: String, fragment: Boolean = true)(body: Html)
+
+<div class='@{if(fragment)"fragment" else ""} shout @typeOf clearfix'>
+    <table>
+        <tr>
+            <td class="symbol">
+                <span class="icon-@typeOf"></span>
+            </td>
+            <td class="content">
+                @body
+            </td>
+        </tr>
+    </table>
+</div>

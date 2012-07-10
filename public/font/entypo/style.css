@@ -1,0 +1,54 @@
+@font-face {
+	font-family: 'Entypo';
+	src: url('fonts/Entypo.eot');
+	src: url('fonts/Entypo.eot?#iefix') format('embedded-opentype'),
+		url('fonts/Entypo.svg#Entypo') format('svg'),
+		url('fonts/Entypo.woff') format('woff'),
+		url('fonts/Entypo.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+	font-family: 'Entypo';
+	content: attr(data-icon);
+	speak: none;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+[class^="icon-"]:before, [class*=" icon-"]:before {
+	font-family: 'Entypo';
+	font-style: normal;
+	speak: none;
+}
+.icon-warning:before {
+	content: "\21";
+}
+.icon-help:before {
+	content: "\22";
+}
+.icon-info:before {
+	content: "\23";
+}
+.icon-thumbs-up:before {
+	content: "\24";
+}
+.icon-heart:before {
+	content: "\26";
+}
+.icon-light-bulb:before {
+	content: "\27";
+}
+.icon-quote:before {
+	content: "\28";
+}
+.icon-book:before {
+	content: "\29";
+}
+.icon-star:before {
+	content: "\2a";
+}
+.icon-arrow:before {
+	content: "\25";
+}

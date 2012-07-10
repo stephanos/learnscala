@@ -9,7 +9,7 @@
     </section>
 
 
-    <section class="vcenter">
+    <section>
         <div class="left w40p">
             <img src="/assets/img/odersky.jpg" width="100%" alt="Martin Odersky">
         </div>
@@ -32,9 +32,9 @@
 
 
     <section>
-        <h3>Scala ist ... <span class="fragment"><em>eine Skriptsprache</em></span></h3>
-
-        <div class="indent">
+        @comp.headbody() {
+            Scala ist ... <span class="fragment"><em>eine Skriptsprache</em></span>
+        } {
             <ul>
                 <li class="fragment">
                     interaktive Konsole: Read-Eval-Print-Loop (REPL)
@@ -55,14 +55,14 @@
                     }
                 </li>
             </ul>
-        </div>
+        }
     </section>
 
 
     <section>
-        <h3>Scala ist ... <span><em>objektorientiert</em></span></h3>
-
-        <div class="indent">
+        @comp.headbody() {
+            Scala ist ... <span><em>objektorientiert</em></span>
+        } {
             <ul>
                 <li class="fragment">
                     jeder (!) Wert ist ein Objekt (keine primitiven Typen wie 'int')
@@ -83,14 +83,14 @@
                     }
                 </li>
             </ul>
-        </div>
+        }
     </section>
 
 
     <section>
-        <h3>Scala ist ... <span><em>knapp und präzise</em></span></h3>
-
-        <div class="indent">
+        @comp.headbody() {
+            Scala ist ... <span><em>knapp und präzise</em></span>
+        } {
             <ul>
                 <li class="fragment">
                     reduziert die Code-Zeilen um mehr als 50%
@@ -114,14 +114,14 @@
                     <em>schneller</em> zu schreiben und <em>leichter</em> zu lesen
                 </li>
             </ul>
-        </div>
+        }
     </section>
 
 
     <section>
-        <h3>Scala ist ... <span><em>funktional</em></span></h3>
-
-        <div class="indent">
+        @comp.headbody() {
+            Scala ist ... <span><em>funktional</em></span>
+        } {
             <ul>
                 <li class="fragment">
                     wiederverwendbare Code-Blöcke ohne Seiteneffekte
@@ -145,14 +145,14 @@
                     }
                 </li>
             </ul>
-        </div>
+        }
     </section>
 
 
     <section>
-        <h3>Scala ist ... <span><em>statisch typisiert</em></span></h3>
-
-        <div class="indent">
+        @comp.headbody() {
+            Scala ist ... <span><em>statisch typisiert</em></span>
+        } {
             <ul>
                 <li class="fragment">
                     sehr fortschrittliches Typenmodell<br/>
@@ -174,14 +174,14 @@
                 <li class="fragment"><em>Vorteil:</em> weniger Flüchtigkeitsfehler & Testaufwand sowie sicheres Refactoring</li>
                 <li class="fragment"><var>Nachteil:</var> erhöhte Kompilierzeit</li>
             </ul>
-        </div>
+        }
     </section>
 
 
     <section>
-        <h3>Scala ist ... <span><em>Java</em></span></h3>
-
-        <div class="indent">
+        @comp.headbody() {
+            Scala ist ... <span><em>Java</em></span>
+        } {
             <ul>
                 <li class="fragment">
                     erstellt gewohntem Java byte code
@@ -202,14 +202,14 @@
             <div class="fragment">
                 ⇨ kompatibel mit den tausenden Java-Bibliotheken - ohne zusätzlichen Code
             </div>
-        </div>
+        }
     </section>
 
 
     <section>
-        <h3>Scala ist ... <span><em>erweiterbar</em></span></h3>
-
-        <div class="indent">
+        @comp.headbody() {
+            Scala ist ... <span><em>erweiterbar</em></span>
+        } {
             <ul>
                 <li class="fragment">
                     eigene Kontrollstrukturen
@@ -232,15 +232,14 @@
                     }
                 </li>
             </ul>
-        </div>
+        }
     </section>
 
 
     <section>
-        <h3>Scala ist ... <span><em>in Benutzung</em></span></h3>
-
-        <br/>
-        <div class="fragment indent">
+        @comp.headbody() {
+            Scala ist ... <span><em>in Benutzung</em></span>
+        } {
             <table>
                 <colgroup>
                     <col width="25%">
@@ -284,34 +283,37 @@
             <h3 class="center fragment">
                 <var>Startups</var> <big>&nbsp;&&nbsp;</big> <em>Konzerne</em>
             </h3>
-        </div>
+        }
     </section>
 
 
     <section>
-        <h3>Zusammenfassung: Scala ist ...</h3>
-        <h4>
-            <div class="indent90">
-                <ul class="fragment w40p left">
-                    <li><em>Java</em></li>
-                    <li><em>funktional</em></li>
-                    <li><em>statisch typisiert</em></li>
-                    <li><em>in Benutzung</em></li>
-                    <li><em>kurz und präzise</em></li>
-                    <li><em>erweiterbar</em></li>
-                    <li><em>objektorientiert</em></li>
-                </ul>
-                <ul class="fragment w40p left">
-                    <li><var>cool</var></li>
-                    <li><var>eine Freude</var></li>
-                    <li><var>produktiv</var></li>
-                    <li><var>anspruchsvoll</var></li>
-                    <li><var>eine neue Denkweise</var></li>
-                    <li><var>flexibel</var></li>
-                    <li><var>modern</var></li>
-                </ul>
-            </div>
-        </h4>
+        @comp.headbody() {
+            Zusammenfassung: Scala ist ...
+        } {
+            <h4>
+                <div>
+                    <ul class="fragment w40p left">
+                        <li><em>Java</em></li>
+                        <li><em>funktional</em></li>
+                        <li><em>statisch typisiert</em></li>
+                        <li><em>in Benutzung</em></li>
+                        <li><em>kurz und präzise</em></li>
+                        <li><em>erweiterbar</em></li>
+                        <li><em>objektorientiert</em></li>
+                    </ul>
+                    <ul class="fragment w40p left">
+                        <li><var>cool</var></li>
+                        <li><var>eine Freude</var></li>
+                        <li><var>produktiv</var></li>
+                        <li><var>anspruchsvoll</var></li>
+                        <li><var>eine neue Denkweise</var></li>
+                        <li><var>flexibel</var></li>
+                        <li><var>modern</var></li>
+                    </ul>
+                </div>
+            </h4>
+        }
     </section>
 
 </div>

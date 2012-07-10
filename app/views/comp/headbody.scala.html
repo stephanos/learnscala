@@ -1,0 +1,15 @@
+@(
+    indent: Boolean = true
+)(head: Html)(body: Html)
+
+<header>
+    <h3>@head</h3>
+</header>
+
+<article class='@{if(indent) "indent" else ""}'>
+    <div>
+        <div>
+            @body
+        </div>
+    </div>
+</article>

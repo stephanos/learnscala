@@ -1,3 +1,5 @@
+@f_comment: 30%;
+
 .reveal {
     h1, h2, h3, h4 {
         &.filled, &.banner {
@@ -13,16 +15,6 @@
 
     table {
         .w100p();
-    }
-
-    .slides {
-        &>section.present {
-            &.vcenter {
-                .box-orient(horizontal);
-                .box-pack(center);
-                .box-align(center);
-            }
-        }
     }
 
     big {
@@ -79,6 +71,8 @@
         &.p66_33 { .partition(66%, 33%); }
         &.p60_40 { .partition(60%, 40%); }
         &.p40_60 { .partition(40%, 60%); }
+        &.p55_45 { .partition(55%, 45%); }
+        &.p45_55 { .partition(45%, 55%); }
 
         width: 96%;
         margin: 0 auto;
@@ -161,11 +155,10 @@
     }
 
     comment {
-        @f: 30%;
         font-size: 80%;
-        color: fadeout(@c_text_light, @f);
+        color: fadeout(@c_text_light, @f_comment);
         code {
-            color: fadeout(@c_code, @f);
+            color: fadeout(@c_code, @f_comment);
         }
     }
 
@@ -189,4 +182,45 @@
     table td {
         padding-top: 10px;
     }
+
+    .shout {
+        margin-top: 20px;
+
+        table {
+            td {
+                &.symbol {
+                    padding: 0 12px;
+                }
+                &.content {
+                    padding: 10px;
+                }
+            }
+        }
+
+        &.info, &.info-circle {
+            color: @c_emph;
+            border: 2px solid @c_emph;
+            background-color: fade(@c_emph, 10%);
+            comment { color: fadeout(@c_emph, @f_comment); }
+        }
+    }
+
+    /*
+    .slides {
+        >section {
+            >article {
+                >div {
+                    display: table;
+                    background-color: yellow;
+                    width: 100%;
+
+                    >div {
+                        display: table-cell;
+                        vertical-align: middle;
+                    }
+                }
+            }
+        }
+    }
+    */
 }
