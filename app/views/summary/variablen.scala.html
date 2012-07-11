@@ -1,9 +1,33 @@
 @(clazz: String = "fragment")
 
-<div class="sidebyside">
+<div class="@clazz sidebyside p60_40">
+    @comp.snippet {
+        |val one: Int = 1   // explizite Typen
+        |val two = 1L
+        |val pi = 3.14f     // erkannte Typen
+    }
+    @comp.console {
+        |one: Int = 1
+        |two: Long = 1
+        |pi: Float = 3.14
+    }
+</div>
+
+<div class="@clazz sidebyside p60_40">
     @comp.snippet {
         |val pi = 3.14f
-        |pi.isWhole
+        |pi = 3              // val ist endgültig
+    }
+    @comp.console {
+        |pi: Float = 3.14
+        |<console>:8: error: reassignment to val
+    }
+</div>
+
+<div class="@clazz sidebyside p60_40">
+    @comp.snippet {
+        |val pi = 3.14f
+        |pi.isWhole         // Zahlen sind Objekte
     }
     @comp.console {
         |pi: Float = 3.14
@@ -11,30 +35,24 @@
     }
 </div>
 
-<hr/>
-
-<div class="@clazz sidebyside">
+<div class="@clazz sidebyside p60_40">
     @comp.snippet {
-        |def printHello() {
-        |   println("Hello")
-        |}
-        |printHello()
+        |42.==(42)
+        |42./(42)           // Operatoren sind Methoden
     }
     @comp.console {
-        |printHello: ()Unit
-        |Hello
+        |res2: Boolean = true
+        |res1: Double = 1.0
     }
 </div>
 
-<hr/>
-
-<div class="@clazz sidebyside">
+<div class="@clazz sidebyside p60_40">
     @comp.snippet {
-        |def add(x: Int, y: Int) = x + y
-        |val result = add(5, 5)
+        |var pi = 3.14f
+        |pi = 3.0f          // var ist überschreibbar
     }
     @comp.console {
-        |add: (x: Int, y: Int)Int
-        |result: Int = 10
+        |pi: Float = 3.14
+        |pi: Float = 3.0
     }
 </div>

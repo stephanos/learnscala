@@ -37,13 +37,15 @@ class Scala {
                             val code = xs.mkString("\n")
                             //val log = com.loops101.util.Logger("controllers")
                             //log.info(code)
-                            (if(code.isEmpty) state else compiler.interpret(code)) match {
+                            (if(ignoreCodeLine(code)) state else compiler.interpret(code)) match {
                                 case ir@IR.Success =>
+                                    //log.info("{}", ir)
                                     lines match {
                                         case Nil => ir // stop
                                         case y :: ys => eval(ys, List(y), ir)
                                     }
                                 case ir@IR.Incomplete =>
+                                    //log.info("{}", ir)
                                     lines match {
                                         case Nil => ir // // stop
                                         case y :: ys => eval(ys, buffer ::: List(y), ir)
@@ -57,6 +59,11 @@ class Scala {
             val s = asString(out)
             (r, s)
         }
+
+    private def ignoreCodeLine(line: String) = {
+        val tline = line.trim
+        tline.isEmpty || tline.startsWith("//") || tline.startsWith("/*")
+    }
 
     private def runWithTimeout[T](timeoutMs: Long)(f: => T): Option[T] = {
         awaitAll(timeoutMs, future(f)).head.asInstanceOf[Option[T]]
