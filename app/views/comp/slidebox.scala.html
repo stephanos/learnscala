@@ -1,10 +1,9 @@
-@(code: String, name: String = null, append: String = "")
+@(code: String, name: String = null, todo: Boolean = false)
 
-<div class="slidedeck" >
+<div class='slidedeck @{if(todo) "todo" else ""}'>
     <a href='/app/slides/@{code.toLowerCase().replaceAllLiterally("ü", "ue").replaceAllLiterally("ä", "ae").replaceAllLiterally("ö", "oe")}/'>
         <span>
             @{Option(name).getOrElse(code.replaceAllLiterally("-", " ").split("/").last)}
-            @append
         </span>
     </a>
 </div>
