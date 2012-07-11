@@ -183,8 +183,9 @@
         padding-top: 10px;
     }
 
-    .shout {
-        margin-top: 20px;
+    .shoutbox {
+        width: 96%;
+        margin: 0 auto;
 
         table {
             td {
@@ -197,11 +198,19 @@
             }
         }
 
-        &.info, &.info-circle {
-            color: @c_emph;
-            border: 2px solid @c_emph;
-            background-color: fade(@c_emph, 10%);
-            comment { color: fadeout(@c_emph, @f_comment); }
+        .box(@c) {
+            color: @c;
+            border: 2px solid @c;
+            background-color: fade(@c, 10%);
+            comment { color: fadeout(@c, @f_comment); }
+        }
+
+        &.warning {
+            .box(@c_hlight);
+        }
+
+        &.info, &.info-circle, &.thumbs-up {
+            .box(@c_emph);
         }
     }
 

@@ -12,6 +12,9 @@ object ProjectBuild extends MyBuild {
             .settings(myPlaySettings: _*)
             .dependsOn(mod_web_play, mod_data_mongo, mod_test_unit % "test->test")
 
+    //lazy val exercises =
+    //    MyProject("exercises", file("exercises"), isCloud)
+
 
     // ==== SETTINGS
 

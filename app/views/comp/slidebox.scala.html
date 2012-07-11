@@ -1,7 +1,10 @@
 @(code: String, name: String = null, append: String = "")
 
 <div class="slidedeck" >
-    <a href="/app/slides/@{code.toLowerCase()}/">
-        <span>@{Option(name).getOrElse(code.replaceAllLiterally("-", " "))}@append</span>
+    <a href='/app/slides/@{code.toLowerCase().replaceAllLiterally("ü", "ue").replaceAllLiterally("ä", "ae").replaceAllLiterally("ö", "oe")}/'>
+        <span>
+            @{Option(name).getOrElse(code.replaceAllLiterally("-", " ").split("/").last)}
+            @append
+        </span>
     </a>
 </div>

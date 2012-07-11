@@ -1,0 +1,40 @@
+@(clazz: String = "fragment")
+
+<div class="sidebyside">
+    @comp.snippet {
+        |val pi = 3.14f
+        |pi.isWhole
+    }
+    @comp.console {
+        |pi: Float = 3.14
+        |res0: Boolean = false
+    }
+</div>
+
+<hr/>
+
+<div class="@clazz sidebyside">
+    @comp.snippet {
+        |def printHello() {
+        |   println("Hello")
+        |}
+        |printHello()
+    }
+    @comp.console {
+        |printHello: ()Unit
+        |Hello
+    }
+</div>
+
+<hr/>
+
+<div class="@clazz sidebyside">
+    @comp.snippet {
+        |def add(x: Int, y: Int) = x + y
+        |val result = add(5, 5)
+    }
+    @comp.console {
+        |add: (x: Int, y: Int)Int
+        |result: Int = 10
+    }
+</div>

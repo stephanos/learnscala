@@ -1,0 +1,445 @@
+@layout.slide("Vorstellung von Scala") {
+
+<div class="slides">
+
+
+    <section>
+        <h1><em>Einführung</em></h1>
+        <hr/>
+        <h3 class="banner">Scala, die unbekannte Sprache</h3>
+    </section>
+
+
+    <section>
+        <div class="left w40p">
+            <img src="/assets/img/odersky.jpg" width="100%" alt="Martin Odersky">
+        </div>
+
+        <div class="fragment left w60p">
+            <blockquote>
+                <p>
+                    Der Name Scala steht für <br/><em>scal</em>able <em>la</em>nguage.
+                </p>
+                <p>
+                    Die Sprache ist so konzipiert, dass sie mit den Anforderungen des Nutzers wächst.
+                    Man kann sie auf eine Vielzahl von Aufgaben anwenden, von kleinen Skripten bis hin zu großen System.
+                </p>
+                <var class="who">
+                    Martin Odersky, <br/>Erfinder von Scala
+                </var>
+            </blockquote>
+        </div>
+    </section>
+
+
+    <section>
+        @comp.headbody() {
+            Scala ist ... <span class="fragment"><em>eine Skriptsprache</em></span>
+        } {
+            <div class="fragment sidebyside p60_40">
+                @comp.snippet {
+                    |>val i: Int = 5
+                    |i: Int = 5
+                    |>println(5 * 5)
+                    |25
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li>interaktive Konsole: <br/> Read-Eval-Print-Loop (REPL)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="fragment sidebyside p60_40">
+                @comp.snippet {
+                    |println("Hello World")
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li>keine Semikolons</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="fragment sidebyside p60_40">
+                @comp.snippet {
+                    |val i = 1 + 2 * 3      // type of i is Int
+                    |val s = "Scala rocks"  // type of s is String
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li>Type Inference</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            @comp.tipbox() {
+                Das Beste von beiden Welten: Sieht dynamische aus, ist aber statisch.
+            }
+        }
+    </section>
+
+
+    <section>
+        @comp.headbody() {
+            Scala ist ... <span><em>objektorientiert</em></span>
+        } {
+            <div class="fragment sidebyside">
+                @comp.snippet {
+                    |42.toFloat
+                    |(3.14f).floor
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li>jeder Wert ist ein Objekt</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="fragment sidebyside">
+                @comp.snippet {
+                    |class MonsterTruck extends Car
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li>Klassen und Vererbung</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="fragment sidebyside">
+                @comp.snippet {
+                    |class FlyingCar extends Car with Wings
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li>Mixin-Mechanismus</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            @comp.tipbox() {
+                Alles ist ein Objekt: Bekannte Objektorientierung mit Mehrfachvererbung.
+            }
+        }
+    </section>
+
+
+    <section>
+        @comp.headbody() {
+            Scala ist ... <span><em>knapp und präzise</em></span>
+        } {
+            <div class="fragment sidebyside p60_40">
+                @comp.snippet {
+                    |class MyCar(wheels: Int = 4)
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li>weniger Boilerplate-Code</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="fragment sidebyside p60_40">
+                @comp.snippet {
+                    |trait Logging
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li>Traits zur Wiederverwendung</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="fragment sidebyside p60_40">
+                @comp.snippet {
+                    |def getUserAttributes[T](fn: (User) => List[T])
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li>Closures</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            @comp.tipbox() {
+                50% weniger Code: Schneller zu schreiben und leichter zu lesen.
+            }
+        }
+    </section>
+
+
+    <section>
+        @comp.headbody() {
+            Scala ist ... <span><em>funktional</em></span>
+        } {
+            <div class="fragment sidebyside p60_40">
+                @comp.snippet {
+                    |val names = users.map(_.username)
+                    |
+                    |val minors = users.map(_.age()).filter(_ < 18)
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li>wiederverwendbare Code-Blöcke ohne Seiteneffekte</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="fragment sidebyside p60_40">
+                @comp.snippet {
+                    |def matchTest(arg: String, value: Any) =
+                    | (arg, value) match {
+                    |   case ("-h"|"--help", _) => showHelp()
+                    |   case ("-v"|"--version", _) => showVersion()
+                    |   case (a,v) => sys.error("unknown arg:" + a)
+                    |}
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li>Pattern Matching</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            @comp.tipbox() {
+                Leichtgewichtige aber mächtige Funktionen für besseren Code.
+            }
+        }
+    </section>
+
+
+    <section>
+        @comp.headbody() {
+            Scala ist ... <span><em>statisch typisiert</em></span>
+        } {
+            <div class="fragment sidebyside p60_40">
+                @comp.snippet {
+                    |val i = 1 + 2 * 3    // the type of i is Int
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li>Type Inference</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="fragment sidebyside p60_40">
+                @comp.snippet {
+                    |val j: Int = "test"  // COMPILER ERROR!
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li>Typensicherheit</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="fragment sidebyside p60_40">
+                @comp.snippet {
+                    |def cloneAndReset(o: Cloneable with Resetable) = ..
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li>Compound Types</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            @comp.tipbox() {
+                Sicheres Refactoring, weniger Flüchtigkeitsfehler & Testaufwand
+            }
+        }
+    </section>
+
+
+    <section>
+        @comp.headbody() {
+            Scala ist ... <span><em>Java</em></span>
+        } {
+            <div class="fragment sidebyside p60_40">
+                @comp.snippet {
+                    |import org.apache.http.client._
+                    |import org.apache.http.client.methods._
+                    |
+                    |val client = new DefaultHttpClient
+                    |val get = new HttpGet("www.google.de")
+                    |val resp = client.execute(get)
+                    |...
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li><var>Java</var> aus <em>Scala</em> aufrufen: <br/> &nbsp; fast reibungslos</li>
+                        <li><em>Scala</em> aus <var>Java</var> aufrufen: <br/> &nbsp; geht <comment>(mit Ausnahmen)</comment></li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            @comp.tipbox() {
+                Leicht zu integrieren mit bestehendem Code und bekannten Bibliotheken.
+            }
+        }
+    </section>
+
+
+    <section>
+        @comp.headbody() {
+            Scala ist ... <span><em>erweiterbar</em></span>
+        } {
+            <div class="fragment sidebyside p60_40">
+                @comp.snippet {
+                    |def retry[T](n: Int)(fn: => T): T =
+                    |   try   { fn }
+                    |   catch {
+                    |       case e =>
+                    |          if (n > 1) retry(n - 1)(fn)
+                    |          else throw e
+                    |   }
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li>eigene Kontrollstrukturen</li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="fragment sidebyside p60_40">
+                @comp.snippet {
+                    @Html("""
+                    |"The 'Hello world' string" should {
+                    |    "contain 11 characters" in {
+                    |        "Hello world" must have size(11)
+                    """)
+                }
+                <div>
+                    <ul class="no-bullets indent10">
+                        <li>eigene Sprachen: <br/>Domain Specific Language</li>
+                    </ul>
+                </div>
+            </div>
+
+            @comp.tipbox() {
+                Scala lässt sich flexibel an ein Problem anpassen.
+            }
+        }
+    </section>
+
+
+    <section>
+        @comp.headbody() {
+            Scala ist ... <span><em>in Benutzung</em></span>
+        } {
+            <table>
+                <colgroup>
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                    <col width="25%">
+                </colgroup>
+                <tr>
+                    <td><var>LinkedIn</var></td>
+                    <td><var>Localytics</var></td>
+                    <td><em>Novell</em></td>
+                    <td><em>EDF</em></td>
+                </tr>
+                <tr>
+                    <td><var>Tumblr</var></td>
+                    <td><var>StumbleUpon</var></td>
+                    <td><em>VMware</em></td>
+                    <td><em>AOL</em></td>
+                </tr>
+                <tr>
+                    <td><var>TheNewMotion</var></td>
+                    <td><var>Klout</var></td>
+                    <td><em>Siemens</em></td>
+                    <td><em>SAP</em></td>
+                </tr>
+                <tr>
+                    <td><var>StackMob</var></td>
+                    <td><var>foursquare</var></td>
+                    <td><em>Sony</em></td>
+                    <td><em>o2 Teléphonica</em></td>
+
+                </tr>
+                <tr>
+                    <td><var>eHarmony</var></td>
+                    <td><var>Twitter</var></td>
+                    <td><em>UK Guardian</em></td>
+                    <td><em>Xerox</em></td>
+                </tr>
+            </table>
+            <br/>
+            @comp.tipbox() {
+                <strong><var>Startups</var></strong> und <strong><em>Konzerne</em></strong>
+                setzen auf Scala.
+            }
+            <!--<h3 class="center fragment">
+                <var>Startups</var> <big>&nbsp;&&nbsp;</big> <em>Konzerne</em>
+            </h3>-->
+        }
+    </section>
+
+
+    <section>
+        @comp.headbody(indent = true) {
+            Zusammenfassung: Scala ist ...
+        } {
+            <h4>
+                <div>
+                    <ul class="fragment w40p left">
+                        <li><em>Java</em></li>
+                        <li><em>funktional</em></li>
+                        <li><em>statisch typisiert</em></li>
+                        <li><em>in Benutzung</em></li>
+                        <li><em>kurz und präzise</em></li>
+                        <li><em>erweiterbar</em></li>
+                        <li><em>objektorientiert</em></li>
+                    </ul>
+                    <ul class="fragment w40p left">
+                        <li><var>cool</var></li>
+                        <li><var>eine Freude</var></li>
+                        <li><var>produktiv</var></li>
+                        <li><var>anspruchsvoll</var></li>
+                        <li><var>eine neue Denkweise</var></li>
+                        <li><var>flexibel</var></li>
+                        <li><var>modern</var></li>
+                    </ul>
+                </div>
+            </h4>
+        }
+    </section>
+
+</div>
+}

@@ -1,0 +1,267 @@
+@layout.slide("Methoden") {
+
+<div class="slides">
+
+
+    <section>
+        <h1>Methoden<em>def</em>inition</h1>
+        <hr/>
+        <!--<h3 class="banner">Ein kleiner Schritt für einen Entwickler ...</h3>-->
+    </section>
+
+
+    <section>
+        <h3>Methoden<em>def</em>inition</h3>
+
+        <div class="sidebyside">
+            <div>
+                @comp.snippet {
+                    |def hello(): String = {
+                    |   return "Hello World"
+                    |}
+                }
+                @comp.console {
+                    |hello: String
+                }
+            </div>
+            <div>
+                <div class="indent">
+                    <ul>
+                        <li class="fragment">
+                            <code>def</code> startet die Definition
+                        </li>
+                        <li class="fragment">
+                            <code>hello</code> ist der Name der Methode
+                        </li>
+                        <li class="fragment">
+                            <code>()</code> beinhaltet die Liste der Parameter
+                        </li>
+                        <li class="fragment">
+                            <code>String</code> ist der Rückgabetyp
+                        </li>
+                        <li class="fragment">
+                            <code>{ .. }</code> enthält Implementierung
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+
+        @comp.infobox() {
+            <code>def</code> leitet eine Methode ein - diese hat immer einen Rückgabetyp.
+        }
+
+        <details>
+            <a href="http://stackoverflow.com/questions/2529184/difference-between-method-and-function-in-scala">
+                Difference between method and function in Scala
+            </a>
+        </details>
+    </section>
+
+
+    <section>
+        <h3>Methoden<em>def</em>inition</h3>
+
+        <div class="sidebyside">
+            <div>
+                @comp.snippet {
+                    |def hello() = {
+                    |   println("Hello World")
+                    |}
+                }
+                <div class="fragment">
+                    @comp.console {
+                        |hello: Unit
+                    }
+                </div>
+            </div>
+            <div class="fragment">
+                @comp.snippet {
+                    |def hello() {
+                    |   println("Hello World")
+                    |}
+                }
+                @comp.console {
+                    |hello: Unit
+                }
+            </div>
+        </div>
+
+        <hr/>
+
+        @comp.infobox() {
+            Hat eine Methode keinen Rückgabewert, hat sie den Typ <code>Unit</code>.
+        }
+    </section>
+
+
+    <section>
+        <h3>Methoden<em>def</em>inition</h3>
+
+        <div class="fragment sidebyside p40_60">
+            @comp.snippet {
+                |def hello(): String =
+                |   return "Hello World"
+            }
+            <div>
+                <ul class="no-bullets indent10">
+                    <li>
+                        <strong><em>ohne</em></strong> geschweifte Klammern<br/>
+                        <comment>Wann? Nur eine Zeile</comment>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="fragment sidebyside p40_60">
+            @comp.snippet {
+                |def hello(): String =
+                |   "Hello World"
+            }
+            <div>
+                <ul class="no-bullets indent10">
+                    <li>
+                        <strong><em>ohne</em></strong> <code>return</code><br/>
+                        <comment>Wann? Immer, Rückgabe ist Ergebnis des letzten Ausdrucks</comment>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="fragment sidebyside p40_60">
+            @comp.snippet {
+                |def hello: String =
+                |   "Hello World"
+            }
+            <div>
+                <ul class="no-bullets indent10">
+                    <li>
+                        <strong><em>ohne</em></strong> Parameterliste<br/>
+                        <comment>Wann? Keine Parameter</comment>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="fragment sidebyside p40_60">
+            @comp.snippet {
+                |def hello =
+                |   "Hello World"
+            }
+            <div>
+                <ul class="no-bullets indent10">
+                    <li>
+                        <strong><em>ohne</em></strong> Rückgabetyp<br/>
+                        <comment>Wann? Nicht rekursiv oder überladen</comment>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="fragment sidebyside p40_60">
+            @comp.snippet {
+                |def hello = "Hello World"
+            }
+            <div>
+                <ul class="no-bullets indent10">
+                    <li>
+                        <strong><em>ohne</em></strong> Zeilenumbruch
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <h3>Methoden<em>def</em>inition</h3>
+
+        <div class="sidebyside">
+            <div>
+                @comp.snippet {
+                    |def double(x: Int) = 2 * x
+                }
+            </div>
+            <div>
+                @comp.console {
+                    |double: (x: Int)Int
+                }
+            </div>
+        </div>
+
+        <hr/>
+
+        <div class="fragment sidebyside">
+            <div>
+                @comp.snippet {
+                    |def add(x: Float, y: Float) =
+                    |   x + y
+                }
+            </div>
+            <div>
+                @comp.console {
+                    |add: (x: Float, y: Float)Float
+                }
+            </div>
+        </div>
+
+        <hr/>
+
+        @comp.infobox() {
+            Parameter werden durch Komma getrennt und müssen einen Typ haben.
+        }
+    </section>
+
+
+    <!--<section>
+        <h3>Variablen <var><></var> Methoden</h3>
+
+        <div>
+            <div class="sidebyside">
+                @comp.snippet {
+                    |val rand = util.Random.nextInt(10)
+                    |
+                    |println(rand)
+                    |println(rand)
+                }
+                @comp.snippet {
+                    |def rand = util.Random.nextInt(10)
+                    |
+                    |println(rand)
+                    |println(rand)
+                }
+            </div>
+        </div>
+
+        <div class="fragment">
+            <div class="sidebyside">
+                @comp.console {
+                    |rand: Int = 6
+                    |6
+                    |6
+                }
+                @comp.console {
+                    |rand: Int
+                    |3
+                    |9
+                }
+            </div>
+        </div>
+
+        @comp.infobox() {
+            <code>val</code> wird einmal berechnet und <strong>speichert</strong> das Ergebnis, <br/>
+            <code>def</code> wird bei jedem Aufruf <strong>neu berechnet</strong>.
+        }
+    </section>-->
+
+
+    <section>
+        <h3>Zusammenfassung</h3>
+
+        @summary.methoden()
+    </section>
+
+</div>
+}

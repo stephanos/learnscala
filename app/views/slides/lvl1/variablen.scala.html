@@ -1,0 +1,281 @@
+@layout.slide("Variablen") {
+
+<div class="slides">
+
+
+    <section>
+        <h1><em>Va</em>riab<em>l</em>en</h1>
+        <hr/>
+        <!--<h3 class="banner">Ein kleiner Schritt für einen Entwickler ...</h3>-->
+    </section>
+
+
+    <section>
+        <h3><em>Va</em>riab<em>l</em>en</h3>
+
+        <div class="sidebyside p40_60">
+            <div>
+                @comp.snippet {
+                    |42
+                }
+                @comp.console {
+                    |res0: Int = 42
+                }
+            </div>
+
+            <div>
+                <ul class="indent">
+                    <li class="fragment">
+                        <code>res0</code> ist der Name der Variable <br/>
+                        <comment>(fortlaufend nummeriert)</comment>
+                    </li>
+                    <li class="fragment">
+                        <code>Int</code> ist Typ der Variable <br/>
+                        <comment>(automatisch ermittelt)</comment>
+                    </li>
+                    <li class="fragment">
+                        <code>42</code> ist Wert der Variable <br/>
+                        <comment>(via <code>toString()</code>)</comment>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <h3><em>Va</em>riab<em>l</em>en</h3>
+
+        <div class="sidebyside">
+            @comp.snippet {
+                |42.toString()
+            }
+            @comp.console {
+                |res0: java.lang.String = 42
+            }
+        </div>
+
+        <div class="fragment sidebyside">
+            @comp.snippet {
+                |42.isWhole()
+            }
+            @comp.console {
+                |res1: Boolean = true
+            }
+        </div>
+
+        <div class="fragment sidebyside">
+            @comp.snippet {
+                |42.==(42)
+            }
+            @comp.console {
+                |res2: Boolean = true
+            }
+        </div>
+
+        <hr/>
+
+        @comp.infobox() {
+            Alles ist ein Objekt. Alles!
+        }
+    </section>
+
+
+    <section>
+        <h3><em>Va</em>riab<em>l</em>en</h3>
+
+        <div class="sidebyside">
+            <div>
+                @comp.snippet {
+                    |val meaningOfLife: Int = 42
+                }
+                @comp.console {
+                    |meaningOfLife: Int = 42
+                }
+            </div>
+            <div>
+                <ul class="indent">
+                    <li class="fragment">
+                        <code>val</code> beginnt Variable
+                    </li>
+                    <li class="fragment">
+                        <code>meaningOfLife</code> ist der Name
+                    </li>
+                    <li class="fragment">
+                        <code>:</code> trennt Name und Typ
+                    </li>
+                    <li class="fragment">
+                        <code>Int</code> ist der Typ
+                    </li>
+                    <li class="fragment">
+                        <code>=</code> weist Wert zu
+                    </li>
+                    <li class="fragment">
+                        <code>42</code> ist der Wert
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        @comp.infobox() {
+            <code>val</code> leitet eine Variable ein, der Typ folgt <strong>hinter</strong> dem Namen.
+        }
+
+    </section>
+
+
+    <section>
+        <h3><em>Va</em>riab<em>l</em>en</h3>
+
+        <div class="sidebyside">
+            @comp.snippet {
+                |val meaningOfLife: Int = 42
+                |
+                |meaningOfLife = 101
+            }
+            @comp.console {
+                |meaningOfLife: Int = 42
+                |
+                |<console>:8: error: reassignment to val
+                |   meaningOfLife = 101
+                |                 ^
+            }
+        </div>
+
+        <hr/>
+
+        @comp.infobox() {
+            <code>val</code> kann nicht überschrieben werden, sie ist unveränderlich (immutable).
+        }
+
+    </section>
+
+
+    <section>
+        <h3><em>Va</em>riab<em>l</em>en</h3>
+
+        <div class="sidebyside p45_55">
+            @comp.snippet {
+                |val meaningOfLife: Int = "Java"
+            }
+            @comp.console {
+                |<console>:7: error: type mismatch;
+                |found   : java.lang.String("Java")
+                |required: Int
+                |       val meaningOfLife: Int = "Java"
+                |                                ^
+            }
+        </div>
+
+        <hr/>
+
+        @comp.infobox() {
+            Der Compiler stellt sicher, dass Variablentyp und -wert zusammenpassen.
+        }
+    </section>
+
+
+    <section>
+        <h3><em>Va</em>riab<em>l</em>en</h3>
+
+        <div class="sidebyside p45_55">
+            @comp.snippet {
+                |val meaningOfLife = 42
+                |
+                |val pi = 3.14f
+            }
+            <div>
+                @comp.console {
+                    |meaningOfLife: Int = 42
+                    |
+                    |pi: Float = 3.14
+                }
+            </div>
+        </div>
+
+        <hr/>
+
+        @comp.infobox() {
+            Der Variablentyp kann weggelassen werden, der Compiler leitet ihn ab.
+        }
+    </section>
+
+
+    <section>
+        <h3><var>Var</var>iablen</h3>
+
+        <div class="sidebyside p40_60">
+            @comp.snippet {
+                |var pi = 3.14f
+                |pi = 3.0f
+            }
+            @comp.console {
+                |pi: Float = 3.14
+                |pi: Float = 3.0
+            }
+        </div>
+
+        <hr/><hr/>
+
+        @comp.infobox() {
+            <code>var</code> kann überschrieben werden, sie ist veränderlich (mutable).
+        }
+        @comp.warnbox() {
+            <code>var</code> sollte vermieden und nur in Ausnahmefällen eingesetzt werden.
+        }
+
+        <details>
+            <a href="http://stackoverflow.com/questions/1791408/what-is-the-difference-between-a-var-and-val-definition-in-scala">
+                What is the difference between a var and val definition in Scala?
+            </a>
+        </details>
+    </section>
+
+
+    <!--<section>
+        <h3><em>Optionale</em> Semikolons</h3>
+
+        <hr/>
+
+        <div class="sidebyside p40_60">
+            @comp.snippet {
+                |val hello1 = "Hello"
+                |val hello2 = "Hello";
+            }
+            @comp.console {
+                |hello1: java.lang.String = Hello
+                |hello2: java.lang.String = Hello
+            }
+        </div>
+
+        <hr/><hr/>
+
+        <div class="sidebyside p40_60 fragment">
+            @comp.snippet {
+                |val h1="Hi"; val h2="Hi"
+            }
+            @comp.console {
+                |hello: java.lang.String = Hello
+                |hello2: java.lang.String = Hello
+            }
+        </div>
+
+        <hr/>
+
+        <div class="fragment indent20">
+            <ul class="no-bullets">
+                <li><strong><em>Tipp:</em></strong> Semikolons weglassen</li>
+                <li><strong><var>Ausnahme:</var></strong> mehrere Anweisungen in einer Zeile</li>
+            </ul>
+        </div>
+    </section>-->
+
+
+    <section>
+        <h3>Zusammenfassung</h3>
+
+        @summary.variablen()
+    </section>
+
+</div>
+}
