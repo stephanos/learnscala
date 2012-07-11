@@ -2,13 +2,15 @@
 
 <div class="@clazz sidebyside p60_40">
     @comp.snippet {
-        |val one: Int = 1   // explizite Typen
-        |val two = 1L
-        |val pi = 3.14f     // erkannte Typen
+        |val one: Int = 1    // explizite Typen
+        |val two: Double = 1
+        |val three = 3L      // erkannte Typen
+        |val pi = 3.14f
     }
     @comp.console {
         |one: Int = 1
-        |two: Long = 1
+        |two: Double = 1.0
+        |three: Long = 3
         |pi: Float = 3.14
     }
 </div>
@@ -27,7 +29,7 @@
 <div class="@clazz sidebyside p60_40">
     @comp.snippet {
         |val pi = 3.14f
-        |pi.isWhole         // Zahlen sind Objekte
+        |pi.isWhole          // Zahlen sind Objekte
     }
     @comp.console {
         |pi: Float = 3.14
@@ -38,7 +40,7 @@
 <div class="@clazz sidebyside p60_40">
     @comp.snippet {
         |42.==(42)
-        |42./(42)           // Operatoren sind Methoden
+        |42./(42)            // Operatoren sind Methoden
     }
     @comp.console {
         |res2: Boolean = true
@@ -49,7 +51,7 @@
 <div class="@clazz sidebyside p60_40">
     @comp.snippet {
         |var pi = 3.14f
-        |pi = 3.0f          // var ist überschreibbar
+        |pi = 3.0f           // var ist überschreibbar
     }
     @comp.console {
         |pi: Float = 3.14
