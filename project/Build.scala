@@ -1,19 +1,30 @@
 import sbt._
+import Keys._
 
 object ProjectBuild extends MyBuild {
 
     val v = "0.1"
-    val org = "com.learnscala"
+    val org = "de.learnscala"
     val modBase = "modules/"
 
+    lazy val root =
+        Project("learnscala", file("."))
+            .aggregate(frontend, exercises)
 
-    lazy val app_web =
-        MyProject("learnscala", file("."))
+
+    // ==== PROJECTS
+
+    lazy val frontend =
+        MyProject("frontend", file("frontend"))
             .settings(myPlaySettings: _*)
+            //.settings(libraryDependencies ++= Seq(sun_tools))
             .dependsOn(mod_web_play, mod_data_mongo, mod_test_unit % "test->test")
 
-    //lazy val exercises =
-    //    MyProject("exercises", file("exercises"), isCloud)
+    lazy val exercises = // cannot use RootProject ("AttributeKey ID collisions detected for: 'pgp-signer'")
+        MyProject("exercises", file("exercises"), isCloud)
+            .settings(libraryDependencies ++= Seq(http))
+            .settings(libraryDependencies ++= Seq(Test.specs2, Test.mockito))
+            .settings(libraryDependencies ++= Seq(squeryl, Test.h2).map(_.copy(configurations = Some("compile"))))
 
 
     // ==== SETTINGS
@@ -21,6 +32,9 @@ object ProjectBuild extends MyBuild {
     override lazy val settings =
         super.settings ++ buildSettings
 
-}
 
-//[search path for class files: D:\Applications\Java\jre7\lib\resources.jar;D:\Applications\Java\jre7\lib\rt.jar;D:\Applications\Java\jre7\lib\jsse.jar;D:\Applications\Java\jre7\lib\jce.jar;D:\Applications\Java\jre7\lib\charsets.jar;D:\Applications\Java\jre7\lib\ext\dnsns.jar;D:\Applications\Java\jre7\lib\ext\localedata.jar;D:\Applications\Java\jre7\lib\ext\sunec.jar;D:\Applications\Java\jre7\lib\ext\sunjce_provider.jar;D:\Applications\Java\jre7\lib\ext\sunmscapi.jar;D:\Applications\Java\jre7\lib\ext\zipfs.jar;D:\work\dev\tools\sbt\sbt-launch.jar;.]
+    // ==== DEPENDENCIES
+
+    lazy val sun_tools =
+        "com.sun" % "tools" % "1.6.0" from ("file:///" + jdkHome + fileSep + "lib" + fileSep + "tools.jar")
+}

@@ -76,7 +76,7 @@
         <hr/>
 
         @comp.infobox() {
-            Alles ist ein Objekt. Alles!
+            Alles ist ein Objekt und jedes Objekt kann Operatoren als Methoden haben.
         }
     </section>
 
@@ -279,8 +279,86 @@
 
 
     <section>
-        <h3>Übung</h3>
+        <h3>Quiz</h3>
 
+        <div class="sidebyside">
+            @comp.snippet {
+                |val r = 42f
+            }
+            <div class="fragment">
+            @comp.console {
+                |r: Float = 42
+            }
+            </div>
+        </div>
+
+        <div class="sidebyside">
+            @comp.snippet {
+                |val r = 5.*5
+            }
+            <div class="fragment">
+            @comp.console {
+                |r: Double = 25.0
+            }
+            </div>
+        </div>
+
+        <div class="sidebyside">
+            @comp.snippet {
+                |val r = 24.==(42)
+            }
+            <div class="fragment">
+            @comp.console {
+                |r: Boolean = false
+            }
+            </div>
+        </div>
+
+        <div class="sidebyside">
+            @comp.snippet {
+                |val r = 42 isWhole
+            }
+            <div class="fragment">
+            @comp.console {
+                |r: Boolean = true
+            }
+            </div>
+        </div>
+
+        <div class="sidebyside">
+            @comp.snippet {
+                |val r = (5.)*5
+            }
+            <div class="fragment">
+            @comp.console {
+                |r: Double = 25.0
+            }
+            </div>
+        </div>
+
+        <div class="sidebyside">
+            <div class="fragment">
+            @comp.snippet {
+                |var r = 1L
+                |r = 25
+            }
+            </div>
+            @comp.console {
+                |r: Long = 1
+                |r: Long = 25
+            }
+        </div>
+
+        <div class="sidebyside">
+            @comp.snippet {
+                |val r = (5).*(5)
+            }
+            <div class="fragment">
+            @comp.console {
+                |r: Int = 25
+            }
+            </div>
+        </div>
 
     </section>
 

@@ -8,12 +8,7 @@ trait Settings extends TaskStage with Env {
 
     val v: String
     val org: String
-
-    lazy val buildSettings = Seq(
-        organization := org,
-        scalaVersion := "2.9.1",
-        version := v
-    )
+    val buildScalaVersion = "2.9.1"
 
     lazy val excludes =
         new sbt.FileFilter {
@@ -74,6 +69,13 @@ trait Settings extends TaskStage with Env {
         }, {
             (lessFile, options) => Compiler4Less.compile(lessFile)
         }, lessOptions)*/
+
+    lazy val buildSettings =
+        Seq(
+            scalaVersion := buildScalaVersion,
+            organization := org,
+            version := v
+        )
 
     lazy val myPlaySettings =
         buildSettings ++ defaultSettings ++ defaultScalaSettings ++ stageSettings ++ Seq(
@@ -280,6 +282,7 @@ trait Deps {
         ExclusionRule(organization = "org.springframework"),
         ExclusionRule(organization = "net.sf.ehcache"),
         ExclusionRule(organization = "com.codahale"),
+        ExclusionRule(name = "sbt-idea"),
         ExclusionRule(name = "bonecp"),
         ExclusionRule(name = "ebean"),
         ExclusionRule(name = "anorm"),
@@ -792,6 +795,16 @@ trait Env {
 
     lazy val isCloud =
         System.getProperty("os.name").contains("nux")
+
+    lazy val jdkHome = {
+        val jdk = Option(System.getProperty("jdk.home", System.getProperty("jdk_home")))
+        val jre = Option(System.getProperty("java.home", System.getProperty("java_home")))
+        val path = jdk.getOrElse(jre.map(_ + fileSep + "..").getOrElse("/usr/lib/jdk"))
+        new File(path).getAbsolutePath
+    }
+
+    val fileSep =
+        java.io.File.separator
 
     def filesWithExt(base: File, ext: String) =
         IO.listFiles(base, new FileFilter() {

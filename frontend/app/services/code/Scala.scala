@@ -17,7 +17,7 @@ class Scala {
     }
 
     def decode(code: String) = {
-        val scala = decoder()
+        val scala = new ScalaDecoder()
         scala.exec(code)
     }
 
