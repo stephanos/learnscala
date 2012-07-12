@@ -1,5 +1,6 @@
 import sbt._
 import Keys._
+import org.sbtidea._
 
 object ProjectBuild extends MyBuild {
 
@@ -30,7 +31,7 @@ object ProjectBuild extends MyBuild {
     // ==== SETTINGS
 
     override lazy val settings =
-        super.settings ++ buildSettings
+        super.settings ++ SbtIdeaPlugin.ideaSettings ++ buildSettings
 
 
     // ==== DEPENDENCIES

@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/exercises.iml" filepath="$PROJECT_DIR$/.idea_modules/exercises.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/exercises-build.iml" filepath="$PROJECT_DIR$/.idea_modules/exercises-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/frontend.iml" filepath="$PROJECT_DIR$/.idea_modules/frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/learnscala.iml" filepath="$PROJECT_DIR$/.idea_modules/learnscala.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/learnscala-build.iml" filepath="$PROJECT_DIR$/.idea_modules/learnscala-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-data-cache.iml" filepath="$PROJECT_DIR$/.idea_modules/module-data-cache.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-data-mongo.iml" filepath="$PROJECT_DIR$/.idea_modules/module-data-mongo.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-data-redis.iml" filepath="$PROJECT_DIR$/.idea_modules/module-data-redis.iml" />
@@ -12,7 +16,6 @@
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-test-web.iml" filepath="$PROJECT_DIR$/.idea_modules/module-test-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-util.iml" filepath="$PROJECT_DIR$/.idea_modules/module-util.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-web-play.iml" filepath="$PROJECT_DIR$/.idea_modules/module-web-play.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea_modules/project.iml" filepath="$PROJECT_DIR$/.idea_modules/project.iml" />
     </modules>
   </component>
 </project>

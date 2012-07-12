@@ -8,7 +8,12 @@ trait Settings extends TaskStage with Env {
 
     val v: String
     val org: String
-    val buildScalaVersion = "2.9.1"
+
+    lazy val buildSettings = Seq(
+        organization := org,
+        scalaVersion := "2.9.1",
+        version := v
+    )
 
     lazy val excludes =
         new sbt.FileFilter {
@@ -69,13 +74,6 @@ trait Settings extends TaskStage with Env {
         }, {
             (lessFile, options) => Compiler4Less.compile(lessFile)
         }, lessOptions)*/
-
-    lazy val buildSettings =
-        Seq(
-            scalaVersion := buildScalaVersion,
-            organization := org,
-            version := v
-        )
 
     lazy val myPlaySettings =
         buildSettings ++ defaultSettings ++ defaultScalaSettings ++ stageSettings ++ Seq(
@@ -139,6 +137,9 @@ trait Modules {
         MyProject("module-web-play", file(modBase + "module-web-play"))
             .settings(libraryDependencies ++= Seq(playWeb)) // Test.playTest
             .settings(moduleSettings: _*)
+            /*libraryDependencies <+= (sbtVersion) {
+                sbtVersion => Defaults.sbtPluginExtra(module, sbtVersion, localScalaVersion)
+            }*/
             .dependsOn(mod_util, mod_data_cache, mod_test_web % "test->test")
 
     // === DATA
@@ -282,7 +283,6 @@ trait Deps {
         ExclusionRule(organization = "org.springframework"),
         ExclusionRule(organization = "net.sf.ehcache"),
         ExclusionRule(organization = "com.codahale"),
-        ExclusionRule(name = "sbt-idea"),
         ExclusionRule(name = "bonecp"),
         ExclusionRule(name = "ebean"),
         ExclusionRule(name = "anorm"),
