@@ -33,8 +33,13 @@
 }
 
 .cm-s-ambiance {
-    font-size: @fs_code;
-    line-height: 2 * @fs_code;
+    .fs(@mult: 1.0) {
+        font-size: @fs_code * @mult;
+        line-height: 2 * @fs_code * @mult;
+    }
+    .fs();
+    &.output { .fs(0.8); }
+
     font-family: "Inconsolata", monospace !important;
 
     /*

@@ -16,13 +16,15 @@
         } {
             <div class="sidebyside">
                 <div>
-                    @comp.snippet() {
-                        |def hello(): String = {
-                        |   return "Hello World"
-                        |}
-                    }
-                    @comp.console() {
-                        |hello: String
+                    @comp.code() {
+                        @comp.sourceblock() {
+                            |def hello(): String = {
+                            |   return "Hello World"
+                            |}
+                        }
+                        @comp.outblock() {
+                            |hello: String
+                        }
                     }
                 </div>
                 <div>
@@ -67,28 +69,27 @@
             Methoden: Unit
         } {
             <div class="sidebyside">
-                <div>
-                    @comp.snippet() {
+                @comp.code() {
+                    @comp.sourceblock() {
                         |def hello() = {
                         |   println("Hello World")
                         |}
                     }
-                    <div class="fragment">
-                        @comp.console() {
-                            |hello: Unit
-                        }
-                    </div>
-                </div>
-                <div class="fragment">
-                    @comp.snippet() {
+                    @comp.outblock() {
+                        |hello: Unit
+                    }
+                }
+
+                @comp.code(fragment = true) {
+                    @comp.sourceblock() {
                         |def hello() {
                         |   println("Hello World")
                         |}
                     }
-                    @comp.console() {
+                    @comp.outblock() {
                         |hello: Unit
                     }
-                </div>
+                }
             </div>
 
             <hr/>
@@ -105,7 +106,7 @@
             Methoden: Optionales
         } {
             <div class="fragment sidebyside p40_60">
-                @comp.snippet(id = "hello") {
+                @comp.sourcecode(id = "hello") {
                     |def hello(): String =
                     |   return "Hello World"
                 }
@@ -119,8 +120,10 @@
                 </div>
             </div>
 
+            <hr/>
+
             <div class="fragment sidebyside p40_60">
-                @comp.snippet() {
+                @comp.sourcecode() {
                     |def hello(): String =
                     |   "Hello World"
                 }
@@ -134,8 +137,10 @@
                 </div>
             </div>
 
+            <hr/>
+
             <div class="fragment sidebyside p40_60">
-                @comp.snippet() {
+                @comp.sourcecode() {
                     |def hello: String =
                     |   "Hello World"
                 }
@@ -149,8 +154,10 @@
                 </div>
             </div>
 
+            <hr/>
+
             <div class="fragment sidebyside p40_60">
-                @comp.snippet() {
+                @comp.sourcecode() {
                     |def hello =
                     |   "Hello World"
                 }
@@ -164,8 +171,10 @@
                 </div>
             </div>
 
+            <hr/>
+
             <div class="fragment sidebyside p40_60">
-                @comp.snippet() {
+                @comp.sourcecode() {
                     |def hello = "Hello World"
                 }
                 <div>
@@ -185,31 +194,36 @@
             Methoden: Parameter
         } {
             <div class="sidebyside">
-                <div>
-                    @comp.snippet(id = "double"){
-                        |def double(x: Int) = 2 * x
+                @comp.code() {
+                    @comp.sourceblock(id = "double") {
+                        |def double(x: Int) =
+                        |   2 * x
                     }
-                </div>
-                <div>
-                    @comp.console() {
+                    @comp.outblock() {
                         |double: (x: Int)Int
                     }
+                }
+                <div>
+                    Methode <code>double</code> mit 1 <code>Int</code>-Parameter
+                    und Rückgabetyp <code>Int</code>
                 </div>
             </div>
 
             <hr/>
 
             <div class="fragment sidebyside">
-                <div>
-                    @comp.snippet(id = "add") {
+                @comp.code() {
+                    @comp.sourceblock(id = "add") {
                         |def add(x: Float, y: Float) =
                         |   x + y
                     }
-                </div>
-                <div>
-                    @comp.console() {
+                    @comp.outblock() {
                         |add: (x: Float, y: Float)Float
                     }
+                }
+                <div>
+                    Methode <code>add</code> mit 2 <code>Float</code>-Parameter
+                    und Rückgabetyp <code>Float</code>
                 </div>
             </div>
 
@@ -226,59 +240,66 @@
         @comp.headbody() {
             Methoden: Aufruf
         } {
-            <div class="sidebyside">
-                <div>
-                    @comp.snippet() {
-                        |42.isWhole()
+            <div class="sidebyside p40_60">
+                @comp.code() {
+                    @comp.callblock() {
                         |42.isWhole
                     }
-                </div>
-                <div>
-                    @comp.console() {
-                        |res0: Boolean = true
+                    @comp.outblock() {
                         |res1: Boolean = true
                     }
+                }
+                <div>
+                    Aufruf der <em>parameterlosen</em> Methode <code>isWhole</code>
                 </div>
             </div>
 
             <hr/>
 
-            <div class="fragment sidebyside">
-                <div>
-                    @comp.snippet() {
+            <div class="fragment sidebyside p40_60">
+                @comp.code() {
+                    @comp.callblock() {
                         |42.compare(42)
+                    }
+                    @comp.outblock() {
+                        |res0: Int = 0
+                    }
+                    @comp.callblock() {
                         |42 compare(42)
+                    }
+                    @comp.outblock() {
+                        |res1: Int = 0
+                    }
+                    @comp.callblock() {
                         |42 compare 42
                     }
-                </div>
-                <div>
-                    @comp.console() {
-                        |res0: Int = 0
-                        |res1: Int = 0
+                    @comp.outblock() {
                         |res2: Int = 0
                     }
+                }
+                <div>
+                    Aufruf der <em>1-parametrigen</em> Methode <code>compare</code>
                 </div>
             </div>
 
             <hr/>
 
-            <div class="fragment sidebyside">
-                <div>
-                    @comp.snippet(reference = "add") {
+            <div class="fragment sidebyside p40_60">
+                @comp.code() {
+                    @comp.callblock() {
                         |add (1, 2)
                     }
-                </div>
-                <div>
-                    @comp.console() {
+                    @comp.outblock() {
                         |res0: Float = 3.0
                     }
+                }
+                <div>
+                    Aufruf der <em>2-parametrigen</em> Methode <code>add</code>
                 </div>
             </div>
 
-            <hr/>
-
             @comp.tipbox() {
-                Runde Klammern können bei Methoden ohne oder mit nur 1 Parameter weggelassen werden.
+                Runde Klammern bei Methoden ohne oder mit nur 1 Parameter sind optional.
             }
         }
     </section>

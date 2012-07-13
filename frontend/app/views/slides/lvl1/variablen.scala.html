@@ -20,7 +20,7 @@
                         @comp.callblock() {
                             |42
                         }
-                        @comp.consoleblock() {
+                        @comp.outblock() {
                             |res0: Int = 42
                         }
                     }
@@ -56,7 +56,7 @@
                     @comp.callblock() {
                         |42.toString()
                     }
-                    @comp.consoleblock() {
+                    @comp.outblock() {
                         |res0: java.lang.String = 42
                     }
                 }
@@ -72,7 +72,7 @@
                     @comp.callblock() {
                         |42.isWhole()
                     }
-                    @comp.consoleblock() {
+                    @comp.outblock() {
                         |res1: Boolean = true
                     }
                 }
@@ -88,7 +88,7 @@
                     @comp.callblock() {
                         |42.==(42)
                     }
-                    @comp.consoleblock() {
+                    @comp.outblock() {
                         |res2: Boolean = true
                     }
                 }
@@ -116,7 +116,7 @@
                         @comp.callblock() {
                             |val meaningOfLife: Int = 42
                         }
-                        @comp.consoleblock() {
+                        @comp.outblock() {
                             |meaningOfLife: Int = 42
                         }
                     }
@@ -163,13 +163,13 @@
                     @comp.callblock() {
                         |val meaningOfLife: Int = 42
                     }
-                    @comp.consoleblock() {
+                    @comp.outblock() {
                         |meaningOfLife: Int = 42
                     }
                     @comp.callblock() {
                         |meaningOfLife = 101
                     }
-                    @comp.consoleblock() {
+                    @comp.outblock() {
                         |<console>:8: error: reassignment to val
                         |   meaningOfLife = 101
                         |                   ^
@@ -199,7 +199,7 @@
                     @comp.callblock() {
                         |val meaningOfLife: Int = "Java"
                     }
-                    @comp.consoleblock() {
+                    @comp.outblock() {
                         |<console>:7: error: type mismatch;
                         |found   : java.lang.String("Java")
                         |required: Int
@@ -231,7 +231,7 @@
                     @comp.callblock() {
                         |val meaningOfLife = 42
                     }
-                    @comp.consoleblock() {
+                    @comp.outblock() {
                         |meaningOfLife: Int = 42
                     }
                 }
@@ -248,13 +248,13 @@
                     @comp.callblock() {
                         |val pi = 3.14f
                     }
-                    @comp.consoleblock() {
+                    @comp.outblock() {
                         |pi: Float = 3.14
                     }
                 }
                 <div>
                     <code>pi</code> wird mit dem Wert <code>3.14f</code> initialisiert,
-                    der Compiler erkennt darin den Typ <code>Float</code>
+                    der Compiler erkennt den Typ <code>Float</code>
                 </div>
             </div>
 
@@ -276,13 +276,13 @@
                     @comp.callblock() {
                         |var pi = 3.14f
                     }
-                    @comp.consoleblock() {
+                    @comp.outblock() {
                         |pi: Float = 3.14
                     }
                     @comp.callblock() {
                         |pi = 3.0f
                     }
-                    @comp.consoleblock() {
+                    @comp.outblock() {
                         |pi: Float = 3.0
                     }
                 }

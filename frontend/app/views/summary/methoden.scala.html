@@ -1,45 +1,74 @@
 @(clazz: String = "fragment")
 
-<div class="@clazz sidebyside p60_40">
-    @comp.snippet() {
-        |// Methode ohne Parameter und Typ Unit
-        |def printHello() {
-        |   println("Hello")
-        |}
-        |printHello()
-        |printHello
-    }
-    @comp.console() {
-        |printHello: ()Unit
-        |Hello
-        |Hello
-    }
+<div class="@clazz sidebyside">
+    <div>
+        @comp.code() {
+            @comp.sourceblock() {
+                |def printHello() {
+                |   println("Hello")
+                |}
+            }
+            @comp.outblock() {
+                |printHello: ()Unit
+            }
+            @comp.callblock() {
+                |printHello()
+                |printHello
+            }
+            @comp.outblock() {
+                |Hello
+                |Hello
+            }
+        }
+        <sub>
+            Methode mit Typ <code>Unit</code> und ohne Parameter
+        </sub>
+    </div>
+    <div>
+        @comp.code() {
+            @comp.sourceblock() {
+                |def double(x: Int): Int = {
+                |   2 * x
+                |}
+            }
+            @comp.outblock() {
+                |double: (x: Int)Int
+            }
+            @comp.callblock() {
+                |double(5)
+                |double 5
+            }
+            @comp.outblock() {
+                |res0: Int = 10
+                |res1: Int = 10
+            }
+        }
+        <sub>
+            Methode mit Typ <code>Int</code> und 1 Parameter
+        </sub>
+    </div>
 </div>
 
-<div class="@clazz sidebyside p60_40">
-    @comp.snippet() {
-        |// Methode mit 1 Parameter und Typ Int
-        |def double(x: Int): Int = {
-        |   2 * x
-        |}
-        |double(5)
-        |double 5
-    }
-    @comp.console() {
-        |double: (x: Int)Int
-        |res0: Int = 10
-        |res1: Int = 10
-    }
-</div>
+<hr/>
 
-<div class="@clazz sidebyside p60_40">
-    @comp.snippet() {
-        |// Methode mit 2 Parametern und Typ Int
-        |def add(x: Int, y: Int) = x + y
-        |val result = add(5, 5)
-    }
-    @comp.console() {
-        |add: (x: Int, y: Int)Int
-        |res0: Int = 10
-    }
+<div class="@clazz sidebyside">
+    <div>
+        @comp.code() {
+            @comp.sourceblock() {
+                |def add(x: Int, y: Int) = x + y
+            }
+            @comp.outblock() {
+                |add: (x: Int, y: Int)Int
+            }
+            @comp.callblock() {
+                |add(5, 5)
+            }
+            @comp.outblock() {
+                |res0: Int = 10
+            }
+        }
+        <sub>
+            Methode mit Typ <code>Int</code> und 2 Parametern
+        </sub>
+    </div>
 </div>

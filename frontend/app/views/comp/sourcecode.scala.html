@@ -1,3 +1,7 @@
 @(id: String = null, fragment: Boolean = false, include: String = null, reference: String = null)(data: Html)
 
-@codeblock("source call", id, fragment, include, reference)(data)
+@comp.code(fragment = fragment) {
+    @comp.sourceblock(id, false, include, reference) {
+        @data
+    }
+}

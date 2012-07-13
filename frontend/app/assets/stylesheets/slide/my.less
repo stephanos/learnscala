@@ -160,7 +160,11 @@
             }
 
             >ul {
-                margin-left: 50px;
+                margin-left: @margin * 2;
+            }
+
+            &:first-child {
+                margin-top: 0;
             }
         }
         &.no-bullets {
@@ -270,5 +274,10 @@
             box-shadow: none;
             border: none;
         }
+    }
+
+    sub {
+        margin-top: @margin / 2;
+        font-size: 90%;
     }
 }
