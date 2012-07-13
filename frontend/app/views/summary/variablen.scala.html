@@ -1,7 +1,7 @@
 @(clazz: String = "fragment")
 
 <div class="@clazz sidebyside p60_40">
-    @comp.snippet {
+    @comp.snippet() {
         |val one: Int = 1    // explizite Typen
         |val two: Double = 1
         |val three = 3L      // erkannte Typen
@@ -16,7 +16,7 @@
 </div>
 
 <div class="@clazz sidebyside p60_40">
-    @comp.snippet {
+    @comp.snippet() {
         |val pi = 3.14f
         |pi = 3              // val ist endgültig
     }
@@ -27,7 +27,7 @@
 </div>
 
 <div class="@clazz sidebyside p60_40">
-    @comp.snippet {
+    @comp.snippet() {
         |val pi = 3.14f
         |pi.isWhole          // Zahlen sind Objekte
     }
@@ -38,7 +38,7 @@
 </div>
 
 <div class="@clazz sidebyside p60_40">
-    @comp.snippet {
+    @comp.snippet() {
         |42.==(42)
         |(42)./(42)          // Operatoren sind Methoden
     }
@@ -49,7 +49,7 @@
 </div>
 
 <div class="@clazz sidebyside p60_40">
-    @comp.snippet {
+    @comp.snippet() {
         |var pi = 3.14f
         |pi = 3.0f           // var ist überschreibbar
     }

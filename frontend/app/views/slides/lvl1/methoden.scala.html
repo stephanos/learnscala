@@ -4,18 +4,18 @@
 
 
     <section>
-        <h1>Methoden<em>def</em>inition</h1>
+        <h1>Methoden</h1>
         <hr/>
-        <!--<h3 class="banner">Ein kleiner Schritt für einen Entwickler ...</h3>-->
+        <h3 class="banner">und Ihre <em>Def</em>inition</h3>
     </section>
 
 
     <section>
-        <h3>Methoden<em>def</em>inition</h3>
+        <h3>Methoden: <em>Def</em>inition</h3>
 
         <div class="sidebyside">
             <div>
-                @comp.snippet {
+                @comp.snippet() {
                     |def hello(): String = {
                     |   return "Hello World"
                     |}
@@ -62,11 +62,11 @@
 
 
     <section>
-        <h3>Methoden<em>def</em>inition: Unit</h3>
+        <h3>Methoden: Unit</h3>
 
         <div class="sidebyside">
             <div>
-                @comp.snippet {
+                @comp.snippet() {
                     |def hello() = {
                     |   println("Hello World")
                     |}
@@ -78,7 +78,7 @@
                 </div>
             </div>
             <div class="fragment">
-                @comp.snippet {
+                @comp.snippet() {
                     |def hello() {
                     |   println("Hello World")
                     |}
@@ -98,10 +98,10 @@
 
 
     <section>
-        <h3>Methoden<em>def</em>inition: Optionales</h3>
+        <h3>Methoden: Optionales</h3>
 
         <div class="fragment sidebyside p40_60">
-            @comp.snippet {
+            @comp.snippet(id = "hello") {
                 |def hello(): String =
                 |   return "Hello World"
             }
@@ -116,7 +116,7 @@
         </div>
 
         <div class="fragment sidebyside p40_60">
-            @comp.snippet {
+            @comp.snippet() {
                 |def hello(): String =
                 |   "Hello World"
             }
@@ -131,7 +131,7 @@
         </div>
 
         <div class="fragment sidebyside p40_60">
-            @comp.snippet {
+            @comp.snippet() {
                 |def hello: String =
                 |   "Hello World"
             }
@@ -146,7 +146,7 @@
         </div>
 
         <div class="fragment sidebyside p40_60">
-            @comp.snippet {
+            @comp.snippet() {
                 |def hello =
                 |   "Hello World"
             }
@@ -161,7 +161,7 @@
         </div>
 
         <div class="fragment sidebyside p40_60">
-            @comp.snippet {
+            @comp.snippet() {
                 |def hello = "Hello World"
             }
             <div>
@@ -176,11 +176,11 @@
 
 
     <section>
-        <h3>Methoden<em>def</em>inition: Parameter</h3>
+        <h3>Methoden: Parameter</h3>
 
         <div class="sidebyside">
             <div>
-                @comp.snippet {
+                @comp.snippet(id = "double"){
                     |def double(x: Int) = 2 * x
                 }
             </div>
@@ -195,7 +195,7 @@
 
         <div class="fragment sidebyside">
             <div>
-                @comp.snippet {
+                @comp.snippet(id = "add") {
                     |def add(x: Float, y: Float) =
                     |   x + y
                 }
@@ -215,18 +215,78 @@
     </section>
 
 
+    <section>
+        <h3>Methoden: Aufruf</h3>
+
+        <div class="sidebyside">
+            <div>
+                @comp.snippet() {
+                    |42.isWhole()
+                    |42.isWhole
+                }
+            </div>
+            <div>
+                @comp.console {
+                    |res0: Boolean = true
+                    |res1: Boolean = true
+                }
+            </div>
+        </div>
+
+        <hr/>
+
+        <div class="fragment sidebyside">
+            <div>
+                @comp.snippet() {
+                    |42.compare(42)
+                    |42 compare(42)
+                    |42 compare 42
+                }
+            </div>
+            <div>
+                @comp.console {
+                    |res0: Int = 0
+                    |res1: Int = 0
+                    |res2: Int = 0
+                }
+            </div>
+        </div>
+
+        <hr/>
+
+        <div class="fragment sidebyside">
+            <div>
+                @comp.snippet(include = "add") {
+                    |add (1, 2)
+                }
+            </div>
+            <div>
+                @comp.console {
+                    |res0: Float = 3.0
+                }
+            </div>
+        </div>
+
+        <hr/>
+
+        @comp.tipbox() {
+            Runde Klammern können bei Methoden ohne oder mit nur 1 Parameter weggelassen werden.
+        }
+    </section>
+
+
     <!--<section>
         <h3>Variablen <var><></var> Methoden</h3>
 
         <div>
             <div class="sidebyside">
-                @comp.snippet {
+                @comp.snippet() {
                     |val rand = util.Random.nextInt(10)
                     |
                     |println(rand)
                     |println(rand)
                 }
-                @comp.snippet {
+                @comp.snippet() {
                     |def rand = util.Random.nextInt(10)
                     |
                     |println(rand)
@@ -262,6 +322,7 @@
 
         @summary.methoden()
     </section>
+
 
     <section>
         <h3>Quiz</h3>

@@ -1,41 +1,45 @@
 @(clazz: String = "fragment")
 
 <div class="@clazz sidebyside p60_40">
-    @comp.snippet {
+    @comp.snippet() {
         |// Methode ohne Parameter und Typ Unit
         |def printHello() {
         |   println("Hello")
         |}
         |printHello()
+        |printHello
     }
     @comp.console {
         |printHello: ()Unit
+        |Hello
         |Hello
     }
 </div>
 
 <div class="@clazz sidebyside p60_40">
-    @comp.snippet {
+    @comp.snippet() {
         |// Methode mit 1 Parameter und Typ Int
         |def double(x: Int): Int = {
         |   2 * x
         |}
-        |val result = add(5)
+        |double(5)
+        |double 5
     }
     @comp.console {
         |double: (x: Int)Int
-        |result: Int = 10
+        |res0: Int = 10
+        |res1: Int = 10
     }
 </div>
 
 <div class="@clazz sidebyside p60_40">
-    @comp.snippet {
+    @comp.snippet() {
         |// Methode mit 2 Parametern und Typ Int
         |def add(x: Int, y: Int) = x + y
         |val result = add(5, 5)
     }
     @comp.console {
         |add: (x: Int, y: Int)Int
-        |result: Int = 10
+        |res0: Int = 10
     }
 </div>

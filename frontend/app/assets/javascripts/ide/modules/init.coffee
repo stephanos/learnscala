@@ -14,8 +14,11 @@ initSnippet = (elem) ->
     btn = $("<button class='btn btn-large '>Load</button>").appendTo($(toolbar))
     $(btn).bind("click",
       (evt) ->
+        # find snippet
         snippet = $(evt.target).parent().parent()
-        content = readRawCode(snippet)
+        # read snippet content
+        content = readRawCode(snippet, true)
+        # trigger modal
         initModalEditor(content)
     )
 
@@ -119,7 +122,14 @@ callAPI = (target, editor, output) ->
 
 #######################################################################################################################
 # raw source code data from snippet
-readRawCode = (elem) ->
+readRawCode = (elem, resolveRef) ->
+
+  content = ""
+
+  # read snippet reference conten
+  if(resolveRef)
+    includeRef = $(elem).data("include")
+    if(includeRef) then content = readRawCode($("#" + includeRef)) + "\n"
 
   # extract code
   raw = $(elem).find(".raw")
@@ -127,7 +137,6 @@ readRawCode = (elem) ->
   $(raw).hide()
 
   # format code
-  content = ""
   _.forEach(lines,
     (l, i) ->
       if(i != 0) then content += "\n"

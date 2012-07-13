@@ -1,6 +1,6 @@
-@(data: Html)
+@(id: String = null, include: String = null)(data: Html)
 
-<div class="snippet">
+<div class="snippet" @{if(id == null) "" else "id=snippet-" + id} @{if(include == null) "" else "data-include=snippet-" + include}>
     <div class="raw">
         @data
     </div>

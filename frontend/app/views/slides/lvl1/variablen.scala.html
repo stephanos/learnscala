@@ -15,7 +15,7 @@
 
         <div class="sidebyside p40_60">
             <div>
-                @comp.snippet {
+                @comp.snippet() {
                     |42
                 }
                 @comp.console {
@@ -47,7 +47,7 @@
         <h3><em>Va</em>riab<em>l</em>en: Objekte</h3>
 
         <div class="sidebyside">
-            @comp.snippet {
+            @comp.snippet() {
                 |42.toString()
             }
             @comp.console {
@@ -56,7 +56,7 @@
         </div>
 
         <div class="fragment sidebyside">
-            @comp.snippet {
+            @comp.snippet() {
                 |42.isWhole()
             }
             @comp.console {
@@ -65,7 +65,7 @@
         </div>
 
         <div class="fragment sidebyside">
-            @comp.snippet {
+            @comp.snippet() {
                 |42.==(42)
             }
             @comp.console {
@@ -86,7 +86,7 @@
 
         <div class="sidebyside">
             <div>
-                @comp.snippet {
+                @comp.snippet() {
                     |val meaningOfLife: Int = 42
                 }
                 @comp.console {
@@ -128,7 +128,7 @@
         <h3><em>Va</em>riab<em>l</em>en: Immutable</h3>
 
         <div class="sidebyside">
-            @comp.snippet {
+            @comp.snippet() {
                 |val meaningOfLife: Int = 42
                 |
                 |meaningOfLife = 101
@@ -155,7 +155,7 @@
         <h3><em>Va</em>riab<em>l</em>en: Typensicherheit</h3>
 
         <div class="sidebyside p45_55">
-            @comp.snippet {
+            @comp.snippet() {
                 |val meaningOfLife: Int = "Java"
             }
             @comp.console {
@@ -179,7 +179,7 @@
         <h3><em>Va</em>riab<em>l</em>en: Optionales</h3>
 
         <div class="sidebyside p45_55">
-            @comp.snippet {
+            @comp.snippet() {
                 |val meaningOfLife = 42
                 |
                 |val pi = 3.14f
@@ -205,7 +205,7 @@
         <h3><var>Var</var>iablen: Mutable</h3>
 
         <div class="sidebyside p40_60">
-            @comp.snippet {
+            @comp.snippet() {
                 |var pi = 3.14f
                 |pi = 3.0f
             }
@@ -238,7 +238,7 @@
         <hr/>
 
         <div class="sidebyside p40_60">
-            @comp.snippet {
+            @comp.snippet() {
                 |val hello1 = "Hello"
                 |val hello2 = "Hello";
             }
@@ -251,7 +251,7 @@
         <hr/><hr/>
 
         <div class="sidebyside p40_60 fragment">
-            @comp.snippet {
+            @comp.snippet() {
                 |val h1="Hi"; val h2="Hi"
             }
             @comp.console {
@@ -282,7 +282,7 @@
         <h3>Quiz</h3>
 
         <div class="sidebyside">
-            @comp.snippet {
+            @comp.snippet() {
                 |val r = 42f
             }
             <div class="fragment">
@@ -293,7 +293,7 @@
         </div>
 
         <div class="sidebyside">
-            @comp.snippet {
+            @comp.snippet() {
                 |val r = 5.*5
             }
             <div class="fragment">
@@ -304,7 +304,7 @@
         </div>
 
         <div class="sidebyside">
-            @comp.snippet {
+            @comp.snippet() {
                 |val r = 24.==(42)
             }
             <div class="fragment">
@@ -315,7 +315,7 @@
         </div>
 
         <div class="sidebyside">
-            @comp.snippet {
+            @comp.snippet() {
                 |val r = 42 isWhole
             }
             <div class="fragment">
@@ -326,7 +326,7 @@
         </div>
 
         <div class="sidebyside">
-            @comp.snippet {
+            @comp.snippet() {
                 |val r = (5.)*5
             }
             <div class="fragment">
@@ -338,7 +338,7 @@
 
         <div class="sidebyside">
             <div class="fragment">
-            @comp.snippet {
+            @comp.snippet() {
                 |var r = 1L
                 |r = 25
             }
@@ -350,7 +350,7 @@
         </div>
 
         <div class="sidebyside">
-            @comp.snippet {
+            @comp.snippet() {
                 |val r = (5).*(5)
             }
             <div class="fragment">
