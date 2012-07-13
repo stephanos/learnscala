@@ -9,36 +9,319 @@
 
 
     <section>
-        <h3>Klassen: Die Erste</h3>
+        @comp.headbody() {
+            Klassen: Definition
+        } {
+            <div class="sidebyside">
+                <div>
+                    @comp.snippet(id = "plane") {
+                        |class Plane
+                    }
+                    @comp.console() {
+                        |defined class Plane
+                    }
+                </div>
+                <div>
+                    <ul class="indent20">
+                        <li class="fragment">
+                            <code>class</code> leitet eine Klasse ein
+                        </li>
+                        <li class="fragment">
+                            <code>Plane</code> ist der Name der Klasse
+                        </li>
+                        <li class="fragment">
+                            <code>{}</code> sind nicht nötig bei leerem Rumpf
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-        <div class="sidebyside">
-            <div>
-                @comp.snippet() {
-                    |class Plane
+            <hr/><hr/>
+
+            <div class="fragment sidebyside">
+                <div>
+                    @comp.snippet(reference = "plane") {
+                        |new Plane()
+                        |new Plane
+                    }
+                    @comp.console() {
+                        |res0: Plane = Plane@@3ee32abc
+                        |res1: Plane = Plane@@50394ec
+                    }
+                </div>
+                <div>
+                    @comp.infobox(hr = false) {
+                        <code>class</code> definiert eine Klasse, sie ist standardmäßig öffentlich.
+                        <code>new</code> erstellt eine Instanz.
+                    }
+                </div>
+            </div>
+        }
+
+    </section>
+
+
+    <section>
+        @comp.headbody() {
+            Klassen: Konstruktor
+        } {
+            <div class="sidebyside p60_40">
+                @comp.snippet(id = "plane3") {
+                    |class Plane(model: String)
+                    |
+                    |val p = new Plane("Boeing 737")
                 }
+                <div>
+                    <ul class="no-bullets">
+                        <li class="fragment">
+                            Klassenparameter ergeben <br/> primären Konstruktor
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div>
 
+            <hr/>
+
+            <div class="fragment sidebyside p60_40">
+                @comp.snippet(id = "plane4") {
+                    |class Plane(model: String, seats: Int)
+                    |
+                    |val p = new Plane("Boeing 737", 189)
+                }
+                <div>
+                    <ul class="no-bullets">
+                        <li class="fragment">
+                            Syntax ist wie bei <br/> Methodendefinition
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
 
-        @comp.infobox() {
-            TODO
+            <hr/><hr/>
+
+            @comp.infobox() {
+                Der primäre Konstruktor <comment>("primary constructor")</comment>
+                entsteht aus den <br/> Parametern einer Klasse.
+            }
         }
     </section>
 
 
     <section>
-        <h3>Zusammenfassung</h3>
+        @comp.headbody() {
+            Klassen: Konstruktor mit Logik
+        } {
+            <hr/>
+            @comp.snippet(id = "plane5") {
+                |class Plane(model: String, seats: Int) {
+                |   println("I just bought a " + model + " plane with " + seats + " seats")
+                |}
+                |
+                |val p = new Plane("Boeing 737", 189)
+            }
+            <div class="fragment">
+                @comp.console() {
+                    |defined class Plane
+                    |
+                    |I just bought a Boeing 737 plane with 189 seats
+                    |res0: Plane = Plane@@3ee32abc
+                }
+            </div>
 
-        @summary.klassen()
+            <hr/>
+
+            @comp.infobox() {
+                Logik, die bei der Instanziierung ausgeführt werden soll <comment>(z.B. Validierung)</comment>,<br/>
+                wird direkt in den Rumpf der Klasse geschrieben.
+            }
+        }
     </section>
 
 
     <section>
-        <h3>Quiz</h3>
+        @comp.headbody() {
+            Klassen: Mehrere Konstruktoren
+        } {
+            <hr/>
+            @comp.snippet(id = "plane6") {
+                |class Plane(model: String, seats: Int) {
+                |   def this() = this("Unknown", -1)
+                |
+                |   def this(mdl: String, firstClassSeats: Int, secondClassSeats: Int) =
+                |       this(mdl, firstClassSeats + secondClassSeats)
+                |}
+            }
+            @comp.snippet(fragment = true, reference = "plane6") {
+                |val p = new Plane("Boeing 737", 150, 20)
+            }
+
+            <hr/><hr/>
+
+            @comp.infobox() {
+                <code>def this</code> leitet einen Konstruktor ein, <code>this(..)</code> ruft ihn auf.
+            }
+
+            @comp.warnbox(hr = false) {
+                Ein zusätzlicher Konstruktor <comment>("auxiliary constructor")</comment>
+                muss stets als erste Anweisung einen vor ihm definierten Konstruktor aufrufen.
+            }
+        }
+    </section>
 
 
+    <section>
+        @comp.headbody() {
+            Klassen: Öffentliche Felder
+        } {
+            <div class="sidebyside p66_33">
+                <div>
+                    @comp.snippet(id = "plane8") {
+                        |class Plane(val model: String, var seats: Int) {
+                        |   val wings = 2
+                        |}
+                    }
+                    @comp.console() {
+                        |> val p = new Plane("Boeing 737", 189)
+                        |p: Plane = Plane@@53a1d1a8
+                        |> println(p.model)
+                        |Boeing 737
+                        |> p.seats = p.seats - 1
+                        |p.seats: Int = 188
+                    }
+                </div>
+                <div>
+                    <ul class="no-bullets">
+                        <li class="fragment">
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr/><hr/>
+
+            @comp.infobox() {
+                Klassenparameter werden mit <code>val</code> (nur lesen)<br/>
+                oder <code>var</code> (lesen und schreiben) zu öffentlichen Feldern.
+            }
+        }
+    </section>
+
+
+    <section>
+        @comp.headbody() {
+            Klassen: Nicht-öffentliche Felder
+        } {
+            <div class="sidebyside p60_40">
+                <div>
+                    @comp.snippet(id = "plane9") {
+                        |class Plane(model: String, val seats: Int) {
+                        |             var fuel    = 0.0
+                        |             val wings   = 2
+                        |   private   val defects = 4
+                        |   protected val toilets = 6
+                        |}
+                        |val p = new Plane("Boeing 737", 189)
+                    }
+                </div>
+                <div>
+                    <ul class="no-bullets">
+                        <li class="fragment">
+                            mit Hilfe von <code>val</code> und <code>var</code>
+                            werden Klassenparameter zu Feldern
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebyside p60_40">
+                <div>
+                    @comp.snippet(reference = "plane7") {
+                        |println(p.model)    // FEHLER: not a member
+                    }
+                </div>
+                <div>
+                    <ul class="no-bullets">
+                        <li class="fragment">
+                            <code>model</code> ist nicht öffentlich
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebyside p60_40">
+                <div>
+                    @comp.snippet(reference = "plane7") {
+                        |println(p.seats)
+                    }
+                </div>
+                <div>
+                    <ul class="no-bullets">
+                        <li class="fragment">
+                            <code>seats</code> ist öffentlich lesbar
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebyside p60_40">
+                <div>
+                    @comp.snippet(reference = "plane7") {
+                        |p.fuel = 1.0
+                        |println(p.fuel)
+                    }
+                </div>
+                <div>
+                    <ul class="no-bullets">
+                        <li class="fragment">
+                            <code>fuel</code> ist les- und beschreibbar
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebyside p60_40">
+                <div>
+                    @comp.snippet(reference = "plane7") {
+                        |println(p.defects)  // FEHLER: private
+                        |println(p.toilets)  // FEHLER: protected
+                    }
+                </div>
+                <div>
+                    <ul class="no-bullets">
+                        <li class="fragment">
+                            <code>defects</code> & <code>toilets</code> sind nicht öffentlich
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        }
+    </section>
+
+
+    <section>
+        @comp.headbody() {
+            Klassen: Methoden
+        } {
+        }
+    </section>
+
+
+    <section>
+        @comp.headbody() {
+            Zusammenfassung
+        } {
+            @summary.klassen()
+        }
+    </section>
+
+
+    <section>
+        @comp.headbody() {
+            Quiz
+        } {
+
+        }
     </section>
 
 </div>

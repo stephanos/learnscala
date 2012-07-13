@@ -1,7 +1,11 @@
 @f_comment: 30%;
 
+@margin: 20px;
+
 .reveal {
     h1, h2, h3, h4 {
+        margin-bottom: 2 * @margin;
+
         &.filled, &.banner {
             /*.bg(#4e443c);
             padding: 20px;
@@ -34,14 +38,23 @@
     }
 
     .indent10   { margin-left: 10px; }
+    .indent15   { margin-left: 15px; }
     .indent20   { margin-left: 20px; }
+    .indent25   { margin-left: 25px; }
     .indent30   { margin-left: 30px; }
+    .indent35   { margin-left: 35px; }
     .indent40   { margin-left: 40px; }
+    .indent45   { margin-left: 45px; }
     .indent     { margin-left: 50px; }
+    .indent55   { margin-left: 55px; }
     .indent60   { margin-left: 60px; }
+    .indent65   { margin-left: 65px; }
     .indent70   { margin-left: 70px; }
+    .indent75   { margin-left: 75px; }
     .indent80   { margin-left: 80px; }
+    .indent85   { margin-left: 85px; }
     .indent90   { margin-left: 90px; }
+    .indent95   { margin-left: 95px; }
 
     .center, .center-text, .tcenter {
         text-align: center;
@@ -52,14 +65,16 @@
     }
 
     .sidebyside {
+        margin: 0 auto;
+
         .partition(@left, @right) {
             >div {
                 &:first-child {
-                    width: @left - 2;
+                    width: @left - 1.5;
                     float: left;
                 }
                 &:last-child {
-                    width: @right - 2;
+                    width: @right - 1.5;
                     float: right;
                 }
             }
@@ -67,15 +82,18 @@
 
         .partition(50%, 50%);
         &.p50_50 { .partition(50%, 50%); }
-        &.p33_66 { .partition(33%, 66%); }
-        &.p66_33 { .partition(66%, 33%); }
-        &.p60_40 { .partition(60%, 40%); }
-        &.p40_60 { .partition(40%, 60%); }
+
         &.p55_45 { .partition(55%, 45%); }
+        &.p60_40 { .partition(60%, 40%); }
+        &.p66_33 { .partition(66%, 33%); }
+        &.p70_30 { .partition(70%, 30%); }
+        &.p75_25 { .partition(75%, 25%); }
+        &.p80_20 { .partition(80%, 20%); }
+
+        &.p33_66 { .partition(33%, 66%); }
+        &.p40_60 { .partition(40%, 60%); }
         &.p45_55 { .partition(45%, 55%); }
 
-        width: 96%;
-        margin: 0 auto;
         clear: both; &:after { clear: both; }
     }
 
@@ -99,13 +117,13 @@
     .inline {
         display: inline;
 
-        &h1,h2,h3,h4,h4 {
+        &h1, h2, h3, h4, h4 {
             display: block-inline;
         }
     }
 
     blockquote {
-        padding-left: 20px;
+        padding-left: @margin;
         border-left: 8px solid @c_text_light;
 
         .who {
@@ -115,12 +133,16 @@
     }
 
     hr {
-        @h: 0.5em;
-        display: block;
+        @h: @margin;
+
         height: @h;
         line-height: @h;
+
+        display: block;
         visibility: hidden;
         clear: both;
+
+        &.half { height: @h / 2; line-height: @h / 2; }
     }
 
     .stretch-wide {
@@ -131,7 +153,7 @@
         .w100p();
         li {
             .w100p();
-            margin-top: 20px;
+            margin-top: @margin;
 
             &.no-bullet {
                 list-style: none;
@@ -166,15 +188,20 @@
         display: none;
     }
 
-    .snippet, .console {
+    .snippet {
         position: relative;
-        margin-top: 20px;
 
-        .pretty {
-            padding: 10px;
+        .raw {
+            display: none;
         }
         pre {
+            //margin-top: @margin;
             overflow: hidden;
+            padding: 10px;
+
+            &:first-child {
+                margin-top: 0;
+            }
         }
     }
 
@@ -184,7 +211,6 @@
     }
 
     .shoutbox {
-        width: 96%;
         margin: 0 auto;
 
         table {
@@ -214,10 +240,15 @@
         }
     }
 
-    /*
     .slides {
         >section {
+            >header {
+
+            }
             >article {
+                margin: 0 15px;
+
+                /*
                 >div {
                     display: table;
                     background-color: yellow;
@@ -228,10 +259,10 @@
                         vertical-align: middle;
                     }
                 }
+                */
             }
         }
     }
-    */
 
     img {
         &.naked {

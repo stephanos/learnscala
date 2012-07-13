@@ -9,7 +9,7 @@
         |printHello()
         |printHello
     }
-    @comp.console {
+    @comp.console() {
         |printHello: ()Unit
         |Hello
         |Hello
@@ -25,7 +25,7 @@
         |double(5)
         |double 5
     }
-    @comp.console {
+    @comp.console() {
         |double: (x: Int)Int
         |res0: Int = 10
         |res1: Int = 10
@@ -38,7 +38,7 @@
         |def add(x: Int, y: Int) = x + y
         |val result = add(5, 5)
     }
-    @comp.console {
+    @comp.console() {
         |add: (x: Int, y: Int)Int
         |res0: Int = 10
     }

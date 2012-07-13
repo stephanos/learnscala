@@ -1,0 +1,5 @@
+@(typeOf: String, fragment: Boolean = false)(data: Html)
+
+<div data-type="@typeOf" @{if(fragment) "data-fragment=true"}>
+    @data
+</div>

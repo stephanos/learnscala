@@ -26,36 +26,45 @@
 
 
     <section>
-        <h3>Zu meiner <em>Person</em></h3>
-
-        <!--
-            kein Theoretiker, Anwender
-        -->
+        @comp.headbody() {
+            Zu meiner <em>Person</em>
+        } {
+            <!--
+                kein Theoretiker, Anwender
+            -->
+        }
     </section>
 
 
     <section>
-        <h3>Nun zu <em>Ihnen</em> ... </h3>
-
-        <div class="indent">
-            <ul>
-                <li>Name ?</li>
-                <li>erster Java-Kontakt ?</li>
-                <li>Vorkenntnisse in Scala ?</li>
-                <li>Erwartungen und Wünsche ?</li>
-            </ul>
-        </div>
+        @comp.headbody() {
+            Nun zu <em>Ihnen</em> ...
+        } {
+            <div class="indent">
+                <ul>
+                    <li>Name ?</li>
+                    <li>erster Java-Kontakt ?</li>
+                    <li>Vorkenntnisse in Scala ?</li>
+                    <li>Erwartungen und Wünsche ?</li>
+                </ul>
+            </div>
+        }
     </section>
 
 
     <section>
-        <h3>Zum <em>Ablauf</em></h3>
+        @comp.headbody() {
+            Zum <em>Ablauf</em>
+        } {
+
+        }
     </section>
 
 
     <section>
-            <h3>Zum <em>Szenario</em></h3>
-
+        @comp.headbody() {
+            Zum <em>Szenario</em>
+        } {
             <hr/>
 
             <h4 class="fragment">
@@ -73,8 +82,8 @@
                     Doch dafür gilt es noch viel zu lernen ...
                 </span>-->
             </h4>
-
-        </section>
+        }
+    </section>
 
 
 </div>

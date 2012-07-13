@@ -8,16 +8,29 @@
 
 
     <section>
-        <h3>Variablen</h3>
-
-        @summary.variablen("")
+        @comp.headbody() {
+            Variablen
+        } {
+            @summary.variablen("")
+        }
     </section>
 
 
     <section>
-        <h3>Methoden</h3>
+        @comp.headbody() {
+            Methoden
+        } {
+            @summary.methoden("")
+        }
+    </section>
 
-        @summary.methoden("")
+
+    <section>
+        @comp.headbody() {
+            Klassen
+        } {
+            @summary.klassen("")
+        }
     </section>
 
 </div>

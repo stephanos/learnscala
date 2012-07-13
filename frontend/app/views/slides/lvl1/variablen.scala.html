@@ -11,219 +11,295 @@
 
 
     <section>
-        <h3><em>Va</em>riab<em>l</em>en</h3>
+        @comp.headbody() {
+            <em>Va</em>riab<em>l</em>en
+        } {
+            <div class="sidebyside p40_60">
+                <div>
+                    @comp.code() {
+                        @comp.callblock() {
+                            |42
+                        }
+                        @comp.consoleblock() {
+                            |res0: Int = 42
+                        }
+                    }
+                </div>
 
-        <div class="sidebyside p40_60">
-            <div>
-                @comp.snippet() {
-                    |42
+                <div>
+                    <ul class="indent">
+                        <li class="fragment">
+                            <code>res0</code> ist der Name der Variable <br/>
+                            <comment>(fortlaufend nummeriert)</comment>
+                        </li>
+                        <li class="fragment">
+                            <code>Int</code> ist Typ der Variable <br/>
+                            <comment>(automatisch ermittelt)</comment>
+                        </li>
+                        <li class="fragment">
+                            <code>42</code> ist Wert der Variable <br/>
+                            <comment>(via <code>toString()</code>)</comment>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        }
+    </section>
+
+
+    <section>
+        @comp.headbody() {
+            Variablen: Objekte
+        } {
+            <div class="sidebyside">
+                @comp.code() {
+                    @comp.callblock() {
+                        |42.toString()
+                    }
+                    @comp.consoleblock() {
+                        |res0: java.lang.String = 42
+                    }
                 }
-                @comp.console {
-                    |res0: Int = 42
-                }
+                <div>
+                    Methode <code>toString</code> von Objekt <code>42</code>
+                </div>
             </div>
 
-            <div>
-                <ul class="indent">
-                    <li class="fragment">
-                        <code>res0</code> ist der Name der Variable <br/>
-                        <comment>(fortlaufend nummeriert)</comment>
-                    </li>
-                    <li class="fragment">
-                        <code>Int</code> ist Typ der Variable <br/>
-                        <comment>(automatisch ermittelt)</comment>
-                    </li>
-                    <li class="fragment">
-                        <code>42</code> ist Wert der Variable <br/>
-                        <comment>(via <code>toString()</code>)</comment>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
+            <hr/>
 
-
-    <section>
-        <h3><em>Va</em>riab<em>l</em>en: Objekte</h3>
-
-        <div class="sidebyside">
-            @comp.snippet() {
-                |42.toString()
-            }
-            @comp.console {
-                |res0: java.lang.String = 42
-            }
-        </div>
-
-        <div class="fragment sidebyside">
-            @comp.snippet() {
-                |42.isWhole()
-            }
-            @comp.console {
-                |res1: Boolean = true
-            }
-        </div>
-
-        <div class="fragment sidebyside">
-            @comp.snippet() {
-                |42.==(42)
-            }
-            @comp.console {
-                |res2: Boolean = true
-            }
-        </div>
-
-        <hr/>
-
-        @comp.infobox() {
-            Alles ist ein Objekt und jedes Objekt kann Operatoren als Methoden haben.
-        }
-    </section>
-
-
-    <section>
-        <h3><em>Va</em>riab<em>l</em>en: Definition</h3>
-
-        <div class="sidebyside">
-            <div>
-                @comp.snippet() {
-                    |val meaningOfLife: Int = 42
+            <div class="fragment sidebyside">
+                @comp.code() {
+                    @comp.callblock() {
+                        |42.isWhole()
+                    }
+                    @comp.consoleblock() {
+                        |res1: Boolean = true
+                    }
                 }
-                @comp.console {
-                    |meaningOfLife: Int = 42
+                <div>
+                    &nbsp;
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="fragment sidebyside">
+                @comp.code() {
+                    @comp.callblock() {
+                        |42.==(42)
+                    }
+                    @comp.consoleblock() {
+                        |res2: Boolean = true
+                    }
                 }
+                <div>
+                    &nbsp;
+                </div>
             </div>
-            <div>
-                <ul class="indent">
-                    <li class="fragment">
-                        <code>val</code> beginnt Variable
-                    </li>
-                    <li class="fragment">
-                        <code>meaningOfLife</code> ist der Name
-                    </li>
-                    <li class="fragment">
-                        <code>:</code> trennt Name und Typ
-                    </li>
-                    <li class="fragment">
-                        <code>Int</code> ist der Typ
-                    </li>
-                    <li class="fragment">
-                        <code>=</code> weist Wert zu
-                    </li>
-                    <li class="fragment">
-                        <code>42</code> ist der Wert
-                    </li>
-                </ul>
+
+            <hr/>
+
+            @comp.infobox() {
+                Alles ist ein Objekt und jedes Objekt kann Operatoren als Methoden haben.
+            }
+        }
+    </section>
+
+
+    <section>
+        @comp.headbody() {
+            Variablen: Definition
+        } {
+            <div class="sidebyside">
+                <div>
+                    @comp.code() {
+                        @comp.callblock() {
+                            |val meaningOfLife: Int = 42
+                        }
+                        @comp.consoleblock() {
+                            |meaningOfLife: Int = 42
+                        }
+                    }
+                </div>
+                <div>
+                    <ul class="indent">
+                        <li class="fragment">
+                            <code>val</code> beginnt Variable
+                        </li>
+                        <li class="fragment">
+                            <code>meaningOfLife</code> ist der Name
+                        </li>
+                        <li class="fragment">
+                            <code>:</code> trennt Name und Typ
+                        </li>
+                        <li class="fragment">
+                            <code>Int</code> ist der Typ
+                        </li>
+                        <li class="fragment">
+                            <code>=</code> weist Wert zu
+                        </li>
+                        <li class="fragment">
+                            <code>42</code> ist der Wert
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
 
-        @comp.infobox() {
-            <code>val</code> leitet eine Variable ein, der Typ folgt <strong>hinter</strong> dem Namen.
-        }
+            <hr/>
 
-    </section>
-
-
-    <section>
-        <h3><em>Va</em>riab<em>l</em>en: Immutable</h3>
-
-        <div class="sidebyside">
-            @comp.snippet() {
-                |val meaningOfLife: Int = 42
-                |
-                |meaningOfLife = 101
+            @comp.infobox() {
+                <code>val</code> leitet eine Variable ein, der Typ folgt <strong>hinter</strong> dem Namen.
             }
-            @comp.console {
-                |meaningOfLife: Int = 42
-                |
-                |<console>:8: error: reassignment to val
-                |   meaningOfLife = 101
-                |                 ^
-            }
-        </div>
-
-        <hr/>
-
-        @comp.infobox() {
-            <code>val</code> kann nicht überschrieben werden, sie ist unveränderlich (immutable).
-        }
-
-    </section>
-
-
-    <section>
-        <h3><em>Va</em>riab<em>l</em>en: Typensicherheit</h3>
-
-        <div class="sidebyside p45_55">
-            @comp.snippet() {
-                |val meaningOfLife: Int = "Java"
-            }
-            @comp.console {
-                |<console>:7: error: type mismatch;
-                |found   : java.lang.String("Java")
-                |required: Int
-                |       val meaningOfLife: Int = "Java"
-                |                                ^
-            }
-        </div>
-
-        <hr/>
-
-        @comp.infobox() {
-            Der Compiler stellt sicher, dass Variablentyp und -wert zusammenpassen.
         }
     </section>
 
 
     <section>
-        <h3><em>Va</em>riab<em>l</em>en: Optionales</h3>
-
-        <div class="sidebyside p45_55">
-            @comp.snippet() {
-                |val meaningOfLife = 42
-                |
-                |val pi = 3.14f
-            }
-            <div>
-                @comp.console {
-                    |meaningOfLife: Int = 42
-                    |
-                    |pi: Float = 3.14
+        @comp.headbody() {
+            Variablen: Immutable
+        } {
+            <div class="sidebyside">
+                @comp.code() {
+                    @comp.callblock() {
+                        |val meaningOfLife: Int = 42
+                    }
+                    @comp.consoleblock() {
+                        |meaningOfLife: Int = 42
+                    }
+                    @comp.callblock() {
+                        |meaningOfLife = 101
+                    }
+                    @comp.consoleblock() {
+                        |<console>:8: error: reassignment to val
+                        |   meaningOfLife = 101
+                        |                   ^
+                    }
                 }
+                <div>
+                    <code>meaningOfLife</code> wird mit <code>val</code>
+                    definiert und versucht zu überschreiben.
+                </div>
             </div>
-        </div>
 
-        <hr/>
+            <hr/>
 
-        @comp.infobox() {
-            Der Variablentyp kann weggelassen werden, der Compiler leitet ihn ab.
+            @comp.infobox() {
+                <code>val</code> kann nicht überschrieben werden, sie ist unveränderlich (immutable).
+            }
         }
     </section>
 
 
     <section>
-        <h3><var>Var</var>iablen: Mutable</h3>
+        @comp.headbody() {
+            Variablen: Typensicherheit
+        } {
+            <div class="sidebyside p60_40">
+                @comp.code() {
+                    @comp.callblock() {
+                        |val meaningOfLife: Int = "Java"
+                    }
+                    @comp.consoleblock() {
+                        |<console>:7: error: type mismatch;
+                        |found   : java.lang.String("Java")
+                        |required: Int
+                        |       val meaningOfLife: Int = "Java"
+                        |                                ^
+                    }
+                }
+                <div>
+                    <code>meaningOfLife</code> wird als <code>Int</code> definiert
+                    aber mit dem String <code>Java</code> initialisiert
+                </div>
+            </div>
 
-        <div class="sidebyside p40_60">
-            @comp.snippet() {
-                |var pi = 3.14f
-                |pi = 3.0f
+            <hr/>
+
+            @comp.infobox() {
+                Der Compiler stellt sicher, dass Variablentyp und -wert zusammenpassen.
             }
-            @comp.console {
-                |pi: Float = 3.14
-                |pi: Float = 3.0
+        }
+    </section>
+
+
+    <section>
+        @comp.headbody() {
+            Variablen: Optionales
+        } {
+            <div class="sidebyside p45_55">
+                @comp.code() {
+                    @comp.callblock() {
+                        |val meaningOfLife = 42
+                    }
+                    @comp.consoleblock() {
+                        |meaningOfLife: Int = 42
+                    }
+                }
+                <div>
+                    <code>meaningOfLife</code> wird mit dem Wert <code>42</code> initialisiert,
+                    der Typ <code>Int</code> wird zugewiesen
+                </div>
+            </div>
+
+            <hr/><hr/>
+
+            <div class="fragment sidebyside p45_55">
+                @comp.code() {
+                    @comp.callblock() {
+                        |val pi = 3.14f
+                    }
+                    @comp.consoleblock() {
+                        |pi: Float = 3.14
+                    }
+                }
+                <div>
+                    <code>pi</code> wird mit dem Wert <code>3.14f</code> initialisiert,
+                    der Compiler erkennt darin den Typ <code>Float</code>
+                </div>
+            </div>
+
+            <hr/><hr/>
+
+            @comp.infobox() {
+                Der Variablentyp kann weggelassen werden, der Compiler leitet ihn ab.
             }
-        </div>
-
-        <hr/><hr/>
-
-        @comp.infobox() {
-            <code>var</code> kann überschrieben werden, sie ist veränderlich (mutable).
         }
-        @comp.warnbox() {
-            <code>var</code> sollte vermieden und nur in Ausnahmefällen eingesetzt werden.
-        }
+    </section>
 
+
+    <section>
+        @comp.headbody() {
+            <var>Var</var>iablen: Mutable
+        } {
+            <div class="sidebyside p40_60">
+                @comp.code() {
+                    @comp.callblock() {
+                        |var pi = 3.14f
+                    }
+                    @comp.consoleblock() {
+                        |pi: Float = 3.14
+                    }
+                    @comp.callblock() {
+                        |pi = 3.0f
+                    }
+                    @comp.consoleblock() {
+                        |pi: Float = 3.0
+                    }
+                }
+                <div>
+                    &nbsp;
+                </div>
+            </div>
+
+            <hr/>
+
+            @comp.infobox() {
+                <code>var</code> kann überschrieben werden, sie ist veränderlich (mutable).
+            }
+            @comp.warnbox() {
+                <code>var</code> sollte vermieden und nur in Ausnahmefällen eingesetzt werden.
+            }
+        }
         <details>
             <a href="http://stackoverflow.com/questions/1791408/what-is-the-difference-between-a-var-and-val-definition-in-scala">
                 What is the difference between a var and val definition in Scala?
@@ -242,7 +318,7 @@
                 |val hello1 = "Hello"
                 |val hello2 = "Hello";
             }
-            @comp.console {
+            @comp.console() {
                 |hello1: java.lang.String = Hello
                 |hello2: java.lang.String = Hello
             }
@@ -254,7 +330,7 @@
             @comp.snippet() {
                 |val h1="Hi"; val h2="Hi"
             }
-            @comp.console {
+            @comp.console() {
                 |hello: java.lang.String = Hello
                 |hello2: java.lang.String = Hello
             }
@@ -272,94 +348,97 @@
 
 
     <section>
-        <h3>Zusammenfassung</h3>
-
-        @summary.variablen()
+        @comp.headbody() {
+            Zusammenfassung
+        } {
+            @summary.variablen()
+        }
     </section>
 
 
     <section>
-        <h3>Quiz</h3>
-
-        <div class="sidebyside">
-            @comp.snippet() {
-                |val r = 42f
-            }
-            <div class="fragment">
-            @comp.console {
-                |r: Float = 42
-            }
+        @comp.headbody() {
+            Quiz
+        } {
+            <div class="sidebyside">
+                @comp.snippet() {
+                    |val r = 42f
+                }
+                <div class="fragment">
+                @comp.console() {
+                    |r: Float = 42
+                }
+                </div>
             </div>
-        </div>
 
-        <div class="sidebyside">
-            @comp.snippet() {
-                |val r = 5.*5
-            }
-            <div class="fragment">
-            @comp.console {
-                |r: Double = 25.0
-            }
+            <div class="sidebyside">
+                @comp.snippet() {
+                    |val r = 5.*5
+                }
+                <div class="fragment">
+                @comp.console() {
+                    |r: Double = 25.0
+                }
+                </div>
             </div>
-        </div>
 
-        <div class="sidebyside">
-            @comp.snippet() {
-                |val r = 24.==(42)
-            }
-            <div class="fragment">
-            @comp.console {
-                |r: Boolean = false
-            }
+            <div class="sidebyside">
+                @comp.snippet() {
+                    |val r = 24.==(42)
+                }
+                <div class="fragment">
+                @comp.console() {
+                    |r: Boolean = false
+                }
+                </div>
             </div>
-        </div>
 
-        <div class="sidebyside">
-            @comp.snippet() {
-                |val r = 42 isWhole
-            }
-            <div class="fragment">
-            @comp.console {
-                |r: Boolean = true
-            }
+            <div class="sidebyside">
+                @comp.snippet() {
+                    |val r = 42 isWhole
+                }
+                <div class="fragment">
+                @comp.console() {
+                    |r: Boolean = true
+                }
+                </div>
             </div>
-        </div>
 
-        <div class="sidebyside">
-            @comp.snippet() {
-                |val r = (5.)*5
-            }
-            <div class="fragment">
-            @comp.console {
-                |r: Double = 25.0
-            }
+            <div class="sidebyside">
+                @comp.snippet() {
+                    |val r = (5.)*5
+                }
+                <div class="fragment">
+                @comp.console() {
+                    |r: Double = 25.0
+                }
+                </div>
             </div>
-        </div>
 
-        <div class="sidebyside">
-            <div class="fragment">
-            @comp.snippet() {
-                |var r = 1L
-                |r = 25
-            }
+            <div class="sidebyside">
+                <div class="fragment">
+                @comp.snippet() {
+                    |var r = 1L
+                    |r = 25
+                }
+                </div>
+                @comp.console() {
+                    |r: Long = 1
+                    |r: Long = 25
+                }
             </div>
-            @comp.console {
-                |r: Long = 1
-                |r: Long = 25
-            }
-        </div>
 
-        <div class="sidebyside">
-            @comp.snippet() {
-                |val r = (5).*(5)
-            }
-            <div class="fragment">
-            @comp.console {
-                |r: Int = 25
-            }
+            <div class="sidebyside">
+                @comp.snippet() {
+                    |val r = (5).*(5)
+                }
+                <div class="fragment">
+                @comp.console() {
+                    |r: Int = 25
+                }
+                </div>
             </div>
-        </div>
-
+        }
     </section>
 
 </div>

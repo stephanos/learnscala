@@ -3,7 +3,7 @@
  *********************************************/
 
 @w: 900px;
-@h: 600px;
+@h: @w / @tv;
 
 .reveal .slides {
     z-index: 1000;
@@ -40,7 +40,7 @@
         display: none;
         position: absolute;
         width: 100%;
-        min-height: 600px;
+        min-height: @h;
 
         z-index: 10;
 

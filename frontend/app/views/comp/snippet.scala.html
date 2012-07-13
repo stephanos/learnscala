@@ -1,6 +1,9 @@
-@(id: String = null, include: String = null)(data: Html)
+@(id: String = null, fragment: Boolean = false, padtop: Boolean = true, include: String = null, reference: String = null)(data: Html)
 
-<div class="snippet" @{if(id == null) "" else "id=snippet-" + id} @{if(include == null) "" else "data-include=snippet-" + include}>
+<div class='snippet @{if(padtop == false) "notoppad" else ""} @{if(fragment) "fragment" else ""}'
+                     @{if(id == null) "" else "id=snippet-" + id}
+                     @{if(include == null) "" else "data-include=snippet-" + include}
+                     @{if(reference == null) "" else "data-reference=snippet-" + reference}>
     <div class="raw">
         @data
     </div>

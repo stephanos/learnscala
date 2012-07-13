@@ -1,39 +1,39 @@
 #######################################################################################################################
-# create a source code snippet
 initSnippet = (elem) ->
+  _.forEach(readRawCode(elem),
+    (b) ->
+      # create code block
+      createSnippet(b, elem)
 
-  # extract code
-  content = readRawCode(elem)
+      # add "load"-button
+#      if(!$(elem).hasClass("console"))
+#        toolbar = $('<div class="toolbar">').appendTo($(elem))
+#        btn = $("<button class='btn btn-large '>Load</button>").appendTo($(toolbar))
+#        $(btn).bind("click",
+#          (evt) ->
+#            # find snippet
+#            snippet = $(evt.target).parent().parent()
+#            # read snippet content
+#            content = readRawCode(snippet, true)
+#            # trigger modal
+#            initModalEditor(content)
+#        )
+  )
 
-  # create editor
-  createSnippet(content, elem)
+createSnippet = (block, elem, status, clear, spin) ->
+  type = block["type"]
+  text = block["text"]
+  noText = _.str.isBlank(text)
 
-  # add
-  if(!$(elem).hasClass("console"))
-    toolbar = $('<div class="toolbar">').appendTo($(elem))
-    btn = $("<button class='btn btn-large '>Load</button>").appendTo($(toolbar))
-    $(btn).bind("click",
-      (evt) ->
-        # find snippet
-        snippet = $(evt.target).parent().parent()
-        # read snippet content
-        content = readRawCode(snippet, true)
-        # trigger modal
-        initModalEditor(content)
-    )
-
-createSnippet = (data, elem, status, clear, spin) ->
-  noData = _.str.isBlank(data)
-
-  if(clear == true || noData)
+  if(clear == true || noText)
     $(elem).empty()
 
   if(status)
     $(elem).parent().removeClass("success error").addClass(status)
 
-  if(!noData)
-    code = $("<pre/>", {'class': "pretty cm-s-ambiance "}).appendTo($(elem))
-    CodeMirror.runMode(data, "text/x-scala", code[0])
+  if(!noText)
+    code = $("<pre/>", {'class': "cm-s-ambiance " + type}).appendTo($(elem))
+    CodeMirror.runMode(text, "text/x-scala", code[0])
 
   if(status == "wait")
     opts = {
@@ -124,26 +124,39 @@ callAPI = (target, editor, output) ->
 # raw source code data from snippet
 readRawCode = (elem, resolveRef) ->
 
-  content = ""
-
-  # read snippet reference conten
-  if(resolveRef)
-    includeRef = $(elem).data("include")
-    if(includeRef) then content = readRawCode($("#" + includeRef)) + "\n"
+  blocks = []
 
   # extract code
   raw = $(elem).find(".raw")
-  lines = _.str.lines(_.str.trim($(raw).text()))
-  $(raw).hide()
+  $(raw).find("div").each(
+    (idx, elem) ->
+      content = ""
+      type = $(elem).data("type")
 
-  # format code
-  _.forEach(lines,
-    (l, i) ->
-      if(i != 0) then content += "\n"
-      content += _.str.strRight(l, "|")
+      # read snippet include content
+      include = $(elem).data("include")
+      if(include) then content += readRawCode($("#" + include)) + "\n"
+
+      # read snippet reference content
+      if(resolveRef)
+        reference = $(elem).data("reference")
+        if(reference) then content += readRawCode($("#" + reference)) + "\n"
+
+      # extract code
+      lines = _.str.lines(_.str.trim($(elem).text()))
+      _.forEach(lines,
+        (l, i) ->
+          if(i != 0) then content += "\n"
+          if(_.str.contains(type, "call")) then content += "> "
+          content += _.str.strRight(l, "|")
+      )
+
+      blocks[idx] =
+        type: type
+        text: content
   )
 
-  content
+  blocks
 
 
 #######################################################################################################################
@@ -151,8 +164,7 @@ readRawCode = (elem, resolveRef) ->
 initSlides = ->
   subtleToolbar();
 
-  # init static snippets
-  $('.slides div.snippet, .slides div.console').each(
+  $('.slides div.snippet').each(
     (idx, elem) -> initSnippet(elem)
   )
 

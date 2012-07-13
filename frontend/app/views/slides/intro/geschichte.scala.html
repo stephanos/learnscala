@@ -34,98 +34,104 @@
 
 
     <section>
-        <h3><em>Versions</em>historie</h3>
+        @comp.headbody() {
+            <em>Versions</em>historie
+        } {
+            <br/>
 
-        <br/>
-
-        <div class="indent">
-            <table>
-                <colgroup>
-                    <col width="10%">
-                    <col width="10%">
-                    <col width="80%">
-                </colgroup>
-                <tr>
-                    <td>2003</td>
-                    <td><var>1.0</var></td>
-                    <td>erste Veröffentlichung</td>
-                </tr>
-                <tr>
-                    <td>2006</td>
-                    <td><var>2.0</var></td>
-                    <td>
-                        implicit, match
-                    </td>
-                </tr>
-                <tr>
-                    <td>2008</td>
-                    <td><var>2.7</var></td>
-                    <td>
-                        Java Generics, 1.5 target, Case Classes
-                    </td>
-                </tr>
-                <tr>
-                    <td>2010</td>
-                    <td><var>2.8</var></td>
-                    <td>
-                        Type specialization, überarbeitete Collections, Package Objects
-                    </td>
-                </tr>
-                <tr>
-                    <td>2011</td>
-                    <td><var>2.9</var></td>
-                    <td>
-                        Parallel Collections, scala.sys
-                    </td>
-                </tr>
-                <tr>
-                    <td>2012</td>
-                    <td><var>2.10</var></td>
-                    <td>
-                        Macros, Reflection API
-                    </td>
-                </tr>
-            </table>
-        </div>
+            <div class="indent">
+                <table>
+                    <colgroup>
+                        <col width="10%">
+                        <col width="10%">
+                        <col width="80%">
+                    </colgroup>
+                    <tr>
+                        <td>2003</td>
+                        <td><var>1.0</var></td>
+                        <td>erste Veröffentlichung</td>
+                    </tr>
+                    <tr>
+                        <td>2006</td>
+                        <td><var>2.0</var></td>
+                        <td>
+                            implicit, match
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2008</td>
+                        <td><var>2.7</var></td>
+                        <td>
+                            Java Generics, 1.5 target, Case Classes
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2010</td>
+                        <td><var>2.8</var></td>
+                        <td>
+                            Type specialization, überarbeitete Collections, Package Objects
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2011</td>
+                        <td><var>2.9</var></td>
+                        <td>
+                            Parallel Collections, scala.sys
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2012</td>
+                        <td><var>2.10</var></td>
+                        <td>
+                            Macros, Reflection API
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
     </section>
 
 
     <section>
-        <h3>Ursprünge</h3>
-
-        <div class="indent">
-            <ul>
-                <li>
-                    <em>Java</em> und <em>C#</em><br/>
-                    ⇨ <i>Klasse, Pakete, Importe, Ausdrücke, Blöcke</i>
-                </li>
-                <li>
-                    <em>Haskell</em> und <em>F#</em><br/>
-                    ⇨ <i>Higher-order functions, Implicits</i>
-                </li>
-                <li>
-                    <em>Ruby</em> und <em>Smalltalk</em><br/>
-                    ⇨ <i>einheitliches Objektmodell</i>
-                </li>
-                <li>
-                    <em>Erlang</em><br/>
-                    ⇨ <i>Aktoren-basierte Parallelprogrammierung</i>
-                </li>
-            </ul>
-        </div>
+        @comp.headbody() {
+            Ursprünge
+        } {
+            <div class="indent">
+                <ul>
+                    <li>
+                        <em>Java</em> und <em>C#</em><br/>
+                        ⇨ <i>Klasse, Pakete, Importe, Ausdrücke, Blöcke</i>
+                    </li>
+                    <li>
+                        <em>Haskell</em> und <em>F#</em><br/>
+                        ⇨ <i>Higher-order functions, Implicits</i>
+                    </li>
+                    <li>
+                        <em>Ruby</em> und <em>Smalltalk</em><br/>
+                        ⇨ <i>einheitliches Objektmodell</i>
+                    </li>
+                    <li>
+                        <em>Erlang</em><br/>
+                        ⇨ <i>Aktoren-basierte Parallelprogrammierung</i>
+                    </li>
+                </ul>
+            </div>
+        }
     </section>
 
     <section>
-        <h3>Zusammenfassung</h3>
-
-        <div class="indent">
-            <ul>
-                <li>Scala gibt es <em>seit 2003</em></li>
-                <li>kommt aus dem <em>akademischen Bereich</em></li>
-                <li>hat starke Rückendeckung aus der <em>Wirtschaft</em></li>
-                <li><em>vereint</em> gute Ideen aus Sprache wie Haskell, Ruby, Erlang und Scala</li>
-            </ul>
-        </div>
+        @comp.headbody() {
+            Zusammenfassung
+        } {
+            <div class="indent">
+                <ul>
+                    <li>Scala gibt es <em>seit 2003</em></li>
+                    <li>kommt aus dem <em>akademischen Bereich</em></li>
+                    <li>hat starke Rückendeckung aus der <em>Wirtschaft</em></li>
+                    <li><em>vereint</em> gute Ideen aus Sprache wie Haskell, Ruby, Erlang und Scala</li>
+                </ul>
+            </div>
+        }
     </section>
 </div>
 }

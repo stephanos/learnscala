@@ -34,31 +34,34 @@
 
 .cm-s-ambiance {
     font-size: @fs_code;
-    line-height: 1.40em;
-    font-family: Monaco, Menlo, "Andale Mono", "lucida console", "Courier New", monospace !important;
-    color: darken(#E6E1DC, 40%);
+    line-height: 2 * @fs_code;
+    font-family: "Inconsolata", monospace !important;
 
+    /*
     .CodeMirror-gutter {
-        background: #ddd;
         padding: 0 5px;
+        background: #ddd;
         //text-shadow: #333 1px 1px;
         //border-right: 1px solid #4D4D4D;
     }
 
     .CodeMirror-gutter .CodeMirror-gutter-text {
-        text-shadow: 0px 1px 1px #4d4d4d;
         color: #222;
+        text-shadow: 0px 1px 1px #4d4d4d;
     }
 
     .CodeMirror-lines .CodeMirror-cursor {
         border-left: 4px solid fade(@c_emph, 80%);
     }
+    */
 }
 
 /****************/
 /* Color scheme */
 
 .cm-s-ambiance {
+
+    color: darken(#E6E1DC, 40%);
 
     .cm-keyword {
         color: #cda869;
@@ -168,6 +171,17 @@
 
     .CodeMirror-selected {
         background: rgba(255, 255, 255, 0.15);
+    }
+
+    // use one plain color for output code
+    &.output {
+        .bg(darken(#eee, 3%));
+
+        .cm-keyword, .cm-atom, .cm-number, .cm-def, .cm-variable, .cm-variable-2, .cm-variable-3,
+        .cm-property, .cm-operator, .cm-comment, .cm-string, .cm-string-2, .cm-meta, .cm-error, .cm-qualifier,
+        .cm-builtin, .cm-bracket, .cm-tag, .cm-attribute, .cm-header, .cm-quote, .cm-hr, .cm-link, .cm-special {
+            color: #8f7b67;
+        }
     }
 }
 

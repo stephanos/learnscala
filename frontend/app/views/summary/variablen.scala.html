@@ -1,60 +1,84 @@
 @(clazz: String = "fragment")
 
-<div class="@clazz sidebyside p60_40">
-    @comp.snippet() {
-        |val one: Int = 1    // explizite Typen
-        |val two: Double = 1
-        |val three = 3L      // erkannte Typen
-        |val pi = 3.14f
-    }
-    @comp.console {
-        |one: Int = 1
-        |two: Double = 1.0
-        |three: Long = 3
-        |pi: Float = 3.14
-    }
+<div class="@clazz sidebyside">
+    <div>
+        @comp.code() {
+            @comp.callblock() {
+                |val one: Int = 1
+            }
+            @comp.consoleblock() {
+                |one: Int = 1
+            }
+            @comp.callblock() {
+                |val three = 3L
+            }
+            @comp.consoleblock() {
+                |three: Long = 3
+            }
+        }
+        <hr class="half">
+        Datentypen sind optional
+    </div>
+
+    <div>
+        @comp.code() {
+            @comp.callblock() {
+                |3.14f.isWhole
+            }
+            @comp.consoleblock() {
+                |res0: Boolean = false
+            }
+            @comp.callblock() {
+                |(42)./(42)
+            }
+            @comp.consoleblock() {
+                |res1: Int = 1
+            }
+        }
+        <hr class="half">
+        Alles ist ein Objekt
+    </div>
 </div>
 
-<div class="@clazz sidebyside p60_40">
-    @comp.snippet() {
-        |val pi = 3.14f
-        |pi = 3              // val ist endgültig
-    }
-    @comp.console {
-        |pi: Float = 3.14
-        |<console>:8: error: reassignment to val
-    }
-</div>
+<hr/>
+<hr/>
 
-<div class="@clazz sidebyside p60_40">
-    @comp.snippet() {
-        |val pi = 3.14f
-        |pi.isWhole          // Zahlen sind Objekte
-    }
-    @comp.console {
-        |pi: Float = 3.14
-        |res0: Boolean = false
-    }
-</div>
+<div class="@clazz sidebyside">
+    <div>
+        @comp.code() {
+            @comp.callblock() {
+                |var pi = 3.14f
+            }
+            @comp.consoleblock() {
+                |pi: Float = 3.14
+            }
+            @comp.callblock() {
+                |pi = 3.0f
+            }
+            @comp.consoleblock() {
+                |<console>:8: error: reassignment to val
+            }
+        }
+        <hr class="half">
+        <code>val</code> ist nicht überschreibbar
+    </div>
 
-<div class="@clazz sidebyside p60_40">
-    @comp.snippet() {
-        |42.==(42)
-        |(42)./(42)          // Operatoren sind Methoden
-    }
-    @comp.console {
-        |res2: Boolean = true
-        |res1: Int = 1
-    }
-</div>
-
-<div class="@clazz sidebyside p60_40">
-    @comp.snippet() {
-        |var pi = 3.14f
-        |pi = 3.0f           // var ist überschreibbar
-    }
-    @comp.console {
-        |pi: Float = 3.14
-        |pi: Float = 3.0
-    }
+    <div>
+        @comp.code() {
+            @comp.callblock() {
+                |var pi = 3.14f
+            }
+            @comp.consoleblock() {
+                |pi: Float = 3.14
+            }
+            @comp.callblock() {
+                |pi = 3.0f
+            }
+            @comp.consoleblock() {
+                |pi: Float = 3.0
+            }
+        }
+        <hr class="half">
+        <code>var</code> ist überschreibbar
+    </div>
 </div>

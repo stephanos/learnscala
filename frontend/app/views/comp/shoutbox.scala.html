@@ -1,8 +1,11 @@
 @(typeOf: String, hr: Boolean = true, fragment: Boolean = true)(body: Html)
 
 @if(hr) {
+    <hr/><hr/>
+} else {
     <hr/>
 }
+
 <div class='@{if(fragment)"fragment" else ""} shoutbox @typeOf clearfix'>
     <table>
         <colgroup>
