@@ -13,10 +13,14 @@
             }
             @comp.callblock() {
                 |printHello()
-                |printHello
             }
             @comp.outblock() {
                 |Hello
+            }
+            @comp.callblock() {
+                |printHello
+            }
+            @comp.outblock() {
                 |Hello
             }
         }
@@ -36,10 +40,14 @@
             }
             @comp.callblock() {
                 |double(5)
-                |double 5
             }
             @comp.outblock() {
                 |res0: Int = 10
+            }
+            @comp.callblock() {
+                |double 5
+            }
+            @comp.outblock() {
                 |res1: Int = 10
             }
         }
@@ -55,20 +63,23 @@
     <div>
         @comp.snippet() {
             @comp.sourceblock() {
-                |def add(x: Int, y: Int) = x + y
+                |def mult(x: Float, y: Float) = x * y
             }
             @comp.outblock() {
-                |add: (x: Int, y: Int)Int
+                |mult: (x: Float, y: Float)Float
             }
             @comp.callblock() {
-                |add(5, 5)
+                |mult(5, 5)
             }
             @comp.outblock() {
-                |res0: Int = 10
+                |res0: Float = 25.0
             }
         }
         <sub>
-            Methode mit Typ <code>Int</code> und 2 Parametern
+            Methode mit Typ <code>Float</code> und 2 Parametern
         </sub>
+    </div>
+    <div>
+        &nbsp;
     </div>
 </div>

@@ -11,20 +11,6 @@
     position: relative;
 }
 
-.CodeMirror, .ide {
-    // font and line size
-    font-size:   2.25 * @fs_code;
-    line-height: 2 * @fs_code;
-
-    .output {
-        font-size:   .9 * 2.25 * @fs_code;
-        line-height: .9 * 2 * @fs_code;
-    }
-
-    // toolbar
-    .toolbar { right: 16px; bottom: 16px; }
-}
-
 .snippet pre, .CodeMirror {
     position: relative;
 
@@ -47,13 +33,29 @@
     }
 }
 
+.CodeMirror, .ide {
+    border-width: 2px;
+
+    // font and line size
+    font-size:   2.25 * @fs_code;
+    line-height: 2 * @fs_code;
+
+    .output {
+        font-size:   .9 * 2.25 * @fs_code;
+        line-height: .9 * 2 * @fs_code;
+    }
+
+    // toolbar
+    .toolbar { right: 16px; bottom: 16px; }
+}
+
 .snippet pre {
     // font and line size
     font-size: @fs_code;
-    line-height: 2 * @fs_code;
+    line-height: 1.8 * @fs_code;
     &.output {
         font-size: @fs_code * 0.85;
-        //line-height: 2 * @fs_code;
+        line-height: 1.7 * @fs_code;
     }
 
     // border default: dashed top and bottom
