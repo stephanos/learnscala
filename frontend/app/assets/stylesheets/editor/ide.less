@@ -1,3 +1,6 @@
+@h: 60%;
+@d: 3%;
+
 .ide {
     @m: 15px;
     padding: 0;
@@ -10,42 +13,42 @@
     }
 
     .input-wrap {
-        height: 48%;
+        height: @h - @d / 2;
 
         .input {
+            overflow: hidden;
             position: absolute;
             top: 0; bottom: 0; right: 0; left: 0;
         }
     }
 
-    .divider { height: 3%; }
+    .divider { height: @d; }
 
     .output-wrap {
-        height: 48%;
         overflow: auto;
+        height: 100% - @h - @d / 2;
+
+        border: 1px solid #aaa;
+
+        // result colors
+        &.success {
+            border-color: @c_emph;
+            .selection-bg(@c_select);
+        }
+        &.error {
+            border-color: @c_hlight;
+            .selection-bg(fade(@c_hlight, 40%));
+        }
 
         .spinner {
             display: inline;
         }
-
         .output {
             padding: 10px;
         }
     }
-}
 
-.console, .ide .output-wrap {
-    border: 1px solid #aaa;
-
-    &.success {
-        border-color: @c_emph;
-    }
-    &.error {
-        border-color: @c_hlight;
-    }
-
-    .cm-s-ambiance {
+    pre {
         margin: 0;
-        font-size: @fs_code;
     }
 }

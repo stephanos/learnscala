@@ -403,3 +403,9 @@
     .no-margin();
     .no-pad();
 }
+
+.selection-bg(@bg) {
+    // elements must be separated
+    ::selection { .bg(@bg); }
+    ::-moz-selection { .bg(@bg); }
+}

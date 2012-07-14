@@ -12,21 +12,28 @@ initSnippet = (elem) ->
     (idx, pre) ->
       if(!$(pre).hasClass("output"))
         toolbar = $('<div class="toolbar">').appendTo($(pre))
-        btn = $("<button class='btn btn-large '>Load</button>").appendTo($(toolbar))
+        btn = $("<button class='btn btn-mini'>Load</button>").appendTo($(toolbar))
         $(btn).bind("click",
           (evt) ->
-            # find snippet
-            snippet = $(evt.target).parent().parent()
+            # find block (pre)
+            pre = $(evt.target).parent().parent()
             # read snippet content
-            content = readRawCode(snippet, true)
+            blocks = readRawCode($(pre), true)
             # trigger modal
-            initModalEditor(content)
+            initModalEditor(blocks)
         )
   )
 
 createCodeBlock = (block, elem, status, clear, spin) ->
-  type = block["type"]
-  text = block["text"]
+  if(_.isString(block))
+    num = ""
+    type = ""
+    text = block
+  else
+    num = block["num"]
+    type = block["type"]
+    text = block["text"]
+
   noText = _.str.isBlank(text)
 
   if(clear == true || noText)
@@ -36,7 +43,7 @@ createCodeBlock = (block, elem, status, clear, spin) ->
     $(elem).parent().removeClass("success error").addClass(status)
 
   if(!noText)
-    code = $("<pre/>", {'class': "cm-s-ambiance " + type}).appendTo($(elem))
+    code = $("<pre/>", {'class': "cm-s-ambiance " + type, "data-num": num}).appendTo($(elem))
     CodeMirror.runMode(text, "text/x-scala", code[0])
 
   if(status == "wait")
@@ -50,7 +57,7 @@ createCodeBlock = (block, elem, status, clear, spin) ->
 
 #######################################################################################################################
 # initialize a code editor in a modal
-initModalEditor = (data, m) ->
+initModalEditor = (blocks, m) ->
 
   # setup modal
   m ?= $('#ideModal')
@@ -58,29 +65,39 @@ initModalEditor = (data, m) ->
   body.find(".pane>div").empty()
 
   # editor (with console)
-  initEditor($(body), data)
+  editor = initEditor($(body), blocks)
 
   # show modal
   m.modal()
 
+  # adapt editor to modal
+  editor.refresh()
+
 
 # initialize a code editor
-initEditor = (elem, data) ->
+initEditor = (elem, blocks) ->
 
   input = $(elem).find(".input-wrap div")
   output = $(elem).find(".output-wrap div")
 
+  # content
+  content =
+    _.str.strip(_.reduce(blocks ? readRawCode(elem),
+      (r, b) -> r += b["text"] + "\n"
+    , ""))
+
   # create the editor
   textarea = $("<textarea/>").appendTo($(input))
-  textarea.val(data ? readRawCode(elem))
+  textarea.val(content)
   editor =
     CodeMirror.fromTextArea(textarea[0], {
       autofocus: true,
       theme: "ambiance",
       mode: "text/x-scala",
-      indentWithTabs: true,
+      indentWithTabs: false,
+      #lineWrapping: true,
       smartIndent: false,
-      indentUnit: 4,
+      indentUnit: 3,
       matchBrackets: true,
       autoClearEmptyLines: true
     })
@@ -96,6 +113,10 @@ initEditor = (elem, data) ->
     .bind("click", (evt) -> callAPI("decompile", editor, output))
     .appendTo($(toolbar))
 
+  editor
+
+
+# call server API
 callAPI = (target, editor, output) ->
   # clear console
   createCodeBlock("", output, "wait")
@@ -106,11 +127,13 @@ callAPI = (target, editor, output) ->
     timeout: 15000,
     url: "/api/" + target,
     data: "code=" + encodeURIComponent(editor.getValue()),
+
     success: (data, status) ->
       window.spinner?.stop()
       text = if(_.str.isBlank(data)) then "compiled and executed successfully" else data
       createCodeBlock(text, output, "success", true)
       console.log(data)
+
     error: (jqXHR, status, err) ->
       window.spinner?.stop()
       data = jqXHR.responseText
@@ -126,41 +149,46 @@ callAPI = (target, editor, output) ->
 
 #######################################################################################################################
 # raw source code data from snippet
-readRawCode = (elem, resolveRef) ->
+readRawCode = (elem, editable) ->
 
-  blocks = []
+  if($(elem)[0].tagName.toLowerCase() == "pre")
+    num = $(elem).data("num")
+    _.filter(readRawCode($(elem).closest('div.snippet'), editable),
+      (b) -> !_.str.contains(b["type"], "output") && b["num"] <= num
+    )
+  else
+    blocks = []
+    # extract code
+    raw = $(elem).find(".raw")
+    $(raw).find("div").each(
+      (idx, elem) ->
+        content = ""
+        type = $(elem).data("type")
 
-  # extract code
-  raw = $(elem).find(".raw")
-  $(raw).find("div").each(
-    (idx, elem) ->
-      content = ""
-      type = $(elem).data("type")
+        # read snippet include content
+        include = $(elem).data("include")
+        if(include) then content += readRawCode($("#" + include)) + "\n"
 
-      # read snippet include content
-      include = $(elem).data("include")
-      if(include) then content += readRawCode($("#" + include)) + "\n"
+        # read snippet reference content
+        if(editable)
+          reference = $(elem).data("reference")
+          if(reference) then content += readRawCode($("#" + reference)) + "\n"
 
-      # read snippet reference content
-      if(resolveRef)
-        reference = $(elem).data("reference")
-        if(reference) then content += readRawCode($("#" + reference)) + "\n"
+        # extract code
+        lines = _.str.lines(_.str.trim($(elem).text()))
+        _.forEach(lines,
+          (l, i) ->
+            if(i != 0) then content += "\n"
+            if(_.str.contains(type, "call") && editable != true) then content += "> "
+            content += _.str.strRight(l, "|")
+        )
 
-      # extract code
-      lines = _.str.lines(_.str.trim($(elem).text()))
-      _.forEach(lines,
-        (l, i) ->
-          if(i != 0) then content += "\n"
-          if(_.str.contains(type, "call")) then content += "> "
-          content += _.str.strRight(l, "|")
-      )
-
-      blocks[idx] =
-        type: type
-        text: content
-  )
-
-  blocks
+        blocks[idx] =
+          num: idx
+          type: type
+          text: content
+    )
+    blocks
 
 
 #######################################################################################################################
@@ -173,9 +201,9 @@ initSlides = ->
   )
 
   # init dynamic editors
-  $('.slides div.ide').each(
-    (idx, elem) -> initEditor(elem)
-  )
+  #$('.slides div.ide').each(
+  #  (idx, elem) -> initEditor(elem)
+  #)
 
   # hook-up modal editor
   $("#navi a.openEditor").bind("click",
