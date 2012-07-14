@@ -1,7 +1,7 @@
 @(id: String = null, fragment: Boolean = false, clazz: String = null, include: String = null, reference: String = null)(data: Html)
 
 @comp.snippet(fragment = fragment) {
-    @comp.sourceblock(id, false, clazz, include, reference) {
+    @comp.callblock(id, false, clazz, include, reference) {
         @data
     }
 }

@@ -1,26 +1,30 @@
 #######################################################################################################################
 initSnippet = (elem) ->
+  # create code block(s)
+  code = $('<div class="code">').appendTo($(elem))
   _.forEach(readRawCode(elem),
     (b) ->
-      # create code block
-      createSnippet(b, elem)
-
-      # add "load"-button
-#      if(!$(elem).hasClass("console"))
-#        toolbar = $('<div class="toolbar">').appendTo($(elem))
-#        btn = $("<button class='btn btn-large '>Load</button>").appendTo($(toolbar))
-#        $(btn).bind("click",
-#          (evt) ->
-#            # find snippet
-#            snippet = $(evt.target).parent().parent()
-#            # read snippet content
-#            content = readRawCode(snippet, true)
-#            # trigger modal
-#            initModalEditor(content)
-#        )
+      createCodeBlock(b, code)
   )
 
-createSnippet = (block, elem, status, clear, spin) ->
+  # add "load"-buttons
+  $(elem).find("pre").each(
+    (idx, pre) ->
+      if(!$(pre).hasClass("output"))
+        toolbar = $('<div class="toolbar">').appendTo($(pre))
+        btn = $("<button class='btn btn-large '>Load</button>").appendTo($(toolbar))
+        $(btn).bind("click",
+          (evt) ->
+            # find snippet
+            snippet = $(evt.target).parent().parent()
+            # read snippet content
+            content = readRawCode(snippet, true)
+            # trigger modal
+            initModalEditor(content)
+        )
+  )
+
+createCodeBlock = (block, elem, status, clear, spin) ->
   type = block["type"]
   text = block["text"]
   noText = _.str.isBlank(text)
@@ -94,7 +98,7 @@ initEditor = (elem, data) ->
 
 callAPI = (target, editor, output) ->
   # clear console
-  createSnippet("", output, "wait")
+  createCodeBlock("", output, "wait")
 
   # issue call
   $.ajax(
@@ -105,7 +109,7 @@ callAPI = (target, editor, output) ->
     success: (data, status) ->
       window.spinner?.stop()
       text = if(_.str.isBlank(data)) then "compiled and executed successfully" else data
-      createSnippet(text, output, "success", true)
+      createCodeBlock(text, output, "success", true)
       console.log(data)
     error: (jqXHR, status, err) ->
       window.spinner?.stop()
@@ -114,7 +118,7 @@ callAPI = (target, editor, output) ->
         if(status == "timeout") then "request timed out"
         else if(_.str.isBlank(data)) then "an unkown error occurred"
         else data
-      createSnippet(text, output, "error", true)
+      createCodeBlock(text, output, "error", true)
       console.log(text)
       console.log(status)
       console.log(err)

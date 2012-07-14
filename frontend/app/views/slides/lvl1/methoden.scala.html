@@ -16,7 +16,7 @@
         } {
             <div class="sidebyside">
                 <div>
-                    @comp.code() {
+                    @comp.snippet() {
                         @comp.sourceblock() {
                             |def hello(): String = {
                             |   return "Hello World"
@@ -69,7 +69,7 @@
             Methoden: Unit
         } {
             <div class="sidebyside">
-                @comp.code() {
+                @comp.snippet() {
                     @comp.sourceblock() {
                         |def hello() = {
                         |   println("Hello World")
@@ -80,7 +80,7 @@
                     }
                 }
 
-                @comp.code(fragment = true) {
+                @comp.snippet(fragment = true) {
                     @comp.sourceblock() {
                         |def hello() {
                         |   println("Hello World")
@@ -111,12 +111,8 @@
                     |   return "Hello World"
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>
-                            <strong><em>ohne</em></strong> geschweifte Klammern<br/>
-                            <comment>Wann? Nur eine Zeile</comment>
-                        </li>
-                    </ul>
+                    <strong><em>ohne</em></strong> geschweifte Klammern<br/>
+                    <comment>Wann? Nur eine Zeile</comment>
                 </div>
             </div>
 
@@ -128,12 +124,8 @@
                     |   "Hello World"
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>
-                            <strong><em>ohne</em></strong> <code>return</code><br/>
-                            <comment>Wann? Immer, Rückgabe ist Ergebnis des letzten Ausdrucks</comment>
-                        </li>
-                    </ul>
+                    <strong><em>ohne</em></strong> <code>return</code><br/>
+                    <comment>Wann? Immer, Rückgabe ist Ergebnis des letzten Ausdrucks</comment>
                 </div>
             </div>
 
@@ -145,12 +137,8 @@
                     |   "Hello World"
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>
-                            <strong><em>ohne</em></strong> Parameterliste<br/>
-                            <comment>Wann? Keine Parameter</comment>
-                        </li>
-                    </ul>
+                    <strong><em>ohne</em></strong> Parameterliste<br/>
+                    <comment>Wann? Keine Parameter</comment>
                 </div>
             </div>
 
@@ -162,12 +150,8 @@
                     |   "Hello World"
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>
-                            <strong><em>ohne</em></strong> Rückgabetyp<br/>
-                            <comment>Wann? Nicht rekursiv oder überladen</comment>
-                        </li>
-                    </ul>
+                    <strong><em>ohne</em></strong> Rückgabetyp<br/>
+                    <comment>Wann? Nicht rekursiv oder überladen</comment>
                 </div>
             </div>
 
@@ -178,11 +162,7 @@
                     |def hello = "Hello World"
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>
-                            <strong><em>ohne</em></strong> Zeilenumbruch
-                        </li>
-                    </ul>
+                    <strong><em>ohne</em></strong> Zeilenumbruch
                 </div>
             </div>
         }
@@ -194,7 +174,7 @@
             Methoden: Parameter
         } {
             <div class="sidebyside">
-                @comp.code() {
+                @comp.snippet() {
                     @comp.sourceblock(id = "double") {
                         |def double(x: Int) =
                         |   2 * x
@@ -212,7 +192,7 @@
             <hr/>
 
             <div class="fragment sidebyside">
-                @comp.code() {
+                @comp.snippet() {
                     @comp.sourceblock(id = "add") {
                         |def add(x: Float, y: Float) =
                         |   x + y
@@ -241,7 +221,7 @@
             Methoden: Aufruf
         } {
             <div class="sidebyside p40_60">
-                @comp.code() {
+                @comp.snippet() {
                     @comp.callblock() {
                         |42.isWhole
                     }
@@ -257,7 +237,7 @@
             <hr/>
 
             <div class="fragment sidebyside p40_60">
-                @comp.code() {
+                @comp.snippet() {
                     @comp.callblock() {
                         |42.compare(42)
                     }
@@ -285,7 +265,7 @@
             <hr/>
 
             <div class="fragment sidebyside p40_60">
-                @comp.code() {
+                @comp.snippet() {
                     @comp.callblock() {
                         |add (1, 2)
                     }
@@ -310,13 +290,13 @@
 
         <div>
             <div class="sidebyside">
-                @comp.snippet() {
+                comp.snippet() {
                     |val rand = util.Random.nextInt(10)
                     |
                     |println(rand)
                     |println(rand)
                 }
-                @comp.snippet() {
+                comp.snippet() {
                     |def rand = util.Random.nextInt(10)
                     |
                     |println(rand)
@@ -327,12 +307,12 @@
 
         <div class="fragment">
             <div class="sidebyside">
-                @comp.console() {
+                comp.console() {
                     |rand: Int = 6
                     |6
                     |6
                 }
-                @comp.console() {
+                comp.console() {
                     |rand: Int
                     |3
                     |9

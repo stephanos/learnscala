@@ -16,7 +16,7 @@
         } {
             <div class="sidebyside p40_60">
                 <div>
-                    @comp.code() {
+                    @comp.snippet() {
                         @comp.callblock() {
                             |42
                         }
@@ -52,7 +52,7 @@
             Variablen: Objekte
         } {
             <div class="sidebyside">
-                @comp.code() {
+                @comp.snippet() {
                     @comp.callblock() {
                         |42.toString()
                     }
@@ -68,7 +68,7 @@
             <hr/>
 
             <div class="fragment sidebyside">
-                @comp.code() {
+                @comp.snippet() {
                     @comp.callblock() {
                         |42.isWhole()
                     }
@@ -84,7 +84,7 @@
             <hr/>
 
             <div class="fragment sidebyside">
-                @comp.code() {
+                @comp.snippet() {
                     @comp.callblock() {
                         |42.==(42)
                     }
@@ -112,7 +112,7 @@
         } {
             <div class="sidebyside">
                 <div>
-                    @comp.code() {
+                    @comp.snippet() {
                         @comp.callblock() {
                             |val meaningOfLife: Int = 42
                         }
@@ -159,7 +159,7 @@
             Variablen: Immutable
         } {
             <div class="sidebyside">
-                @comp.code() {
+                @comp.snippet() {
                     @comp.callblock() {
                         |val meaningOfLife: Int = 42
                     }
@@ -195,7 +195,7 @@
             Variablen: Typensicherheit
         } {
             <div class="sidebyside p60_40">
-                @comp.code() {
+                @comp.snippet() {
                     @comp.callblock() {
                         |val meaningOfLife: Int = "Java"
                     }
@@ -227,7 +227,7 @@
             Variablen: Optionales
         } {
             <div class="sidebyside p45_55">
-                @comp.code() {
+                @comp.snippet() {
                     @comp.callblock() {
                         |val meaningOfLife = 42
                     }
@@ -244,7 +244,7 @@
             <hr/><hr/>
 
             <div class="fragment sidebyside p45_55">
-                @comp.code() {
+                @comp.snippet() {
                     @comp.callblock() {
                         |val pi = 3.14f
                     }
@@ -272,7 +272,7 @@
             <var>Var</var>iablen: Mutable
         } {
             <div class="sidebyside p40_60">
-                @comp.code() {
+                @comp.snippet() {
                     @comp.callblock() {
                         |var pi = 3.14f
                     }
@@ -314,11 +314,11 @@
         <hr/>
 
         <div class="sidebyside p40_60">
-            @comp.snippet() {
+            comp.snippet() {
                 |val hello1 = "Hello"
                 |val hello2 = "Hello";
             }
-            @comp.console() {
+            comp.console() {
                 |hello1: java.lang.String = Hello
                 |hello2: java.lang.String = Hello
             }
@@ -327,10 +327,10 @@
         <hr/><hr/>
 
         <div class="sidebyside p40_60 fragment">
-            @comp.snippet() {
+            comp.snippet() {
                 |val h1="Hi"; val h2="Hi"
             }
-            @comp.console() {
+            comp.console() {
                 |hello: java.lang.String = Hello
                 |hello2: java.lang.String = Hello
             }
@@ -362,81 +362,86 @@
         } {
             <div class="sidebyside">
                 @comp.snippet() {
-                    |val r = 42f
+                    @comp.callblock() {
+                        |val r = 42f
+                    }
+                    @comp.outblock(fragment = true) {
+                        |r: Float = 42
+                    }
                 }
-                <div class="fragment">
-                @comp.console() {
-                    |r: Float = 42
-                }
-                </div>
-            </div>
-
-            <div class="sidebyside">
                 @comp.snippet() {
-                    |val r = 5.*5
-                }
-                <div class="fragment">
-                @comp.console() {
-                    |r: Double = 25.0
-                }
-                </div>
-            </div>
-
-            <div class="sidebyside">
-                @comp.snippet() {
-                    |val r = 24.==(42)
-                }
-                <div class="fragment">
-                @comp.console() {
-                    |r: Boolean = false
-                }
-                </div>
-            </div>
-
-            <div class="sidebyside">
-                @comp.snippet() {
-                    |val r = 42 isWhole
-                }
-                <div class="fragment">
-                @comp.console() {
-                    |r: Boolean = true
-                }
-                </div>
-            </div>
-
-            <div class="sidebyside">
-                @comp.snippet() {
-                    |val r = (5.)*5
-                }
-                <div class="fragment">
-                @comp.console() {
-                    |r: Double = 25.0
-                }
-                </div>
-            </div>
-
-            <div class="sidebyside">
-                <div class="fragment">
-                @comp.snippet() {
-                    |var r = 1L
-                    |r = 25
-                }
-                </div>
-                @comp.console() {
-                    |r: Long = 1
-                    |r: Long = 25
+                    @comp.callblock() {
+                        |val r = 5.*5
+                    }
+                    @comp.outblock(fragment = true) {
+                        |r: Double = 25.0
+                    }
                 }
             </div>
 
+            <hr/>
+
             <div class="sidebyside">
                 @comp.snippet() {
-                    |val r = (5).*(5)
+                    @comp.callblock() {
+                        |val r = 24.==(42)
+                    }
+                    @comp.outblock(fragment = true) {
+                        |r: Boolean = false
+                    }
                 }
-                <div class="fragment">
-                @comp.console() {
-                    |r: Int = 25
+                @comp.snippet() {
+                    @comp.callblock() {
+                        |val r = 42 isWhole
+                    }
+                    @comp.outblock(fragment = true) {
+                        |r: Boolean = true
+                    }
                 }
-                </div>
+            </div>
+
+            <hr/>
+
+            <div class="sidebyside">
+                @comp.snippet() {
+                    @comp.callblock() {
+                        |val r = (5.)*5
+                    }
+                    @comp.outblock(fragment = true) {
+                        |r: Double = 25.0
+                    }
+                }
+                @comp.snippet() {
+                    @comp.callblock(fragment = true) {
+                        |var r = 1L
+                        |r = 25
+                    }
+                    @comp.outblock() {
+                        |r: Long = 1
+                        |r: Long = 25
+                    }
+                }
+            </div>
+
+            <hr/>
+
+            <div class="sidebyside">
+                @comp.snippet() {
+                    @comp.callblock() {
+                        |val r: Double = 3.14
+                    }
+                    @comp.outblock(fragment = true) {
+                        |r: Double = 3.14
+                    }
+                }
+                @comp.snippet() {
+                    @comp.callblock() {
+                        |val r = (5).*(5)
+                    }
+                    @comp.outblock(fragment = true) {
+                        |r: Int = 25
+                    }
+                }
             </div>
         }
     </section>

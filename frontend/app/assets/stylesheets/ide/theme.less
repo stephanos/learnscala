@@ -2,21 +2,42 @@
 /* Editor styling */
 
 .CodeMirror, .snippet {
-    background-color: #FDF6E3;
-    border: 1px solid @c_text_light; // 2px dashed @c_text_light;
+    pre {
+        position: relative;
+        background-color: #FDF6E3;
 
-    .toolbar {
-        position: absolute;
-        right: 20px; bottom: 8px;
+        // border all: border left and right
+        @c_border: @c_text_light;
+        .border-left(@c_border);
+        .border-right(@c_border);
 
-        .btn {
-            margin-left: 10px;
-            .linear-transition(opacity);
-            .opacity(0);
+        // border default: dashed top and bottom
+        border-bottom: 1px dashed @c_border_f;
+        border-top: 1px dashed @c_border_f;
+
+        // border first and last: solid top and bottom
+        @c_border_f: fadeout(@c_border, 1%);
+        &:first-child { .border-top(@c_border); }
+        &:last-child { .border-bottom(@c_border); }
+
+        // border explicit start/middle/end: dashed
+        &.first, &.middle, &.start { border-bottom: 1px dashed @c_border_f; }
+        &.last, &.middle, &.end { border-top: 1px dashed @c_border_f; }
+
+        // toolbar
+        .toolbar {
+            position: absolute;
+            right: 20px; bottom: 4px;
+
+            .btn {
+                margin-left: 10px;
+                .linear-transition(opacity);
+                .opacity(0);
+            }
         }
-    }
-    &:hover {
-        .btn { .full-opacity(); }
+        &:hover {
+            .btn { .full-opacity(); }
+        }
     }
 }
 
@@ -33,12 +54,13 @@
 }
 
 .cm-s-ambiance {
-    .fs(@mult: 1.0) {
-        font-size: @fs_code * @mult;
-        line-height: 2 * @fs_code * @mult;
+    font-size: @fs_code;
+    line-height: 2 * @fs_code;
+
+    &.output {
+        font-size: @fs_code * 0.85;
+        //line-height: 2 * @fs_code;
     }
-    .fs();
-    &.output { .fs(0.8); }
 
     font-family: "Inconsolata", monospace !important;
 

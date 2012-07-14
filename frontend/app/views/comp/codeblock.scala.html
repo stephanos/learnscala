@@ -1,7 +1,6 @@
-@(typeOf: String, id: String = null, fragment: Boolean = false, include: String = null, reference: String = null)(data: Html)
+@(typeOf: String, id: String = null, fragment: Boolean = false, clazz: String = null, include: String = null, reference: String = null)(data: Html)
 
-<div data-type='@typeOf'
-    @{if(fragment) "data-fragment=true"}
+<div data-type='@{if(fragment) "fragment" else ""} @typeOf @clazz'
     @{if(id == null) "" else "id=snippet-" + id}
     @{if(include == null) "" else "data-include=snippet-" + include}
     @{if(reference == null) "" else "data-reference=snippet-" + reference}>

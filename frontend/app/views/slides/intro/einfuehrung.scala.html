@@ -38,42 +38,44 @@
         } {
             <div class="fragment sidebyside p60_40">
                 @comp.snippet() {
-                    |>val i: Int = 5
-                    |i: Int = 5
-                    |>println(5 * 5)
-                    |25
+                    @comp.sourceblock() {
+                        |val i: Int = 5
+                    }
+                    @comp.outblock() {
+                        |i: Int = 5
+                    }
+                    @comp.callblock() {
+                        |println(5 * 5)
+                    }
+                    @comp.outblock() {
+                        |25
+                    }
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>interaktive Konsole: <br/> Read-Eval-Print-Loop (REPL)</li>
-                    </ul>
+                    interaktive Konsole: <br/> Read-Eval-Print-Loop (REPL)
                 </div>
             </div>
 
             <hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.snippet() {
+                @comp.callcode() {
                     |println("Hello World")
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>keine Semikolons</li>
-                    </ul>
+                   keine Semikolons
                 </div>
             </div>
 
             <hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.snippet() {
+                @comp.callcode() {
                     |val i = 1 + 2 * 3      // type of i is Int
                     |val s = "Scala rocks"  // type of s is String
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>Type Inference</li>
-                    </ul>
+                    Type Inference
                 </div>
             </div>
 
@@ -91,40 +93,34 @@
             Scala ist ... <span><em>objektorientiert</em></span>
         } {
             <div class="fragment sidebyside">
-                @comp.snippet() {
+                @comp.callcode() {
                     |42.toFloat
                     |(3.14f).floor
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>jeder Wert ist ein Objekt</li>
-                    </ul>
+                    jeder Wert ist ein Objekt
                 </div>
             </div>
 
             <hr/>
 
             <div class="fragment sidebyside">
-                @comp.snippet() {
+                @comp.sourcecode() {
                     |class MonsterTruck extends Car
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>Klassen und Vererbung</li>
-                    </ul>
+                    Klassen und Vererbung
                 </div>
             </div>
 
             <hr/>
 
             <div class="fragment sidebyside">
-                @comp.snippet() {
+                @comp.sourcecode() {
                     |class FlyingCar extends Car with Wings
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>Mixin-Mechanismus</li>
-                    </ul>
+                    Mixin-Mechanismus
                 </div>
             </div>
 
@@ -142,39 +138,33 @@
             Scala ist ... <span><em>knapp und präzise</em></span>
         } {
             <div class="fragment sidebyside p60_40">
-                @comp.snippet() {
+                @comp.sourcecode() {
                     |class MyCar(wheels: Int = 4)
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>weniger Boilerplate-Code</li>
-                    </ul>
+                    weniger Boilerplate-Code
                 </div>
             </div>
 
             <hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.snippet() {
+                @comp.sourcecode() {
                     |trait Logging
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>Traits zur Wiederverwendung</li>
-                    </ul>
+                    Traits zur Wiederverwendung
                 </div>
             </div>
 
             <hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.snippet() {
+                @comp.sourcecode() {
                     |def getUserAttributes[T](fn: (User) => List[T])
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>Closures</li>
-                    </ul>
+                    Closures
                 </div>
             </div>
 
@@ -192,22 +182,20 @@
             Scala ist ... <span><em>funktional</em></span>
         } {
             <div class="fragment sidebyside p60_40">
-                @comp.snippet() {
+                @comp.callcode() {
                     |val names = users.map(_.username)
                     |
                     |val minors = users.map(_.age()).filter(_ < 18)
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>wiederverwendbare Code-Blöcke ohne Seiteneffekte</li>
-                    </ul>
+                    wiederverwendbare Code-Blöcke ohne Seiteneffekte
                 </div>
             </div>
 
             <hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.snippet() {
+                @comp.sourcecode() {
                     |def matchTest(arg: String, value: Any) =
                     | (arg, value) match {
                     |   case ("-h"|"--help", _) => showHelp()
@@ -216,9 +204,7 @@
                     |}
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>Pattern Matching</li>
-                    </ul>
+                    Pattern Matching
                 </div>
             </div>
 
@@ -236,39 +222,33 @@
             Scala ist ... <span><em>statisch typisiert</em></span>
         } {
             <div class="fragment sidebyside p60_40">
-                @comp.snippet() {
+                @comp.callcode() {
                     |val i = 1 + 2 * 3    // the type of i is Int
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>Type Inference</li>
-                    </ul>
+                    Type Inference
                 </div>
             </div>
 
             <hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.snippet() {
+                @comp.callcode() {
                     |val j: Int = "test"  // COMPILER ERROR!
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>Typensicherheit</li>
-                    </ul>
+                    Typensicherheit
                 </div>
             </div>
 
             <hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.snippet() {
+                @comp.sourcecode() {
                     |def cloneAndReset(o: Cloneable with Resetable) = ..
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>Compound Types</li>
-                    </ul>
+                    Compound Types
                 </div>
             </div>
 
@@ -286,7 +266,7 @@
             Scala ist ... <span><em>Java</em></span>
         } {
             <div class="fragment sidebyside p60_40">
-                @comp.snippet() {
+                @comp.sourcecode() {
                     |import org.apache.http.client._
                     |import org.apache.http.client.methods._
                     |
@@ -317,7 +297,7 @@
             Scala ist ... <span><em>erweiterbar</em></span>
         } {
             <div class="fragment sidebyside p60_40">
-                @comp.snippet() {
+                @comp.sourcecode() {
                     |def retry[T](n: Int)(fn: => T): T =
                     |   try   { fn }
                     |   catch {
@@ -327,16 +307,14 @@
                     |   }
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>eigene Kontrollstrukturen</li>
-                    </ul>
+                    eigene Kontrollstrukturen
                 </div>
             </div>
 
             <hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.snippet() {
+                @comp.sourcecode() {
                     @Html("""
                     |"The 'Hello world' string" should {
                     |    "contain 11 characters" in {
@@ -344,9 +322,7 @@
                     """)
                 }
                 <div>
-                    <ul class="no-bullets indent10">
-                        <li>eigene Sprachen: <br/>Domain Specific Language</li>
-                    </ul>
+                    eigene Sprachen: <br/>Domain Specific Language
                 </div>
             </div>
 
@@ -417,7 +393,7 @@
             Zusammenfassung: Scala ist ...
         } {
             <h4>
-                <div>
+                <div class="indent">
                     <ul class="fragment w40p left">
                         <li><em>Java</em></li>
                         <li><em>funktional</em></li>

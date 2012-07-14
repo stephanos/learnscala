@@ -14,11 +14,13 @@
         } {
             <div class="sidebyside">
                 <div>
-                    @comp.snippet(id = "plane") {
-                        |class Plane
-                    }
-                    @comp.console() {
-                        |defined class Plane
+                    @comp.snippet() {
+                        @comp.callblock() {
+                            |class Plane
+                        }
+                        @comp.outblock() {
+                            |defined class Plane
+                        }
                     }
                 </div>
                 <div>
@@ -40,13 +42,20 @@
 
             <div class="fragment sidebyside">
                 <div>
-                    @comp.snippet(reference = "plane") {
-                        |new Plane()
-                        |new Plane
-                    }
-                    @comp.console() {
-                        |res0: Plane = Plane@@3ee32abc
-                        |res1: Plane = Plane@@50394ec
+                    <hr/>
+                    @comp.snippet() {
+                        @comp.callblock(reference = "plane") {
+                            |new Plane()
+                        }
+                        @comp.outblock() {
+                            |res0: Plane = Plane@@3ee32abc
+                        }
+                        @comp.callblock(reference = "plane") {
+                            |new Plane
+                        }
+                        @comp.outblock() {
+                            |res1: Plane = Plane@@50394ec
+                        }
                     }
                 </div>
                 <div>
@@ -66,34 +75,32 @@
             Klassen: Konstruktor
         } {
             <div class="sidebyside p60_40">
-                @comp.snippet(id = "plane3") {
-                    |class Plane(model: String)
-                    |
-                    |val p = new Plane("Boeing 737")
+                @comp.snippet() {
+                    @comp.sourceblock() {
+                        |class Plane(model: String)
+                    }
+                    @comp.callblock() {
+                        |val p = new Plane("Boeing 737")
+                    }
                 }
-                <div>
-                    <ul class="no-bullets">
-                        <li class="fragment">
-                            Klassenparameter ergeben <br/> primären Konstruktor
-                        </li>
-                    </ul>
+                <div class="fragment">
+                    Klassenparameter ergeben <br/> primären Konstruktor
                 </div>
             </div>
 
-            <hr/>
+            <hr/><hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.snippet(id = "plane4") {
-                    |class Plane(model: String, seats: Int)
-                    |
-                    |val p = new Plane("Boeing 737", 189)
+                @comp.snippet() {
+                    @comp.sourceblock() {
+                        |class Plane(model: String, seats: Int)
+                    }
+                    @comp.callblock() {
+                        |val p = new Plane("Boeing 737", 189)
+                    }
                 }
-                <div>
-                    <ul class="no-bullets">
-                        <li class="fragment">
-                            Syntax ist wie bei <br/> Methodendefinition
-                        </li>
-                    </ul>
+                <div class="fragment">
+                    Syntax ist wie bei <br/> Methodendefinition
                 </div>
             </div>
 
@@ -112,21 +119,23 @@
             Klassen: Konstruktor mit Logik
         } {
             <hr/>
-            @comp.snippet(id = "plane5") {
-                |class Plane(model: String, seats: Int) {
-                |   println("I just bought a " + model + " plane with " + seats + " seats")
-                |}
-                |
-                |val p = new Plane("Boeing 737", 189)
-            }
-            <div class="fragment">
-                @comp.console() {
+            @comp.snippet() {
+                @comp.sourceblock() {
+                    |class Plane(model: String, seats: Int) {
+                    |   println("I just bought a " + model + " plane with " + seats + " seats")
+                    |}
+                }
+                @comp.outblock() {
                     |defined class Plane
-                    |
+                }
+                @comp.callblock(fragment = true) {
+                    |val p = new Plane("Boeing 737", 189)
+                }
+                @comp.outblock(fragment = true) {
                     |I just bought a Boeing 737 plane with 189 seats
                     |res0: Plane = Plane@@3ee32abc
                 }
-            </div>
+            }
 
             <hr/>
 
@@ -142,19 +151,19 @@
         @comp.headbody() {
             Klassen: Mehrere Konstruktoren
         } {
-            <hr/>
-            @comp.snippet(id = "plane6") {
-                |class Plane(model: String, seats: Int) {
-                |   def this() = this("Unknown", -1)
-                |
-                |   def this(mdl: String, firstClassSeats: Int, secondClassSeats: Int) =
-                |       this(mdl, firstClassSeats + secondClassSeats)
-                |}
+            @comp.snippet() {
+                @comp.sourceblock() {
+                    |class Plane(model: String, seats: Int) {
+                    |   def this() = this("Unknown", -1)
+                    |
+                    |   def this(mdl: String, firstClassSeats: Int, secondClassSeats: Int) =
+                    |       this(mdl, firstClassSeats + secondClassSeats)
+                    |}
+                }
+                @comp.callblock(fragment = true) {
+                    |val p = new Plane("Boeing 737", 150, 20)
+                }
             }
-            @comp.snippet(fragment = true, reference = "plane6") {
-                |val p = new Plane("Boeing 737", 150, 20)
-            }
-
             <hr/><hr/>
 
             @comp.infobox() {
@@ -174,27 +183,33 @@
             Klassen: Öffentliche Felder
         } {
             <div class="sidebyside p66_33">
-                <div>
-                    @comp.snippet(id = "plane8") {
+                @comp.snippet() {
+                    @comp.sourceblock() {
                         |class Plane(val model: String, var seats: Int) {
                         |   val wings = 2
                         |}
                     }
-                    @comp.console() {
-                        |> val p = new Plane("Boeing 737", 189)
+                    @comp.callblock(fragment = true) {
+                        |val p = new Plane("Boeing 737", 150, 20)
+                    }
+                    @comp.outblock(fragment = true) {
                         |p: Plane = Plane@@53a1d1a8
-                        |> println(p.model)
+                    }
+                    @comp.callblock(fragment = true) {
+                        |println(p.model)
+                    }
+                    @comp.outblock(fragment = true) {
                         |Boeing 737
-                        |> p.seats = p.seats - 1
+                    }
+                    @comp.callblock(fragment = true) {
+                        |p.seats = p.seats - 1
+                    }
+                    @comp.outblock(fragment = true) {
                         |p.seats: Int = 188
                     }
-                </div>
+                }
                 <div>
-                    <ul class="no-bullets">
-                        <li class="fragment">
-
-                        </li>
-                    </ul>
+                    &nbsp;
                 </div>
             </div>
 
@@ -214,85 +229,67 @@
         } {
             <div class="sidebyside p60_40">
                 <div>
-                    @comp.snippet(id = "plane9") {
-                        |class Plane(model: String, val seats: Int) {
-                        |             var fuel    = 0.0
-                        |             val wings   = 2
-                        |   private   val defects = 4
-                        |   protected val toilets = 6
-                        |}
-                        |val p = new Plane("Boeing 737", 189)
+                    @comp.snippet(id = "plane7") {
+                        @comp.sourceblock() {
+                            |class Plane(model: String, val seats: Int) {
+                            |             var fuel    = 0.0
+                            |             val wings   = 2
+                            |   private   val defects = 4
+                            |   protected val toilets = 6
+                            |}
+                        }
+                        @comp.callblock(fragment = true, clazz = "middle") {
+                            |val p = new Plane("Boeing 737", 189)
+                        }
                     }
                 </div>
                 <div>
-                    <ul class="no-bullets">
-                        <li class="fragment">
-                            mit Hilfe von <code>val</code> und <code>var</code>
-                            werden Klassenparameter zu Feldern
-                        </li>
-                    </ul>
+                    &nbsp;
                 </div>
             </div>
 
-            <div class="sidebyside p60_40">
+            <hr/>
+
+            <div class="fragment sidebyside p60_40">
+                @comp.callcode(reference = "plane7", clazz = "middle") {
+                    |println(p.model)    // FEHLER: not a member
+                }
                 <div>
-                    @comp.snippet(reference = "plane7") {
-                        |println(p.model)    // FEHLER: not a member
-                    }
-                </div>
-                <div>
-                    <ul class="no-bullets">
-                        <li class="fragment">
-                            <code>model</code> ist nicht öffentlich
-                        </li>
-                    </ul>
+                    <code>model</code> ist kein Feld
                 </div>
             </div>
 
-            <div class="sidebyside p60_40">
+            <hr/>
+
+            <div class="fragment sidebyside p60_40">
+                @comp.callcode(reference = "plane7", clazz = "middle") {
+                    |println(p.seats)
+                }
                 <div>
-                    @comp.snippet(reference = "plane7") {
-                        |println(p.seats)
-                    }
-                </div>
-                <div>
-                    <ul class="no-bullets">
-                        <li class="fragment">
-                            <code>seats</code> ist öffentlich lesbar
-                        </li>
-                    </ul>
+                    <code>seats</code> ist öffentlich lesbar
                 </div>
             </div>
 
-            <div class="sidebyside p60_40">
+            <hr/>
+
+            <div class="fragment sidebyside p60_40">
+                @comp.callcode(reference = "plane7", clazz = "middle") {
+                    |p.fuel = p.fuel + 1.0
+                }
                 <div>
-                    @comp.snippet(reference = "plane7") {
-                        |p.fuel = 1.0
-                        |println(p.fuel)
-                    }
-                </div>
-                <div>
-                    <ul class="no-bullets">
-                        <li class="fragment">
-                            <code>fuel</code> ist les- und beschreibbar
-                        </li>
-                    </ul>
+                    <code>fuel</code> ist les- und beschreibbar
                 </div>
             </div>
 
-            <div class="sidebyside p60_40">
+            <hr/>
+
+            <div class="fragment sidebyside p60_40">
+                @comp.callcode(reference = "plane7", clazz = "end") {
+                    |println(p.defects)  // FEHLER: private
+                    |println(p.toilets)  // FEHLER: protected
+                }
                 <div>
-                    @comp.snippet(reference = "plane7") {
-                        |println(p.defects)  // FEHLER: private
-                        |println(p.toilets)  // FEHLER: protected
-                    }
-                </div>
-                <div>
-                    <ul class="no-bullets">
-                        <li class="fragment">
-                            <code>defects</code> & <code>toilets</code> sind nicht öffentlich
-                        </li>
-                    </ul>
+                    <code>defects</code> & <code>toilets</code> sind nicht öffentlich
                 </div>
             </div>
         }
