@@ -69,7 +69,7 @@ object CodeUtil {
 
     class JavaDecoder {
         def exec(code: String): (String, String) = {
-            //val t = sun.tools.javap.Main
+            val t = sun.tools.javap.Main
             null
         }
     }

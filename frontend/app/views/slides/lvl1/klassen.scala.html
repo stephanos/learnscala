@@ -84,7 +84,7 @@
                     }
                 }
                 <div class="fragment">
-                    Klassenparameter ergeben <br/> primären Konstruktor
+                    Klassenparameter ähnlich <br/> den Methodenparametern
                 </div>
             </div>
 
@@ -93,55 +93,30 @@
             <div class="fragment sidebyside p60_40">
                 @comp.snippet() {
                     @comp.sourceblock() {
-                        |class Plane(model: String, seats: Int)
+                        |class Plane(model: String, seats: Int) {
+                        |
+                        |   println("I just bought a " + model +
+                        |           " plane with " + seats + " seats")
+                        |}
                     }
-                    @comp.callblock() {
+                    @comp.callblock(fragment = true) {
                         |val p = new Plane("Boeing 737", 189)
+                    }
+                    @comp.outblock(fragment = true) {
+                        |I just bought a Boeing 737 plane with 189 seats
+                        |res0: Plane = Plane@@3ee32abc
                     }
                 }
                 <div class="fragment">
-                    Syntax ist wie bei <br/> Methodendefinition
+                    Anweisungen im Rumpf werden bei der Initialisierung ausgeführt
                 </div>
             </div>
 
-            <hr/><hr/>
+            <hr/>
 
             @comp.infobox() {
                 Der primäre Konstruktor <comment>("primary constructor")</comment>
-                entsteht aus den <br/> Parametern einer Klasse.
-            }
-        }
-    </section>
-
-
-    <section>
-        @comp.headbody() {
-            Klassen: Konstruktor mit Logik
-        } {
-            <hr/>
-            @comp.snippet() {
-                @comp.sourceblock() {
-                    |class Plane(model: String, seats: Int) {
-                    |   println("I just bought a " + model + " plane with " + seats + " seats")
-                    |}
-                }
-                @comp.outblock() {
-                    |defined class Plane
-                }
-                @comp.callblock(fragment = true) {
-                    |val p = new Plane("Boeing 737", 189)
-                }
-                @comp.outblock(fragment = true) {
-                    |I just bought a Boeing 737 plane with 189 seats
-                    |res0: Plane = Plane@@3ee32abc
-                }
-            }
-
-            <hr/>
-
-            @comp.infobox() {
-                Logik, die bei der Instanziierung ausgeführt werden soll <comment>(z.B. Validierung)</comment>,<br/>
-                wird direkt in den Rumpf der Klasse geschrieben.
+                entsteht aus <br/> den Parametern einer Klasse sowie deren Anweisungen im Rumpf.
             }
         }
     </section>
@@ -154,14 +129,15 @@
             @comp.snippet() {
                 @comp.sourceblock() {
                     |class Plane(model: String, seats: Int) {
+                    |
                     |   def this() = this("Unknown", -1)
                     |
-                    |   def this(mdl: String, firstClassSeats: Int, secondClassSeats: Int) =
-                    |       this(mdl, firstClassSeats + secondClassSeats)
+                    |   def this(company: String, typeOf: String, seats: Int) =
+                    |       this(company + " " + typeOf, seats)
                     |}
                 }
                 @comp.callblock(fragment = true) {
-                    |val p = new Plane("Boeing 737", 150, 20)
+                    |val p = new Plane("Boeing", "737", 189)
                 }
             }
             <hr/><hr/>
@@ -180,42 +156,56 @@
 
     <section>
         @comp.headbody() {
-            Klassen: Öffentliche Felder
+            Klassen: Felder I
         } {
-            <div class="sidebyside p66_33">
+            <div class="sidebyside">
+                <div>
+                    @comp.sourcecode(id = "plane6") {
+                        |class Plane(val model: String,
+                        |            var seats: Int)
+                    }
+                    <hr/>
+                    @comp.outcode(fragment = true) {
+                        |// dekompiliert:
+                        |public class Plane extends Object implements ScalaObject {
+                        |
+                        |  private int seats;
+                        |  public void seats_$eq(int);  // setter
+                        |  public int seats();          // getter
+                        |
+                        |  private String model;
+                        |  public String model();       // getter
+                        |}
+                    }
+                </div>
                 @comp.snippet() {
-                    @comp.sourceblock() {
-                        |class Plane(val model: String, var seats: Int)
-                    }
                     @comp.callblock(fragment = true) {
-                        |val p = new Plane("Boeing 737", 150, 20)
+                        |val p = new Plane("Boeing 737", 189)
                     }
-                    @comp.outblock(fragment = true) {
+                    @comp.outblock(reference = "plane6", fragment = true) {
                         |p: Plane = Plane@@53a1d1a8
                     }
                     @comp.callblock(fragment = true) {
-                        |println(p.model)        // get
+                        |println(p.model)       // get
                     }
                     @comp.outblock(fragment = true) {
                         |Boeing 737
                     }
                     @comp.callblock(fragment = true) {
-                        |p.seats = p.seats - 1   // get & set
+                        |p.seats = p.seats - 1  // get & set
                     }
                     @comp.outblock(fragment = true) {
                         |p.seats: Int = 188
                     }
                 }
-                <div>
-                    &nbsp;
-                </div>
             </div>
 
-            <hr/><hr/>
+            <hr/>
 
             @comp.infobox() {
-                Klassenparameter werden mit <code>val</code> (nur lesen)<br/>
-                oder <code>var</code> (lesen und schreiben) zu öffentlichen Feldern.
+                Scala generiert überschreibbare, öffentliche Zugriffsmethoden:<br/>
+                Klassenparameter mit <code>val</code> erhalten <strong>nur</strong> eine Get-Methode,<br/>
+                Parameter mit <code>var</code> erhalten Get- <strong>und</strong> Set-Methode.
             }
         }
     </section>
@@ -223,13 +213,13 @@
 
     <section>
         @comp.headbody() {
-            Klassen: Nicht-öffentliche Felder
+            Klassen: Felder II
         } {
             <div class="sidebyside p60_40">
                 <div>
                     @comp.snippet(id = "plane7") {
                         @comp.sourceblock() {
-                            |class Plane(model: String, val seats: Int) {
+                            |class Plane {
                             |             var fuel    = 0.0
                             |             val wings   = 2
                             |   private   val defects = 4
@@ -301,8 +291,7 @@
             <div class="sidebyside">
                 @comp.snippet() {
                     @comp.sourceblock(id = "plane8") {
-                        |class Plane(val model: String,
-                        |            val seats: Int) {
+                        |class Plane {
                         |
                         |   private var isLandingGearUp = false
                         |
@@ -310,17 +299,20 @@
                         |       isLandingGearUp = true
                         |       println("landing gear is up")
                         |   }
+                        |
                         |   def gearDown() {
                         |       isLandingGearUp = false
                         |       println("landing gear is down")
                         |   }
+                        |
+                        |   def isInTheAir = isLandingGearUp
                         |}
                     }
                 }
                 <div>
                     @comp.snippet() {
                         @comp.callblock(fragment = true, reference = "plane8") {
-                            |val p = new Plane("Boeing 737", 189)
+                            |val p = new Plane
                         }
                         @comp.outblock(fragment = true) {
                             |p: Plane = Plane@@2142115
@@ -332,6 +324,12 @@
                             |landing gear is up
                         }
                         @comp.callblock(fragment = true) {
+                            |val flying = p.isInTheAir
+                        }
+                        @comp.outblock(fragment = true) {
+                            |flying: Boolean = true
+                        }
+                        @comp.callblock(fragment = true) {
                             |p.gearDown()
                         }
                         @comp.outblock(fragment = true) {
@@ -340,6 +338,11 @@
                     }
                 </div>
             </div>
+
+            @comp.infobox() {
+                Methoden einer Klasse sind standardmäßig öffentlich, <br/>
+                bei nur lesenden Methoden sollte <code>()</code> weggelassen werden.
+            }
         }
     </section>
 

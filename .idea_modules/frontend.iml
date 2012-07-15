@@ -21,6 +21,9 @@
       <sourceFolder url="file://$MODULE_DIR$/../frontend/test/resources" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/../frontend/target/scala-2.9.1/cache" />
       <excludeFolder url="file://$MODULE_DIR$/../frontend/target/scala-2.9.1/classes" />
+      <excludeFolder url="file://$MODULE_DIR$/../frontend/target/scala-2.9.1/classes_managed" />
+      <excludeFolder url="file://$MODULE_DIR$/../frontend/target/scala-2.9.1/resource_managed" />
+      <excludeFolder url="file://$MODULE_DIR$/../frontend/target/scala-2.9.1/test-classes" />
       <excludeFolder url="file://$MODULE_DIR$/../frontend/target/streams" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -90,6 +93,7 @@
     <orderEntry type="library" name="net.liftweb_lift-db_2.9.1_2.4" level="project" />
     <orderEntry type="library" name="net.liftweb_lift-mongodb_2.9.1_2.4" level="project" />
     <orderEntry type="library" name="net.liftweb_lift-json-ext_2.9.1_2.4" level="project" />
+    <orderEntry type="library" name="com.sun_tools_1.6.0" level="project" />
     <orderEntry type="library" scope="TEST" name="org.specs2_specs2_2.9.1_1.11_test" level="project" />
     <orderEntry type="library" scope="TEST" name="org.specs2_specs2-scalaz-core_2.9.1_6.0.1_test" level="project" />
     <orderEntry type="library" scope="TEST" name="org.mockito_mockito-all_1.9.0_test" level="project" />

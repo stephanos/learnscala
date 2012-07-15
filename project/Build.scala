@@ -18,7 +18,7 @@ object ProjectBuild extends MyBuild {
     lazy val frontend =
         MyProject("frontend", file("frontend"))
             .settings(myPlaySettings: _*)
-            //.settings(libraryDependencies ++= Seq(sun_tools))
+            .settings(libraryDependencies ++= Seq(sun_tools))
             .dependsOn(mod_web_play, mod_data_mongo, mod_test_unit % "test->test")
 
     lazy val exercises = // cannot use RootProject ("AttributeKey ID collisions detected for: 'pgp-signer'")
@@ -36,6 +36,7 @@ object ProjectBuild extends MyBuild {
 
     // ==== DEPENDENCIES
 
-    lazy val sun_tools =
-        "com.sun" % "tools" % "1.6.0" from ("file:///" + jdkHome + fileSep + "lib" + fileSep + "tools.jar")
+    val sun_tools_file = file(jdkHome + fileSep + "lib" + fileSep + "tools.jar").getCanonicalPath
+    lazy val sun_tools = "com.sun" % "tools" % "1.6.0" from ("file:///" + sun_tools_file)
+    println(sun_tools_file)
 }
