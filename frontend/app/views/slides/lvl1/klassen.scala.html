@@ -185,9 +185,7 @@
             <div class="sidebyside p66_33">
                 @comp.snippet() {
                     @comp.sourceblock() {
-                        |class Plane(val model: String, var seats: Int) {
-                        |   val wings = 2
-                        |}
+                        |class Plane(val model: String, var seats: Int)
                     }
                     @comp.callblock(fragment = true) {
                         |val p = new Plane("Boeing 737", 150, 20)
@@ -196,13 +194,13 @@
                         |p: Plane = Plane@@53a1d1a8
                     }
                     @comp.callblock(fragment = true) {
-                        |println(p.model)
+                        |println(p.model)        // get
                     }
                     @comp.outblock(fragment = true) {
                         |Boeing 737
                     }
                     @comp.callblock(fragment = true) {
-                        |p.seats = p.seats - 1
+                        |p.seats = p.seats - 1   // get & set
                     }
                     @comp.outblock(fragment = true) {
                         |p.seats: Int = 188
@@ -300,26 +298,71 @@
         @comp.headbody() {
             Klassen: Methoden
         } {
+            <div class="sidebyside">
+                @comp.snippet() {
+                    @comp.sourceblock(id = "plane8") {
+                        |class Plane(val model: String,
+                        |            val seats: Int) {
+                        |
+                        |   var isLandingGearUp = false
+                        |
+                        |   def gearUp() {
+                        |       isLandingGearUp = true
+                        |       println("landing gear is up")
+                        |   }
+                        |   def gearDown() {
+                        |       isLandingGearUp = false
+                        |       println("landing gear is down")
+                        |   }
+                        |}
+                    }
+                    @comp.outblock(fragment = true) {
+                        |p: Plane = Plane@@2142115
+                    }
+                }
+                <div>
+                    @comp.snippet() {
+                        @comp.callblock(fragment = true, reference = "plane8") {
+                            |val p = new Plane("Boeing 737", 189)
+                        }
+                        @comp.outblock(fragment = true) {
+                            |p: Plane = Plane@@2142115
+                        }
+                        @comp.callblock(fragment = true) {
+                            |p.gearUp()
+                        }
+                        @comp.outblock(fragment = true) {
+                            |landing gear is up
+                        }
+                        @comp.callblock(fragment = true) {
+                            |p.gearDown()
+                        }
+                        @comp.outblock(fragment = true) {
+                            |landing gear is down
+                        }
+                    }
+                </div>
+            </div>
         }
     </section>
 
 
-    <section>
+    <!--<section>
         @comp.headbody() {
             Zusammenfassung
         } {
             @summary.klassen()
         }
-    </section>
+    </section>-->
 
 
-    <section>
+    <!--<section>
         @comp.headbody() {
             Quiz
         } {
 
         }
-    </section>
+    </section>-->
 
 </div>
 }

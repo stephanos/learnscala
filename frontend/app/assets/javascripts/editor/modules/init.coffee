@@ -150,46 +150,65 @@ callAPI = (target, editor, output) ->
 #######################################################################################################################
 # raw source code data from snippet
 readRawCode = (elem, editable) ->
-
-  if($(elem)[0].tagName.toLowerCase() == "pre")
+  if($(elem)[0].tagName.toLowerCase() == "pre") # find and read previous blocks
     num = $(elem).data("num")
     _.filter(readRawCode($(elem).closest('div.snippet'), editable),
-      (b) -> !_.str.contains(b["type"], "output") && b["num"] <= num
+      (b) -> isCodeBlock(b) && b["num"] <= num
     )
   else
-    blocks = []
-    # extract code
-    raw = $(elem).find(".raw")
-    $(raw).find("div").each(
-      (idx, elem) ->
-        content = ""
-        type = $(elem).data("type")
+    if($(elem).hasClass("raw-block"))
+      [readRawBlock(elem, editable)] # read a single block
+    else
+      readRawBlocks(elem, editable) # read a bunch of blocks
 
-        # read snippet include content
-        include = $(elem).data("include")
-        if(include) then content += readRawCode($("#" + include)) + "\n"
+readRawBlocks = (elem, editable) ->
+  blocks = []
+  $(elem).find(".raw-block").each(
+    (idx, blck) -> # iterate through blocks
+      blocks[idx] = readRawBlock(blck, editable)
+      blocks[idx]["num"] = idx
+  )
+  blocks
 
-        # read snippet reference content
-        if(editable)
-          reference = $(elem).data("reference")
-          if(reference) then content += readRawCode($("#" + reference)) + "\n"
+readRawBlock = (elem, editable) ->
+  content = ""
+  type = $(elem).data("type")
 
-        # extract code
-        lines = _.str.lines(_.str.trim($(elem).text()))
-        _.forEach(lines,
-          (l, i) ->
-            if(i != 0) then content += "\n"
-            if(_.str.contains(type, "call") && editable != true) then content += "> "
-            content += _.str.strRight(l, "|")
-        )
+  # read snippet's include content
+  content += readRawBlockRef($(elem).data("include"))
 
-        blocks[idx] =
-          num: idx
-          type: type
-          text: content
-    )
-    blocks
+  # read snippet's reference content
+  if(editable)
+    content += readRawBlockRef($(elem).data("reference"))
 
+  # extract text
+  lines = _.str.lines(_.str.trim($(elem).text()))
+  _.forEach(lines,
+    (l, i) ->
+      # append newline
+      if(i != 0) then content += "\n"
+      # mark call scripts with a '> '
+      if(_.str.contains(type, "call") && editable != true) then content += "> "
+      # append content right from '|'
+      content += _.str.strRight(l, "|")
+  )
+
+  {
+    num: 0
+    type: type
+    text: content
+  }
+
+readRawBlockRef = (id) ->
+  content = ""
+  if(id)
+    blocks = readRawCode($("#" + id))
+    if(!_.isEmpty(blocks))
+      _.forEach(blocks, (b) -> if(isCodeBlock(b)) then content += b.text + "\n")
+  content
+
+isCodeBlock = (b) ->
+  !_.str.contains(b["type"], "output")
 
 #######################################################################################################################
 # init snippets on page load
