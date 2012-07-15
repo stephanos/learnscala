@@ -23,6 +23,7 @@ object ProjectBuild extends MyBuild {
 
     lazy val exercises = // cannot use RootProject ("AttributeKey ID collisions detected for: 'pgp-signer'")
         MyProject("exercises", file("exercises"), isCloud)
+            .settings(stageSettings)
             .settings(libraryDependencies ++= Seq(http))
             .settings(libraryDependencies ++= Seq(Test.specs2, Test.mockito))
             .settings(libraryDependencies ++= Seq(squeryl, Test.h2).map(_.copy(configurations = Some("compile"))))
