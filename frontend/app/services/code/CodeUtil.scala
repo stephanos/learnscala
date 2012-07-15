@@ -5,12 +5,11 @@ import scala.tools.util._
 import scala.tools.nsc._
 import scala.tools.nsc.io.{PlainFile, AbstractFile}
 import scala.tools.nsc.util._
-import scala.tools.nsc.interpreter.{IMain => Encoder, IR}
+import scala.tools.nsc.interpreter.{IMain => Encoder}
 import scala.tools.nsc.reporters.Reporter
 import scala.tools.scalap._
 import com.loops101.util.EnvUtil
-import scala.actors.Futures._
-import scala.Some
+import sun.tools.javap._
 
 object CodeUtil {
 
@@ -67,18 +66,42 @@ object CodeUtil {
 
     //~ INTERNALS =====================================================================================================
 
-    class JavaDecoder {
-        def exec(code: String): (String, String) = {
-            val t = sun.tools.javap.Main
-            null
+    class JavaDecoder extends ScalaCompile {
+
+        def printFile(byteCode: Array[Byte], out: OutputStream) {
+            val in = new ByteArrayInputStream(byteCode)
+            val pw = new PrintWriter(out)
+            val env = {
+                val env = new JavapEnvironment()
+                /*
+                val showDisassembled = classOf[JavapEnvironment].getDeclaredField("showDisassembled")
+                showDisassembled.setAccessible(true)
+                showDisassembled.set(env, true)
+                */
+                env
+            }
+            new JavapPrinter(in, pw, env).print()
+            pw.flush()
+            out.flush()
         }
     }
 
-    class ScalaDecoder {
-        def exec(code: String): (String, String) = {
+    class ScalaDecoder extends ScalaCompile {
+
+        def printFile(byteCode: Array[Byte], out: OutputStream) {
+            val clazz = new Classfile(new ByteArrayReader(byteCode))
+            val writer = new OutputStreamWriter(out)
+            new JavaWriter(clazz, writer).printClass()
+            writer.flush()
+        }
+    }
+
+    trait ScalaCompile {
+
+        def exec(sourceCode: String): (String, String) = {
             val scala = encoder()
             val compiler = scala._1
-            if (compiler.compileString(code)) {
+            if (compiler.compileString(sourceCode)) {
                 val out = new ByteArrayOutputStream()
                 printFile(compiler.virtualDirectory, out)
                 (asString(out), asString(scala._2))
@@ -86,18 +109,15 @@ object CodeUtil {
                 (null, asString(scala._2))
         }
 
-        private def printFile(file: AbstractFile, out: OutputStream) {
+        def printFile(file: AbstractFile, out: OutputStream) {
             if (file.isDirectory)
                 for (f <- file.iterator)
                     printFile(f, out)
-            else if (!file.name.contains("$repl")) {
-                val reader = new ByteArrayReader(file.toByteArray)
-                val clazz = new Classfile(reader)
-                val writer = new OutputStreamWriter(out)
-                new JavaWriter(clazz, writer).printClass()
-                writer.flush()
-            }
+            else if (!file.name.contains("$repl"))
+                printFile(file.toByteArray, out)
         }
+
+        def printFile(file: Array[Byte], out: OutputStream)
     }
 
     lazy val scalaCP =

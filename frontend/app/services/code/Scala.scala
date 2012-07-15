@@ -83,7 +83,7 @@ object Compiler {
 object Decoder {
 
     def apply(code: String) =
-        new Scala().decode(code)
+        new Java().decode(code)
 }
 
 object Interpreter {
