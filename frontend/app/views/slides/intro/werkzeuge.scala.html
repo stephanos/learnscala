@@ -345,6 +345,13 @@
                     </div>
                 </div>
             </div>
+
+            @comp.tipbox() {
+                Das IDE-Projekt wird stets aus SBT heraus erstellt
+                <comment>(via <code>eclipsify</code> bzw. <code>gen-idea</code>)</comment>
+                - damit bleibt es immer synchron.
+            }
+
             <details>
                 <a href="http://scala-ide.org">Eclipse-Plugin</a>
                 <a href="http://confluence.jetbrains.net/display/SCA/Scala+Plugin+for+IntelliJ+IDEA">Intellij-Plugin</a>
