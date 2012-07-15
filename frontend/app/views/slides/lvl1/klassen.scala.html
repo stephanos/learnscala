@@ -304,7 +304,7 @@
                         |class Plane(val model: String,
                         |            val seats: Int) {
                         |
-                        |   var isLandingGearUp = false
+                        |   private var isLandingGearUp = false
                         |
                         |   def gearUp() {
                         |       isLandingGearUp = true
@@ -315,9 +315,6 @@
                         |       println("landing gear is down")
                         |   }
                         |}
-                    }
-                    @comp.outblock(fragment = true) {
-                        |p: Plane = Plane@@2142115
                     }
                 }
                 <div>
