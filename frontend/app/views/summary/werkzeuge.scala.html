@@ -1,8 +1,73 @@
 @(clazz: String = "fragment")
 
-<div class="indent">
-    <ul>
-        <li>
-        </li>
-    </ul>
+<div class="sidebyside">
+    <div>
+        <div class="indent">
+            <ul>
+                <li class="@clazz no-bullet">
+                    <var>JARs</var>
+                    <hr/>
+                    <ul>
+                        <li>
+                            <em>scala-compiler.jar</em> generiert Java-Bytecode aus Quelldateien
+                        </li>
+                        <li>
+                            <em>scala-library.jar</em> enthält Scala-Klassen und -Sprachelemente
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="indent">
+            <ul>
+                <li class="@clazz no-bullet">
+                    <var>Skripts</var>
+                    <hr/>
+                    <ul>
+                        <li>
+                            <em>scalac</em> kompiliert Scala- und Java-Code zu Bytecode
+                        </li>
+                        <li>
+                            <em>scala</em> führt Scala-Programme aus
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<hr/><hr/>
+
+<div class="sidebyside">
+    <div>
+        <div class="indent">
+            <ul>
+                <li class="@clazz no-bullet">
+                    <var>Build-Tools</var>
+                    <hr/>
+                    <ul>
+                        <li>Integration mit <em>Maven</em> via plugin</li>
+                        <li><em>SBT</em>, das offizielle Tool: <br/> in Scala, für Scala</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <div class="indent">
+            <ul>
+                <li class="@clazz no-bullet">
+                    <var>IDEs</var>
+                    <hr/>
+                    <ul>
+                        <li><em>Eclipse</em>: offizielles Plugin</li>
+                        <li><em>IntelliJ</em></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>

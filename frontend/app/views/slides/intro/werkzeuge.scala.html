@@ -71,7 +71,7 @@
         } {
             <div class="indent">
                 <ul>
-                    <li><em>Konsolenanwendung</em>: kompiliert <em>Scala-Code</em> zu <var>Java-Bytecode</var>
+                    <li><em>Skript</em>: kompiliert <em>Scala-Code</em> zu <var>Java-Bytecode</var>
                         <hr/>
                         @comp.outcode(fragment = true) {
                             |$ scalac HelloWorld.scala
@@ -91,7 +91,7 @@
             <div class="indent">
                 <ul>
                     <li><var>fast scala compiler</var></li>
-                    <li><em>Konsolenanwendung</em>: kompiliert Scala-Code mittels Hintergrundprozess</li>
+                    <li><em>Skript</em>: kompiliert Scala-Code mittels Hintergrundprozess</li>
                     <li class="fragment">
                         kompiliert schneller als <em>scalac</em>: Startzeit fällt weg plus Caching
                         <hr/>
@@ -115,7 +115,7 @@
             <div class="indent">
                 <ul>
                     <li>
-                        <em>Konsolenanwendung</em>: führt Scala-Programme aus
+                        <em>Skript</em>: führt Scala-Programme aus
                         <hr/>
                         <div class="indent">
                             <ol>
@@ -297,29 +297,59 @@
 
 
     <section>
-        @comp.headbody() {
-            <em>IntelliJ</em> IDE
-        } {
-            <div class="indent">
-                <ul>
-                    <li></li>
-                </ul>
-            </div>
-        }
-    </section>
+        <div class="indent">
+            <div class="sidebyside">
+                <div>
+                    <h3>
+                        <em>IntelliJ</em> IDE
+                    </h3>
 
+                    <div class="indent">
+                        <ul>
+                            <li class="fragment">
+                                Plugin <var>von JetBrains</var>
+                            </li>
+                            <li class="fragment">
+                                entwickelt <em>seit 2009</em>
+                            </li>
+                            <li class="fragment">
+                                <em>kostenlos</em> verfügbar <br/> <comment>(Community-Edition)</comment>
+                            </li>
+                            <li class="fragment">
+                                Syntax Highlighting, Nagivation, inkrementelles Kompilieren, Debugger, Refactoring etc.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <h3>
+                        <em>Eclipse</em> IDE
+                    </h3>
 
-    <section>
-        @comp.headbody() {
-            <em>Eclipse</em> IDE
-        } {
-            <div class="indent">
-                <ul>
-                    <li>
-                    </li>
-                </ul>
+                    <div class="indent">
+                        <ul>
+
+                            <li class="fragment">
+                                Plugin <var>von Typesafe</var>
+                            </li>
+                            <li class="fragment">
+                                entwickelt <em>seit 2010</em>
+                            </li>
+                            <li class="fragment">
+                                <em>kostenlos</em> verfügbar <br/> <comment>(via Update Site)</comment>
+                            </li>
+                            <li class="fragment">
+                                Syntax Highlighting, Nagivation, inkrementelles Kompilieren, Debugger, Refactoring etc.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-        }
+            <details>
+                <a href="http://scala-ide.org">Eclipse-Plugin</a>
+                <a href="http://confluence.jetbrains.net/display/SCA/Scala+Plugin+for+IntelliJ+IDEA">Intellij-Plugin</a>
+            </details>
+        </div>
     </section>
 
 
@@ -332,7 +362,7 @@
         @comp.headbody() {
             Zusammenfassung
         } {
-            @summary.werkzeuge("")
+            @summary.werkzeuge()
         }
     </section>
 
