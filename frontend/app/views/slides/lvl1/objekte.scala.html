@@ -12,21 +12,62 @@
         @headbody() {
             Objekte: Singleton
         } {
+            <div class="sidebyside p60_40">
+                @sourcecode(id = "plane") {
+                    |// Klasse
+                    |class Plane(val model: String, val seats: Int)
+                }
+                @empty()
+            </div>
+
+            <hr/>
+
+            <div class="fragment sidebyside p60_40">
+                @codesplits((60,40)){
+                    @splitstart() {
+                        @sourcecode(reference = "plane") {
+                            |// Objekt
+                            |object Plane @Html("{")
+                        }
+                    }{
+                        <code>static</code> existiert in Scala nicht
+                    }
+                    @codesplit() {
+                        @sourcecode() {
+                            |   val minSeatsNumber = 100
+                        }
+                    } {
+                        Objekte können <em>globalen Zustand</em> kapseln
+                    }
+                    @codesplit() {
+                        @sourcecode() {
+                            |   def create(model: String, seats: Int) = {
+                            |       if(seats <= minSeatsNumber)
+                            |           sys.error("not enough seats!")
+                            |       new Plane(model, seats)
+                            |   }
+                        }
+                    } {
+                         und als <em>Factory</em> dienen
+                    }
+                    @splitend() {
+                        @sourcecode() {
+                            |@Html("}")
+                        }
+                    }(null)
+                }
+            </div>
+            @infobox() {
+                <code>object</code> definiert ein Singleton-Objekt:
+                Es gibt genau eine Instanz
+            }
         }
     </section>
 
 
     <section>
         @headbody() {
-            Objekte: Application
-        } {
-        }
-    </section>
-
-
-    <section>
-        @headbody() {
-            Objekte: apply
+            Objekte: apply()
         } {
         }
     </section>

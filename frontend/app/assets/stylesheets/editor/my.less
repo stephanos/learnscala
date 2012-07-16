@@ -60,8 +60,10 @@
 
     // border default: dashed top and bottom
     @c_border_f: fadeout(@c_code_border, 10%);
-    border-bottom: 1px dashed @c_border_f;
-    border-top: 1px dashed @c_border_f;
+    border-top: 0;
+    border-bottom: 0;
+    //border-bottom: 1px dashed @c_border_f;
+    //border-top: 1px dashed @c_border_f;
 
     // border first and last: solid top and bottom
     &:first-child { .border-top(@c_code_border); }
@@ -87,7 +89,10 @@ table.codesplit {
             &.code {
                 .bg(@c_code_bg);
                 .border-h(@c_code_border);
-                .snippet pre { border: none; /*.btn { display: none; }*/ }
+                .snippet pre {
+                    border: none;
+                    .btn { display: none; }
+                }
             }
         }
 
@@ -95,7 +100,9 @@ table.codesplit {
         &.code-right { td.text { padding-right: 20px; } }
 
         &:first-child { td.code { .border-top(@c_code_border); } }
-        &:last-child  { td.code { .border-bottom(@c_code_border); } }
+        &:last-child  { td.code { .border-bottom(@c_code_border);
+                                  .snippet pre .btn { display: block; } }
+                      }
     }
 }
 

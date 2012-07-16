@@ -16,7 +16,7 @@ initSnippet = (elem) ->
         $(btn).bind("click",
           (evt) ->
             # find block (pre)
-            pre = $(evt.target).parent().parent()
+            pre = $(evt.target).closest("pre")
             # read snippet content
             blocks = readRawCode($(pre), true)
             # trigger modal
@@ -151,10 +151,14 @@ callAPI = (target, editor, output) ->
 # raw source code data from snippet
 readRawCode = (elem, editable) ->
   if($(elem)[0].tagName.toLowerCase() == "pre") # find and read previous blocks
-    num = $(elem).data("num")
-    _.filter(readRawCode($(elem).closest('div.snippet'), editable),
-      (b) -> isCodeBlock(b) && b["num"] <= num
-    )
+    split = $(elem).closest(".codesplit")
+    if(split.length > 0)
+      readRawCode(split, editable)
+    else
+      num = $(elem).data("num")
+      _.filter(readRawCode($(elem).closest('div.snippet'), editable),
+        (b) -> isCodeBlock(b) && b["num"] <= num
+      )
   else
     if($(elem).hasClass("raw-block"))
       [readRawBlock(elem, editable)] # read a single block
