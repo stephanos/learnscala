@@ -60,7 +60,8 @@ object CodeUtil {
 
     def asString(out: ByteArrayOutputStream) = {
         out.flush()
-        new String(out.toByteArray, "UTF-8")
+        val comment = """Compiled from "<script>"""" + sys.props("line.separator")
+        new String(out.toByteArray, "UTF-8").replaceAllLiterally(comment, "")
     }
 
 
@@ -73,6 +74,9 @@ object CodeUtil {
             val pw = new PrintWriter(out)
             val env = {
                 val env = new JavapEnvironment()
+                val showAccess = classOf[JavapEnvironment].getDeclaredField("showAccess")
+                showAccess.setAccessible(true)
+                showAccess.set(env, 0)
                 /*
                 val showDisassembled = classOf[JavapEnvironment].getDeclaredField("showDisassembled")
                 showDisassembled.setAccessible(true)

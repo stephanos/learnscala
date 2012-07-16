@@ -162,19 +162,24 @@
                 <div>
                     @comp.sourcecode(id = "plane6") {
                         |class Plane(val model: String,
-                        |            var seats: Int)
+                        |            var seats: Int) {
+                        |   val wings = 2
+                        |}
                     }
                     <hr/>
                     @comp.outcode(fragment = true) {
-                        |// dekompiliert:
-                        |public class Plane extends Object implements ScalaObject {
+                        |// Plane.class dekompiliert:
+                        |public class Plane extends [...] {
                         |
-                        |  private int seats;
-                        |  public void seats_$eq(int);  // setter
-                        |  public int seats();          // getter
+                        |    private final String model;
+                        |    public String model();         // get
                         |
-                        |  private String model;
-                        |  public String model();       // getter
+                        |    private final int wings;
+                        |    public int wings();            // get
+                        |
+                        |    private int seats;
+                        |    public int seats();            // get
+                        |    public void seats_$eq(int);    // set
                         |}
                     }
                 </div>
@@ -197,15 +202,19 @@
                     @comp.outblock(fragment = true) {
                         |p.seats: Int = 188
                     }
+                    @comp.callblock(fragment = true) {
+                        |println(p.wings)       // get
+                    }
+                    @comp.outblock(fragment = true) {
+                        |2
+                    }
                 }
             </div>
 
-            <hr/>
-
             @comp.infobox() {
                 Scala generiert überschreibbare, öffentliche Zugriffsmethoden:<br/>
-                Klassenparameter mit <code>val</code> erhalten <strong>nur</strong> eine Get-Methode,<br/>
-                Parameter mit <code>var</code> erhalten Get- <strong>und</strong> Set-Methode.
+                <code>val</code> erhält <strong>nur</strong> eine Get-Methode,
+                <code>var</code> erhält Get- <strong>und</strong> Set-Methoden.
             }
         }
     </section>
