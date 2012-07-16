@@ -1,6 +1,7 @@
 import sbt._
 import Keys._
 import org.sbtidea._
+import PlayProject._
 
 object ProjectBuild extends MyBuild {
 
@@ -19,6 +20,7 @@ object ProjectBuild extends MyBuild {
         MyProject("frontend", file("frontend"))
             .settings(myPlaySettings: _*)
             .settings(libraryDependencies ++= Seq(sun_tools))
+            .settings(templatesImport += "views.html.comp._")
             .dependsOn(mod_web_play, mod_data_mongo, mod_test_unit % "test->test")
 
     lazy val exercises = // cannot use RootProject ("AttributeKey ID collisions detected for: 'pgp-signer'")

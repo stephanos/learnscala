@@ -1,0 +1,11 @@
+@(ratio: (Int, Int), id: String = null)(content: Html)
+<table class="codesplit">
+    <colgroup>
+        <col width="@ratio._1%">
+        <col width="@ratio._2%">
+    </colgroup>
+
+    <tbody>
+        @content
+    </tbody>
+</table>

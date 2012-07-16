@@ -66,14 +66,14 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             &gt;<em> scalac</em>
         } {
             <div class="indent">
                 <ul>
                     <li><em>Skript</em>: kompiliert <em>Scala-Code</em> zu <var>Java-Bytecode</var>
                         <hr/>
-                        @comp.outcode(fragment = true) {
+                        @outcode(fragment = true) {
                             |$ scalac HelloWorld.scala
                         }
                     </li>
@@ -85,7 +85,7 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             &gt;<em> fsc</em>
         } {
             <div class="indent">
@@ -95,7 +95,7 @@
                     <li class="fragment">
                         kompiliert schneller als <em>scalac</em>: Startzeit fällt weg plus Caching
                         <hr/>
-                        @comp.outcode() {
+                        @outcode() {
                             |$ fsc HelloWorld.scala   // erster Aufruf, Prozess wird gestartet und kompiliert
                             |
                             |$ fsc HelloWorld.scala   // zweiter Aufruf, Prozess kompiliert direkt
@@ -109,7 +109,7 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             &gt;<em> scala</em>
         } {
             <div class="indent">
@@ -122,7 +122,7 @@
                                 <li class="fragment">
                                     kompilierte Programme
                                     <hr/>
-                                    @comp.outcode() {
+                                    @outcode() {
                                         |$ scala HelloWorld
                                         |
                                         |$ Hello World
@@ -131,7 +131,7 @@
                                     <div class="fragment">
                                         alternativ kann natürlich auch <var>java</var> verwendet werden:
                                         <hr/>
-                                        @comp.outcode() {
+                                        @outcode() {
                                             |$ java -classpath lib/scala-library.jar HelloWorld
                                             |
                                             |$ Hello World
@@ -141,7 +141,7 @@
                                 <li class="fragment">
                                     interaktive Programme
                                     <hr/>
-                                    @comp.outcode() {
+                                    @outcode() {
                                         |$ scala
                                         |
                                         |scala> 1 + 2
@@ -163,7 +163,7 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             <em>Maven</em>
         } {
             <div class="sidebyside p40_60">
@@ -182,7 +182,7 @@
                         </ul>
                     </div>
                 </div>
-                @comp.outcode() {
+                @outcode() {
                     |&lt;plugin&gt;
                     |    &lt;groupId&gt;org.scala-tools&lt;/groupId&gt;
                     |    &lt;artifactId&gt;maven-scala-plugin&lt;/artifactId&gt;
@@ -207,7 +207,7 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             <em>SBT</em>
         } {
             <div class="indent">
@@ -231,12 +231,12 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             <em>SBT</em>: Beispiel
         } {
             <div class="sidebyside p33_66">
                 <div>
-                    @comp.outcode() {
+                    @outcode() {
                         |myproject
                         |   |
                         |   +project
@@ -261,7 +261,7 @@
                     </sub>
                 </div>
                 <div>
-                    @comp.sourcecode() {
+                    @sourcecode() {
                         |// Build.scala
                         |import sbt._
                         |import Keys._
@@ -283,7 +283,7 @@
 
             <hr/><hr/>
 
-            @comp.outcode() {
+            @outcode() {
                 |$ sbt
                 |> compile
             }
@@ -346,7 +346,7 @@
                 </div>
             </div>
 
-            @comp.tipbox() {
+            @tipbox() {
                 Das IDE-Projekt wird stets aus SBT heraus erstellt
                 <comment>(via <code>eclipsify</code> bzw. <code>gen-idea</code>)</comment>
                 - damit bleibt es immer synchron.
@@ -366,7 +366,7 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Zusammenfassung
         } {
             @summary.werkzeuge()

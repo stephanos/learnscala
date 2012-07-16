@@ -33,21 +33,21 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Scala ist ... <span class="fragment"><em>eine Skriptsprache</em></span>
         } {
             <div class="fragment sidebyside p60_40">
-                @comp.snippet() {
-                    @comp.sourceblock() {
+                @snippet() {
+                    @sourceblock() {
                         |val i: Int = 5
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |i: Int = 5
                     }
-                    @comp.callblock() {
+                    @callblock() {
                         |println(5 * 5)
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |25
                     }
                 }
@@ -59,7 +59,7 @@
             <hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.callcode() {
+                @callcode() {
                     |println("Hello World")
                 }
                 <div>
@@ -70,7 +70,7 @@
             <hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.callcode() {
+                @callcode() {
                     |val i = 1 + 2 * 3      // type of i is Int
                     |val s = "Scala rocks"  // type of s is String
                 }
@@ -81,7 +81,7 @@
 
             <hr/>
 
-            @comp.tipbox() {
+            @tipbox() {
                 Das Beste von beiden Welten: Sieht dynamisch aus, ist aber statisch.
             }
         }
@@ -89,11 +89,11 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Scala ist ... <span><em>objektorientiert</em></span>
         } {
             <div class="fragment sidebyside">
-                @comp.callcode() {
+                @callcode() {
                     |42.toFloat
                     |(3.14f).floor
                 }
@@ -105,7 +105,7 @@
             <hr/>
 
             <div class="fragment sidebyside">
-                @comp.sourcecode() {
+                @sourcecode() {
                     |class MonsterTruck extends Car
                 }
                 <div>
@@ -116,7 +116,7 @@
             <hr/>
 
             <div class="fragment sidebyside">
-                @comp.sourcecode() {
+                @sourcecode() {
                     |class FlyingCar extends Car with Wings
                 }
                 <div>
@@ -126,7 +126,7 @@
 
             <hr/>
 
-            @comp.tipbox() {
+            @tipbox() {
                 Alles ist ein Objekt: Bekannte Objektorientierung mit Mehrfachvererbung.
             }
         }
@@ -134,11 +134,11 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Scala ist ... <span><em>knapp und präzise</em></span>
         } {
             <div class="fragment sidebyside p60_40">
-                @comp.sourcecode() {
+                @sourcecode() {
                     |class MyCar(wheels: Int = 4)
                 }
                 <div>
@@ -149,7 +149,7 @@
             <hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.sourcecode() {
+                @sourcecode() {
                     |trait Logging
                 }
                 <div>
@@ -160,7 +160,7 @@
             <hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.sourcecode() {
+                @sourcecode() {
                     |def getUserAttributes[T](fn: (User) => List[T])
                 }
                 <div>
@@ -170,7 +170,7 @@
 
             <hr/>
 
-            @comp.tipbox() {
+            @tipbox() {
                 50% weniger Code: Schneller zu schreiben und leichter zu lesen.
             }
         }
@@ -178,11 +178,11 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Scala ist ... <span><em>funktional</em></span>
         } {
             <div class="fragment sidebyside p60_40">
-                @comp.callcode() {
+                @callcode() {
                     |val names = users.map(_.username)
                     |
                     |val minors = users.map(_.age()).filter(_ < 18)
@@ -195,7 +195,7 @@
             <hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.sourcecode() {
+                @sourcecode() {
                     |def matchTest(arg: String, value: Any) =
                     | (arg, value) match {
                     |   case ("-h"|"--help", _) => showHelp()
@@ -210,7 +210,7 @@
 
             <hr/>
 
-            @comp.tipbox() {
+            @tipbox() {
                 Leichtgewichtige aber mächtige Funktionen für besseren Code.
             }
         }
@@ -218,11 +218,11 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Scala ist ... <span><em>statisch typisiert</em></span>
         } {
             <div class="fragment sidebyside p60_40">
-                @comp.callcode() {
+                @callcode() {
                     |val i = 1 + 2 * 3    // the type of i is Int
                 }
                 <div>
@@ -233,7 +233,7 @@
             <hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.callcode() {
+                @callcode() {
                     |val j: Int = "test"  // COMPILER ERROR!
                 }
                 <div>
@@ -244,7 +244,7 @@
             <hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.sourcecode() {
+                @sourcecode() {
                     |def cloneAndReset(o: Cloneable with Resetable) = ..
                 }
                 <div>
@@ -254,7 +254,7 @@
 
             <hr/>
 
-            @comp.tipbox() {
+            @tipbox() {
                 Sicheres Refactoring, weniger Flüchtigkeitsfehler & Testaufwand
             }
         }
@@ -262,11 +262,11 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Scala ist ... <span><em>Java</em></span>
         } {
             <div class="fragment sidebyside p60_40">
-                @comp.sourcecode() {
+                @sourcecode() {
                     |import org.apache.http.client._
                     |import org.apache.http.client.methods._
                     |
@@ -285,7 +285,7 @@
 
             <hr/>
 
-            @comp.tipbox() {
+            @tipbox() {
                 Leicht zu integrieren mit bestehendem Code und bekannten Bibliotheken.
             }
         }
@@ -293,11 +293,11 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Scala ist ... <span><em>erweiterbar</em></span>
         } {
             <div class="fragment sidebyside p60_40">
-                @comp.sourcecode() {
+                @sourcecode() {
                     |def retry[T](n: Int)(fn: => T): T =
                     |   try   { fn }
                     |   catch {
@@ -314,7 +314,7 @@
             <hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.sourcecode() {
+                @sourcecode() {
                     @Html("""
                     |"The 'Hello world' string" should {
                     |    "contain 11 characters" in {
@@ -326,7 +326,7 @@
                 </div>
             </div>
 
-            @comp.tipbox() {
+            @tipbox() {
                 Scala lässt sich flexibel an ein Problem anpassen.
             }
         }
@@ -334,7 +334,7 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Scala ist ... <span><em>in Benutzung</em></span>
         } {
             <table>
@@ -377,7 +377,7 @@
                 </tr>
             </table>
             <br/>
-            @comp.tipbox() {
+            @tipbox() {
                 <strong><var>Startups</var></strong> und <strong><em>Konzerne</em></strong>
                 setzen auf Scala.
             }
@@ -389,7 +389,7 @@
 
 
     <section>
-        @comp.headbody(indent = true) {
+        @headbody(indent = true) {
             Zusammenfassung: Scala ist ...
         } {
             <h4>

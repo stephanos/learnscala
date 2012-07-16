@@ -2,25 +2,25 @@
 
 <div class="@clazz sidebyside">
     <div>
-        @comp.snippet() {
-            @comp.sourceblock() {
+        @snippet() {
+            @sourceblock() {
                 |def printHello() {
                 |   println("Hello")
                 |}
             }
-            @comp.outblock() {
+            @outblock() {
                 |printHello: ()Unit
             }
-            @comp.callblock() {
+            @callblock() {
                 |printHello()
             }
-            @comp.outblock() {
+            @outblock() {
                 |Hello
             }
-            @comp.callblock() {
+            @callblock() {
                 |printHello
             }
-            @comp.outblock() {
+            @outblock() {
                 |Hello
             }
         }
@@ -29,25 +29,25 @@
         </sub>
     </div>
     <div>
-        @comp.snippet() {
-            @comp.sourceblock() {
+        @snippet() {
+            @sourceblock() {
                 |def double(x: Int): Int = {
                 |   2 * x
                 |}
             }
-            @comp.outblock() {
+            @outblock() {
                 |double: (x: Int)Int
             }
-            @comp.callblock() {
+            @callblock() {
                 |double(5)
             }
-            @comp.outblock() {
+            @outblock() {
                 |res0: Int = 10
             }
-            @comp.callblock() {
+            @callblock() {
                 |double 5
             }
-            @comp.outblock() {
+            @outblock() {
                 |res1: Int = 10
             }
         }
@@ -61,17 +61,17 @@
 
 <div class="@clazz sidebyside">
     <div>
-        @comp.snippet() {
-            @comp.sourceblock() {
+        @snippet() {
+            @sourceblock() {
                 |def mult(x: Float, y: Float) = x * y
             }
-            @comp.outblock() {
+            @outblock() {
                 |mult: (x: Float, y: Float)Float
             }
-            @comp.callblock() {
+            @callblock() {
                 |mult(5, 5)
             }
-            @comp.outblock() {
+            @outblock() {
                 |res0: Float = 25.0
             }
         }

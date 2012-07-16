@@ -11,18 +11,18 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Methoden: <em>Def</em>inition
         } {
             <div class="sidebyside">
                 <div>
-                    @comp.snippet() {
-                        @comp.sourceblock() {
+                    @snippet() {
+                        @sourceblock() {
                             |def hello(): String = {
                             |   return "Hello World"
                             |}
                         }
-                        @comp.outblock() {
+                        @outblock() {
                             |hello: String
                         }
                     }
@@ -52,7 +52,7 @@
 
             <hr/>
 
-            @comp.infobox() {
+            @infobox() {
                 <code>def</code> leitet eine Methode ein - diese hat immer einen Rückgabetyp.
             }
         }
@@ -65,25 +65,25 @@
 
 
     <!--<section>
-        @comp.headbody() {
+        @headbody() {
             Methoden: Name
         } {
             <div class="sidebyside">
-                @comp.snippet() {
-                    @comp.sourceblock() {
+                @snippet() {
+                    @sourceblock() {
                         |def √(): String = {
                         |   return "square root"
                         |}
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |$u221A: ()String
                     }
-                    @comp.sourceblock() {
+                    @sourceblock() {
                         |def $(): String = {
                         |   return "dollar"
                         |}
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         $: ()String
                     }
                 }
@@ -98,28 +98,28 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Methoden: Unit
         } {
             <div class="sidebyside">
-                @comp.snippet() {
-                    @comp.sourceblock() {
+                @snippet() {
+                    @sourceblock() {
                         |def hello() = {
                         |   println("Hello World")
                         |}
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |hello: Unit
                     }
                 }
 
-                @comp.snippet(fragment = true) {
-                    @comp.sourceblock() {
+                @snippet(fragment = true) {
+                    @sourceblock() {
                         |def hello() {
                         |   println("Hello World")
                         |}
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |hello: Unit
                     }
                 }
@@ -127,7 +127,7 @@
 
             <hr/>
 
-            @comp.infobox() {
+            @infobox() {
                 Hat eine Methode keinen Rückgabewert, hat sie den Typ <code>Unit</code>.
             }
         }
@@ -135,11 +135,11 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Methoden: Optionales
         } {
             <div class="fragment sidebyside p40_60">
-                @comp.sourcecode(id = "hello") {
+                @sourcecode(id = "hello") {
                     |def hello(): String =
                     |   return "Hello World"
                 }
@@ -152,7 +152,7 @@
             <hr/>
 
             <div class="fragment sidebyside p40_60">
-                @comp.sourcecode() {
+                @sourcecode() {
                     |def hello(): String =
                     |   "Hello World"
                 }
@@ -165,7 +165,7 @@
             <hr/>
 
             <div class="fragment sidebyside p40_60">
-                @comp.sourcecode() {
+                @sourcecode() {
                     |def hello: String =
                     |   "Hello World"
                 }
@@ -178,7 +178,7 @@
             <hr/>
 
             <div class="fragment sidebyside p40_60">
-                @comp.sourcecode() {
+                @sourcecode() {
                     |def hello =
                     |   "Hello World"
                 }
@@ -191,7 +191,7 @@
             <hr/>
 
             <div class="fragment sidebyside p40_60">
-                @comp.sourcecode() {
+                @sourcecode() {
                     |def hello = "Hello World"
                 }
                 <div>
@@ -203,16 +203,16 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Methoden: Parameter
         } {
             <div class="sidebyside">
-                @comp.snippet() {
-                    @comp.sourceblock(id = "double") {
+                @snippet() {
+                    @sourceblock(id = "double") {
                         |def double(x: Int) =
                         |   2 * x
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |double: (x: Int)Int
                     }
                 }
@@ -225,12 +225,12 @@
             <hr/>
 
             <div class="fragment sidebyside">
-                @comp.snippet() {
-                    @comp.sourceblock(id = "add") {
+                @snippet() {
+                    @sourceblock(id = "add") {
                         |def add(x: Float, y: Float) =
                         |   x + y
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |add: (x: Float, y: Float)Float
                     }
                 }
@@ -242,7 +242,7 @@
 
             <hr/>
 
-            @comp.infobox() {
+            @infobox() {
                 Parameter werden durch Komma getrennt und müssen einen Typ haben.
             }
         }
@@ -250,15 +250,15 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Methoden: Aufruf
         } {
             <div class="sidebyside p40_60">
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |42.isWhole
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |res1: Boolean = true
                     }
                 }
@@ -270,23 +270,23 @@
             <hr/>
 
             <div class="fragment sidebyside p40_60">
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |42.compare(42)
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |res0: Int = 0
                     }
-                    @comp.callblock() {
+                    @callblock() {
                         |42 compare(42)
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |res1: Int = 0
                     }
-                    @comp.callblock() {
+                    @callblock() {
                         |42 compare 42
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |res2: Int = 0
                     }
                 }
@@ -298,11 +298,11 @@
             <hr/>
 
             <div class="fragment sidebyside p40_60">
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |add (1, 2)
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |res0: Float = 3.0
                     }
                 }
@@ -311,7 +311,7 @@
                 </div>
             </div>
 
-            @comp.tipbox() {
+            @tipbox() {
                 Runde Klammern bei Methoden ohne oder mit nur 1 Parameter sind optional.
             }
         }
@@ -353,7 +353,7 @@
             </div>
         </div>
 
-        @comp.infobox() {
+        @infobox() {
             <code>val</code> wird einmal berechnet und <strong>speichert</strong> das Ergebnis, <br/>
             <code>def</code> wird bei jedem Aufruf <strong>neu berechnet</strong>.
         }
@@ -361,7 +361,7 @@
 
 
     <!--<section>
-        @comp.headbody() {
+        @headbody() {
             Zusammenfassung
         } {
             @summary.methoden()
@@ -370,7 +370,7 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Quiz
         } {
 

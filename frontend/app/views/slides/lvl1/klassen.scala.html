@@ -9,16 +9,16 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Klassen: Definition
         } {
             <div class="sidebyside">
                 <div>
-                    @comp.snippet() {
-                        @comp.callblock() {
+                    @snippet() {
+                        @callblock() {
                             |class Plane
                         }
-                        @comp.outblock() {
+                        @outblock() {
                             |defined class Plane
                         }
                     }
@@ -43,23 +43,23 @@
             <div class="fragment sidebyside">
                 <div>
                     <hr/>
-                    @comp.snippet() {
-                        @comp.callblock(reference = "plane") {
+                    @snippet() {
+                        @callblock(reference = "plane") {
                             |new Plane()
                         }
-                        @comp.outblock() {
+                        @outblock() {
                             |res0: Plane = Plane@@3ee32abc
                         }
-                        @comp.callblock(reference = "plane") {
+                        @callblock(reference = "plane") {
                             |new Plane
                         }
-                        @comp.outblock() {
+                        @outblock() {
                             |res1: Plane = Plane@@50394ec
                         }
                     }
                 </div>
                 <div>
-                    @comp.infobox(hr = false) {
+                    @infobox(hr = false) {
                         <code>class</code> definiert eine Klasse, sie ist standardmäßig öffentlich.
                         <code>new</code> erstellt eine Instanz.
                     }
@@ -71,15 +71,15 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Klassen: Konstruktor
         } {
             <div class="sidebyside p60_40">
-                @comp.snippet() {
-                    @comp.sourceblock() {
+                @snippet() {
+                    @sourceblock() {
                         |class Plane(model: String)
                     }
-                    @comp.callblock() {
+                    @callblock() {
                         |val p = new Plane("Boeing 737")
                     }
                 }
@@ -91,18 +91,18 @@
             <hr/><hr/>
 
             <div class="fragment sidebyside p60_40">
-                @comp.snippet() {
-                    @comp.sourceblock() {
+                @snippet() {
+                    @sourceblock() {
                         |class Plane(model: String, seats: Int) {
                         |
                         |   println("I just bought a " + model +
                         |           " plane with " + seats + " seats")
                         |}
                     }
-                    @comp.callblock(fragment = true) {
+                    @callblock(fragment = true) {
                         |val p = new Plane("Boeing 737", 189)
                     }
-                    @comp.outblock(fragment = true) {
+                    @outblock(fragment = true) {
                         |I just bought a Boeing 737 plane with 189 seats
                         |res0: Plane = Plane@@3ee32abc
                     }
@@ -114,7 +114,7 @@
 
             <hr/>
 
-            @comp.infobox() {
+            @infobox() {
                 Der primäre Konstruktor <comment>("primary constructor")</comment>
                 entsteht aus <br/> den Parametern einer Klasse sowie deren Anweisungen im Rumpf.
             }
@@ -123,11 +123,11 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Klassen: Mehrere Konstruktoren
         } {
-            @comp.snippet() {
-                @comp.sourceblock() {
+            @snippet() {
+                @sourceblock() {
                     |class Plane(model: String, seats: Int) {
                     |
                     |   def this() = this("Unknown", -1)
@@ -136,17 +136,17 @@
                     |       this(company + " " + typeOf, seats)
                     |}
                 }
-                @comp.callblock(fragment = true) {
+                @callblock(fragment = true) {
                     |val p = new Plane("Boeing", "737", 189)
                 }
             }
             <hr/><hr/>
 
-            @comp.infobox() {
+            @infobox() {
                 <code>def this</code> leitet einen Konstruktor ein, <code>this(..)</code> ruft ihn auf.
             }
 
-            @comp.warnbox(hr = false) {
+            @warnbox(hr = false) {
                 Ein zusätzlicher Konstruktor <comment>("auxiliary constructor")</comment>
                 muss stets als erste Anweisung einen vor ihm definierten Konstruktor aufrufen.
             }
@@ -155,19 +155,19 @@
 
 
     <section>
-        @comp.headbody() {
-            Klassen: Felder I
+        @headbody() {
+            Klassen: Felder
         } {
             <div class="sidebyside">
                 <div>
-                    @comp.sourcecode(id = "plane6") {
+                    @sourcecode(id = "plane6") {
                         |class Plane(val model: String,
                         |            var seats: Int) {
                         |   val wings = 2
                         |}
                     }
                     <hr/>
-                    @comp.outcode(fragment = true) {
+                    @outcode(fragment = true) {
                         |// Plane.class dekompiliert:
                         |public class Plane extends [...] {
                         |
@@ -183,35 +183,35 @@
                         |}
                     }
                 </div>
-                @comp.snippet() {
-                    @comp.callblock(fragment = true) {
+                @snippet() {
+                    @callblock(fragment = true) {
                         |val p = new Plane("Boeing 737", 189)
                     }
-                    @comp.outblock(reference = "plane6", fragment = true) {
+                    @outblock(reference = "plane6", fragment = true) {
                         |p: Plane = Plane@@53a1d1a8
                     }
-                    @comp.callblock(fragment = true) {
+                    @callblock(fragment = true) {
                         |println(p.model)       // get
                     }
-                    @comp.outblock(fragment = true) {
+                    @outblock(fragment = true) {
                         |Boeing 737
                     }
-                    @comp.callblock(fragment = true) {
+                    @callblock(fragment = true) {
                         |p.seats = p.seats - 1  // get & set
                     }
-                    @comp.outblock(fragment = true) {
+                    @outblock(fragment = true) {
                         |p.seats: Int = 188
                     }
-                    @comp.callblock(fragment = true) {
+                    @callblock(fragment = true) {
                         |println(p.wings)       // get
                     }
-                    @comp.outblock(fragment = true) {
+                    @outblock(fragment = true) {
                         |2
                     }
                 }
             </div>
 
-            @comp.infobox() {
+            @infobox() {
                 Scala generiert überschreibbare, öffentliche Zugriffsmethoden:<br/>
                 <code>val</code> erhält <strong>nur</strong> eine Get-Methode,
                 <code>var</code> erhält Get- <strong>und</strong> Set-Methoden.
@@ -221,85 +221,69 @@
 
 
     <section>
-        @comp.headbody() {
-            Klassen: Felder II
+        @headbody() {
+            Klassen: Sichtbarkeit
         } {
-            <div class="sidebyside p60_40">
-                <div>
-                    @comp.snippet(id = "plane7") {
-                        @comp.sourceblock() {
-                            |class Plane {
-                            |             var fuel    = 0.0
-                            |             val wings   = 2
-                            |   private   val defects = 4
-                            |   protected val toilets = 6
-                            |}
-                        }
-                        @comp.callblock(fragment = true, clazz = "middle") {
-                            |val p = new Plane("Boeing 737", 189)
-                        }
+            @codesplits((60,40)){
+                @splitstart() {
+                    @sourcecode() {
+                        |class Plane @Html("{")
                     }
-                </div>
-                <div>
-                    &nbsp;
-                </div>
-            </div>
-
-            <hr/>
-
-            <div class="fragment sidebyside p60_40">
-                @comp.callcode(reference = "plane7", clazz = "middle") {
-                    |println(p.model)    // FEHLER: not a member
+                }{
+                    Zugriff möglich innerhalb:
                 }
-                <div>
-                    <code>model</code> ist kein Feld
-                </div>
-            </div>
-
-            <hr/>
-
-            <div class="fragment sidebyside p60_40">
-                @comp.callcode(reference = "plane7", clazz = "middle") {
-                    |println(p.seats)
+                @codesplit() {
+                    @sourcecode() {
+                        |                  val wings   = 2
+                    }
+                } {
+                    &nbsp;• allen Klassen
                 }
-                <div>
-                    <code>seats</code> ist öffentlich lesbar
-                </div>
-            </div>
-
-            <hr/>
-
-            <div class="fragment sidebyside p60_40">
-                @comp.callcode(reference = "plane7", clazz = "middle") {
-                    |p.fuel = p.fuel + 1.0
+                @codesplit() {
+                    @sourcecode() {
+                        |   protected      val toilets = 6
+                    }
+                } {
+                    &nbsp;• <code>Plane</code> und Sub-Klassen
                 }
-                <div>
-                    <code>fuel</code> ist les- und beschreibbar
-                </div>
-            </div>
-
-            <hr/>
-
-            <div class="fragment sidebyside p60_40">
-                @comp.callcode(reference = "plane7", clazz = "end") {
-                    |println(p.defects)  // FEHLER: private
-                    |println(p.toilets)  // FEHLER: protected
+                @codesplit() {
+                    @sourcecode() {
+                        |   private        val defects = 4
+                    }
+                } {
+                    &nbsp;• <code>Plane</code>
                 }
-                <div>
-                    <code>defects</code> & <code>toilets</code> sind nicht öffentlich
-                </div>
-            </div>
+                @codesplit() {
+                    @sourcecode() {
+                        |   private[this]  val selfDestructCode = 666
+                    }
+                } {
+                    &nbsp;• Instanz von <code>Plane</code>
+                }
+                @splitend() {
+                    @sourcecode() {
+                        |@Html("}")
+                    }
+                }(null)
+            }
+
+            @infobox() {
+                Felder einer Klasse sind standardmäßig öffentlich - der Zugriff wird <br/>
+                &nbsp;via <code>protected</code> auf Sub-Klassen, <br/>
+                &nbsp;via <code>private</code> auf die Klasse und <br/>
+                &nbsp;via <code>private[this]</code> auf die Instanz begrenzt.
+            }
         }
     </section>
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Klassen: Methoden
         } {
             <div class="sidebyside">
-                @comp.snippet() {
-                    @comp.sourceblock(id = "plane8") {
+                @snippet() {
+                    @sourceblock(id = "plane8") {
                         |class Plane {
                         |
                         |   private var isLandingGearUp = false
@@ -319,36 +303,36 @@
                     }
                 }
                 <div>
-                    @comp.snippet() {
-                        @comp.callblock(fragment = true, reference = "plane8") {
+                    @snippet() {
+                        @callblock(fragment = true, reference = "plane8") {
                             |val p = new Plane
                         }
-                        @comp.outblock(fragment = true) {
+                        @outblock(fragment = true) {
                             |p: Plane = Plane@@2142115
                         }
-                        @comp.callblock(fragment = true) {
+                        @callblock(fragment = true) {
                             |p.gearUp()
                         }
-                        @comp.outblock(fragment = true) {
+                        @outblock(fragment = true) {
                             |landing gear is up
                         }
-                        @comp.callblock(fragment = true) {
+                        @callblock(fragment = true) {
                             |val flying = p.isInTheAir
                         }
-                        @comp.outblock(fragment = true) {
+                        @outblock(fragment = true) {
                             |flying: Boolean = true
                         }
-                        @comp.callblock(fragment = true) {
+                        @callblock(fragment = true) {
                             |p.gearDown()
                         }
-                        @comp.outblock(fragment = true) {
+                        @outblock(fragment = true) {
                             |landing gear is down
                         }
                     }
                 </div>
             </div>
 
-            @comp.infobox() {
+            @infobox() {
                 Methoden einer Klasse sind standardmäßig öffentlich, <br/>
                 bei nur lesenden Methoden sollte <code>()</code> weggelassen werden.
             }
@@ -357,7 +341,7 @@
 
 
     <!--<section>
-        @comp.headbody() {
+        @headbody() {
             Zusammenfassung
         } {
             @summary.klassen()
@@ -366,7 +350,7 @@
 
 
     <!--<section>
-        @comp.headbody() {
+        @headbody() {
             Quiz
         } {
 

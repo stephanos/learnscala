@@ -75,6 +75,30 @@
     .toolbar { right: 4px; bottom: 4px; }
 }
 
+table.codesplit {
+    .border(transparent);
+
+    tr {
+        margin: 0; padding: 0;
+
+        td {
+            margin: 0; padding: 0;
+
+            &.code {
+                .bg(@c_code_bg);
+                .border-h(@c_code_border);
+                .snippet pre { border: none; /*.btn { display: none; }*/ }
+            }
+        }
+
+        &.code-left  { td.text { padding-left:  20px; } }
+        &.code-right { td.text { padding-right: 20px; } }
+
+        &:first-child { td.code { .border-top(@c_code_border); } }
+        &:last-child  { td.code { .border-bottom(@c_code_border); } }
+    }
+}
+
 // use gray for output background
 .cm-s-ambiance.output, .ide .output-wrap {
     .bg(darken(#eee, 3%));

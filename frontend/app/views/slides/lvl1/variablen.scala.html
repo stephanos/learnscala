@@ -10,16 +10,16 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             <em>Va</em>riab<em>l</em>en
         } {
             <div class="sidebyside p40_60">
                 <div>
-                    @comp.snippet() {
-                        @comp.callblock() {
+                    @snippet() {
+                        @callblock() {
                             |42
                         }
-                        @comp.outblock() {
+                        @outblock() {
                             |res0: Int = 42
                         }
                     }
@@ -47,15 +47,15 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Variablen: Objekte
         } {
             <div class="sidebyside">
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |42.toString()
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |res0: java.lang.String = 42
                     }
                 }
@@ -67,38 +67,34 @@
             <hr/>
 
             <div class="fragment sidebyside">
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |42.isWhole()
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |res1: Boolean = true
                     }
                 }
-                <div>
-                    &nbsp;
-                </div>
+                @empty()
             </div>
 
             <hr/>
 
             <div class="fragment sidebyside">
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |42.==(42)
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |res2: Boolean = true
                     }
                 }
-                <div>
-                    &nbsp;
-                </div>
+                @empty()
             </div>
 
             <hr/>
 
-            @comp.infobox() {
+            @infobox() {
                 Alles ist ein Objekt und jedes Objekt kann Operatoren als Methoden haben.
             }
         }
@@ -106,16 +102,16 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Variablen: Definition
         } {
             <div class="sidebyside">
                 <div>
-                    @comp.snippet() {
-                        @comp.callblock() {
+                    @snippet() {
+                        @callblock() {
                             |val meaningOfLife: Int = 42
                         }
-                        @comp.outblock() {
+                        @outblock() {
                             |meaningOfLife: Int = 42
                         }
                     }
@@ -146,7 +142,7 @@
 
             <hr/>
 
-            @comp.infobox() {
+            @infobox() {
                 <code>val</code> leitet eine Variable ein, der Typ folgt <strong>hinter</strong> dem Namen.
             }
         }
@@ -154,21 +150,21 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Variablen: Immutable
         } {
             <div class="sidebyside">
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |val meaningOfLife: Int = 42
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |meaningOfLife: Int = 42
                     }
-                    @comp.callblock() {
+                    @callblock() {
                         |meaningOfLife = 101
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |<console>:8: error: reassignment to val
                         |   meaningOfLife = 101
                         |                   ^
@@ -182,7 +178,7 @@
 
             <hr/>
 
-            @comp.infobox() {
+            @infobox() {
                 <code>val</code> kann nicht überschrieben werden, sie ist unveränderlich (immutable).
             }
         }
@@ -190,15 +186,15 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Variablen: Typensicherheit
         } {
             <div class="sidebyside p60_40">
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |val meaningOfLife: Int = "Java"
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |<console>:7: error: type mismatch;
                         |found   : java.lang.String("Java")
                         |required: Int
@@ -214,7 +210,7 @@
 
             <hr/>
 
-            @comp.infobox() {
+            @infobox() {
                 Der Compiler stellt sicher, dass Variablentyp und -wert zusammenpassen.
             }
         }
@@ -222,15 +218,15 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Variablen: Optionales
         } {
             <div class="sidebyside p45_55">
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |val meaningOfLife = 42
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |meaningOfLife: Int = 42
                     }
                 }
@@ -243,11 +239,11 @@
             <hr/><hr/>
 
             <div class="fragment sidebyside p45_55">
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |val pi = 3.14f
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |pi: Float = 3.14
                     }
                 }
@@ -259,7 +255,7 @@
 
             <hr/><hr/>
 
-            @comp.infobox() {
+            @infobox() {
                 Der Variablentyp kann weggelassen werden, der Compiler leitet ihn ab.
             }
         }
@@ -267,35 +263,33 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             <var>Var</var>iablen: Mutable
         } {
             <div class="sidebyside p40_60">
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |var pi = 3.14f
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |pi: Float = 3.14
                     }
-                    @comp.callblock() {
+                    @callblock() {
                         |pi = 3.0f
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |pi: Float = 3.0
                     }
                 }
-                <div>
-                    &nbsp;
-                </div>
+                @empty()
             </div>
 
             <hr/>
 
-            @comp.infobox() {
+            @infobox() {
                 <code>var</code> kann überschrieben werden, sie ist veränderlich (mutable).
             }
-            @comp.warnbox() {
+            @warnbox() {
                 <code>var</code> sollte vermieden und nur in Ausnahmefällen eingesetzt werden.
             }
         }
@@ -347,7 +341,7 @@
 
 
     <!--<section>
-        @comp.headbody() {
+        @headbody() {
             Zusammenfassung
         } {
             @summary.variablen()
@@ -356,23 +350,23 @@
 
 
     <section>
-        @comp.headbody() {
+        @headbody() {
             Quiz
         } {
             <div class="sidebyside">
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |val r = 42f
                     }
-                    @comp.outblock(fragment = true) {
+                    @outblock(fragment = true) {
                         |r: Float = 42
                     }
                 }
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |val r = 5.*5
                     }
-                    @comp.outblock(fragment = true) {
+                    @outblock(fragment = true) {
                         |r: Double = 25.0
                     }
                 }
@@ -381,19 +375,19 @@
             <hr/>
 
             <div class="sidebyside">
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |val r = 24.==(42)
                     }
-                    @comp.outblock(fragment = true) {
+                    @outblock(fragment = true) {
                         |r: Boolean = false
                     }
                 }
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |val r = 42 isWhole
                     }
-                    @comp.outblock(fragment = true) {
+                    @outblock(fragment = true) {
                         |r: Boolean = true
                     }
                 }
@@ -402,20 +396,20 @@
             <hr/>
 
             <div class="sidebyside">
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |val r = (5.)*5
                     }
-                    @comp.outblock(fragment = true) {
+                    @outblock(fragment = true) {
                         |r: Double = 25.0
                     }
                 }
-                @comp.snippet() {
-                    @comp.callblock(fragment = true) {
+                @snippet() {
+                    @callblock(fragment = true) {
                         |var r = 1L
                         |r = 25
                     }
-                    @comp.outblock() {
+                    @outblock() {
                         |r: Long = 1
                         |r: Long = 25
                     }
@@ -425,19 +419,19 @@
             <hr/>
 
             <div class="sidebyside">
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |val r: Double = 3.14
                     }
-                    @comp.outblock(fragment = true) {
+                    @outblock(fragment = true) {
                         |r: Double = 3.14
                     }
                 }
-                @comp.snippet() {
-                    @comp.callblock() {
+                @snippet() {
+                    @callblock() {
                         |val r = (5).*(5)
                     }
-                    @comp.outblock(fragment = true) {
+                    @outblock(fragment = true) {
                         |r: Int = 25
                     }
                 }

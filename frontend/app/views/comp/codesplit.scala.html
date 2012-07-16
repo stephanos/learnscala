@@ -1,0 +1,17 @@
+@(fragment: Boolean = true, codeIsRight: Boolean = false, clazz: String = "")(left: Html)(right: Html = null)
+<tr class='@{if(codeIsRight) "code-right" else "code-left"} @clazz'>
+    <td class='@{if(codeIsRight) "text" else "code"}'>
+        <div class='@{if(fragment) "fragment" else ""}'>
+            @left
+        </div>
+    </td>
+    <td class='@{if(codeIsRight) "code" else "text"}'>
+        @if(right == null) {
+            <div>&nbsp;</div>
+        } else {
+            <div class='@{if(fragment) "fragment" else ""}'>
+                @right
+            </td>
+        }
+    </td>
+</tr>

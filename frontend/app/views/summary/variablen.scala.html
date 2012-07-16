@@ -2,17 +2,17 @@
 
 <div class="sidebyside">
     <div class="@clazz">
-        @comp.snippet() {
-            @comp.callblock() {
+        @snippet() {
+            @callblock() {
                 |val pi = 3.14f
             }
-            @comp.outblock() {
+            @outblock() {
                 |pi: Float = 3.14
             }
-            @comp.callblock() {
+            @callblock() {
                 |pi = 3.0f
             }
-            @comp.outblock() {
+            @outblock() {
                 |<console>:8: error: reassignment to val
             }
         }
@@ -22,17 +22,17 @@
     </div>
 
     <div class="@clazz">
-        @comp.snippet() {
-            @comp.callblock() {
+        @snippet() {
+            @callblock() {
                 |var pi = 3.14f
             }
-            @comp.outblock() {
+            @outblock() {
                 |pi: Float = 3.14
             }
-            @comp.callblock() {
+            @callblock() {
                 |pi = 3.0f
             }
-            @comp.outblock() {
+            @outblock() {
                 |pi: Float = 3.0
             }
         }
@@ -46,17 +46,17 @@
 
 <div class="sidebyside">
     <div class="@clazz">
-        @comp.snippet() {
-            @comp.callblock() {
+        @snippet() {
+            @callblock() {
                 |val one: Int = 1
             }
-            @comp.outblock() {
+            @outblock() {
                 |one: Int = 1
             }
-            @comp.callblock() {
+            @callblock() {
                 |val three = 3L
             }
-            @comp.outblock() {
+            @outblock() {
                 |three: Long = 3
             }
         }
@@ -66,17 +66,17 @@
     </div>
 
     <div class="@clazz">
-        @comp.snippet() {
-            @comp.callblock() {
+        @snippet() {
+            @callblock() {
                 |3.14f.isWhole
             }
-            @comp.outblock() {
+            @outblock() {
                 |res0: Boolean = false
             }
-            @comp.callblock() {
+            @callblock() {
                 |(42)./(42)
             }
-            @comp.outblock() {
+            @outblock() {
                 |res1: Int = 1
             }
         }
