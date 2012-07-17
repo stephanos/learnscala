@@ -10,53 +10,75 @@
 
     <section>
         @headbody() {
-            Objekte: Singleton
+            Statics <em>?</em>
         } {
             <div class="sidebyside p60_40">
-                @sourcecode(id = "plane") {
-                    |// Klasse
-                    |class Plane(val model: String, val seats: Int)
+                @sourcecode(fragment = false) {
+                    |class Plane(val model: String, val seats: Int) {
+                    |
+                    |   static var countOfPlanes = 0
+                    |}
                 }
-                <div>
-                    <code>static</code> existiert in Scala nicht ...
-                </div>
+                @empty()
             </div>
 
-            <hr/>
+            <div class="fragment sidebyside p60_40">
+                @outcode(fragment = false) {
+                    |<console>:3: error: ';' expected but 'val' found.
+                    |          static var countOfPlanes = 0
+                }
+                <div>
+                    <code>static</code> gibt es in Scala nicht ...
+                </div>
+            </div>
+        }
+    </section>
 
-            @codesplits((60,40)){
-                @splitstart() {
-                    @sourcecode(reference = "plane") {
-                        |// Objekt
-                        |object Plane @Html("{")
-                    }
+
+    <object>
+        @sourcecode(id = "plane") {
+            |class Plane(val model: String,
+            |            val seats: Int)
+        }
+    </object>
+
+
+    <section>
+        @headbody() {
+            Objekte: Singleton
+        } {
+            @codesplits((60,40), id="planefactory", fragment = true){
+                @splitstart(reference = "plane") {
+                    |object PlaneFactory @Html("{")
                 }{
-                    ... aber <var>Objekte</var>.
+                    ... aber Objekte.
                 }
                 @codesplit() {
-                    @sourcecode() {
-                        |   val minSeatsNumber = 100
-                    }
+                    |   var countOfPlanes = 0
                 } {
                     @li{<em>globaler Zustand</em>}
                 }
                 @codesplit() {
-                    @sourcecode() {
-                        |   def create(model: String, seats: Int) = {
-                        |       if(seats <= minSeatsNumber)
-                        |           sys.error("not enough seats!")
-                        |       new Plane(model, seats)
-                        |   }
-                    }
+                    |   def create(model: String, seats: Int) = {
+                    |       countOfPlanes += 1
+                    |       new Plane(model, seats)
+                    |   }
                 } {
                     @li{<em>Factory</em>-Methoden}
                 }
                 @splitend() {
-                    @sourcecode() {
-                        |@Html("}")
-                    }
+                    |@Html("}")
                 }(null)
             }
+
+            <hr/>
+
+            <div class="sidebyside p60_40">
+                @callcode(reference = "planefactory") {
+                    |val p = PlaneFactory.create("Boeing 737", 189)
+                }
+                @empty()
+            </div>
 
             @infobox() {
                 <code>object</code> definiert ein Singleton-Objekt:
@@ -71,6 +93,44 @@
         @headbody() {
             Objekte: apply()
         } {
+            <div>
+                @callcode() {
+                    |
+                }
+            </div>
+            <div class="fragment sidebyside p60_40">
+                @sourcecode(id = "apply", reference = "plane", fragment = false) {
+                    |object Plane {
+                    |
+                    |   val minSeatsNumber = 100
+                    |
+                    |   def apply(model: String, seats: Int) = {
+                    |       if(seats < minSeatsNumber)
+                    |           sys.error("not enough seats!")
+                    |       new Plane(model, seats)
+                    |   }
+                    |
+                    |}
+                }
+                <div>
+                    &nbsp;
+                </div>
+            </div>
+
+            @infobox() {
+                TODO
+            }
+        }
+    </section>
+
+
+    <section>
+        @headbody() {
+            Objekte: Beispiele
+        } {
+            @sourcecode() {
+                |val countdown = Array(10, 9, 8, 7, 6, 5, 4, 3, 2, 1)
+            }
         }
     </section>
 
@@ -79,16 +139,24 @@
         @headbody() {
             Objekte: Companion
         } {
+            <div class="sidebyside p60_40">
+                @sourcecode(id = "plane", fragment = false) {
+                    |class Plane(val model: String,
+                    |            val seats: Int) {
+                    |
+                    |}
+                    |
+                    |object Plane {
+                    |
+                    |}
+                }
+            </div>
+
+            @infobox() {
+                TODO
+            }
         }
     </section>
-
-
-    <!--<section>
-        @headbody() {
-            Objekte: Enumerations
-        } {
-        }
-    </section>-->
 
 
     <section>

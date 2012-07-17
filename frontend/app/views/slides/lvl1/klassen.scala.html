@@ -15,7 +15,7 @@
             <div class="sidebyside">
                 <div>
                     @snippet() {
-                        @callblock() {
+                        @callblock(fragment = false) {
                             |class Plane
                         }
                         @outblock() {
@@ -44,7 +44,7 @@
                 <div>
                     <hr/>
                     @snippet() {
-                        @callblock(reference = "plane") {
+                        @callblock(reference = "plane", fragment = false) {
                             |new Plane()
                         }
                         @outblock() {
@@ -76,7 +76,7 @@
         } {
             <div class="sidebyside p60_40">
                 @snippet() {
-                    @sourceblock() {
+                    @sourceblock(fragment = false) {
                         |class Plane(model: String)
                     }
                     @callblock() {
@@ -92,14 +92,14 @@
 
             <div class="fragment sidebyside p60_40">
                 @snippet() {
-                    @sourceblock() {
+                    @sourceblock(fragment = false) {
                         |class Plane(model: String, seats: Int) {
                         |
                         |   println("I just bought a " + model +
                         |           " plane with " + seats + " seats")
                         |}
                     }
-                    @callblock(fragment = true) {
+                    @callblock() {
                         |val p = new Plane("Boeing 737", 189)
                     }
                     @outblock() {
@@ -127,7 +127,7 @@
             Klassen: Mehrere Konstruktoren
         } {
             @snippet() {
-                @sourceblock() {
+                @sourceblock(fragment = false) {
                     |class Plane(model: String, seats: Int) {
                     |
                     |   def this() = this("Unknown", -1)
@@ -136,7 +136,7 @@
                     |       this(company + " " + typeOf, seats)
                     |}
                 }
-                @callblock(fragment = true) {
+                @callblock() {
                     |val p = new Plane("Boeing", "737", 189)
                 }
             }
@@ -160,7 +160,7 @@
         } {
             <div class="sidebyside">
                 <div>
-                    @sourcecode(id = "plane6") {
+                    @sourcecode(id = "plane6", fragment = false) {
                         |class Plane(val model: String,
                         |            var seats: Int) {
                         |   val wings = 2
@@ -184,25 +184,25 @@
                     }
                 </div>
                 @snippet() {
-                    @callblock(fragment = true) {
+                    @callblock() {
                         |val p = new Plane("Boeing 737", 189)
                     }
-                    @outblock(reference = "plane6", fragment = true) {
+                    @outblock(reference = "plane6") {
                         |p: Plane = Plane@@53a1d1a8
                     }
-                    @callblock(fragment = true) {
+                    @callblock() {
                         |println(p.model)       // get
                     }
                     @outblock() {
                         |Boeing 737
                     }
-                    @callblock(fragment = true) {
+                    @callblock() {
                         |p.seats = p.seats - 1  // get & set
                     }
                     @outblock() {
                         |p.seats: Int = 188
                     }
-                    @callblock(fragment = true) {
+                    @callblock() {
                         |println(p.wings)       // get
                     }
                     @outblock() {
@@ -226,44 +226,32 @@
         } {
             @codesplits((60,40)){
                 @splitstart() {
-                    @sourcecode() {
-                        |class Plane @Html("{")
-                    }
+                    |class Plane @Html("{")
                 }{
                     <em>Zugriff möglich innerhalb:</em>
                 }
                 @codesplit() {
-                    @sourcecode() {
-                        |                  val wings   = 2
-                    }
+                    |                  val wings   = 2
                 } {
                     @li{allen Klassen}
                 }
                 @codesplit() {
-                    @sourcecode() {
-                        |   protected      val toilets = 6
-                    }
+                    |   protected      val toilets = 6
                 } {
                     @li{<code>Plane</code> und Sub-Klassen}
                 }
                 @codesplit() {
-                    @sourcecode() {
-                        |   private        val defects = 4
-                    }
+                    |   private        val defects = 4
                 } {
                     @li{<code>Plane</code>}
                 }
                 @codesplit() {
-                    @sourcecode() {
-                        |   private[this]  val selfDestructCode = 666
-                    }
+                    |   private[this]  val selfDestructCode = 666
                 } {
                     @li{Instanz von <code>Plane</code>}
                 }
                 @splitend() {
-                    @sourcecode() {
-                        |@Html("}")
-                    }
+                    |@Html("}")
                 }(null)
             }
 
@@ -304,25 +292,25 @@
                 }
                 <div>
                     @snippet() {
-                        @callblock(fragment = true, reference = "plane8") {
+                        @callblock(reference = "plane8") {
                             |val p = new Plane
                         }
                         @outblock() {
                             |p: Plane = Plane@@2142115
                         }
-                        @callblock(fragment = true) {
+                        @callblock() {
                             |p.gearUp()
                         }
                         @outblock() {
                             |landing gear is up
                         }
-                        @callblock(fragment = true) {
+                        @callblock() {
                             |val flying = p.isInTheAir
                         }
                         @outblock() {
                             |flying: Boolean = true
                         }
-                        @callblock(fragment = true) {
+                        @callblock() {
                             |p.gearDown()
                         }
                         @outblock() {

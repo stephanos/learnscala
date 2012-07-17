@@ -1,9 +1,11 @@
-@(fragment: Boolean = true, codeIsRight: Boolean = false, clazz: String = "")(left: Html)(right: Html = null)
+@(fragment: Boolean = true, codeIsRight: Boolean = false, clazz: String = "", include: String = null, reference: String = null)(left: Html)(right: Html = null)
 <tr class='@{if(codeIsRight) "code-right" else "code-left"} @clazz'>
 
     <td class='@{if(codeIsRight) "text" else "code"}'>
         <div class='@{if(fragment) "fragment" else ""}'>
-            @left
+            @sourcecode(fragment = false, include = include, reference = reference) {
+                @left
+            }
         </div>
     </td>
 

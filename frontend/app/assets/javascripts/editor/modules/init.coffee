@@ -78,16 +78,12 @@ initEditors = (elem, blocks) ->
 
   output = $(elem).find(".output-wrap div")
 
-  console.log("source")
-
   # init source editor
   srcEditor = initEditor($(elem).find(".left .input"), blocks, "source")
   srcEditorDom = srcEditor.getWrapperElement()
   $('<button class="btn btn-success">5</button>')
         .bind("click", (evt) -> callAPI("decompile", output, srcEditor.getValue()))
         .appendTo($(srcEditorDom))
-
-  console.log("call")
 
   # init call editor
   callEditor = initEditor($(elem).find(".right .input"), blocks, "call")
@@ -103,13 +99,15 @@ initEditors = (elem, blocks) ->
 initEditor = (elem, blocks, typeOf) ->
 
   # content
+  console.log(typeOf)
+  console.log(blocks)
   getBlocks = (bs) ->
     res = []
     _.forEach(bs,
       (b) ->
-        if(_.str.contains(b["type"], typeOf)) then res.push(b)
         subs = b["subs"]
         if(!_.isEmpty(subs)) then res.push(getBlocks(subs))
+        if(_.str.contains(b["type"], typeOf)) then res.push(b)
     )
     _.flatten(res)
   blocks = getBlocks(blocks)
@@ -117,7 +115,7 @@ initEditor = (elem, blocks, typeOf) ->
 
   content =
     _.str.strip(_.reduce(blocks ? readRawCode(elem),
-      (r, b) -> r += b["text"] + "\n"
+      (r, b) -> r += b["text"] + "\n\n"
     , ""))
 
   # create the editor
@@ -213,7 +211,7 @@ readRawBlock = (elem, editable) ->
 
   # read snippet's reference content
   if(editable)
-    ref = readRawCode($("#" + $(elem).data("reference")))
+    ref = readRawCode($("#" + $(elem).data("reference")), editable)
     if(!_.isEmpty(ref)) then subs.push(ref)
 
   # extract text

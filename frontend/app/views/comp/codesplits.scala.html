@@ -1,5 +1,5 @@
 @(ratio: (Int, Int), fragment: Boolean = false, id: String = null)(content: Html)
-<table class='codesplit @{if(fragment) "fragment" else ""}'>
+<table class='codesplit @{if(fragment) "fragment" else ""}' @{if(id == null) "" else "id=snippet-" + id}>
     <colgroup>
         <col width="@{ratio._1 - 1.5}%">
         <col width="3%">

@@ -1,3 +1,3 @@
-@(fragment: Boolean = false, codeIsRight: Boolean = false)(left: Html)(right: Html = Html.empty)
+@(fragment: Boolean = false, codeIsRight: Boolean = false, include: String = null, reference: String = null)(left: Html)(right: Html = Html.empty)
 
-@codesplit(fragment)(left)(right)
+@codesplit(fragment, include = include, reference = reference)(left)(right)

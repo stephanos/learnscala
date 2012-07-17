@@ -139,7 +139,7 @@
             Methoden: Optionales
         } {
             <div class="fragment sidebyside p40_60">
-                @sourcecode(id = "hello") {
+                @sourcecode(id = "hello", fragment = false) {
                     |def hello(): String =
                     |   return "Hello World"
                 }
@@ -152,7 +152,7 @@
             <hr/>
 
             <div class="fragment sidebyside p40_60">
-                @sourcecode() {
+                @sourcecode(fragment = false) {
                     |def hello(): String =
                     |   "Hello World"
                 }
@@ -165,7 +165,7 @@
             <hr/>
 
             <div class="fragment sidebyside p40_60">
-                @sourcecode() {
+                @sourcecode(fragment = false) {
                     |def hello: String =
                     |   "Hello World"
                 }
@@ -178,7 +178,7 @@
             <hr/>
 
             <div class="fragment sidebyside p40_60">
-                @sourcecode() {
+                @sourcecode(fragment = false) {
                     |def hello =
                     |   "Hello World"
                 }
@@ -191,7 +191,7 @@
             <hr/>
 
             <div class="fragment sidebyside p40_60">
-                @sourcecode() {
+                @sourcecode(fragment = false) {
                     |def hello = "Hello World"
                 }
                 <div>
@@ -208,7 +208,7 @@
         } {
             <div class="sidebyside">
                 @snippet() {
-                    @sourceblock(id = "double") {
+                    @sourceblock(id = "double", fragment = false) {
                         |def double(x: Int) =
                         |   2 * x
                     }
@@ -226,7 +226,7 @@
 
             <div class="fragment sidebyside">
                 @snippet() {
-                    @sourceblock(id = "add") {
+                    @sourceblock(id = "add", fragment = false) {
                         |def add(x: Float, y: Float) =
                         |   x + y
                     }
@@ -255,7 +255,7 @@
         } {
             <div class="sidebyside p40_60">
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |42.isWhole
                     }
                     @outblock() {
@@ -271,7 +271,7 @@
 
             <div class="fragment sidebyside p40_60">
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |42.compare(42)
                     }
                     @outblock() {
@@ -299,7 +299,7 @@
 
             <div class="fragment sidebyside p40_60">
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |add (1, 2)
                     }
                     @outblock() {
