@@ -115,7 +115,7 @@ initEditor = (elem, blocks, typeOf) ->
 
   content =
     _.str.strip(_.reduce(blocks ? readRawCode(elem),
-      (r, b) -> r += b["text"] + "\n\n"
+      (r, b) -> r += _.str.trim(b["text"]) + "\n" + (if(typeOf == "source") then "\n" else "")
     , ""))
 
   # create the editor
@@ -127,7 +127,7 @@ initEditor = (elem, blocks, typeOf) ->
       theme: "ambiance",
       mode: "text/x-scala",
       indentWithTabs: false,
-      #lineWrapping: true,
+      lineWrapping: typeOf == "call",
       smartIndent: false,
       indentUnit: 3,
       lineNumbers: typeOf == "call",
