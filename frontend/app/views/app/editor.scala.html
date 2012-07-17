@@ -1,10 +1,14 @@
-@layout.internal("Editor") {
+@head = {
+    <link href='@MyAssets.css_ide._2' type="text/css" rel="stylesheet">
+}
+
+@layout.internal("Editor", head = head) {
 
     @ide()
 
     <script type="text/javascript">
         $(document).ready(function() {
-            initEditor($("#editor"));
+            initEditors($("#editor"));
             subtleToolbar();
         });
     </script>

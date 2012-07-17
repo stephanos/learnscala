@@ -21,7 +21,7 @@ class Scala {
         scala.exec(code)
     }
 
-    def interpret(code: String): (Result, String) =
+    def interpret(code: (String, String)): (Result, String) =
         runWithTimeout[(Result, String)](10000, (IR.Error, "timeout")) {
             val (compiler, out) = encoder()
             val r = Console.withOut(new PrintStream(out, true)) {
@@ -54,7 +54,8 @@ class Scala {
                                     ir // stop
                             }
                     }
-                eval(code.split('\n').toList)
+                eval(List(code._1))
+                eval(code._2.split('\n').toList)
             }
             val s = asString(out)
             (r, s)
@@ -90,6 +91,6 @@ object Interpreter {
 
     import CodeUtil._
 
-    def apply(code: String, session: Option[String] = None) =
+    def apply(code: (String, String), session: Option[String] = None) =
         new Scala().interpret(withSession(code, session))
 }

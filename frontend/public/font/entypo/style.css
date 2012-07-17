@@ -22,14 +22,12 @@
 	font-style: normal;
 	speak: none;
 }
+
 .icon-warning:before {
 	content: "\21";
 }
 .icon-help:before {
 	content: "\22";
-}
-.icon-info:before {
-	content: "\23";
 }
 .icon-thumbs-up:before {
 	content: "\24";
@@ -51,4 +49,43 @@
 }
 .icon-arrow:before {
 	content: "\25";
+}
+.icon-info-circle:before {
+	content: "\23";
+}
+.icon-help-2:before {
+	content: "\2b";
+}
+.icon-info:before {
+	content: "\2c";
+}
+.icon-minus:before {
+	content: "\2d";
+}
+.icon-plus:before {
+	content: "\2e";
+}
+.icon-close:before {
+	content: "\2f";
+}
+.icon-attachment:before {
+	content: "\30";
+}
+.icon-play:before {
+	content: "\31";
+}
+.icon-settings:before {
+	content: "\32";
+}
+.icon-alert:before {
+	content: "\33";
+}
+.icon-time:before {
+	content: "\34";
+}
+.icon-search:before {
+	content: "\35";
+}
+.icon-embed:before {
+	content: "\36";
 }

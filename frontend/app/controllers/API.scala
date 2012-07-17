@@ -7,26 +7,27 @@ import scala.tools.nsc.interpreter.IR
 
 object API extends MyController {
 
-    def interpret = Action(parse.urlFormEncoded) {
+    def execute = Action(parse.urlFormEncoded) {
         req =>
-            val code = req.body("code").mkString("")
+            val src = req.body("source").mkString("")
+            val call = req.body("call").mkString("")
             //val session = req.queryString("session").headOption
             try {
-                val (r, out) = Interpreter(code, None)
+                val (r, out) = Interpreter((src, call), None)
                 if (r == IR.Success)
                     Ok(out)
                 else
                     BadRequest(out)
             } catch {
-                case e =>
-                    log.warn("error for API call 'interpret'", e)
+                case e: Throwable =>
+                    log.warn("error for API call 'execute'", e)
                     InternalServerError
             }
     }
 
     def decompile = Action(parse.urlFormEncoded) {
         req =>
-            val code = req.body("code").mkString("")
+            val code = req.body("source").mkString("")
             try {
                 val (out, err) = Decoder(code)
                 if (out != null)
@@ -34,7 +35,7 @@ object API extends MyController {
                 else
                     BadRequest(err)
             } catch {
-                case e =>
+                case e: Throwable =>
                     log.warn("error for API call 'decompile'", e)
                     InternalServerError
             }
@@ -50,7 +51,7 @@ object API extends MyController {
                 else
                     BadRequest(out)
             } catch {
-                case e =>
+                case e: Throwable =>
                     log.warn("error for API call 'compile'", e)
                     InternalServerError
             }

@@ -16,7 +16,7 @@
             <div class="sidebyside p40_60">
                 <div>
                     @snippet() {
-                        @callblock() {
+                        @callblock(fragment = false) {
                             |42
                         }
                         @outblock() {
@@ -52,7 +52,7 @@
         } {
             <div class="sidebyside">
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |42.toString()
                     }
                     @outblock() {
@@ -68,28 +68,32 @@
 
             <div class="fragment sidebyside">
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |42.isWhole()
                     }
                     @outblock() {
                         |res1: Boolean = true
                     }
                 }
-                @empty()
+                <div>
+                    Methode <code>isWhole</code>
+                </div>
             </div>
 
             <hr/>
 
             <div class="fragment sidebyside">
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |42.==(42)
                     }
                     @outblock() {
                         |res2: Boolean = true
                     }
                 }
-                @empty()
+                <div>
+                    Methode <code>==</code>
+                </div>
             </div>
 
             <hr/>
@@ -108,7 +112,7 @@
             <div class="sidebyside">
                 <div>
                     @snippet() {
-                        @callblock() {
+                        @callblock(fragment = false) {
                             |val meaningOfLife: Int = 42
                         }
                         @outblock() {
@@ -155,7 +159,7 @@
         } {
             <div class="sidebyside">
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |val meaningOfLife: Int = 42
                     }
                     @outblock() {
@@ -191,7 +195,7 @@
         } {
             <div class="sidebyside p60_40">
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |val meaningOfLife: Int = "Java"
                     }
                     @outblock() {
@@ -223,7 +227,7 @@
         } {
             <div class="sidebyside p45_55">
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |val meaningOfLife = 42
                     }
                     @outblock() {
@@ -240,7 +244,7 @@
 
             <div class="fragment sidebyside p45_55">
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |val pi = 3.14f
                     }
                     @outblock() {
@@ -268,7 +272,7 @@
         } {
             <div class="sidebyside p40_60">
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |var pi = 3.14f
                     }
                     @outblock() {
@@ -355,18 +359,18 @@
         } {
             <div class="sidebyside">
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |val r = 42f
                     }
-                    @outblock(fragment = true) {
+                    @outblock() {
                         |r: Float = 42
                     }
                 }
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |val r = 5.*5
                     }
-                    @outblock(fragment = true) {
+                    @outblock() {
                         |r: Double = 25.0
                     }
                 }
@@ -376,18 +380,18 @@
 
             <div class="sidebyside">
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |val r = 24.==(42)
                     }
-                    @outblock(fragment = true) {
+                    @outblock() {
                         |r: Boolean = false
                     }
                 }
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |val r = 42 isWhole
                     }
-                    @outblock(fragment = true) {
+                    @outblock() {
                         |r: Boolean = true
                     }
                 }
@@ -397,19 +401,19 @@
 
             <div class="sidebyside">
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |val r = (5.)*5
                     }
-                    @outblock(fragment = true) {
+                    @outblock() {
                         |r: Double = 25.0
                     }
                 }
                 @snippet() {
-                    @callblock(fragment = true) {
+                    @callblock() {
                         |var r = 1L
                         |r = 25
                     }
-                    @outblock() {
+                    @outblock(fragment = false) {
                         |r: Long = 1
                         |r: Long = 25
                     }
@@ -420,18 +424,18 @@
 
             <div class="sidebyside">
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |val r: Double = 3.14
                     }
-                    @outblock(fragment = true) {
+                    @outblock() {
                         |r: Double = 3.14
                     }
                 }
                 @snippet() {
-                    @callblock() {
+                    @callblock(fragment = false) {
                         |val r = (5).*(5)
                     }
-                    @outblock(fragment = true) {
+                    @outblock() {
                         |r: Int = 25
                     }
                 }

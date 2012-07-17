@@ -102,7 +102,7 @@
                     @callblock(fragment = true) {
                         |val p = new Plane("Boeing 737", 189)
                     }
-                    @outblock(fragment = true) {
+                    @outblock() {
                         |I just bought a Boeing 737 plane with 189 seats
                         |res0: Plane = Plane@@3ee32abc
                     }
@@ -167,7 +167,7 @@
                         |}
                     }
                     <hr/>
-                    @outcode(fragment = true) {
+                    @outcode() {
                         |// Plane.class dekompiliert:
                         |public class Plane extends [...] {
                         |
@@ -193,19 +193,19 @@
                     @callblock(fragment = true) {
                         |println(p.model)       // get
                     }
-                    @outblock(fragment = true) {
+                    @outblock() {
                         |Boeing 737
                     }
                     @callblock(fragment = true) {
                         |p.seats = p.seats - 1  // get & set
                     }
-                    @outblock(fragment = true) {
+                    @outblock() {
                         |p.seats: Int = 188
                     }
                     @callblock(fragment = true) {
                         |println(p.wings)       // get
                     }
-                    @outblock(fragment = true) {
+                    @outblock() {
                         |2
                     }
                 }
@@ -230,35 +230,35 @@
                         |class Plane @Html("{")
                     }
                 }{
-                    <var>Zugriff möglich innerhalb:</var>
+                    <em>Zugriff möglich innerhalb:</em>
                 }
                 @codesplit() {
                     @sourcecode() {
                         |                  val wings   = 2
                     }
                 } {
-                    &nbsp;• allen Klassen
+                    @li{allen Klassen}
                 }
                 @codesplit() {
                     @sourcecode() {
                         |   protected      val toilets = 6
                     }
                 } {
-                    &nbsp;• <code>Plane</code> und Sub-Klassen
+                    @li{<code>Plane</code> und Sub-Klassen}
                 }
                 @codesplit() {
                     @sourcecode() {
                         |   private        val defects = 4
                     }
                 } {
-                    &nbsp;• <code>Plane</code>
+                    @li{<code>Plane</code>}
                 }
                 @codesplit() {
                     @sourcecode() {
                         |   private[this]  val selfDestructCode = 666
                     }
                 } {
-                    &nbsp;• Instanz von <code>Plane</code>
+                    @li{Instanz von <code>Plane</code>}
                 }
                 @splitend() {
                     @sourcecode() {
@@ -307,25 +307,25 @@
                         @callblock(fragment = true, reference = "plane8") {
                             |val p = new Plane
                         }
-                        @outblock(fragment = true) {
+                        @outblock() {
                             |p: Plane = Plane@@2142115
                         }
                         @callblock(fragment = true) {
                             |p.gearUp()
                         }
-                        @outblock(fragment = true) {
+                        @outblock() {
                             |landing gear is up
                         }
                         @callblock(fragment = true) {
                             |val flying = p.isInTheAir
                         }
-                        @outblock(fragment = true) {
+                        @outblock() {
                             |flying: Boolean = true
                         }
                         @callblock(fragment = true) {
                             |p.gearDown()
                         }
-                        @outblock(fragment = true) {
+                        @outblock() {
                             |landing gear is down
                         }
                     }

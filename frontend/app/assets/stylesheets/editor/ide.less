@@ -1,8 +1,8 @@
-@h: 60%;
-@d: 3%;
+@h: 70%;
+@d: 1.5%;
 
 .ide {
-    @m: 15px;
+    @m: 10px;
     padding: 0;
     position: absolute;
     overflow: hidden;
@@ -15,6 +15,20 @@
     .input-wrap {
         height: @h - @d / 2;
 
+        .left {
+            float: left;
+            position: relative;
+            .w(49.5%); height: 100%;
+        }
+
+        .right {
+            float: right;
+            position: relative;
+            .w(49.5%); height: 100%;
+        }
+
+        //.hdivider { .w(1%); }
+
         .input {
             overflow: hidden;
             position: absolute;
@@ -22,7 +36,7 @@
         }
     }
 
-    .divider { height: @d; }
+    .vdivider { height: @d; }
 
     .output-wrap {
         overflow: auto;

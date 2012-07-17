@@ -50,7 +50,7 @@ object CodeUtil {
         }, out)
     }
 
-    def withSession(code: String, session: Option[String]) =
+    def withSession(code: (String, String), session: Option[String]) =
         session match {
             case Some(s) =>
                 code // TODO

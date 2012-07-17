@@ -14,19 +14,24 @@
 .snippet pre, .CodeMirror {
     position: relative;
 
+    // font
+    font-size:   @fs_code;
+    line-height: 1.15 * @fs_code;
+    &.call, &.output {
+        line-height: 0.9 * @fs_code;
+    }
+
     // color
     .bg(@c_code_bg);
     .border(@c_code_border);
 
-    // toolbar
-    .toolbar {
+    // button
+    .btn {
+        font-family: 'Entypo';
         position: absolute;
-
-        .btn {
-            margin-left: 10px;
-            .linear-transition(opacity);
-            .opacity(0);
-        }
+        margin-left: 10px;
+        .linear-transition(opacity);
+        .opacity(0);
     }
     &:hover {
         .btn { .full-opacity(); }
@@ -36,28 +41,16 @@
 .CodeMirror, .ide {
     border-width: 2px;
 
-    // font and line size
-    font-size:   2 * @fs_code;
-    line-height: 2.2 * @fs_code;
+    // button
+    .btn { right: 16px; bottom: 16px; }
+}
 
-    .output {
-        font-size:   .9 * 2 * @fs_code;
-        line-height: .9 * 2.2 * @fs_code;
-    }
-
-    // toolbar
-    .toolbar { right: 16px; bottom: 16px; }
+.ide .right .CodeMirror {
+    // increase line-height for 'call' panel
+    line-height: 1.5 * @fs_code;
 }
 
 .snippet pre {
-    // font and line size
-    font-size: @fs_code;
-    line-height: 1.8 * @fs_code;
-    &.output {
-        font-size: @fs_code * 0.85;
-        line-height: 1.7 * @fs_code;
-    }
-
     // border default: dashed top and bottom
     @c_border_f: fadeout(@c_code_border, 10%);
     border-top: 0;
@@ -73,8 +66,8 @@
     &.first, &.middle, &.start { border-bottom: 1px dashed @c_border_f; }
     &.last, &.middle, &.end { border-top: 1px dashed @c_border_f; }
 
-    // toolbar
-    .toolbar { right: 4px; bottom: 4px; }
+    // button
+    .btn { right: 4px; bottom: 4px; }
 }
 
 table.codesplit {
@@ -96,9 +89,6 @@ table.codesplit {
             }
         }
 
-        &.code-left  { td.text { padding-left:  20px; } }
-        &.code-right { td.text { padding-right: 20px; } }
-
         &:first-child { td.code { .border-top(@c_code_border); } }
         &:last-child  { td.code { .border-bottom(@c_code_border);
                                   .snippet pre .btn { display: block; } }
@@ -106,9 +96,12 @@ table.codesplit {
     }
 }
 
-// use gray for output background
 .cm-s-ambiance.output, .ide .output-wrap {
+    // use gray for output background
     .bg(darken(#eee, 3%));
+
+    font-size:   0.9 * @fs_code;
+    line-height: @fs_code;
 }
 
 // use one plain color for output code
@@ -124,24 +117,13 @@ table.codesplit {
     .font("Inconsolata", "inconsolata/regular");
 }
 
-/*
 .CodeMirror-gutter {
-    padding: 0 5px;
-    background: #ddd;
-    //text-shadow: #333 1px 1px;
-    //border-right: 1px solid #4D4D4D;
+    min-width: 0;
+    .bg(@c_code_bg);
+    border: 0;
 }
-*/
-
-/*
-.CodeMirror-gutter .CodeMirror-gutter-text {
-    color: #222;
-    text-shadow: 0px 1px 1px #4d4d4d;
+.CodeMirror-gutter-text {
+    .fsize(@fs_code * 0.9);
+    .col(@c_hlight);
+    padding-right: 0;
 }
-*/
-
-/*
-.CodeMirror-lines .CodeMirror-cursor {
-    border-left: 4px solid fade(@c_emph, 80%);
-}
-*/

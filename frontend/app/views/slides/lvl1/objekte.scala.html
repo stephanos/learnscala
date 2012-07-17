@@ -17,49 +17,51 @@
                     |// Klasse
                     |class Plane(val model: String, val seats: Int)
                 }
-                @empty()
+                <div>
+                    <code>static</code> existiert in Scala nicht ...
+                </div>
             </div>
 
             <hr/>
 
-            <div class="fragment sidebyside p60_40">
-                @codesplits((60,40)){
-                    @splitstart() {
-                        @sourcecode(reference = "plane") {
-                            |// Objekt
-                            |object Plane @Html("{")
-                        }
-                    }{
-                        <code>static</code> existiert in Scala nicht
+            @codesplits((60,40)){
+                @splitstart() {
+                    @sourcecode(reference = "plane") {
+                        |// Objekt
+                        |object Plane @Html("{")
                     }
-                    @codesplit() {
-                        @sourcecode() {
-                            |   val minSeatsNumber = 100
-                        }
-                    } {
-                        Objekte können <em>globalen Zustand</em> kapseln
-                    }
-                    @codesplit() {
-                        @sourcecode() {
-                            |   def create(model: String, seats: Int) = {
-                            |       if(seats <= minSeatsNumber)
-                            |           sys.error("not enough seats!")
-                            |       new Plane(model, seats)
-                            |   }
-                        }
-                    } {
-                         und als <em>Factory</em> dienen
-                    }
-                    @splitend() {
-                        @sourcecode() {
-                            |@Html("}")
-                        }
-                    }(null)
+                }{
+                    ... aber <var>Objekte</var>.
                 }
-            </div>
+                @codesplit() {
+                    @sourcecode() {
+                        |   val minSeatsNumber = 100
+                    }
+                } {
+                    @li{<em>globaler Zustand</em>}
+                }
+                @codesplit() {
+                    @sourcecode() {
+                        |   def create(model: String, seats: Int) = {
+                        |       if(seats <= minSeatsNumber)
+                        |           sys.error("not enough seats!")
+                        |       new Plane(model, seats)
+                        |   }
+                    }
+                } {
+                    @li{<em>Factory</em>-Methoden}
+                }
+                @splitend() {
+                    @sourcecode() {
+                        |@Html("}")
+                    }
+                }(null)
+            }
+
             @infobox() {
                 <code>object</code> definiert ein Singleton-Objekt:
-                Es gibt genau eine Instanz
+                Es existiert <strong>genau eine Instanz</strong>,
+                die beim ersten Zugriff instanziiert wird - Parameter gibt es nicht.
             }
         }
     </section>

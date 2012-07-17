@@ -11,8 +11,7 @@ initSnippet = (elem) ->
   $(elem).find("pre").each(
     (idx, pre) ->
       if(!$(pre).hasClass("output"))
-        toolbar = $('<div class="toolbar">').appendTo($(pre))
-        btn = $("<button class='btn btn-mini'>Load</button>").appendTo($(toolbar))
+        btn = $("<button class='btn btn-mini'>6</button>").appendTo($(pre))
         $(btn).bind("click",
           (evt) ->
             # find block (pre)
@@ -62,62 +61,88 @@ initModalEditor = (blocks, m) ->
   # setup modal
   m ?= $('#ideModal')
   body = m.find(".modal-body")
-  body.find(".pane>div").empty()
+  body.find(".input, .output").empty()
 
-  # editor (with console)
-  editor = initEditor($(body), blocks)
+  # editors + console
+  editors = initEditors($(body), blocks)
 
   # show modal
   m.modal()
 
   # adapt editor to modal
-  editor.refresh()
+  _.forEach(editors, (e) -> e.refresh())
+
+
+# initialize a code editors
+initEditors = (elem, blocks) ->
+
+  output = $(elem).find(".output-wrap div")
+
+  console.log("source")
+
+  # init source editor
+  srcEditor = initEditor($(elem).find(".left .input"), blocks, "source")
+  srcEditorDom = srcEditor.getWrapperElement()
+  $('<button class="btn btn-success">5</button>')
+        .bind("click", (evt) -> callAPI("decompile", output, srcEditor.getValue()))
+        .appendTo($(srcEditorDom))
+
+  console.log("call")
+
+  # init call editor
+  callEditor = initEditor($(elem).find(".right .input"), blocks, "call")
+  callEditorDom = callEditor.getWrapperElement()
+  $('<button class="btn btn-success">1</button>')
+        .bind("click", (evt) -> callAPI("execute", output, srcEditor.getValue(), callEditor.getValue()))
+        .appendTo($(callEditorDom))
+
+  [srcEditor, callEditor]
 
 
 # initialize a code editor
-initEditor = (elem, blocks) ->
-
-  input = $(elem).find(".input-wrap div")
-  output = $(elem).find(".output-wrap div")
+initEditor = (elem, blocks, typeOf) ->
 
   # content
+  getBlocks = (bs) ->
+    res = []
+    _.forEach(bs,
+      (b) ->
+        if(_.str.contains(b["type"], typeOf)) then res.push(b)
+        subs = b["subs"]
+        if(!_.isEmpty(subs)) then res.push(getBlocks(subs))
+    )
+    _.flatten(res)
+  blocks = getBlocks(blocks)
+  console.log(blocks)
+
   content =
     _.str.strip(_.reduce(blocks ? readRawCode(elem),
       (r, b) -> r += b["text"] + "\n"
     , ""))
 
   # create the editor
-  textarea = $("<textarea/>").appendTo($(input))
+  textarea = $("<textarea/>").appendTo($(elem))
   textarea.val(content)
   editor =
     CodeMirror.fromTextArea(textarea[0], {
-      autofocus: true,
+      autofocus: false,
       theme: "ambiance",
       mode: "text/x-scala",
       indentWithTabs: false,
       #lineWrapping: true,
       smartIndent: false,
       indentUnit: 3,
+      lineNumbers: typeOf == "call",
+      lineNumberFormatter: (n) -> ">"
       matchBrackets: true,
       autoClearEmptyLines: true
     })
-
-  # add editor toolbar
-  editDom = editor.getWrapperElement()
-  toolbar = $('<div class="toolbar">').appendTo($(editDom))
-  $('<button class="btn btn-success">Execute</button>')
-    .bind("click", (evt) -> callAPI("interpret", editor, output))
-    .appendTo($(toolbar))
-
-  $('<button class="btn">Inspect</button>')
-    .bind("click", (evt) -> callAPI("decompile", editor, output))
-    .appendTo($(toolbar))
 
   editor
 
 
 # call server API
-callAPI = (target, editor, output) ->
+callAPI = (target, output, source, call) ->
   # clear console
   createCodeBlock("", output, "wait")
 
@@ -126,7 +151,7 @@ callAPI = (target, editor, output) ->
     type: 'POST',
     timeout: 15000,
     url: "/api/" + target,
-    data: "code=" + encodeURIComponent(editor.getValue()),
+    data: "source=" + encodeURIComponent(source ? "") + "&call=" + encodeURIComponent(call ? ""),
 
     success: (data, status) ->
       window.spinner?.stop()
@@ -150,20 +175,23 @@ callAPI = (target, editor, output) ->
 #######################################################################################################################
 # raw source code data from snippet
 readRawCode = (elem, editable) ->
-  if($(elem)[0].tagName.toLowerCase() == "pre") # find and read previous blocks
-    split = $(elem).closest(".codesplit")
-    if(split.length > 0)
-      readRawCode(split, editable)
+  if($(elem).length > 0)
+    if($(elem)[0].tagName.toLowerCase() == "pre") # find and read previous blocks
+      split = $(elem).closest(".codesplit")
+      if(split.length > 0)
+        readRawCode(split, editable)
+      else
+        num = $(elem).data("num")
+        _.filter(readRawCode($(elem).closest('div.snippet'), editable),
+          (b) -> isCodeBlock(b) && b["num"] <= num
+        )
     else
-      num = $(elem).data("num")
-      _.filter(readRawCode($(elem).closest('div.snippet'), editable),
-        (b) -> isCodeBlock(b) && b["num"] <= num
-      )
+      if($(elem).hasClass("raw-block"))
+        [readRawBlock(elem, editable)] # read a single block
+      else
+        readRawBlocks(elem, editable) # read a bunch of blocks
   else
-    if($(elem).hasClass("raw-block"))
-      [readRawBlock(elem, editable)] # read a single block
-    else
-      readRawBlocks(elem, editable) # read a bunch of blocks
+    []
 
 readRawBlocks = (elem, editable) ->
   blocks = []
@@ -175,15 +203,18 @@ readRawBlocks = (elem, editable) ->
   blocks
 
 readRawBlock = (elem, editable) ->
+  subs = []
   content = ""
-  type = $(elem).data("type")
+  type = _.str.trim($(elem).data("type"))
 
   # read snippet's include content
-  content += readRawBlockRef($(elem).data("include"))
+  incl = readRawCode($("#" + $(elem).data("include")))
+  if(!_.isEmpty(incl)) then subs.push(incl)
 
   # read snippet's reference content
   if(editable)
-    content += readRawBlockRef($(elem).data("reference"))
+    ref = readRawCode($("#" + $(elem).data("reference")))
+    if(!_.isEmpty(ref)) then subs.push(ref)
 
   # extract text
   lines = _.str.lines(_.str.trim($(elem).text()))
@@ -201,15 +232,16 @@ readRawBlock = (elem, editable) ->
     num: 0
     type: type
     text: content
+    subs: _.flatten(subs)
   }
 
-readRawBlockRef = (id) ->
-  content = ""
-  if(id)
-    blocks = readRawCode($("#" + id))
-    if(!_.isEmpty(blocks))
-      _.forEach(blocks, (b) -> if(isCodeBlock(b)) then content += b.text + "\n")
-  content
+#readRawBlockRef = (id) ->
+#  content = ""
+#  if(id)
+#    blocks = readRawCode($("#" + id))
+#    if(!_.isEmpty(blocks))
+#      _.forEach(blocks, (b) -> if(isCodeBlock(b)) then content += b.text + "\n")
+#  content
 
 isCodeBlock = (b) ->
   !_.str.contains(b["type"], "output")
