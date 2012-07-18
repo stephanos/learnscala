@@ -31,7 +31,7 @@
 } {
     <div class="fragment sidebyside p60_40">
         @snippet() {
-            @sourceblock() {
+            @sourceblock(fragment = false) {
                 |val i: Int = 5
             }
             @outblock() {
@@ -52,7 +52,7 @@
     <hr/>
 
     <div class="fragment sidebyside p60_40">
-        @callcode() {
+        @callcode(fragment = false) {
             |println("Hello World")
         }
         <div>
@@ -63,7 +63,7 @@
     <hr/>
 
     <div class="fragment sidebyside p60_40">
-        @callcode() {
+        @callcode(fragment = false) {
             |val i = 1 + 2 * 3      // type of i is Int
             |val s = "Scala rocks"  // type of s is String
         }
@@ -84,7 +84,7 @@
     Scala ist ... <span><em>objektorientiert</em></span>
 } {
     <div class="fragment sidebyside">
-        @callcode() {
+        @callcode(fragment = false) {
             |42.toFloat
             |(3.14f).floor
         }
@@ -96,7 +96,7 @@
     <hr/>
 
     <div class="fragment sidebyside">
-        @sourcecode() {
+        @sourcecode(fragment = false) {
             |class MonsterTruck extends Car
         }
         <div>
@@ -107,7 +107,7 @@
     <hr/>
 
     <div class="fragment sidebyside">
-        @sourcecode() {
+        @sourcecode(fragment = false) {
             |class FlyingCar extends Car with Wings
         }
         <div>
@@ -127,7 +127,7 @@
     Scala ist ... <span><em>knapp und präzise</em></span>
 } {
     <div class="fragment sidebyside p60_40">
-        @sourcecode() {
+        @sourcecode(fragment = false) {
             |class MyCar(wheels: Int = 4)
         }
         <div>
@@ -138,7 +138,7 @@
     <hr/>
 
     <div class="fragment sidebyside p60_40">
-        @sourcecode() {
+        @sourcecode(fragment = false) {
             |trait Logging
         }
         <div>
@@ -149,7 +149,7 @@
     <hr/>
 
     <div class="fragment sidebyside p60_40">
-        @sourcecode() {
+        @sourcecode(fragment = false) {
             |def getUserAttributes[T](fn: (User) => List[T])
         }
         <div>
@@ -169,7 +169,7 @@
     Scala ist ... <span><em>funktional</em></span>
 } {
     <div class="fragment sidebyside p60_40">
-        @callcode() {
+        @callcode(fragment = false) {
             |val names = users.map(_.username)
             |
             |val minors = users.map(_.age()).filter(_ < 18)
@@ -182,7 +182,7 @@
     <hr/>
 
     <div class="fragment sidebyside p60_40">
-        @sourcecode() {
+        @sourcecode(fragment = false) {
             |def matchTest(arg: String, value: Any) =
             | (arg, value) match {
             |   case ("-h"|"--help", _) => showHelp()
@@ -206,8 +206,8 @@
 @slide() {
     Scala ist ... <span><em>statisch typisiert</em></span>
 } {
-    <div class="fragment sidebyside p60_40">
-        @callcode() {
+    <div class=" sidebyside p66_33">
+        @callcode(fragment = false) {
             |val i = 1 + 2 * 3    // the type of i is Int
         }
         <div>
@@ -217,8 +217,8 @@
 
     <hr/>
 
-    <div class="fragment sidebyside p60_40">
-        @callcode() {
+    <div class="fragment sidebyside p66_33">
+        @callcode(fragment = false) {
             |val j: Int = "test"  // COMPILER ERROR!
         }
         <div>
@@ -228,8 +228,8 @@
 
     <hr/>
 
-    <div class="fragment sidebyside p60_40">
-        @sourcecode() {
+    <div class="fragment sidebyside p66_33">
+        @sourcecode(fragment = false) {
             |def cloneAndReset(o: Cloneable with Resetable) = ..
         }
         <div>
@@ -249,7 +249,7 @@
     Scala ist ... <span><em>Java</em></span>
 } {
     <div class="fragment sidebyside p60_40">
-        @sourcecode() {
+        @sourcecode(fragment = false) {
             |import org.apache.http.client._
             |import org.apache.http.client.methods._
             |
@@ -278,7 +278,7 @@
     Scala ist ... <span><em>erweiterbar</em></span>
 } {
     <div class="fragment sidebyside p60_40">
-        @sourcecode() {
+        @sourcecode(fragment = false) {
             |def retry[T](n: Int)(fn: => T): T =
             |   try   { fn }
             |   catch {
@@ -295,7 +295,7 @@
     <hr/>
 
     <div class="fragment sidebyside p60_40">
-        @sourcecode() {
+        @sourcecode(fragment = false) {
             @Html("""
             |"The 'Hello world' string" should {
             |    "contain 11 characters" in {
@@ -316,7 +316,7 @@
 @slide() {
     Scala ist ... <span><em>in Benutzung</em></span>
 } {
-    <table>
+    <table class="fragment">
         <colgroup>
             <col width="25%">
             <col width="25%">
