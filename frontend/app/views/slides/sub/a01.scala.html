@@ -425,10 +425,10 @@
                 <span>(7)</span>
                 @snippet() {
                     @callblock(fragment = false) {
-                        |val r: Double = 3.14
+                        |val r: String = 3.14
                     }
                     @outblock() {
-                        |r: Double = 3.14
+                        |error: type mismatch;
                     }
                 }
             </div>
