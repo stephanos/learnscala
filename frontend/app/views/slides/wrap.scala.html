@@ -1,0 +1,8 @@
+@(id1: String, id2: String)
+
+@layout.slidedeck(id2) {
+
+    <div class="slides">
+        @Slide.loadSlide(id1, id2)
+    </div>
+}

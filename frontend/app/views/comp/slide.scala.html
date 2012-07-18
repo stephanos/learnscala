@@ -1,0 +1,15 @@
+@(id: String = null)(title: Html)(content: Html)
+
+<section @{if(id == null) "" else "data-id=slide-" + id}>
+
+    @if(title != null) {
+        @headbody() {
+            @title
+        } {
+            @content
+        }
+    } else {
+        @content
+    }
+
+</section>

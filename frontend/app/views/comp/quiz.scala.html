@@ -1,7 +1,7 @@
-@(heading: String = "Quiz")(content: Html)
+@(heading: Html = Html("Quiz"), append: Html = Html.empty)(content: Html)
 
 @headbody() {
-    @heading
+    @heading@append
 } {
     @content
 }

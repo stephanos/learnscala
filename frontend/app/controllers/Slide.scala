@@ -7,7 +7,7 @@ import play.api.templates.Html
 object Slide extends MyController {
 
     def index = Action {
-        Ok(views.html.app.slides())
+        Ok(views.html.slides.main())
     }
 
     def index2 =
@@ -22,19 +22,18 @@ object Slide extends MyController {
     }
 
     def load(id: String) =
-        load2(null, id)
+        load2("", id)
 
-def load2(id1: String, id2: String) = Action {
-    try {
-        val dir = if (id1 == null) "" else id1.replaceAllLiterally("-", "_") + "."
+    def load2(id1: String, id2: String) = Action {
+        Ok(views.html.slides.wrap(id1, id2))
+    }
+
+    def loadSlide(id1: String, id2: String) = {
+        val dir = if (id1 == null || id1 == "") "" else id1.replaceAllLiterally("-", "_") + "."
         val file = id2.replaceAllLiterally("-", "_")
 
-        val c = Class.forName("views.html.slides." + dir + file)
+        val c = Class.forName("views.html.slides.sub." + dir + file)
         val m = c.getMethod("render")
-        Ok(m.invoke(null).asInstanceOf[Html])
-    } catch {
-        case e =>
-            Ok(views.html.error.notfound())
+        m.invoke(null).asInstanceOf[Html]
     }
-}
 }
