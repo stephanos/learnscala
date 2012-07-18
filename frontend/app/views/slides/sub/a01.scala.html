@@ -1,0 +1,450 @@
+@slidehead() {
+    Erste Schritte
+} {
+   Ein kleiner Schritt für einen Entwickler ...
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside p40_60">
+        <div>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |42
+                }
+                @outblock() {
+                    |res0: Int = 42
+                }
+            }
+        </div>
+
+        <div>
+            <ul class="indent">
+                <li class="fragment">
+                    <code>res0</code> ist der Name der Variable <br/>
+                    <comment>(fortlaufend nummeriert)</comment>
+                </li>
+                <li class="fragment">
+                    <code>Int</code> ist Typ der Variable <br/>
+                    <comment>(automatisch ermittelt)</comment>
+                </li>
+                <li class="fragment">
+                    <code>42</code> ist Wert der Variable <br/>
+                    <comment>(via <code>toString()</code>)</comment>
+                </li>
+            </ul>
+        </div>
+    </div>
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside">
+        @snippet() {
+            @callblock(fragment = false) {
+                |42.toString()
+            }
+            @outblock() {
+                |res0: java.lang.String = 42
+            }
+        }
+        <div>
+            Methode <code>toString</code> von Objekt <code>42</code>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="fragment sidebyside">
+        @snippet() {
+            @callblock(fragment = false) {
+                |42.isWhole()
+            }
+            @outblock() {
+                |res1: Boolean = true
+            }
+        }
+        <div>
+            Methode <code>isWhole</code>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="fragment sidebyside">
+        @snippet() {
+            @callblock(fragment = false) {
+                |42.==(42)
+            }
+            @outblock() {
+                |res2: Boolean = true
+            }
+        }
+        <div>
+            Methode <code>==</code>
+        </div>
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        Alles ist ein Objekt und jedes Objekt kann Operatoren als Methoden haben.
+    }
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside">
+        <div>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |val meaningOfLife: Int = 42
+                }
+                @outblock() {
+                    |meaningOfLife: Int = 42
+                }
+            }
+        </div>
+        <div>
+            <ul class="indent">
+                <li class="fragment">
+                    <code>val</code> beginnt Variable
+                </li>
+                <li class="fragment">
+                    <code>meaningOfLife</code> ist der Name
+                </li>
+                <li class="fragment">
+                    <code>:</code> trennt Name und Typ
+                </li>
+                <li class="fragment">
+                    <code>Int</code> ist der Typ
+                </li>
+                <li class="fragment">
+                    <code>=</code> weist Wert zu
+                </li>
+                <li class="fragment">
+                    <code>42</code> ist der Wert
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        <code>val</code> leitet eine Variable ein, der Typ folgt <strong>hinter</strong> dem Namen.
+    }
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside">
+        @snippet() {
+            @callblock(fragment = false) {
+                |val meaningOfLife: Int = 42
+            }
+            @outblock() {
+                |meaningOfLife: Int = 42
+            }
+            @callblock() {
+                |meaningOfLife = 101
+            }
+            @outblock() {
+                |<console>:8: error: reassignment to val
+                |   meaningOfLife = 101
+                |                   ^
+            }
+        }
+        <div>
+            <code>meaningOfLife</code> wird mit <code>val</code>
+            definiert und versucht zu überschreiben.
+        </div>
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        <code>val</code> kann nicht überschrieben werden, sie ist unveränderlich (immutable).
+    }
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside p60_40">
+        @snippet() {
+            @callblock(fragment = false) {
+                |val meaningOfLife: Int = "Java"
+            }
+            @outblock() {
+                |<console>:7: error: type mismatch;
+                |found   : java.lang.String("Java")
+                |required: Int
+                |       val meaningOfLife: Int = "Java"
+                |                                ^
+            }
+        }
+        <div>
+            <code>meaningOfLife</code> wird als <code>Int</code> definiert
+            aber mit dem String <code>Java</code> initialisiert
+        </div>
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        Der Compiler stellt sicher, dass Variablentyp und -wert zusammenpassen.
+    }
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside p45_55">
+        @snippet() {
+            @callblock(fragment = false) {
+                |val meaningOfLife = 42
+            }
+            @outblock() {
+                |meaningOfLife: Int = 42
+            }
+        }
+        <div>
+            <code>meaningOfLife</code> wird mit dem Wert <code>42</code> initialisiert,
+            der Typ <code>Int</code> wird zugewiesen
+        </div>
+    </div>
+
+    <hr/><hr/>
+
+    <div class="fragment sidebyside p45_55">
+        @snippet() {
+            @callblock(fragment = false) {
+                |val pi = 3.14f
+            }
+            @outblock() {
+                |pi: Float = 3.14
+            }
+        }
+        <div>
+            <code>pi</code> wird mit dem Wert <code>3.14f</code> initialisiert,
+            der Compiler erkennt den Typ <code>Float</code>
+        </div>
+    </div>
+
+    <hr/><hr/>
+
+    @infobox() {
+        Der Variablentyp kann weggelassen werden, der Compiler leitet ihn ab.
+    }
+}
+
+@slide() {
+} {
+    <div class="sidebyside">
+        @snippet() {
+            @callblock(fragment = false) {
+                |val a = 1
+                |val b = 2
+            }
+            @outblock() {
+                |a: Int = 1
+                |b: Int = 2
+            }
+        }
+        @snippet() {
+            @callblock() {
+                |val a = 1; val b = 2
+                |
+            }
+            @outblock() {
+                |a: Int = 1
+                |b: Int = 2
+            }
+        }
+    </div>
+
+    <hr/>
+
+    @tipbox() {
+        Semikolons weglassen, außer mehrere Anweisungen stehen in einer Zeile.
+    }
+}
+
+
+<!--<section>
+    @summary(){
+        @summaries.variablen()
+    }
+</section>-->
+
+@slide() {
+} {
+    <div class="sidebyside p40_60">
+        @snippet() {
+            @callblock(fragment = false) {
+                |var pi = 3.14f
+            }
+            @outblock() {
+                |pi: Float = 3.14f
+            }
+            @callblock() {
+                |pi = 3.0
+            }
+            @outblock() {
+                |pi: Float = 3.0
+            }
+        }
+        <div class="fragment">
+            Variable <code>pi</code> wird initialisiert
+            <hr/>
+            Der Wert wird mit einer weiteren Anweisung überschrieben
+        </div>
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        <code>var</code> kann überschrieben werden, sie ist veränderlich (mutable).
+    }
+    @warnbox() {
+        <code>var</code> sollte vermieden und sehr bedacht eingesetzt werden.
+    }
+
+    <details>
+        <a href="http://stackoverflow.com/questions/1791408/what-is-the-difference-between-a-var-and-val-definition-in-scala">
+            What is the difference between a var and val definition in Scala?
+        </a>
+    </details>
+}
+
+
+@quiz(){
+    <div class="sidebyside">
+        <div>
+            <div class="sidebyside p10_90">
+                <span>(1)</span>
+                @snippet() {
+                    @callblock(fragment = false) {
+                        |val r = 42f
+                    }
+                    @outblock() {
+                        |r: Float = 42
+                    }
+                }
+            </div>
+        </div>
+        <div>
+            <div class="sidebyside p10_90">
+                <span>(2)</span>
+                @snippet() {
+                    @callblock(fragment = false) {
+                        |val r = 5.*5
+                    }
+                    @outblock() {
+                        |r: Double = 25.0
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+    <hr/><hr/><hr/>
+
+    <div class="sidebyside">
+        <div>
+            <div class="sidebyside p10_90">
+                <span>(3)</span>
+                @snippet() {
+                    @callblock(fragment = false) {
+                        |val r = 24.==(42)
+                    }
+                    @outblock() {
+                        |r: Boolean = false
+                    }
+                }
+            </div>
+        </div>
+        <div>
+            <div class="sidebyside p10_90">
+                <span>(4)</span>
+                @snippet() {
+                    @callblock(fragment = false) {
+                        |val r = 42 isWhole
+                    }
+                    @outblock() {
+                        |r: Boolean = true
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+    <hr/><hr/><hr/>
+
+    <div class="sidebyside">
+        <div>
+            <div class="sidebyside p10_90">
+                <span>(5)</span>
+                @snippet() {
+                    @callblock(fragment = false) {
+                        |val r = (5.)*5
+                    }
+                    @outblock() {
+                        |r: Double = 25.0
+                    }
+                }
+            </div>
+        </div>
+        <div>
+            <div class="sidebyside p10_90">
+                <span>(6)</span>
+                @snippet() {
+                    @callblock() {
+                        |var r = 1L
+                        |r = 25
+                    }
+                    @outblock(fragment = false) {
+                        |r: Long = 1
+                        |r: Long = 25
+                    }
+                }
+            </div>
+        </div>
+    </div>
+
+    <hr/><hr/><hr/>
+
+    <div class="sidebyside">
+        <div>
+            <div class="sidebyside p10_90">
+                <span>(7)</span>
+                @snippet() {
+                    @callblock(fragment = false) {
+                        |val r: Double = 3.14
+                    }
+                    @outblock() {
+                        |r: Double = 3.14
+                    }
+                }
+            </div>
+        </div>
+        <div>
+            <div class="sidebyside p10_90">
+                <span>(8)</span>
+                @snippet() {
+                    @callblock(fragment = false) {
+                        |val r = (5).*(5)
+                    }
+                    @outblock() {
+                        |r: Int = 25
+                    }
+                }
+            </div>
+        </div>
+    </div>
+}
