@@ -1,17 +1,17 @@
-@(chapter: String = "")
-
+<!-- Methoden -->
 @slide() {
+    Methoden
 } {
     <div class="sidebyside">
         <div>
             @snippet() {
                 @sourceblock(fragment = false) {
-                    |def hello(): String = {
-                    |   return "Hello World"
+                    |def ready(): String = {
+                    |   return "Ready for take-off"
                     |}
                 }
                 @outblock() {
-                    |hello: String
+                    |ready: String
                 }
             }
         </div>
@@ -22,7 +22,7 @@
                         <code>def</code> startet die Definition
                     </li>
                     <li class="fragment">
-                        <code>hello</code> ist der Name der Methode
+                        <code>ready</code> ist der Name der Methode
                     </li>
                     <li class="fragment">
                         <code>()</code> beinhaltet die Liste der Parameter
@@ -136,23 +136,23 @@
     <div class="sidebyside">
         @snippet() {
             @sourceblock(fragment = false) {
-                |def hello() = {
-                |   println("Hello World")
+                |def ready() = {
+                |   println("Ready for take-off")
                 |}
             }
             @outblock() {
-                |hello: Unit
+                |ready: Unit
             }
         }
 
         @snippet() {
             @sourceblock() {
-                |def hello() {
-                |   println("Hello World")
+                |def ready() {
+                |   println("Ready for take-off")
                 |}
             }
             @outblock() {
-                |hello: Unit
+                |ready: Unit
             }
         }
     </div>
@@ -169,9 +169,9 @@
 @slide() {
 } {
     <div class="fragment sidebyside p40_60">
-        @sourcecode(id = "hello", fragment = false) {
-            |def hello(): String =
-            |   return "Hello World"
+        @sourcecode(id = "ready", fragment = false) {
+            |def ready(): String =
+            |   return "Ready for take-off"
         }
         <div>
             <strong><em>ohne</em></strong> geschweifte Klammern<br/>
@@ -183,8 +183,8 @@
 
     <div class="fragment sidebyside p40_60">
         @sourcecode(fragment = false) {
-            |def hello(): String =
-            |   "Hello World"
+            |def ready(): String =
+            |   "Ready for take-off"
         }
         <div>
             <strong><em>ohne</em></strong> <code>return</code><br/>
@@ -196,8 +196,8 @@
 
     <div class="fragment sidebyside p40_60">
         @sourcecode(fragment = false) {
-            |def hello: String =
-            |   "Hello World"
+            |def ready: String =
+            |   "Ready for take-off"
         }
         <div>
             <strong><em>ohne</em></strong> Parameterliste<br/>
@@ -209,8 +209,8 @@
 
     <div class="fragment sidebyside p40_60">
         @sourcecode(fragment = false) {
-            |def hello =
-            |   "Hello World"
+            |def ready =
+            |   "Ready for take-off"
         }
         <div>
             <strong><em>ohne</em></strong> Rückgabetyp<br/>
@@ -222,12 +222,56 @@
 
     <div class="fragment sidebyside p40_60">
         @sourcecode(fragment = false) {
-            |def hello = "Hello World"
+            |def ready = "Ready for take-off"
         }
         <div>
             <strong><em>ohne</em></strong> Zeilenumbruch
         </div>
     </div>
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside p60_40">
+        @snippet() {
+            @sourceblock(id = "double", fragment = false) {
+                |def double(x: Int) =
+                |   2 * x
+            }
+            @outblock() {
+                |double: (x: Int)Int
+            }
+        }
+        <div>
+            Methode <code>double</code> mit 1 <code>Int</code>-Parameter
+            und Rückgabetyp <code>Int</code>
+        </div>
+    </div>
+
+    <hr/><hr/>
+
+    <div class="fragment sidebyside p60_40">
+        @snippet() {
+            @sourceblock(id = "add", fragment = false) {
+                |def add(x: Float, y: Float) =
+                |   x + y
+            }
+            @outblock() {
+                |add: (x: Float, y: Float)Float
+            }
+        }
+        <div>
+            Methode <code>add</code> mit 2 <code>Float</code>-Parameter
+            und Rückgabetyp <code>Float</code>
+        </div>
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        Parameter werden durch Komma getrennt und müssen einen Typ haben.
+    }
 }
 
 
@@ -336,50 +380,6 @@
 
 @slide() {
 } {
-    <div class="sidebyside p60_40">
-        @snippet() {
-            @sourceblock(id = "double", fragment = false) {
-                |def double(x: Int) =
-                |   2 * x
-            }
-            @outblock() {
-                |double: (x: Int)Int
-            }
-        }
-        <div>
-            Methode <code>double</code> mit 1 <code>Int</code>-Parameter
-            und Rückgabetyp <code>Int</code>
-        </div>
-    </div>
-
-    <hr/><hr/>
-
-    <div class="fragment sidebyside p60_40">
-        @snippet() {
-            @sourceblock(id = "add", fragment = false) {
-                |def add(x: Float, y: Float) =
-                |   x + y
-            }
-            @outblock() {
-                |add: (x: Float, y: Float)Float
-            }
-        }
-        <div>
-            Methode <code>add</code> mit 2 <code>Float</code>-Parameter
-            und Rückgabetyp <code>Float</code>
-        </div>
-    </div>
-
-    <hr/>
-
-    @infobox() {
-        Parameter werden durch Komma getrennt und müssen einen Typ haben.
-    }
-}
-
-
-@slide() {
-} {
     <div class="sidebyside p40_60">
         @snippet() {
             @callblock(fragment = false) {
@@ -441,8 +441,4 @@
     @tipbox() {
         Runde Klammern bei Methoden ohne oder mit nur 1 Parameter sind optional.
     }
-}
-
-@uebung() {
-
 }

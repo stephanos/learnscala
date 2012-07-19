@@ -27,7 +27,7 @@ object ProjectBuild extends MyBuild {
         MyProject("exercises", file("exercises"), isCloud)
             .settings(moduleSettings: _*)
             .settings(libraryDependencies ++= Seq(http))
-            .settings(libraryDependencies ++= Seq(Test.specs2, Test.mockito))
+            .settings(libraryDependencies ++= Seq(Test.specs2, Test.junit, Test.mockito, Test.scheck))
             .settings(libraryDependencies ++= Seq(squeryl, Test.h2).map(_.copy(configurations = Some("compile"))))
 
 

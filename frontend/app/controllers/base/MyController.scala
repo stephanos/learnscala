@@ -7,5 +7,5 @@ class MyController
     extends BaseController with Errors {
 
     protected def userIsAdmin(implicit req: RequestHeader) =
-        req.session.get(USER_NAME) == Some("stephanos")
+        req.session.get(USER_ID) == Some("stephanos")
 }

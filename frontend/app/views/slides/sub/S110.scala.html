@@ -1,3 +1,4 @@
+<!-- Objekte -->
 @slide() {
     Statics <em>?</em>
 } {
@@ -13,8 +14,8 @@
 
     <div class="fragment sidebyside p60_40">
         @outcode(fragment = false) {
-            |<console>:3: error: ';' expected but 'val' found.
-            |          static var countOfPlanes = 0
+            |error: ';' expected but 'val' found.
+            |       static var countOfPlanes = 0
         }
         <div>
             <code>static</code> gibt es in Scala nicht ...
@@ -196,7 +197,7 @@
                 val p = Plane()
             }
             @outblock() {
-                <console>:9: error: not enough arguments for method apply
+                error: not enough arguments for method apply
             }
         }
         <div class="fragment">
@@ -262,7 +263,7 @@
     </div>
 
     @infobox() {
-        Das <code>Predef</code>-Objekt wird automatisch für jede Klasse geladen,
+        Das <code>Predef</code>-Objekt wird automatisch für jede Klasse importiert,
         es enthält hilfreiche Befehle, Typen und Werte - kann aber nicht erweitert werden.
     }
 }

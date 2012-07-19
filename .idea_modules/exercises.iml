@@ -29,6 +29,7 @@
     <orderEntry type="library" name="org.apache.httpcomponents_httpcore_4.2" level="project" />
     <orderEntry type="library" name="commons-logging_commons-logging_1.1.1" level="project" />
     <orderEntry type="library" name="commons-codec_commons-codec_1.6" level="project" />
+    <orderEntry type="library" name="junit_junit_4.7" level="project" />
     <orderEntry type="library" name="org.squeryl_squeryl_2.9.1_0.9.5" level="project" />
     <orderEntry type="library" name="cglib_cglib-nodep_2.2" level="project" />
     <orderEntry type="library" name="org.scala-lang_scalap_2.9.1" level="project" />
@@ -37,6 +38,8 @@
     <orderEntry type="library" scope="TEST" name="org.specs2_specs2_2.9.1_1.11_test" level="project" />
     <orderEntry type="library" scope="TEST" name="org.specs2_specs2-scalaz-core_2.9.1_6.0.1_test" level="project" />
     <orderEntry type="library" scope="TEST" name="org.mockito_mockito-all_1.9.0_test" level="project" />
+    <orderEntry type="library" scope="TEST" name="org.scalacheck_scalacheck_2.9.1_1.10.0_test" level="project" />
+    <orderEntry type="library" scope="TEST" name="org.scala-tools.testing_test-interface_0.5_test" level="project" />
   </component>
   <component name="org.twodividedbyzero.idea.findbugs">
     <option name="_basePreferences">

@@ -321,7 +321,9 @@ trait Deps {
         val seleniumCH = "org.seleniumhq.selenium" % "selenium-chrome-driver" % V.Selenium % "test"
         val seleniumFF = "org.seleniumhq.selenium" % "selenium-firefox-driver" % V.Selenium % "test"
         val seleniumHU = "org.seleniumhq.selenium" % "selenium-htmlunit-driver" % V.Selenium % "test"
+        val scheck = "org.scalacheck" %% "scalacheck" % "1.10.0" % "test"
         val specs2 = "org.specs2" %% "specs2" % V.Specs2 % "test"
+        val junit = "junit" % "junit" % "4.7"
     }
 
 }

@@ -115,7 +115,7 @@ initEditor = (elem, blocks, typeOf) ->
 
   content =
     _.str.strip(_.reduce(blocks ? readRawCode(elem),
-      (r, b) -> r += _.str.trim(b["text"]) + "\n" + (if(typeOf == "source") then "\n" else "")
+      (r, b) -> r += _.str.trim(b["text"], "\n") + "\n" + (if(typeOf == "source") then "\n" else "")
     , ""))
 
   # create the editor

@@ -9,51 +9,63 @@ object API extends MyController {
 
     def execute = Action(parse.urlFormEncoded) {
         req =>
-            val src = req.body("source").mkString("")
-            val call = req.body("call").mkString("")
-            //val session = req.queryString("session").headOption
-            try {
-                val (r, out) = Interpreter((src, call), None)
-                if (r == IR.Success)
-                    Ok(out)
-                else
-                    BadRequest(out)
-            } catch {
-                case e: Throwable =>
-                    log.warn("error for API call 'execute'", e)
-                    InternalServerError
+            if (userIsAdmin(req)) {
+                val src = req.body("source").mkString("")
+                val call = req.body("call").mkString("")
+                //val session = req.queryString("session").headOption
+                try {
+                    val (r, out) = Interpreter((src, call), None)
+                    if (r == IR.Success)
+                        Ok(out)
+                    else
+                        BadRequest(out)
+                } catch {
+                    case e: Throwable =>
+                        log.warn("error for API call 'execute'", e)
+                        InternalServerError
+                }
+            } else {
+                Unauthorized
             }
     }
 
     def decompile = Action(parse.urlFormEncoded) {
         req =>
-            val code = req.body("source").mkString("")
-            try {
-                val (out, err) = Decoder(code)
-                if (out != null)
-                    Ok(out)
-                else
-                    BadRequest(err)
-            } catch {
-                case e: Throwable =>
-                    log.warn("error for API call 'decompile'", e)
-                    InternalServerError
+            if (userIsAdmin(req)) {
+                val code = req.body("source").mkString("")
+                try {
+                    val (out, err) = Decoder(code)
+                    if (out != null)
+                        Ok(out)
+                    else
+                        BadRequest(err)
+                } catch {
+                    case e: Throwable =>
+                        log.warn("error for API call 'decompile'", e)
+                        InternalServerError
+                }
+            } else {
+                Unauthorized
             }
     }
 
     def compile = Action(parse.urlFormEncoded) {
         req =>
-            val code = req.body("code").mkString("")
-            try {
-                val (r, out) = Compiler(code)
-                if (r == true)
-                    Ok(out)
-                else
-                    BadRequest(out)
-            } catch {
-                case e: Throwable =>
-                    log.warn("error for API call 'compile'", e)
-                    InternalServerError
+            if (userIsAdmin(req)) {
+                val code = req.body("code").mkString("")
+                try {
+                    val (r, out) = Compiler(code)
+                    if (r == true)
+                        Ok(out)
+                    else
+                        BadRequest(out)
+                } catch {
+                    case e: Throwable =>
+                        log.warn("error for API call 'compile'", e)
+                        InternalServerError
+                }
+            } else {
+                Unauthorized
             }
     }
 }

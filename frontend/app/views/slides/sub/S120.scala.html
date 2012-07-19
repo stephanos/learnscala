@@ -1,0 +1,29 @@
+<!-- Pakete -->
+@slide() {
+    Pakete
+} {
+    <div class="sidebyside p60_40">
+        @sourcecode(fragment = false) {
+            |// file scalawings/src/main/scala/Plane.scala
+            |package de.scalawings
+            |
+            |class Plane
+        }
+        <div class="fragment">
+            Klasse <code>Plane</code> ist direkt im Quellcodeverzeichnis in <var>Plane.scala</var>
+            definiert - hat aber das Paket <code>com.scalawings</code>
+        </div>
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        <code>package</code> leitet die Namensgebung eines Paketes ein - <br/>
+        aber Dateipfad und Paketpfad <strong>müssen nicht</strong> übereinstimmen.
+    }
+}
+
+<!--
+    - Sub-Packages ?
+    - Super-Packages ?
+-->

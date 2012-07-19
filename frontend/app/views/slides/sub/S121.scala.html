@@ -1,0 +1,186 @@
+<!-- Import -->
+
+@slide() {
+} {
+    <div class="sidebyside p60_40">
+        @sourcecode(fragment = false) {
+            |import de.scalawings.crew.Pilot
+        }
+        <div>
+            importiert <em>1</em> Klasse namens <code>Pilot</code>
+            aus dem Paket <code>crew</code>
+        </div>
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p60_40">
+        @sourcecode() {
+            |import de.scalawings.crew.{Pilot, CoPilot}
+        }
+        @fragment {
+            importiert die <em>2</em> Klassen <code>Pilot</code> und <code>CoPilot</code>
+            aus dem Paket <code>crew</code>
+        }
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p60_40">
+        @sourcecode() {
+            |import de.scalawings.crew._
+        }
+        @fragment {
+            Wildcard <code>_</code> importiert <em>alles</em> aus dem Paket <code>crew</code>
+        }
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        Mit Hilfe von <code>import</code> können einzelne, mehrere oder alle Klassen eines Paketes geladen werden.
+    }
+}
+
+@slide() {
+} {
+    <div class="sidebyside p66_33">
+        @sourcecode(fragment = false) {
+            |import de.scalawings.cabin.{Seat => CabinSeat}
+            |import de.scalawings.cockpit.{Seat => CockpitSeat}
+        }
+        <div class="fragment">
+            <code>Seat</code> ist jeweils in den Paketen <code>cabin</code> bzw. <code>cockpit</code>
+            definiert und wird beim Import entsprechend umbenannt
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside p66_33">
+        @sourcecode() {
+            |import java.util.Date
+            |import java.sql.{Date => SqlDate}
+        }
+        @fragment {
+            <code>Date</code> ist jeweils in den Paketen <code>util</code> bzw. <code>sql</code> -
+            daher bekommt letzteres einen anderen Namen
+        }
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        Klassen können beim Import umbenannt werden, um Namenskonflikte zu verhindern.
+    }
+}
+
+@slide() {
+} {
+    <div class="sidebyside p60_40">
+        @sourcecode(fragment = false) {
+            |package de.scalawings
+            |
+            |import crew.Pilot
+        }
+        @fragment {
+            Importiert <code>Pilot</code> aus <code>de.scalawings.crew</code>
+        }
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside p60_40">
+        @sourcecode() {
+            |package de.scalawings
+            |
+            |import _root.de.scalawings.crew.Pilot
+        }
+        @fragment {
+            Importiert <code>Pilot</code> aus <code>de.scalawings.crew</code>
+        }
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        Der Compiler interpretiert Importe zunächst als relativ (außer es steht <code>_root_</code> am Anfang)
+        - wird er nicht fündig, versucht er es als absolute Angabe.
+    }
+}
+
+@slide() {
+} {
+    @codesplits((60,40)){
+        @splitstart() {
+            |package de.scalawings
+            |
+            |class Plane @Html("{")
+        }(null)
+        @codesplit() {
+            |   def fly() {
+            |       import crew.Pilot
+            |       // ...
+            |   }
+        } {
+            nur <code>fly</code> importiert <code>Pilot</code>
+        }
+        @codesplit() {
+            |   def clean() {
+            |       import crew.Stewardess
+            |       // ...
+            |   }
+        } {
+            nur <code>clean</code> importiert <code>Stewardess</code>
+        }
+        @splitend() {
+            |@Html("}")
+        }(null)
+    }
+
+    <hr/>
+
+    @infobox() {
+        Ein Import kann überall im Code eingefügt werden, nicht nur am Dateianfang.
+    }
+}
+
+@slide() {
+} {
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @callblock(fragment = false) {
+                |val e = new RuntimeException("pilot asleep")
+            }
+            @outblock() {
+                |e: java.lang.RuntimeException = RuntimeException: pilot asleep
+            }
+        }
+        @fragment {
+            Zugriff auf Klasse <code>RuntimeException</code> aus Paket <code>java.lang</code>
+        }
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @callblock() {
+                |val p = math.Pi
+            }
+            @outblock() {
+                |p: Double = 3.141592653589793
+            }
+        }
+        @fragment {
+            Zugriff auf Variable <code>Pi</code> aus Paket <code>scala.math</code>
+        }
+    </div>
+
+    <hr/><hr/>
+
+    @infobox() {
+        Neben dem <code>Predef</code>-Objekt werden für jede Datei automatisch die Pakete
+        <code>java.lang</code> und <code>scala</code> importiert.
+    }
+}

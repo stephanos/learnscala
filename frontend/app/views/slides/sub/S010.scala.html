@@ -1,110 +1,15 @@
-@slidehead() {
-    Erste Schritte
-} {
-   Ein kleiner Schritt für einen Entwickler ...
-}
-
-
+<!-- Variablen -->
 @slide() {
-} {
-    <div class="sidebyside p40_60">
-        <div>
-            @snippet() {
-                @callblock(fragment = false) {
-                    |42
-                }
-                @outblock() {
-                    |res0: Int = 42
-                }
-            }
-        </div>
-
-        <div>
-            <ul class="indent">
-                <li class="fragment">
-                    <code>res0</code> ist der Name der Variable <br/>
-                    <comment>(fortlaufend nummeriert)</comment>
-                </li>
-                <li class="fragment">
-                    <code>Int</code> ist Typ der Variable <br/>
-                    <comment>(automatisch ermittelt)</comment>
-                </li>
-                <li class="fragment">
-                    <code>42</code> ist Wert der Variable <br/>
-                    <comment>(via <code>toString()</code>)</comment>
-                </li>
-            </ul>
-        </div>
-    </div>
-}
-
-
-@slide() {
-} {
-    <div class="sidebyside">
-        @snippet() {
-            @callblock(fragment = false) {
-                |42.toString()
-            }
-            @outblock() {
-                |res0: java.lang.String = 42
-            }
-        }
-        <div>
-            Methode <code>toString</code> von Objekt <code>42</code>
-        </div>
-    </div>
-
-    <hr/>
-
-    <div class="fragment sidebyside">
-        @snippet() {
-            @callblock(fragment = false) {
-                |42.isWhole()
-            }
-            @outblock() {
-                |res1: Boolean = true
-            }
-        }
-        <div>
-            Methode <code>isWhole</code>
-        </div>
-    </div>
-
-    <hr/>
-
-    <div class="fragment sidebyside">
-        @snippet() {
-            @callblock(fragment = false) {
-                |42.==(42)
-            }
-            @outblock() {
-                |res2: Boolean = true
-            }
-        }
-        <div>
-            Methode <code>==</code>
-        </div>
-    </div>
-
-    <hr/>
-
-    @infobox() {
-        Alles ist ein Objekt und jedes Objekt kann Operatoren als Methoden haben.
-    }
-}
-
-
-@slide() {
+    Variablen
 } {
     <div class="sidebyside">
         <div>
             @snippet() {
                 @callblock(fragment = false) {
-                    |val meaningOfLife: Int = 42
+                    |val passengers: Int = 42
                 }
                 @outblock() {
-                    |meaningOfLife: Int = 42
+                    |passengers: Int = 42
                 }
             }
         </div>
@@ -114,7 +19,7 @@
                     <code>val</code> beginnt Variable
                 </li>
                 <li class="fragment">
-                    <code>meaningOfLife</code> ist der Name
+                    <code>passengers</code> ist der Name
                 </li>
                 <li class="fragment">
                     <code>:</code> trennt Name und Typ
@@ -145,22 +50,22 @@
     <div class="sidebyside">
         @snippet() {
             @callblock(fragment = false) {
-                |val meaningOfLife: Int = 42
+                |val passengers: Int = 42
             }
             @outblock() {
-                |meaningOfLife: Int = 42
+                |passengers: Int = 42
             }
             @callblock() {
-                |meaningOfLife = 101
+                |passengers = 101
             }
             @outblock() {
-                |<console>:8: error: reassignment to val
-                |   meaningOfLife = 101
-                |                   ^
+                |error: reassignment to val
+                |       passengers = 101
+                |                    ^
             }
         }
         <div>
-            <code>meaningOfLife</code> wird mit <code>val</code>
+            <code>passengers</code> wird mit <code>val</code>
             definiert und versucht zu überschreiben.
         </div>
     </div>
@@ -178,18 +83,18 @@
     <div class="sidebyside p60_40">
         @snippet() {
             @callblock(fragment = false) {
-                |val meaningOfLife: Int = "Java"
+                |val passengers: Int = "Java"
             }
             @outblock() {
-                |<console>:7: error: type mismatch;
+                |error   : type mismatch;
                 |found   : java.lang.String("Java")
                 |required: Int
-                |       val meaningOfLife: Int = "Java"
+                |       val passengers: Int = "Java"
                 |                                ^
             }
         }
         <div>
-            <code>meaningOfLife</code> wird als <code>Int</code> definiert
+            <code>passengers</code> wird als <code>Int</code> definiert
             aber mit dem String <code>Java</code> initialisiert
         </div>
     </div>
@@ -207,14 +112,14 @@
     <div class="sidebyside p45_55">
         @snippet() {
             @callblock(fragment = false) {
-                |val meaningOfLife = 42
+                |val passengers = 42
             }
             @outblock() {
-                |meaningOfLife: Int = 42
+                |passengers: Int = 42
             }
         }
         <div>
-            <code>meaningOfLife</code> wird mit dem Wert <code>42</code> initialisiert,
+            <code>passengers</code> wird mit dem Wert <code>42</code> initialisiert,
             der Typ <code>Int</code> wird zugewiesen
         </div>
     </div>
@@ -224,14 +129,14 @@
     <div class="fragment sidebyside p45_55">
         @snippet() {
             @callblock(fragment = false) {
-                |val pi = 3.14f
+                |val fuel = 3.14f
             }
             @outblock() {
-                |pi: Float = 3.14
+                |fuel: Float = 3.14
             }
         }
         <div>
-            <code>pi</code> wird mit dem Wert <code>3.14f</code> initialisiert,
+            <code>fuel</code> wird mit dem Wert <code>3.14f</code> initialisiert,
             der Compiler erkennt den Typ <code>Float</code>
         </div>
     </div>
@@ -287,20 +192,20 @@
     <div class="sidebyside p40_60">
         @snippet() {
             @callblock(fragment = false) {
-                |var pi = 3.14f
+                |var fuel = 3.14f
             }
             @outblock() {
-                |pi: Float = 3.14f
+                |fuel: Float = 3.14f
             }
             @callblock() {
-                |pi = 3.0
+                |fuel = 3.0
             }
             @outblock() {
-                |pi: Float = 3.0
+                |fuel: Float = 3.0
             }
         }
         <div class="fragment">
-            Variable <code>pi</code> wird initialisiert
+            Variable <code>fuel</code> wird initialisiert
             <hr/>
             Der Wert wird mit einer weiteren Anweisung überschrieben
         </div>
