@@ -9,17 +9,54 @@
             |
             |class Plane
         }
-        <div class="fragment">
+        @fragment {
             Klasse <code>Plane</code> ist direkt im Quellcodeverzeichnis in <var>Plane.scala</var>
             definiert - hat aber das Paket <code>com.scalawings</code>
-        </div>
+        }
     </div>
 
     <hr/>
 
     @infobox() {
-        <code>package</code> leitet die Namensgebung eines Paketes ein - <br/>
-        aber Dateipfad und Paketpfad <strong>müssen nicht</strong> übereinstimmen.
+        <code>package</code> leitet die Namensgebung eines Paketes ein -
+        Dateipfad und Paketpfad <strong>müssen nicht</strong> übereinstimmen.
+    }
+}
+
+@slide() {
+    <!-- private[Package] -->
+} {
+    <div class="sidebyside p60_40">
+        @sourcecode(fragment = false) {
+            |package de.scalawings.crew
+            |
+            |class private[scalawings] Plane
+        }
+        @fragment {
+            <code>private[scalawings]</code> beschränkt den Zugriff auf
+            das Paket <code>scalawings</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
+        }
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p60_40">
+        @sourcecode() {
+            |package de.scalawings.crew
+            |
+            |class private[crew] Pilot
+        }
+        @fragment {
+            <code>private[crew]</code> beschränkt den Zugriff auf
+            das Paket <code>crew</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
+        }
+    </div>
+
+    <hr/><hr/>
+
+    @infobox() {
+        Die Sichtbarkeit von Klassen, Variablen und Methoden kann mittels
+        <code>private[Package]</code> auf ein Paket und dessen Unterpakete begrenzt werden.
     }
 }
 

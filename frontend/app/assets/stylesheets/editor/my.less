@@ -106,10 +106,15 @@ table.codesplit {
 
 // use one plain color for output code
 .cm-s-ambiance.output, .ide .output .cm-s-ambiance {
-    .cm-keyword, .cm-atom, .cm-number, .cm-def, .cm-variable, .cm-variable-2, .cm-variable-3,
-    .cm-property, .cm-operator, .cm-comment, .cm-string, .cm-string-2, .cm-meta, .cm-error, .cm-qualifier,
-    .cm-builtin, .cm-bracket, .cm-tag, .cm-attribute, .cm-header, .cm-quote, .cm-hr, .cm-link, .cm-special {
-        color: #8f7b67;
+    .apply(#8f7b67);
+    &.error { .apply(#cc6666); } //mix(@c, @c_hlight);
+
+    .apply(@c) {
+        .cm-keyword, .cm-atom, .cm-number, .cm-def, .cm-variable, .cm-variable-2, .cm-variable-3, .cm-word,
+        .cm-property, .cm-operator, .cm-comment, .cm-string, .cm-string-2, .cm-meta, .cm-error, .cm-qualifier,
+        .cm-builtin, .cm-bracket, .cm-tag, .cm-attribute, .cm-header, .cm-quote, .cm-hr, .cm-link, .cm-special {
+            color: @c;
+        }
     }
 }
 

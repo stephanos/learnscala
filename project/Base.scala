@@ -798,13 +798,6 @@ trait Env {
     lazy val isCloud =
         System.getProperty("os.name").contains("nux")
 
-    lazy val jdkHome = {
-        val jdk = Option(System.getProperty("jdk.home", System.getProperty("jdk_home")))
-        val jre = Option(System.getProperty("java.home", System.getProperty("java_home")))
-        val path = jdk.getOrElse(jre.map(_ + fileSep + "..").getOrElse("/usr/lib/jdk"))
-        new File(path).getAbsolutePath
-    }
-
     val fileSep =
         java.io.File.separator
 

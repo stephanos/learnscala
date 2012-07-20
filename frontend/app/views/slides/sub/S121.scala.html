@@ -1,6 +1,7 @@
 <!-- Import -->
 
 @slide() {
+    <!-- Import Syntax -->
 } {
     <div class="sidebyside p60_40">
         @sourcecode(fragment = false) {
@@ -43,6 +44,7 @@
 }
 
 @slide() {
+    <!-- Umbenennen -->
 } {
     <div class="sidebyside p66_33">
         @sourcecode(fragment = false) {
@@ -76,12 +78,26 @@
 }
 
 @slide() {
+    <!-- Import relativ -->
 } {
     <div class="sidebyside p60_40">
         @sourcecode(fragment = false) {
             |package de.scalawings
             |
             |import crew.Pilot
+        }
+        @fragment {
+            Importiert <code>Pilot</code> aus <code>de.scalawings.crew</code>
+        }
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside p60_40">
+        @sourcecode() {
+            |package de.scalawings
+            |
+            |import de.scalawings.crew.Pilot
         }
         @fragment {
             Importiert <code>Pilot</code> aus <code>de.scalawings.crew</code>
@@ -104,12 +120,13 @@
     <hr/>
 
     @infobox() {
-        Der Compiler interpretiert Importe zunächst als relativ (außer es steht <code>_root_</code> am Anfang)
+        Der Compiler löst Importe zunächst relativ auf (außer es steht <code>_root_</code> am Anfang)
         - wird er nicht fündig, versucht er es als absolute Angabe.
     }
 }
 
 @slide() {
+    <!-- Import in Blöcken -->
 } {
     @codesplits((60,40)){
         @splitstart() {
@@ -146,6 +163,7 @@
 }
 
 @slide() {
+    <!-- Implizite Imports -->
 } {
     <div class="sidebyside p66_33">
         @snippet() {

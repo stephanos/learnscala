@@ -285,7 +285,7 @@
                         |def sub(x: Float, y: Float): Int =
                         |   x - y
                     }
-                    @outblock() {
+                    @outblock(error = true) {
                         |error: type mismatch
                     }
                 }
@@ -299,7 +299,7 @@
                         |def fn(n: Int) =
                         |   if (n == 0) 1 else n * fn(n - 1)
                     }
-                    @outblock() {
+                    @outblock(error = true) {
                         |error: recursive method fn needs
                         |       result type
                     }
@@ -333,7 +333,7 @@
                         |def add(x, y) =
                         |   x + y
                     }
-                    @outblock() {
+                    @outblock(error = true) {
                         |error: ':' expected but ',' found.
                     }
                 }

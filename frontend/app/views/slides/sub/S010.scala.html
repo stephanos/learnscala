@@ -58,7 +58,7 @@
             @callblock() {
                 |passengers = 101
             }
-            @outblock() {
+            @outblock(error = true) {
                 |error: reassignment to val
                 |       passengers = 101
                 |                    ^
@@ -85,11 +85,11 @@
             @callblock(fragment = false) {
                 |val passengers: Int = "Java"
             }
-            @outblock() {
+            @outblock(error = true) {
                 |error   : type mismatch;
                 |found   : java.lang.String("Java")
                 |required: Int
-                |       val passengers: Int = "Java"
+                |          val passengers: Int = "Java"
                 |                                ^
             }
         }
@@ -332,7 +332,7 @@
                     @callblock(fragment = false) {
                         |val r: String = 3.14
                     }
-                    @outblock() {
+                    @outblock(error = true) {
                         |error: type mismatch;
                     }
                 }

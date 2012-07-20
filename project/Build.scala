@@ -39,7 +39,14 @@ object ProjectBuild extends MyBuild {
 
     // ==== DEPENDENCIES
 
-    val sun_tools_file = file(jdkHome + fileSep + "lib" + fileSep + "tools.jar").getCanonicalPath
+    val sun_tools_file = file(jdk6Home + fileSep + "lib" + fileSep + "tools.jar").getCanonicalPath
     lazy val sun_tools = "com.sun" % "tools" % "1.6.0" from ("file:///" + sun_tools_file)
-    println(sun_tools_file)
+    println("TOOLS.jar: " + sun_tools_file)
+
+    lazy val jdk6Home = {
+        val jdk = Option(System.getenv("JDK6_HOME"))
+        val jre = Option(System.getProperty("java.home", System.getProperty("java_home", System.getenv("JAVA_HOME"))))
+        val path = jdk.getOrElse(jre.map(_ + fileSep + "..").getOrElse("/usr/lib/jdk"))
+        new File(path).getAbsolutePath
+    }
 }

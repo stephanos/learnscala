@@ -13,7 +13,7 @@
     </div>
 
     <div class="fragment sidebyside p60_40">
-        @outcode(fragment = false) {
+        @outcode(error = true, fragment = false) {
             |error: ';' expected but 'val' found.
             |       static var countOfPlanes = 0
         }
@@ -33,6 +33,7 @@
 
 
 @slide() {
+    <!-- Singleton -->
 } {
     @codesplits((60,40), id="planefactory", fragment = true){
         @splitstart(reference = "plane") {
@@ -76,6 +77,7 @@
 
 
 @slide() {
+    <!-- Companion Object -->
 } {
     <div class="sidebyside p70_30">
         @callcode(fragment = false) {
@@ -107,6 +109,7 @@
 
 
 @slide() {
+    <!-- Sichtbarkeit -->
 } {
     <div class="sidebyside">
         @sourcecode(id = "plane2", clazz = "first") {
@@ -164,6 +167,7 @@
 
 
 @slide() {
+    <!-- apply -->
 } {
     <div class="fragment sidebyside p60_40">
         @sourcecode(id = "apply", reference = "plane2", fragment = false) {
@@ -208,13 +212,14 @@
 
     @infobox() {
         Die Methode <code>apply</code> kann implizit durch
-        Angabe einer Parameterliste hinter einem Objekt <comment>(Object(arg1, ..., argN))</comment>
+        Angabe einer Parameterliste hinter einem Objekt <comment class="nobreak">(Object(arg1, ..., argN))</comment>
         aufgerufen werden - das verkürzt den Code!
     }
 }
 
 
 @slide() {
+    <!-- Predef -->
 } {
     <div class="sidebyside p66_33">
         @snippet() {
