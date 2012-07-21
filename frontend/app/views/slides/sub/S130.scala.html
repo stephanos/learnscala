@@ -1,5 +1,5 @@
 <!-- Vererbung -->
-@slide() {
+@slide(title = "Vererbung") {
     Vererbung
 } {
     <div class="sidebyside">
@@ -51,7 +51,50 @@
 
 
 @slide() {
-    <!--  -->
+    <!-- Konstruktor -->
+} {
+    @codesplits() {
+        @splitstart() {
+            |class Plane(val model: String)
+        } {
+            @codenote() {
+                <code>Plane</code> erwartet den Parameter <code>model</code>
+                <hr/>
+            }
+        }
+        @codesplit() {
+            |class PassengerPlane(model: String, val seats: Int)
+            |   extends Plane(model)
+        } {
+            @codenote() {
+                <code>PassengerPlane</code> gibt den Parameter <code>model</code> an <code>Plane</code> weiter
+                <!--und erwartet einen zusätzlichen Parameter <code>capacity</code>-->
+                <hr/>
+            }
+        }
+        @codesplit() {
+            |class DummyPlane()
+            |   extends Plane("Dummy")
+        } {
+            @codenote() {
+                <code>DummyPlane</code> ruft den primären Konstruktor von <code>Plane</code> mit einer Konstanten auf
+            }
+        }
+        @splitend() {
+        }(null)
+    }
+
+    <hr/>
+
+    @infobox() {
+        Bei der Vererbung muss der primäre Konstruktor der erbende Klasse
+        den primären Konstruktor der vererbten Klasse aufrufen.
+    }
+}
+
+
+<!--@slide() {
+    Mehrere Konstruktoren
 } {
     @codesplits() {
         @splitstart() {
@@ -82,9 +125,9 @@
     <hr/>
 
     @infobox() {
-        Bei der Vererbung muss die erbende Klasse den primären Konstruktor der vererbten Klasse aufrufen.
+
     }
-}
+}-->
 
 
 @slide() {
@@ -101,7 +144,7 @@
                 |error: illegal inheritance from final class Plane
             }
         }
-        @fragment {
+        @codenote() {
             Klasse <code>CargoPlane</code> versucht von <code>Plane</code> zu erben, doch die ist <code>final</code>
         }
     </div>
@@ -117,7 +160,7 @@
                 |class PassengerPlane extends Plane
             }
         }
-        @fragment {
+        @codenote() {
             Klasse <code>Plane</code> ist <code>sealed</code> und erlaubt daher die Vererbung nur innerhalb der gleichen Datei
         }
     </div>
@@ -151,8 +194,8 @@
                 |       value turbines needs `override' modifier
             }
         }
-        @fragment {
-            <code>CargoPlane</code> versucht das Feld vererbte <code>turbines</code> zu überschreiben
+        @codenote() {
+            <code>CargoPlane</code> versucht das vererbte Feld <code>turbines</code> zu überschreiben
         }
     </div>
 
@@ -175,7 +218,7 @@
                 |defined class CargoPlane
             }
         }
-        @fragment {
+        @codenote() {
             <code>CargoPlane</code> überschreibt das vererbte Feld <code>turbines</code>
         }
     </div>
@@ -205,7 +248,7 @@
                 |error: value trbines overrides nothing
             }
         }
-        @fragment {
+        @codenote() {
             <code>CargoPlane</code> versucht das nicht existierende Feld <code>trbines</code> zu überschreiben
         }
     </div>
@@ -229,7 +272,7 @@
                 |       value turbines has incompatible type
             }
         }
-        @fragment {
+        @codenote() {
             <code>CargoPlane</code> versucht das Feld <code>turbines</code> mit einem anderen Typ zu überschreiben
         }
     </div>

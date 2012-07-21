@@ -244,26 +244,5 @@ readRawBlock = (elem, editable) ->
 isCodeBlock = (b) ->
   !_.str.contains(b["type"], "output")
 
-#######################################################################################################################
-# init snippets on page load
-initSlides = ->
-  subtleToolbar();
-
-  $('.slides div.snippet').each(
-    (idx, elem) -> initSnippet(elem)
-  )
-
-  # init dynamic editors
-  #$('.slides div.ide').each(
-  #  (idx, elem) -> initEditor(elem)
-  #)
-
-  # hook-up modal editor
-  $("#navi a.openEditor").bind("click",
-    (evt) ->
-      initModalEditor()
-      evt.preventDefault()
-  )
-
 subtleToolbar = ->
   $("#navi").addClass("subtle")

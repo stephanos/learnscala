@@ -63,16 +63,16 @@ em {
     .border(@c_emph);
     border-top: 0;
 
-    ul {
+    >ul {
         margin: 0; padding: 0;
         list-style-type: none;
 
-        li {
+        >li {
             margin: 0 5px;
             position: relative;
             display: inline-block;
 
-            span.divider {
+            .divider {
                 color: #690;
                 content: "|";
                 display: block;
@@ -81,6 +81,9 @@ em {
                 position: absolute;
                 top: 0;
                 right: -5px;
+            }
+            .caret {
+                color: #669900;
             }
         }
     }

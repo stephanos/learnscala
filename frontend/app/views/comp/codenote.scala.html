@@ -1,0 +1,5 @@
+@(fragment: Boolean = true)(content: Html)
+
+<div class='codenote @{if(fragment) "fragment" else ""}'>
+    @content
+</div>

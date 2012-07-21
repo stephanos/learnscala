@@ -1,15 +1,17 @@
-@(id: String = null)(title: Html)(content: Html)
+@(id: String = null, title: String = null, chapter: String = null)(head: Html)(body: Html)
 
-<section @{if(id == null) "" else "data-id=slide-" + id}>
+<section @{if(id == null) "" else "data-id=slide-" + id}
+         @{if(title == null) "" else "data-title='" + title + "'"}
+         @{if(chapter == null) "" else "data-chapter='" + chapter + "'"}>
 
-    @if(title != null) {
+    @if(head != null) {
         @headbody() {
-            @title
+            @head
         } {
-            @content
+            @body
         }
     } else {
-        @content
+        @body
     }
 
 </section>

@@ -1,6 +1,4 @@
-<!-- Import -->
-
-@slide() {
+@slide(title = "Import") {
     <!-- Import Syntax -->
 } {
     <div class="sidebyside p60_40">
@@ -19,7 +17,7 @@
         @sourcecode() {
             |import de.scalawings.crew.{Pilot, CoPilot}
         }
-        @fragment {
+        @codenote() {
             importiert die <em>2</em> Klassen <code>Pilot</code> und <code>CoPilot</code>
             aus dem Paket <code>crew</code>
         }
@@ -31,7 +29,7 @@
         @sourcecode() {
             |import de.scalawings.crew._
         }
-        @fragment {
+        @codenote() {
             Wildcard <code>_</code> importiert <em>alles</em> aus dem Paket <code>crew</code>
         }
     </div>
@@ -46,16 +44,16 @@
 @slide() {
     <!-- Umbenennen -->
 } {
-    <div class="sidebyside p66_33">
+    <!--<div class="sidebyside p66_33">-->
         @sourcecode(fragment = false) {
             |import de.scalawings.cabin.{Seat => CabinSeat}
             |import de.scalawings.cockpit.{Seat => CockpitSeat}
         }
-        <div class="fragment">
+        @codenote() {
             <code>Seat</code> ist jeweils in den Paketen <code>cabin</code> bzw. <code>cockpit</code>
             definiert und wird beim Import entsprechend umbenannt
-        </div>
-    </div>
+        }
+    <!--</div>-->
 
     <hr/>
 
@@ -64,7 +62,7 @@
             |import java.util.Date
             |import java.sql.{Date => SqlDate}
         }
-        @fragment {
+        @codenote() {
             <code>Date</code> ist jeweils in den Paketen <code>util</code> bzw. <code>sql</code> -
             daher bekommt letzteres einen anderen Namen
         }
@@ -86,7 +84,7 @@
             |
             |import crew.Pilot
         }
-        @fragment {
+        @codenote() {
             Importiert <code>Pilot</code> aus <code>de.scalawings.crew</code>
         }
     </div>
@@ -99,7 +97,7 @@
             |
             |import de.scalawings.crew.Pilot
         }
-        @fragment {
+        @codenote() {
             Importiert <code>Pilot</code> aus <code>de.scalawings.crew</code>
         }
     </div>
@@ -112,7 +110,7 @@
             |
             |import _root.de.scalawings.crew.Pilot
         }
-        @fragment {
+        @codenote() {
             Importiert <code>Pilot</code> aus <code>de.scalawings.crew</code>
         }
     </div>
@@ -174,7 +172,7 @@
                 |e: java.lang.RuntimeException = RuntimeException: pilot asleep
             }
         }
-        @fragment {
+        @codenote() {
             Zugriff auf Klasse <code>RuntimeException</code> aus Paket <code>java.lang</code>
         }
     </div>
@@ -190,7 +188,7 @@
                 |p: Double = 3.141592653589793
             }
         }
-        @fragment {
+        @codenote() {
             Zugriff auf Variable <code>Pi</code> aus Paket <code>scala.math</code>
         }
     </div>

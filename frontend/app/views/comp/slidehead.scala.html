@@ -1,6 +1,6 @@
-@()(name: Html)(sub: Html = Html.empty)
+@(id: String = null, title: String = null, chapter: String = null)(name: Html)(sub: Html = Html.empty)
 
-@slide()(null) {
+@slide(id, title, chapter)(null) {
     <h1>@name</h1>
 
     <hr/><hr/>

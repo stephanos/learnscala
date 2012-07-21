@@ -1,5 +1,4 @@
-<!-- Objekte -->
-@slide() {
+@slide(title = "Objekte") {
     Statics <em>?</em>
 } {
     <div class="sidebyside p60_40">
@@ -119,9 +118,9 @@
             |  def totalCount = Plane.countOfPlanes
             |}
         }
-        <div class="fragment">
+        @codenote() {
             Klasse <code>Plane</code> hat einen privaten Konstruktor
-        </div>
+        }
     </div>
 
     <div class="sidebyside">
@@ -139,7 +138,7 @@
                 |}
             }
         </div>
-        <div class="fragment">
+        @fragment {
             Companion Object <code>Plane</code> kann aber eine neue Instanz erstellen:
             <hr/>
             @snippet() {
@@ -156,7 +155,7 @@
                     |1
                 }
             }
-        </div>
+        }
     </div>
 
     @infobox() {
@@ -169,8 +168,8 @@
 @slide() {
     <!-- apply -->
 } {
-    <div class="fragment sidebyside p60_40">
-        @sourcecode(id = "apply", reference = "plane2", fragment = false) {
+    <div class="sidebyside p60_40">
+        @sourcecode(id = "apply", reference = "plane2") {
             |object Plane {
             |
             |  private var countOfPlanes = 0
@@ -181,10 +180,10 @@
             |  }
             |}
         }
-        <div>
+        @codenote() {
             Objekt enthält <code>apply</code>-Methode
             zum Erstellen einer neuen Instanz von <code>Plane</code>
-        </div>
+        }
     </div>
 
     <hr/>
@@ -204,10 +203,10 @@
                 error: not enough arguments for method apply
             }
         }
-        <div class="fragment">
+        @codenote() {
             <code>apply</code> wird versucht aufzurufen,
             wenn keine explizite Methode angegeben wird
-        </div>
+        }
     </div>
 
     @infobox() {
@@ -236,10 +235,10 @@
                 |Ready for take-off
             }
         }
-        <div class="fragment">
+        @codenote() {
             Methode <code>println</code> - Teil des Objekts <code>Predef</code>
             - kann ohne Objektreferenz verwendet werden
-        </div>
+        }
     </div>
 
     <hr/>
@@ -261,10 +260,10 @@
                 |       at scala.Predef$.require(Predef.scala:157)
             }
         }
-        <div class="fragment">
+        @codenote() {
             Methode <code>require</code> wirft <code>IllegalArgumentException</code>
             falls die Bedingung nicht wahr ist
-        </div>
+        }
     </div>
 
     @infobox() {

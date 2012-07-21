@@ -1,4 +1,4 @@
-@slide()(null) {
+@slide(title = "Willkommen", chapter = "Intro")(null) {
     <h1><em>Willkommen</em></h1>
     <hr/>
     <h3 class="banner">teilnehmer.foreach(t => println("Hallo " + t))</h3>
@@ -54,7 +54,33 @@
 @slide() {
     Zum <em>Inhalt</em>
 } {
-
+    <div class="indent">
+        <ul>
+            <li class="fragment">
+                <h4>Basics</h4>
+                @li(Html("Syntax, Bedingungen, Parameter, Typen, Variablen, Methoden, Pakete, Import"))
+                <hr/>
+            </li>
+            <li class="fragment">
+                <h4>Objektorientierung</h4>
+                @li(Html("Klassen, Objekte, Vererbung, Konstruktor, Traits, override & abstract, Linearisierung"))
+                <hr/>
+            </li>
+            <li class="fragment">
+                <h4>Typensystem</h4>
+                @li(Html("Typenhierarchie, Datentypen, Array, Map, Tupel, Option, Collections, Typ-Parameter"))
+                <hr/>
+            </li>
+            <li class="fragment">
+                <h4>Funktionale Programmierung</h4>
+                @li(Html("Higher-Order Functions, map, flatMap, For Expressions, partial & anonymous Functions"))
+                <hr/>
+            </li>
+            <li class="fragment">
+                <h4>Testen mit Scala</h4>
+            </li>
+        </ul>
+    </div>
 }
 
 
@@ -63,17 +89,17 @@
 } {
 
     <div>
-        <div class="fragment">
+        @fragment {
             Sie sind ein irischer Milliardär
             <span class="fragment">und nach dem Verkauf ihrer letzten Firma <em>devbliss</em> erstmal Urlaub.</span>
-        </div>
+        }
 
         <hr/><hr/>
 
         <div class="sidebyside p40_60">
-            <div class="fragment">
+            @fragment {
                 <img src="/assets/img/hammock2.jpg" height="250">
-            </div>
+            }
 
             <div>
                 <div>
@@ -101,16 +127,16 @@
 
         <hr/>
 
-        <div class="fragment">
+        @fragment {
             Der Vollblutunternehmer in Ihnen hat eine neue Geschäftsidee
             <span class="fragment">- eine eigene Fluglinie:</span>
             <span class="fragment"><em>ScalaWings</em>.</span>
-        </div>
+        }
 
         <hr/>
 
-        <div class="fragment">
+        @fragment {
             Doch dafür gilt es <em>noch viel zu lernen ...</em>
-        </div>
+        }
     </div>
 }
