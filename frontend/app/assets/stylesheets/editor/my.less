@@ -26,15 +26,17 @@
     .border(@c_code_border);
 
     // button
-    .btn {
-        font-family: 'Entypo';
-        position: absolute;
-        margin-left: 10px;
-        .linear-transition(opacity);
+    .btn-group {
         .opacity(0);
+        position: absolute;
+        .linear-transition(opacity);
+
+        .btn-icon {
+            font-family: 'Entypo';
+        }
     }
     &:hover {
-        .btn { .full-opacity(); }
+        .btn-group { .full-opacity(); }
     }
 }
 
@@ -42,7 +44,7 @@
     border-width: 2px;
 
     // button
-    .btn { right: 16px; bottom: 16px; }
+    .btn-group { right: 16px; bottom: 16px; }
 }
 
 .ide .right .CodeMirror {
@@ -67,7 +69,7 @@
     &.last, &.middle, &.end { border-top: none; }
 
     // button
-    .btn { right: 4px; bottom: 4px; }
+    .btn-group { right: 4px; bottom: 4px; }
 }
 
 table.codesplit {

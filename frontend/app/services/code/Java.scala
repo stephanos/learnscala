@@ -10,3 +10,9 @@ class Java {
     }
 
 }
+
+object JDecoder {
+
+    def apply(code: String) =
+        new Java().decode(code)
+}

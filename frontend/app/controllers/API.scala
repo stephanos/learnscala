@@ -29,12 +29,20 @@ object API extends MyController {
             }
     }
 
-    def decompile = Action(parse.urlFormEncoded) {
+    def decompileAsJava = {
+        decompile(asJava = true)
+    }
+
+    def decompileAsScala = {
+        decompile(asJava = false)
+    }
+
+    private def decompile(asJava: Boolean) = Action(parse.urlFormEncoded) {
         req =>
             if (userIsAdmin(req)) {
                 val code = req.body("source").mkString("")
                 try {
-                    val (out, err) = Decoder(code)
+                    val (out, err) = (if(asJava) JDecoder(code) else Decoder(code))
                     if (out != null)
                         Ok(out)
                     else

@@ -44,7 +44,8 @@ GET     /app/logout                                 controllers.Auth.logout
 
 POST    /api/compile                                controllers.API.compile
 POST    /api/execute                                controllers.API.execute
-POST    /api/decompile                              controllers.API.decompile
+POST    /api/decompile/java                         controllers.API.decompileAsJava
+POST    /api/decompile/scala                        controllers.API.decompileAsScala
 
 
 # === ASSETS

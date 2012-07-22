@@ -1,28 +1,27 @@
 @font-face {
-	font-family: 'Entypo';
-	src: url('fonts/Entypo.eot');
-	src: url('fonts/Entypo.eot?#iefix') format('embedded-opentype'),
-		url('fonts/Entypo.svg#Entypo') format('svg'),
-		url('fonts/Entypo.woff') format('woff'),
-		url('fonts/Entypo.ttf') format('truetype');
+	font-family: 'Typicons';
+	src: url('fonts/Typicons.eot');
+	src: url('fonts/Typicons.eot?#iefix') format('embedded-opentype'),
+		url('fonts/Typicons.svg#Typicons') format('svg'),
+		url('fonts/Typicons.woff') format('woff'),
+		url('fonts/Typicons.ttf') format('truetype');
 	font-weight: normal;
 	font-style: normal;
 }
 
 /* Use the following CSS code if you want to use data attributes for inserting your icons */
 [data-icon]:before {
-	font-family: 'Entypo';
+	font-family: 'Typicons';
 	content: attr(data-icon);
 	speak: none;
 }
 
 /* Use the following CSS code if you want to have a class per icon */
 [class^="icon-"]:before, [class*=" icon-"]:before {
-	font-family: 'Entypo';
+	font-family: 'Typicons';
 	font-style: normal;
 	speak: none;
 }
-
 .icon-warning:before {
 	content: "\21";
 }
@@ -88,4 +87,16 @@
 }
 .icon-embed:before {
 	content: "\36";
+}
+.icon-coffee:before {
+	content: "\37";
+}
+.icon-zoom-in:before {
+	content: "\e026";
+}
+.icon-zoom-in-2:before {
+	content: "\e000";
+}
+.icon-fast-forward:before {
+	content: "\e001";
 }

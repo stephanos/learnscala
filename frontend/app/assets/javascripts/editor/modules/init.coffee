@@ -11,7 +11,7 @@ initSnippet = (elem) ->
   $(elem).find("pre").each(
     (idx, pre) ->
       if(!$(pre).hasClass("output"))
-        btn = $("<button class='btn btn-mini'>6</button>").appendTo($(pre))
+        btn = $("<div class='btn-group'><button class='btn btn-icon btn-mini'>6</button></div>").appendTo($(pre))
         $(btn).bind("click",
           (evt) ->
             # find block (pre)
@@ -81,14 +81,17 @@ initEditors = (elem, blocks) ->
   # init source editor
   srcEditor = initEditor($(elem).find(".left .input"), blocks, "source")
   srcEditorDom = srcEditor.getWrapperElement()
-  $('<button class="btn btn-success">5</button>')
-        .bind("click", (evt) -> callAPI("decompile", output, srcEditor.getValue()))
-        .appendTo($(srcEditorDom))
+  $('<div class="btn-group">
+    <button class="btn btn-icon btn-success" id="btn-decompile-scala"></button>
+    <button class="btn btn-icon btn-success" id="btn-decompile-java"></button>
+    </div>').appendTo($(srcEditorDom))
+  $('#btn-decompile-java').bind("click", (evt) -> callAPI("decompile/java", output, srcEditor.getValue()))
+  $('#btn-decompile-scala').bind("click", (evt) -> callAPI("decompile/scala", output, srcEditor.getValue()))
 
   # init call editor
   callEditor = initEditor($(elem).find(".right .input"), blocks, "call")
   callEditorDom = callEditor.getWrapperElement()
-  $('<button class="btn btn-success">1</button>')
+  $('<div class="btn-group"><button class="btn btn-icon btn-success">1</button></div>')
         .bind("click", (evt) -> callAPI("execute", output, srcEditor.getValue(), callEditor.getValue()))
         .appendTo($(callEditorDom))
 
