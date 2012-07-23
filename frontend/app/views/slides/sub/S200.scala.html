@@ -12,7 +12,7 @@
             <div class="indent">
                 <ul>
                     <li>gemeinsame Super-Klasse aller Typen</li>
-                    <li>
+                    <li class="fragment">
                         finale Methoden:
                         <hr/>
                         <ul>
@@ -22,7 +22,7 @@
                             <li><code>asInstanceOf</code></li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="fragment">
                         Standardimplementierungen für:
                         <hr/>
                         <ul>
@@ -196,40 +196,14 @@
              }
          </div>
      </div>
- }
+}
 
 
 @slide() {
-    <!-- Typenüberprüfung -->
+    <!-- Hierarchie -->
 } {
-    <div class="sidebyside p66_33">
-        @snippet() {
-            @sourceblock(fragment = false) {
-                |trait Employee
-                |class Pilot extends Employee
-                |class Stewardess extends Employee
-                |
-                |class Passenger
-            }
-        }
-        @empty()
+    <div class="dcenter tcenter">
+        <img class="naked"
+             src="https://docs.google.com/drawings/pub?id=1TTuoy1DRDc5o7DcBu8zuK4vXQUXawnaAzLfP29kMR-E&amp;h=500">
     </div>
-
-    @infobox() {
-        TODO
-    }
-}
-
-
-@slide() {
-    <!-- Equality -->
-} {
-
-}
-
-
-@slide() {
-    <!--Typ-Parameter-->
-} {
-
 }

@@ -1,6 +1,4 @@
-<!-- Methoden -->
 @slide(title = "Methoden") {
-    Methoden
 } {
     <div class="sidebyside">
         <div>
@@ -132,6 +130,7 @@
 </section>-->
 
 @slide() {
+    <!-- Unit -->
 } {
     <div class="sidebyside">
         @snippet() {
@@ -167,6 +166,7 @@
 
 
 @slide() {
+    <!-- Optionales -->
 } {
     <div class="fragment sidebyside p40_60">
         @sourcecode(id = "ready", fragment = false) {
@@ -232,6 +232,7 @@
 
 
 @slide() {
+    <!-- Parameter -->
 } {
     <div class="sidebyside p60_40">
         @snippet() {
@@ -379,6 +380,55 @@
 
 
 @slide() {
+    <!-- Parameter: Default -->
+} {
+    @sourcecode(id = "method_default", fragment = false) {
+        |def announce(town: String, time: String = "shortly", weather: String = "nice") = {
+        |
+        |   println("We will be landing in " + town + " " + time + ". " +
+        |           "The weather is " + weather + ".")
+        |}
+    }
+    <hr/>
+    <div class="sidebyside p66_33">
+        <div>
+            @snippet() {
+                @callblock(reference = "method_default") {
+                    |announce("Berlin")
+                }
+                @outblock() {
+                    |We will be landing in Berlin shortly.
+                    |The weather is nice.
+                }
+            }
+            <hr/>
+            @snippet() {
+                @callblock(reference = "method_default") {
+                    |announce("London", weather = "rainy")
+                }
+                @outblock() {
+                    |We will be landing in London shortly.
+                    |The weather is rainy.
+                }
+            }
+            <hr/>
+            @snippet() {
+                @callblock(reference = "method_default") {
+                    |announce(time = "in 10 minutes", town = "Paris")
+                }
+                @outblock() {
+                    |We will be landing in Paris in 10 minutes.
+                    |The weather is nice.
+                }
+            }
+        </div>
+        @empty()
+    </div>
+}
+
+
+@slide() {
+    <!-- Aufruf -->
 } {
     <div class="sidebyside p40_60">
         @snippet() {

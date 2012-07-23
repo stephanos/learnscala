@@ -1,9 +1,34 @@
-<!-- Datentypen -->
+@slide(title = "Typ-Parameter") {
+    <!-- Typ-Parameter -->
+} {
 
-<!--
- - Array
- - Tupel
- - Option
- - Map
- - List
--->
+}
+
+
+@slide() {
+    <!-- Typenüberprüfung -->
+} {
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @sourceblock(fragment = false) {
+                |trait Employee
+                |class Pilot extends Employee
+                |class Stewardess extends Employee
+                |
+                |class Passenger
+            }
+        }
+        @empty()
+    </div>
+
+    @infobox() {
+        TODO
+    }
+}
+
+
+@slide() {
+    <!-- Equality -->
+} {
+
+}

@@ -21,7 +21,7 @@ initSlides = ->
       if(chapter)
         $(naviElemLinks).append('
           <li>
-            <a href="#">' + chapter + '</a>
+            <a href="#/' + idx + '">' + chapter + '</a>
             <ul class="dropdown-menu sub-menu"></ul>
           </li>
         ')

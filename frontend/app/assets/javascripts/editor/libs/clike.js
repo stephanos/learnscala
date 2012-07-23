@@ -4,6 +4,8 @@ goog.provide("lib.codemirror.clike");
 CodeMirror.defineMode("clike", function(config, parserConfig) {
   var indentUnit = config.indentUnit,
       keywords = parserConfig.keywords || {},
+      builtin = parserConfig.builtin || {},
+      special = parserConfig.special || {},
       blockKeywords = parserConfig.blockKeywords || {},
       atoms = parserConfig.atoms || {},
       hooks = parserConfig.hooks || {},
@@ -50,8 +52,16 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
       if (blockKeywords.propertyIsEnumerable(cur)) curPunc = "newstatement";
       return "keyword";
     }
+    if (builtin.propertyIsEnumerable(cur)) {
+      if (blockKeywords.propertyIsEnumerable(cur)) curPunc = "newstatement";
+      return "builtin";
+    }
+    if (special.propertyIsEnumerable(cur)) {
+      if (blockKeywords.propertyIsEnumerable(cur)) curPunc = "newstatement";
+      return "special";
+    }
     if (atoms.propertyIsEnumerable(cur)) return "atom";
-    return "word";
+    //return "variable";
   }
 
   function tokenString(quote) {
@@ -157,9 +167,6 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
     for (var i = 0; i < words.length; ++i) obj[words[i]] = true;
     return obj;
   }
-  var cKeywords = "auto if break int case long char register continue return default short do sizeof " +
-    "double static else struct entry switch extern typedef float union for unsigned " +
-    "goto while enum void const signed volatile";
 
   function cppHook(stream, state) {
     if (!state.startOfLine) return false;
@@ -179,52 +186,20 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
     return "string";
   }
 
-  CodeMirror.defineMIME("text/x-java", {
-    name: "clike",
-    keywords: words("abstract assert boolean break byte case catch char class const continue default " + 
-                    "do double else enum extends final finally float for goto if implements import " +
-                    "instanceof int interface long native new package private protected public " +
-                    "return short static strictfp super switch synchronized this throw throws transient " +
-                    "try void volatile while"),
-    blockKeywords: words("catch class do else finally for if switch try while"),
-    atoms: words("true false null"),
-    hooks: {
-      "@": function(stream, state) {
-        stream.eatWhile(/[\w\$_]/);
-        return "meta";
-      }
-    }
-  });
   CodeMirror.defineMIME("text/x-scala", {
     name: "clike",
     keywords: words(
-      
-      /* scala */
       "abstract case catch class def do else extends final finally for forSome if " +
       "implicit import lazy match new null object override package private protected return " +
       "sealed super this throw trait try trye type val var while with yield _ : = => <- <: " +
-      "<% >: # @ " +
-                    
-      /* package scala */
-      "assert assume require print println printf readLine readBoolean readByte readShort " +
-      "readChar readInt readLong readFloat readDouble " +
-      
-      "AnyVal App Application Array BufferedIterator BigDecimal BigInt Char Console Either " +
-      "Enumeration Equiv Error Exception Fractional Function IndexedSeq Integral Iterable " +
-      "Iterator List Map Numeric Nil NotNull Option Ordered Ordering PartialFunction PartialOrdering " +
-      "Product Proxy Range Responder Seq Serializable Set Specializable Stream StringBuilder " +
-      "StringContext Symbol Throwable Traversable TraversableOnce Tuple Unit Vector :: #:: " +
-      
-      /* package java.lang */            
-      "Boolean Byte Character CharSequence Class ClassLoader Cloneable Comparable " +
-      "Compiler Double Exception Float Int Integer Long Math Number Object Package Pair Process " +
-      "Runtime Runnable SecurityManager Short StackTraceElement StrictMath String " +
-      "StringBuffer System Thread ThreadGroup ThreadLocal Throwable Triple Void"
-      
-      
+      "<% >: # @ "
     ),
     blockKeywords: words("catch class do else finally for forSome if match switch try while"),
     atoms: words("true false null"),
+    builtin: words(""
+    ),
+    special: words(""
+    ),
     hooks: {
       "@": function(stream, state) {
         stream.eatWhile(/[\w\$_]/);
@@ -233,3 +208,31 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
     }
   });
 }());
+
+/* package scala */
+/*
+"AnyVal App Application Array BufferedIterator BigDecimal BigInt Char Console Either " +
+"Enumeration Equiv Error Exception Fractional Function IndexedSeq Integral Iterable " +
+"Iterator List Map Numeric Nil NotNull Option Ordered Ordering PartialFunction PartialOrdering " +
+"Product Proxy Range Responder Seq Serializable Set Specializable Stream StringBuilder " +
+"StringContext Symbol Throwable Traversable TraversableOnce Tuple Unit Vector :: #:: " +
+*/
+
+/* package java.lang */
+/*
+"Boolean Byte Character CharSequence Class ClassLoader Cloneable Comparable " +
+"Compiler Double Exception Float Int Integer Long Math Number Object Package Pair Process " +
+"Runtime Runnable SecurityManager Short StackTraceElement StrictMath String " +
+"StringBuffer System Thread ThreadGroup ThreadLocal Throwable Triple Void" +
+
+"AnyVal App Application Array BufferedIterator BigDecimal BigInt Char Console Either " +
+"Enumeration Equiv Error Exception Fractional Function IndexedSeq Integral Iterable " +
+"Iterator List Map Numeric Nil NotNull Option Ordered Ordering PartialFunction PartialOrdering " +
+"Product Proxy Range Responder Seq Serializable Set Specializable Stream StringBuilder " +
+"StringContext Symbol Throwable Traversable TraversableOnce Tuple Unit Vector :: #:: "
+*/
+
+/*
+"assert assume require print println printf readLine readBoolean readByte readShort " +
+"readChar readInt readLong readFloat readDouble "
+*/

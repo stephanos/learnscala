@@ -1,0 +1,100 @@
+@slide(title = "Case Classes") {
+
+} {
+    <div class="sidebyside p60_40">
+        <div>
+            @snippet() {
+                @sourceblock(id = "plane_case", fragment = false) {
+                    |case class Plane(model: String, seats: Int)
+                }
+            }
+            <hr/>
+            @snippet() {
+                @callblock(id = "plane_case_new", reference = "plane_case") {
+                    |val p = new Plane("Boeing 737", 189)
+                }
+                @outblock() {
+                    |p: Plane = Plane(Boeing 737,189)
+                }
+            }
+            <hr/>
+            @snippet() {
+                @callblock() {
+                    |println(p.seats)
+                }
+                @outblock() {
+                    |189
+                }
+            }
+            <hr/>
+            @snippet() {
+                @callblock(reference = "plane_case_new") {
+                    |val p2 = p.copy(seats = 190)
+                }
+                @outblock() {
+                    |p2: Plane = Plane(Boeing 737,190)
+                }
+                @callblock() {
+                    |print(p == p.copy())
+                }
+                @outblock() {
+                    |true
+                }
+            }
+        </div>
+        @empty()
+    </div>
+
+    @infobox(hr = false) {
+        Steht <code>case</code> vor einer Klassendefinition, dann wird:
+        @li(Html("jeder Parameter automatisch zu einem öffentlichen, unveränderlichen Feld (<code>val</code>)"))
+        @li(Html("ein Companion Object mit entsprechender Factory-Methode <code>apply</code> erstellt"))
+        @li(Html("eine Instanz beim Aufruf von <code>equals()</code> strukturell verglichen"))
+        @li(Html("listet <code>toString()</code> Klassenname und Parameterwerte auf"))
+    }
+}
+
+
+@slide() {
+    <!-- Pattern Matching -->
+} {
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @sourceblock(fragment = false) {
+                |trait Employee
+                |case class Pilot(name: String) extends Employee
+                |case class Stewardess(name: String) extends Employee
+                |
+                |trait Plane
+                |case class PassengerPlane(pilot: Pilot, seats: Int)
+                |case class CargoPlane(pilot: Pilot, container: Int)
+                |
+            }
+            @callblock() {
+                |
+            }
+        }
+        @empty()
+    </div>
+
+    @infobox() {
+        TODO
+    }
+}
+
+
+@slide() {
+    <!-- Wann? -->
+} {
+    <div class="sidebyside">
+        @snippet() {
+            @sourceblock(fragment = false) {
+                |
+            }
+        }
+    </div>
+
+    @infobox() {
+        TODO
+    }
+}
