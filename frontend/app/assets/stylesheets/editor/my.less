@@ -1,5 +1,5 @@
 .CodeMirror {
-    height: 99%;
+    height: 100%;
     //overflow-y: auto;
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -17,26 +17,19 @@
     // font
     font-size:   @fs_code;
     line-height: 1.15 * @fs_code;
-    &.call, &.output {
+    /*&.call, &.output {
         line-height: 0.9 * @fs_code;
-    }
+    }*/
 
     // color
     .bg(@c_code_bg);
     .border(@c_code_border);
+    box-sizing: border-box;
+}
 
-    // button
-    .btn-group {
-        .opacity(0);
-        position: absolute;
-        .linear-transition(opacity);
-
-        .btn-icon {
-            font-family: 'Entypo';
-        }
-    }
+.CodeMirror, .snippet pre, .output-wrap {
     &:hover {
-        .btn-group { .full-opacity(); }
+        .btn-group { .opacity(100); }
     }
 }
 
@@ -44,7 +37,28 @@
     border-width: 2px;
 
     // button
-    .btn-group { right: 16px; bottom: 16px; }
+    .btn-group {
+        right: 16px; bottom: 16px;
+        &.btn-group-left { left: 16px; bottom: 16px; }
+    }
+}
+
+.snippet pre, .CodeMirror, .ide {
+    // button
+    .btn-group {
+        .opacity(0);
+        position: absolute;
+        .linear-transition(opacity);
+
+        .btn {
+            .opacity(20);
+            &:hover { .opacity(100); }
+            .linear-transition(opacity);
+        }
+        .btn-icon {
+            font-family: 'Entypo';
+        }
+    }
 }
 
 .ide .right .CodeMirror {
@@ -69,7 +83,10 @@
     &.last, &.middle, &.end { border-top: none; }
 
     // button
-    .btn-group { right: 4px; bottom: 4px; }
+    .btn-group {
+        right: 4px; bottom: 4px;
+        .btn.btn-fullscreen { display: none; }
+    }
 }
 
 table.codesplit {
@@ -102,8 +119,8 @@ table.codesplit {
     // use gray for output background
     .bg(darken(#eee, 3%));
 
-    font-size:   0.9 * @fs_code;
-    line-height: @fs_code;
+    font-size:   @fs_code;
+    line-height: 1.1 * @fs_code;
 }
 
 // use one plain color for output code
@@ -133,4 +150,30 @@ table.codesplit {
     .fsize(@fs_code * 0.9);
     .col(@c_hlight);
     padding-right: 0;
+}
+
+.ide {
+    .topbottom {
+        height: 100%;
+        width: 100%;
+    }
+
+    /*.pane {
+        .CodeMirror { border-bottom: none; }
+        .left .CodeMirror  { border-right: none; }
+        .right .CodeMirror { border-left: none; }
+    }*/
+
+    @s: 8px;
+    @dc: fade(@c_hlight, 30%);
+    .vsplitbar {
+        width: @s;
+        background: transparent;
+        &.active { background: @dc; }
+    }
+    .hsplitbar {
+        height: @s;
+        background: transparent;
+        &.active { background: @dc; }
+    }
 }

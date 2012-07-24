@@ -1,6 +1,8 @@
 .cm-s-ambiance {
 
-    color: darken(#E6E1DC, 40%);
+    @c: darken(#E6E1DC, 40%);
+
+    color: darken(@c, 0%);
     font-family: "Inconsolata", monospace !important;
 
     .cm-keyword {
@@ -20,7 +22,8 @@
     }
 
     .cm-variable {
-        color: #ffb795;
+        color: @c;
+        //color: #ffb795;
     }
 
     .cm-variable-2 {

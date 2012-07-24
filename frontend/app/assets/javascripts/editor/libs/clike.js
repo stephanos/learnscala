@@ -1,5 +1,5 @@
-goog.provide("lib.codemirror.clike");
-//goog.require("lib.codemirror");
+goog.provide("codemirror.clike");
+//goog.require("codemirror");
 
 CodeMirror.defineMode("clike", function(config, parserConfig) {
   var indentUnit = config.indentUnit,
@@ -61,7 +61,7 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
       return "special";
     }
     if (atoms.propertyIsEnumerable(cur)) return "atom";
-    //return "variable";
+    return "variable";
   }
 
   function tokenString(quote) {

@@ -9,6 +9,7 @@
     left: @m; right: @m; top: @m; bottom: @m;
 
     .pane {
+        width: 100%;
         position: relative;
     }
 
@@ -40,8 +41,10 @@
 
     .output-wrap {
         overflow: auto;
+
         height: 100% - @h - @d / 2 - 0.5;
 
+        box-sizing: border-box;
         border: 2px solid #aaa;
 
         // result colors

@@ -1,5 +1,7 @@
-@(hr: Boolean = true, fragment: Boolean = true)(body: Html)
+@(hr: Boolean = true, hide: Boolean = true, fragment: Boolean = true)(body: Html)
 
-@shoutbox("info-circle", hr, fragment) {
-    @body
+@if(!hide) {
+    @shoutbox("info-circle", hr, fragment) {
+        @body
+    }
 }

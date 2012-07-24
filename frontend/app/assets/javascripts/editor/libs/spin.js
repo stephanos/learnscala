@@ -1,3 +1,5 @@
+goog.provide("spin");
+
 //fgnass.github.com/spin.js#v1.2.5
 (function(window, document, undefined) {
 

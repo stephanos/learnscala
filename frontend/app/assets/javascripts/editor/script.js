@@ -1,4 +1,6 @@
+goog.require("spin");
 goog.require("bootstrap");
-goog.require("lib.codemirror.clike");
-goog.require("lib.codemirror.runmode");
-//goog.require("lib.mousetrap");
+goog.require("splitter");
+goog.require("mousetrap");
+goog.require("codemirror.clike");
+goog.require("codemirror.runmode");

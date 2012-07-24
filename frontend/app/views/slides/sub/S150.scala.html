@@ -56,45 +56,77 @@
 
 
 @slide() {
-    <!-- Pattern Matching -->
+    <!-- Vererbung -->
 } {
-    <div class="sidebyside p66_33">
+    <div class="sidebyside p60_40">
         @snippet() {
             @sourceblock(fragment = false) {
-                |trait Employee
-                |case class Pilot(name: String) extends Employee
-                |case class Stewardess(name: String) extends Employee
-                |
-                |trait Plane
-                |case class PassengerPlane(pilot: Pilot, seats: Int)
-                |case class CargoPlane(pilot: Pilot, container: Int)
-                |
+                |case class A(s: String)
+                |case class B(i: Int) extends A("b")
             }
             @callblock() {
-                |
+                B(1).copy()
+            }
+            @outblock() {
+                |res0: A = A(b)
             }
         }
         @empty()
     </div>
 
     @infobox() {
-        TODO
+        Case Classes sind ideal für Data Transfer Objects (DTO) bzw. Value Objects (VO);
+        sollten jedoch nicht verebt werden.
     }
 }
 
 
 @slide() {
-    <!-- Wann? -->
+<!-- Pattern Matching -->
 } {
-    <div class="sidebyside">
-        @snippet() {
-            @sourceblock(fragment = false) {
-                |
+    <div class="sidebyside p70_30">
+        <div>
+            @snippet() {
+                @sourceblock(id = "case_class_match", fragment = false) {
+                    |sealed trait Employee { val age: Int }
+                    |
+                    |case class Pilot(age: Int) extends Employee
+                    |case class Stewardess(age: Int, male: Boolean) extends Employee
+                }
             }
-        }
+            <hr/>
+            @snippet() {
+                @sourceblock(id = "match_salary", reference = "case_class_match") {
+                    |def getSalary(e: Employee) =
+                    |  e match {
+                    |    case Pilot(age) if(age > 50) => 130000
+                    |    case p: Pilot                => 80000 + (p.age * 1000)
+                    |    case Stewardess(_, true)     => 50000
+                    |    case Stewardess(_, _)        => 40000
+                    |  }
+                }
+            }
+            <hr/>
+            @snippet() {
+                @callblock(reference = "match_salary") {
+                    |val s1 = getSalary(Pilot(25))
+                }
+                @outblock() {
+                    |s1: Int = 105000
+                }
+                @callblock() {
+                    |val s2 = getSalary(Stewardess(30, false))
+                }
+                @outblock() {
+                    |s2: Int = 40000
+                }
+            }
+        </div>
+        @empty()
     </div>
 
     @infobox() {
-        TODO
+        Case Classes können im Pattern Matching dekonstruiert und mit Hilfe des primären Konstruktors
+        gematcht werden.
     }
 }

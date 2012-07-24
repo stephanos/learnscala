@@ -44,6 +44,7 @@ createCodeBlock = (block, elem, status, clear, spin) ->
   if(!noText)
     code = $("<pre/>", {'class': "cm-s-ambiance " + type, "data-num": num}).appendTo($(elem))
     CodeMirror.runMode(text, "text/x-scala", code[0])
+    #btn = $("<div class='btn-group'><button class='btn btn-icon btn-fullscreen'></button></div>").appendTo($(code))
 
   if(status == "wait")
     opts = {
@@ -65,12 +66,18 @@ initModalEditor = (blocks, m) ->
 
   # editors + console
   editors = initEditors($(body), blocks)
+  m.bind("shown", (evt) ->
+    _.forEach(editors, (e) -> e.refresh())
+    initEditorSplitters(body)
+
+    # resize editor on pane resize
+    m.find(".pane, .pane div").bind("resize", () ->
+      _.forEach(editors, (e) -> e.refresh())
+    )
+  )
 
   # show modal
   m.modal()
-
-  # adapt editor to modal
-  _.forEach(editors, (e) -> e.refresh())
 
 
 # initialize a code editors
@@ -81,9 +88,13 @@ initEditors = (elem, blocks) ->
   # init source editor
   srcEditor = initEditor($(elem).find(".left .input"), blocks, "source")
   srcEditorDom = srcEditor.getWrapperElement()
-  $('<div class="btn-group">
-    <button class="btn btn-icon btn-success" id="btn-decompile-scala"></button>
-    <button class="btn btn-icon btn-success" id="btn-decompile-java"></button>
+  $('
+    <div class="btn-group btn-group-left">
+      <button class="btn btn-icon btn-changeview hide"></button>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-icon btn-success" id="btn-decompile-scala">6</button>
+      <button class="btn btn-icon btn-success" id="btn-decompile-java">7</button>
     </div>').appendTo($(srcEditorDom))
   $('#btn-decompile-java').bind("click", (evt) -> callAPI("decompile/java", output, srcEditor.getValue()))
   $('#btn-decompile-scala').bind("click", (evt) -> callAPI("decompile/scala", output, srcEditor.getValue()))
@@ -91,11 +102,33 @@ initEditors = (elem, blocks) ->
   # init call editor
   callEditor = initEditor($(elem).find(".right .input"), blocks, "call")
   callEditorDom = callEditor.getWrapperElement()
-  $('<div class="btn-group"><button class="btn btn-icon btn-success">1</button></div>')
-        .bind("click", (evt) -> callAPI("execute", output, srcEditor.getValue(), callEditor.getValue()))
-        .appendTo($(callEditorDom))
+  $('
+    <div class="btn-group btn-group-left">
+      <button class="btn btn-icon btn-changeview hide"></button>
+    </div>
+    <div class="btn-group">
+        <button class="btn btn-icon btn-success" id="btn-exec">1</button>
+    </div>').appendTo($(callEditorDom))
+  $('#btn-exec').bind("click", (evt) -> callAPI("execute", output, srcEditor.getValue(), callEditor.getValue()))
+  Mousetrap.bind('ctrl+x', () -> $('#btn-exec').trigger("click"))
 
   [srcEditor, callEditor]
+
+
+initEditorSplitters = (elem) ->
+  if($(elem).find(".vsplitbar").length == 0)
+    hsplit = $(elem).find(".topbottom").splitter(outline: true, splitHorizontal: true, sizeBottom: 150)
+    vsplit = $(elem).find(".input-wrap").splitter(outline: true)
+  else
+    hsplit = $(elem).find(".hsplitbar")
+    vsplit = $(elem).find(".vsplitbar")
+
+  [hsplit, vsplit]
+
+
+initStandaloneEditor = (elem) ->
+  initEditors(elem)
+  initEditorSplitters(elem)
 
 
 # initialize a code editor
