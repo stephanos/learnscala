@@ -80,7 +80,7 @@
 } {
     <div class="sidebyside p33_66">
         <div>
-            @outcode() {
+            @outcode(fragment = false) {
                 |myproject
                 |   |
                 |   +project
@@ -105,7 +105,7 @@
             </sub>
         </div>
         <div>
-            @sourcecode() {
+            @sourcecode(fragment = false) {
                 |// Build.scala
                 |import sbt._
                 |import Keys._

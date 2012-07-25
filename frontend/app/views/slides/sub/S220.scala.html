@@ -1,11 +1,186 @@
-@slide(title = "Collections") {
+@slide(title = "Tupel") {
+    <!-- Tupel -->
+} {
+    <div class="sidebyside p66_33">
+        <div>
+            @snippet() {
+                @callblock(reference = "crew-traits", fragment = false) {
+                    |val t1 = Tuple2(Pilot(), CoPilot())
+                }
+                @outblock() {
+                    |t1: (Pilot, CoPilot) = (Pilot(),CoPilot())
+                }
+            }
+            <hr/>
+            @snippet() {
+                @callblock(reference = "crew-traits") {
+                    |val t2 = Tuple(Pilot(), CoPilot())
+                }
+                @outblock() {
+                    |t2: (Pilot, CoPilot) = (Pilot(),CoPilot())
+                }
+            }
+            <hr/>
+            @snippet() {
+                @callblock(reference = "crew-traits") {
+                    |val t3 = (Pilot(), CoPilot())
+                }
+                @outblock() {
+                    |t3: (Pilot, CoPilot) = (Pilot(),CoPilot())
+                }
+                @callblock() {
+                    |val pilot = t3._1
+                }
+                @outblock() {
+                    |pilot: Pilot = Pilot()
+                }
+                @callblock() {
+                    |val copilot = t3._2
+                }
+                @outblock() {
+                    |copilot: CoPilot = CoPilot()
+                }
+            }
+        </div>
+        @empty()
+    </div>
+}
+
+
+@slide(title = "Map") {
     <!-- Map -->
 } {
-
+    <div class="sidebyside p80_20">
+        <div>
+            @snippet() {
+                @callblock(reference = "crew-traits", fragment = false) {
+                    |val m1 = Map(("Roy",  Pilot()),
+                    |             ("Moss", CoPilot()),
+                    |             ("Jen", Stewardess()))
+                }
+                @outblock() {
+                    |m1: Map[String,Crew] =
+                    |      Map(Roy -> Pilot(), Moss -> CoPilot(), Jen -> Stewardess())
+                }
+            }
+            <hr/>
+            @snippet() {
+                @callblock(reference = "crew-traits") {
+                    |val m2 = Map("Roy"  -> Pilot(),
+                    |             "Moss" -> CoPilot(),
+                    |             "Jen" -> Stewardess())
+                }
+                @outblock() {
+                    |m2: Map[String,Crew] =
+                    |      Map(Roy -> Pilot(), Moss -> CoPilot(), Jen -> Stewardess())
+                }
+                @callblock() {
+                    |val a2 = m2.toArray
+                }
+                @outblock() {
+                    |a2: Array[(String, Crew)] =
+                    |       Array((Roy,Pilot()), (Moss,CoPilot()), (Jen,Stewardess()))
+                }
+            }
+        </div>
+        @empty()
+    </div>
 }
 
 
 @slide() {
+    <!-- Map: read / write -->
+} {
+    @snippet() {
+        @callblock(id = "crew-map", reference = "crew-traits", fragment = false) {
+            |val m = Map("Roy"  -> Pilot(), "Moss" -> CoPilot(), "Jen" -> Stewardess())
+        }
+        @outblock() {
+            |m: Map[String,Crew] =
+            |      Map(Roy -> Pilot(), Moss -> CoPilot(), Jen -> Stewardess())
+        }
+    }
+    <hr/>
+    @snippet() {
+        @callblock(reference = "crew-map") {
+            |val pilot = m("Roy")
+        }
+        @outblock() {
+            |pilot: Crew = Pilot()
+        }
+    }
+    <hr/>
+    @snippet() {
+        @callblock(reference = "crew-map") {
+            |m + ("Paul" -> Stewardess())
+        }
+        @outblock() {
+            |res0: Map[String,Crew] =
+            |       Map(Roy -> Pilot(), Moss -> CoPilot(), Jen -> Stewardess(), Paul -> Stewardess())
+        }
+    }
+    <hr/>
+    @snippet() {
+        @callblock(reference = "crew-map") {
+            |m("Moss") = Pilot()
+        }
+        @outblock(error = true) {
+            |error: value update is not a member of Map[String,Crew]
+        }
+    }
+}
+
+
+@slide() {
+    <!-- Collection Types -->
+} {
+    @snippet() {
+        @callblock(fragment = false) {
+            |val mt = Map
+        }
+        @outblock() {
+            |mt: scala.collection.immutable.Map.type = scala.collection.immutable.Map$@@12e52fcd
+        }
+    }
+
+    <hr/>
+
+    @snippet() {
+        @callblock() {
+            |val m = Map()
+        }
+        @outblock() {
+            |m: scala.collection.immutable.Map[Nothing,Nothing] = Map()
+        }
+    }
+
+    <hr/>
+
+    @snippet() {
+        @callblock(reference = "crew-traits") {
+            |import scala.collection.mutable._
+            |val m: Map[String, Crew] = Map("Roy" -> Pilot())
+        }
+        @outblock() {
+            |m: scala.collection.mutable.Map[String,Crew] = Map("Roy" -> Pilot())
+        }
+        @callblock() {
+            |m += ("Moss" -> CoPilot())
+        }
+        @outblock() {
+            |m: scala.collection.mutable.Map[String,Crew] = Map("Moss" -> CoPilot())
+        }
+        @callblock() {
+            |m -= ("Roy")
+        }
+        @outblock() {
+            |m: scala.collection.mutable.Map[String,Crew] = Map("Moss" -> CoPilot())
+        }
+    }
+}
+
+
+@slide(title = "List") {
     <!-- List -->
 } {
 

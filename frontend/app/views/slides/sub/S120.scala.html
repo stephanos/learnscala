@@ -58,6 +58,25 @@
     }
 }
 
+@slide() {
+    <!-- Package Objects -->
+} {
+    <div class="sidebyside p60_40">
+        @sourcecode(fragment = false) {
+            |package object util {
+            |
+            |   val wingsPerPlane = 2
+            |
+            |   def sufficientFuel(f: Float) = {
+            |       if(f == 0.0)
+            |           throw new RuntimeException("Not enough fuel!")
+            |   }
+            |}
+        }
+        @empty()
+    </div>
+}
+
 <!--
     - Sub-Packages ?
     - Super-Packages ?

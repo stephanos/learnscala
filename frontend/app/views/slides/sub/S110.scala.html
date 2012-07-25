@@ -33,7 +33,7 @@
 @slide() {
     <!-- Singleton -->
 } {
-    @codesplits((60,40), id="planefactory", fragment = true){
+    @codesplits((60,40), id="planefactory", fragment = false){
         @splitstart(reference = "plane") {
             |object PlaneFactory @Html("{")
         }{
@@ -81,9 +81,9 @@
         @callcode(fragment = false) {
             |val bigNumber = BigInt("1234567890")
         }
-        <div>
+        @codenote() {
             erstellt ein <code>BigInt</code> mit dem Wert 1234567890
-        </div>
+        }
     </div>
 
     <hr/><hr/>
@@ -92,9 +92,9 @@
         @callcode(fragment = false) {
             |val countdown = Array(10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
         }
-        <div>
+        @codenote() {
             erstellt ein <code>Array</code> aus den Zahlen von 10 bis 0
-        </div>
+        }
     </div>
 
     <hr/>
@@ -110,7 +110,7 @@
     <!-- Sichtbarkeit -->
 } {
     <div class="sidebyside">
-        @sourcecode(id = "plane2", clazz = "first") {
+        @sourcecode(id = "plane2", clazz = "first", fragment = false) {
             |class Plane private (val model: String,
             |                     val seats: Int) {
             |
@@ -138,7 +138,9 @@
             }
         </div>
         @fragment {
-            Companion Object <code>Plane</code> kann aber eine neue Instanz erstellen:
+            @codenote() {
+                Companion Object <code>Plane</code> kann aber eine neue Instanz erstellen:
+            }
             <hr/>
             @snippet() {
                 @callblock(reference = "planeobj", fragment = false) {
@@ -168,7 +170,7 @@
     <!-- apply() -->
 } {
     <div class="sidebyside p60_40">
-        @sourcecode(id = "apply", reference = "plane2") {
+        @sourcecode(id = "apply", reference = "plane2", fragment = false) {
             |object Plane {
             |
             |  private var countOfPlanes = 0

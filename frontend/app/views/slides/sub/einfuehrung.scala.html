@@ -279,13 +279,9 @@
 } {
     <div class="fragment sidebyside p60_40">
         @sourcecode(fragment = false) {
-            |def retry[T](n: Int)(fn: => T): T =
-            |   try   { fn }
-            |   catch {
-            |       case e =>
-            |          if (n > 1) retry(n - 1)(fn)
-            |          else throw e
-            |   }
+            |retry(3) {
+            |   connectToDatabase()
+            |}
         }
         <div>
             eigene Kontrollstrukturen

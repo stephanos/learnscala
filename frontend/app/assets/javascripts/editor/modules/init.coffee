@@ -110,7 +110,7 @@ initEditors = (elem, blocks) ->
         <button class="btn btn-icon btn-success" id="btn-exec">1</button>
     </div>').appendTo($(callEditorDom))
   $('#btn-exec').bind("click", (evt) -> callAPI("execute", output, srcEditor.getValue(), callEditor.getValue()))
-  Mousetrap.bind('ctrl+x', () -> $('#btn-exec').trigger("click"))
+  Mousetrap.bind('ctrl+r', () -> $('#btn-exec').trigger("click"))
 
   [srcEditor, callEditor]
 

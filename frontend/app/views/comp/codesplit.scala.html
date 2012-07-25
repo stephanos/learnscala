@@ -15,9 +15,9 @@
         @if(right == null) {
             <div>&nbsp;</div>
         } else {
-            <div class='@{if(fragment) "fragment" else ""}'>
+            @codenote(fragment) {
                 @right
-            </td>
+            }
         }
     </td>
 

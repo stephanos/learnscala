@@ -31,6 +31,26 @@ initSlides = ->
           .append('<li><a href="#/' + idx + '">' + title + '</a></li>')
   )
 
+  # init docs
+  $('<li id="naviDocs">
+        <a href="#" class="openDocs">
+            <span>Docs</span>
+        </a>
+        <span class="divider">|</span>
+    </li>').insertAfter($("#naviEditor"))
+  $("#naviDocs").bind("click", () ->
+    m = $("#docsModal")
+    m.bind("shown", (evt) ->
+      mbody = $(m).find(".modal-body")
+      if($(mbody).is(":empty"))
+        $(mbody).html('
+          <iframe src="http://www.scala-lang.org/api/current/index.html" width="99%" height="99%"
+                  style="position: absolute; top: 5px; bottom: 5px; left: 5px; right: 5px; overflow: hidden"></iframe>
+        ')
+    )
+    m.modal()
+  )
+
   # init snippets
   $('.slides div.snippet').each(
     (idx, elem) -> initSnippet(elem)
