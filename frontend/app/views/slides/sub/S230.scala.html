@@ -116,7 +116,7 @@
     <div class="sidebyside">
         <div>
             @snippet() {
-                @callblock() {
+                @callblock(fragment = false) {
                     |List(1,2,3) take 2
                 }
                 @outblock() {
@@ -398,25 +398,17 @@
             <hr/>
             <div class="indent">
                 <ul>
-                    <li><code>Iterable</code> mit Schlüssel-Wert-Paaren</li>
-                    <li class="fragment">
-                        TODO
-                    </li>
+                    <li><code>Iterable</code> aus Schlüssel-Wert-Paaren</li>
+
                     <li class="fragment">
                         <code>HashMap</code>
                         <hr/>
                         <ul>
                             <li>
-                                TODO
+                                Standardimplementierung
                             </li>
-                        </ul>
-                    </li>
-                    <li class="fragment">
-                        <code>SortedMap</code>
-                        <hr/>
-                        <ul>
-                            <li>
-                                TODO
+                            <li class="fragment">
+                                basiert auf Hash-Tabelle
                             </li>
                         </ul>
                     </li>
@@ -425,7 +417,10 @@
                         <hr/>
                         <ul>
                             <li>
-                                TODO
+                                Standardimplementierung von <code>SortedMap</code>
+                            </li>
+                            <li class="fragment">
+                                ideal wenn Elemente eine Ordnung haben oder keine gute Hash-Funktion
                             </li>
                         </ul>
                     </li>
@@ -438,7 +433,127 @@
 
 @slide() {
 } {
-    TODO
+    <div class="sidebyside p70_30">
+        <div>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |Map("a" -> 1, "b" -> 2)
+                }
+                @outblock() {
+                    |res0: Map[String,Int] = Map(a -> 1, b -> 2)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2)("a")
+                }
+                @outblock() {
+                    |res1: Int = 1
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2) + ("c" -> 3)
+                }
+                @outblock() {
+                    |res2: Map[String,Int] = Map(a -> 1, b -> 2, c -> 3)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2) ++ Map("c" -> 3, "d" -> 4)
+                }
+                @outblock() {
+                    |res3: Map[String,Int] = Map(a -> 1, b -> 2, c -> 3, d -> 4)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2) - "a"
+                }
+                @outblock() {
+                    |res4: Map[String,Int] = Map(b -> 2)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2) -- Set("a", "c")
+                }
+                @outblock() {
+                    |res5: Map[String,Int] = Map(b -> 2)
+                }
+            }
+        </div>
+        @empty()
+    </div>
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside p70_30">
+        <div>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |Map("a" -> 1, "b" -> 2) contains ("z")
+                }
+                @outblock() {
+                    |res6: Boolean = false
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2) keySet
+                }
+                @outblock() {
+                    |res7: Set[String] = Set(a, b)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2) values
+                }
+                @outblock() {
+                    |res8: Iterable[Int] = MapLike(1, 2)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2) contains ("z")
+                }
+                @outblock() {
+                    |res9: Boolean = false
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "bb" -> 2) filterKeys (_.length > 1)
+                }
+                @outblock() {
+                    |res10: Map[String,Int] = Map(bb -> 2)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2) mapValues (_ * 10)
+                }
+                @outblock() {
+                    |res10: Map[String,Int] = Map(a -> 10, b -> 20)
+                }
+            }
+        </div>
+        @empty()
+    </div>
 }
 
 
@@ -455,13 +570,16 @@
             <hr/>
             <div class="indent">
                 <ul>
-                    <li>TODO</li>
+                    <li>geordnete <code>Iterable</code></li>
                     <li class="fragment">
                         <code>IndexedSeq</code>
                         <hr/>
                         <ul>
                             <li>
-                                TODO
+                                optimiert für Direktzugriff
+                            </li>
+                            <li class="fragment">
+                                Standardimplementierung: <code>Vector</code>
                             </li>
                         </ul>
                     </li>
@@ -470,7 +588,10 @@
                         <hr/>
                         <ul>
                             <li>
-                                TODO
+                                optimiert für sequenziellen Zugriff
+                            </li>
+                            <li class="fragment">
+                                Standardimplementierung: <code>List</code>
                             </li>
                         </ul>
                     </li>
@@ -479,7 +600,10 @@
                         <hr/>
                         <ul>
                             <li>
-                                TODO
+                                optimiert fürs Anhängen
+                            </li>
+                            <li class="fragment">
+                                <var>mutable</var>
                             </li>
                         </ul>
                     </li>
