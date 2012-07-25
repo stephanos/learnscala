@@ -25,7 +25,7 @@ object API extends MyController {
                         InternalServerError
                 }
             } else {
-                Unauthorized
+                Unauthorized("Only the admin can execute code")
             }
     }
 
@@ -53,7 +53,7 @@ object API extends MyController {
                         InternalServerError
                 }
             } else {
-                Unauthorized
+                Unauthorized("Only the admin can decompile code")
             }
     }
 
@@ -73,7 +73,7 @@ object API extends MyController {
                         InternalServerError
                 }
             } else {
-                Unauthorized
+                Unauthorized("Only the admin can compile code")
             }
     }
 }

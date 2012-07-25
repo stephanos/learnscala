@@ -1,9 +1,5 @@
 package views
 
-class Pair[T, S](val first: T, val second: S) {
-
-
-}
 
 /*
 class Blackbox {

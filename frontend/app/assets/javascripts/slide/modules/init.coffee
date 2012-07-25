@@ -49,6 +49,7 @@ initSlides = ->
         ')
     )
     m.modal()
+    false
   )
 
   # init snippets

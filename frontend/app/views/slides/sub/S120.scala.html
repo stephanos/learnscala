@@ -61,16 +61,34 @@
 @slide() {
     <!-- Package Objects -->
 } {
-    <div class="sidebyside p60_40">
+    <div class="sidebyside p66_33">
         @sourcecode(fragment = false) {
+            |// file "package.scala"
             |package object util {
             |
-            |   val wingsPerPlane = 2
+            |  val wingsPerPlane = 2
             |
-            |   def sufficientFuel(f: Float) = {
-            |       if(f == 0.0)
-            |           throw new RuntimeException("Not enough fuel!")
-            |   }
+            |  def sufficientFuel(f: Float) = {
+            |    if(f == 0.0)
+            |      throw new RuntimeException("Not enough fuel!")
+            |  }
+            |}
+        }
+        @empty()
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside p66_33">
+        @sourcecode() {
+            |package scala
+            |
+            |package object math extends MathCommon {
+            |
+            |  def sinh(x: Double): Double = java.lang.Math.sinh(x)
+            |  def cosh(x: Double): Double = java.lang.Math.cosh(x)
+            |  def tanh(x: Double): Double = java.lang.Math.tanh(x)
+            |  // ...
             |}
         }
         @empty()
