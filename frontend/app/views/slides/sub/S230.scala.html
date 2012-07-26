@@ -616,5 +616,67 @@
 
 @slide() {
 } {
-    TODO
+    <div class="sidebyside p70_30">
+        <div>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |List(1,2,3) reverse
+                }
+                @outblock() {
+                    |res0: List[Int] = List(3, 2, 1)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(1,2,3,3,2,1) distinct
+                }
+                @outblock() {
+                    |res1: List[Int] = List(1, 2, 3)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(1,2,3) endsWith Seq(2,3)
+                }
+                @outblock() {
+                    |res2: Boolean = true
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(1,2,3) indexOf 2
+                }
+                @outblock() {
+                    |res3: Int = 1
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(3,2,1) sorted
+                }
+                @outblock() {
+                    |res4: List[Int] = List(1, 2, 3)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(333,22,1) sortBy (_.toString.length)
+                }
+                @outblock() {
+                    |res5: List[Int] = List(1, 22, 333)
+                }
+            }
+        </div>
+        @empty()
+    </div>
 }
+
+
+<!--
+  - pattern matching
+-->

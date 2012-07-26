@@ -455,16 +455,22 @@
                 |res0: Int = 0
             }
             @callblock() {
-                |42 compare(42)
+                |42 compare (42)
             }
             @outblock() {
                 |res1: Int = 0
             }
             @callblock() {
-                |42 compare 42
+                |42 compare {42}
             }
             @outblock() {
                 |res2: Int = 0
+            }
+            @callblock() {
+                |42 compare 42
+            }
+            @outblock() {
+                |res3: Int = 0
             }
         }
         <div>
@@ -489,7 +495,8 @@
     </div>
 
     @tipbox() {
-        Runde Klammern bei Methoden ohne oder mit nur 1 Parameter sind optional.
+        Runde Klammern bei Methoden ohne oder mit nur 1 Parameter sind optional;
+        geschweifte Klammern können bei genau einem Parameter verwendet werden.
     }
 }
 

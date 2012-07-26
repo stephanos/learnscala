@@ -1,3 +1,287 @@
 @slide(title = "Collections", chapter = "FP") {
 } {
+    <div class="sidebyside">
+        @snippet() {
+            @callblock(fragment = false, id = "nums") {
+                |val nums = List(1, 2, 3)
+            }
+            @outblock() {
+                |nums: List[Int] = List(1, 2, 3)
+            }
+            @callblock() {
+                |nums map { (x: Int) => x + 1 }
+            }
+            @outblock() {
+                |res0: List[Int] = List(2, 3, 4)
+            }
+        }
+        <div>
+            <div class="indent">
+                <ul>
+                    <li class="fragment">
+                        Funktion "erhöhe Wert um 1" wird auf jedes Element angewendet; Resultat ist eine neue Liste
+                    </li>
+                    <li class="fragment">
+                        Aufruf der Methode <code>map</code> mit einem <em>Funktionsliteral</em> (anonyme Funktion) als Argument
+                    </li>
+                    <li class="fragment">
+                        Syntax des Funktionsliterals ähnlich der einer Methode:
+                        Parameterliste <code>(x: Int)</code> und Körper <code>x + 1</code> getrennt durch <code>=></code>
+                    </li>
+                    <li class="fragment">
+                        übliche Schreibweise: ohne Punkt und mit geschweiften Klammern
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside">
+        @snippet() {
+            @callblock(reference = "nums", fragment = false) {
+                |nums filter { (x: Int) => x < 3 }
+            }
+            @outblock() {
+                |res0: List[Int] = List(1, 2)
+            }
+        }
+        <div>
+            <div class="indent">
+                <ul>
+                    <li class="fragment">
+                        Funktion "ist x kleiner als 3" wird auf jedes Element angewendet;
+                        ist das Ergebnis <code>true</code> wird es ins Resultat übernommen
+                    </li>
+                    <li class="fragment">
+                        <code>map</code> und <code>filter</code> sind <em>Funktionen höhrerer Ordnung</em>
+                        ("higher-order functions"): Argument oder Rückgabewert sind wiederum Funktion
+                    </li>
+                    <li class="fragment">
+                        Eigenschaften einer Funktion
+                        <hr/>
+                        <ul>
+                            <li class="fragment">
+                                frei von Seiteneffekten
+                            </li>
+                            <li class="fragment">
+                                hat ein Ergebnis (nicht <code>Unit</code>)
+                            </li>
+                            <li class="fragment">
+                                gleiches Ergebnis für gleiche Argumente
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+
+@slide() {
+    <!-- Funktionsliteral: ohne Typ -->
+} {
+    <div class="sidebyside">
+        @snippet() {
+            @callblock(reference = "nums", fragment = false) {
+                |nums map { x => x + 1 }
+            }
+            @outblock() {
+                |res0: List[Int] = List(2, 3, 4)
+            }
+        }
+        <div>
+            <div class="indent">
+                <ul>
+                    <li class="fragment">
+                        Typ von <code>x</code> kann weggelassen werden
+                    </li>
+                    <li class="fragment">
+                        abgeleitet vom Typ-Parameter der Liste (<code>Int</code>)
+                        und der Signatur der Methode <code>map</code>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside">
+        @sourcecode() {
+            |trait Traversable[A] {
+            |  def map[B](f: (A) => B): Traversable[B]
+            |}
+        }
+        <div>
+            <div class="indent">
+                <ul>
+                    <li class="fragment">
+                        <code>map</code> transformiert die Elemente vom Typ <code>A</code>
+                        in eine neue Instanz von <code>Traversable</code> vom Typ <code>B</code>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+
+@slide() {
+    <!-- Funktionsliteral: ohne Parameterliste -->
+} {
+    <div class="sidebyside">
+        @snippet() {
+            @callblock(reference = "nums", fragment = false) {
+                |nums filter { _ < 3 }
+            }
+            @outblock() {
+                |res0: List[Int] = List(1, 2)
+            }
+            @callblock() {
+                |nums filter { _ > 0 && _ < 3 }
+            }
+            @outblock(error = true) {
+                |error: wrong number of parameters;
+                |       expected = 1
+            }
+        }
+        <div>
+            <div class="indent">
+                <ul>
+                    <li class="fragment">
+                        Parameterliste kann weggelassen werden;
+                        mit <code>_</code> kann jeder Parameter einmal referenziert werden
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside">
+        @snippet() {
+            @callblock(reference = "nums") {
+                |nums sortWith { (x, y) => x > y }
+            }
+            @outblock() {
+                |res0: List[Int] = List(3, 2, 1)
+            }
+            @callblock() {
+                |numbers sortWith { _ > _ }
+            }
+            @outblock() {
+                |res1: List[Int] = List(3, 2, 1)
+            }
+        }
+        <div>
+            <div class="indent">
+                <ul>
+                    <li class="fragment">
+                        Funktion "ist x größer als y" wird auf jedes Element angewendet
+                    </li>
+                    <li class="fragment">
+                        der erste <code>_</code> repäsentiert den ersten Parameter (x),
+                        der zweite <code>_</code> den zweiten Parameter (y)
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+}
+
+
+@slide() {
+    <!-- Funktionen sind Objekte -->
+} {
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @callblock(fragment = false) {
+                |val f = { x => x + 1 }
+            }
+            @outblock(error = true) {
+                |error: missing parameter type
+            }
+        }
+        @codenote() {
+            Funktionen ohne Kontext müssen Parametertypen angeben
+        }
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @callblock() {
+                |val f = (x: Int) => x + 1
+            }
+            @outblock() {
+                |f: (Int) => Int = &lt;function1&gt;
+            }
+        }
+        @codenote() {
+            Wert von <code>f</code> ist nun eine Funktion: <em>Funktionen sind Objekte!</em>
+        }
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p66_33">
+        @snippet(id = "f1") {
+            @callblock() {
+                |val f1: Function1[Int, Int] = x => x + 1
+            }
+            @outblock(clazz = "middle") {
+                |f1: (Int) => Int = &lt;function1&gt;
+            }
+        }
+        <div>
+            @codenote() {
+                Funktionen mit 1 Parameter sind vom Typ <code>Function1</code>
+            }
+        </div>
+    </div>
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @callblock(reference = "f1", clazz = "end") {
+                |f1(9)  // f1.apply(9)
+            }
+            @outblock() {
+                |res0: Int = 10
+            }
+        }
+        <div>
+            @codenote() {
+                Funktionen besitzten <code>apply</code>-Methode zum Aufruf
+            }
+        </div>
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @callblock() {
+                |val f2: Function2[Int, Int, Boolean] = (x, y) => x > y
+            }
+            @outblock() {
+                |f2: (Int, Int) => Boolean = &lt;function2&gt;
+            }
+        }
+        @codenote() {
+            Funktionen mit 2 Parameter sind vom Typ <code>Function2</code> usw.
+        }
+    </div>
+}
+
+
+@slide() {
+
+} {
+
 }
