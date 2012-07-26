@@ -1,13 +1,13 @@
 @(id: String = null, title: String = null, chapter: String = null)(name: Html)(sub: Html = Html.empty)
 
 @slide(id, title, chapter)(null) {
-    <h1>@name</h1>
+    <h2>
+        <em style="font-size: 130%">@name</em>
+    </h2>
 
     <hr/><hr/>
 
     <h3 class="goal indent">
-        <em>
-            @sub
-        </em>
+        @sub
     </h3>
 }
