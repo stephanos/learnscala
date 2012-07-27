@@ -1,5 +1,15 @@
 @slide(title = "Implicits") {
     Implicits
 } {
-    TODO
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @callblock(fragment = false) {
+                |1 -> 'a'
+            }
+            @outblock() {
+                |res0: (Int, Char) = (1,a)
+            }
+        }
+        @empty()
+    </div>
 }
