@@ -1,58 +1,113 @@
-@slide(title = "Exceptions") {
-    <!-- Catch -->
+@slide(title = "Pattern Matching") {
+    <!-- Syntax -->
 } {
-    <div class="sidebyside p66_33">
+    <div class="sidebyside p60_40">
         @snippet() {
             @sourceblock(fragment = false) {
-                |def getWords(msg: String) =
-                |   try {
-                |       println(msg.split(' '))
-                |   } catch {
-                |       case ex: NullPointerException =>
-                |           println("No message")
-                |       case _ =>
-                |           println("Unexpected internal error")
-                |   } finally {
-                |       // cleanup
-                |   }
+                |def interpret(msg: String) {
+                |  msg match {
+                |    case "OUT"    => println("The end")
+                |    case "OVER"   => println("Your turn")
+                |    case "MAYDAY" => println("We need help!")
+                |  }
+                |}
             }
             @callblock() {
-                |getWords(null)
+                |interpret("MAYDAY")
             }
             @outblock() {
-                |No message
+                |We need help!
             }
         }
         @empty()
     </div>
 
+    <hr/>
+
     @infobox() {
-        In einem <code>try/catch</code>-Block kommt Pattern Matching zum Einsatz.
+        Ein Ausdruck kann mittels <code>match</code> gegen verschiedene Alternativen -
+        eingeleitet durch <code>case</code> - "gematched" werden.
     }
 }
 
-@slide(title = "Exceptions") {
-    <!-- Throw -->
+
+@slide() {
+    <!-- MatchError / Wildcard -->
 } {
-    <div class="sidebyside p66_33">
+    <div class="sidebyside">
         @snippet() {
-            @sourceblock(id = "fuel-exception", fragment = false) {
-                |def sufficientFuel(f: Float) =
-                |  if(f == 0.0)
-                |    throw new RuntimeException("Not enough fuel!")
+            @sourceblock(fragment = false) {
+                |def interpret(msg: String) =
+                |  msg match {
+                |    case "OUT"    => "The end"
+                |    case "OVER"   => "Your turn"
+                |    case "MAYDAY" => "We need help!"
+                |  }
             }
             @callblock() {
-                |sufficientFuel(0)
+                |println(interpret("Ready for take-off"))
+            }
+            @outblock(error = true) {
+                |scala.MatchError: Ready for take-off
+            }
+        }
+        @snippet() {
+            @sourceblock() {
+                |def interpret(msg: String) =
+                |  msg match {
+                |    case "OUT"    => "The end"
+                |    case "OVER"   => "Your turn"
+                |    case "MAYDAY" => "We need help!"
+                |    case _        => msg
+                |  }
+            }
+            @callblock() {
+                |println(interpret("Ready for take-off"))
             }
             @outblock() {
-                |java.lang.RuntimeException: Not enough fuel!
+                |Ready for take-off
+            }
+        }
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        Trifft kein Pattern zu wird eine <code>MatchError</code>-Exception geworfen;
+        mit dem <span class="nobreak">Wildcard-Pattern <code>_</code></span>
+        kann jedoch ein Standardverhalten für diesen Fall definiert werden.
+    }
+}
+
+
+@slide() {
+    <!-- Names -->
+} {
+    <div class="sidebyside">
+        @snippet() {
+            @sourceblock(fragment = false) {
+                |def interpret(msg: String) =
+                |  msg match {
+                |    case "OUT"    => "The end"
+                |    case "OVER"   => "Your turn"
+                |    case "MAYDAY" => "We need help!"
+                |    case m        => m.toUpperCase
+                |  }
+            }
+            @callblock() {
+                |println(interpret("Ready for take-off"))
+            }
+            @outblock() {
+                |READY FOR TAKE-OFF
             }
         }
         @empty()
     </div>
 
+    <hr/>
+
     @infobox() {
-        Mit <code>throw</code> wird eine Ausnahme ausgelöst,
-        eine Angabe der möglichen Ausnahmen einer Methode kann/muss nicht spezifiziert werden.
+        Folgt auf <code>case</code> ein Variablenname <comment>(muss mit einem Kleinbuchstaben anfangen)</comment>
+        kann dieser im Ergebnis-Ausdruck (rechts von <code>=></code>) verwendet werden.
     }
 }

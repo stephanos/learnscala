@@ -86,7 +86,7 @@ initEditors = (elem, blocks) ->
   output = $(elem).find(".output-wrap div")
 
   # init source editor
-  srcEditor = initEditor($(elem).find(".left .input"), blocks, "source")
+  srcEditor = initEditor($(elem).find(".source .input"), blocks, "source")
   srcEditorDom = srcEditor.getWrapperElement()
   $('
     <div class="btn-group btn-group-left">
@@ -100,7 +100,7 @@ initEditors = (elem, blocks) ->
   $('#btn-decompile-scala').bind("click", (evt) -> callAPI("decompile/scala", output, srcEditor.getValue()))
 
   # init call editor
-  callEditor = initEditor($(elem).find(".right .input"), blocks, "call")
+  callEditor = initEditor($(elem).find(".call .input"), blocks, "call")
   callEditorDom = callEditor.getWrapperElement()
   $('
     <div class="btn-group btn-group-left">
@@ -116,14 +116,9 @@ initEditors = (elem, blocks) ->
 
 
 initEditorSplitters = (elem) ->
-  if($(elem).find(".vsplitbar").length == 0)
-    hsplit = $(elem).find(".topbottom").splitter(outline: true, splitHorizontal: true, sizeBottom: 150)
-    vsplit = $(elem).find(".input-wrap").splitter(outline: true)
-  else
-    hsplit = $(elem).find(".hsplitbar")
-    vsplit = $(elem).find(".vsplitbar")
-
-  [hsplit, vsplit]
+  if($(elem).find(".hsplitbar").length == 0)
+    vsplit = $(elem).find(".input-wrap").splitter(outline: true, splitHorizontal: true, sizeBottom: 160, minTop: 40, minBottom: 40)
+    hsplit = $(elem).find(".topbottom").splitter(outline: true, splitHorizontal: true, sizeBottom: 160, minTop: 90, minBottom: 40)
 
 
 initStandaloneEditor = (elem) ->

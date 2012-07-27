@@ -1,0 +1,7 @@
+-Xms128m
+-Xmx512m
+-XX:MaxPermSize=250m
+-XX:ReservedCodeCacheSize=64m
+-ea
+-XX:+HeapDumpOnOutOfMemoryError
+-agentlib:yjpagent=disablej2ee,disablecounts,disablealloc,sessionname=IntelliJIdea11

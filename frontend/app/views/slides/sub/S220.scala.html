@@ -1,5 +1,5 @@
-@slide(title = "Tupel") {
-    <!-- Tupel -->
+@slide(title = "Tuple") {
+    <!-- Tuple -->
 } {
     <div class="sidebyside p66_33">
         <div>
@@ -47,141 +47,38 @@
 }
 
 
-@slide(title = "List") {
-    <!-- List -->
+@slide() {
+    <!-- Tuple: Pattern Matching -->
 } {
-    TODO
-}
-
-
-@slide(title = "Map") {
-    <!-- Map -->
-} {
-    <div class="sidebyside p80_20">
-        <div>
-            @snippet() {
-                @callblock(reference = "crew-traits", fragment = false) {
-                    |val m1 = Map(("Roy",  Pilot()),
-                    |             ("Moss", CoPilot()),
-                    |             ("Jen", Stewardess()))
-                }
-                @outblock() {
-                    |m1: Map[String,Crew] =
-                    |      Map(Roy -> Pilot(), Moss -> CoPilot(), Jen -> Stewardess())
-                }
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @sourceblock(id = "tuple-match", reference = "crew-traits", fragment = false) {
+                |def allowToCockpit(t: (Crew, Crew)) = t match {
+                |  case (Pilot(), CoPilot()) | (CoPilot(), Pilot()) => true
+                |  case _ => false
+                |}
             }
-            <hr/>
-            @snippet() {
-                @callblock(reference = "crew-traits") {
-                    |val m2 = Map("Roy"  -> Pilot(),
-                    |             "Moss" -> CoPilot(),
-                    |             "Jen" -> Stewardess())
-                }
-                @outblock() {
-                    |m2: Map[String,Crew] =
-                    |      Map(Roy -> Pilot(), Moss -> CoPilot(), Jen -> Stewardess())
-                }
-                @callblock() {
-                    |val a2 = m2.toArray
-                }
-                @outblock() {
-                    |a2: Array[(String, Crew)] =
-                    |       Array((Roy,Pilot()), (Moss,CoPilot()), (Jen,Stewardess()))
-                }
-            }
-        </div>
+        }
         @empty()
     </div>
-}
 
+    <hr/><hr/>
 
-@slide() {
-    <!-- Map: read / write -->
-} {
-    @snippet() {
-        @callblock(id = "crew-map", reference = "crew-traits", fragment = false) {
-            |val m = Map("Roy"  -> Pilot(), "Moss" -> CoPilot(), "Jen" -> Stewardess())
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @callblock(reference = "tuple-match") {
+                |allowToCockpit((Pilot(), Stewardess()))
+            }
+            @outblock() {
+                |res0: Boolean = false
+            }
+            @callblock() {
+                |allowToCockpit((Pilot(), CoPilot()))
+            }
+            @outblock() {
+                |res1: Boolean = true
+            }
         }
-        @outblock() {
-            |m: Map[String,Crew] =
-            |      Map(Roy -> Pilot(), Moss -> CoPilot(), Jen -> Stewardess())
-        }
-    }
-    <hr/>
-    @snippet() {
-        @callblock(reference = "crew-map") {
-            |val pilot = m("Roy")
-        }
-        @outblock() {
-            |pilot: Crew = Pilot()
-        }
-    }
-    <hr/>
-    @snippet() {
-        @callblock(reference = "crew-map") {
-            |m + ("Paul" -> Stewardess())
-        }
-        @outblock() {
-            |res0: Map[String,Crew] =
-            |       Map(Roy -> Pilot(), Moss -> CoPilot(), Jen -> Stewardess(), Paul -> Stewardess())
-        }
-    }
-    <hr/>
-    @snippet() {
-        @callblock(reference = "crew-map") {
-            |m("Moss") = Pilot()
-        }
-        @outblock(error = true) {
-            |error: value update is not a member of Map[String,Crew]
-        }
-    }
-}
-
-
-@slide() {
-    <!-- Immutable / Mutable -->
-} {
-    @snippet() {
-        @callblock(fragment = false) {
-            |val mt = Map
-        }
-        @outblock() {
-            |mt: scala.collection.immutable.Map.type = scala.collection.immutable.Map$@@12e52fcd
-        }
-    }
-
-    <hr/>
-
-    @snippet() {
-        @callblock() {
-            |val m = Map()
-        }
-        @outblock() {
-            |m: scala.collection.immutable.Map[Nothing,Nothing] = Map()
-        }
-    }
-
-    <hr/>
-
-    @snippet() {
-        @callblock(reference = "crew-traits") {
-            |import scala.collection.mutable._
-            |val m: Map[String, Crew] = Map("Roy" -> Pilot())
-        }
-        @outblock() {
-            |m: scala.collection.mutable.Map[String,Crew] = Map("Roy" -> Pilot())
-        }
-        @callblock() {
-            |m += ("Moss" -> CoPilot())
-        }
-        @outblock() {
-            |m: scala.collection.mutable.Map[String,Crew] = Map("Moss" -> CoPilot())
-        }
-        @callblock() {
-            |m -= ("Roy")
-        }
-        @outblock() {
-            |m: scala.collection.mutable.Map[String,Crew] = Map("Moss" -> CoPilot())
-        }
-    }
+        @empty()
+    </div>
 }
