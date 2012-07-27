@@ -2,5 +2,49 @@
 @slide(title = "Jerkson") {
     Jerkson
 } {
-    TODO
+    <div class="indent">
+        <ul>
+            <li>
+                <em>Wrapper</em> für die Java-basierte <var>Jackson</var>-Bibliothek
+            </li>
+            <li class="fragment">
+                Erstellen und Parsen von <em>JSON</em>
+
+                <hr/>
+
+                @snippet() {
+                    @callblock() {
+                        |parse[List[Int]]("[1,2,3]")
+                    }
+                    @outblock() {
+                        |res0: List = List(1, 2, 3)
+                    }
+                    @callblock() {
+                        |generate(List(1, 2, 3))
+                    }
+                    @outblock() {
+                        |res1: String = [1,2,3]
+                    }
+                }
+
+                <hr/>
+
+                @snippet() {
+                    @callblock() {
+                        |case class Person(id: Long, name: String)
+                        |val p = parse[Person](&#34;&#34;&#34;@Html("""{"id":1,"name":"Steve"}""")&#34;&#34;&#34;)
+                    }
+                    @outblock() {
+                        |p: Person = Person(1, "Steve")
+                    }
+                    @callblock() {
+                        |generate(p)
+                    }
+                    @outblock() {
+                        |res0: String = {"id":1,"name":"Steve"}
+                    }
+                }
+            </li>
+        </ul>
+    </div>
 }

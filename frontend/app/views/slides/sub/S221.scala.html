@@ -1,6 +1,33 @@
 @slide(title = "Option") {
 } {
-    TODO
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @sourceblock(reference = "crew-traits", fragment = false) {
+                |def canFlyPlane(c: Crew) = {
+                |  case
+                |}
+            }
+            @callblock() {
+                |canFlyPlane(Stewardess())
+            }
+            @outblock() {
+                |res0: Boolean = false
+            }
+            @callblock() {
+                |canFlyPlane(CoPilot())
+            }
+            @outblock() {
+                |res1: Boolean = true
+            }
+            @callblock() {
+                |canFlyPlane(CoPilot())
+            }
+            @outblock() {
+                |res1: Boolean = true
+            }
+        }
+        @empty()
+    </div>
 }
 
 

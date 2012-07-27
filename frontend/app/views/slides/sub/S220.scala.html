@@ -1,48 +1,68 @@
 @slide(title = "Tuple") {
     <!-- Tuple -->
 } {
-    <div class="sidebyside p66_33">
+    <div class="sidebyside p60_40">
+        @snippet() {
+            @callblock(reference = "crew-traits", fragment = false) {
+                |val t1 = Tuple2(Pilot(), CoPilot())
+            }
+            @outblock() {
+                |t1: (Pilot, CoPilot) = (Pilot(),CoPilot())
+            }
+        }
+        @codenote() {
+            <code>Tuple</code> erstellt mit Hilfe der Case Class <code>Tuple2</code>
+        }
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p60_40">
+        @snippet() {
+            @callblock(reference = "crew-traits") {
+                |val t2 = Tuple(Pilot(), CoPilot())
+            }
+            @outblock() {
+                |t2: (Pilot, CoPilot) = (Pilot(),CoPilot())
+            }
+        }
+        @codenote() {
+            <code>Tuple</code> erstellt via gleichnamiger Methode aus Paket <code>scala</code>
+        }
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p60_40">
+        @snippet() {
+            @callblock(reference = "crew-traits") {
+                |val t3 = (Pilot(), CoPilot())
+            }
+            @outblock() {
+                |t3: (Pilot, CoPilot) = (Pilot(),CoPilot())
+            }
+            @callblock() {
+                |val pilot = t3._1
+            }
+            @outblock() {
+                |pilot: Pilot = Pilot()
+            }
+            @callblock() {
+                |val copilot = t3._2
+            }
+            @outblock() {
+                |copilot: CoPilot = CoPilot()
+            }
+        }
         <div>
-            @snippet() {
-                @callblock(reference = "crew-traits", fragment = false) {
-                    |val t1 = Tuple2(Pilot(), CoPilot())
-                }
-                @outblock() {
-                    |t1: (Pilot, CoPilot) = (Pilot(),CoPilot())
-                }
+            @codenote() {
+                <code>Tuple</code> erstellt mit Implicits
             }
-            <hr/>
-            @snippet() {
-                @callblock(reference = "crew-traits") {
-                    |val t2 = Tuple(Pilot(), CoPilot())
-                }
-                @outblock() {
-                    |t2: (Pilot, CoPilot) = (Pilot(),CoPilot())
-                }
-            }
-            <hr/>
-            @snippet() {
-                @callblock(reference = "crew-traits") {
-                    |val t3 = (Pilot(), CoPilot())
-                }
-                @outblock() {
-                    |t3: (Pilot, CoPilot) = (Pilot(),CoPilot())
-                }
-                @callblock() {
-                    |val pilot = t3._1
-                }
-                @outblock() {
-                    |pilot: Pilot = Pilot()
-                }
-                @callblock() {
-                    |val copilot = t3._2
-                }
-                @outblock() {
-                    |copilot: CoPilot = CoPilot()
-                }
+            <hr/><hr/>
+            @codenote() {
+                Zugriff auf Elemente via Felder <code>_1</code>, <code>_2</code>, <code>_3</code> usw.
             }
         </div>
-        @empty()
     </div>
 }
 

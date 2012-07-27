@@ -1,20 +1,20 @@
 @slide(title = "Typ-Parameter") {
     <!-- Typ-Parameter -->
 } {
+    @snippet() {
+        @sourceblock(id = "crew-traits", fragment = false) {
+            |sealed trait Crew
+            |sealed trait CabinCrew extends Crew
+            |sealed trait CockpitCrew extends Crew { def fly() = println("flying") }
+            |
+            |case class Pilot extends CockpitCrew
+            |case class CoPilot extends CockpitCrew
+            |case class Stewardess extends CabinCrew
+        }
+    }
+
     <div class="sidebyside p66_33">
         <div>
-            @snippet() {
-                @sourceblock(id = "crew-traits", fragment = false) {
-                    |sealed trait Crew
-                    |
-                    |sealed trait CockpitCrew extends Crew
-                    |case class Pilot extends CockpitCrew
-                    |case class CoPilot extends CockpitCrew
-                    |
-                    |sealed trait CabinCrew extends Crew
-                    |case class Stewardess extends CabinCrew
-                }
-            }
             <hr/>
             @snippet() {
                 @sourceblock(id = "pair1", reference = "crew-traits") {
@@ -65,7 +65,7 @@
                     |}
                 }
             }
-            <hr/>
+            <hr/><hr/>
             @snippet() {
                 @callblock(reference = "pair2") {
                     |Pair(Pilot(), CoPilot()).canFlyPlane
@@ -74,7 +74,7 @@
                     |true
                 }
             }
-            <hr/>
+            <hr/><hr/>
             @snippet() {
                 @callblock(reference = "pair2") {
                     |Pair(Pilot(), Stewardess()).canFlyPlane
@@ -98,43 +98,52 @@
     <!-- Upper Bound -->
 } {
     <div class="sidebyside p75_25">
-        <div>
-            @snippet() {
-                @sourceblock(id = "pair3", include = "crew-traits", fragment = false) {
-                    |case class CockpitPair[T <: CockpitCrew](one: T, two: T)
-                }
+        @snippet() {
+            @sourceblock(id = "pair3", include = "crew-traits", fragment = false) {
+                |case class CockpitPair[T <: CockpitCrew](one: T, two: T)
             }
-            <hr/>
-            @snippet() {
-                @callblock(reference = "pair3") {
-                    |CockpitPair(Pilot(), Stewardess())
-                }
-                @outblock(error = true) {
-                    |error: inferred type arguments [Crew] do not conform to
-                    |       method apply's type parameter bounds [T <: CockpitCrew]
-                }
-            }
-            <hr/>
-            @snippet() {
-                @callblock(reference = "pair3") {
-                    |val cp = CockpitPair(Pilot(), CoPilot())
-                }
-                @outblock() {
-                    |cp: CockpitPair[CockpitCrew] = ...
-                }
-            }
-            <hr/>
-            @snippet() {
-                @callblock(reference = "pair3") {
-                    |val cp = CockpitPair(Pilot(), Pilot())
-                }
-                @outblock() {
-                    |cp: CockpitPair[Pilot] = ...
-                }
-            }
-        </div>
-        @empty()
+        }
+        @codenote() {
+            <code>CockpitPair</code> erwartet 2 Parameter vom Typ <code>T</code> - dieser ist "mindestens" vom Typ
+            <code>CockpitCrew</code>
+        }
     </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p75_25">
+        @snippet() {
+            @callblock(reference = "pair3") {
+                |CockpitPair(Pilot(), Stewardess())
+            }
+            @outblock(error = true) {
+                |error: inferred type arguments [Crew] do not conform to
+                |       method apply's type parameter bounds [T <: CockpitCrew]
+            }
+        }
+        @codenote() {
+            <code>Stewardess</code> entspricht <var>nicht</var> dem Typ <code>CockpitCrew</code>
+        }
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside p75_25">
+        @snippet() {
+            @callblock(reference = "pair3") {
+                |val cp = CockpitPair(Pilot(), CoPilot())
+            }
+            @outblock() {
+                |cp: CockpitPair[CockpitCrew] = ...
+            }
+        }
+        @codenote() {
+            <code>Pilot</code> und <code>CoPilot</code> <em>entsprechen</em> dem Typ <code>CockpitCrew</code>
+        }
+    </div>
+
+    <hr/><hr/>
+
 
     @infobox() {
         Mit <code>[T &lt;: SuperClass]</code> wird für den Typ-Parameter ein erforderter Sub-Typ definiert
