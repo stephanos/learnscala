@@ -83,10 +83,96 @@
 
 
 @slide() {
-
+    <!-- Partially Applied I -->
 } {
-    TODO
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @callblock(fragment = false) {
+                |var f = scala.math.max
+            }
+            @outblock(error = true) {
+                |error: missing arguments for method max
+            }
+        }
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @callblock() {
+                |var f = scala.math.max _
+            }
+            @outblock() {
+                |f: (Int, Int) => Int = <function2>
+            }
+            @callblock() {
+                |f(1, 10)
+            }
+            @outblock() {
+                |res0: Int = 10
+            }
+            @callblock() {
+                |f = scala.math.min _
+            }
+            @outblock() {
+                |f: (Int, Int) => Int = <function2>
+            }
+            @callblock() {
+                |f(1, 10)
+            }
+            @outblock() {
+                |res1: Int = 1
+            }
+        }
+        @empty()
+    </div>
 }
+
+
+@slide() {
+    <!-- Partially Applied II -->
+} {
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @callblock(fragment = false) {
+                |var f = scala.math.max (5, _)
+            }
+            @outblock(error = true) {
+                |error: missing arguments for method max
+            }
+        }
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @callblock() {
+                |var f = scala.math.max (5, (_: Int))
+            }
+            @outblock() {
+                |f: (Int, Int) => Int = <function2>
+            }
+            @callblock() {
+                |f(10)
+            }
+            @outblock() {
+                |res0: Int = 10
+            }
+            @callblock() {
+                |f(1)
+            }
+            @outblock() {
+                |res1: Int = 5
+            }
+        }
+        @empty()
+    </div>
+}
+
 
 <!--
     - use case (e.g. Odersky Chapter 9)

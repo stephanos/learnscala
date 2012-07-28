@@ -1,4 +1,119 @@
 @slide(title = "For-Expression") {
 } {
-    TODO
+    <div class="sidebyside p80_20">
+        @snippet() {
+            @callblock(fragment = false) {
+                |for (i <- 1 to 10) print(i + " ")
+            }
+            @outblock() {
+                |1 2 3 4 5 6 7 8 9 10
+            }
+        }
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p80_20">
+        @snippet() {
+            @callblock() {
+                |for (i <- 1 to 10) yield i
+            }
+            @outblock() {
+                |res0: IndexedSeq[Int] = Vector(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+            }
+        }
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p80_20">
+        @snippet() {
+            @callblock() {
+                |for (i <- 1 to 10) yield i * 2
+            }
+            @outblock() {
+                |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
+            }
+        }
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p80_20">
+        @snippet() {
+            @callblock() {
+                |for (i <- 1 to 3; j <- 1 to i) yield i * j
+            }
+            @outblock() {
+                |res0: IndexedSeq[Int] = Vector(1, 2, 4, 3, 6, 9)
+            }
+        }
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p80_20">
+        @snippet() {
+            @callblock() {
+                |for (i <- 1 to 10; j <- 1 to 10) yield {
+                |  i * j
+                |}
+            }
+            @outblock() {
+                |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
+            }
+        }
+        @empty()
+    </div>
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside p80_20">
+        @snippet() {
+            @callblock(fragment = false) {
+                |for (i <- 1 to 10; double = i * 2) yield double
+            }
+            @outblock() {
+                |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
+            }
+        }
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p80_20">
+        @snippet() {
+            @callblock() {
+                |for (i <- 1 to 10 if i % 2 == 0) yield i
+            }
+            @outblock() {
+                |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10)
+            }
+        }
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p80_20">
+        @snippet() {
+            @callblock() {
+                |for {
+                |   i <- 1 to 10
+                |   if i % 2 == 0
+                |} yield i
+            }
+            @outblock() {
+                |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10)
+            }
+        }
+        @empty()
+    </div>
 }

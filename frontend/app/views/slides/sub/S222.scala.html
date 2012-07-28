@@ -1,12 +1,78 @@
 @slide(title = "List") {
-    <!-- List -->
+
 } {
-    TODO
+    <div class="sidebyside p60_40">
+        @snippet() {
+            @callblock(id = "list_stewards", fragment = false) {
+                |val stewards = List("Jen", "Jo", "Jim")
+            }
+            @outblock() {
+                |stewards: List[String] = List(Jen, Jo, Jim)
+            }
+            @callblock() {
+                |List apply ("Jen", "Jo", "Jim")
+            }
+            @outblock() {
+                |res0: List[String] = List(Jen, Jo, Jim)
+            }
+        }
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p60_40">
+        @snippet() {
+            @callblock() {
+                |List(1, "a", true)
+            }
+            @outblock() {
+                |res0: List[Any] = List(1, a, true)
+            }
+        }
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p60_40">
+        @snippet() {
+            @callblock() {
+                |List()
+            }
+            @outblock() {
+                |res0: List[Nothing] = List()
+            }
+        }
+        @empty()
+    </div>
 }
 
 
-@slide() {
-    <!-- List: Pattern Matching -->
+@slide(title = "List") {
+    <!-- List: Pattern match -->
 } {
-    TODO
+    <div class="sidebyside p60_40">
+        @snippet() {
+            @sourceblock(reference = "list_stewards", fragment = false) {
+                |def printList(ls: List[String]) {
+                |  ls match {
+                |    case List() =>
+                |    case h :: tail =>
+                |      println(h)
+                |      printList(tail)
+                |  }
+                |}
+            }
+            @callblock() {
+                |printList(stewards)
+            }
+            @outblock() {
+                |Jen
+                |Jo
+                |Jim
+            }
+        }
+        @empty()
+    </div>
 }

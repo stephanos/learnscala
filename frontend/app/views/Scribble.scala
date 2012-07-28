@@ -1,5 +1,21 @@
 package views
 
+package object Scribble {
+
+    case class Passenger(firstName: String,
+                         lastName: String,
+                         middleName: Option[String] = None)
+
+    def createPassenger(p: Map[String, String]): Option[Passenger] =
+      for {firstName <- p.get("first")
+           lastName <- p.get("last")
+           middleName <- p.get("middle")}
+       yield new Passenger(firstName, lastName, Option(middleName))
+
+    def isPrime(n: Int) =
+        List.range(2, n) forall (x => n % x != 0)
+}
+
 /*
 class Blackbox {
     def append(msg: String) =

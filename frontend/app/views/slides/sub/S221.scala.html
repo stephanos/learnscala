@@ -1,29 +1,60 @@
 @slide(title = "Option") {
+
 } {
-    <div class="sidebyside p66_33">
+    <div class="sidebyside p70_30">
+        @sourcecode(fragment = false) {
+            |def findPassenger(row: Int, col: String): Passenger
+        }
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p70_30">
+        @sourcecode(id = "find_opt") {
+            |case class Passenger(name: String)
+            |
+            |def findPassenger(row: Int, col: String): Option[Passenger] =
+            |   if(row < 1) None else Some(Passenger("Bob"))
+        }
+        @empty()
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside p70_30">
         @snippet() {
-            @sourceblock(reference = "crew-traits", fragment = false) {
-                |def canFlyPlane(c: Crew) = {
-                |  case
-                |}
-            }
-            @callblock() {
-                |canFlyPlane(Stewardess())
+            @callblock(reference = "find_opt") {
+                |val p = findPassenger(2, "A")
             }
             @outblock() {
-                |res0: Boolean = false
+                |p: Option[Passenger] = Passenger("Bob")
             }
             @callblock() {
-                |canFlyPlane(CoPilot())
+                |p.get
             }
             @outblock() {
-                |res1: Boolean = true
+                |res0: Passenger = Passenger("Bob")
+            }
+        }
+        @empty()
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside p70_30">
+        @snippet() {
+            @callblock(reference = "find_opt") {
+                |val p = findPassenger(0, "B")
+            }
+            @outblock() {
+                |res1: Option[Passenger] = None
             }
             @callblock() {
-                |canFlyPlane(CoPilot())
+                |p.get
             }
-            @outblock() {
-                |res1: Boolean = true
+            @outblock(error = true) {
+                |java.util.NoSuchElementException: None.get
             }
         }
         @empty()
@@ -31,8 +62,53 @@
 }
 
 
-@slide() {
-    <!-- Option: Pattern Matching -->
+@slide(title = "Option") {
+    <!-- Option: Pattern Match -->
 } {
+    <div class="sidebyside p70_30">
+        @snippet() {
+            @sourceblock(id = "opt_match", reference = "find_opt", fragment = false) {
+                |def getName(p: Option[Passenger]) =
+                |  p match {
+                |    case Some(p) => p.name
+                |    case _ => "No Name"
+                |  }
+            }
+        }
+        @empty()
+    </div>
 
+    <hr/>
+
+    <div class="sidebyside p70_30">
+        @snippet() {
+            @callblock(reference = "opt_match") {
+                |getName(findPassenger(1, "A"))
+            }
+            @outblock() {
+                |res0: String = Bob
+            }
+            @callblock() {
+                |getName(findPassenger(0, "B"))
+            }
+            @outblock(error = true) {
+                |res1: String = No Name
+            }
+        }
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p70_30">
+        @snippet() {
+            @callblock(reference = "opt_match") {
+                |findPassenger(1, "A").map(_.name).getOrElse("No Name")
+            }
+            @outblock() {
+                |res0: String = Bob
+            }
+        }
+        @empty()
+    </div>
 }
