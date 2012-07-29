@@ -2,14 +2,14 @@
 } {
     <div class="sidebyside p60_40">
         @sourcecode(fragment = false) {
-            |// file scalawings/src/main/scala/Plane.scala
-            |package de.scalawings
+            |// file learnscala/src/main/scala/Plane.scala
+            |package de.learnscala
             |
             |class Plane
         }
         @fragment {
             Klasse <code>Plane</code> ist direkt im Quellcodeverzeichnis in <var>Plane.scala</var>
-            definiert - hat aber das Paket <code>com.scalawings</code>
+            definiert - hat aber das Paket <code>com.learnscala</code>
         }
     </div>
 
@@ -26,13 +26,13 @@
 } {
     <div class="sidebyside p60_40">
         @sourcecode(fragment = false) {
-            |package de.scalawings.crew
+            |package de.learnscala.crew
             |
-            |class private[scalawings] Plane
+            |class private[learnscala] Plane
         }
         @fragment {
-            <code>private[scalawings]</code> beschränkt den Zugriff auf
-            das Paket <code>scalawings</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
+            <code>private[learnscala]</code> beschränkt den Zugriff auf
+            das Paket <code>learnscala</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
         }
     </div>
 
@@ -40,7 +40,7 @@
 
     <div class="sidebyside p60_40">
         @sourcecode() {
-            |package de.scalawings.crew
+            |package de.learnscala.crew
             |
             |class private[crew] Pilot
         }

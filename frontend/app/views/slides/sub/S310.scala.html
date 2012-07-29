@@ -171,6 +171,26 @@
         }
         @empty()
     </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @sourceblock() {
+                |def isEven(i: Int): Boolean = i % 2 == 0
+            }
+            @outblock() {
+                |isEven: (i: Int)Boolean
+            }
+            @callblock() {
+                |List(1,2,3,4).filter(isEven _)
+            }
+            @outblock() {
+                |res0: List[Int] = List(2,4)
+            }
+        }
+        @empty()
+    </div>
 }
 
 
