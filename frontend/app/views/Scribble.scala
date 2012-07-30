@@ -2,6 +2,28 @@ package views
 
 package object Scribble {
 
+    /*
+    val planes = List("A", "B", "C")
+    val planeLocs = List(
+        "A" -> ("Paris", 6), "A" -> ("Berlin", 12), "A" -> ("London", 24),
+        "B" -> ("Paris", 6), "B" -> ("Berlin", 12), "B" -> ("London", 24),
+        "C" -> ("Paris", 6), "C" -> ("Berlin", 12), "C" -> ("London", 24)
+    )
+
+    for {
+      p <- planes
+      pl <- planeLocs
+    } yield p -> pl
+    */
+
+    /*
+    for {
+      plane <- planes
+      planeLoc <- planeLocs.
+    } yield timeAndStation._1 -> train
+    */
+
+    /*
     case class Passenger(firstName: String,
                          lastName: String,
                          middleName: Option[String] = None)
@@ -14,6 +36,7 @@ package object Scribble {
 
     def isPrime(n: Int) =
         List.range(2, n) forall (x => n % x != 0)
+    */
 }
 
 /*

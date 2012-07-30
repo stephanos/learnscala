@@ -1,112 +1,150 @@
-@slide(title = "By-Name") {
+@slide(title = "map") {
+    map
 } {
-    <div class="sidebyside p70_30">
-        @snippet() {
-            @sourcecode(fragment = false) {
-                |object Logger {
-                |  var enabled = true
-                |
-                |  def log(message: String): Unit =
-                |    if(enabled) println(message)
-                |}
-            }
-            @callblock() {
-                |Logger.log("Landing at %s".format(new java.util.Date))
-            }
-            @outblock() {
-                |Landing at Sun Jan 01 00:00:00 CEST 2012
-            }
+    <div class="sidebyside p66_33">
+        @sourcecode(fragment = false) {
+            |trait Traversable[A] {
+            |  def map[B](f: (A) => B): Traversable[B]
+            |}
         }
-        <div>
-            @codenote() {
-                Methode <code>log</code> gibt Nachricht aus wenn der <code>Logger</code> aktiv ist
-            }
-            <hr/>
-            @codenote() {
-                <var>Problem:</var> Nachricht wird aufwendig formatiert, egal ob Logger aktiv ist
-            }
-        </div>
+        @empty()
     </div>
 
+    <hr/><hr/>
+
+    @snippet(id = "map_passengers") {
+        @sourceblock() {
+            |val passengers = List("Bob Bobster", "Clancy Clanster", "Dan Danster")
+        }
+        @outblock() {
+            |passengers: List[String] = List(Bob Bobster, Clancy Clanster, Dan Danster)
+        }
+    }
     <hr/>
-
-    <div class="sidebyside p70_30">
-        @snippet() {
-            @sourceblock() {
-                |object Logger {
-                |  var enabled = true
-                |
-                |  def log(message: () => String): Unit =
-                |    if(enabled) println(message())
-                |}
-            }
-            @callblock() {
-                |Logger.log(() => "Landing at %s".format(new java.util.Date))
-            }
-            @outblock() {
-                |Landing at Sun Jan 01 00:00:00 CEST 2012
-            }
-            @callblock() {
-                |Logger.enabled = false
-                |Logger.log(() => "Landing at %s".format(new java.util.Date))
-            }
-            @outblock() {
-                |(nothing)
-            }
+    @snippet() {
+        @callblock(reference = "map_passengers") {
+            |passengers map { _.toUpperCase }
         }
-        <div>
-            @codenote() {
-                Methode <code>log</code> erwartet nun eine Funktion, dadurch kann die Formatierung der
-                Nachricht erst ausgeführt werden, wenn der <code>Logger</code> auch aktiv ist
-            }
-            <hr/>
-            @codenote() {
-                <var>Problem:</var> Syntax ist doch sehr gewöhnungsbedürftig
-            }
-        </div>
-    </div>
+        @outblock() {
+            |res0: List[String] = List(BOB BOBSTER, CLANCY CLANSTER, DAN DANSTER)
+        }
+    }
+    <hr/>
+    @snippet() {
+        @callblock(reference = "map_passengers") {
+            |passengers map { _.size }
+        }
+        @outblock() {
+            |res1: List[Int] = List(11, 15, 11)
+        }
+    }
 }
 
 
-@slide() {
+@slide(title = "flatMap") {
+    flatMap
 } {
-    <div class="sidebyside p70_30">
-        @snippet() {
-            @sourcecode() {
-                |object Logger {
-                |  var enabled = true
-                |
-                |  def log(message: => String): Unit =
-                |    if(enabled) println(message)
-                |}
-            }
-            @callblock() {
-                |Logger.log("Landing at %s".format(new java.util.Date))
-            }
-            @outblock() {
-                |Landing at Sun Jan 01 00:00:00 CEST 2012
-            }
-            @callblock() {
-                |Logger.enabled = false
-                |Logger.log("Landing at %s".format(new java.util.Date))
-            }
-            @outblock() {
-                |(nothing)
-            }
+    <div class="sidebyside p66_33">
+        @sourcecode(fragment = false) {
+            |trait Traversable[A] {
+            |  def flatMap[B](f: A => Traversable[B]): Traversable[B]
+            |}
         }
-        <div>
-            @codenote() {
-                <code>=></code> wandelt einen Parameter von call-by-value in <em>call-by-name</em> um
-            }
-            <hr/>
-            @codenote() {
-                <em>call-by-name</em> bedeutet, der Ausdruck wird erst beim Zugriff berechnet;
-                die Auswertung ist also verzögert
-            }
-            <hr/>
-            @codenote() {
-                <var>Achtung:</var> Ausdruck wird bei <strong>jedem</strong> Zugriff neuberechnet
-            }
-        </div>
+        @empty()
     </div>
+
+    <hr/><hr/>
+}
+
+
+@slide(title = "filter") {
+    filter
+} {
+    <div class="sidebyside p66_33">
+        @sourcecode(fragment = false) {
+            |trait Traversable[A] {
+            |  def filter(f: A => Boolean): Traversable[A]
+            |}
+        }
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    @snippet() {
+        @sourceblock(id = "filter_passengers") {
+            |val passengers = List("Bob Bobster", "Clancy Clanster", "Dan Bobster")
+        }
+        @outblock() {
+            |passengers: List[String] = List(Bob Bobster, Clancy Clanster, Dan Bobster)
+        }
+    }
+    <hr/>
+    @snippet() {
+        @callblock(reference = "filter_passengers") {
+            |passengers filter { _ endsWith "Bobster" }
+        }
+        @outblock() {
+            |res0: List[String] = List(Bob Bobster, Dan Bobster)
+        }
+    }
+    <hr/>
+    @snippet() {
+        @callblock(reference = "filter_passengers") {
+            |passengers filter { s => (s endsWith "Bobster") && (s startsWith "B") }
+        }
+        @outblock() {
+            |res1: List[String] = List(Bob Bobster)
+        }
+    }
+}
+
+
+@slide(title = "foldLeft") {
+    foldLeft
+} {
+    <div class="sidebyside p66_33">
+        @sourcecode(fragment = false) {
+            |trait Traversable[A] {
+            |  def foldLeft[B](z: B)(f: (B, A) => B): B
+            |}
+        }
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    @snippet() {
+        @sourceblock(id = "foldLeft_nums") {
+            |val nums = List(1, 2, 3, 4, 5)
+        }
+        @outblock() {
+            |nums: List[Int] = List(1,2,3,4,5)
+        }
+    }
+    <hr/>
+    @snippet() {
+        @callblock(reference = "foldLeft_nums") {
+            |nums.foldLeft(0) { (total, n) =>
+            |   total + n
+            |}
+        }
+        @outblock() {
+            |res0: Int = 15
+        }
+    }
+    <hr/>
+    @snippet() {
+        @callblock(reference = "foldLeft_nums") {
+            |nums.foldLeft(0)(_ + _)
+        }
+        @outblock() {
+            |res1: Int = 15
+        }
+    }
+}
+
+
+@uebung() {
+    TODO
 }

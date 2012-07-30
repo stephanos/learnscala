@@ -1,0 +1,112 @@
+@slide(title = "By-Name") {
+} {
+    <div class="sidebyside p70_30">
+        @snippet() {
+            @sourcecode(fragment = false) {
+                |object Logger {
+                |  var enabled = true
+                |
+                |  def log(message: String): Unit =
+                |    if(enabled) println(message)
+                |}
+            }
+            @callblock() {
+                |Logger.log("Landing at %s".format(new java.util.Date))
+            }
+            @outblock() {
+                |Landing at Sun Jan 01 00:00:00 CEST 2012
+            }
+        }
+        <div>
+            @codenote() {
+                Methode <code>log</code> gibt Nachricht aus wenn der <code>Logger</code> aktiv ist
+            }
+            <hr/>
+            @codenote() {
+                <var>Problem:</var> Nachricht wird aufwendig formatiert, egal ob Logger aktiv ist
+            }
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside p70_30">
+        @snippet() {
+            @sourceblock() {
+                |object Logger {
+                |  var enabled = true
+                |
+                |  def log(message: () => String): Unit =
+                |    if(enabled) println(message())
+                |}
+            }
+            @callblock() {
+                |Logger.log(() => "Landing at %s".format(new java.util.Date))
+            }
+            @outblock() {
+                |Landing at Sun Jan 01 00:00:00 CEST 2012
+            }
+            @callblock() {
+                |Logger.enabled = false
+                |Logger.log(() => "Landing at %s".format(new java.util.Date))
+            }
+            @outblock() {
+                |(nothing)
+            }
+        }
+        <div>
+            @codenote() {
+                Methode <code>log</code> erwartet nun eine Funktion, dadurch kann die Formatierung der
+                Nachricht erst ausgeführt werden, wenn der <code>Logger</code> auch aktiv ist
+            }
+            <hr/>
+            @codenote() {
+                <var>Problem:</var> Syntax ist doch sehr gewöhnungsbedürftig
+            }
+        </div>
+    </div>
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside p70_30">
+        @snippet() {
+            @sourcecode() {
+                |object Logger {
+                |  var enabled = true
+                |
+                |  def log(message: => String): Unit =
+                |    if(enabled) println(message)
+                |}
+            }
+            @callblock() {
+                |Logger.log("Landing at %s".format(new java.util.Date))
+            }
+            @outblock() {
+                |Landing at Sun Jan 01 00:00:00 CEST 2012
+            }
+            @callblock() {
+                |Logger.enabled = false
+                |Logger.log("Landing at %s".format(new java.util.Date))
+            }
+            @outblock() {
+                |(nothing)
+            }
+        }
+        <div>
+            @codenote() {
+                <code>=></code> wandelt einen Parameter von call-by-value in <em>call-by-name</em> um
+            }
+            <hr/>
+            @codenote() {
+                <em>call-by-name</em> bedeutet, der Ausdruck wird erst beim Zugriff berechnet;
+                die Auswertung ist also verzögert
+            }
+            <hr/>
+            @codenote() {
+                <var>Achtung:</var> Ausdruck wird bei <strong>jedem</strong> Zugriff neuberechnet
+            }
+        </div>
+    </div>
+}

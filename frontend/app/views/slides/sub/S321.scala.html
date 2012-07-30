@@ -1,4 +1,64 @@
+@slide(title = "Example") {
+    <!-- Example -->
+} {
+    <div class="sidebyside p80_20">
+        @snippet() {
+            @sourceblock(fragment = false) {
+                |object FileMatcher @Html("{")
+                |  private def filesHere = (new java.io.File(".")).listFiles
+                |
+                |  def filesEnding(query: String) =
+                |    for (file <- filesHere; if file.getName.endsWith(query))
+                |      yield file
+                |
+            }
+            @sourceblock() {
+                |  def filesContaining(query: String) =
+                |    for (file <- filesHere; if file.getName.contains(query))
+                |      yield file
+                |
+            }
+            @sourceblock() {
+                |  def filesRegex(query: String) =
+                |    for (file <- filesHere; if file.getName.matches(query))
+                |      yield file
+                |@Html("}")
+            }
+        }
+        @empty()
+    </div>
+}
+
+
 @slide() {
 } {
-
+    <div class="sidebyside p80_20">
+        @snippet() {
+            @sourceblock(fragment = false) {
+                |object FileMatcher @Html("{")
+                |  private def filesHere = (new java.io.File(".")).listFiles
+                |
+                |  private def filesMatching(matcher: String => Boolean) =
+                |    for (file <- filesHere; if matcher(file.getName))
+                |      yield file
+                |
+            }
+            @sourceblock() {
+                |  def filesEnding(query: String) =
+                |    filesMatching(_.endsWith(query))
+                |
+            }
+            @sourceblock() {
+                |  def filesContaining(query: String) =
+                |    filesMatching(_.contains(query))
+                |
+            }
+            @sourceblock() {
+                |  def filesRegex(query: String) =
+                |    filesMatching(_.matches(query))
+                |@Html("}")
+            }
+        }
+        @empty()
+    </div>
 }
