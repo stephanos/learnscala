@@ -14,10 +14,10 @@
 
     @snippet(id = "map_passengers") {
         @sourceblock() {
-            |val passengers = List("Bob Bobster", "Clancy Clanster", "Dan Danster")
+            |val passengers = List("Bob Bobster", "Cal Calster", "Dan Danster")
         }
         @outblock() {
-            |passengers: List[String] = List(Bob Bobster, Clancy Clanster, Dan Danster)
+            |passengers: List[String] = List(Bob Bobster, Cal Calster, Dan Danster)
         }
     }
     <hr/>
@@ -26,7 +26,7 @@
             |passengers map { _.toUpperCase }
         }
         @outblock() {
-            |res0: List[String] = List(BOB BOBSTER, CLANCY CLANSTER, DAN DANSTER)
+            |res0: List[String] = List(BOB BOBSTER, CAL CALSTER, DAN DANSTER)
         }
     }
     <hr/>
@@ -55,8 +55,51 @@
 
     <hr/><hr/>
 
+    @snippet(id = "flatmap_passengers") {
+        @sourceblock() {
+            |val passengers = List(List("Bob Bobster", "Cal Calster"),
+            |                      List("Dan Danster", "Ed Edster"))
+        }
+        @outblock() {
+            |passengers: List[List[String]] = List(List(Bob Bobster, Cal Calster),
+            |                                      List(Dan Danster, Ed Edster))
+        }
+    }
+    <hr/>
     @snippet() {
-        |
+        @callblock(reference = "flatmap_passengers") {
+            |passengers map { _ map { _.toUpperCase } }
+        }
+        @outblock() {
+            |res0: List[String] = List(List(BOB BOBSTER, CAL CALSTER), List(DAN DANSTER, ED EDSTER))
+        }
+    }
+    <hr/>
+    @snippet() {
+        @callblock(reference = "flatmap_passengers") {
+            |passengers flatMap { _ map { _.size } }
+        }
+        @outblock() {
+            |res1: List[Int] = List(11, 15, 11, 9)
+        }
+    }
+    <hr/>
+    @snippet() {
+        @callblock(reference = "flatmap_passengers") {
+            |passengers flatMap { _ map { _.toUpperCase } }
+        }
+        @outblock() {
+            |res0: List[String] = List(BOB BOBSTER, CAL CALSTER, DAN DANSTER, ED EDSTER)
+        }
+    }
+    <hr/>
+    @snippet() {
+        @callblock(reference = "flatmap_passengers") {
+            |passengers flatMap { _ map { _.size } }
+        }
+        @outblock() {
+            |res1: List[Int] = List(11, 15, 11, 9)
+        }
     }
 }
 
@@ -77,10 +120,10 @@
 
     @snippet() {
         @sourceblock(id = "filter_passengers") {
-            |val passengers = List("Bob Bobster", "Clancy Clanster", "Dan Bobster")
+            |val passengers = List("Bob Bobster", "Cal Calster", "Dan Bobster")
         }
         @outblock() {
-            |passengers: List[String] = List(Bob Bobster, Clancy Clanster, Dan Bobster)
+            |passengers: List[String] = List(Bob Bobster, Cal Calster, Dan Bobster)
         }
     }
     <hr/>
