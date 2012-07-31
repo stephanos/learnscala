@@ -278,7 +278,7 @@
 } {
     <div class="sidebyside">
         <div>
-            @snippet() {
+            @snippet(fragment = false) {
                 @callblock(fragment = false) {
                     |Set(1, 2, 3)
                 }
@@ -342,7 +342,7 @@
     <div class="sidebyside">
         <div>
             @snippet() {
-                @callblock() {
+                @callblock(fragment = false) {
                     |Set(1, 2, 3) empty
                 }
                 @outblock() {

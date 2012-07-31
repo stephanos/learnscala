@@ -207,12 +207,12 @@
         @splitstart() {
             |class Plane @Html("{")
         }{
-            <em>Zugriff möglich innerhalb:</em>
+            <em>Zugriff möglich von:</em>
         }
         @codesplit() {
             |                  val wings   = 2
         } {
-            @li{allen Klassen}
+            @li{überall}
         }
         @codesplit() {
             |   protected      val toilets = 6
@@ -227,7 +227,7 @@
         @codesplit() {
             |   private[this]  val selfDestructCode = 666
         } {
-            @li{Instanz von <code>Plane</code>}
+            @li{<code>Plane</code> Instanz}
         }
         @splitend() {
             |@Html("}")
@@ -248,7 +248,7 @@
 } {
     <div class="sidebyside">
         @snippet() {
-            @sourceblock(id = "plane8") {
+            @sourceblock(id = "plane8", fragment = false) {
                 |class Plane {
                 |
                 |   private var isLandingGearUp = false
