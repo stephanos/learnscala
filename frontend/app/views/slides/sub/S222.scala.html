@@ -46,6 +46,26 @@
         }
         @empty()
     </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p60_40">
+        @snippet() {
+            @callblock() {
+                |"Jen" :: "Jo" :: "Jim" :: Nil
+            }
+            @outblock() {
+                |res0: List[String] = List(Jen, Jo, Jim)
+            }
+            @callblock() {
+                |List("Jen", "Jo") ::: List("Jim")
+            }
+            @outblock() {
+                |res1: List[String] = List(Jen, Jo, Jim)
+            }
+        }
+        @empty()
+    </div>
 }
 
 
