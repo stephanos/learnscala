@@ -192,6 +192,47 @@
 }
 
 
+@slide() {
+} {
+    @snippet() {
+        @sourceblock(id = "numbers5", fragment = false) {
+            |val numbers = List(1, 2, 3, 4, 5)
+        }
+    }
+
+    <hr/><hr/>
+
+    @snippet() {
+        @callblock(reference = "numbers5") {
+            |numbers.foldLeft(0)((r, n) => r + n)
+        }
+        @outblock() {
+            |res0: Int = 15
+        }
+    }
+
+    <hr/><hr/>
+
+    @snippet() {
+        @callblock(reference = "numbers5") {
+            |numbers.foldLeft(0) {
+            |   (r, n) =>
+            |      println("r: " + r + " n: " + n)
+            |      r + n
+            |}
+        }
+        @outblock() {
+            |r: 0 n: 1
+            |r: 1 n: 2
+            |r: 3 n: 3
+            |r: 6 n: 4
+            |r: 10 n: 5
+            |res1: Int = 15
+        }
+    }
+}
+
+
 @uebung() {
 
     Die Übung ist unter
