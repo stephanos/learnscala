@@ -101,10 +101,7 @@ logSlide = (id) ->
     fs.root.getFile(fname, {create: true},
       (fileEntry) ->
         fileEntry.createWriter((fileWriter) ->
-          window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder
-          bb = new window.BlobBuilder()
-          bb.append(id + "," + now.getTime() + "," + now)
-          fileWriter.write(bb.getBlob('text/plain'))
-          console.log("appended '" + id + "' to log")
+          fileWriter.seek(fileWriter.length)
+          fileWriter.write(new Blob([id + "," + now.getTime() + "\n"], { "type" : "text\/plain" }))
         , errorFS("write"));
     , errorFS("get"))
