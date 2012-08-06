@@ -1,13 +1,21 @@
 initSlides = ->
-  subtleToolbar();
+  subtleToolbar()
+  embedDocs()
+  embedEditor()
 
+  initSnippets()
+  initBreakClock()
+
+
+#######################################################################################################################
+initNavi = ->
   # init navi
   naviElem = $("#naviSlides")
   $(naviElem).addClass("dropdown")
   naviElemLink = $(naviElem).find("a")
   naviElemLink.replaceWith(
     '<a class="dropdown-toggle" data-toggle="dropdown" href="#naviSlides">
-        <span>Slides</span>
+        <span>Go To</span>
         <b class="caret"></b>
      </a>
      <ul class="dropdown-menu">'
@@ -31,7 +39,25 @@ initSlides = ->
           .append('<li><a href="#/' + idx + '">' + title + '</a></li>')
   )
 
-  # init docs
+
+#######################################################################################################################
+embedEditor = ->
+  $("#navi a.openEditor").bind("click",
+    (evt) ->
+      initModalEditor()
+      evt.preventDefault()
+  )
+
+
+#######################################################################################################################
+initSnippets = ->
+  $('.slides div.snippet').each(
+    (idx, elem) -> initSnippet(elem)
+  )
+
+
+#######################################################################################################################
+embedDocs = ->
   $('<li id="naviDocs">
         <a href="#" class="openDocs">
             <span>Docs</span>
@@ -52,56 +78,102 @@ initSlides = ->
     false
   )
 
-  # init snippets
-  $('.slides div.snippet').each(
-    (idx, elem) -> initSnippet(elem)
+
+#######################################################################################################################
+initBreakClock = ->
+  target = $('#breakclock')
+
+  $('<li class="dropdown" id="naviTimer">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#naviTimer">
+        <span>Timer</span>
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <a href="#" data-min="90">90m</a>
+        </li>
+        <li>
+          <a href="#" data-min="60">60m</a>
+        </li>
+        <li>
+          <a href="#" data-min="45">45m</a>
+        </li>
+        <li>
+          <a href="#" data-min="30">30m</a>
+        </li>
+        <li>
+          <a href="#" data-min="15">15m</a>
+        </li>
+        <li>
+          <a href="#" data-addmin="5">+5m</a>
+        </li>
+        <li>
+          <a href="#" data-addmin="-5">-5m</a>
+        </li>
+        <li>
+          <a href="#" data-min="-1">reset</a>
+        </li>
+      </ul>
+      <span class="divider">|</span>
+    </li>').insertAfter($("#naviEditor"))
+
+  $("#naviTimer ul a").bind("click", (evt) ->
+    min = $(this).data("min")
+    if(min)
+      setTime("breaktime", min)
+    else
+      addmin = $(this).data("addmin")
+      if(addmin)
+        addTime("breaktime", addmin)
+    updateBreakClock()
+    false
   )
 
-  # hook-up modal editor
-  $("#navi a.openEditor").bind("click",
-    (evt) ->
-      initModalEditor()
-      evt.preventDefault()
+  # init
+  target.easyPieChart(
+    barColor: (p) -> if(p >= 95) then "#fc6b35" else "#ddd"
+    trackColor: "#eee"
+    scaleColor: false
+    animate: false
+    lineCap: 'butt'
+    lineWidth: 15
+    size: 30
   )
 
-logSlide = (id) ->
-  now = new Date()
+  # update manually
+  updateBreakClock = ->
+    updateClock(target, "breaktime")
 
-  initFS = (fs) ->
-    window.fs = fs
+  # update every 10s
+  updateClockSchedule = (once) ->
+    setTimeout(() ->
+      updateBreakClock()
+      updateClockSchedule()
+    , 10000)
+  updateClockSchedule()
+  updateBreakClock()
 
-  errorFS = (where) ->
-    (err) ->
-      msg = 'An error occured: '
-      switch (err.code)
-        when FileError.NOT_FOUND_ERR
-          msg += 'File or directory not found'
-        when FileError.NOT_READABLE_ERR
-          msg += 'File or directory not readable'
-        when FileError.PATH_EXISTS_ERR
-          msg += 'File or directory already exists'
-        when FileError.TYPE_MISMATCH_ERR
-          msg += 'Invalid filetype';
-        else
-          msg += 'Unknown Error';
-      msg += " (" + where + ")"
-      console.log(msg)
 
-  if(!window.fs)
-    try
-      window.webkitStorageInfo.requestQuota(PERSISTENT, 5*1024*1024, (grantedBytes) ->
-        window.fs = window.webkitRequestFileSystem(window.PERSISTENT, grantedBytes, initFS, errorFS("init"))
-      , errorFS("quota"))
-    catch error
-      console.log("log file not supported")
+updateClock = (target, key) ->
+  time = getTime(key)
+  ms_end = time[1]
+  ms_start = time[0]
 
-  if(window.fs)
-    fname = (now.getMonth()+1) + "m." +  now.getDate() + 'd.slides.txt'
-    console.log("writing to file " + fname)
-    fs.root.getFile(fname, {create: true},
-      (fileEntry) ->
-        fileEntry.createWriter((fileWriter) ->
-          fileWriter.seek(fileWriter.length)
-          fileWriter.write(new Blob([id + "," + now.getTime() + "\n"], { "type" : "text\/plain" }))
-        , errorFS("write"));
-    , errorFS("get"))
+  # calculate
+  if(ms_start)
+    now = moment()
+    end = moment(ms_end)
+    start = moment(ms_start)
+
+    total = end.diff(start, 'minutes')
+    togo = Math.max(0, end.diff(now, 'minutes'))
+    elapsed = now.diff(start, 'minutes')
+    console.log(elapsed + "m of " + total + "m elapsed, " + togo + "m to go")
+    percent = 100 * elapsed / total
+
+  # update pie and label
+  console.log(percent)
+  $(target).data("easyPieChart").update(percent || 100)
+  $(target).find("div").text(togo || "")
+
+

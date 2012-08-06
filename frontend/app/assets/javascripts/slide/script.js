@@ -1,2 +1,4 @@
 goog.require("bootstrap");
-goog.require("lib.reveal");
+goog.require("reveal");
+goog.require("piechart");
+goog.require("moment");

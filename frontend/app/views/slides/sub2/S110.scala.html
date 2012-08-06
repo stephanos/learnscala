@@ -1,0 +1,286 @@
+@slide(title = "Objekte") {
+} {
+    <div class="sidebyside p60_40">
+        @sourcecode(fragment = false) {
+            |class Plane(val model: String, val seats: Int) {
+            |
+            |   static var countOfPlanes = 0
+            |}
+        }
+        @empty()
+    </div>
+
+    <div class="fragment sidebyside p60_40">
+        @outcode(error = true, fragment = false) {
+            |error: ';' expected but 'val' found.
+            |       static var countOfPlanes = 0
+        }
+        <div>
+            <code>static</code> gibt es in Scala nicht ...
+        </div>
+    </div>
+}
+
+
+<object>
+    @sourcecode(id = "plane") {
+        |class Plane(val model: String,
+        |            val seats: Int)
+    }
+</object>
+
+
+@slide() {
+    <!-- Singleton -->
+} {
+    @codesplits((60,40), id="planefactory", fragment = false){
+        @splitstart(reference = "plane") {
+            |object PlaneFactory @Html("{")
+        }{
+            ... aber Objekte.
+        }
+        @codesplit() {
+            |   var countOfPlanes = 0
+        } {
+            @li{<em>globaler Zustand</em>}
+        }
+        @codesplit() {
+            |   def create(model: String, seats: Int) = {
+            |       countOfPlanes += 1
+            |       new Plane(model, seats)
+            |   }
+        } {
+            @li{<em>Factory</em>-Methoden}
+        }
+        @splitend() {
+            |@Html("}")
+        }(null)
+    }
+
+    <hr/>
+
+    <div class="sidebyside p60_40">
+        @callcode(reference = "planefactory") {
+            |val p = PlaneFactory.create("Boeing 737", 189)
+        }
+        @empty()
+    </div>
+
+    @infobox() {
+        <code>object</code> definiert ein Singleton-Objekt:
+        Es existiert <strong>genau eine Instanz</strong>,
+        die beim ersten Zugriff instanziiert wird - Parameter gibt es nicht.
+    }
+}
+
+
+@slide() {
+    <!-- Companion Object -->
+} {
+    <div class="sidebyside p70_30">
+        @callcode(fragment = false) {
+            |val bigNumber = BigInt("1234567890")
+        }
+        @codenote() {
+            erstellt ein <code>BigInt</code> mit dem Wert 1234567890
+        }
+    </div>
+
+    <hr/><hr/>
+
+    <div class="fragment sidebyside p70_30">
+        @callcode(fragment = false) {
+            |val countdown = Array(10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
+        }
+        @codenote() {
+            erstellt ein <code>Array</code> aus den Zahlen von 10 bis 0
+        }
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        Für viele Datentypen und -strukturen gibt es gleichnamige Objekte
+        <comment>("Companion Objects")</comment> mit speziellen Factory-Methoden.
+    }
+}
+
+
+@slide() {
+    <!-- Sichtbarkeit -->
+} {
+    <div class="sidebyside">
+        @sourcecode(id = "plane2", clazz = "first", fragment = false) {
+            |class Plane private (val model: String,
+            |                     val seats: Int) {
+            |
+            |  def totalCount = Plane.countOfPlanes
+            |}
+        }
+        @codenote() {
+            Klasse <code>Plane</code> hat einen privaten Konstruktor
+        }
+    </div>
+
+    <div class="sidebyside">
+        <div>
+            @sourcecode(id = "planeobj", clazz = "last", reference = "plane2") {
+                |
+                |object Plane {
+                |
+                |  private var countOfPlanes = 0
+                |
+                |  def create(mdl: String, s: Int) = {
+                |    countOfPlanes += 1
+                |    new Plane(mdl, s)
+                |  }
+                |}
+            }
+        </div>
+        @fragment {
+            @codenote() {
+                Companion Object <code>Plane</code> kann aber eine neue Instanz erstellen:
+            }
+            <hr/>
+            @snippet() {
+                @callblock(reference = "planeobj", fragment = false) {
+                    val p = Plane.create("Boeing 737",189)
+                }
+                @outblock() {
+                    |p: Plane = Plane@@536502d
+                }
+                @callblock() {
+                    println(p.totalCount)
+                }
+                @outblock() {
+                    |1
+                }
+            }
+        }
+    </div>
+
+    @infobox() {
+        Das Companion Object einer Klasse muss den selben Namen tragen und in der selben Datei
+        definiert werden, dann hat es privaten Zugriff - und umgekehrt.
+    }
+}
+
+
+@slide() {
+    <!-- apply() -->
+} {
+    <div class="sidebyside p60_40">
+        @sourcecode(id = "apply", reference = "plane2", fragment = false) {
+            |object Plane {
+            |
+            |  private var countOfPlanes = 0
+            |
+            |  def apply(model: String, seats: Int) = {
+            |    countOfPlanes += 1
+            |    new Plane(model, seats)
+            |  }
+            |}
+        }
+        @codenote() {
+            Objekt enthält <code>apply</code>-Methode
+            zum Erstellen einer neuen Instanz von <code>Plane</code>
+        }
+    </div>
+
+    <hr/>
+
+    <div class="fragment sidebyside p60_40">
+        @snippet() {
+            @callblock(reference = "apply", fragment = false) {
+                val p = Plane("Boeing 737",189)
+            }
+            @outblock() {
+                |p: Plane = Plane@@536502d
+            }
+            @callblock() {
+                val p = Plane()
+            }
+            @outblock() {
+                error: not enough arguments for method apply
+            }
+        }
+        @codenote() {
+            <code>apply</code> wird versucht aufzurufen,
+            wenn keine explizite Methode angegeben wird
+        }
+    </div>
+
+    @infobox() {
+        Die Methode <code>apply</code> kann implizit durch
+        Angabe einer Parameterliste hinter einem Objekt <comment class="nobreak">(Object(arg1, ..., argN))</comment>
+        aufgerufen werden - das verkürzt den Code!
+    }
+}
+
+
+@uebung() {
+    Die Übung ist unter
+        <code>/src/main/scala/de/learnscala/uebungen/<em>U110.scala</em></code>
+    zu finden.
+
+    <hr/>
+
+    Die dazugehörige Testspezifikation unter
+        <code>/src/test/scala/de/learnscala/specs/<var>S110.scala</var></code>.
+}
+
+
+@slide() {
+    <!-- Predef -->
+} {
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @callblock(fragment = false) {
+                |Predef.println("Ready for take-off")
+            }
+            @outblock() {
+                |Ready for take-off
+            }
+            @callblock() {
+                |println("Ready for take-off")
+            }
+            @outblock() {
+                |Ready for take-off
+            }
+        }
+        @codenote() {
+            Methode <code>println</code> - Teil des Objekts <code>Predef</code>
+            - kann ohne Objektreferenz verwendet werden
+        }
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @callblock() {
+                |val pilotIsAlive = false
+            }
+            @outblock() {
+                |pilotIsAlive: Boolean = false
+            }
+            @callblock() {
+                |require(pilotIsAlive == true, "Co-Pilot needed!")
+            }
+            @outblock() {
+                |java.lang.IllegalArgumentException:
+                | requirement failed: Co-Pilot needed!
+                |       at scala.Predef$.require(Predef.scala:157)
+            }
+        }
+        @codenote() {
+            Methode <code>require</code> wirft <code>IllegalArgumentException</code>
+            falls die Bedingung nicht wahr ist
+        }
+    </div>
+
+    @infobox() {
+        Das <code>Predef</code>-Objekt wird automatisch für jede Klasse importiert,
+        es enthält hilfreiche Befehle, Typen und Werte - kann aber nicht erweitert werden.
+    }
+}

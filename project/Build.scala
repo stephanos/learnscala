@@ -11,7 +11,7 @@ object ProjectBuild extends MyBuild {
 
     lazy val root =
         Project("learnscala", file("."))
-            .aggregate(frontend, exercises)
+            .aggregate(frontend)
 
 
     // ==== PROJECTS
@@ -23,12 +23,15 @@ object ProjectBuild extends MyBuild {
             .settings(templatesImport += "views.html.comp._")
             .dependsOn(mod_web_play, mod_data_mongo, mod_test_unit % "test->test")
 
-    lazy val exercises = // cannot use RootProject ("AttributeKey ID collisions detected for: 'pgp-signer'")
+    /*
+    // use RootProject ("AttributeKey ID collisions detected for: 'pgp-signer'")
+    lazy val exercises =
         MyProject("exercises", file("exercises"), isCloud)
             .settings(moduleSettings: _*)
             .settings(libraryDependencies ++= Seq(http, jodaTime, jodaConvert))
             .settings(libraryDependencies ++= Seq(Test.specs2, Test.junit, Test.mockito, Test.scheck))
             .settings(libraryDependencies ++= Seq(squeryl, Test.h2).map(_.copy(configurations = Some("compile"))))
+    */
 
 
     // ==== SETTINGS

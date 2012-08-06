@@ -1,0 +1,239 @@
+@slidehead(chapter = "Intro") {
+    Willkommen
+} {
+    teilnehmer.foreach(t => println("Hallo " + t))
+}
+
+
+<!--<section>
+    <h3>Zu Tutego</h3>
+    <ul>
+        <li>Inhouse-Schulungen mit individualisierten Inhalten und individueller Terminauswahl</li>
+        <li>Über 230 Seminare</li>
+        <li>Kernkompetenz Java (70 Themen)
+            <ul>
+                <li>Europaweit führende Position im Bereich Java-Schulungen</li>
+            </ul>
+        </li>
+        <li>Hochqualifizierte und zertifizierte Referenten</li>
+        <li>Firmengründung 1997 von Christian Ullenboom, den Sun als Java Champion auszeichnete</li>
+    </ul>
+</section>-->
+
+
+@slide() {
+    <em>Vor</em>stellung
+} {
+    <div class="indent">
+        <ul>
+            <li>Name ?</li>
+            <li>Erster Java-Kontakt ?</li>
+            <li>Woran arbeitest du so ?</li>
+            <li>Vorkenntnisse in Scala ?</li>
+            <li>Erwartungen und Wünsche ?</li>
+        </ul>
+    </div>
+}
+
+
+@slide() {
+    Zum <em>Ablauf</em>
+} {
+    <div style="width: 60%;" class="dcenter">
+        <div class="sidebyside p66_33 dcenter">
+            <div>
+                <h4>Donnerstag</h4>
+                <hr/>
+                <table>
+                    <tr>
+                        <td>
+                            <em>10:00 - 11:30</em>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="smaller">
+                            15m Pause
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <em>11:45 - 13:15</em>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="smaller">
+                            45m Mittagspause
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <em>14:00 - 15:30</em>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="smaller">
+                            15m Pause
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <em>15:45 - 17:15</em>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="smaller">
+                            15m Pause
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <em>17:30 - 18:??</em>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+
+            <div>
+                <h4>Freitag</h4>
+                <hr/>
+                <table>
+                    <tr>
+                        <td>
+                            <em>10:00 - 11:30</em>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="smaller">
+                            15m Pause
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <em>11:45 - 13:15</em>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="smaller">
+                            45m Mittagspause
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <em>14:00 - 15:30</em>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="smaller">
+                            15m Pause
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <em>15:45 - 17:??</em>
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+}
+
+
+@slide() {
+    Zum <em>Inhalt</em>
+} {
+    <div class="indent">
+        <ul>
+            <li class="fragment">
+                <h4>Basics</h4>
+                @li(Html("Syntax, Bedingungen, Parameter, Typen, Variablen, Methoden, Pakete, Import"))
+            </li>
+            <li class="fragment">
+                <h4>Objektorientierung</h4>
+                @li(Html("Klassen, Objekte, Vererbung, Konstruktor, Traits, override & abstract, Linearisierung"))
+            </li>
+            <li class="fragment">
+                <h4>Typensystem</h4>
+                @li(Html("Typenhierarchie, Datentypen, Array, Tuple, Option, Collections, Typ-Parameter, Bounds"))
+            </li>
+            <li class="fragment">
+                <h4>Funktionale Programmierung</h4>
+                @li(Html("Higher-Order Functions, map, flatMap, For-Expressions, partial & anonymous Functions"))
+            </li>
+            <li class="fragment">
+                <h4>Fortgeschrittene Themen</h4>
+                @li(Html("specs2, Implicits, XML, Recursion, Java-Integration, DSLs, Extractors, Cake Pattern, Actors"))
+            </li>
+            <li class="fragment">
+                <h4>Weiterführende Themen</h4>
+                @li(Html("Test- und Web-Frameworks, Bibliotheken"))
+            </li>
+        </ul>
+    </div>
+}
+
+
+@*@slide() {
+    Zum <em>Szenario</em>
+} {
+
+    <div>
+        @fragment {
+            Du bist ein irischer Milliardär
+            <span class="fragment">und nach dem Verkauf deiner letzten Firma <em>devbliss</em> erstmal im Urlaub.</span>
+        }
+
+        <hr/><hr/>
+
+        <div class="sidebyside p40_60">
+            @fragment {
+                <img src="/assets/img/hammock2.jpg" height="250">
+            }
+
+            <div>
+                <div>
+                    <span class="fragment">
+                        Am Strand auf der Insel <em>Java</em>, in einer Hängematte liegend,
+                        genießt du die warme Brise und lauschst den Wellen.
+                    </span>
+                </div>
+
+                <hr/>
+
+                <div>
+                    <span class="fragment">
+                    Das Leben kann so schön sein.<br/>
+                    </span>
+                    <span class="fragment">
+                        Es gibt nur ein Problem:<br/>
+                    </span>
+                    <span class="fragment">
+                        Du bist zu Tode <var>gelangweilt!</var>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+
+        @fragment {
+            Der Vollblutunternehmer in dir hat eine neue Geschäftsidee
+            <span class="fragment">- eine eigene Fluglinie!</span>
+        }
+
+        <hr/>
+
+        @fragment {
+            Doch dafür gilt es <em>noch viel zu lernen ...</em>
+        }
+    </div>
+}*@

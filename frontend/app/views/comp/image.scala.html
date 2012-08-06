@@ -1,0 +1,6 @@
+@(url: String, id: String = null, height: Int = 0, width: Int = 0)
+
+<img src="@url"
+    @{if(id == null) "" else "id=id"}
+    @{if(width == 0) "" else "width=" + width}
+    @{if(height == 0) "" else "height=" + height}>

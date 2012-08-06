@@ -13,11 +13,12 @@
         @content
 
         <!-- progress bar -->
-        <div class="progress" style="display: block; ">
+        <!--<div class="progress" style="display: none; ">
             <span style="width: 0;"></span>
-        </div>
+        </div>-->
     </div>
 
+    <!-- SLIDE -->
     <script src="@MyAssets.js_slide._2" type="text/javascript"></script>
     <script type="text/javascript">
         // Parse the query string into a key/value object
@@ -30,8 +31,8 @@
             // Display controls in the bottom right corner
             controls: false,
 
-            // Display a presentation progress bar
-            progress: true,
+            // Display a presentation progress bar - NO
+            progress: false,
 
             // If true; each slide will be pushed to the browser history
             history: true,
@@ -61,13 +62,15 @@
         });
     </script>
 
-    <div id="ideModal" class="modal hide">
+    <!-- IDE modal -->
+    <div id="ideModal" class="fullscreen modal hide">
         <div class="modal-body ide">
             @ide_base()
         </div>
     </div>
 
-    <div id="docsModal" class="modal hide" style="overflow: hidden">
+    <!-- API doc modal -->
+    <div id="docsModal" class="fullscreen modal hide" style="overflow: hidden">
         <div class="modal-body docs" style="overflow: hidden"></div>
     </div>
 }

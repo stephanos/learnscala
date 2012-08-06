@@ -1,0 +1,316 @@
+@slide(title = "Klassen") {
+} {
+    <div class="sidebyside">
+        <div>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |class Plane
+                }
+                @outblock() {
+                    |defined class Plane
+                }
+            }
+        </div>
+        <div>
+            <ul class="indent20">
+                <li class="fragment">
+                    <code>class</code> leitet eine Klasse ein
+                </li>
+                <li class="fragment">
+                    <code>Plane</code> ist der Name der Klasse
+                </li>
+                <li class="fragment">
+                    <code>{}</code> sind nicht nötig bei leerem Rumpf
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <hr/><hr/>
+
+    <div class="fragment sidebyside">
+        <div>
+            <hr/>
+            @snippet() {
+                @callblock(reference = "plane", fragment = false) {
+                    |new Plane()
+                }
+                @outblock() {
+                    |res0: Plane = Plane@@3ee32abc
+                }
+                @callblock(reference = "plane") {
+                    |new Plane
+                }
+                @outblock() {
+                    |res1: Plane = Plane@@50394ec
+                }
+            }
+        </div>
+        <div>
+            @infobox(hr = false) {
+                <code>class</code> definiert eine Klasse, sie ist standardmäßig öffentlich.
+                <code>new</code> erstellt eine Instanz.
+            }
+        </div>
+    </div>
+}
+
+
+@slide() {
+    <!-- primary constructor -->
+} {
+    <div class="sidebyside p60_40">
+        @snippet() {
+            @sourceblock(fragment = false) {
+                |class Plane(model: String)
+            }
+            @callblock() {
+                |val p = new Plane("Boeing 737")
+            }
+        }
+        @fragment {
+            Klassenparameter ähnlich <br/> den Methodenparametern
+        }
+    </div>
+
+    <hr/><hr/>
+
+    <div class="fragment sidebyside p60_40">
+        @snippet() {
+            @sourceblock(fragment = false) {
+                |class Plane(model: String, seats: Int) {
+                |
+                |   println("I just bought a " + model +
+                |           " plane with " + seats + " seats")
+                |}
+            }
+            @callblock() {
+                |val p = new Plane("Boeing 737", 189)
+            }
+            @outblock() {
+                |I just bought a Boeing 737 plane with 189 seats
+                |res0: Plane = Plane@@3ee32abc
+            }
+        }
+        @codenote() {
+            Anweisungen im Rumpf werden bei der Initialisierung ausgeführt
+        }
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        Der primäre Konstruktor <comment>("primary constructor")</comment>
+        entsteht aus <br/> den Parametern einer Klasse sowie deren Anweisungen im Rumpf.
+    }
+}
+
+
+@slide() {
+    <!-- auxiliary constructor -->
+} {
+    @snippet() {
+        @sourceblock(fragment = false) {
+            |class Plane(model: String, seats: Int) {
+            |
+            |   def this() = this("Unknown", -1)
+            |
+            |   def this(company: String, typeOf: String, seats: Int) =
+            |       this(company + " " + typeOf, seats)
+            |}
+        }
+        @callblock() {
+            |val p = new Plane("Boeing", "737", 189)
+        }
+    }
+    <hr/><hr/>
+
+    @infobox() {
+        <code>def this</code> leitet einen Konstruktor ein, <code>this(..)</code> ruft ihn auf.
+    }
+
+    @warnbox(hr = false) {
+        Ein zusätzlicher Konstruktor <comment>("auxiliary constructor")</comment>
+        muss stets als erste Anweisung einen vor ihm definierten Konstruktor aufrufen.
+    }
+}
+
+
+@slide() {
+    <!-- val -> get / var -> get/set -->
+} {
+    <div class="sidebyside">
+        <div>
+            @sourcecode(id = "plane6", fragment = false) {
+                |class Plane(val model: String,
+                |            var seats: Int) {
+                |   val wings = 2
+                |}
+            }
+            <hr/>
+            @outcode() {
+                |// Plane.class dekompiliert:
+                |public class Plane extends [...] {
+                |
+                |    private final String model;
+                |    public String model();         // get
+                |
+                |    private final int wings;
+                |    public int wings();            // get
+                |
+                |    private int seats;
+                |    public int seats();            // get
+                |    public void seats_$eq(int);    // set
+                |}
+            }
+        </div>
+        @snippet() {
+            @callblock() {
+                |val p = new Plane("Boeing 737", 189)
+            }
+            @outblock(reference = "plane6") {
+                |p: Plane = Plane@@53a1d1a8
+            }
+            @callblock() {
+                |println(p.model)       // get
+            }
+            @outblock() {
+                |Boeing 737
+            }
+            @callblock() {
+                |p.seats = p.seats - 1  // get & set
+            }
+            @outblock() {
+                |p.seats: Int = 188
+            }
+            @callblock() {
+                |println(p.wings)       // get
+            }
+            @outblock() {
+                |2
+            }
+        }
+    </div>
+
+    @infobox() {
+        Scala generiert überschreibbare, öffentliche Zugriffsmethoden:<br/>
+        <code>val</code> erhält <strong>nur</strong> eine Get-Methode,
+        <code>var</code> erhält Get- <strong>und</strong> Set-Methoden.
+    }
+}
+
+
+@slide() {
+    <!-- Sichtbarkeit -->
+} {
+    @codesplits((60,40)){
+        @splitstart() {
+            |class Plane @Html("{")
+        }{
+            <em>Zugriff möglich von:</em>
+        }
+        @codesplit() {
+            |                  val wings   = 2
+        } {
+            @li{überall}
+        }
+        @codesplit() {
+            |   protected      val toilets = 6
+        } {
+            @li{<code>Plane</code> und Sub-Klassen}
+        }
+        @codesplit() {
+            |   private        val defects = 4
+        } {
+            @li{<code>Plane</code>}
+        }
+        @codesplit() {
+            |   private[this]  val selfDestructCode = 666
+        } {
+            @li{<code>Plane</code> Instanz}
+        }
+        @splitend() {
+            |@Html("}")
+        }(null)
+    }
+
+    @infobox() {
+        Felder einer Klasse sind standardmäßig öffentlich - der Zugriff wird <br/>
+        &nbsp;via <code>protected</code> auf Sub-Klassen, <br/>
+        &nbsp;via <code>private</code> auf die Klasse und <br/>
+        &nbsp;via <code>private[this]</code> auf die Instanz begrenzt.
+    }
+}
+
+
+@slide() {
+    <!-- Methoden -->
+} {
+    <div class="sidebyside">
+        @snippet() {
+            @sourceblock(id = "plane8", fragment = false) {
+                |class Plane {
+                |
+                |   private var isLandingGearUp = false
+                |
+                |   def gearUp() {
+                |       isLandingGearUp = true
+                |       println("landing gear is up")
+                |   }
+                |
+                |   def gearDown() {
+                |       isLandingGearUp = false
+                |       println("landing gear is down")
+                |   }
+                |
+                |   def isInTheAir = isLandingGearUp
+                |}
+            }
+        }
+        <div>
+            @snippet() {
+                @callblock(reference = "plane8") {
+                    |val p = new Plane
+                }
+                @outblock() {
+                    |p: Plane = Plane@@2142115
+                }
+                @callblock() {
+                    |p.gearUp()
+                }
+                @outblock() {
+                    |landing gear is up
+                }
+                @callblock() {
+                    |val flying = p.isInTheAir
+                }
+                @outblock() {
+                    |flying: Boolean = true
+                }
+                @callblock() {
+                    |p.gearDown()
+                }
+                @outblock() {
+                    |landing gear is down
+                }
+            }
+        </div>
+    </div>
+
+    @infobox() {
+        Methoden einer Klasse sind standardmäßig öffentlich, <br/>
+        bei nur lesenden Methoden sollte <code>()</code> weggelassen werden.
+    }
+}
+
+
+@uebung() {
+    Die Übung ist unter
+        <code>/src/main/scala/de/learnscala/uebungen/<em>U100.scala</em></code>
+    zu finden.
+
+    <hr/>
+
+    Die dazugehörige Testspezifikation unter
+        <code>/src/test/scala/de/learnscala/specs/<var>S100.scala</var></code>.
+}

@@ -1,0 +1,214 @@
+@slide(title = "Import") {
+    <!-- Import Syntax -->
+} {
+    <div class="sidebyside p60_40">
+        @sourcecode(fragment = false) {
+            |import de.learnscala.crew.Pilot
+        }
+        <div>
+            importiert <em>1</em> Klasse namens <code>Pilot</code>
+            aus dem Paket <code>crew</code>
+        </div>
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p60_40">
+        @sourcecode() {
+            |import de.learnscala.crew.{Pilot, CoPilot}
+        }
+        @codenote() {
+            importiert die <em>2</em> Klassen <code>Pilot</code> und <code>CoPilot</code>
+            aus dem Paket <code>crew</code>
+        }
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p60_40">
+        @sourcecode() {
+            |import de.learnscala.crew._
+        }
+        @codenote() {
+            Wildcard <code>_</code> importiert <em>alles</em> aus dem Paket <code>crew</code>
+        }
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        Mit Hilfe von <code>import</code> können einzelne, mehrere oder alle Klassen eines Paketes geladen werden.
+    }
+}
+
+@slide() {
+    <!-- Umbenennen -->
+} {
+    <div class="sidebyside p66_33">
+        @sourcecode(fragment = false) {
+            |import de.learnscala.cabin.{Seat => CabinSeat}
+            |import de.learnscala.cockpit.{Seat => CockpitSeat}
+        }
+        @codenote() {
+            <code>Seat</code> ist jeweils in den Paketen <code>cabin</code> bzw. <code>cockpit</code>
+            definiert und wird beim Import entsprechend umbenannt
+        }
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside p66_33">
+        @sourcecode() {
+            |import java.util.Date
+            |import java.sql.{Date => SqlDate}
+        }
+        @codenote() {
+            <code>Date</code> ist jeweils in den Paketen <code>util</code> bzw. <code>sql</code> -
+            daher bekommt letzteres einen anderen Namen
+        }
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        Klassen können beim Import umbenannt werden, um Namenskonflikte zu verhindern.
+    }
+}
+
+@slide() {
+    <!-- Import relativ -->
+} {
+    <div class="sidebyside p60_40">
+        @sourcecode(fragment = false) {
+            |package de.learnscala
+            |
+            |import crew.Pilot
+        }
+        @codenote() {
+            Importiert <code>Pilot</code> aus <code>de.learnscala.crew</code>
+        }
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside p60_40">
+        @sourcecode() {
+            |package de.learnscala
+            |
+            |import de.learnscala.crew.Pilot
+        }
+        @codenote() {
+            Importiert <code>Pilot</code> aus <code>de.learnscala.crew</code>
+        }
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside p60_40">
+        @sourcecode() {
+            |package de.learnscala
+            |
+            |import _root.de.learnscala.crew.Pilot
+        }
+        @codenote() {
+            Importiert <code>Pilot</code> aus <code>de.learnscala.crew</code>
+        }
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        Der Compiler löst Importe zunächst relativ auf (außer es steht <code>_root_</code> am Anfang)
+        - wird er nicht fündig, versucht er es als absolute Angabe.
+    }
+}
+
+@slide() {
+    <!-- Import in Blöcken -->
+} {
+    @codesplits((60,40)){
+        @splitstart() {
+            |package de.learnscala
+            |
+            |class Plane @Html("{")
+        }(null)
+        @codesplit() {
+            |   def fly() {
+            |       import crew.Pilot
+            |       // ...
+            |   }
+        } {
+            nur <code>fly</code> importiert <code>Pilot</code>
+        }
+        @codesplit() {
+            |   def clean() {
+            |       import crew.Stewardess
+            |       // ...
+            |   }
+        } {
+            nur <code>clean</code> importiert <code>Stewardess</code>
+        }
+        @splitend() {
+            |@Html("}")
+        }(null)
+    }
+
+    <hr/>
+
+    @infobox() {
+        Ein Import kann überall im Code eingefügt werden, nicht nur am Dateianfang.
+    }
+}
+
+@slide() {
+    <!-- Implizite Imports -->
+} {
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @callblock(fragment = false) {
+                |val e = new RuntimeException("pilot asleep")
+            }
+            @outblock() {
+                |e: java.lang.RuntimeException = RuntimeException: pilot asleep
+            }
+        }
+        @codenote() {
+            Zugriff auf Klasse <code>RuntimeException</code> aus Paket <code>java.lang</code>
+        }
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @callblock() {
+                |val p = math.Pi
+            }
+            @outblock() {
+                |p: Double = 3.141592653589793
+            }
+        }
+        @codenote() {
+            Zugriff auf Variable <code>Pi</code> aus Paket <code>scala.math</code>
+        }
+    </div>
+
+    <hr/><hr/>
+
+    @infobox() {
+        Neben dem <code>Predef</code>-Objekt werden für jede Datei automatisch die Pakete
+        <code>java.lang</code> und <code>scala</code> importiert.
+    }
+}
+
+
+@uebung() {
+    Die Übung ist unter
+        <code>/src/main/scala/de/learnscala/uebungen/<em>U121.scala</em></code>
+    zu finden.
+
+    <hr/>
+
+    Die dazugehörige Testspezifikation unter
+        <code>/src/test/scala/de/learnscala/specs/<var>S121.scala</var></code>.
+}

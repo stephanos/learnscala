@@ -1,0 +1,127 @@
+@slide(title = "Option") {
+
+} {
+    <div class="sidebyside p70_30">
+        @sourcecode(fragment = false) {
+            |def findPassenger(row: Int, col: String): Passenger
+        }
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p70_30">
+        @sourcecode(id = "find_opt") {
+            |case class Passenger(name: String)
+            |
+            |def findPassenger(row: Int, col: String): Option[Passenger] =
+            |   if(row < 1) None else Some(Passenger("Bob"))
+        }
+        @empty()
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside p70_30">
+        @snippet() {
+            @callblock(reference = "find_opt") {
+                |val p = findPassenger(2, "A")
+            }
+            @outblock() {
+                |p: Option[Passenger] = Passenger("Bob")
+            }
+            @callblock() {
+                |p.get
+            }
+            @outblock() {
+                |res0: Passenger = Passenger("Bob")
+            }
+        }
+        @empty()
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside p70_30">
+        @snippet() {
+            @callblock(reference = "find_opt") {
+                |val p = findPassenger(0, "B")
+            }
+            @outblock() {
+                |res1: Option[Passenger] = None
+            }
+            @callblock() {
+                |p.get
+            }
+            @outblock(error = true) {
+                |java.util.NoSuchElementException: None.get
+            }
+        }
+        @empty()
+    </div>
+}
+
+
+@slide() {
+    <!-- Option: Pattern Match -->
+} {
+    <div class="sidebyside p70_30">
+        @snippet() {
+            @sourceblock(id = "opt_match", reference = "find_opt", fragment = false) {
+                |def getName(p: Option[Passenger]) =
+                |  p match {
+                |    case Some(p) => p.name
+                |    case _ => "No Name"
+                |  }
+            }
+        }
+        @empty()
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside p70_30">
+        @snippet() {
+            @callblock(reference = "opt_match") {
+                |getName(findPassenger(1, "A"))
+            }
+            @outblock() {
+                |res0: String = Bob
+            }
+            @callblock() {
+                |getName(findPassenger(0, "B"))
+            }
+            @outblock(error = true) {
+                |res1: String = No Name
+            }
+        }
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p70_30">
+        @snippet() {
+            @callblock(reference = "opt_match") {
+                |findPassenger(1, "A").map(_.name).getOrElse("No Name")
+            }
+            @outblock() {
+                |res0: String = Bob
+            }
+        }
+        @empty()
+    </div>
+}
+
+
+@uebung() {
+
+    Die Übung ist unter
+        <code>/src/main/scala/de/learnscala/uebungen/<em>U221.scala</em></code>
+    zu finden.
+
+    <hr/>
+
+    Die dazugehörige Testspezifikation unter
+        <code>/src/test/scala/de/learnscala/specs/<var>S221.scala</var></code>.
+}

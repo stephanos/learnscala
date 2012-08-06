@@ -1,0 +1,233 @@
+@slide(title = "Currying") {
+} {
+    <div class="sidebyside">
+        @snippet() {
+            @sourceblock(fragment = false, id = "retry1") {
+                |def retry[T](n: Int, fn: => T): T = {
+                |  try {
+                |    fn
+                |  } catch {
+                |    case e if n > 1 =>
+                |      retry(n - 1, fn)
+                |  }
+                |}
+            }
+            @outblock() {
+                |retry: [T](n: Int, fn: => T)T
+            }
+        }
+        <div>
+            @codenote() {
+                <code>retry</code> mit dem Typ-Parameter <code>T</code>
+                erwartet 2 Parameter: Anzahl der Versuche und die auszuführende Funktion mit Rückgabewert <code>T</code>
+            }
+            <hr/>
+            @codenote() {
+                ein Guard im Pattern Matching prüft ob die Versuchsanzahl erreicht wurde
+            }
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside">
+        @snippet() {
+            @sourceblock(id = "connect-rand", reference = "retry1") {
+                |def connect = {
+                |  println("connecting")
+                |  assert(util.Random.nextInt(2) == 0)
+                |  true
+                |}
+            }
+            @outblock() {
+                |connect: Boolean = true
+            }
+            @callblock() {
+                |val r = retry(2, connect)
+            }
+            @outblock() {
+                |connecting
+                |connecting
+                |r: Boolean = true
+            }
+        }
+        <div>
+            @codenote() {
+                Methode <code>connect</code> simuliert den Aufbau einer Datenbankverbindung
+            }
+            <hr/><hr/>
+            @codenote() {
+                <code>retry</code> versucht maximal 2x eine Verbindung herzustellen
+            }
+            <hr/><hr/>
+            @codenote() {
+                <var>Problem:</var> umständlicher Aufruf
+            }
+        </div>
+    </div>
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside">
+        @snippet() {
+            @sourceblock(id = "retry2", fragment = false) {
+                |def retry[T](n: Int)(fn: => T): T = {
+                |  try {
+                |    fn
+                |  } catch {
+                |    case e if n > 1 =>
+                |      retry(n - 1)(fn)
+                |  }
+                |}
+            }
+            @outblock() {
+                |retry: [T](n: Int)(fn: => T)T
+            }
+        }
+        <div>
+            @codenote() {
+                <code>Currying</code> erlaubt es, mehrere Parameterlisten zu definieren
+            }
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="sidebyside">
+        @callcode(reference = "retry2") {
+            |val r = retry(2) {
+            |  println("connecting")
+            |  assert(util.Random.nextInt(2) == 0)
+            |  true
+            |}
+        }
+        @codenote() {
+            <code>retry</code> kann wie eine Kontrollstruktur eingesetzt werden
+        }
+    </div>
+    <div class="sidebyside">
+        @outcode() {
+            |connecting
+            |connecting
+            |r: Boolean = true
+        }
+        @codenote() {
+            <em>Erfolg:</em> das Ergebnis erscheint, die erste Ausnahme wird ignoriert
+        }
+    </div>
+    <div class="sidebyside">
+        @outcode() {
+            |connecting
+            |connecting
+            |java.lang.AssertionError: assertion failed
+        }
+        @codenote() {
+            <var>Fehler:</var> nach 2 gescheiterten Versuchen wird die Ausnahme geworfen
+        }
+    </div>
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside p70_30">
+        <div>
+            @sourcecode(id = "ctrl-thread", fragment = false) {
+                |def runInThread(block: => Unit) {
+                |  new Thread {
+                |    override def run() { block }
+                |  }.start()
+                |}
+            }
+            <hr/>
+            @callcode(reference = "ctrl-thread") {
+                |runInThread {
+                |  // ...
+                |}
+            }
+        </div>
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p70_30">
+        <div>
+            @sourcecode(id = "ctrl-resource") {
+                |def withResource[A <: Closeable](res: => A)(f: => Unit) = {
+                |  val r = res
+                |  try {
+                |    f(r)
+                |  } finally {
+                |    r.close()
+                |  }
+                |}
+            }
+            <hr/>
+            @callcode(reference = "ctrl-resource") {
+                |withResource(new FileInputStream(new File("file.txt"))) {
+                |  stream =>  // ...
+                |}
+            }
+        </div>
+        @empty()
+    </div>
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside p60_40">
+        <div>
+            @sourcecode(id = "ctrl-unless", fragment = false) {
+                |def unless(condition: => Boolean)(body: => Unit) {
+                |  if (!condition)
+                |    body
+                |}
+            }
+            <hr/>
+            @callcode(reference = "ctrl-unless") {
+                |unless() {
+                |  // ...
+                |}
+            }
+        </div>
+        @empty()
+    </div>
+
+    <hr/><hr/>
+
+    <div class="sidebyside p60_40">
+        <div>
+            @sourcecode(id = "ctrl-time") {
+                |def timed[T](body: => T) = {
+                |  val start = System.nanoTime
+                |  op
+                |  (System.nanoTime - start) / 1e9
+                |}
+            }
+            <hr/>
+            @callcode(reference = "ctrl-unless") {
+                |timed {
+                |  // ...
+                |}
+            }
+        </div>
+        @empty()
+    </div>
+}
+
+
+@uebung() {
+
+    Die Übung ist unter
+        <code>/src/main/scala/de/learnscala/uebungen/<em>U340.scala</em></code>
+    zu finden.
+
+    <hr/>
+
+    Die dazugehörige Testspezifikation unter
+        <code>/src/test/scala/de/learnscala/specs/<var>U340.scala</var></code>.
+}

@@ -310,17 +310,6 @@
         bottom: 0;
     }
 
-    .slide-end {
-        position: absolute;
-        bottom: 3%; right: 1%;
-
-        font-size: 40px;
-        color: fade(@c_emph, 50%);
-    }
-
-    // selection color
-    .selection-bg(@c_select);
-
     .underline {
         text-decoration: underline;
     }
@@ -331,6 +320,40 @@
 
     .smaller, .codenote {
         font-size: 90%;
+    }
+
+    // selection color
+    .selection-bg(@c_select);
+
+    /* SLIDE MARK */
+    .slide-end {
+        position: absolute;
+        bottom: 0; right: 5px;
+
+        font-size: 40px;
+        //line-height: 20px;
+        color: fade(@c_emph, 50%);
+    }
+
+    /* CLOCK */
+    #breakclock {
+        position: absolute;
+        bottom: 5px; right: 15px;
+
+        canvas {
+            position: absolute;
+            top: 0; left: 0;
+        }
+
+        div {
+            color: @c_emph;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+
+            z-index: 100;
+            font-size: 18px;
+            text-align: center;
+        }
     }
 }
 

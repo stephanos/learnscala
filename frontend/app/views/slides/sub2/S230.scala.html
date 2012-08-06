@@ -1,0 +1,724 @@
+@slide(title = "Collections") {
+    <!-- Packages -->
+} {
+    <div class="sidebyside">
+        <div>
+            <img class="naked"
+                src="https://docs.google.com/drawings/pub?id=1kRUpQWsq_eIhXBq3vk18o094FoN4ERSA8kZv-iG6Jb4&amp;w=450">
+        </div>
+        <div>
+            <hr/><hr/><hr/>
+            <ul>
+                <li class="fragment">
+                    <code>scala.collection.immutable</code> enthält <br/>
+                    <em>unveränderliche</em>, sequenzielle Collections
+                </li>
+                <li class="fragment">
+                    <code>scala.collection.mutable</code> enthält <br/>
+                    <var>veränderliche</var>, sequenzielle Collections
+                    <hr/><hr/><hr/>
+                </li>
+                <li class="fragment">
+                    <code>scala.collection.parallel.immutable</code> enthält <br/>
+                    <em>unveränderliche</em>, parallele Collections
+                </li>
+                <li class="fragment">
+                    <code>scala.collection.parallel.mutable</code> enthält <br/>
+                    <var>veränderliche</var>, parallele Collections
+                </li>
+            </ul>
+        </div>
+    </div>
+}
+
+
+@slide() {
+    <!-- Hierarchie: Traversable -->
+} {
+    <div class="sidebyside">
+        <div>
+            <img class="naked"
+                src="https://docs.google.com/drawings/pub?id=1_LSD_bFqReAiIJ_Xj-Mf54MwfrjqFqvTFUcjDCIJHUA&amp;w=450">
+        </div>
+        @fragment {
+            <h4>Traversable</h4>
+            <hr/>
+            <div class="indent">
+                <ul>
+                    <li>Super-Klasse von allen Collections</li>
+                    <li class="fragment">
+                        abstrakte Methode <code>foreach</code>: wendet eine Funktion auf alle Elemente an
+                        <hr/>
+                        @sourcecode(fragment = false) {
+                            |def foreach[U](f: Elem => U): Unit
+                        }
+                    </li>
+                    <li class="fragment">
+                        Basis-Methoden zum Hinzufügen, Abfragen, Mappen, Konvertieren, Kopieren, Teilen etc.
+                    </li>
+                </ul>
+            </div>
+        }
+    </div>
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside">
+        <div>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |List(1,2,3) ++ List(4,5,6)
+                }
+                @outblock() {
+                    |res0: List[Int] = List(1, 2, 3, 4, 5, 6)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(1,2,3) head
+                }
+                @outblock() {
+                    |res1: Int = 1
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(1,2,3) tail
+                }
+                @outblock() {
+                    |res2: List[Int] = List(2, 3)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(1,2,3) last
+                }
+                @outblock() {
+                    |res3: Int = 6
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(1,2,3) mkString ","
+                }
+                @outblock() {
+                    |res4: String = 1,2,3
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(1,2,3) sum
+                }
+                @outblock() {
+                    |res5: Int = 6
+                }
+            }
+        </div>
+        @empty()
+    </div>
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside">
+        <div>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |List(1,2,3) take 2
+                }
+                @outblock() {
+                    |res6: List[Int] = List(1, 2)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(1,2,3) drop 2
+                }
+                @outblock() {
+                    |res7: List[Int] = List(3)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(1,2,3) toArray
+                }
+                @outblock() {
+                    |res8: Array[Int) = Array(1,2,3)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(1,2,3) size
+                }
+                @outblock() {
+                    |res9: Int = 3
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(1,2,3) map (_ * 2)
+                }
+                @outblock() {
+                    |res10: List[Int] = List(2,4,6)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(1,2,3) filter (_ % 2 == 0)
+                }
+                @outblock() {
+                    |res11: List[Int] = List(2)
+                }
+            }
+        </div>
+        @empty()
+    </div>
+}
+
+
+@slide() {
+    <!-- Hierarchie: Iterable -->
+} {
+    <div class="sidebyside">
+        <div>
+            <img class="naked"
+                 src="https://docs.google.com/drawings/pub?id=18hUCwlgzHjlqSjhoZucpRy6-JNRGCfssi_ruOcsToM0&amp;w=450">
+        </div>
+        @fragment {
+            <h4>Iterable</h4>
+            <hr/>
+            <div class="indent">
+                <ul>
+                    <li>erbt von <code>Traversable</code></li>
+                    <li class="fragment">
+                        implementiert <code>foreach</code>
+                        <hr/>
+                        @sourcecode(fragment = false) {
+                            |def foreach[U](f: Elem => U) {
+                            |  val it = iterator
+                            |  while (it.hasNext) f(it.next())
+                            |}
+                        }
+                    </li>
+                    <li class="fragment">
+                        abstrakte Methode <code>iterator</code>
+                        <hr/>
+                        @sourcecode(fragment = false) {
+                            |def iterator: Iterator[A]
+                        }
+                    </li>
+                </ul>
+            </div>
+        }
+    </div>
+    <details>
+        <a href="http://stackoverflow.com/questions/7425370/">
+            What is the difference between Traversable and Iterable traits?
+        </a>
+    </details>
+}
+
+
+@slide() {
+    <!-- Hierarchie: Set -->
+} {
+    <div class="sidebyside">
+        <div>
+            <img class="naked"
+                src="https://docs.google.com/drawings/pub?id=1MFPRX-Oim6jP3IWB4M3nHzMQrPq2kjDHj1GKm6kJRqE&amp;w=450">
+        </div>
+        @fragment {
+            <h4>Set</h4>
+            <hr/>
+            <div class="indent">
+                <ul>
+                    <li><code>Iterable</code> ohne gleiche Elemente</li>
+                    <li class="fragment">
+                        <code>HashSet</code>
+                        <hr/>
+                        <ul>
+                            <li>Standardimplementierung</li>
+                            <li class="fragment">
+                                sortiert nach <code>hashCode</code>;
+                                beschleunigt Zugriff auf beliebige Elemente
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="fragment">
+                        <code>SortedSet</code>
+                        <hr/>
+                        <ul>
+                            <li>
+                                sortiert Elemente beim Einfügen
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        }
+    </div>
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside">
+        <div>
+            @snippet(fragment = false) {
+                @callblock(fragment = false) {
+                    |Set(1, 2, 3)
+                }
+                @outblock() {
+                    |res0: Set[Int] = Set(1, 2, 3)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Set(1, 2, 3) + 4
+                }
+                @outblock() {
+                    |res1: Set[Int] = Set(1, 2, 3, 4)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Set(1, 2, 3) + 3
+                }
+                @outblock() {
+                    |res2: Set[Int] = Set(1, 2, 3)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Set(1, 2, 3) + (2, 4)
+                }
+                @outblock() {
+                    |res3: Set[Int] = Set(1, 2, 3, 4)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Set(1, 2, 3) ++ Set(2, 4)
+                }
+                @outblock() {
+                    |res4: Set[Int] = Set(1, 2, 3, 4)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Set(1, 2, 3) -- Set(1, 2)
+                }
+                @outblock() {
+                    |res5: Set[Int] = Set(3)
+                }
+            }
+        </div>
+        @empty()
+    </div>
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside">
+        <div>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |Set(1, 2, 3) empty
+                }
+                @outblock() {
+                    |res6: Set[Int] = Set()
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Set(1) subsetOf Set(1, 2, 3)
+                }
+                @outblock() {
+                    |res7: Boolean = true
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Set(1, 2, 3) contains (42)
+                }
+                @outblock() {
+                    |res8: Boolean = false
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Set(1, 2, 3) intersect Set(1)
+                }
+                @outblock() {
+                    |res9: Set[Int] = Set(1)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Set(1, 2, 3) union Set(2, 4)
+                }
+                @outblock() {
+                    |res10: Set[Int] = Set(1, 2, 3, 4)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Set(1, 2, 3) diff Set(2)
+                }
+                @outblock() {
+                    |res11: Set[Int] = Set(1, 3)
+                }
+            }
+        </div>
+        @empty()
+    </div>
+}
+
+
+@slide() {
+    <!-- Hierarchie: Map -->
+} {
+    <div class="sidebyside">
+        <div>
+            <img class="naked"
+                src="https://docs.google.com/drawings/pub?id=1Nb4FMBcvdszJTMGpGgLS0oJrcyBzcXyD0FNBPPUH70k&amp;w=450">
+        </div>
+        @fragment {
+            <h4>Map</h4>
+            <hr/>
+            <div class="indent">
+                <ul>
+                    <li><code>Iterable</code> aus Schlüssel-Wert-Paaren</li>
+
+                    <li class="fragment">
+                        <code>HashMap</code>
+                        <hr/>
+                        <ul>
+                            <li>
+                                Standardimplementierung
+                            </li>
+                            <li class="fragment">
+                                basiert auf Hash-Tabelle
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="fragment">
+                        <code>TreeMap</code>
+                        <hr/>
+                        <ul>
+                            <li>
+                                Standardimplementierung von <code>SortedMap</code>
+                            </li>
+                            <li class="fragment">
+                                ideal wenn Elemente eine Ordnung haben oder keine gute Hash-Funktion
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        }
+    </div>
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside p70_30">
+        <div>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |Map("a" -> 1, "b" -> 2)
+                }
+                @outblock() {
+                    |res0: Map[String,Int] = Map(a -> 1, b -> 2)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2)("a")
+                }
+                @outblock() {
+                    |res1: Int = 1
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2) + ("c" -> 3)
+                }
+                @outblock() {
+                    |res2: Map[String,Int] = Map(a -> 1, b -> 2, c -> 3)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2) ++ Map("c" -> 3, "d" -> 4)
+                }
+                @outblock() {
+                    |res3: Map[String,Int] = Map(a -> 1, b -> 2, c -> 3, d -> 4)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2) - "a"
+                }
+                @outblock() {
+                    |res4: Map[String,Int] = Map(b -> 2)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2) -- Set("a", "c")
+                }
+                @outblock() {
+                    |res5: Map[String,Int] = Map(b -> 2)
+                }
+            }
+        </div>
+        @empty()
+    </div>
+}
+
+
+@slide() {
+} {
+    <div class="sidebyside p70_30">
+        <div>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |Map("a" -> 1, "b" -> 2) contains ("z")
+                }
+                @outblock() {
+                    |res6: Boolean = false
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2) keySet
+                }
+                @outblock() {
+                    |res7: Set[String] = Set(a, b)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2) values
+                }
+                @outblock() {
+                    |res8: Iterable[Int] = MapLike(1, 2)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2) contains ("z")
+                }
+                @outblock() {
+                    |res9: Boolean = false
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "bb" -> 2) filterKeys (_.length > 1)
+                }
+                @outblock() {
+                    |res10: Map[String,Int] = Map(bb -> 2)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |Map("a" -> 1, "b" -> 2) mapValues (_ * 10)
+                }
+                @outblock() {
+                    |res10: Map[String,Int] = Map(a -> 10, b -> 20)
+                }
+            }
+        </div>
+        @empty()
+    </div>
+}
+
+
+@slide() {
+    <!-- Hierarchie: Seq -->
+} {
+    <div class="sidebyside">
+        <div>
+            <img class="naked"
+                src="https://docs.google.com/drawings/pub?id=1fuA53lFmZ9Swblb5Fk-O7X3ar0C2lt7ipPnw_t3PNDU&amp;w=450">
+        </div>
+        @fragment {
+            <h4>Seq</h4>
+            <hr/>
+            <div class="indent">
+                <ul>
+                    <li>geordnete <code>Iterable</code></li>
+                    <li class="fragment">
+                        <code>IndexedSeq</code>
+                        <hr/>
+                        <ul>
+                            <li>
+                                optimiert für Direktzugriff
+                            </li>
+                            <li class="fragment">
+                                Standardimplementierung: <code>Vector</code>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="fragment">
+                        <code>LinearSeq</code>
+                        <hr/>
+                        <ul>
+                            <li>
+                                optimiert für sequenziellen Zugriff
+                            </li>
+                            <li class="fragment">
+                                Standardimplementierung: <code>List</code>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="fragment">
+                        <code>Buffer</code>
+                        <hr/>
+                        <ul>
+                            <li>
+                                optimiert fürs Anhängen
+                            </li>
+                            <li class="fragment">
+                                <var>mutable</var>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        }
+    </div>
+}
+        
+
+@slide() {
+} {
+    <div class="sidebyside p70_30">
+        <div>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |List(1,2,3) reverse
+                }
+                @outblock() {
+                    |res0: List[Int] = List(3, 2, 1)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(1,2,3,3,2,1) distinct
+                }
+                @outblock() {
+                    |res1: List[Int] = List(1, 2, 3)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(1,2,3) endsWith Seq(2,3)
+                }
+                @outblock() {
+                    |res2: Boolean = true
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(1,2,3) indexOf 2
+                }
+                @outblock() {
+                    |res3: Int = 1
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(3,2,1) sorted
+                }
+                @outblock() {
+                    |res4: List[Int] = List(1, 2, 3)
+                }
+            }
+            <hr class="half"/>
+            @snippet() {
+                @callblock() {
+                    |List(333,22,1) sortBy (_.toString.length)
+                }
+                @outblock() {
+                    |res5: List[Int] = List(1, 22, 333)
+                }
+            }
+        </div>
+        @empty()
+    </div>
+}
+
+
+@slide() {
+} {
+    <hr/><hr/>
+
+    <div class="sidebyside">
+        <div>
+            <img class="naked"
+                 src="https://docs.google.com/drawings/pub?id=1kRUpQWsq_eIhXBq3vk18o094FoN4ERSA8kZv-iG6Jb4&amp;w=400">
+        </div>
+
+        <div>
+            <hr/><hr/><hr/><hr/>
+            <img class="naked"
+                 src="https://docs.google.com/drawings/pub?id=18hUCwlgzHjlqSjhoZucpRy6-JNRGCfssi_ruOcsToM0&amp;w=450">
+        </div>
+    </div>
+}
+
+
+@uebung() {
+
+    Die Übung ist unter
+        <code>/src/main/scala/de/learnscala/uebungen/<em>U230.scala</em></code>
+    zu finden.
+
+    <hr/>
+
+    Die dazugehörige Testspezifikation unter
+        <code>/src/test/scala/de/learnscala/specs/<var>S230.scala</var></code>.
+}

@@ -1,4 +1,4 @@
-goog.provide("lib.reveal");
+goog.provide("reveal");
 
 /*!
  * reveal.js 1.4
