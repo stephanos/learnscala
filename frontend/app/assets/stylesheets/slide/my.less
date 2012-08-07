@@ -335,8 +335,8 @@
         color: fade(@c_emph, 50%);
     }
 
-    /* CLOCK */
-    #breakclock {
+    /* TIMER */
+    #timer {
         position: absolute;
         bottom: 5px; right: 15px;
 
@@ -353,6 +353,33 @@
             z-index: 100;
             font-size: 18px;
             text-align: center;
+        }
+    }
+
+    /* COUNTDOWN */
+    .countdown {
+        padding: @margin;
+        text-align: center;
+        div { display: inline-block; }
+
+        .cd-time {
+            color: @c_text;
+            padding: 10px;
+            background-color: fadeout(#ccc, 50%);
+            font-size: @fs_slide * 4;
+            line-height: @fs_slide * 4;
+        }
+
+        .cd-controls {
+            .btn {
+                .bold();
+            }
+            .opacity(10);
+            .linear-transition(opacity);
+
+            &:hover {
+                .opacity(100);
+            }
         }
     }
 }

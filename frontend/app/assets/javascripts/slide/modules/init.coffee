@@ -1,10 +1,13 @@
 initSlides = ->
   subtleToolbar()
-  embedDocs()
   embedEditor()
+  embedDocs()
+  embedStyle()
+  $("#naviLogout").remove()
 
+  initCountdowns()
   initSnippets()
-  initBreakClock()
+  initTimer()
 
 
 #######################################################################################################################
@@ -57,13 +60,37 @@ initSnippets = ->
 
 
 #######################################################################################################################
+embedStyle = ->
+  # insert in navi
+  $('<li id="naviStyle">
+      <a href="#" class="openStyle">
+          <span>Style</span>
+      </a>
+  </li>').insertAfter($("#naviDocs"))
+
+  # bind click event
+  $("#naviStyle").bind("click", () ->
+    m = $("#styleModal")
+    m.bind("shown", (evt) ->
+      mbody = $(m).find(".modal-body")
+      # TODO
+    )
+    m.modal()
+    false
+  )
+
+
+#######################################################################################################################
 embedDocs = ->
+  # insert in navi
   $('<li id="naviDocs">
         <a href="#" class="openDocs">
             <span>Docs</span>
         </a>
         <span class="divider">|</span>
     </li>').insertAfter($("#naviEditor"))
+
+  # bind click event
   $("#naviDocs").bind("click", () ->
     m = $("#docsModal")
     m.bind("shown", (evt) ->
@@ -80,8 +107,60 @@ embedDocs = ->
 
 
 #######################################################################################################################
-initBreakClock = ->
-  target = $('#breakclock')
+initCountdowns = ->
+  $('div.countdown').each(
+    (idx, elem) ->
+      key = "countdown_" + idx
+
+      upd = ->
+        time = getTime(key)
+        ms_end = time[1]
+        ms_start = time[0]
+        if(ms_start)
+          now = moment()
+          end = moment(ms_end)
+          state = $(elem).data("state")
+          diff = if(state == "running") then end.diff(now, 'seconds') else $(elem).data("start")
+          if(diff >= 0)
+            $(elem).data("start", diff)
+            $(elem).find(".mm").text(Math.floor(diff / 60))
+            mm = diff % 60
+            console.log("diff: " + diff)
+            $(elem).find(".ss").text((if(mm < 10) then "0" else "") + mm)
+            state == "running"
+          else
+            $(elem).data("active", "false")
+            false
+        else
+          false
+
+      $(elem).find(".minus").bind("click", () ->
+        $(elem).data("start", $(elem).data("start") - 60)
+        addTime(key, -60)
+        upd()
+      )
+
+      $(elem).find(".plus").bind("click", () ->
+        $(elem).data("start", $(elem).data("start") + 60)
+        addTime(key, 60)
+        upd()
+      )
+
+      $(elem).find(".toggle").bind("click", () ->
+        state = $(elem).data("state")
+        if(state == "running")
+          $(elem).data("state", "stopped")
+        else
+          setTime(key, $(elem).data("start"))
+          $(elem).data("state", "running")
+          updateClockSchedule(upd, 500)
+      )
+  )
+
+
+#######################################################################################################################
+initTimer = ->
+  target = $('#timer')
 
   $('<li class="dropdown" id="naviTimer">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#naviTimer">
@@ -113,25 +192,30 @@ initBreakClock = ->
         <li>
           <a href="#" data-min="-1">reset</a>
         </li>
+        <li>
+          <a href="#" class="toggle">toggle</a>
+        </li>
       </ul>
       <span class="divider">|</span>
-    </li>').insertAfter($("#naviEditor"))
+    </li>').insertAfter($("#naviDocs"))
 
   $("#naviTimer ul a").bind("click", (evt) ->
     min = $(this).data("min")
     if(min)
-      setTime("breaktime", min)
+      setTime("timer", min * 60)
     else
       addmin = $(this).data("addmin")
       if(addmin)
-        addTime("breaktime", addmin)
-    updateBreakClock()
+        addTime("timer", addmin * 60)
+      else if($(this).hasClass("toggle"))
+        $(target).toggle()
+    updateTimer()
     false
   )
 
   # init
   target.easyPieChart(
-    barColor: (p) -> if(p >= 95) then "#fc6b35" else "#ddd"
+    barColor: (p) -> "#ddd" #if(p >= 95) then "#fc6b35" else "#ddd"
     trackColor: "#eee"
     scaleColor: false
     animate: false
@@ -141,39 +225,38 @@ initBreakClock = ->
   )
 
   # update manually
-  updateBreakClock = ->
-    updateClock(target, "breaktime")
+  updateTimer = ->
+    time = getTime("timer")
+    ms_end = time[1]
+    ms_start = time[0]
+  
+    # calculate
+    if(ms_start)
+      now = moment()
+      end = moment(ms_end)
+      start = moment(ms_start)
+  
+      total = end.diff(start, 'minutes')
+      togo = Math.max(0, end.diff(now, 'minutes'))
+      elapsed = now.diff(start, 'minutes')
+      #console.log(elapsed + "m of " + total + "m elapsed, " + togo + "m to go")
+      percent = Math.min(100, Math.max(1, 100 * elapsed / total))
+  
+    # update pie and label
+    #console.log(percent + "%")
+    $(target).data("easyPieChart").update(percent || 100)
+    $(target).find("div").text(togo || "")
+    true
 
   # update every 10s
-  updateClockSchedule = (once) ->
-    setTimeout(() ->
-      updateBreakClock()
-      updateClockSchedule()
-    , 10000)
-  updateClockSchedule()
-  updateBreakClock()
+  updateClockSchedule(updateTimer, 10000)
+  updateTimer()
 
 
-updateClock = (target, key) ->
-  time = getTime(key)
-  ms_end = time[1]
-  ms_start = time[0]
-
-  # calculate
-  if(ms_start)
-    now = moment()
-    end = moment(ms_end)
-    start = moment(ms_start)
-
-    total = end.diff(start, 'minutes')
-    togo = Math.max(0, end.diff(now, 'minutes'))
-    elapsed = now.diff(start, 'minutes')
-    console.log(elapsed + "m of " + total + "m elapsed, " + togo + "m to go")
-    percent = 100 * elapsed / total
-
-  # update pie and label
-  console.log(percent)
-  $(target).data("easyPieChart").update(percent || 100)
-  $(target).find("div").text(togo || "")
+updateClockSchedule = (upd, t) ->
+  setTimeout(() ->
+      if(upd())
+        updateClockSchedule(upd, t)
+  , t)
 
 
