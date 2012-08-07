@@ -7,7 +7,7 @@ import play.api.templates.Html
 object Slide extends MyController {
 
     def index = Action {
-        Ok(views.html.slides.main())
+        Ok(views.html.app.content())
     }
 
     def index2 =

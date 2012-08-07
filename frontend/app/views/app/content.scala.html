@@ -1,0 +1,208 @@
+@import comp._
+
+@layout.internal("Inhalt") {
+    <section id="main" class="slidedecks">
+
+        <div class="reveal">
+            <div class="slides">
+                <table border="1">
+                    <colgroup>
+                        <col width="5%">
+                        <col width="19%">
+                        <col width="19%">
+                        <col width="19%">
+                        <col width="19%">
+                        <col width="19%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Allgemein</th>
+                            <th>Objekte</th>
+                            <th>Typen</th>
+                            <th>Funktionen</th>
+                            <th>Extern</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="divider">
+                            <td colspan="10">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="level">
+                                I
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Erste Schritte")
+                                    @topic("Kontrollstrukturen")
+                                    @topic("Methoden")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Klassen")
+                                    @topic("Vererbung I")
+                                    @topic("Objekte")
+                                    @topic("Zugriffsrechte")
+                                    @topic("Pakete")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+
+                                }
+                            </td>
+                            <td>
+                                @topics {
+
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Werkzeuge I")
+                                    @topic("Werkzeuge II")
+                                }
+                            </td>
+                        </tr>
+                        <tr class="divider">
+                            <td colspan="10">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="level">
+                                II
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Operatoren")
+                                    @topic("Annotationen")
+                                    @topic("Reflektion")
+                                    @topic("Reguläre Ausdrücke")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Traits")
+                                    @topic("Case-Klassen")
+                                    @topic("Vererbung II")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Kollektionen")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Anonyme Funktionen")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("XML")
+                                    @topic("Swing")
+                                    @topic("Testen")
+                                }
+                            </td>
+                        </tr>
+                        <tr class="divider">
+                            <td colspan="10">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="level">
+                                III
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Parsen")
+                                    @topic("Extraktoren")
+                                    @topic("Dynamic")
+                                    @topic("Lazy")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Streams")
+                                    @topic("Parallele Kollektionen")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Partial Functions")
+                                    @topic("Currying")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Aktoren")
+                                    @topic("Utilities")
+                                    @topic("Datenbanken")
+                                    @topic("Web Frameworks")
+                                }
+                            </td>
+                        </tr>
+                        <tr class="divider">
+                            <td colspan="10">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="level">
+                                IV
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Makros")
+                                    @topic("Delimited Continuations")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Early Definitions")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Self-Types")
+                                    @topic("Abstrakte Typen")
+                                    @topic("Strukturelle Typen")
+                                    @topic("Typbedingungen")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Scalaz")
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </section>
+}
+
+
+@topics(content: Html) = {
+  <ul>
+    @content
+  </ul>
+}
+
+
+@topic(label: String) = {
+  <li class="topic">
+    <a href="">
+      @label
+    </a>
+  </li>
+}
