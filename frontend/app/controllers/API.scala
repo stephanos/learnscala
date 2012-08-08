@@ -14,7 +14,7 @@ object API extends MyController {
                 val call = req.body("call").mkString("")
                 //val session = req.queryString("session").headOption
                 try {
-                    val (r, out) = Interpreter((src, call), None)
+                    val (r, out) = Interpreter((src, call))
                     if (r == IR.Success)
                         Ok(out)
                     else

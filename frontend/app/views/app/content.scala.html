@@ -34,18 +34,20 @@
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Erste Schritte")
-                                    @topic("Kontrollstrukturen")
-                                    @topic("Methoden")
+                                    @topic("Einführung")
+                                    @*@topic("Erste Schritte")*@
+                                    @*@topic("Kontrollstrukturen")*@
+                                    @*@topic("Methoden")*@
+                                    @*@topic("Ausnahmen")*@
                                 }
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Klassen")
-                                    @topic("Vererbung I")
-                                    @topic("Objekte")
-                                    @topic("Zugriffsrechte")
-                                    @topic("Pakete")
+                                    @*@topic("Klassen")*@
+                                    @*@topic("Vererbung I")*@
+                                    @*@topic("Objekte")*@
+                                    @*@topic("Zugriffsrechte")*@
+                                    @*@topic("Pakete")*@
                                 }
                             </td>
                             <td>
@@ -74,34 +76,39 @@
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Operatoren")
-                                    @topic("Annotationen")
-                                    @topic("Reflektion")
-                                    @topic("Reguläre Ausdrücke")
+                                    @*@topic("Operatoren")*@
+                                    @*@topic("Annotationen")*@
+                                    @*@topic("Reflektion")*@
+                                    @*@topic("Reguläre Ausdrücke")*@
                                 }
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Traits")
-                                    @topic("Case-Klassen")
-                                    @topic("Vererbung II")
+                                    @*@topic("Traits")*@
+                                    @*@topic("Case-Klassen")*@
+                                    @*@topic("Vererbung II")*@
                                 }
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Kollektionen")
+                                    @*@topic("Hierarchie")*@
+                                    @*@topic("Option")*@
+                                    @*@topic("Tuple")*@
+                                    @*@topic("Kollektionen")*@
+                                    @*@topic("Typ-Parameter I")*@
                                 }
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Anonyme Funktionen")
+                                    @*@topic("Anonyme Funktionen")*@
                                 }
                             </td>
                             <td>
                                 @topics {
-                                    @topic("XML")
-                                    @topic("Swing")
-                                    @topic("Testen")
+                                    @topic("XML", "ext", "xml")
+                                    @topic("JSON")
+                                    @*@topic("Swing")*@
+                                    @*@topic("Testen")*@
                                 }
                             </td>
                         </tr>
@@ -114,10 +121,10 @@
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Parsen")
-                                    @topic("Extraktoren")
-                                    @topic("Dynamic")
-                                    @topic("Lazy")
+                                    @*@topic("Parsen")*@
+                                    @*@topic("Extraktoren")*@
+                                    @*@topic("Dynamic")*@
+                                    @*@topic("Lazy")*@
                                 }
                             </td>
                             <td>
@@ -127,22 +134,23 @@
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Streams")
-                                    @topic("Parallele Kollektionen")
+                                    @*@topic("Streams")*@
+                                    @*@topic("Typ-Parameter II")*@
+                                    @*@topic("Parallele Kollektionen")*@
                                 }
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Partial Functions")
-                                    @topic("Currying")
+                                    @*@topic("Partial Functions")*@
+                                    @*@topic("Currying")*@
                                 }
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Aktoren")
-                                    @topic("Utilities")
-                                    @topic("Datenbanken")
-                                    @topic("Web Frameworks")
+                                    @*@topic("Aktoren")*@
+                                    @*@topic("Utilities")*@
+                                    @*@topic("Datenbanken")*@
+                                    @*@topic("Web Frameworks")*@
                                 }
                             </td>
                         </tr>
@@ -155,21 +163,20 @@
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Makros")
-                                    @topic("Delimited Continuations")
+                                    @*@topic("Makros")*@
+                                    @*@topic("Delimited Continuations")*@
                                 }
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Early Definitions")
+                                    @*@topic("Early Definitions")*@
                                 }
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Self-Types")
-                                    @topic("Abstrakte Typen")
-                                    @topic("Strukturelle Typen")
-                                    @topic("Typbedingungen")
+                                    @*@topic("Self-Types")*@
+                                    @*@topic("Abstrakte Typen")*@
+                                    @*@topic("Strukturelle Typen")*@
                                 }
                             </td>
                             <td>
@@ -179,7 +186,7 @@
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Scalaz")
+                                    @*@topic("Scalaz")*@
                                 }
                             </td>
                         </tr>
@@ -199,9 +206,9 @@
 }
 
 
-@topic(label: String) = {
+@topic(label: String, chpt: String = "", file: String = "") = {
   <li class="topic">
-    <a href="">
+    <a href="/app/slides/@chpt/@file/#/">
       @label
     </a>
   </li>

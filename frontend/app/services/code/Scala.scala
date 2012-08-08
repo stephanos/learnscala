@@ -89,8 +89,9 @@ object Decoder {
 
 object Interpreter {
 
-    import CodeUtil._
+    def apply(code: String) =
+        new Scala().interpret(("", code))
 
-    def apply(code: (String, String), session: Option[String] = None) =
-        new Scala().interpret(withSession(code, session))
+    def apply(code: (String, String)) =
+        new Scala().interpret(code)
 }

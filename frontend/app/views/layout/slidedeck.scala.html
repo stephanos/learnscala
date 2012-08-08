@@ -10,12 +10,18 @@
         <div class="state-background"></div>
 
         <!-- slides -->
-        @content
+        <div class="slides">
+            @content
+
+            <div id="timer" data-percent="100">
+                <div></div>
+            </div>
+        </div>
 
         <!-- progress bar -->
-        <!--<div class="progress" style="display: none; ">
+        <div class="progress" style="display: none; ">
             <span style="width: 0;"></span>
-        </div>-->
+        </div>
     </div>
 
     <!-- SLIDE -->
@@ -32,7 +38,7 @@
             controls: false,
 
             // Display a presentation progress bar - NO
-            progress: false,
+            progress: true,
 
             // If true; each slide will be pushed to the browser history
             history: true,

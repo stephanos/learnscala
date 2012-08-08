@@ -1,5 +1,5 @@
 @slide(title = "Methoden") {
-} {
+
     <div class="sidebyside">
         <div>
             @snippet() {
@@ -121,6 +121,7 @@
                 }
             }
         </div>
+    } {
     }
     <details>
         <a href="http://stackoverflow.com/questions/7656937/valid-identifier-characters-in-scala">
@@ -131,7 +132,7 @@
 
 @slide() {
     <!-- Unit -->
-} {
+
     <div class="sidebyside">
         @snippet() {
             @sourceblock(fragment = false) {
@@ -167,7 +168,7 @@
 
 @slide() {
     <!-- Optionales -->
-} {
+
     <div class="sidebyside p40_60">
         @sourcecode(id = "ready", fragment = false) {
             |def ready(): String =
@@ -233,7 +234,7 @@
 
 @slide() {
     <!-- Parameter -->
-} {
+
     <div class="sidebyside p60_40">
         @snippet() {
             @sourceblock(id = "double", fragment = false) {
@@ -381,7 +382,7 @@
 
 @slide() {
     <!-- Parameter: Default -->
-} {
+
     @sourcecode(id = "method_default", fragment = false) {
         |def announce(town: String, time: String = "shortly", weather: String = "nice") = {
         |
@@ -429,7 +430,7 @@
 
 @slide() {
     <!-- Aufruf -->
-} {
+
     <div class="sidebyside p40_60">
         @snippet() {
             @callblock(fragment = false) {

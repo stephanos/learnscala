@@ -25,7 +25,8 @@ object Slide extends MyController {
         load2("", id)
 
     def load2(id1: String, id2: String) = Action {
-        Ok(views.html.slides.wrap(id1, id2))
+        Ok(loadSlide(id1, id2))
+        //Ok(views.html.slides.wrap(id1, id2))
     }
 
     def loadSlide(id1: String, id2: String) = {

@@ -779,7 +779,7 @@ var Reveal = (function(){
 			
 			window.location.hash = url;
 
-            logSlide(indexh); // HACK
+            logSlide(window.location.href + url); // HACK
 		}
 	}
 

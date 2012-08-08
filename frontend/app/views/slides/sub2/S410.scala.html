@@ -1,4 +1,4 @@
-@slide(title = "Implicits") {
+@headslide(title = "Implicits") {
     Implicits
     <!-- (A) conversions to an expected type -->
 } {
@@ -50,7 +50,7 @@
 
 @slide() {
     <!-- (B) conversions of the receiver of a selection -->
-} {
+
     <div class="sidebyside p60_40">
         <div>
             @snippet() {
@@ -127,12 +127,11 @@
 
 @*@slide() {
     <!-- (C) implicit parameters -->
-} {
 
 }*@
 
 
-@slide() {
+@headslide() {
     Implicits: Regeln
     <!-- Rules -->
 } {
@@ -190,7 +189,7 @@
 
 @slide() {
     <!-- Scope -->
-} {
+
     <div class="sidebyside p60_40">
         @sourcecode(id = "euro_dollar", fragment = false) {
             |case class EUR(v: Float)
@@ -281,7 +280,7 @@
 
 @*@slide() {
     <!-- Example: Time (plus View Bounds) -->
-} {
+
     <!-- directly -->
     <div class="sidebyside p60_40">
         @snippet() {

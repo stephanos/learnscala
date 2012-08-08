@@ -9,84 +9,84 @@ class CompilerSpec extends UnitSpec {
         "interpret" >> {
 
             "right expression" >> {
-                val r = Interpreter("val i = 42")
+                val (r, out) = Interpreter("val i = 42")
 
-                r._1 === IR.Success
-                r._2 must contain("i: Int = 42")
+                r === IR.Success
+                out must contain("i: Int = 42")
             }
 
             "wrong expression" >> {
-                val r = Interpreter("val i = 42b")
+                val (r, out) = Interpreter("val i = 42b")
 
-                r._1 === IR.Error
-                r._2 must contain ("Invalid literal number")
+                r === IR.Error
+                out must contain ("Invalid literal number")
             }
 
             "incomplete expression" >> {
-                val r = Interpreter("def func = {")
+                val (r, out) = Interpreter("def func = {")
 
-                r._1 === IR.Incomplete
-                r._2 === ""
+                r === IR.Incomplete
+                out === ""
             }
 
             "class definition" >> {
-                val r = Interpreter("class Car")
+                val (r, out) = Interpreter("class Car")
 
-                r._1 === IR.Success
-                r._2 must contain ("defined class Car")
+                r === IR.Success
+                out must contain ("defined class Car")
             }
 
             "complex interaction" >> {
-                val r = Interpreter("val i = 42; val i2 = i * 2; val f = i.toFloat")
+                val (r, out) = Interpreter("val i = 42; val i2 = i * 2; val f = i.toFloat")
 
-                r._1 === IR.Success
-                r._2 must contain ("f: Float = 42.0")
+                r === IR.Success
+                out must contain ("f: Float = 42.0")
             }
         }
 
         "compile" >> {
             "class definition" >> {
-                val r = Compiler("class Car")
+                val (r, out) = Compiler("class Car")
 
-                r._1 === true
-                r._2 === ""
+                r === true
+                out === ""
             }
 
             "duplicate class definition" >> {
-                val r = Compiler("class Car\nclass Car")
+                val (r, out) = Compiler("class Car\nclass Car")
 
-                r._1 === false
-                r._2 must contain ("Car is already defined")
+                r === false
+                out must contain ("Car is already defined")
             }
 
             "simple expression" >> {
-                val r = Compiler("val i = 42")
+                val (r, out) = Compiler("val i = 42")
 
-                r._1 === false
-                r._2 must contain ("expected class or object")
+                r === false
+                out must contain ("expected class or object")
             }
 
             "incomplete expression" >> {
-                val r = Compiler("def func = {")
+                val (r, out) = Compiler("def func = {")
 
-                r._1 === false
-                r._2 must contain ("expected class or object")
+                r === false
+                out must contain ("expected class or object")
             }
         }
 
         "decode " >> {
             "invalid code" >> {
-                val r = Decoder("class 2Car")
+                val (r, out) = Decoder("class 2Car")
 
-                r._1 === null
-                r._2 must contain ("error")
+                r === null
+                out must contain ("error")
             }
 
             "valid code" >> {
-                val r = Decoder("class Car")
+                val (r, out) = Decoder("class Car")
 
-                r._1 must contain("class Car extends scala.AnyRef")
-                r._2 === ""
+                r must contain("class Car extends scala.AnyRef")
+                out === ""
             }
         }
     }

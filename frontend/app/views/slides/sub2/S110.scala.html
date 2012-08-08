@@ -1,5 +1,5 @@
 @slide(title = "Objekte") {
-} {
+
     <div class="sidebyside p60_40">
         @sourcecode(fragment = false) {
             |class Plane(val model: String, val seats: Int) {
@@ -32,7 +32,7 @@
 
 @slide() {
     <!-- Singleton -->
-} {
+
     @codesplits((60,40), id="planefactory", fragment = false){
         @splitstart(reference = "plane") {
             |object PlaneFactory @Html("{")
@@ -76,7 +76,7 @@
 
 @slide() {
     <!-- Companion Object -->
-} {
+
     <div class="sidebyside p70_30">
         @callcode(fragment = false) {
             |val bigNumber = BigInt("1234567890")
@@ -108,7 +108,7 @@
 
 @slide() {
     <!-- Sichtbarkeit -->
-} {
+
     <div class="sidebyside">
         @sourcecode(id = "plane2", clazz = "first", fragment = false) {
             |class Plane private (val model: String,
@@ -168,7 +168,7 @@
 
 @slide() {
     <!-- apply() -->
-} {
+
     <div class="sidebyside p60_40">
         @sourcecode(id = "apply", reference = "plane2", fragment = false) {
             |object Plane {
@@ -232,7 +232,7 @@
 
 @slide() {
     <!-- Predef -->
-} {
+
     <div class="sidebyside p66_33">
         @snippet() {
             @callblock(fragment = false) {

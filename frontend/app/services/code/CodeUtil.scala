@@ -50,14 +50,6 @@ object CodeUtil {
         }, out)
     }
 
-    def withSession(code: (String, String), session: Option[String]) =
-        session match {
-            case Some(s) =>
-                code // TODO
-            case _ =>
-                code
-        }
-
     def asString(out: ByteArrayOutputStream) = {
         out.flush()
         val comment = """Compiled from "<script>"""" + sys.props("line.separator")

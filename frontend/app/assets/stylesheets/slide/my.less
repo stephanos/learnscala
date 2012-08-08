@@ -285,6 +285,15 @@
                 }
                 */
             }
+            >footer {
+                @h: 30px;
+                position: absolute;
+                bottom: 0; left: 0; right: 0;
+                height: @h; with: 100%;
+                font-size: @fs_slide * 0.75;
+                line-height: @h;
+                padding-left: 15px;
+            }
         }
     }
 
@@ -327,9 +336,10 @@
 
     /* SLIDE MARK */
     .slide-end {
-        position: absolute;
-        bottom: 0; right: 5px;
+        //position: absolute;
+        //bottom: 0; right: 5px;
 
+        float: left;
         font-size: 40px;
         //line-height: 20px;
         color: fade(@c_emph, 50%);

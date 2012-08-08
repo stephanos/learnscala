@@ -1,7 +1,9 @@
-@(indent: Boolean = false)(head: Html)(body: Html)
+@(indent: Boolean = false)(head: Html = Html.empty)(body: Html = Html.empty)(foot: Html = Html.empty)
 
 <header>
-    <h3>@head</h3>
+    @if(head.text != "") {
+        <h3>@head</h3>
+    }
 </header>
 
 <article class='@{if(indent) "indent" else ""}'>
@@ -11,3 +13,7 @@
         </div>
     </div>
 </article>
+
+<footer>
+    @foot
+</footer>
