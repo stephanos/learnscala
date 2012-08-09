@@ -1,10 +1,10 @@
-@(ref: String, id: String = null, height: Int = 0, width: Int = 0)
+@(ref: String, id: String = null, height: Int = 0, width: Int = 0, center: Boolean = true)
 
-<img
-    src='https://docs.google.com/drawings/pub?@ref'
-    @{if(id == null) "" else "id=id"}
-    @{if(width == 0) "" else "width=" + width}
-    @{if(height == 0) "" else "height=" + height}>
-
-<!--
-{if(height == 0) "" else "&amp;h=" + height} {if(width == 0) "" else "&amp;w=" + width}-->
+@defining("id=" + ref + (if (width != 0) "&w=" + width else "") + (if (height != 0) "&h=" + height else "")) { qry =>
+    <div class="@{if(center) "dcenter tcenter" else ""}">
+        <img
+            class='naked'
+            @{if(id == null) "" else "id=id"}
+            src='https://docs.google.com/drawings/pub?@qry'/>
+    </div>
+}

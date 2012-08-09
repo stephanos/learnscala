@@ -149,7 +149,7 @@
     }
 
     hr {
-        @h: @margin;
+        @h: 2 * @margin;
 
         height: @h;
         line-height: @h;
@@ -159,6 +159,8 @@
         clear: both;
 
         &.half { height: @h / 2; line-height: @h / 2; }
+        &.third { height: @h / 3; line-height: @h / 3; }
+        &.quarter { height: @h / 4; line-height: @h / 4; }
     }
 
     .stretch-wide {
@@ -267,7 +269,7 @@
     .slides {
         >section {
             >header {
-
+                min-height: 15px;
             }
             >article {
                 margin: 0 15px;
@@ -292,7 +294,6 @@
                 height: @h; with: 100%;
                 font-size: @fs_slide * 0.75;
                 line-height: @h;
-                padding-left: 15px;
             }
         }
     }
@@ -313,10 +314,10 @@
         }
     }
 
-    sub {
+    .codesub {
+        text-align: right;
         margin-top: @margin / 2;
-        font-size: 90%;
-        bottom: 0;
+        //font-size: 90%;
     }
 
     .underline {

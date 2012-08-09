@@ -1,5 +1,5 @@
-@(fragment: Boolean = true)(content: Html)
+@(fragment: Boolean = true, clazz: String = "")(content: Html)
 
-<div class='codenote @{if(fragment) "fragment" else ""}'>
+<div class='codenote @{if(fragment) "fragment" else ""} @clazz'>
     @content
 </div>

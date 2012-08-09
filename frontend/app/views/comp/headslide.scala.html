@@ -1,8 +1,10 @@
-@(id: String = null, title: String = null, topic: String = null, chapter: String = null)(head: Html = Html.empty)(body: Html = Html.empty)
+@(id: String = null, subsubtitle: String = null, subtitle: String = null, title: String = null, topic: String = null, chapter: String = null)(head: Html = Html.empty)(body: Html = Html.empty)
 
 <section @{if(id == null) "" else "data-id=slide-" + id}
          @{if(title == null) "" else "data-title='" + title + "'"}
          @{if(topic == null) "" else "data-topic='" + topic + "'"}
+         @{if(subtitle == null) "" else "data-subtitle='" + subtitle + "'"}
+         @{if(subsubtitle == null) "" else "data-subsubtitle='" + subsubtitle + "'"}
          @{if(chapter == null) "" else "data-chapter='" + chapter + "'"}>
 
     @headbody()(head)(body) {
@@ -10,6 +12,14 @@
         @if(title != "" && title != null) {
             <span class="divider">/</span>
             <span class="title">@title</span>
+        }
+        @if(subtitle != "" && subtitle != null) {
+            <span class="divider">/</span>
+            <span class="title">@subtitle</span>
+        }
+        @if(subsubtitle != "" && subsubtitle != null) {
+            <span class="divider">/</span>
+            <span class="title">@subsubtitle</span>
         }
 
         <div class="slide-end fragment">

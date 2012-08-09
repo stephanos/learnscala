@@ -2,13 +2,350 @@
 
     @defining("XML") { topic =>
 
-        @slide(topic = topic) {
-            test
+        @slidehead() {
+            XML
+        }()
+
+        @defining("Erstellen") { title =>
+
+            @slide(topic = topic, title = title, subtitle = "Literale") {
+                @snippet() {
+                    @sourceblock() {
+                        |val xml =
+                        |  &lt;html&gt;
+                        |    &lt;head&gt;
+                        |      &lt;title&gt;Homepage&lt;/title&gt;
+                        |    &lt;/head&gt;
+                        |    &lt;body&gt;
+                        |      Welcome!
+                        |    &lt;/body&gt;
+                        |  &lt;/html&gt;
+                    }
+                    @outblock() {
+                        |xml: scala.xml.Elem =
+                        |  &lt;html&gt;
+                        |    &lt;head&gt;
+                        |      &lt;title&gt;Homepage&lt;/title&gt;
+                        |    &lt;/head&gt;
+                        |    &lt;body&gt;
+                        |      Welcome!
+                        |    &lt;/body&gt;
+                        |  &lt;/html&gt;
+                    }
+                }
+                @codesub() {
+                    <code>scala.xml.Elem</code> beschreibt ein allgemeines XML-Element
+                }
+
+                <hr/><hr/>
+
+                @snippet() {
+                    @sourceblock() {
+                        |val xml = &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt;
+                    }
+                    @outblock() {
+                        |xml: scala.xml.NodeSeq = &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt;
+                    }
+                }
+                @codesub() {
+                    Eine Liste aus XML-Elementen ist vom Typ <code>scala.xml.NodeSeq</code>
+                }
+            }
+
+
+            @slide(topic = topic, title = title, subtitle = "Literale", subsubtitle = "Dynamisch") {
+                @snippet() {
+                    @sourceblock() {
+                        |def xml(name: String) = &lt;h1&gt; Welcome {name}! &lt;/h1&gt;
+                    }
+                    @callblock() {
+                        |xml("Dave")
+                    }
+                    @outblock() {
+                        |res0: scala.xml.Elem = &lt;h1&gt; Welcome Dave! &lt;/h1&gt;
+                    }
+                }
+                @codesub() {
+                    Mit <code>@("{")</code> und <code>@("}")</code> werden dynamische Blöcke mit Scala-Code eingefügt
+                }
+
+                <hr/><hr/>
+
+                @snippet() {
+                    @callblock() {
+                        |val xml = &lt;h1&gt; My favourite numbers are {{7, 42, 101}} &lt;/h1&gt;
+                    }
+                    @outblock() {
+                        |xml: scala.xml.Elem = &lt;h1&gt; My favourite numbers are {7, 42, 101} &lt;/h1&gt;
+                    }
+                }
+                @codesub() {
+                    Um eine geschweifte Klammer im Text zu verwenden, wird sie doppelt angegeben:
+                    <code>@("{{")</code> bzw. <code>@("}}")</code>
+                }
+            }
+
+
+            @slide(topic = topic, title = title, subtitle = "Literale", subsubtitle = "Dynamisch II") {
+
+                @snippet() {
+                    @callblock() {
+                        |&lt;h1&gt; { "Welcome & Goodbye" } &lt;/h1&gt;
+                    }
+                    @outblock() {
+                        |res0: scala.xml.Elem = &lt;h1&gt; Welcome @("&amp;") Goodbye  &lt;/h1&gt;
+                    }
+                    @callblock() {
+                        |&lt;h1&gt; { "<<< Welcome >>>" } &lt;/h1&gt;
+                    }
+                    @outblock() {
+                        |res1: scala.xml.Elem = &lt;h1&gt; @("&lt;&lt;&lt;") Welcome @("&gt;&gt;&gt;") &lt;/h1&gt;
+                    }
+                }
+                @codesub() {
+                    XML-Zeichen wie <code>&amp;</code> sowie <code>&lt;</code> und <code>&gt;</code>
+                    werden automatisch in die entsprechende Escape-Sequenz umgewandelt
+                }
+
+                <hr/><hr/>
+
+                @snippet() {
+                    @callblock() {
+                        |val items = List(1, 2, 3)
+                        |val xml = &lt;ul&gt; { for (i &lt;- items) yield &lt;li&gt;{i}&lt;/li&gt; } &lt;/ul &gt;
+                    }
+                    @outblock() {
+                        |xml: scala.xml.Elem = &lt;ul&gt; &lt;li&gt;1&lt;/li&gt; &lt;li&gt;2&lt;/li&gt; &lt;li&gt;3&lt;/li&gt; &lt;/ul&gt;
+                    }
+                }
+                @codesub() {
+                    Blöcke können wiederum XML-Literale enthalten
+                }
+            }
+
+
+            @slide(topic = topic, title = title, subtitle = "Literale", subsubtitle = "Attribute") {
+                @snippet() {
+                    @callblock() {
+                        |val xml = &lt;person male="true"&gt; Dave &lt;/person&gt;
+                    }
+                    @outblock() {
+                        |xml: scala.xml.Elem = &lt;person male="true"&gt; Dave &lt;/person&gt;
+                    }
+                }
+                @codesub() {
+                    XML-Elemente können mit Attributen versehen werden
+                }
+
+                <hr/><hr/>
+
+                @snippet() {
+                    @sourceblock() {
+                        |def xml(name: String, isMale: Boolean) = &lt;person male={isMale}&gt; { name } &lt;/person&gt;
+                    }
+                    @callblock() {
+                        |xml("Dave", true)
+                    }
+                    @outblock(error = true) {
+                        |error: overloaded method constructor UnprefixedAttribute with alternatives: ...
+                        | cannot be applied to (java.lang.String, Boolean, scala.xml.MetaData)
+                    }
+                }
+                @codesub() {
+                    Attribut-Block vom Typ <code>Boolean</code> ist <span class="underline">nicht</span> erlaubt
+                }
+
+                <hr/><hr/>
+
+                @snippet() {
+                    @sourceblock() {
+                        |def xml(name: String, isMale: Boolean) = &lt;person male={isMale.toString}&gt; { name } &lt;/person&gt;
+                    }
+                    @callblock() {
+                        |xml("Dave", true)
+                    }
+                    @outblock() {
+                        |res0: scala.xml.Elem = &lt;person male="true"&gt; Dave &lt;/person&gt;
+                    }
+                }
+                @codesub() {
+                    Attribut-Block vom Typ <code>String</code> ist erlaubt
+                }
+            }
+
+            @slide(topic = topic, title = title, subtitle = "Beispiel") {
+                @snippet(id = "books") {
+                    @sourceblock() {
+                        |case class Book ( title: String, pages: Int, year: Int, available: Boolean ) {
+                        |    def toXML =
+                        |       &lt;book available={available toString}&gt;
+                        |           &lt;title&gt; {title} &lt;/title&gt;
+                        |           &lt;pages&gt; {pages} &lt;/pages&gt;
+                        |           &lt;year&gt;  {year}  &lt;/year&gt;
+                        |       &lt;/book&gt;
+                        |}
+                    }
+                    @sourceblock() {
+                        |val books = List( Book("Programming in Scala", 883, 2008, true),
+                        |                  Book("Scala for the Impatient", 623, 2012, false) )
+                    }
+                }
+                <hr/>
+                @snippet() {
+                    @callblock(reference = "books") {
+                        |for ( book <- books )
+                        |    println(book.toXML)
+                    }
+                    @outblock() {
+                        |&lt;book available="true"&gt;
+                        |   &lt;title&gt;Programming in Scala&lt;/title&gt;
+                        |   &lt;pages&gt;883&lt;/pages&gt;
+                        |   &lt;year&gt;2008&lt;/year&gt;
+                        |&lt;/book&gt;
+                        |&lt;book available="false"&gt;
+                        |   &lt;title&gt;Scala for the Impatient&lt;/title&gt;
+                        |   &lt;pages&gt;623&lt;/pages&gt;
+                        |   &lt;year&gt;2012&lt;/year&gt;
+                        |&lt;/book&gt;
+                    }
+                }
+            }
         }
 
-        @slide(topic = topic, title = "") {
-            test
+        @slide(topic = topic, title = "Typenhierarchie") {
+            <div class="sidebyside">
+                @gimage("1HeZy0FkgF5KooDV6SgWc96GU-HpRaacFFriO_soySIo", width = 800)
+                <div>
+                    <hr/>
+                    @snippet() {
+                        @sourceblock() {
+                            |import xml._
+                            |
+                            |&lt;html lang="en"&gt;          // Elem + MetaData
+                            |
+                            |  &lt;head&gt;
+                            |    &lt;title&gt;
+                            |      Programming in Scala      // Text
+                            |    &lt;/title&gt;
+                            |  &lt;/head&gt;
+                            |
+                            |  &lt;body&gt;
+                            |    &lt;!-- Javascript --&gt;   // Comment
+                            |    &lt;script&gt; {
+                            |      PCData("alert('Hello!')") // PCData
+                            |    } &lt;/script&gt;
+                            |  &lt;/body&gt;
+                            |
+                            |&lt;/html&gt;
+                        }
+                    }
+                </div>
+            </div>
+            <!--<hr/>
+            @codenote() {
+                Jedes XML-Element in Scala ist vom Typ <code>Node</code> - einem NodeSeq.
+            }-->
         }
 
+        @defining("Auslesen") { title =>
+
+            @slide(topic = topic, title = title, subtitle = "XPath") {
+                <div class="sidebyside p40_60">
+                    @sourcecode(id = "xpath") {
+                        |val html =
+                        |  &lt;html lang="en"&gt;
+                        |
+                        |    &lt;body class="clearfix"&gt;
+                        |
+                        |      &lt;ul class="center"&gt;
+                        |        &lt;li&gt; Java &lt;/li&gt;
+                        |        &lt;li&gt; Scala &lt;/li&gt;
+                        |        &lt;li&gt; Groovy &lt;/li&gt;
+                        |      &lt;/ul&gt;
+                        |
+                        |      &lt;ol class="center"&gt;
+                        |        &lt;li&gt; C# &lt;/li&gt;
+                        |        &lt;li&gt; F# &lt;/li&gt;
+                        |        &lt;li&gt; JScript &lt;/li&gt;
+                        |      &lt;/ol&gt;
+                        |
+                        |    &lt;/body&gt;
+                        |
+                        |  &lt;/html&gt;
+                    }
+                    <div>
+                        @snippet() {
+                            @callblock(reference = "xpath") {
+                                |html \ "body"
+                            }
+                            @outblock() {
+                                |res0: scala.xml.NodeSeq = NodeSeq(&lt;body&gt; ...)
+                            }
+                            @callblock() {
+                                |html \ "ul"
+                            }
+                            @outblock() {
+                                |res1: scala.xml.NodeSeq = NodeSeq()
+                            }
+                        }
+                        @codesub() {
+                            Operator <code>\</code> extrahiert direkte Sub-Elemente
+                        }
+
+                        <hr class="half"/>
+
+                        @snippet() {
+                            @callblock(reference = "xpath") {
+                                |html \\ "li"
+                            }
+                            @outblock() {
+                                |res0: scala.xml.NodeSeq = NodeSeq(&lt;li&gt; Java &lt;/li&gt;, &lt;li&gt; Scala &lt;/li&gt;, &lt;li&gt; Groovy &lt;/li&gt;)
+                            }
+                        }
+                        @codesub() {
+                            Operator <code>\\</code> extrahiert alle Sub-Elemente
+                        }
+
+                        <hr class="half"/>
+
+                        @snippet() {
+                            @callblock(reference = "xpath") {
+                                |html \ "body" \ "_" \ "li"
+                            }
+                            @outblock() {
+                                |res0: scala.xml.NodeSeq = NodeSeq(&lt;li&gt; Java &lt;/li&gt;, &lt;li&gt; Scala &lt;/li&gt;, &lt;li&gt; Groovy &lt;/li&gt;)
+                            }
+                        }
+                        @codesub() {
+                             Wildcard <code>"_"</code> trifft auf alle Elemente zu
+                        }
+
+                        <hr class="half"/>
+
+                        @snippet() {
+                            @callblock(reference = "xpath") {
+                                |html \ "body" \\ "@@class"
+                            }
+                            @outblock() {
+                                |res0: scala.xml.NodeSeq = NodeSeq(clearfix, center, center)
+                            }
+                        }
+                        @codesub() {
+                            Mit <code>@@</code> wird nicht das Element, sondern das Attribut extrahiert
+                        }
+                    </div>
+                </div>
+            }
+
+
+            @slide(topic = topic, title = title, subtitle = "Pattern Matching") {
+                TODO
+            }
+        }
+
+
+        @slide(topic = topic, title = "Transformieren") {
+            TODO
+        }
     }
 }
