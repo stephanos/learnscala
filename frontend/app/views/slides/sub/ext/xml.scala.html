@@ -1,9 +1,16 @@
-@layout.slidedeck("XML") {
+<!--
+TODO
+    - pattern matching
+    - NodeSeq.empty
+    - namespaces
+-->
 
-    @defining("XML") { topic =>
+@defining("XML") { topic =>
+
+    @layout.slidedeck(topic) {
 
         @slidehead() {
-            XML
+            @topic
         }()
 
         <!--################################################################################## -->
