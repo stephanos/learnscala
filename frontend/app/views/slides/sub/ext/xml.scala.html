@@ -50,7 +50,7 @@
                     }
                 }
                 @codesub() {
-                    Eine Liste aus XML-Elementen ist vom Typ <code>scala.xml.NodeSeq</code>
+                    Liste aus XML-Elementen ist vom Typ <code>scala.xml.NodeSeq</code>
                 }
             }
 
@@ -69,7 +69,7 @@
                     }
                 }
                 @codesub() {
-                    Mit <code>@("{")</code> und <code>@("}")</code> werden dynamische Blöcke mit Scala-Code eingefügt
+                    dynamische Blöcke mit Scala-Code durch Umschließen von <code>@("{")</code> und <code>@("}")</code>
                 }
 
                 <hr/><hr/>
@@ -83,7 +83,7 @@
                     }
                 }
                 @codesub() {
-                    Um eine geschweifte Klammer im Text zu verwenden, wird sie doppelt angegeben:
+                    um eine geschweifte Klammer im Text zu verwenden, wird sie doppelt angegeben:
                     <code>@("{{")</code> bzw. <code>@("}}")</code>
                 }
             }
@@ -130,10 +130,10 @@
 
                 @snippet() {
                     @sourceblock() {
-                        |&lt;number&gt; 1 &lt;/number&gt; ++ &lt;number&gt; 2 &lt;/number&gt;
+                        |&lt;number&gt;1&lt;/number&gt; ++ &lt;number&gt;2&lt;/number&gt;
                     }
                     @outblock() {
-                        |res0: scala.xml.NodeSeq = NodeSeq(&lt;number&gt; 1 &lt;/number&gt;, &lt;number&gt; 2 &lt;/number&gt;)
+                        |res0: scala.xml.NodeSeq = NodeSeq(&lt;number&gt;1&lt;/number&gt;, &lt;number&gt;2&lt;/number&gt;)
                     }
                 }
                 @codesub() {
@@ -192,10 +192,16 @@
                 }
             }
 
+            <!--################################################################################## -->
+
+            @*@slide(topic = topic, title = title, subtitle = "Manuell") {
+                TODO
+                <!--http://scalatutorial.de/topic176.html#xmlErzeugen-->
+            }*@
 
             <!--################################################################################## -->
 
-            @slide(topic = topic, title = title, subtitle = "Beispiel") {
+            @slide(topic = topic, title = title, subtitle = "Anwendungsbeispiel") {
                 @snippet(id = "books_out") {
                     @sourceblock() {
                         |case class Book ( title: String, pages: Int, year: Int, available: Boolean ) {
@@ -275,67 +281,9 @@
 
         @defining("Auslesen") { title =>
 
-            @slide(topic = topic, title = title) {
+            @slide(topic = topic, title = title, subtitle = "XPath", subsubtitle = "") {
                 <div class="sidebyside p40_60">
-                    @sourcecode(id = "read") {
-                        |val html =
-                        |  &lt;html&gt;
-                        |
-                        |    &lt;body class="clearfix"&gt;
-                        |
-                        |      &lt;ul class="center"&gt;
-                        |        &lt;li&gt; Java &lt;/li&gt;
-                        |        &lt;li&gt; Scala &lt;/li&gt;
-                        |        &lt;li&gt; Groovy &lt;/li&gt;
-                        |      &lt;/ul&gt;
-                        |
-                        |      &lt;ol class="center"&gt;
-                        |        &lt;li&gt; C# &lt;/li&gt;
-                        |        &lt;li&gt; F# &lt;/li&gt;
-                        |        &lt;li&gt; JScript &lt;/li&gt;
-                        |      &lt;/ol&gt;
-                        |
-                        |    &lt;/body&gt;
-                        |
-                        |  &lt;/html&gt;
-                    }
-                    <div>
-                        @snippet() {
-                            @callblock(reference = "read") {
-                                |html(0)
-                            }
-                            @outblock() {
-                                |res0: scala.xml.NodeSeq = NodeSeq(&lt;body&gt; ...)
-                            }
-                        }
-                    </div>
-                </div>
-            }
-
-            @slide(topic = topic, title = title, subtitle = "XPath") {
-                <div class="sidebyside p40_60">
-                    @sourcecode(id = "xpath") {
-                        |val html =
-                        |  &lt;html&gt;
-                        |
-                        |    &lt;body class="clearfix"&gt;
-                        |
-                        |      &lt;ul class="center"&gt;
-                        |        &lt;li&gt; Java &lt;/li&gt;
-                        |        &lt;li&gt; Scala &lt;/li&gt;
-                        |        &lt;li&gt; Groovy &lt;/li&gt;
-                        |      &lt;/ul&gt;
-                        |
-                        |      &lt;ol class="center"&gt;
-                        |        &lt;li&gt; C# &lt;/li&gt;
-                        |        &lt;li&gt; F# &lt;/li&gt;
-                        |        &lt;li&gt; JScript &lt;/li&gt;
-                        |      &lt;/ol&gt;
-                        |
-                        |    &lt;/body&gt;
-                        |
-                        |  &lt;/html&gt;
-                    }
+                    @parsecode("xpath")
                     <div>
                         @snippet() {
                             @callblock(reference = "xpath") {
@@ -355,35 +303,35 @@
                             Operator <code>\</code> extrahiert direkte Sub-Elemente
                         }
 
-                        <hr class="half"/>
+                        <hr/>
 
                         @snippet() {
                             @callblock(reference = "xpath") {
-                                |html \\ "li"
+                                |(html \\ "li").length
                             }
                             @outblock() {
-                                |res0: scala.xml.NodeSeq = NodeSeq(&lt;li&gt; Java &lt;/li&gt;, &lt;li&gt; Scala &lt;/li&gt;, &lt;li&gt; Groovy &lt;/li&gt;)
+                                |res0: Int = 6
                             }
                         }
                         @codesub() {
                             Operator <code>\\</code> extrahiert alle Sub-Elemente
                         }
 
-                        <hr class="half"/>
+                        <hr/>
 
                         @snippet() {
                             @callblock(reference = "xpath") {
-                                |html \ "body" \ "_" \ "li"
+                                |(html \ "body" \ "_" \ "li").length
                             }
                             @outblock() {
-                                |res0: scala.xml.NodeSeq = NodeSeq(&lt;li&gt; Java &lt;/li&gt;, &lt;li&gt; Scala &lt;/li&gt;, &lt;li&gt; Groovy &lt;/li&gt;)
+                                |res0: Int = 6
                             }
                         }
                         @codesub() {
                              Wildcard <code>"_"</code> trifft auf alle Elemente zu
                         }
 
-                        <hr class="half"/>
+                        <hr/>
 
                         @snippet() {
                             @callblock(reference = "xpath") {
@@ -394,7 +342,7 @@
                             }
                         }
                         @codesub() {
-                            Mit <code>@@</code> wird nicht das Element, sondern das Attribut extrahiert
+                            <code>@@</code> extrahiert das Attribut
                         }
                     </div>
                 </div>
@@ -402,39 +350,114 @@
 
             <!--################################################################################## -->
 
-            @slide(topic = topic, title = title, subtitle = "Pattern Matching") {
+            @slide(topic = topic, title = title, subtitle = "XPath", subsubtitle = "") {
                 <div class="sidebyside p40_60">
-                    @sourcecode(id = "pmatch") {
-                        |val html =
-                        |  &lt;html&gt;
-                        |
-                        |    &lt;body class="clearfix"&gt;
-                        |
-                        |      &lt;ul class="center"&gt;
-                        |        &lt;li&gt; Java &lt;/li&gt;
-                        |        &lt;li&gt; Scala &lt;/li&gt;
-                        |        &lt;li&gt; Groovy &lt;/li&gt;
-                        |      &lt;/ul&gt;
-                        |
-                        |      &lt;ol class="center"&gt;
-                        |        &lt;li&gt; C# &lt;/li&gt;
-                        |        &lt;li&gt; F# &lt;/li&gt;
-                        |        &lt;li&gt; JScript &lt;/li&gt;
-                        |      &lt;/ol&gt;
-                        |
-                        |    &lt;/body&gt;
-                        |
-                        |  &lt;/html&gt;
-                    }
+                    @parsecode("")
                     <div>
                         @snippet() {
-                            @callblock(reference = "pmatch") {
-                                |(html \ "body") match {
-                                |   case "
-                                |}
+                            @callblock(reference = "xpath") {
+                                |(html \\ "li")(1)
                             }
                             @outblock() {
-                                |res0:
+                                |res0: scala.xml.Node = <li> Scala </li>
+                            }
+                        }
+                        @codesub() {
+                            <code>Node</code> ist eine Sequenz, hat daher auch die Operationen einer Sequenz
+                        }
+
+                        <hr/>
+
+                        @snippet() {
+                            @callblock(reference = "xpath") {
+                                |(html \\ "li") map { _.text.trim }
+                            }
+                            @outblock() {
+                                |res0: Seq[String] = List("Java", "Scala", "Groovy",
+                                |                         "C#", "F#", "JScript")
+                            }
+                        }
+                        @codesub() {
+                            <code>text</code> liefert Inhalt des XML-Elements
+                        }
+
+                        <hr/>
+
+                        @snippet() {
+                            @callblock(reference = "xpath") {
+                                |for (e <- html \ "body" \ "_") println(e.label)
+                            }
+                            @outblock() {
+                                |ul
+                                |ol
+                            }
+                        }
+                        @codesub() {
+                            <code>label</code> liefert den Tag-Namen des XML-Elements
+                        }
+
+                        <hr/>
+
+                        @snippet() {
+                            @callblock(reference = "xpath") {
+                                |(html \ "body" \ "_") map (_.attributes)
+                            }
+                            @outblock() {
+                                |res0:Seq[scala.xml.MetaData] = List(class="center",
+                                |                                    class="center")
+                            }
+                        }
+                        @codesub() {
+                            <code>attributes</code> liefert die Meta-Daten des XML-Elements
+                        }
+                    </div>
+                </div>
+            }
+
+            <!--################################################################################## -->
+
+            @*@slide(topic = topic, title = title, subtitle = "Pattern Matching") {
+                <div class="sidebyside p40_60">
+                    @parsecode("pmatch")
+                    <div>
+                        @snippet() {
+                            @sourceblock(reference = "pmatch") {
+                                |def hasClass(n: Node, cls: String): Unit =
+                                |  n match {
+                                |    case n if (n.attributes("class").text == cls) =>
+                                |      print(n.label)
+                                |    case _ => n foreach (hasClass(_, cls))
+                                |  }
+                                |
+                            }
+                            @callblock() {
+                                |hasClass(html, "center")
+                            }
+                            @outblock() {
+                                |ul
+                                |ol
+                            }
+                        }
+                        @codesub() {
+
+                        }
+
+                        <hr/>
+
+                        @snippet() {
+                            @sourceblock(reference = "pmatch") {
+                                |def printElem(n: Node, p: (Elem) => Boolean): Unit =
+                                |  n match {
+                                |    case e: Elem if(p(e)) => println(e.text.trim)
+                                |    case _ => n map (printElem(_, p))
+                                |  }
+                            }
+                            @callblock() {
+                                |printElem(html, _.text contains "#")
+                            }
+                            @outblock() {
+                                |C#
+                                |F#
                             }
                         }
                         @codesub() {
@@ -448,7 +471,39 @@
 
             <!--################################################################################## -->
 
-            @slide(topic = topic, title = title, subtitle = "Beispiel") {
+            @slide(topic = topic, title = title, subtitle = "Pattern Matching") {
+                <div class="sidebyside p40_60">
+                    @parsecode("")
+                    <div>
+                        @snippet() {
+                            @sourceblock(reference = "pmatch") {
+                                |def describe(n: Node): String =
+                                |  n match {
+                                |    case &lt;ol&gt;{_}&lt;/ol&gt; => "ordered list with "
+                                |    case &lt;ul&gt;{_}&lt;/ul&gt; => "unordered list with "
+                                |    case _ => "unknown"
+                                |  }
+                            }
+                            @callblock() {
+                                |(html \ "body" \ "_") map { describe(_) } foreach println
+                            }
+                            @outblock() {
+                                |"ordered list with "
+                                |"unordered list with "
+                            }
+                        }
+                        @codesub() {
+
+                        }
+                    </div>
+                </div>
+
+                <hr/>
+            }*@
+
+            <!--################################################################################## -->
+
+            @slide(topic = topic, title = title, subtitle = "Anwendungsbeispiel") {
                 @snippet(id = "books_in") {
                     @sourceblock() {
                         |case class Book ( title: String, pages: Int, year: Int, available: Boolean )
@@ -535,7 +590,7 @@
                             |      case e: Elem if(e.label == "ol") =>
                             |        e.copy(label = "ul")
                             |      case _ => n
-                            |  }
+                            |    }
                             |}
                             |
                             |new RuleTransformer(trfrm).transform(html)
@@ -567,7 +622,7 @@
                     }
                 }
                 @codesub() {
-                    Das Objekt <code>XML</code> bietet eine <code>save</code>-Methode zum serialisieren einer <code>Node</code>-Instanz
+                    Objekt <code>XML</code> bietet eine <code>save</code>-Methode zum serialisieren einer <code>Node</code>-Instanz
                 }
 
                 <hr/>
@@ -585,5 +640,32 @@
                 }
             }
         }
+    }
+}
+
+@parsecode(id: String) = {
+    @sourcecode(id = id) {
+        |import xml._
+        |
+        |val html =
+        |  &lt;html&gt;
+        |
+        |    &lt;body class="clearfix"&gt;
+        |
+        |      &lt;ul class="center"&gt;
+        |        &lt;li&gt; Java &lt;/li&gt;
+        |        &lt;li&gt; Scala &lt;/li&gt;
+        |        &lt;li&gt; Groovy &lt;/li&gt;
+        |      &lt;/ul&gt;
+        |
+        |      &lt;ol class="center"&gt;
+        |        &lt;li&gt; C# &lt;/li&gt;
+        |        &lt;li&gt; F# &lt;/li&gt;
+        |        &lt;li&gt; JScript &lt;/li&gt;
+        |      &lt;/ol&gt;
+        |
+        |    &lt;/body&gt;
+        |
+        |  &lt;/html&gt;
     }
 }
