@@ -200,6 +200,10 @@
         padding: 0 5px;
         //font-family: monospace;
         background: fade(@c_text_light, 20%);
+
+        &.console {
+            font-family: Inconsolata;
+        }
     }
 
     comment {
@@ -269,6 +273,9 @@
     .slides {
         >section {
             >header {
+                h2, h3, h4 {
+                    margin: 15px 15px 0 15px;
+                }
                 min-height: 15px;
             }
             >article {

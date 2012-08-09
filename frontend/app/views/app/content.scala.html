@@ -34,7 +34,7 @@
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Einführung")
+                                    @topic("Einführung", "basic", "einfuehrung")
                                     @*@topic("Erste Schritte")*@
                                     @*@topic("Kontrollstrukturen")*@
                                     @*@topic("Methoden")*@
@@ -106,7 +106,7 @@
                             <td>
                                 @topics {
                                     @topic("XML", "ext", "xml")
-                                    @topic("JSON")
+                                    @*@topic("JSON")*@
                                     @*@topic("Swing")*@
                                     @*@topic("Testen")*@
                                 }
@@ -142,7 +142,7 @@
                             <td>
                                 @topics {
                                     @*@topic("Partial Functions")*@
-                                    @*@topic("Currying")*@
+                                    @topic("Currying", "fp", "currying")
                                 }
                             </td>
                             <td>
@@ -208,7 +208,7 @@
 
 @topic(label: String, chpt: String = "", file: String = "") = {
   <li class="topic">
-    <a href="/app/slides/@chpt/@file/#/">
+    <a href='/app/slides/@{if(chpt != "") chpt + "/" else ""}@file/#/'>
       @label
     </a>
   </li>
