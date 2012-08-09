@@ -249,12 +249,15 @@ readRawBlock = (elem, editable) ->
   lines = _.str.lines(_.str.trim($(elem).text()))
   _.forEach(lines,
     (l, i) ->
+      linedata = _.str.strRight(l, "|")
       # append newline
       if(i != 0) then content += "\n"
       # mark call scripts with a '> '
-      if(_.str.contains(type, "call") && editable != true) then content += "> "
+      console.log(l)
+      console.log(!_.str.isBlank(_.str.trim(l)))
+      if(_.str.contains(type, "call") && editable != true && !_.str.isBlank(_.str.trim(linedata))) then content += "> "
       # append content right from '|'
-      content += _.str.strRight(l, "|")
+      content += linedata
   )
 
   {

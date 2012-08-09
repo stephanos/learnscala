@@ -6,6 +6,8 @@
             XML
         }()
 
+        <!--################################################################################## -->
+
         @defining("Erstellen") { title =>
 
             @slide(topic = topic, title = title, subtitle = "Literale") {
@@ -52,6 +54,7 @@
                 }
             }
 
+            <!--################################################################################## -->
 
             @slide(topic = topic, title = title, subtitle = "Literale", subsubtitle = "Dynamisch") {
                 @snippet() {
@@ -59,10 +62,10 @@
                         |def xml(name: String) = &lt;h1&gt; Welcome {name}! &lt;/h1&gt;
                     }
                     @callblock() {
-                        |xml("Dave")
+                        |xml("Paul")
                     }
                     @outblock() {
-                        |res0: scala.xml.Elem = &lt;h1&gt; Welcome Dave! &lt;/h1&gt;
+                        |res0: scala.xml.Elem = &lt;h1&gt; Welcome Paul! &lt;/h1&gt;
                     }
                 }
                 @codesub() {
@@ -85,6 +88,7 @@
                 }
             }
 
+            <!--################################################################################## -->
 
             @slide(topic = topic, title = title, subtitle = "Literale", subsubtitle = "Dynamisch II") {
 
@@ -121,16 +125,31 @@
                 @codesub() {
                     Blöcke können wiederum XML-Literale enthalten
                 }
+
+                <hr/><hr/>
+
+                @snippet() {
+                    @sourceblock() {
+                        |&lt;number&gt; 1 &lt;/number&gt; ++ &lt;number&gt; 2 &lt;/number&gt;
+                    }
+                    @outblock() {
+                        |res0: scala.xml.NodeSeq = NodeSeq(&lt;number&gt; 1 &lt;/number&gt;, &lt;number&gt; 2 &lt;/number&gt;)
+                    }
+                }
+                @codesub() {
+                    <code>++</code> verbindet zwei XML-Elemente zu einem
+                }
             }
 
+            <!--################################################################################## -->
 
             @slide(topic = topic, title = title, subtitle = "Literale", subsubtitle = "Attribute") {
                 @snippet() {
                     @callblock() {
-                        |val xml = &lt;person male="true"&gt; Dave &lt;/person&gt;
+                        |val xml = &lt;person male="true"&gt; Paul &lt;/person&gt;
                     }
                     @outblock() {
-                        |xml: scala.xml.Elem = &lt;person male="true"&gt; Dave &lt;/person&gt;
+                        |xml: scala.xml.Elem = &lt;person male="true"&gt; Paul &lt;/person&gt;
                     }
                 }
                 @codesub() {
@@ -144,7 +163,7 @@
                         |def xml(name: String, isMale: Boolean) = &lt;person male={isMale}&gt; { name } &lt;/person&gt;
                     }
                     @callblock() {
-                        |xml("Dave", true)
+                        |xml("Paul", true)
                     }
                     @outblock(error = true) {
                         |error: overloaded method constructor UnprefixedAttribute with alternatives: ...
@@ -162,10 +181,10 @@
                         |def xml(name: String, isMale: Boolean) = &lt;person male={isMale.toString}&gt; { name } &lt;/person&gt;
                     }
                     @callblock() {
-                        |xml("Dave", true)
+                        |xml("Paul", true)
                     }
                     @outblock() {
-                        |res0: scala.xml.Elem = &lt;person male="true"&gt; Dave &lt;/person&gt;
+                        |res0: scala.xml.Elem = &lt;person male="true"&gt; Paul &lt;/person&gt;
                     }
                 }
                 @codesub() {
@@ -173,8 +192,11 @@
                 }
             }
 
+
+            <!--################################################################################## -->
+
             @slide(topic = topic, title = title, subtitle = "Beispiel") {
-                @snippet(id = "books") {
+                @snippet(id = "books_out") {
                     @sourceblock() {
                         |case class Book ( title: String, pages: Int, year: Int, available: Boolean ) {
                         |    def toXML =
@@ -192,7 +214,7 @@
                 }
                 <hr/>
                 @snippet() {
-                    @callblock(reference = "books") {
+                    @callblock(reference = "books_out") {
                         |for ( book <- books )
                         |    println(book.toXML)
                     }
@@ -212,6 +234,8 @@
             }
         }
 
+        <!--################################################################################## -->
+
         @slide(topic = topic, title = "Typenhierarchie") {
             <div class="sidebyside">
                 @gimage("1HeZy0FkgF5KooDV6SgWc96GU-HpRaacFFriO_soySIo", width = 800)
@@ -221,18 +245,18 @@
                         @sourceblock() {
                             |import xml._
                             |
-                            |&lt;html lang="en"&gt;          // Elem + MetaData
-                            |
+                            |&lt;html lang="en"&gt;                 // Elem
+                            |                                //  + MetaData
                             |  &lt;head&gt;
                             |    &lt;title&gt;
-                            |      Programming in Scala      // Text
+                            |      Programming in Scala       // Text
                             |    &lt;/title&gt;
                             |  &lt;/head&gt;
                             |
                             |  &lt;body&gt;
-                            |    &lt;!-- Javascript --&gt;   // Comment
+                            |    &lt;!-- Javascript --&gt;          // Comment
                             |    &lt;script&gt; {
-                            |      PCData("alert('Hello!')") // PCData
+                            |      PCData("alert('Hello!')")  // PCData
                             |    } &lt;/script&gt;
                             |  &lt;/body&gt;
                             |
@@ -247,13 +271,52 @@
             }-->
         }
 
+        <!--################################################################################## -->
+
         @defining("Auslesen") { title =>
+
+            @slide(topic = topic, title = title) {
+                <div class="sidebyside p40_60">
+                    @sourcecode(id = "read") {
+                        |val html =
+                        |  &lt;html&gt;
+                        |
+                        |    &lt;body class="clearfix"&gt;
+                        |
+                        |      &lt;ul class="center"&gt;
+                        |        &lt;li&gt; Java &lt;/li&gt;
+                        |        &lt;li&gt; Scala &lt;/li&gt;
+                        |        &lt;li&gt; Groovy &lt;/li&gt;
+                        |      &lt;/ul&gt;
+                        |
+                        |      &lt;ol class="center"&gt;
+                        |        &lt;li&gt; C# &lt;/li&gt;
+                        |        &lt;li&gt; F# &lt;/li&gt;
+                        |        &lt;li&gt; JScript &lt;/li&gt;
+                        |      &lt;/ol&gt;
+                        |
+                        |    &lt;/body&gt;
+                        |
+                        |  &lt;/html&gt;
+                    }
+                    <div>
+                        @snippet() {
+                            @callblock(reference = "read") {
+                                |html(0)
+                            }
+                            @outblock() {
+                                |res0: scala.xml.NodeSeq = NodeSeq(&lt;body&gt; ...)
+                            }
+                        }
+                    </div>
+                </div>
+            }
 
             @slide(topic = topic, title = title, subtitle = "XPath") {
                 <div class="sidebyside p40_60">
                     @sourcecode(id = "xpath") {
                         |val html =
-                        |  &lt;html lang="en"&gt;
+                        |  &lt;html&gt;
                         |
                         |    &lt;body class="clearfix"&gt;
                         |
@@ -337,15 +400,190 @@
                 </div>
             }
 
+            <!--################################################################################## -->
 
             @slide(topic = topic, title = title, subtitle = "Pattern Matching") {
-                TODO
+                <div class="sidebyside p40_60">
+                    @sourcecode(id = "pmatch") {
+                        |val html =
+                        |  &lt;html&gt;
+                        |
+                        |    &lt;body class="clearfix"&gt;
+                        |
+                        |      &lt;ul class="center"&gt;
+                        |        &lt;li&gt; Java &lt;/li&gt;
+                        |        &lt;li&gt; Scala &lt;/li&gt;
+                        |        &lt;li&gt; Groovy &lt;/li&gt;
+                        |      &lt;/ul&gt;
+                        |
+                        |      &lt;ol class="center"&gt;
+                        |        &lt;li&gt; C# &lt;/li&gt;
+                        |        &lt;li&gt; F# &lt;/li&gt;
+                        |        &lt;li&gt; JScript &lt;/li&gt;
+                        |      &lt;/ol&gt;
+                        |
+                        |    &lt;/body&gt;
+                        |
+                        |  &lt;/html&gt;
+                    }
+                    <div>
+                        @snippet() {
+                            @callblock(reference = "pmatch") {
+                                |(html \ "body") match {
+                                |   case "
+                                |}
+                            }
+                            @outblock() {
+                                |res0:
+                            }
+                        }
+                        @codesub() {
+
+                        }
+                    </div>
+                </div>
+
+                <hr/>
+            }
+
+            <!--################################################################################## -->
+
+            @slide(topic = topic, title = title, subtitle = "Beispiel") {
+                @snippet(id = "books_in") {
+                    @sourceblock() {
+                        |case class Book ( title: String, pages: Int, year: Int, available: Boolean )
+                        |
+                        |object Book {
+                        |
+                        |  def apply ( xml: scala.xml.NodeSeq ): Book = {
+                        |    val avble = (xml \\ "@@available").text == "true"
+                        |    val title = (xml \\ "title").text
+                        |    val pages = (xml \\ "pages").text.toInt
+                        |    val year  = (xml \\ "year" ).text.toInt
+                        |
+                        |    new Book (title, pages, year, avble)
+                        |  }
+                        |}
+                    }
+                }
+                <hr/>
+                @snippet() {
+                    @callblock(reference = "books_in") {
+                        |Book(&lt;book available="true"&gt;
+                        |       &lt;title&gt;Programming in Scala&lt;/title&gt;
+                        |       &lt;pages&gt;883&lt;/pages&gt;
+                        |       &lt;year&gt;2008&lt;/year&gt;
+                        |     &lt;/book&gt;)
+                    }
+                    @outblock() {
+                        |res0: Book = Book(Programming in Scala,883,2008,true)
+                    }
+                }
             }
         }
 
+        <!--################################################################################## -->
 
-        @slide(topic = topic, title = "Transformieren") {
-            TODO
+        @defining("Transformieren") { title =>
+            @slide(topic = topic, title = title) {
+                <div class="sidebyside p40_60">
+                    @snippet() {
+                        @sourcecode(id = "transform") {
+                            |val html =
+                            |  &lt;html&gt;
+                            |    &lt;body&gt;
+                            |      &lt;ul&gt; // unordered
+                            |        &lt;li&gt; Java &lt;/li&gt;
+                            |        &lt;li&gt; Scala &lt;/li&gt;
+                            |        &lt;li&gt; Groovy &lt;/li&gt;
+                            |      &lt;/ul&gt;
+                            |      &lt;ol&gt; // ordered
+                            |        &lt;li&gt; C# &lt;/li&gt;
+                            |        &lt;li&gt; F# &lt;/li&gt;
+                            |        &lt;li&gt; JScript &lt;/li&gt;
+                            |      &lt;/ol&gt;
+                            |    &lt;/body&gt;
+                            |  &lt;/html&gt;
+                        }
+                        @outblock() {
+                            |  &lt;html&gt;
+                            |    &lt;body&gt;
+                            |      &lt;ol&gt; // ordered
+                            |        &lt;li&gt; Java &lt;/li&gt;
+                            |        &lt;li&gt; Scala &lt;/li&gt;
+                            |        &lt;li&gt; Groovy &lt;/li&gt;
+                            |      &lt;/ol&gt;
+                            |      &lt;ul&gt; // unordered
+                            |        &lt;li&gt; C# &lt;/li&gt;
+                            |        &lt;li&gt; F# &lt;/li&gt;
+                            |        &lt;li&gt; JScript &lt;/li&gt;
+                            |      &lt;/ul&gt;
+                            |    &lt;/body&gt;
+                            |  &lt;/html&gt;
+                        }
+                    }
+                    <div>
+                        @callcode(reference = "transform") {
+                            |import scala.xml._
+                            |import scala.xml.transform._
+                            |
+                            |val trfrm = new RewriteRule {
+                            |  override def transform(n: Node) =
+                            |    n match {
+                            |      case e: Elem if(e.label == "ul") =>
+                            |        e.copy(label = "ol")
+                            |      case e: Elem if(e.label == "ol") =>
+                            |        e.copy(label = "ul")
+                            |      case _ => n
+                            |  }
+                            |}
+                            |
+                            |new RuleTransformer(trfrm).transform(html)
+                        }
+                        @codesub() {
+                            <code>RuleTransformer</code> kann eine oder mehrere <code>RewriteRule</code>
+                            auf einen <code>Node</code> und dessen Sub-Elemente anwenden
+                        }
+                    </div>
+                </div>
+
+                <hr/>
+            }
+        }
+
+        <!--################################################################################## -->
+
+        @defining("Speichern und Laden") { title =>
+            @slide(topic = topic, title = title) {
+                @snippet() {
+                    @sourceblock() {
+                        |val xml = &lt;ul&gt; &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt; &lt;/ul&gt;
+                    }
+                    @outblock() {
+                        |xml: scala.xml.Elem = &lt;ul&gt; &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt; &lt;/ul&gt;
+                    }
+                    @callblock(id = "save") {
+                        |scala.xml.XML.save("numbers.xml", xml)
+                    }
+                }
+                @codesub() {
+                    Das Objekt <code>XML</code> bietet eine <code>save</code>-Methode zum serialisieren einer <code>Node</code>-Instanz
+                }
+
+                <hr/>
+
+                @snippet() {
+                    @callblock(reference = "save") {
+                        |scala.xml.XML.loadFile("numbers.xml")
+                    }
+                    @outblock() {
+                        |res0: scala.xml.Elem = &lt;ul&gt; &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt; &lt;/ul&gt;
+                    }
+                }
+                @codesub() {
+                    <code>loadFile</code> kann eine Datei laden und parst den Inhalt mit Hilfe von Javas SAX Parser
+                }
+            }
         }
     }
 }
