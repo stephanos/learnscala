@@ -17,7 +17,7 @@ TODO:
 
         <!--################################################################################## -->
 
-        @slide(topic = topic) {
+        @slide(topic = topic, title = "Übersicht") {
             @overview
         }
 
@@ -77,7 +77,7 @@ TODO:
 
         @defining("Kommandozeile") { title =>
 
-            @headslide(topic = topic, title = title) {
+            @headslide(topic = topic, title = title, subtitle = "scalac") {
                 &gt;<em> scalac</em>
             } {
                 <div class="indent">
@@ -95,7 +95,7 @@ TODO:
 
             <!--################################################################################## -->
 
-            @headslide(topic = topic, title = title) {
+            @headslide(topic = topic, title = title, subtitle = "fsc") {
                 &gt;<em> fsc</em>
             } {
                 <div class="indent">
@@ -118,7 +118,7 @@ TODO:
 
             <!--################################################################################## -->
 
-            @headslide(topic = topic, title = title) {
+            @headslide(topic = topic, title = title, subtitle = "scala") {
                 &gt;<em> scala</em>
             } {
                 <div class="indent">
@@ -206,5 +206,5 @@ TODO:
 }
 
 @overview = {
-    @gimage("1X-TUMbxK4vkC96NLMAQsqPn51lr5RL_ZGQn4_RGtpTo", height = 700)
+    @Images.tools1()
 }

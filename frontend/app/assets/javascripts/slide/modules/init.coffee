@@ -33,6 +33,13 @@ embedNavi = ->
   titles = []
   subtitles = []
   naviElemLinks = $("#naviGoTo").find("ul")
+
+  $(naviElemLinks).append('
+    <li class="main">
+      <a href="#">Start</a>
+    </li>
+  ')
+
   $(".reveal section").each(
     (idx, elem) ->
       title = $(elem).data("title")
@@ -41,18 +48,16 @@ embedNavi = ->
       if(title && !_.include(titles, title))
         titles.push(title)
         $(naviElemLinks).append('
-          <li>
+          <li class="main">
             <a href="#/' + idx + '">' + title + '</a>
-            <ul class="dropdown-menu sub-menu"></ul>
           </li>
-        ')
+        ') # <ul class="dropdown-menu sub-menu"></ul>
 
       if(subtitle && !_.include(subtitles, subtitle))
         subtitles.push(subtitle)
         $(naviElemLinks).append('
-          <li>
+          <li class="sub">
             <a href="#/' + idx + '"> - ' + subtitle + '</a>
-            <ul class="dropdown-menu sub-menu"></ul>
           </li>
         ')
 

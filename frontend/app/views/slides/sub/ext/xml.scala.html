@@ -47,7 +47,7 @@ TODO
                     <code>scala.xml.Elem</code> beschreibt ein allgemeines XML-Element
                 }
 
-                <hr/><hr/>
+                <hr/>
 
                 @snippet() {
                     @sourceblock() {
@@ -80,7 +80,7 @@ TODO
                     dynamische Blöcke mit Scala-Code durch Umschließen von <code>@("{")</code> und <code>@("}")</code>
                 }
 
-                <hr/><hr/>
+                <hr/>
 
                 @snippet() {
                     @callblock() {
@@ -119,7 +119,7 @@ TODO
                     werden automatisch in die entsprechende Escape-Sequenz umgewandelt
                 }
 
-                <hr/><hr/>
+                <hr/>
 
                 @snippet() {
                     @callblock() {
@@ -134,7 +134,7 @@ TODO
                     Blöcke können wiederum XML-Literale enthalten
                 }
 
-                <hr/><hr/>
+                <hr/>
 
                 @snippet() {
                     @sourceblock() {
@@ -164,7 +164,7 @@ TODO
                     XML-Elemente können mit Attributen versehen werden
                 }
 
-                <hr/><hr/>
+                <hr/>
 
                 @snippet() {
                     @sourceblock() {
@@ -182,7 +182,7 @@ TODO
                     Attribut-Block vom Typ <code>Boolean</code> ist <span class="underline">nicht</span> erlaubt
                 }
 
-                <hr/><hr/>
+                <hr/>
 
                 @snippet() {
                     @sourceblock() {
@@ -226,7 +226,9 @@ TODO
                         |                  Book("Scala for the Impatient", 623, 2012, false) )
                     }
                 }
+
                 <hr/>
+
                 @snippet() {
                     @callblock(reference = "books_out") {
                         |for ( book <- books )
@@ -252,7 +254,7 @@ TODO
 
         @slide(topic = topic, title = "Typenhierarchie") {
             <div class="sidebyside">
-                @gimage("1HeZy0FkgF5KooDV6SgWc96GU-HpRaacFFriO_soySIo", width = 800)
+                @Images.xmlHierarchy()
                 <div>
                     <hr/>
                     @snippet() {
@@ -311,7 +313,7 @@ TODO
                             Operator <code>\</code> extrahiert direkte Sub-Elemente
                         }
 
-                        <hr/>
+                        <hr class="half"/>
 
                         @snippet() {
                             @callblock(reference = "xpath") {
@@ -325,7 +327,7 @@ TODO
                             Operator <code>\\</code> extrahiert alle Sub-Elemente
                         }
 
-                        <hr/>
+                        <hr class="half"/>
 
                         @snippet() {
                             @callblock(reference = "xpath") {
@@ -339,7 +341,7 @@ TODO
                              Wildcard <code>"_"</code> trifft auf alle Elemente zu
                         }
 
-                        <hr/>
+                        <hr class="half"/>
 
                         @snippet() {
                             @callblock(reference = "xpath") {
@@ -374,7 +376,7 @@ TODO
                             <code>Node</code> ist eine Sequenz, hat daher auch die Operationen einer Sequenz
                         }
 
-                        <hr/>
+                        <hr class="half"/>
 
                         @snippet() {
                             @callblock(reference = "xpath") {
@@ -389,7 +391,7 @@ TODO
                             <code>text</code> liefert Inhalt des XML-Elements
                         }
 
-                        <hr/>
+                        <hr class="half"/>
 
                         @snippet() {
                             @callblock(reference = "xpath") {
@@ -404,7 +406,7 @@ TODO
                             <code>label</code> liefert den Tag-Namen des XML-Elements
                         }
 
-                        <hr/>
+                        <hr class="half"/>
 
                         @snippet() {
                             @callblock(reference = "xpath") {
