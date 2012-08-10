@@ -141,3 +141,20 @@
         }
     }
 }
+
+<!--
+e match {
+  case pat1 => e1: T1
+  case pat2a | ... | pat2n => e2: T2
+  ...
+  case patn => en: Tn
+}
+
+        def days(month: Int, leap: Boolean): Int =
+          month match {
+            case 2 if leap       => 29 // guarded pattern
+            case 2               => 28 // note: order is important here!
+            case 4 | 6 | 9 | 11  => 30 // alternative pattern
+            case _               => 31 // wildcard pattern
+          }
+-->

@@ -37,7 +37,7 @@
             // Display controls in the bottom right corner
             controls: false,
 
-            // Display a presentation progress bar - NO
+            // Display a presentation progress bar
             progress: true,
 
             // If true; each slide will be pushed to the browser history
@@ -56,7 +56,7 @@
             theme: query.theme || 'default', // default/neon
 
             // Transition style
-            transition: query.transition || 'linear' // default/cube/page/concave/linear(2d)
+            transition: query.transition || 'fade' // linear
         });
 
         Reveal.addEventListener('slidechanged', function (event) {

@@ -109,6 +109,20 @@
 	        transform: translate3d(0, 150%, 0);
 }
 
+
+/*********************************************
+ * FADE TRANSITION
+ *********************************************/
+
+.reveal.fade .slides {
+    .transition(opacity 10ms linear);
+
+    >section.future, >section.past {
+        .opacity(0);
+    }
+}
+
+
 /*********************************************
  * BOX TRANSITION
  *********************************************/
