@@ -1,45 +1,63 @@
 initSlides = ->
+  # toolbar
   subtleToolbar()
   embedEditor()
   embedDocs()
   embedStyle()
-  $("#naviLogout").remove()
+  embedNavi()
 
+  # change li order
+  $("#naviLogout").remove()
+  li = $("#naviSlides")
+  li.parent().append(li)
+  li.find(".divider").remove()
+
+  # slide
   initCountdowns()
   initSnippets()
   initTimer()
 
 
 #######################################################################################################################
-initNavi = ->
+embedNavi = ->
   # init navi
-  naviElem = $("#naviSlides")
-  $(naviElem).addClass("dropdown")
-  naviElemLink = $(naviElem).find("a")
-  naviElemLink.replaceWith(
-    '<a class="dropdown-toggle" data-toggle="dropdown" href="#naviSlides">
-        <span>Go To</span>
-        <b class="caret"></b>
-     </a>
-     <ul class="dropdown-menu">'
-  )
-  naviElemLinks = naviElem.find("ul")
+  $('<li id="naviGoTo" class="dropdown">
+       <a class="dropdown-toggle" data-toggle="dropdown" href="#naviGoTo">
+         <span>Go To</span>
+         <b class="caret"></b>
+       </a>
+       <span class="divider">|</span>
+       <ul class="dropdown-menu"></ul>
+     </li>').insertAfter($("#naviSlides"))
+
+  titles = []
+  subtitles = []
+  naviElemLinks = $("#naviGoTo").find("ul")
   $(".reveal section").each(
     (idx, elem) ->
       title = $(elem).data("title")
-      chapter = $(elem).data("chapter")
+      subtitle = $(elem).data("subtitle")
 
-      if(chapter)
+      if(title && !_.include(titles, title))
+        titles.push(title)
         $(naviElemLinks).append('
           <li>
-            <a href="#/' + idx + '">' + chapter + '</a>
+            <a href="#/' + idx + '">' + title + '</a>
             <ul class="dropdown-menu sub-menu"></ul>
           </li>
         ')
 
-      if(title)
-        $(naviElemLinks).find(">li").last().find("ul")
-          .append('<li><a href="#/' + idx + '">' + title + '</a></li>')
+      if(subtitle && !_.include(subtitles, subtitle))
+        subtitles.push(subtitle)
+        $(naviElemLinks).append('
+          <li>
+            <a href="#/' + idx + '"> - ' + subtitle + '</a>
+            <ul class="dropdown-menu sub-menu"></ul>
+          </li>
+        ')
+
+        #$(naviElemLinks).find(">li").last().find("ul")
+        #  .append('<li><a href="#/' + idx + '">' + subtitle + '</a></li>')
   )
 
 
@@ -66,7 +84,8 @@ embedStyle = ->
       <a href="#" class="openStyle">
           <span>Style</span>
       </a>
-  </li>').insertAfter($("#naviDocs"))
+      <span class="divider">|</span>
+    </li>').insertAfter($("#naviDocs"))
 
   # bind click event
   $("#naviStyle").bind("click", () ->
