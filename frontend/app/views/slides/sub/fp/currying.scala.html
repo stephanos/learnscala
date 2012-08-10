@@ -1,6 +1,7 @@
 <!--
 TODO
     - Übung
+    - By-Name Parameter
 -->
 
 @defining("Currying") { topic =>
@@ -14,74 +15,7 @@ TODO
 
         <!--################################################################################## -->
 
-        <!--@slide(topic = topic, title = "") {
-
-            <div class="sidebyside">
-                @snippet() {
-                    @sourceblock(id = "retry1") {
-                        |def retry[T](n: Int, fn: => T): T = {
-                        |  try {
-                        |    fn
-                        |  } catch {
-                        |    case e if n > 1 =>
-                        |      retry(n - 1, fn)
-                        |  }
-                        |}
-                    }
-                    @outblock() {
-                        |retry: [T](n: Int, fn: => T)T
-                    }
-                }
-                <div>
-                    @codenote() {
-                        <code>retry</code> mit dem Typ-Parameter <code>T</code>
-                        erwartet 2 Parameter: Anzahl der Versuche und die auszuführende Funktion mit Rückgabewert <code>T</code>
-                    }
-                    <hr/>
-                    @codenote() {
-                        ein Guard im Pattern Matching prüft ob die Versuchsanzahl erreicht wurde
-                    }
-                </div>
-            </div>
-
-            <hr/>
-
-            <div class="sidebyside">
-                @snippet() {
-                    @sourceblock(id = "connect-rand", reference = "retry1") {
-                        |def connect = {
-                        |  println("connecting")
-                        |  assert(util.Random.nextInt(2) == 0)
-                        |  true
-                        |}
-                    }
-                    @outblock() {
-                        |connect: Boolean = true
-                    }
-                    @callblock() {
-                        |val r = retry(2, connect)
-                    }
-                    @outblock() {
-                        |connecting
-                        |connecting
-                        |r: Boolean = true
-                    }
-                }
-                <div>
-                    @codenote() {
-                        Methode <code>connect</code> simuliert den Aufbau einer Datenbankverbindung
-                    }
-                    <hr/><hr/>
-                    @codenote() {
-                        <code>retry</code> versucht maximal 2x eine Verbindung herzustellen
-                    }
-                    <hr/><hr/>
-                    @codenote() {
-                        <var>Problem:</var> umständlicher Aufruf
-                    }
-                </div>
-            </div>
-        }-->
+        <!-- TODO: simple example - like mult(a)(b), double = mult(2) -->
 
         <!--################################################################################## -->
 
@@ -107,9 +41,6 @@ TODO
                     @codenote() {
                         <code>Currying</code> erlaubt es, <em>mehrere Parameterlisten</em> zu definieren
                     }
-                    <!--@codenote() {
-                        By-Name-Parameter
-                    }-->
                 </div>
             </div>
 
@@ -153,7 +84,7 @@ TODO
 
         @defining("Beispiele") { title =>
 
-            @slide(topic = topic, title = title, subtitle = "Thread") {
+            @*@slide(topic = topic, title = title, subtitle = "Thread") {
 
                 <div class="sidebyside p60_40">
                     <div>
@@ -195,7 +126,7 @@ TODO
                     </div>
                     @empty()
                 </div>
-            }
+            }*@
 
             <!--################################################################################## -->
 

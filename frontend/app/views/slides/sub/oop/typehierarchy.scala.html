@@ -1,0 +1,344 @@
+@defining("Typhierarchie") { topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slidehead() {
+            @topic
+        } {
+            Wo ist oben und unten?
+        }
+
+        <!--################################################################################## -->
+
+        @slide(topic = topic, title = "Any") {
+            <div class="sidebyside p60_40">
+                <div>
+                    @gimage("1rohDVf9bLpnQOdnrA-ODUQXHt1BWXUFvvP70bkyLlsU", width = 600)
+                </div>
+                @fragment {
+                    <h4>Typ 'Any'</h4>
+                    <hr/>
+                    <div class="indent">
+                        <ul>
+                            <li>gemeinsame Super-Klasse aller Typen</li>
+                            <li class="fragment">
+                                finale Methoden:
+                                <hr/>
+                                <ul>
+                                    <li><code>==</code></li>
+                                    <li><code>!=</code></li>
+                                    <li><code>isInstanceOf</code></li>
+                                    <li><code>asInstanceOf</code></li>
+                                </ul>
+                            </li>
+                            <li class="fragment">
+                                Standardimplementierungen für:
+                                <hr/>
+                                <ul>
+                                    <li><code>equals</code></li>
+                                    <li><code>hashCode</code></li>
+                                    <li><code>toString</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                }
+            </div>
+        }
+
+        <!--################################################################################## -->
+
+        @slide(topic = topic, title = "AnyVal") {
+            <div class="sidebyside p60_40">
+                <div>
+                    @gimage("19k3tuSEN-J5VTHvJJb-3ObAfj8P57cAkhBKIEgJJ7WI", width = 600)
+                </div>
+                @fragment {
+                    <h4>Typ 'AnyVal'</h4>
+                    <hr/>
+                    <div class="indent">
+                        <ul>
+                            <li>"Value Types"</li>
+                            <li class="fragment">
+                                kann nicht direkt vererbt (final) oder instanziiert (abstrakt) werden
+                            </li>
+                            <li class="fragment">
+                                entspricht primitiven Datentypen aus <var>Java</var> <comment>(werden im Hintergrund auch verwendet)</comment>
+                            </li>
+                            <li class="fragment">
+                                Ausnahme ist <em>Scala</em>-spezifischer Typ <code>Unit</code> <comment>(wie <code>void</code>)</comment>
+                            </li>
+                        </ul>
+                    </div>
+                }
+            </div>
+        }
+
+        <!--################################################################################## -->
+
+        @slide(topic = topic, title = "AnyRef") {
+            <div class="sidebyside p60_40">
+                <div>
+                    @gimage("1BUr9qK8XaZ_GbMztJqmY7iOmuepP1qoCas7brZ0XJWA", width = 600)
+                </div>
+                @fragment {
+                    <h4>Typ 'AnyRef'</h4>
+                    <hr/>
+                    <div class="indent">
+                        <ul>
+                            <li>"Reference Types"</li>
+                            <li class="fragment">
+                                entspricht <code>java.lang.Object</code> in Java bzw.
+                                <code>System.Object</code> in .Net
+                            </li>
+                            <li class="fragment">
+                                vererbt an <var>Java-Klassen</var> <comment>(z.B. java.lang.String)</comment>
+                                und <em>Scala-Klassen</em> <comment>(z.B. scala.Predef)</comment>
+                            </li>
+                            <li class="fragment">
+                                zusätzlich erben <em>Scala-Klassen</em> vom Trait <code>ScalaObject</code>
+                                <comment>(einzig für interne Zwecke)</comment>
+                            </li>
+                        </ul>
+                    </div>
+                }
+            </div>
+        }
+
+        <!--################################################################################## -->
+
+        @slide(topic = topic, title = "Null") {
+            <div class="sidebyside p60_40">
+                @gimage("1DT7OetZ3WkNsUa-rGlJwbBdbPOGXuzdmK1rks6DCqBc", width = 600)
+
+                @fragment {
+                    <h4>Typ 'Null'</h4>
+                    <hr/>
+                    <div class="indent">
+                        <ul>
+                            <li>"Bottom Type"</li>
+                            <li class="fragment">
+                                Unterklasse von allen Reference Types
+                            </li>
+                            <li class="fragment">
+                                einziger möglicher Wert ist <code>null</code>
+                            </li>
+                        </ul>
+                        <hr/>
+                    </div>
+                }
+            </div>
+
+            <hr/>
+
+            <div class="sidebyside">
+                @snippet() {
+                     @callblock() {
+                         |val i: Int = null
+                     }
+                     @outblock(error = true) {
+                         |error   : type mismatch;
+                         |found   : Null(null)
+                         |required: Int
+                     }
+                }
+
+                @snippet() {
+                     @callblock() {
+                         |val s: String = null
+                     }
+                     @outblock() {
+                         |s: String = null
+                     }
+                }
+            </div>
+        }
+
+        <!--################################################################################## -->
+
+        @slide(topic = topic, title = "Nothing") {
+             <div class="sidebyside p60_40">
+                 @gimage("1TTuoy1DRDc5o7DcBu8zuK4vXQUXawnaAzLfP29kMR-E", width = 600)
+
+                 @fragment {
+                     <h4>Typ 'Nothing'</h4>
+                     <hr/>
+                     <div class="indent">
+                         <ul>
+                             <li>"Bottom Type"</li>
+                             <li class="fragment">
+                                 Unterklasse aller Typen
+                             </li>
+                             <li class="fragment">
+                                 hat keinen Wert, wird aber z.B. bei Exceptions benötigt:
+                             </li>
+                         </ul>
+                     </div>
+                 }
+             </div>
+
+            <hr/>
+
+            <div class="sidebyside">
+                @snippet() {
+                    @sourceblock() {
+                        |def error(msg: String) =
+                        |  throw new RuntimeException(msg)
+                    }
+                    @outblock() {
+                        |error: (msg: String)Nothing
+                    }
+                }
+
+                @snippet() {
+                    @sourceblock() {
+                        |def divide(x: Int, y: Int): Int =
+                        |  if (y != 0) x / y
+                        |  else error("can't divide by zero")
+                    }
+                    @outblock() {
+                        |divide: (x: Int, y: Int)Int
+                    }
+                }
+            </div>
+        }
+
+        <!--################################################################################## -->
+
+        @slide(topic = topic) {
+            @gimage("1TTuoy1DRDc5o7DcBu8zuK4vXQUXawnaAzLfP29kMR-E", height = 700)
+        }
+
+        <!--################################################################################## -->
+
+        @quiz() {
+            <div class="sidebyside">
+                <div>
+                    <div class="sidebyside p10_90">
+                        <span>(1)</span>
+                        @snippet() {
+                            @callblock(fragment = false) {
+                                |val r = null
+                            }
+                            @outblock() {
+                                |r: Null = null
+                            }
+                        }
+                    </div>
+                </div>
+                <div>
+                    <div class="sidebyside p10_90">
+                        <span>(2)</span>
+                        @snippet() {
+                            @callblock(fragment = false) {
+                                |val r: Int = null
+                            }
+                            @outblock(error = true) {
+                                |error: type mismatch;
+                                |found: Null; required: Int
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="sidebyside">
+                <div>
+                    <div class="sidebyside p10_90">
+                        <span>(3)</span>
+                        @snippet() {
+                            @callblock(fragment = false) {
+                                |var r: AnyVal = true
+                                |r = 1
+                            }
+                            @outblock() {
+                                |r: AnyVal = true
+                                |r: AnyVal = 1
+                            }
+                        }
+                    </div>
+                </div>
+                <div>
+                    <div class="sidebyside p10_90">
+                        <span>(4)</span>
+                        @snippet() {
+                            @callblock(fragment = false) {
+                                |val r = if(true) false else ()
+                            }
+                            @outblock() {
+                                |r: AnyVal = false
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="sidebyside">
+                <div>
+                    <div class="sidebyside p10_90">
+                        <span>(5)</span>
+                        @snippet() {
+                            @callblock(fragment = false) {
+                                |var r: AnyRef = 1
+                                |r = true
+                            }
+                            @outblock(error = true) {
+                                |error: type mismatch;
+                                |found: Boolean; required: AnyRef
+                            }
+                        }
+                    </div>
+                </div>
+                <div>
+                    <div class="sidebyside p10_90">
+                        <span>(6)</span>
+                        @snippet() {
+                            @callblock(fragment = false) {
+                                |def r =
+                                |   throw new RuntimeException
+                            }
+                            @outblock() {
+                                |r: ()Nothing
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="sidebyside">
+                <div>
+                    <div class="sidebyside p10_90">
+                        <span>(7)</span>
+                        @snippet() {
+                            @callblock(fragment = false) {
+                                |val r = new Nothing
+                            }
+                            @outblock(error = true) {
+                                |error: trait Nothing is abstract
+                            }
+                        }
+                    </div>
+                </div>
+                <div>
+                    <div class="sidebyside p10_90">
+                        <span>(8)</span>
+                        @snippet() {
+                            @callblock(fragment = false) {
+                                |val r: BigInt = null
+                            }
+                            @outblock() {
+                                |r: BigInt = null
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    }
+}
