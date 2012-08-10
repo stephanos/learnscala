@@ -29,6 +29,9 @@ GET     /app/wait                                   controllers.App.waitingRoom
 
 GET     /app/editor                                 controllers.Editor.index
 GET     /app/editor/                                controllers.Editor.index2
+GET     /app/glossary                               controllers.Slide.glossary1
+GET     /app/glossary/                              controllers.Slide.glossary2
+GET     /app/glossary/:id                           controllers.Slide.glossary(id)
 
 GET     /app/slides                                 controllers.Slide.index
 GET     /app/slides/                                controllers.Slide.index2

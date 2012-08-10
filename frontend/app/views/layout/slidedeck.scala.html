@@ -1,10 +1,10 @@
-@(title: String)(content: Html)
+@(title: String, clazz: String = "")(content: Html)
 
 @head = {
     <link href='@MyAssets.css_slide._2' type="text/css" rel="stylesheet">
 }
 
-@internal(title, head=head) {
+@internal(title, clazz=clazz, head=head) {
     <div id="slidedeck" class="reveal">
         <!-- background -->
         <div class="state-background"></div>
@@ -64,17 +64,22 @@
         });
 
         $(document).ready(function() {
-            window.initSlides()
+            window.initSlides();
         });
     </script>
 
     <!-- Style modal -->
     <div id="styleModal" class="modal hide">
-        <div class="modal-body ide">
+        <div class="modal-body">
             <br/>
             TODO
             <br/>
         </div>
+    </div>
+
+    <!-- Glossary modal -->
+    <div id="glossaryModal" class="fullscreen modal hide slim">
+        <div class="modal-body" style="overflow: hidden"></div>
     </div>
 
     <!-- IDE modal -->

@@ -1,4 +1,4 @@
-@(title: String, open: Boolean = false, head: Html = Html(""))(content: Html)
+@(title: String, open: Boolean = false, clazz: String = "", head: Html = Html(""))(content: Html)
 <!DOCTYPE html>
 
 <html>
@@ -22,7 +22,7 @@
         <script type="text/javascript" src="@MyAssets.js_editor._2"></script>
     </head>
 
-    <body>
+    <body class="@clazz">
         @content
 
         @if(!open) {

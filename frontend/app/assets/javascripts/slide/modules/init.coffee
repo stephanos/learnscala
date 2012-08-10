@@ -1,21 +1,25 @@
-initSlides = ->
-  # toolbar
-  subtleToolbar()
-  embedEditor()
-  embedDocs()
-  embedStyle()
-  embedNavi()
+initSlides = (clazz) ->
 
-  # change li order
-  $("#naviLogout").remove()
-  li = $("#naviSlides")
-  li.parent().append(li)
-  li.find(".divider").remove()
+  if(!$("body").hasClass("light"))
 
-  # slide
-  initCountdowns()
-  initSnippets()
-  initTimer()
+    # toolbar
+    subtleToolbar()
+    embedEditor()
+    embedDocs()
+    embedGlossary()
+    embedStyle()
+    embedNavi()
+
+    # change li order
+    $("#naviLogout").remove()
+    li = $("#naviSlides")
+    li.parent().append(li)
+    li.find(".divider").remove()
+
+    # slide
+    initCountdowns()
+    initSnippets()
+    initTimer()
 
 
 #######################################################################################################################
@@ -76,6 +80,31 @@ embedEditor = ->
 
 
 #######################################################################################################################
+embedGlossary = ->
+  # insert in navi
+  $('<li id="naviGlossary">
+      <a href="#" class="openStyle">
+          <span>Glossary</span>
+      </a>
+      <span class="divider">|</span>
+    </li>').insertAfter($("#naviDocs"))
+
+  # bind click event
+  $("#naviGlossary").bind("click", () ->
+    m = $("#glossaryModal")
+    m.bind("shown", (evt) ->
+      mbody = $(m).find(".modal-body")
+      $(mbody).html('
+        <iframe src="/app/glossary" width="100%" height="100%"
+                style="position: absolute; top: 0; bottom: 0; left: 0; right: 0; overflow: hidden"></iframe>
+      ')
+    )
+    m.modal()
+    false
+  )
+
+
+#######################################################################################################################
 initSnippets = ->
   $('.slides div.snippet').each(
     (idx, elem) -> initSnippet(elem)
@@ -121,7 +150,7 @@ embedDocs = ->
       mbody = $(m).find(".modal-body")
       if($(mbody).is(":empty"))
         $(mbody).html('
-          <iframe src="http://www.scala-lang.org/api/current/index.html" width="99%" height="99%"
+          <iframe src="http://www.scala-lang.org/api/current/index.html" width="99.5%" height="99.5%"
                   style="position: absolute; top: 5px; bottom: 5px; left: 5px; right: 5px; overflow: hidden"></iframe>
         ')
     )
