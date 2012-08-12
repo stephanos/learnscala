@@ -230,7 +230,8 @@
                 <div class="indent">
                     <ol>
                         <li>
-                            Download von <code>www.jetbrains.com/idea/download/</code>
+                            <code>Intellij 11+</code> installieren
+                            (via <code>www.jetbrains.com/idea/download/</code>)
                             <hr/>
                         </li>
                         <li>
@@ -258,28 +259,37 @@
                 <div class="indent">
                     <ol>
                         <li>
-                            Download von <code>Eclipse Classic</code> und installieren
+                            <code>Eclipse Classic 4.2</code> installieren
+                            (via <code>http://www.eclipse.org/downloads/</code>)
                             <hr/>
-                            <ul>
+                            <!--<ul>
                                 <li>
                                     <comment>
                                         <var>3.7</var> (Indigo): <code>www.eclipse.org/downloads/packages/release/indigo/sr2</code>
                                     </comment>
                                 </li>
-                                <!--<li>
+                                &lt;!&ndash;<li>
                                     <comment>
                                         <var>4.2</var> (Juno): <code>www.eclipse.org/downloads/packages/release/juno/r</code>
                                     </comment>
-                                </li>-->
+                                </li>&ndash;&gt;
                             </ul>
+                            <hr/>-->
+                        </li>
+                        <li>
+                            Eclipse starten
                             <hr/>
                         </li>
                         <li>
-                            Installationfenster via <code>Help | Install New Software</code> im Menu öffnen
+                            <code>Help | Install New Software</code> im Menu öffnen
                             <hr/>
                         </li>
                         <li>
-                            Entsprechendes Update Repository eingeben
+                            Repository von <code>http://scala-ide.org/download/current.html</code> übernehmen
+                            <hr/>
+                        </li>
+                        <!--<li>
+                            Entsprechendes  eingeben
                             <hr/>
                             <ul>
                                 <li>
@@ -287,22 +297,69 @@
                                         <var>3.7</var> (Indigo): <code>http://download.scala-ide.org/releases-29/milestone/site</code>
                                     </comment>
                                 </li>
-                                <!--<li>
+                                &lt;!&ndash;<li>
                                     <comment>
                                         <var>4.2</var> (Juno): <code>http://download.scala-ide.org/nightly-update-juno-master-29x</code>
                                     </comment>
-                                </li>-->
+                                </li>&ndash;&gt;
                             </ul>
                             <hr/>
-                        </li>
+                        </li>-->
                         <li>
-                            <code>Scala IDE for Eclipse</code> (alle) ankreuzen und mit <code>Finish</code> installieren
+                            <code>Scala IDE for Eclipse</code> ankreuzen und mit <code>Finish</code> installieren
                             <hr/>
                         </li>
                         <li>
-                            Editor neu starten
+                            Eclipse neu starten
                         </li>
                     </ol>
+                </div>
+            }
+
+            @headslide(topic = topic, title = title, subtitle = "Übungen") {
+                <em>Übungen</em> vorbereiten
+            } {
+                <div class="indent">
+                    <ul>
+                        <li>
+                            Projekt von <code>https://github.com/101loops/LearnScala</code> als ZIP herunterladen
+                        </li>
+                        <li>
+                            ZIP-Datei extrahieren
+                        </li>
+                        <li>
+                            Konsole öffnen und via <code>cd</code> ins entpackte Projekt wechseln
+                        </li>
+                        <hr/>
+                        <div class="indent">
+                            <div class="sidebyside">
+                                <div>
+                                    <strong><em>Eclipse</em></strong>
+                                    <hr/>
+                                    <div class="indent">
+                                        <ul>
+                                            <li><code>sbt eclipse with-source=true</code> <br/> in Konsole ausführen</li>
+                                            <li>
+                                                Projekt importieren via <code>File &gt; Import</code> und
+                                                <code>Existing Projects into Workspace</code>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <strong><em>IntelliJ</em></strong>
+                                    <hr/>
+                                    <div class="indent">
+                                        <ul>
+                                            <li><code>sbt gen-idea with-sources</code> <br/> in Konsole ausführen</li>
+                                            <li>Projekt öffnen via <code>File &gt; Open Project</code></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
                 </div>
             }
         }

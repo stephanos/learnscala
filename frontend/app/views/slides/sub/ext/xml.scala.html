@@ -101,13 +101,13 @@ TODO
             @slide(topic = topic, title = title, subtitle = "Literale", subsubtitle = "Dynamisch II") {
 
                 @snippet() {
-                    @callblock() {
+                    @sourceblock() {
                         |&lt;h1&gt; { "Welcome & Goodbye" } &lt;/h1&gt;
                     }
                     @outblock() {
                         |res0: scala.xml.Elem = &lt;h1&gt; Welcome @("&amp;") Goodbye  &lt;/h1&gt;
                     }
-                    @callblock() {
+                    @sourceblock() {
                         |&lt;h1&gt; { "<<< Welcome >>>" } &lt;/h1&gt;
                     }
                     @outblock() {
@@ -413,8 +413,8 @@ TODO
                                 |(html \ "body" \ "_") map (_.attributes)
                             }
                             @outblock() {
-                                |res0:Seq[scala.xml.MetaData] = List(class="center",
-                                |                                    class="center")
+                                |res0: Seq[MetaData] = List(class="center",
+                                |                          class="center")
                             }
                         }
                         @codesub() {
