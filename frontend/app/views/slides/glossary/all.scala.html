@@ -1,7 +1,7 @@
 @*<!--
     http://docs.scala-lang.org/glossary/
 -->*@
-@layout.simpledeck("Glossary") {
+@layout.simpledeck("Glossary", false) {
 
     <div class="glossary">
 
@@ -10,7 +10,9 @@
 
             <ul data-letter="A">
                 @link("Aktor")
+                @link("Annotationen")
                 @link("apply")
+                @link("Assoziativität", "assoziativitaet")
             </ul>
         </div>
 
@@ -26,6 +28,8 @@
             <h4>C</h4>
 
             <ul data-letter="C">
+                @link("Cake Pattern")
+                @link("Case Class")
                 @link("Companion")
                 @link("Currying")
             </ul>
@@ -44,11 +48,12 @@
 
             <ul data-letter="E">
                 @link("Either")
+                @link("Extraktor")
             </ul>
         </div>
 
         <div>
-            <h4 class="inactive">F</h4>
+            <h4>F</h4>
 
             <ul data-letter="F">
                 @link("Funktionen höherer Ordnung", "hof")
@@ -56,10 +61,10 @@
         </div>
 
         <div>
-            <h4 class="inactive">G</h4>
+            <h4>G</h4>
 
             <ul data-letter="G">
-
+                @link("Generator")
             </ul>
         </div>
 
@@ -113,10 +118,12 @@
         </div>
 
         <div>
-            <h4 class="inactive">N</h4>
+            <h4>N</h4>
 
             <ul data-letter="N">
-
+                @link("None")
+                @link("Nothing")
+                @link("Null", "null")
             </ul>
         </div>
 
@@ -132,8 +139,8 @@
             <h4>P</h4>
 
             <ul data-letter="P">
-                @link("Pattern Guard")
                 @link("Pattern Matching")
+                @link("Predef")
             </ul>
         </div>
 
@@ -149,6 +156,7 @@
             <h4>R</h4>
 
             <ul data-letter="R">
+                @link("REPL")
                 @link("return")
             </ul>
         </div>
@@ -157,8 +165,11 @@
             <h4>S</h4>
 
             <ul data-letter="S">
+                @link("scalaz")
+                @link("sealed", "seal")
                 @link("self-type")
                 @link("Sichtbarkeit")
+                @link("Singleton")
             </ul>
         </div>
 
@@ -168,14 +179,17 @@
             <ul data-letter="T">
                 @link("Tail Recursion", "tailrec")
                 @link("trait", "traits")
+                @link("Typ-Hierarchie")
+                @link("Typ-Inferenz")
             </ul>
         </div>
 
         <div>
-            <h4 class="inactive">U</h4>
+            <h4>U</h4>
 
             <ul data-letter="U">
-
+                @link("Unit")
+                @link("Uniform Access")
             </ul>
         </div>
 
@@ -198,10 +212,10 @@
         </div>
 
         <div>
-            <h4 class="inactive">X</h4>
+            <h4>X</h4>
 
             <ul data-letter="X">
-
+                @link("XML-Literal")
             </ul>
         </div>
 

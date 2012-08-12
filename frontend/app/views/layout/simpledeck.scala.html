@@ -1,7 +1,15 @@
-@(title: String)(content: Html)
+@(title: String, showhHead: Boolean = true)(content: Html)
 
 @layout.slidedeck(title, clazz = "light") {
-    @slide() {
-         @content
+    @if(showhHead) {
+        @headslide() {
+            @title
+        } {
+            @content
+        }
+    } else {
+        @slide() {
+            @content
+        }
     }
 }
