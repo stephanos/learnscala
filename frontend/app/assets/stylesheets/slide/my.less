@@ -463,6 +463,10 @@ div.glossary {
         >h3, >h4 {
             margin-top: @margin;
             margin-bottom: @margin / 2;
+
+            &.inactive {
+                .opacity(40);
+            }
         }
 
         >ul {
@@ -472,6 +476,15 @@ div.glossary {
                 display: inline;
                 list-style-type: none;
                 padding-right: @margin / 4;
+
+                &:after {
+                    content: ", ";
+                    color: #aaa;
+                }
+
+                &:last-child:after {
+                    content: "";
+                }
             }
         }
 

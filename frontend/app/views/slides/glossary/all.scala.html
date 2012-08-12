@@ -1,3 +1,6 @@
+@*<!--
+    http://docs.scala-lang.org/glossary/
+-->*@
 @layout.simpledeck("Glossary") {
 
     <div class="glossary">
@@ -6,7 +9,8 @@
             <h4>A</h4>
 
             <ul data-letter="A">
-
+                @link("Aktor")
+                @link("apply")
             </ul>
         </div>
 
@@ -14,7 +18,7 @@
             <h4>B</h4>
 
             <ul data-letter="B">
-
+                @link("By-Name")
             </ul>
         </div>
 
@@ -22,12 +26,13 @@
             <h4>C</h4>
 
             <ul data-letter="C">
-
+                @link("Companion")
+                @link("Currying")
             </ul>
         </div>
 
         <div>
-            <h4>D</h4>
+            <h4 class="inactive">D</h4>
 
             <ul data-letter="D">
 
@@ -38,20 +43,20 @@
             <h4>E</h4>
 
             <ul data-letter="E">
-
+                @link("Either")
             </ul>
         </div>
 
         <div>
-            <h4>F</h4>
+            <h4 class="inactive">F</h4>
 
             <ul data-letter="F">
-
+                @link("Funktionen höherer Ordnung", "hof")
             </ul>
         </div>
 
         <div>
-            <h4>G</h4>
+            <h4 class="inactive">G</h4>
 
             <ul data-letter="G">
 
@@ -59,7 +64,7 @@
         </div>
 
         <div>
-            <h4>H</h4>
+            <h4 class="inactive">H</h4>
 
             <ul data-letter="H">
 
@@ -70,12 +75,13 @@
             <h4>I</h4>
 
             <ul data-letter="I">
-
+                @link("immutable")
+                @link("Import", "import")
             </ul>
         </div>
 
         <div>
-            <h4>J</h4>
+            <h4 class="inactive">J</h4>
 
             <ul data-letter="J">
 
@@ -86,7 +92,7 @@
             <h4>K</h4>
 
             <ul data-letter="K">
-
+                @link("Keywords")
             </ul>
         </div>
 
@@ -94,7 +100,7 @@
             <h4>L</h4>
 
             <ul data-letter="L">
-
+                @link("Lambda")
             </ul>
         </div>
 
@@ -102,12 +108,12 @@
             <h4>M</h4>
 
             <ul data-letter="M">
-
+                @link("Monaden")
             </ul>
         </div>
 
         <div>
-            <h4>N</h4>
+            <h4 class="inactive">N</h4>
 
             <ul data-letter="N">
 
@@ -126,12 +132,13 @@
             <h4>P</h4>
 
             <ul data-letter="P">
-
+                @link("Pattern Guard")
+                @link("Pattern Matching")
             </ul>
         </div>
 
         <div>
-            <h4>Q</h4>
+            <h4 class="inactive">Q</h4>
 
             <ul data-letter="Q">
 
@@ -142,7 +149,7 @@
             <h4>R</h4>
 
             <ul data-letter="R">
-
+                @link("return")
             </ul>
         </div>
 
@@ -150,7 +157,8 @@
             <h4>S</h4>
 
             <ul data-letter="S">
-
+                @link("self-type")
+                @link("Sichtbarkeit")
             </ul>
         </div>
 
@@ -158,12 +166,13 @@
             <h4>T</h4>
 
             <ul data-letter="T">
-
+                @link("Tail Recursion", "tailrec")
+                @link("trait", "traits")
             </ul>
         </div>
 
         <div>
-            <h4>U</h4>
+            <h4 class="inactive">U</h4>
 
             <ul data-letter="U">
 
@@ -174,7 +183,9 @@
             <h4>V</h4>
 
             <ul data-letter="V">
-
+                @link("val", "value")
+                @link("var", "variable")
+                @link("Varianz")
             </ul>
         </div>
 
@@ -187,7 +198,7 @@
         </div>
 
         <div>
-            <h4>X</h4>
+            <h4 class="inactive">X</h4>
 
             <ul data-letter="X">
 
@@ -198,12 +209,12 @@
             <h4>Y</h4>
 
             <ul data-letter="Y">
-
+                @link("yields")
             </ul>
         </div>
 
         <div>
-            <h4>Z</h4>
+            <h4 class="inactive">Z</h4>
 
             <ul data-letter="Z">
 
@@ -214,7 +225,7 @@
 
 @link(label: String, code: String = null) = {
     <li>
-        <a href="/app/glossary/@{if(code == null) label.toLowerCase else code}">
+        <a href='/app/glossary/@{if(code == null) label.toLowerCase.replaceAllLiterally("-", "") else code}'>
             @label
         </a>
     </li>
