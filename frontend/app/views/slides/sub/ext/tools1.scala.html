@@ -26,39 +26,80 @@ TODO:
         @slide(topic = topic, title = "JARs") {
             <div class="indent">
                 <div class="sidebyside">
-                    <div>
+                    <div class="fragment">
                         <h3>
                             <em>scala-compiler</em>.jar
                         </h3>
                         <div class="indent">
                             <ul>
                                 <li class="fragment">
-                                    rund <em>11 MB</em> groß
+                                    rund <em>13 MB</em> groß
                                 </li>
-                                <li class="fragment">
+                                <!--<li class="fragment">
                                     benötigt zum <br/> <em>Kompilieren</em>
-                                </li>
+                                </li>-->
                                 <li class="fragment">
                                     <em>erstellt Java-Bytecode</em> <br/> aus Scala- und Java-Dateien
                                 </li>
                             </ul>
                         </div>
                     </div>
-                    <div>
+                    <div class="fragment">
                         <h3>
                             <em>scala-library</em>.jar
                         </h3>
                         <div class="indent">
                             <ul>
                                 <li class="fragment">
-                                    rund <em>8.6 MB</em> groß
+                                    rund <em>7 MB</em> groß
                                 </li>
-                                <li class="fragment">
+                                <!--<li class="fragment">
                                     benötigt zum <br/> <em>Kompilieren und Ausführen</em>
-                                </li>
+                                </li>-->
                                 <li class="fragment">
                                     <em>enthält Scala-Klassen</em> <br/> und -Sprachelemente <br/>
                                     <comment>(wie Collections, Annotationen etc.)</comment>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <hr/><hr/>
+
+                <div class="sidebyside">
+                    <div class="fragment">
+                        <h3>
+                            <em>scala-reflect</em>.jar
+                        </h3>
+                        <div class="indent">
+                            <ul>
+                                <li class="fragment">
+                                    rund <em>3 MB</em> groß
+                                </li>
+                                <!--<li class="fragment">
+                                    benötigt zum <br/> <em>Kompilieren</em>
+                                </li>-->
+                                <li class="fragment">
+                                    <em>enthält Macros und Reflection</em>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="fragment">
+                        <h3>
+                            <em>scala-actors</em>.jar
+                        </h3>
+                        <div class="indent">
+                            <ul>
+                                <li class="fragment">
+                                    rund <em>400 KB</em> groß
+                                </li>
+                                <!--<li class="fragment">
+                                    optional zum <em>Ausführen</em> benötigt
+                                </li>-->
+                                <li class="fragment">
+                                    <em>enthält Parallelisierung</em>
                                 </li>
                             </ul>
                         </div>
