@@ -22,4 +22,7 @@ object Images extends MyController {
             case 3 => gimage("1DT7OetZ3WkNsUa-rGlJwbBdbPOGXuzdmK1rks6DCqBc", height = h)
             case 4 => gimage("1TTuoy1DRDc5o7DcBu8zuK4vXQUXawnaAzLfP29kMR-E", height = h)
         }
+
+    def testTools(h: Int = 700) =
+        gimage("1Mk7YZ3L1zkpevoWf5MPe6GKMdeFaRJ78nbtElhQQMVc", height = h)
 }
