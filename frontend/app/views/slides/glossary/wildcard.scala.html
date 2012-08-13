@@ -5,39 +5,58 @@
 -->*@
 @layout.simpledeck("Wildcard") {
 
-    @sidebyside() {
-            @sourcecode(fragment = false) {
-                |import scala.math._
-                |import java.util.{Date => _, _}
-            }
-
-            <hr class="half"/>
-
-            @sourcecode(fragment = false) {
-                |class Counter {
-                |   private var count: Int = _
-                |}
-            }
-    } {
-        @sourcecode(fragment = false) {
-            |(1 to 5) foreach { _ => println ("found one") }
-            |(1 to 5) foreach { println (_) }
+    @codesplits((60,40)){
+        @codesplit() {
+            |class WildcardUseCases @Html("{")
+        } {
+            <span class="underline">Anwendungsfälle:</span>
         }
-
-        <hr class="half"/>
-
-        @sourcecode(fragment = false) {
-            |def sizeOf(l: List[_]) = l.size
+        @splitstart() {
+            |  import scala.math._
+            |  import java.util.{Date => _, _}
+            |
+        }{
+            @li { Importieren }
         }
-
-        <hr class="half"/>
-
-        @sourcecode(fragment = false) {
-            |tuple match {
-            |   case ("a", _) => // ..
-            |   case t: Tuple[String, _] => // ..
-            |   case _ => // ..
-            |}
+        @codesplit() {
+            |  private var name: String = _
+        } {
+            @li { Initialisierung }
+        }
+        @codesplit() {
+            |  def sizeOf(l: List[_]) =
+            |    l.size
+        } {
+            @li { existenzielle Parameter }
+        }
+        @codesplit() {
+            |  def mult(m: Int, l: List[Int]) =
+            |    l map (m * _)
+        } {
+            @li { anonyme Funktionen }
+        }
+        @codesplit() {
+            |  def double(nums: Int*): List[Int] =
+            |    mult(2, (_: List[Int]))(nums.toList)
+        } {
+            @li { partiell angewandte Funktion }
+        }
+        @codesplit() {
+            |  def double(l: List[Int]): List[Int] =
+            |    double(l: _*)
+        } {
+            @li { vararg-Expansion }
+        }
+        @splitend() {
+            |  def process(tuple: (_, _)) =
+            |    tuple match {
+            |      case (0, _) =>
+            |      case t: Tuple2[String, _] =>
+            |      case _ =>
+            |  }
+            |@Html("}")
+        } {
+            @li { Pattern Matching }
         }
     }
 }
