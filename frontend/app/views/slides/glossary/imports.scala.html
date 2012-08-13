@@ -10,20 +10,7 @@
         @codesub() {
             importiert <code>Date</code>
         }
-
-        <hr/>
-
-        @sourcecode() {
-            |import java.util._
-        }
-        @codesub() {
-            importiert alles aus <code>java.util</code>
-        }
     } {
-        @sourcecode() {
-            |import java.util.Date
-        }
-        <hr class="third"/>
         @sourcecode() {
             |import java.util.Date, java.util.List
         }
@@ -36,15 +23,14 @@
         }
     }
 
-    <hr/><hr/>
+    <hr/>
 
     @sidebyside(47, 47) {
         @sourcecode() {
-            |import java.util.Date
-            |import java.sql.{Date => SqlDate}
+            |import java.util._
         }
         @codesub() {
-            benennt <code>Date</code> aus <code>java.sql</code> zu <code>SqlDate</code> um
+            importiert alles aus <code>java.util</code>
         }
     } {
         @sourcecode() {
@@ -56,7 +42,27 @@
         }
     }
 
-    <hr/><hr/>
+    <hr/>
+
+    @sidebyside(47, 47) {
+        @sourcecode() {
+            |import java.util.Date
+            |import java.sql.Date
+        }
+        @codesub() {
+             <code>Date</code> aus dem Paket <code>sql</code> hat Vorrang
+        }
+    } {
+        @sourcecode() {
+            |import java.util.Date
+            |import java.sql.{Date => SqlDate}
+        }
+        @codesub() {
+            benennt <code>Date</code> zu <code>SqlDate</code> um
+        }
+    }
+
+    <hr/>
 
     @sidebyside(47, 47) {
         @sourcecode() {
