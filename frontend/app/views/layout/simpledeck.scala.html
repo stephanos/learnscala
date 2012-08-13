@@ -1,9 +1,15 @@
-@(title: String, showhHead: Boolean = true, clazz: String = "")(content: Html)
+@(title: String, subtitle: String = "", showhHead: Boolean = true, clazz: String = "")(content: Html)
 
 @layout.slidedeck(title, clazz = "light " + clazz) {
     @if(showhHead) {
         @headslide() {
             @title
+            @if(subtitle != "") {
+                :
+                <span style="font-size: 75%; padding-left: 10px;">
+                    @subtitle
+                </span>
+            }
         } {
             @content
         }
