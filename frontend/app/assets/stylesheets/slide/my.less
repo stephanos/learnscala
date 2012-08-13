@@ -240,9 +240,16 @@
         }
     }
 
-    table th,
-    table td {
-        padding-top: 10px;
+    table {
+        th, td {
+            padding-top: 10px;
+        }
+
+        &.slim {
+            th, td {
+                padding-top: 4px;
+            }
+        }
     }
 
     .shoutbox {
@@ -494,6 +501,18 @@ div.glossary {
         &:first-child {
             >h3, >h4 {
                 margin-top: 0;
+            }
+        }
+    }
+}
+
+body {
+    &.noheader {
+        .slides {
+            >section {
+                >header {
+                    min-height: 0;
+                }
             }
         }
     }
