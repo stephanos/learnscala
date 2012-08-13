@@ -1,3 +1,78 @@
+@*<!--
+    http://scalatutorial.wordpress.com/2011/08/01/teil-10-packages-imports-und-sichtbarkeiten/
+-->*@
 @layout.simpledeck("Import") {
-    TODO
+
+    @sidebyside(47, 47) {
+        @sourcecode() {
+            |import java.util.Date
+        }
+        @codesub() {
+            importiert <code>Date</code>
+        }
+
+        <hr/>
+
+        @sourcecode() {
+            |import java.util._
+        }
+        @codesub() {
+            importiert alles aus <code>java.util</code>
+        }
+    } {
+        @sourcecode() {
+            |import java.util.Date
+        }
+        <hr class="third"/>
+        @sourcecode() {
+            |import java.util.Date, java.util.List
+        }
+        <hr class="third"/>
+        @sourcecode() {
+            |import java.util.{Date, List}
+        }
+        @codesub() {
+            importiert jeweils <code>Date</code> und <code>List</code>
+        }
+    }
+
+    <hr/><hr/>
+
+    @sidebyside(47, 47) {
+        @sourcecode() {
+            |import java.util.Date
+            |import java.sql.{Date => SqlDate}
+        }
+        @codesub() {
+            benennt <code>Date</code> aus <code>java.sql</code> zu <code>SqlDate</code> um
+        }
+    } {
+        @sourcecode() {
+            |import java.util.{Date => _, _}
+        }
+        @codesub() {
+            importiert alles aus <code>java.util</code>
+            <span class="underline">außer</span> <code>Date</code>
+        }
+    }
+
+    <hr/><hr/>
+
+    @sidebyside(47, 47) {
+        @sourcecode() {
+            |import java.util
+            |import Date
+        }
+        @codesub() {
+            Imports sind relativ;
+            erst wenn nichts gefunden wird, werden sie als absolut interpretiert
+        }
+    } {
+        @sourcecode() {
+            |import _root_.java.util.Date
+        }
+        @codesub() {
+            <code>_root_</code> definiert einen Import als absolut
+        }
+    }
 }

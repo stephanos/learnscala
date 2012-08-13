@@ -1,5 +1,7 @@
 initSlides = (clazz) ->
 
+  initSnippets()
+
   if(!$("body").hasClass("light"))
 
     # toolbar
@@ -18,8 +20,11 @@ initSlides = (clazz) ->
 
     # slide
     initCountdowns()
-    initSnippets()
     initTimer()
+
+  else
+    $(".fragment").removeClass("fragment")
+    $(".slide-end").remove()
 
 
 #######################################################################################################################

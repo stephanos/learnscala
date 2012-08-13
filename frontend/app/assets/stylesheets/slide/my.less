@@ -96,6 +96,12 @@
 
         .partition(50%, 50%);
         &.p50_50 { .partition(50%, 50%); }
+        &.p49_49 { .partition(49%, 49%); }
+        &.p48_48 { .partition(48%, 48%); }
+        &.p47_47 { .partition(47%, 47%); }
+        &.p46_46 { .partition(46%, 46%); }
+        &.p45_45 { .partition(45%, 45%); }
+        &.p40_40 { .partition(40%, 40%); }
 
         &.p55_45 { .partition(55%, 45%); }
         &.p60_40 { .partition(60%, 40%); }
@@ -215,9 +221,10 @@
         }
     }
 
-    .underline, a:hover {
-        border-bottom: 2px solid @c_emph;
-    }
+    .underline    { border-bottom: 2px solid @c_text_light; }
+    em.underline  { border-color: @c_emph; }
+    var.underline { border-color: @c_hlight; }
+    a:hover       { border-bottom: 2px solid @c_emph; }
 
     details, object {
         display: none;

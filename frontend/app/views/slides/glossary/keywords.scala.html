@@ -1,11 +1,14 @@
+@*<!--
+    http://my.safaribooksonline.com/book/programming/scala/9780596801908/type-less-do-more/reservedwords
+-->*@
 @layout.simpledeck("Keywords", false, clazz = "noheader") {
 
     <div class="sidebyside">
         <div>
-            <table class="slim">
+            <table>
                 <tr>
                     <td>
-                        <em>abstract</em>
+                        <code>abstract</code>
                     </td>
                     <td>
                         Klasse abstrakt markieren
@@ -13,7 +16,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>case</em>
+                        <code>case</code>
                     </td>
                     <td>
                         Pattern Matching
@@ -21,7 +24,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>class</em>
+                        <code>class</code>
                     </td>
                     <td>
                         Klasse deklarieren
@@ -29,7 +32,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>def</em>
+                        <code>def</code>
                     </td>
                     <td>
                         Methode deklarieren
@@ -37,7 +40,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>do / while</em>
+                        <code>do / while</code>
                     </td>
                     <td>
                         Schleife einleiten
@@ -45,7 +48,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>extends / with</em>
+                        <code>extends / with</code>
                     </td>
                     <td>
                         Vererbung
@@ -53,7 +56,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>false / true</em>
+                        <code>false / true</code>
                     </td>
                     <td>
                         Boolean-Konstante
@@ -61,7 +64,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>final</em>
+                        <code>final</code>
                     </td>
                     <td>
                         Überschreiben verhindern
@@ -69,23 +72,23 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>for</em>
+                        <code>for</code>
                     </td>
                     <td>
                         Schleife
                     </td>
                 </tr>
-                <!--<tr>
-                    <td>
-                        <em>forSome</em>
-                    </td>
-                    <td>
-
-                    </td>
-                </tr>-->
                 <tr>
                     <td>
-                        <em>if / else</em>
+                        <code>forSome</code>
+                    </td>
+                    <td>
+                        existenzielle Typen
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>if / else</code>
                     </td>
                     <td>
                         Bedingung
@@ -93,7 +96,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>implicit</em>
+                        <code>implicit</code>
                     </td>
                     <td>
                         Typ-Konvertierung deklarieren
@@ -101,7 +104,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>import</em>
+                        <code>import</code>
                     </td>
                     <td>
                         Paketinhalte laden
@@ -109,7 +112,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>lazy</em>
+                        <code>lazy</code>
                     </td>
                     <td>
                         Evaluation verzögern
@@ -117,7 +120,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>match</em>
+                        <code>match</code>
                     </td>
                     <td>
                         Pattern Match einleiten
@@ -125,15 +128,20 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>new</em>
+                        <code>new</code>
                     </td>
                     <td>
                         Klasse instanziieren
                     </td>
                 </tr>
+            </table>
+        </div>
+
+        <div>
+            <table>
                 <tr>
                     <td>
-                        <em>null</em>
+                        <code>null</code>
                     </td>
                     <td>
                         nicht-definierter Wert
@@ -141,7 +149,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>object</em>
+                        <code>object</code>
                     </td>
                     <td>
                         Singleton deklarieren
@@ -149,7 +157,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>override</em>
+                        <code>override</code>
                     </td>
                     <td>
                         Feld / Methode überschreiben
@@ -157,20 +165,15 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>package</em>
+                        <code>package</code>
                     </td>
                     <td>
                         Paket deklarieren
                     </td>
                 </tr>
-            </table>
-        </div>
-
-        <div>
-            <table class="slim">
                 <tr>
                     <td>
-                        <em>private</em>
+                        <code>private</code>
                     </td>
                     <td>
                         Sichtbarkeit eingrenzen
@@ -178,7 +181,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>protected</em>
+                        <code>protected</code>
                     </td>
                     <td>
                         Sichtbarkeit eingrenzen
@@ -186,7 +189,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>return</em>
+                        <code>return</code>
                     </td>
                     <td>
                         Wert zurückgeben
@@ -194,7 +197,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>sealed</em>
+                        <code>sealed</code>
                     </td>
                     <td>
                         Vererbung eingrenzen
@@ -202,15 +205,23 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>super / this</em>
+                        <code>super</code>
                     </td>
                     <td>
-                        Eltern- bzw. Selbstreferenz
+                        Referenz auf Elternklasse
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <em>throw</em>
+                        <code>this</code>
+                    </td>
+                    <td>
+                        Selbstreferenz
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <code>throw</code>
                     </td>
                     <td>
                         Ausnahme werfen
@@ -218,7 +229,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>trait</em>
+                        <code>trait</code>
                     </td>
                     <td>
                         Trait deklarieren
@@ -226,7 +237,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em class="nobreak">try-catch-finally</em>
+                        <code class="nobreak">try-catch-finally</code>
                     </td>
                     <td>
                         Ausnahmebehandlung
@@ -234,7 +245,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>type</em>
+                        <code>type</code>
                     </td>
                     <td>
                         Typ deklarieren
@@ -242,90 +253,18 @@
                 </tr>
                 <tr>
                     <td>
-                        <em>val / var</em>
+                        <code>val / var</code>
                     </td>
                     <td>
-                        Variable deklarieren
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <em>yield</em>
-                    </td>
-                    <td>
-                        Rückgabe von for-Ausdruck
+                        Wert / Variable deklarieren
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <em>_</em>
+                        <code>yield</code>
                     </td>
                     <td>
-                        Platzhalter (Wildcard)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <em>:</em>
-                    </td>
-                    <td>
-                        Abtrennung von Typen
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <em>=</em>
-                    </td>
-                    <td>
-                        Wertzuweisung
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <em>=> / ⇒</em>
-                    </td>
-                    <td>
-                        Funktionsliteral
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <em><- / ←</em>
-                    </td>
-                    <td>
-                        Generator-Ausdruck
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <em>&lt;: / >: / &lt;%</em>
-                    </td>
-                    <td>
-                        Typ-Parameter einschränken
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <em></em>
-                    </td>
-                    <td>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <em>#</em>
-                    </td>
-                    <td>
-                        Typ-Projektion
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <em>@@</em>
-                    </td>
-                    <td>
-                        Annotation markieren
+                        Rückgabe bei for-Ausdruck
                     </td>
                 </tr>
             </table>

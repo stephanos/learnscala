@@ -1,3 +1,43 @@
+@*<!--
+    http://www.slideshare.net/normation/scala-dreaded
+    http://docs.scala-lang.org/tutorials/FAQ/finding-symbols.html
+    http://stackoverflow.com/questions/8000903/what-are-all-the-uses-of-an-underscore-in-scala
+-->*@
 @layout.simpledeck("Wildcard") {
-    TODO
+
+    @sidebyside() {
+            @sourcecode(fragment = false) {
+                |import scala.math._
+                |import java.util.{Date => _, _}
+            }
+
+            <hr class="half"/>
+
+            @sourcecode(fragment = false) {
+                |class Counter {
+                |   private var count: Int = _
+                |}
+            }
+    } {
+        @sourcecode(fragment = false) {
+            |(1 to 5) foreach { _ => println ("found one") }
+            |(1 to 5) foreach { println (_) }
+        }
+
+        <hr class="half"/>
+
+        @sourcecode(fragment = false) {
+            |def sizeOf(l: List[_]) = l.size
+        }
+
+        <hr class="half"/>
+
+        @sourcecode(fragment = false) {
+            |tuple match {
+            |   case ("a", _) => // ..
+            |   case t: Tuple[String, _] => // ..
+            |   case _ => // ..
+            |}
+        }
+    }
 }

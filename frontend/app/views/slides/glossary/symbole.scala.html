@@ -1,0 +1,173 @@
+@*<!--
+    http://docs.scala-lang.org/tutorials/FAQ/finding-symbols.html
+-->*@
+@layout.simpledeck("Symbole") {
+
+    @sidebyside() {
+        <table>
+            <tr>
+                <td>
+                    <code>(</code> &nbsp; <code>)</code>
+                </td>
+                <td>
+                    umschließen Ausdrücke und Parameter
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>[</code> &nbsp; <code>]</code>
+                </td>
+                <td>
+                    umschließen Typ-Parameter
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>{</code> &nbsp; <code>}</code>
+                </td>
+                <td>
+                    umschließen Code-Blöcke
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>.</code>
+                </td>
+                <td>
+                    Methodenaufruf und Pfadangabe
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>//</code>
+                </td>
+                <td>
+                    einzeliger Kommentar
+                </td>
+            </tr>
+            <tr>
+                <td class="nobreak">
+                    <code>/*</code> &nbsp; <code>*/ &nbsp;</code>
+                </td>
+                <td>
+                    mehrzeiliger Kommentar
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>&lt;:</code>
+                </td>
+                <td>
+                    Upper-Bound
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>>:</code>
+                </td>
+                <td>
+                    Lower-Bound
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>&lt;%</code>
+                </td>
+                <td>
+                    View-Bound
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>`</code>
+                </td>
+                <td>
+                    Konstanten und escapen von Bezeichnern
+                </td>
+            </tr>
+        </table>
+    } {
+        <table>
+            <tr>
+                <td>
+                    <code>:</code>
+                </td>
+                <td>
+                    Typangabe
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>@("\"")</code>
+                </td>
+                <td>
+                    einzeiliger String
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>@("\"\"\"")</code>
+                </td>
+                <td>
+                    mehrzeiliger String
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>#</code>
+                </td>
+                <td>
+                    Typ-Projektion
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>'</code>
+                </td>
+                <td>
+                    umschließt Zeichen (Char)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>@@</code>
+                </td>
+                <td>
+                    Annotation sowie Variablenzuweisung im Pattern Matching
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>,</code>
+                </td>
+                <td>
+                    Trennung von Parametern
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>;</code>
+                </td>
+                <td>
+                    Trennung von Ausdrücken
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>_*</code>
+                </td>
+                <td>
+                    vararg-Expansion
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>_</code>
+                </td>
+                <td>
+                    @glossary("Wildcard")
+                </td>
+            </tr>
+        </table>
+    }
+}

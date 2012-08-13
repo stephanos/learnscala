@@ -85,7 +85,7 @@
 
             <ul data-letter="I">
                 @link("immutable")
-                @link("Import", "import")
+                @link("Import", "imports", todo = false)
             </ul>
         </div>
 
@@ -101,7 +101,7 @@
             <h4>K</h4>
 
             <ul data-letter="K">
-                @link("Keywords")
+                @link("Keywords", todo = false)
             </ul>
         </div>
 
@@ -176,6 +176,7 @@
                 @link("self-type")
                 @link("Sichtbarkeit")
                 @link("Singleton")
+                @link("Symbole", todo = false)
             </ul>
         </div>
 
@@ -213,7 +214,7 @@
             <h4>W</h4>
 
             <ul data-letter="W">
-                @link("Wildcard")
+                @link("Wildcard", todo = false)
             </ul>
         </div>
 
@@ -243,10 +244,14 @@
     </div>
 }
 
-@link(label: String, code: String = null) = {
+@link(label: String, code: String = null, todo: Boolean = true) = {
     <li>
-        <a href='/app/glossary/@{if(code == null) label.toLowerCase.replaceAllLiterally("-", "") else code}'>
-            @label
-        </a>
+        @if(!todo) {
+            @glossary(label, code)
+        } else {
+            <span style="color: rgba(0, 0, 0, .2)">
+                @label
+            </span>
+        }
     </li>
 }
