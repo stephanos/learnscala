@@ -1,3 +1,65 @@
 @layout.simpledeck("Predef") {
-    TODO
+
+    Eine Auswahl wichtiger Elemente aus dem Objekt <em>Predef</em> (Teil des @glossary("Auto-Import")):
+
+    <hr/>
+
+    @sidebyside() {
+        <div class="indent">
+            <ul>
+                <li>
+                    Methode <code>require(cond)</code>
+                    <hr class="third"/>
+                    wirft eine <code>IllegalArgumentException</code> falls Bedingung falsch ist
+                </li>
+                <hr class="half"/>
+                <li>
+                    Methode <code>println(arg)</code>
+                    <hr class="third"/>
+                    gibt das Argument auf der Konsole aus
+                </li>
+                <hr class="half"/>
+                <li>
+                    Implicit <code>any2ArrowAssoc</code>
+                    <hr class="third"/>
+                    wandelt den Ausdruck <code>("David" -> 18)</code> in ein @glossary("Tuple") um
+                </li>
+                <hr class="half"/>
+                <li>
+                    Typ <code>Pair</code>
+                    <hr class="third"/>
+                    spezielles @glossary("Tuple") mit genau 2 Elementen
+                </li>
+            </ul>
+        </div>
+    } {
+        <div class="indent">
+            <ul>
+                <li>
+                    Typ <code>Map</code> und Typ <code>Set</code>
+                    <hr class="third"/>
+                    Alias für <code>immutable.Map</code> bzw.
+                    <code>immutable.Set</code>
+                </li>
+                <hr class="half"/>
+                <li>
+                    Implicit <code>int2long</code>
+                    <hr class="third"/>
+                    wandelt ein <code>Int</code> in <code>Long</code> um
+                </li>
+                <hr class="half"/>
+                <li>
+                    Methode <code>classOf[T]</code>
+                    <hr class="third"/>
+                    ermittelt die Klasse einer Instanz
+                </li>
+                <hr class="half"/>
+                <li>
+                    Implicit <code>Float2float</code>
+                    <hr class="third"/>
+                    wandelt Javas <code>Float</code> in Scalas <code>Float</code> um
+                </li>
+            </ul>
+        </div>
+    }
 }

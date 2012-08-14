@@ -1,5 +1,2 @@
 @(label: String, code: String = null)
-
-<a class="nobreak" href='/app/glossary/@{if(code == null) label.toLowerCase.replaceAllLiterally("-", "") else code}'>
-    @label
-</a>
+<a class="nobreak" href='/app/glossary/@{if(code == null) label.toLowerCase.replaceAllLiterally("-", "") else code}'>@label</a>

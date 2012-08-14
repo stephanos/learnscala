@@ -224,7 +224,11 @@
     .underline    { border-bottom: 2px solid @c_text_light; }
     em.underline  { border-color: @c_emph; }
     var.underline { border-color: @c_hlight; }
-    a:hover       { border-bottom: 2px solid @c_emph; }
+
+    a {
+        border-bottom: 2px solid fadeout(@c_emph, 60%);
+        &:hover { border-bottom: 2px solid @c_emph; }
+    }
 
     details, object {
         display: none;
@@ -501,6 +505,10 @@ div.glossary {
                 display: inline;
                 list-style-type: none;
                 padding-right: @margin / 4;
+
+                > a {
+                    border: 0;
+                }
 
                 &:after {
                     content: ", ";
