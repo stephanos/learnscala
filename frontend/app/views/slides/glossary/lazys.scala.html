@@ -1,3 +1,69 @@
-@layout.simpledeck("Lazy") {
-    TODO
+@layout.simpledeck("lazy") {
+
+    @sidebyside((45,55)) {
+        <div class="indent">
+            <ul>
+                <li>
+                    bewirkt, dass ein Wert erst beim ersten Zugriff berechnet
+                    und für weitere Zugriffe zwischengespeichert wird
+                </li>
+                <li>
+                    gut geeignet um Berechnungen zu verzögern
+                </li>
+                <li>
+                    <var>Warnung:</var>
+                    wirft die Berechnung einen Fehler, wird sie beim nächsten Zugriff erneut versucht
+                </li>
+                <li>
+                    <var>Warnung:</var>
+                    bei jedem Zugriff erfolgt eine threadsicherer Abfrage,
+                    ob der Wert bereits initialisiert wurde
+                </li>
+            </ul>
+        </div>
+    } {
+        @snippet() {
+            @sourceblock() {
+                |lazy val random = {
+                |   println("generating random number")
+                |   util.Random.nextInt
+                |}
+            }
+            @outblock() {
+                |random: Int = <lazy>
+            }
+            @callblock() {
+                |println (random)
+            }
+            @outblock() {
+                |generating random number
+                |1271069754
+            }
+            @callblock() {
+                |println (random)
+            }
+            @outblock() {
+                |1271069754
+            }
+        }
+
+        <!--<hr class="half"/>
+
+        @snippet() {
+            @sourceblock() {
+                |abstract class X {
+                |  val x: String
+                |  println (x)
+                |}
+                |
+                |object Y extends X { lazy val x = "Hello" }
+            }
+            @callblock() {
+                |Y.x
+            }
+            @outblock() {
+                |Hello
+            }
+        }-->
+    }
 }
