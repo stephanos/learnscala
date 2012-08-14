@@ -1,10 +1,10 @@
-@(wl: Int = 50, wr: Int = 50)(cl: Html = empty())(cr: Html = empty())
+@(w: (Int, Int) = (50, 50), gap: Double = 3.0)(cl: Html = empty())(cr: Html = empty())
 
 <div class="sidebyside">
-    <div style="width: @{wl - 1.5}%; float: left">
+    <div style="width: @{w._1 - gap / 2}%; float: left">
         @cl
     </div>
-    <div style="width: @{wr - 1.5}%; float: right">
+    <div style="width: @{w._2 - gap / 2}%; float: right">
         @cr
     </div>
 </div>

@@ -1,12 +1,65 @@
 @layout.simpledeck("apply") {
 
-    @sidebyside() {
-
+    @sidebyside((45,55)) {
+        <div class="indent">
+            <ul>
+                <li>
+                    ein Ausdruck der Form <code>obj(a1, a2)</code>
+                    wird automatisch in den Ausdruck <code>obj.apply(a1, a2)</code> umgewandelt
+                </li>
+                <li>
+                    anwendbar auf Instanzen (also auch Objekte)
+                </li>
+                <li>
+                    erlaubt Verkürzung von Methodenaufrufen
+                </li>
+                <li>
+                    ideal für Factory- und Zugriffsmethoden
+                </li>
+                <li>
+                    ähnliche wie @glossary("update")
+                </li>
+            </ul>
+        </div>
     } {
         @snippet() {
             @callblock() {
-                |List.apply(1, 2, 3)
-                |List(1, 2, 3)
+                |List(1, 2, 3) // == List.apply(1, 2, 3)
+                |l(0)          // == l.apply(0)
+            }
+        }
+
+        <hr/>
+
+        @snippet() {
+            @callblock() {
+                |Option(5)     // == Option.apply(5)
+            }
+        }
+
+        <hr/>
+
+        @snippet() {
+            @sourceblock() {
+                |class Phonebook(val nums: Map[String,String]) {
+                |
+                |  def apply(name: String): String =
+                |    nums(name)
+                |}
+                |
+                |object Phonebook {
+                |
+                |  def apply(nums: Map[String,String]) =
+                |    new Phonebook(nums)
+                |}
+            }
+            @callblock() {
+                |val nums = Map("Adam", "555-604-1204")
+                |val phb = Phonebook(nums)
+                |phb("Adam")
+            }
+            @outblock() {
+                |res0: String = 555-604-1204
             }
         }
     }
