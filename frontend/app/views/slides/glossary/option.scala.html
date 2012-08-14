@@ -1,3 +1,88 @@
 @layout.simpledeck("Option") {
-    TODO
+
+    @sidebyside(60, 35) {
+        <div class="indent">
+            <ul>
+                <li>
+                    Option hat genau 2 Unterklassen: <br/> @glossary("None") und @glossary("Some")
+                </li>
+                <li>
+                    ideal zum Verhindern von <var>NullPointerExceptions</var>,
+                    da der Compiler nun am Typ ablesen kann, ob ein Wert existiert oder nicht
+                </li>
+                <li>
+                    wichtige Methoden sind:
+                    <hr class="half"/>
+                    <ul>
+                        <li>
+                            <code>get</code>:
+                            liefert den Inhalt bei Some, Exception bei None
+                        </li>
+                        <li>
+                            <code>getOrElse(d)</code>:
+                            liefert den Inhalt oder einen Standardwert, falls es None ist
+                        </li>
+                        <li>
+                            <code>isDefined</code>:
+                            gibt an, ob ein Inhalt existiert
+                        </li>
+                        <li>
+                            <code>isEmpty</code>:
+                            gibt an, ob es leer ist
+                        </li>
+                        <li>
+                            <code>map</code>:
+                            transformiert den Inhalt (Typ kann sich dabei ändern)
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    } {
+        @snippet() {
+            @callblock() {
+                |val some = Option(1)
+            }
+            @outblock() {
+                |some: Option[Int] = Some(1)
+            }
+            @callblock() {
+                |val none = Option(null)
+            }
+            @outblock() {
+                |none: Option[Null] = None
+            }
+            @callblock() {
+                |some.get
+            }
+            @outblock() {
+                |res0: Int = 1
+            }
+            @callblock() {
+                |none.get
+            }
+            @outblock(error = true) {
+                |NoSuchElementException
+            }
+            @callblock() {
+                |none.getOrElse(0)
+            }
+            @outblock() {
+                |res1: Int = 0
+            }
+            @callblock() {
+                |some.isDefined
+            }
+            @outblock() {
+                |res2: Boolean = true
+            }
+            @callblock() {
+                |none.isDefined
+            }
+            @outblock() {
+                |res3: Boolean = false
+            }
+        }
+    }
+
 }

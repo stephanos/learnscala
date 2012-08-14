@@ -1,3 +1,52 @@
 @layout.simpledeck("REPL") {
-    TODO
+
+    @sidebyside(40, 60) {
+        @snippet() {
+            @callblock() {
+                |42
+            }
+            @outblock() {
+                |res0: Int = 42
+            }
+            @callblock() {
+                |42 + 42
+            }
+            @outblock() {
+                |res1: Int = 84
+            }
+            @callblock() {
+                |import java.util.Date
+                |new Date
+            }
+            @outblock() {
+                |res2: Date = ...
+            }
+        }
+    } {
+        @codenote() {
+            <div class="indent">
+                <ul>
+                    <li>
+                        <em>interaktiver Interpreter</em>
+                    </li>
+                    <li>
+                        Name steht für Read-Evaluate-Print-Loop
+                    </li>
+                    <li>
+                        kompiliert <em>Eingabe für Eingabe</em>
+                    </li>
+                    <li>
+                        Start via Konsolenbefehl <code class="console">scala</code>
+                    </li>
+                    <li>
+                        ideal für "Experimente"
+                    </li>
+                    <li>
+                        enthält <em>Autovervollständigung</em> für Pakete und Methoden
+                    </li>
+                </ul>
+            </div>
+        }
+    }
+
 }

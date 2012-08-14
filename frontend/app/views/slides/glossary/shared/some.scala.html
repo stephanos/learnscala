@@ -1,0 +1,32 @@
+@snippet() {
+    @callblock() {
+        |val opt: Option[Int] = Some(1)
+    }
+    @outblock() {
+        |opt: Option[Int] = Some(1)
+    }
+    @callblock() {
+        |opt.isEmpty
+    }
+    @outblock() {
+        |res0: Boolean = false
+    }
+    @callblock() {
+        |opt.get
+    }
+    @outblock() {
+        |res1: Int = 1
+    }
+    @callblock() {
+        |opt.getOrElse(0)
+    }
+    @outblock() {
+        |res2: Int = 1
+    }
+    @callblock() {
+        |opt.map { _.toString }
+    }
+    @outblock() {
+        |res3: Option[String] = 1
+    }
+}

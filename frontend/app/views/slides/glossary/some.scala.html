@@ -1,4 +1,4 @@
-@layout.simpledeck("None", "im Vergleich mit 'Some'") {
+@layout.simpledeck("Some", "im Vergleich mit 'None'") {
 
     <div class="indent">
         <ul>
@@ -6,7 +6,7 @@
                 einer der zwei Untertypen von @glossary("Option")
             </li>
             <li>
-                es enthält keinen Wert, im Gegensatz zu @glossary("Some")
+                es enthält einen Wert, im Gegensatz zu @glossary("None"), dass leer ist
             </li>
         </ul>
     </div>
@@ -15,15 +15,15 @@
 
     @sidebyside(45, 45) {
         <em class="underline">
-            @glossary("None")
-        </em>
-        <hr class="third"/>
-        @shared.none()
-    } {
-        <em class="underline">
             @glossary("Some")
         </em>
         <hr class="third"/>
         @shared.some()
+    } {
+        <em class="underline">
+            @glossary("None")
+        </em>
+        <hr class="third"/>
+        @shared.none()
     }
 }

@@ -1,0 +1,32 @@
+@snippet() {
+    @callblock() {
+        |val opt: Option[Int] = None
+    }
+    @outblock() {
+        |opt: Option[Int] = None
+    }
+    @callblock() {
+        |opt.isEmpty
+    }
+    @outblock() {
+        |res0: Boolean = true
+    }
+    @callblock() {
+        |opt.get
+    }
+    @outblock(error = true) {
+        |NoSuchElementException: None.get
+    }
+    @callblock() {
+        |opt.getOrElse(0)
+    }
+    @outblock() {
+        |res2: Int = 0
+    }
+    @callblock() {
+        |opt.map { _.toString }
+    }
+    @outblock() {
+        |res3: Option[String] = None
+    }
+}
