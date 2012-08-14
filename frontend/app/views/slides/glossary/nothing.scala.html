@@ -1,5 +1,12 @@
 @layout.simpledeck("Nothing", showhHead = false) {
 
-    @content.nothing(Images.types(4))
+    @content.nothing {
+        <div>
+            @Images.types(4)
+            <div class="tcenter">
+                @glossary("Typ-Hierarchie")
+            </div>
+        </div>
+    }
         
 }
