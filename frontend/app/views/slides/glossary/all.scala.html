@@ -1,7 +1,7 @@
 @*<!--
     http://docs.scala-lang.org/glossary/
 -->*@
-@layout.simpledeck("Glossary", showhHead = false) {
+@layout.simpledeck("Glossary", showhHead = false, clazz = "noheader") {
 
     <div class="glossary">
 
@@ -74,11 +74,11 @@
             </ul>
         </div>
 
-        <div>
-            <h4 class="inactive">H</h4>
+        <div class="inactive">
+            <h4>H</h4>
 
             <ul data-letter="H">
-
+                
             </ul>
         </div>
 
@@ -91,11 +91,11 @@
             </ul>
         </div>
 
-        <div>
-            <h4 class="inactive">J</h4>
+        <div class="inactive">
+            <h4>J</h4>
 
             <ul data-letter="J">
-
+                
             </ul>
         </div>
 
@@ -152,11 +152,11 @@
             </ul>
         </div>
 
-        <div>
-            <h4 class="inactive">Q</h4>
+        <div class="inactive">
+            <h4>Q</h4>
 
             <ul data-letter="Q">
-
+                
             </ul>
         </div>
 
@@ -209,6 +209,7 @@
             <ul data-letter="V">
                 @link("val", "value")
                 @link("var", "variable")
+                @link("vararg")
                 @link("Varianz")
             </ul>
         </div>
@@ -237,11 +238,11 @@
             </ul>
         </div>
 
-        <div>
-            <h4 class="inactive">Z</h4>
+        <div class="inactive">
+            <h4>Z</h4>
 
             <ul data-letter="Z">
-
+                
             </ul>
         </div>
     </div>
@@ -252,7 +253,7 @@
         @if(!todo) {
             @glossary(label, code)
         } else {
-            <span style="color: rgba(0, 0, 0, .2)">
+            <span style="color: rgba(0, 0, 0, .2)" class="nobreak">
                 @label
             </span>
         }

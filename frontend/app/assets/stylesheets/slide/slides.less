@@ -2,18 +2,15 @@
  * SLIDES
  *********************************************/
 
-@w: 1024px;
-@h: @w / @tv;
-
 .reveal .slides {
     z-index: 1000;
 	position: absolute;
-	width: @w;
-	height: @h;
+	width: @w_slide;
+	height: @h_slide;
 
 	left: 50%; top: 50%;
-	margin-left: @w / 2 * -1;
-	margin-top: @h / 2 * -1;
+	margin-left: @w_slide / 2 * -1;
+	margin-top: @h_slide / 2 * -1;
     padding: 0;
 
     border: 1px solid fade(#000, 2%);
@@ -42,7 +39,7 @@
         display: none;
         position: absolute;
         width: 100%;
-        min-height: @h;
+        min-height: @h_slide;
 
         z-index: 10;
 
