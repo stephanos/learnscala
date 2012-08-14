@@ -48,7 +48,7 @@
 
             @codesplits((60,40), id="planefactory", fragment = false){
                 @splitstart(reference = "plane") {
-                    |object PlaneFactory @Html("{")
+                    |object PlaneFactory @("{")
                 }{
                     ... aber Objekte.
                 }
@@ -66,7 +66,7 @@
                     @li{<em>Factory</em>-Methoden}
                 }
                 @splitend() {
-                    |@Html("}")
+                    |@("}")
                 }(null)
             }
 

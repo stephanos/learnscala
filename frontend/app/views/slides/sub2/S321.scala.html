@@ -4,7 +4,7 @@
     <div class="sidebyside p80_20">
         @snippet() {
             @sourceblock(fragment = false) {
-                |object FileMatcher @Html("{")
+                |object FileMatcher @("{")
                 |  private def filesHere = (new java.io.File(".")).listFiles
                 |
                 |  def filesEnding(query: String) =
@@ -22,7 +22,7 @@
                 |  def filesRegex(query: String) =
                 |    for (file <- filesHere; if file.getName.matches(query))
                 |      yield file
-                |@Html("}")
+                |@("}")
             }
         }
         @empty()
@@ -35,7 +35,7 @@
     <div class="sidebyside p80_20">
         @snippet() {
             @sourceblock(fragment = false) {
-                |object FileMatcher @Html("{")
+                |object FileMatcher @("{")
                 |  private def filesHere = (new java.io.File(".")).listFiles
                 |
                 |  private def filesMatching(matcher: String => Boolean) =
@@ -56,7 +56,7 @@
             @sourceblock() {
                 |  def filesRegex(query: String) =
                 |    filesMatching(_.matches(query))
-                |@Html("}")
+                |@("}")
             }
         }
         @empty()

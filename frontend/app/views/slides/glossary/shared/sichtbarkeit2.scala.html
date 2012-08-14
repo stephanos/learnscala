@@ -1,0 +1,61 @@
+@layout.simpledeck("private & protected") {
+
+    <div class="indent">
+        <ul>
+            <li>
+                schränken die @glossary("Sichtbarkeit") von Objekten, Klassen, Variablen, Methoden und Konstruktoren ein
+            </li>
+            <li>
+                <code>private[scope]</code> bzw. <code>protected[scope]</code> erlaubt noch genauere Definitionen
+
+                <hr/>
+
+                @codesplits((40,60)){
+                    @splitstart() {
+                        |package airline.machines
+                    }()
+                    @codesplit() {
+                        |class Plane @("{")
+                    } {
+                        <span class="underline">nur sichtbar für:</span>
+                    }
+                    @codesplit() {
+                        |   private[airline]    val s1 = 1
+                    } {
+                        @li { Paket <code>airline</code> inklusive Sub-Pakete (also auch <code>machines</code>) <br/>
+                              (<code>protected</code> würde Sub-Klassen von <code>Plane</code> einschließen) }
+                        <hr class="half"/>
+                    }
+                    @codesplit() {
+                        |   private[machines]   val s2 = 2
+                    } {
+                        @li { Paket <code>machines</code> inklusive Sub-Pakete <br/>
+                              (<code>protected</code> würde Sub-Klassen von <code>Plane</code> einschließen) }
+                        <hr class="half"/>
+                    }
+                    @codesplit() {
+                        |   protected           val s3 = 3
+                    } {
+                        @li { Klasse <code>Plane</code> sowie deren Sub-Klassen }
+                        <hr class="half"/>
+                    }
+                    @codesplit() {
+                        |   private             val s4 = 4
+                    } {
+                        @li { Klasse <code>Plane</code> }
+                        <hr class="half"/>
+                    }
+                    @codesplit() {
+                        |   private[this]       val s5 = 5
+                    } {
+                        @li { <code>Plane</code>-Instanz }
+                    }
+                    @splitend() {
+                        |@("}")
+                    }(null)
+                }
+            </li>
+            <!--und @glossary("Companion")-->
+        </ul>
+    </div>
+}

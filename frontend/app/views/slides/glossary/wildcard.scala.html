@@ -7,7 +7,7 @@
 
     @codesplits((60,40)){
         @codesplit() {
-            |class WildcardUseCases @Html("{")
+            |class WildcardUseCases @("{")
         } {
             <span class="underline">Anwendungsfälle:</span>
         }
@@ -54,7 +54,7 @@
             |      case t: Tuple2[String, _] =>
             |      case _ =>
             |  }
-            |@Html("}")
+            |@("}")
         } {
             @li { Pattern Matching }
         }
