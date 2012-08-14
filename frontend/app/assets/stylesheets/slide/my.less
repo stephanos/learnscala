@@ -27,6 +27,10 @@
         color: @c_hlight;
     }
 
+    .black {
+        color: @c_text;
+    }
+
     table {
         .w100p();
     }
@@ -493,7 +497,7 @@ div.glossary {
         margin-top: @margin / 2;
         display: inline-block;
 
-        >h3, >h4 {
+        >h3, >h4, >h5 {
             font-size: 90%;
         }
 
@@ -524,7 +528,7 @@ div.glossary {
         &.inactive {
             display: block;
 
-            >h3, >h4 {
+            >h3, >h4, >h5 {
                 .opacity(40);
                 margin-bottom: 0;
             }

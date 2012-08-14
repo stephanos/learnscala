@@ -1,3 +1,80 @@
 @layout.simpledeck("Sichtbarkeit") {
-    TODO
+
+    @sidebyside(45,45) {
+        <h5 class="black">Wer hat Zugriff?</h5>
+        <hr class="half"/>
+
+        @sourcecode() {
+            |class Plane {
+            |  def fly()
+            |}
+        }
+        @codesub() {
+            alle Klassen
+        }
+
+        <hr class="half"/>
+
+        @sourcecode() {
+            |class Plane {
+            |  protected def fly()
+            |}
+        }
+        @codesub() {
+            <code>Plane</code> und seine Unterklassen - siehe @glossary("protected", "sichtbarkeit2")
+        }
+
+        <hr class="half"/>
+
+        @sourcecode() {
+            |class Plane {
+            |  private def fly()
+            |}
+        }
+        @codesub() {
+            <code>Plane</code> inklusive @glossary("Companion") - siehe @glossary("private", "sichtbarkeit2")
+        }
+    } {
+
+        <h5 class="black">Was kann eingeschränkt werden?</h5>
+        <hr class="half"/>
+
+        @sourcecode() {
+            |class private Plane
+        }
+        @codesub() {
+            Klassen
+        }
+
+        <hr class="half"/>
+
+        @sourcecode() {
+            |object private Plane
+        }
+        @codesub() {
+            @glossary("Objekte")
+        }
+
+        <hr class="half"/>
+
+        @sourcecode() {
+            |class Plane private (seats: Int) {
+            |  private this() = this(0)
+            |}
+        }
+        @codesub() {
+            primäre und sekundäre Konstruktoren
+        }
+
+        <hr class="half"/>
+
+        @sourcecode() {
+            |class Plane(private val seats: Int) {
+            |  private def fly()
+            |}
+        }
+        @codesub() {
+            Variablen und Methoden
+        }
+    }
 }

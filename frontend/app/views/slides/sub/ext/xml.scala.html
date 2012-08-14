@@ -628,7 +628,7 @@ TODO
                         |xml: scala.xml.Elem = &lt;ul&gt; &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt; &lt;/ul&gt;
                     }
                     @callblock(id = "save") {
-                        |scala.xml.XML.save("numbers.xml", xml)
+                        |scala.xml.XML.save("shoppinglist.xml", xml)
                     }
                 }
                 @codesub() {
@@ -639,7 +639,7 @@ TODO
 
                 @snippet() {
                     @callblock(reference = "save") {
-                        |scala.xml.XML.loadFile("numbers.xml")
+                        |scala.xml.XML.loadFile("shoppinglist.xml")
                     }
                     @outblock() {
                         |res0: scala.xml.Elem = &lt;ul&gt; &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt; &lt;/ul&gt;

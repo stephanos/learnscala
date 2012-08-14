@@ -1,3 +1,79 @@
-@layout.simpledeck("Dynamic") {
-    TODO
+@layout.simpledeck("Dynamic", showhHead = false) {
+
+    @sidebyside(71,29) {
+        @snippet() {
+            @sourceblock(id = "dynamic") {
+                |class Foo extends Dynamic {
+                |
+                |  def selectDynamic(name: String) =
+                |    println("select " + name)
+                |
+                |  def updateDynamic(name: String)(arg: Any) =
+                |    println("update " + name + " with " + arg)
+                |
+                |  def applyDynamic(name: String)(args: Any*) =
+                |    println("apply " + args.mkString(",") + " to " + name)
+                |
+                |  def applyDynamicNamed(name: String)(args: (String, Any)*) =
+                |    println("apply " + args.mkString(",") + " to " + name)
+                |
+                |}
+            }
+        }
+    } {
+        <h3>
+            Dynamic
+        </h3>
+        <div class="indent">
+            <ul>
+                <li>
+                    Trait, erweitert eine Klasse um dynamische Methoden
+                </li>
+                <li>
+                    erlaubt Anbindung an
+                    <hr class="half"/>
+                    <ul>
+                        <li>dynamische Sprachen (z.B. Groovy)</li>
+                        <li>dynamische Systeme (z.B. Datenbanken)</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    }
+
+    <hr/>
+
+    @sidebyside() {
+        @snippet() {
+            @callblock(reference = "foo") {
+                |val foo = new Foo
+                |foo.bar(5)
+            }
+            @outblock() {
+                |apply 5 to bar
+            }
+            @callblock() {
+                |foo.bar(x = 5)
+            }
+            @outblock() {
+                |apply (x,5) to bar
+            }
+        }
+    } {
+        @snippet() {
+            @callblock(reference = "foo") {
+                |val foo = new Foo
+                |foo.bar
+            }
+            @outblock() {
+                |select bar
+            }
+            @callblock() {
+                |foo.bar = 5
+            }
+            @outblock() {
+                |update bar with 5
+            }
+        }
+    }
 }
