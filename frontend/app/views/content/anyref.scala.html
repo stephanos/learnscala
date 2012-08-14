@@ -1,0 +1,27 @@
+@(image: Html)
+
+<div class="sidebyside p60_40">
+    @image
+
+    @fragment {
+        <h4>Typ 'AnyRef'</h4>
+        <hr/>
+        <div class="indent">
+            <ul>
+                <li>"Reference Types"</li>
+                <li class="fragment">
+                    entspricht <code>java.lang.Object</code> in Java bzw.
+                    <code>System.Object</code> in .Net
+                </li>
+                <li class="fragment">
+                    vererbt an <var>Java-Klassen</var> <comment>(z.B. java.lang.String)</comment>
+                    und <em>Scala-Klassen</em> <comment>(z.B. scala.Predef)</comment>
+                </li>
+                <li class="fragment">
+                    zusätzlich erben <em>Scala-Klassen</em> vom Trait <code>ScalaObject</code>
+                    <comment>(einzig für interne Zwecke)</comment>
+                </li>
+            </ul>
+        </div>
+    }
+</div>

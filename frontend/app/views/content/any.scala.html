@@ -1,0 +1,34 @@
+@(image: Html)
+
+<div class="sidebyside p60_40">
+    @image
+
+    @fragment {
+        <h4>Typ 'Any'</h4>
+        <hr/>
+        <div class="indent">
+            <ul>
+                <li>gemeinsame Super-Klasse aller Typen</li>
+                <li class="fragment">
+                    finale Methoden:
+                    <hr/>
+                    <ul>
+                        <li><code>==</code></li>
+                        <li><code>!=</code></li>
+                        <li><code>isInstanceOf</code></li>
+                        <li><code>asInstanceOf</code></li>
+                    </ul>
+                </li>
+                <li class="fragment">
+                    Standardimplementierungen für:
+                    <hr/>
+                    <ul>
+                        <li><code>equals</code></li>
+                        <li><code>hashCode</code></li>
+                        <li><code>toString</code></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    }
+</div>

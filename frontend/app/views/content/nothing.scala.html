@@ -1,0 +1,46 @@
+@(image: Html)
+
+<div class="sidebyside p60_40">
+     @image
+
+     @fragment {
+         <h4>Typ 'Nothing'</h4>
+         <hr/>
+         <div class="indent">
+             <ul>
+                 <li>"Bottom Type"</li>
+                 <li class="fragment">
+                     Unterklasse aller Typen
+                 </li>
+                 <li class="fragment">
+                     hat keinen Wert, wird aber z.B. bei Exceptions benötigt:
+                 </li>
+             </ul>
+         </div>
+     }
+ </div>
+
+<hr/>
+
+<div class="sidebyside">
+    @snippet() {
+        @sourceblock() {
+            |def error(msg: String) =
+            |  throw new RuntimeException(msg)
+        }
+        @outblock() {
+            |error: (msg: String)Nothing
+        }
+    }
+
+    @snippet() {
+        @sourceblock() {
+            |def divide(x: Int, y: Int): Int =
+            |  if (y != 0) x / y
+            |  else error("can't divide by zero")
+        }
+        @outblock() {
+            |divide: (x: Int, y: Int)Int
+        }
+    }
+</div>

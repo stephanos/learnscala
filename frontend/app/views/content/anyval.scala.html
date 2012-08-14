@@ -1,0 +1,24 @@
+@(image: Html)
+
+<div class="sidebyside p60_40">
+    @image
+
+    @fragment {
+        <h4>Typ 'AnyVal'</h4>
+        <hr/>
+        <div class="indent">
+            <ul>
+                <li>"Value Types"</li>
+                <li class="fragment">
+                    kann nicht direkt vererbt (final) oder instanziiert (abstrakt) werden
+                </li>
+                <li class="fragment">
+                    entspricht primitiven Datentypen aus <var>Java</var> <comment>(werden im Hintergrund auch verwendet)</comment>
+                </li>
+                <li class="fragment">
+                    Ausnahme ist <em>Scala</em>-spezifischer Typ <code>Unit</code> <comment>(wie <code>void</code>)</comment>
+                </li>
+            </ul>
+        </div>
+    }
+</div>

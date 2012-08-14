@@ -1,0 +1,46 @@
+@(image: Html)
+
+<div class="sidebyside p60_40">
+    @image
+
+    @fragment {
+        <h4>Typ 'Null'</h4>
+        <hr/>
+        <div class="indent">
+            <ul>
+                <li>"Bottom Type"</li>
+                <li class="fragment">
+                    Unterklasse von allen Reference Types
+                </li>
+                <li class="fragment">
+                    einziger möglicher Wert ist <code>null</code>
+                </li>
+            </ul>
+            <hr/>
+        </div>
+    }
+</div>
+
+<hr/>
+
+<div class="sidebyside">
+    @snippet() {
+         @callblock() {
+             |val i: Int = null
+         }
+         @outblock(error = true) {
+             |error   : type mismatch;
+             |found   : Null(null)
+             |required: Int
+         }
+    }
+
+    @snippet() {
+         @callblock() {
+             |val s: String = null
+         }
+         @outblock() {
+             |s: String = null
+         }
+    }
+</div>

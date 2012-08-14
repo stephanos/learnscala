@@ -10,6 +10,7 @@
                 <li>
                     gut geeignet um Berechnungen zu verzögern
                 </li>
+                <hr/>
                 <li>
                     <var>Warnung:</var>
                     wirft die Berechnung einen Fehler, wird sie beim nächsten Zugriff erneut versucht
@@ -30,7 +31,7 @@
                 |}
             }
             @outblock() {
-                |random: Int = <lazy>
+                |random: Int = &lt;lazy>&gt;
             }
             @callblock() {
                 |println (random)
