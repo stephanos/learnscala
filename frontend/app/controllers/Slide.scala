@@ -43,7 +43,7 @@ object Slide extends MyController {
     }
 
     def glossary(id: String) = Action {
-        Ok(getByName("views.html.slides.glossary." + id))
+        Ok(getByName("views.html.slides.glossary._" + id))
     }
 
     def glossaryR(id: String) = Action {
