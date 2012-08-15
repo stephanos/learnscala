@@ -1,0 +1,96 @@
+<div class="sidebyside">
+    <div>
+        <div class="sidebyside p10_90">
+            <span>(1)</span>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |def f1 = 42
+                    |println(f1)
+                }
+                @outblock() {
+                    |42
+                }
+            }
+        </div>
+    </div>
+    <div>
+        <div class="sidebyside p10_90">
+            <span>(2)</span>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |def f2 {42}
+                    |println(f2)
+                }
+                @outblock() {
+                    |()
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<hr/><hr/>
+
+<div class="sidebyside">
+    <div>
+        <div class="sidebyside p10_90">
+            <span>(3)</span>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |def f3 = {42}
+                    |println(f3)
+                }
+                @outblock() {
+                    |42
+                }
+            }
+        </div>
+    </div>
+    <div>
+        <div class="sidebyside p10_90">
+            <span>(4)</span>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |def f4 {42}
+                    |println(f4())
+                }
+                @outblock(error = true) {
+                    |error: Unit does not take parameters
+                }
+            }
+        </div>
+    </div>
+</div>
+
+<hr/><hr/>
+
+<div class="sidebyside">
+    <div>
+        <div class="sidebyside p10_90">
+            <span>(5)</span>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |def f5 = 42
+                    |println(f5())
+                }
+                @outblock(error = true) {
+                    |error: Int does not take parameters
+                }
+            }
+        </div>
+    </div>
+    <div>
+        <div class="sidebyside p10_90">
+            <span>(6)</span>
+            @snippet() {
+                @callblock(fragment = false) {
+                    |def f6() {42}
+                    |println(f6)
+                }
+                @outblock() {
+                    |()
+                }
+            }
+        </div>
+    </div>
+</div>
