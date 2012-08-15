@@ -19,9 +19,9 @@
                             <th></th>
                             <th>Allgemein</th>
                             <th>Objekte</th>
-                            <th>Typen</th>
+                            <!--<th>Typen</th>-->
                             <th>Funktionen</th>
-                            <th>Extern</th>
+                            <th>Erweitert</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,12 +34,12 @@
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Einführung", "basic", "introduction")
-                                    @topic("Geschichte", "basic", "history")
-                                    @*@topic("Erste Schritte")*@
-                                    @*@topic("Kontrollstrukturen")*@
-                                    @*@topic("Methoden")*@
-                                    @*@topic("Ausnahmen")*@
+                                    @topic("Einführung", "basic", "introduction", status = "green")
+                                    @topic("Geschichte", "basic", "history", status = "green")
+                                    @topic("Erste Schritte", "basic")
+                                    @topic("Kontrollstrukturen", "basic")
+                                    @topic("Methoden", "basic")
+                                    @topic("Ausnahmen", "basic")
                                 }
                             </td>
                             <td>
@@ -51,6 +51,11 @@
                                     @*@topic("Pakete")*@
                                 }
                             </td>
+                            <!--<td>
+                                @topics {
+
+                                }
+                            </td>-->
                             <td>
                                 @topics {
 
@@ -58,13 +63,8 @@
                             </td>
                             <td>
                                 @topics {
-
-                                }
-                            </td>
-                            <td>
-                                @topics {
-                                    @topic("Werkzeuge I", "ext", "tools1")
-                                    @topic("Werkzeuge II", "ext", "tools2")
+                                    @topic("Werkzeuge I", "ext", "tools1", status = "green")
+                                    @topic("Werkzeuge II", "ext", "tools2", status = "green")
                                 }
                             </td>
                         </tr>
@@ -77,28 +77,28 @@
                             </td>
                             <td>
                                 @topics {
-                                    @*@topic("Operatoren")*@
-                                    @*@topic("Annotationen")*@
-                                    @*@topic("Reflektion")*@
-                                    @*@topic("Reguläre Ausdrücke")*@
+                                    @*@topic("Operatoren", "basic")*@
+                                    @*@topic("Annotationen", "basic")*@
+                                    @*@topic("Reflektion", "basic")*@
+                                    @*@topic("Reguläre Ausdrücke", "basic")*@
                                 }
                             </td>
                             <td>
                                 @topics {
+                                    @topic("Hierarchie", "oop", "typehierarchy", status = "green")
                                     @*@topic("Traits")*@
                                     @*@topic("Case-Klassen")*@
                                     @*@topic("Vererbung II")*@
                                 }
                             </td>
-                            <td>
+                            <!--<td>
                                 @topics {
-                                    @topic("Hierarchie", "oop", "typehierarchy")
                                     @*@topic("Option")*@
                                     @*@topic("Tuple")*@
                                     @*@topic("Kollektionen")*@
                                     @*@topic("Typ-Parameter I")*@
                                 }
-                            </td>
+                            </td>-->
                             <td>
                                 @topics {
                                     @*@topic("Anonyme Funktionen")*@
@@ -106,7 +106,7 @@
                             </td>
                             <td>
                                 @topics {
-                                    @topic("XML", "ext", "xml")
+                                    @topic("XML", "ext", "xml", status = "yellow")
                                     @*@topic("JSON")*@
                                     @*@topic("Swing")*@
                                     @*@topic("Testen")*@
@@ -133,13 +133,13 @@
 
                                 }
                             </td>
-                            <td>
+                            <!--<td>
                                 @topics {
                                     @*@topic("Streams")*@
                                     @*@topic("Typ-Parameter II")*@
                                     @*@topic("Parallele Kollektionen")*@
                                 }
-                            </td>
+                            </td>-->
                             <td>
                                 @topics {
                                     @*@topic("Call-by-Name", "fp", "call_by_name")*@
@@ -174,13 +174,13 @@
                                     @*@topic("Early Definitions")*@
                                 }
                             </td>
-                            <td>
+                            <!--<td>
                                 @topics {
                                     @*@topic("Self-Types")*@
                                     @*@topic("Abstrakte Typen")*@
                                     @*@topic("Strukturelle Typen")*@
                                 }
-                            </td>
+                            </td>-->
                             <td>
                                 @topics {
 
@@ -207,11 +207,15 @@
   </ul>
 }
 
-
-@topic(label: String, chpt: String = "", file: String = "") = {
-  <li class="topic">
-    <a href='/app/slides/@{if(chpt != "") chpt + "/" else ""}@file/#/'>
-      @label
-    </a>
+@topic(label: String, chpt: String = "", file: String = "", status: String = "red") = {
+  <li class="topic @status">
+    @if(status == "red") {
+      <span>@label</span>
+    } else {
+      <a href='/app/slides/@{if(chpt != "") chpt + "/" else ""}@file/#/'>
+        <span class="state"></span>
+        @label
+      </a>
+    }
   </li>
 }

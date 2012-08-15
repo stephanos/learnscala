@@ -39,20 +39,31 @@
                         margin: 5px 1px;
                     }
 
-                    .topic {
+                    li {
                         margin-bottom: 3px;
                         list-style: none;
 
-                        a {
+                        border: 1px solid #ccc;
+
+                        @bg: darken(#fff, 1%);
+                        background-color: @bg;
+                        &:hover { background-color: darken(@bg, 2%); }
+
+                        @f: 10%;
+                        &.red { .bg(fade(@red, @f)); }
+                        &.yellow { .bg(fade(@yellow, @f)); }
+                        &.green { .bg(fade(@green, @f)); }
+
+                        >a, >span {
                             display: block;
                             padding: 4px 4px;
                             text-decoration: none;
-                        }
 
-                        @bg: darken(#fff, 1%);
-                        border: 1px solid #ccc;
-                        background-color: @bg;
-                        &:hover { background-color: darken(@bg, 2%); }
+                            .state {
+                                display: block;
+                                width: 24px;
+                            }
+                        }
                     }
                 }
 
