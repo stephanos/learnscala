@@ -34,8 +34,8 @@
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Einführung", "basic", "introduction", status = "green")
-                                    @topic("Geschichte", "basic", "history", status = "green")
+                                    @topic("Einführung", "basic", "introduction", status = "done")
+                                    @topic("Geschichte", "basic", "history", status = "done")
                                     @topic("Erste Schritte", "basic")
                                     @topic("Kontrollstrukturen", "basic")
                                     @topic("Methoden", "basic")
@@ -63,8 +63,8 @@
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Werkzeuge I", "ext", "tools1", status = "green")
-                                    @topic("Werkzeuge II", "ext", "tools2", status = "green")
+                                    @topic("Werkzeuge I", "ext", "tools1", status = "done")
+                                    @topic("Werkzeuge II", "ext", "tools2", status = "done")
                                 }
                             </td>
                         </tr>
@@ -85,7 +85,7 @@
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Hierarchie", "oop", "typehierarchy", status = "green")
+                                    @topic("Hierarchie", "oop", "typehierarchy", status = "done")
                                     @*@topic("Traits")*@
                                     @*@topic("Case-Klassen")*@
                                     @*@topic("Vererbung II")*@
@@ -106,7 +106,7 @@
                             </td>
                             <td>
                                 @topics {
-                                    @topic("XML", "ext", "xml", status = "yellow")
+                                    @topic("XML", "ext", "xml", status = "incomplete")
                                     @*@topic("JSON")*@
                                     @*@topic("Swing")*@
                                     @*@topic("Testen")*@
@@ -194,12 +194,19 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <a class="btn btn-icon btn-danger" id="btn-resetprogress" href="javascript:resetProgress()">/</a>
             </div>
         </div>
 
     </section>
-}
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            initProgress();
+        });
+    </script>
+}
 
 @topics(content: Html) = {
   <ul>
@@ -207,13 +214,13 @@
   </ul>
 }
 
-@topic(label: String, chpt: String = "", file: String = "", status: String = "red") = {
+@topic(label: String, chpt: String = "", file: String = "", status: String = "planned") = {
   <li class="topic @status">
-    @if(status == "red") {
+    @if(status == "planned") {
       <span>@label</span>
     } else {
       <a href='/app/slides/@{if(chpt != "") chpt + "/" else ""}@file/#/'>
-        <span class="state"></span>
+        <input type="checkbox" class="status" data-key='@{chpt + "_" + file}'/>
         @label
       </a>
     }

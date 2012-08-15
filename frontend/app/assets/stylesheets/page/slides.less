@@ -50,19 +50,14 @@
                         &:hover { background-color: darken(@bg, 2%); }
 
                         @f: 10%;
-                        &.red { .bg(fade(@red, @f)); }
-                        &.yellow { .bg(fade(@yellow, @f)); }
-                        &.green { .bg(fade(@green, @f)); }
+                        &.planned, &.todo { .bg(fade(@red, @f)); }
+                        &.incomplete { .bg(fade(@yellow, @f)); }
+                        &.done { .bg(fade(@green, @f)); }
 
                         >a, >span {
                             display: block;
                             padding: 4px 4px;
                             text-decoration: none;
-
-                            .state {
-                                display: block;
-                                width: 24px;
-                            }
                         }
                     }
                 }
@@ -103,4 +98,15 @@
         }
     }
     */
+
+    #btn-resetprogress {
+        position: absolute;
+        bottom: 5px; right: 5px;
+        .opacity(5);
+        font-family: 'Entypo';
+        z-index: 1000;
+        &:hover {
+            .opacity(100);
+        }
+    }
 }
