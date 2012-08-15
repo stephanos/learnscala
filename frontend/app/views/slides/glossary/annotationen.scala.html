@@ -1,3 +1,119 @@
 @layout.simpledeck("Annotationen") {
-    TODO
+
+    <div class="indent">
+        <ul>
+            <li>
+                fügen <em>Metadaten</em> zu Klassen, Methoden, Feldern und Parametern hinzu - sparsam einsetzen!
+            </li>
+            <!--<li>
+                <em>Tipp:</em> sparsam in Scala einsetzen, statische Typisierung sollte bevorzugt werden wenn möglich
+            </li>-->
+            <li>
+                alle Java-Annotationen können verwendet werden, wichtige Scala-spezifische Annotationen sind:
+                <hr class="half"/>
+                @sidebyside() {
+                    <div>
+                        <code>@@BeanProperty</code><br/>
+                        &nbsp;Feld erhält get- und set-Methoden
+                    </div>
+
+                    <!--<hr class="third"/>
+
+                    <div>
+                        <code>@@clonable</code><br/>
+                        &nbsp;
+                    </div>-->
+
+                    <hr class="third"/>
+
+                    <div>
+                        <code>@@deprecated</code><br/>
+                        &nbsp;Compiler-Warnung bei Verwendung
+                    </div>
+
+                    <hr class="third"/>
+
+                    <div>
+                        <code>@@elidable</code><br/>
+                        &nbsp;Code kann via Compiler-Flag entfernt werden
+                    </div>
+
+                    <!--<hr class="third"/>
+
+                    <div>
+                        <code>@@inline</code><br/>
+                        &nbsp;
+                    </div>-->
+
+                    <hr class="third"/>
+
+                    <div>
+                        <code>@@native</code><br/>
+                        &nbsp;Methode ist in C/C++ implementiert
+                    </div>
+
+                    <!--<hr class="third"/>
+
+                    <div>
+                        <code>@@remote</code><br/>
+                        &nbsp;
+                    </div>-->
+
+                    <hr class="third"/>
+
+                    <div>
+                        <code>@@tailrec</code><br/>
+                        &nbsp;Methode muss Tail Rekursive sein
+                    </div>
+                } {
+                    <!--<div>
+                        <code>@@SerialVersionUID</code><br/>
+                        &nbsp;
+                    </div>-->
+
+                    <!--<hr class="third"/>
+
+                    <div>
+                        <code>@@spezialized</code><br/>
+                        &nbsp;
+                    </div>-->
+
+                    <hr class="third"/>
+
+                    <div>
+                        <code>@@throws</code><br/>
+                        &nbsp;Methode erhält Checked Exception-Signatur
+                    </div>
+
+                    <hr class="third"/>
+
+                    <div>
+                        <code>@@transient</code><br/>
+                        &nbsp;Feld wird nicht serialisiert
+                    </div>
+
+                    <hr class="third"/>
+
+                    <div>
+                        <code>@@unchecked</code><br/>
+                        &nbsp;underdrückt Warnungen beim Pattern Matching
+                    </div>
+
+                    <hr class="third"/>
+
+                    <div>
+                        <code>@@varargs</code><br/>
+                        &nbsp;Java-kompatible Hilfsmethode fürs varargs
+                    </div>
+
+                    <hr class="third"/>
+
+                    <div>
+                        <code>@@volatile</code><br/>
+                        &nbsp;Feld kann aus mehreren Threads gelesen werden
+                    </div>
+                }
+            </li>
+        </ul>
+    </div>
 }

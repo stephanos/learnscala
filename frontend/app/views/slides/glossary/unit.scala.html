@@ -1,3 +1,55 @@
 @layout.simpledeck("Unit") {
-    TODO
+
+    @sidebyside((45,51)) {
+        <div class="indent">
+            <ul>
+                <li>
+                    in Scala ist alles ein Objekt, daher gibt es einen eigenen Typ <code>Unit</code>,
+                    der vor allem für Method mit Nebeneffekten verwendet wird (z.B. <code>print</code>)
+                </li>
+                <li>
+                    einziger möglicher "Wert" ist <code>()</code>
+                </li>
+                <li>
+                    entspricht Javas <code>void</code> - nur dass es ein echter Typ ist
+                </li>
+                <li>
+                    Unterklasse der @glossary("Value Types", "anyval")
+                </li>
+            </ul>
+        </div>
+    } {
+        @snippet() {
+            @sourceblock() {
+                |def printName (name: String) {
+                |    println("My name is " + name)
+                |}
+            }
+            @outblock() {
+                |printName: (name: String)Unit
+            }
+        }
+
+        <hr class="half"/>
+
+        @snippet() {
+            @callblock() {
+                |val v = ()
+            }
+            @outblock() {
+                |v: Unit = ()
+            }
+        }
+
+        <hr class="half"/>
+
+        @snippet() {
+            @callblock() {
+                |val p = println("Unit")
+            }
+            @outblock() {
+                |p: Unit = ()
+            }
+        }
+    }
 }
