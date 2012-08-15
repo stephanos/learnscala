@@ -424,6 +424,17 @@
             }
         }
     }
+
+    #btn-glossary {
+        position: absolute;
+        top: 15px; right: 15px;
+        .opacity(20);
+        font-family: 'Entypo';
+        z-index: 1000;
+        &:hover {
+            .opacity(100);
+        }
+    }
 }
 
 /* DROPDOWN */
@@ -476,20 +487,6 @@ body.light {
 
 div.glossary {
     width: @w_slide; height: @h_slide;
-
-    /*
-    @cols: 4;
-    @w_gap: 2 * @margin;
-    @w_col: (@w_slide - @cols * @w_gap) / @cols;
-
-    -webkit-column-width: @w_col;
-    -moz-column-width: @w_col;
-    column-width: @w_col;
-
-	-webkit-column-gap: @w_gap;
-    -moz-column-gap: @w_gap;
-    column-gap: @w_gap;
-    */
 
     .content-columns(4, 4 * @margin);
 

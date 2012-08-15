@@ -86,15 +86,6 @@ embedEditor = ->
 
 #######################################################################################################################
 embedGlossary = ->
-  # insert in navi
-  $('<li id="naviGlossary">
-      <a href="#" class="openStyle">
-          <span>Glossary</span>
-      </a>
-      <span class="divider">|</span>
-    </li>').insertAfter($("#naviDocs"))
-
-  # bind click event
   $("#naviGlossary").bind("click", () ->
     m = $("#glossaryModal")
     m.bind("shown", (evt) ->

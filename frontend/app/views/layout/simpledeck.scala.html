@@ -1,4 +1,10 @@
-@(title: String, subtitle: String = "", showhHead: Boolean = true, clazz: String = "")(content: Html)
+@(title: String, subtitle: String = "", showhHead: Boolean = true, clazz: String = "", showHomeBtn: Boolean = true)(content: Html)
+
+@homeBtn = {
+    @if(showHomeBtn) {
+        <a class="btn btn-icon" id="btn-glossary" href="/app/glossary"></a>
+    }
+}
 
 @layout.slidedeck(title, clazz = "light " + clazz) {
     @if(showhHead) {
@@ -12,10 +18,12 @@
             }
         } {
             @content
+            @homeBtn
         }
     } else {
         @slide() {
             @content
+            @homeBtn
         }
     }
 }

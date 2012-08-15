@@ -1,3 +1,43 @@
-@layout.simpledeck("Currying") {
-    @Images.types(4)
+@layout.simpledeck("sealed") {
+
+    @sidebyside((45,51)) {
+        <div class="indent">
+            <ul>
+                <li>
+                     ist eine Klasse oder ein @glossary("Trait") als <code>sealed</code> markiert,
+                     darf von ihr nur innerhalb der selben Quelldatei geerbt werden
+                </li>
+                <li>
+                    für Entwickler erhöht dies die Übersicht,
+                    da alle Sub-Klassen an einer Stelle stehen
+                </li>
+                <li>
+                    dem Compiler ermöglicht es, beim @glossary("Pattern Matching")
+                    eine Warnung anzuzeigen, wenn eine mögliche Sub-Klassen vergessen wurde
+                </li>
+            </ul>
+        </div>
+    } {
+        @sourcecode(id = "sealed") {
+            |sealed trait Message
+            |
+            |case class SuccessMessage(message:String)
+            |   extends Message
+            |case class FailureMessage(message:String)
+            |   extends Message
+        }
+
+        <hr class="half"/>
+
+        @sourcecode(reference = "sealed") {
+            |def log(msg: Message) =
+            |  msg match {
+            |    case SuccessMessage(m) =>
+            |      println("Success: " + m)
+            |
+            |    case FailureMessage(m) =>
+            |      println("Failure: " + m)
+            |  }
+        }
+    }
 }

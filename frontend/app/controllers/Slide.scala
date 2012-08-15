@@ -46,6 +46,10 @@ object Slide extends MyController {
         Ok(getByName("views.html.slides.glossary." + id))
     }
 
+    def glossaryR(id: String) = Action {
+        Redirect(routes.Slide.glossary(id))
+    }
+
     private def getByName(path: String) = {
         val c = Class.forName(path)
         val m = c.getMethod("render")
