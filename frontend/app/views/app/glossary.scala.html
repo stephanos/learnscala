@@ -1,0 +1,16 @@
+@*
+@layout.internal("Glossary") {
+
+    <div id="slidedeck" class="reveal">
+        <div class="slides">
+            <section style="display: block">
+                @glossaries.all()
+            </section>
+        </div>
+    </div>
+}
+*@
+
+@layout.simpledeck("Glossary", showhHead = false, clazz = "noheader", showHomeBtn = false) {
+    @glossaries.all()
+}

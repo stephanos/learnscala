@@ -1,0 +1,40 @@
+@layout.simpledeck("App") {
+
+    @sidebyside((45,55)) {
+        <div class="indent">
+            <ul>
+                <li>
+                    @glossary("Trait") <code>App</code> kann aus einem Objekt schnell in ein ausführbares Programm machen
+                </li>
+                <li>
+                    intern wird eine <code>main</code>-Methode definiert, die den Rumpf des Objekts ausführt
+                    (via @glossary("DelayedInit"))
+                </li>
+                <li>
+                    <code>args</code> enthält die Argumente des Programmaufrufs
+                </li>
+            </ul>
+        </div>
+    } {
+        @snippet() {
+            @sourceblock() {
+                |object Main extends App {
+                |
+                |   println("Hello " + (args mkString " and "))
+                |}
+            }
+            @outblock() {
+                |scalac hello.scala
+            }
+            @outblock() {
+                |scala -d *.class Main Adam
+                |Hello Adam
+            }
+            @outblock() {
+                |scala -d *.class Main Adam Eve
+                |Hello Adam and Eve
+            }
+        }
+    }
+
+}

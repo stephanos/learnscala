@@ -54,7 +54,7 @@ embedNavi = ->
       title = $(elem).data("title")
       subtitle = $(elem).data("subtitle")
 
-      if(title && !_.include(titles, title))
+      if(title && _.last(titles) != title)
         titles.push(title)
         $(naviElemLinks).append('
           <li class="main">
@@ -62,7 +62,7 @@ embedNavi = ->
           </li>
         ') # <ul class="dropdown-menu sub-menu"></ul>
 
-      if(subtitle && !_.include(subtitles, subtitle))
+      if(subtitle && _.last(subtitles) != subtitle)
         subtitles.push(subtitle)
         $(naviElemLinks).append('
           <li class="sub">

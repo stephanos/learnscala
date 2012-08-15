@@ -34,25 +34,4 @@ object Slide extends MyController {
         val file = id2.replaceAllLiterally("-", "_")
         getByName("views.html.slides.sub." + dir + file)
     }
-
-    def glossary1 =
-        glossary2
-
-    def glossary2 = Action {
-        Ok(views.html.slides.glossary.all())
-    }
-
-    def glossary(id: String) = Action {
-        Ok(getByName("views.html.slides.glossary._" + id))
-    }
-
-    def glossaryR(id: String) = Action {
-        Redirect(routes.Slide.glossary(id))
-    }
-
-    private def getByName(path: String) = {
-        val c = Class.forName(path)
-        val m = c.getMethod("render")
-        m.invoke(null).asInstanceOf[Html]
-    }
 }
