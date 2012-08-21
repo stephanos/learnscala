@@ -1,4 +1,20 @@
-external/
+# Eclipse
+.metadata
+.settings
+.classpath
+.project
+.cache
+
+# SBT
 project/
 target/
+
+
+# IntelliJ
+.idea/libraries
+
+# other
+.DS_Store
+exercises/
+external/
 tmp/
