@@ -35,6 +35,8 @@ GET     /app/glossary/                              controllers.Glossary.index2
 GET     /app/glossary/:id                           controllers.Glossary.pageR(id)
 GET     /app/glossary/:id/                          controllers.Glossary.page(id)
 
+GET     /app/exercises/:id/status                   controllers.Exercise.read(id)
+
 GET     /app/slides                                 controllers.Slide.index
 GET     /app/slides/                                controllers.Slide.index2
 GET     /app/slides/:id                             controllers.Slide.redirect(id)
@@ -51,6 +53,7 @@ POST    /api/compile                                controllers.API.compile
 POST    /api/execute                                controllers.API.execute
 POST    /api/decompile/java                         controllers.API.decompileAsJava
 POST    /api/decompile/scala                        controllers.API.decompileAsScala
+POST    /api/exercises/:id                          controllers.Exercise.write(id)
 
 
 # === ASSETS

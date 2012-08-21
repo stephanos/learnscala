@@ -50,7 +50,7 @@ object DocConnection
 
                 case _ =>
                     log.info("connecting to local MongoDB")
-                    val m = new Mongo("localhost", 27017)
+                    val m = new Mongo("127.0.0.1", 27017)
                     MongoDB.defineDb(DefaultMongoIdentifier, m, dbName)
                     m
             })

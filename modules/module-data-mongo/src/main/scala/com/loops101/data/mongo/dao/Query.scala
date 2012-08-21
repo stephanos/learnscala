@@ -9,9 +9,12 @@ import org.bson.types.ObjectId
 import java.util.Calendar
 import net.liftweb.record._
 import net.liftweb.common.Box
-import com.mongodb.DBObject
+import com.loops101.data.mongo.model.MapField
+import net.liftweb.json.JsonAST._
 
 object Query { //extends Rogue
+
+    //~ ENUM ======================================================================================
 
     class NumericEnumerationQueryField[M <: BsonRecord[M], E <: Enumeration#Value](field: Field[E, M])
         extends AbstractQueryField[E, Int, M](field) {
@@ -34,6 +37,23 @@ object Query { //extends Rogue
     (f: Field[F, M]): EnumerationModifyField[M, F] =
         new EnumerationModifyField(f)
 
+    //~ MAP =======================================================================================
+
+    /*
+    class BsonRecordMapQueryField[M <: BsonRecord[M], B <: BsonRecord[B]](val field: MapField[M, B])(implicit mf: Manifest[B]) {
+
+        def at(key: String): BsonRecordField[M, B] = {
+            val listBox = field.setFromJValue(JObject(List(JField("notExisting", JInt(0)))))
+            val rec = listBox.open_!.head._2
+            new BsonRecordField[M, B](field.owner, rec.meta)(mf) {
+                override def name = field.name + "." + key
+            }
+        }
+    }
+
+    implicit def bsonRecordMapFieldToBsonRecordMapQueryField[M <: BsonRecord[M], B <: BsonRecord[B]](f: MapField[M, B])(implicit mf: Manifest[B]): BsonRecordMapQueryField[M, B] =
+        new BsonRecordMapQueryField[M, B](f)(mf)
+    */
 
     //~ BASE ======================================================================================
 

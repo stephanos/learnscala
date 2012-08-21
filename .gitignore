@@ -1,7 +1,20 @@
-logs
-project/project
-project/target
-target
-tmp
-*.bak
-exercises/
+# Eclipse
+.metadata
+.classpath
+.project
+.cache
+
+# IntelliJ
+*.iws
+*.ipr
+*.iml
+.idea/libraries
+
+# sbt
+target/
+
+# other
+.DS_Store
+*.prefs
+_old/
+*.log

@@ -32,16 +32,18 @@ updateProgress = (evt) ->
 
 setProgress = (input, val) ->
   key = getProgressKey(input)
+  li = $(input).parent().parent()
 
   # reset
-  li = $(input).parent().parent()
   $(li).removeClass("done")
   localStorage.removeItem(key)
+  $(input).attr("checked", false)
 
   # set ?
   if(val)
     $(li).addClass("done")
     localStorage[key] = true
+    $(input).attr("checked", true)
 
 
 

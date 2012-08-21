@@ -37,19 +37,28 @@ object ProjectBuild extends MyBuild {
     // ==== SETTINGS
 
     override lazy val settings =
-        super.settings ++ SbtIdeaPlugin.ideaSettings ++ buildSettings
+        super.settings ++ SbtIdeaPlugin.ideaSettings ++ buildSettings ++ Seq(
+            javaHome := Some(file(jdk6Home))
+        )
+
+    println("JRE HOME: " + System.getProperty("java.home"))
+    println("JDK HOME: " + jdk6Home)
 
 
     // ==== DEPENDENCIES
 
     val sun_tools_file = file(jdk6Home + fileSep + "lib" + fileSep + "tools.jar").getCanonicalPath
     lazy val sun_tools = "com.sun" % "tools" % "1.6.0" from ("file:///" + sun_tools_file)
+
     println("TOOLS.jar: " + sun_tools_file)
 
+
+    // ==== OTHER
+
     lazy val jdk6Home = {
-        val jdk = Option(System.getenv("JDK6_HOME"))
+        val jdk = Option(System.getProperty("JDK6_HOME", System.getenv("JDK6_HOME")))
         val jre = Option(System.getProperty("java.home", System.getProperty("java_home", System.getenv("JAVA_HOME"))))
         val path = jdk.getOrElse(jre.map(_ + fileSep + "..").getOrElse("/usr/lib/jdk"))
-        new File(path).getAbsolutePath
+        new File(path).getCanonicalPath
     }
 }

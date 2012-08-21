@@ -14,5 +14,5 @@ object MyDocDB
         DefaultMongoIdentifier.jndiName
 
     lazy val docs =
-        List(CodeDoc, UserDoc, SessionDoc, SystemDoc)
+        List(UserDoc, StatusDoc, SystemDoc)
 }
