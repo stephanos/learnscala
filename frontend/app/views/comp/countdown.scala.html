@@ -1,15 +1,13 @@
 @(mins: Int = 15)
 
 <div class="countdown" data-start="@{mins * 60}" data-state="idle">
-    <div class="cd-time">
+    <div class="body">
         <span class="mm">@mins</span>
         <span class="dots">:</span>
         <span class="ss">00</span>
     </div>
 
-    <br/>
-
-    <div class="cd-controls">
+    <div class="footer">
         <button class="btn btn-success plus">+</button>
         <button class="btn btn-danger minus">-</button>
         <button class="btn btn-inverse toggle">s</button>

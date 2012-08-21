@@ -9,7 +9,7 @@ initSlides = (clazz) ->
     embedEditor()
     embedDocs()
     embedGlossary()
-    }##^embedStyle()
+    #embedStyle()
     embedNavi()
 
     # change li order

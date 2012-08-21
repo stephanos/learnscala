@@ -6,7 +6,7 @@
 .cache
 
 # SBT
-project/
+project/project/
 target/
 
 
@@ -14,6 +14,7 @@ target/
 .idea/libraries
 
 # other
+*.log
 .DS_Store
 exercises/
 external/

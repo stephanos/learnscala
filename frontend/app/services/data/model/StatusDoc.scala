@@ -15,7 +15,7 @@ class StatusDoc
     def meta = StatusDoc
 
     object exercise extends TextField(this) with MyField {
-        def naming = n("session")
+        def naming = n("exercise")
     }
     object user extends TextField(this) with MyField {
         def naming = n("user")

@@ -7,11 +7,14 @@
 
     <hr/>
 
-    @countdown()
+    <div class="uebung-meta">
+        @countdown()
+        @testprogress(id)
+    </div>
 
     <script type="text/javascript">
         $(document).ready(function() {
-            scheduleChartUpdate('@id');
+            createChart('@id');
         });
     </script>
 }
