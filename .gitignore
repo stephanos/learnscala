@@ -8,9 +8,13 @@
 *.iws
 *.ipr
 *.iml
+.idea/libraries
 
 # sbt
 target/
 
 # other
 .DS_Store
+*.prefs
+_old/
+*.log
