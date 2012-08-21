@@ -1,0 +1,265 @@
+<!--
+TODO
+    - Übung
+    - By-Name Parameter
+-->
+
+@defining("Currying") { topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slidehead() {
+            @topic
+        } {
+        }
+
+        <!--################################################################################## -->
+
+        <!-- TODO: simple example - like mult(a)(b), double = mult(2) -->
+
+        <!--################################################################################## -->
+
+        @slide(topic = topic, title = "") {
+
+            <div class="sidebyside p66_33">
+                @snippet() {
+                    @sourceblock(id = "retry") {
+                        |def retry[T](n: Int)(fn: => T): T = {
+                        |  try {
+                        |    fn
+                        |  } catch {
+                        |    case e if n > 1 =>
+                        |      retry(n - 1)(fn)
+                        |  }
+                        |}
+                    }
+                    @outblock() {
+                        |retry: [T](n: Int)(fn: => T)T
+                    }
+                }
+                <div>
+                    @codenote() {
+                        <code>Currying</code> erlaubt es, <em>mehrere Parameterlisten</em> zu definieren
+                    }
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="sidebyside p60_40">
+                @callcode(reference = "connect2db") {
+                    |val r = retry(2) {
+                    |   connectToDatabase()
+                    |}
+                }
+                @codenote() {
+                    <code>retry</code> kann wie eine Kontrollstruktur eingesetzt werden
+                }
+            </div>
+            <hr class="half"/>
+            <div class="sidebyside p60_40">
+                @outcode() {
+                    |connecting
+                    |connecting
+                    |r: Boolean = true
+                }
+                @codenote() {
+                    <em>Erfolg:</em> das Ergebnis erscheint, die erste Ausnahme wird ignoriert
+                }
+            </div>
+            <hr class="half"/>
+            <div class="sidebyside p60_40">
+                @outcode() {
+                    |connecting
+                    |connecting
+                    |java.lang.AssertionError: assertion failed
+                }
+                @codenote() {
+                    <var>Fehler:</var> nach 2 gescheiterten Versuchen wird die Ausnahme geworfen
+                }
+            </div>
+        }
+
+        <!--################################################################################## -->
+
+        @defining("Beispiele") { title =>
+
+            @*@slide(topic = topic, title = title, subtitle = "Thread") {
+
+                <div class="sidebyside p60_40">
+                    <div>
+                        @sourcecode(id = "ctrl-thread") {
+                            |def runInThread(block: => Unit) {
+                            |   new Thread {
+                            |       override def run() {
+                            |           block
+                            |       }
+                            |   }.start()
+                            |}
+                        }
+                    </div>
+                    @codenote() {
+                        <code>runInThread</code> führt eine Funktion innerhalb eines eigenen Threads aus
+                    }
+                </div>
+
+                <hr/>
+
+                <div class="sidebyside p60_40">
+                    <div>
+                        @snippet() {
+                            @callblock(reference = "ctrl-thread") {
+                                |println(Thread.currentThread.getName)
+                            }
+                            @outblock() {
+                                |Thread-767
+                            }
+                            @callblock() {
+                                |runInThread {
+                                |   println(Thread.currentThread.getName)
+                                |}
+                            }
+                            @outblock() {
+                                |Thread-1144
+                            }
+                        }
+                    </div>
+                    @empty()
+                </div>
+            }*@
+
+            <!--################################################################################## -->
+
+            @slide(topic = topic, title = title, subtitle = "Resource") {
+
+                <div class="sidebyside p75_25">
+                    <div>
+                        @sourcecode(id = "ctrl-resource") {
+                            |import java.io._
+                            |
+                            |def withResource[R &lt;: Closeable](res: => R)(f: (R) => Unit) = {
+                            |   val r = res
+                            |   try {
+                            |       f(r)
+                            |   } finally {
+                            |       r.close()
+                            |   }
+                            |}
+                        }
+                    </div>
+                    @codenote() {
+                        <code>withResource</code> schließt nach Ende der Funktion - oder nach einem Fehler -
+                        die verwendete Resource
+                    }
+                </div>
+
+                <hr/>
+
+                <div class="sidebyside p75_25">
+                    <div>
+                        @callcode(reference = "ctrl-resource") {
+                            |withResource(new FileInputStream(new File("file.txt"))) {
+                            |   stream =>
+                            |       // read 'stream' ...
+                            |}
+                        }
+                    </div>
+                    @empty()
+                </div>
+            }
+
+            <!--################################################################################## -->
+
+            @slide(topic = topic, title = title, subtitle = "Unless") {
+
+                <div class="sidebyside p75_25">
+                    <div>
+                        @sourcecode(id = "ctrl-unless") {
+                            |def unless(condition: => Boolean)(body: => Unit) {
+                            |   if (!condition)
+                            |       body
+                            |}
+                        }
+                    </div>
+                    @codenote() {
+                        <code>unless</code> ist das Gegenstück zu <code>if</code> - es führt eine Funktion nur aus,
+                        wenn ihre Bedingung falsch ist
+                    }
+                </div>
+
+                <hr/>
+
+                <div class="sidebyside p75_25">
+                    <div>
+                        @snippet() {
+                            @callblock(reference = "ctrl-unless") {
+                                |unless(1 == 42) {
+                                |   print("unless!")
+                                |}
+                            }
+                            @outblock() {
+                                |unless!
+                            }
+                        }
+                    </div>
+                    @empty()
+                </div>
+            }
+
+            <!--################################################################################## -->
+
+            @slide(topic = topic, title = title, subtitle = "Timed") {
+
+                <div class="sidebyside p70_30">
+                    @sourcecode(id = "ctrl-time") {
+                        |def timed[T](f: => T) = {
+                        |   val start = System.nanoTime
+                        |   val r = f
+                        |   val t = (System.nanoTime - start) / 1e9
+                        |   (r, t)
+                        |}
+                    }
+                    @codenote() {
+                        <code>timed</code> errechnet wieviel Zeit eine Funktion zur Ausführung benötigt
+                    }
+                </div>
+
+                <hr/>
+
+                <div class="sidebyside p60_40">
+                    @snippet() {
+                        @callblock(reference = "factorial") {
+                            |val (f, t) = timed { factorial(1000) }
+                            |println(t)
+                        }
+                        @outblock(reference = "factorial") {
+                            |0.00150658
+                        }
+                    }
+                    @empty()
+                </div>
+            }
+        }
+
+        <!--################################################################################## -->
+
+        @uebung("S010") {
+            TODO
+        }
+    }
+}
+
+<div class="hide">
+    @sourcecode(id = "factorial", reference = "ctrl-time") {
+        |def factorial(n: Int): BigInt =
+        |   if (n == 0) BigInt(1) else n * factorial(n - 1)
+    }
+
+    @sourcecode(id = "connect2db", reference = "retry") {
+        |def connectToDatabase() = {
+        |   println("connecting")
+        |   assert(util.Random.nextInt(2) == 0)
+        |   true
+        |}
+    }
+</div>

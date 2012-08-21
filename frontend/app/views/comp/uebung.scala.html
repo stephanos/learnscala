@@ -1,0 +1,17 @@
+@(id: String, heading: Html = Html("Übung"), append: Html = Html.empty)(content: Html)
+
+@headslide() {
+    @heading@append
+} {
+    @content
+
+    <hr/>
+
+    @countdown()
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            scheduleChartUpdate('@id');
+        });
+    </script>
+}

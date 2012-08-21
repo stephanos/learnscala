@@ -1,0 +1,68 @@
+GET     /                                           controllers.Home.index
+GET     /impressum                                  controllers.Home.imprint
+GET     /kontakt                                    controllers.Home.contact
+GET     /buchung                                    controllers.Home.booking
+GET     /termine                                    controllers.Home.events
+GET     /inhalt                                     controllers.Home.details
+GET     /backdoor                                   controllers.Home.backdoor
+GET     /google1388dbffebf166ff.html                controllers.Home.gverify
+
+POST    /mail.do                                    controllers.Contact.doMail
+
+
+# === AUTH
+
+GET     /users/login                                controllers.Auth.login
+POST    /users/do_login                             controllers.Auth.doLogin
+
+GET     /users/oauth                                controllers.Auth.oauth
+GET     /users/do_oauth                             controllers.Auth.doOAuth
+
+
+# === APP
+
+GET     /app                                        controllers.App.index
+GET     /app/                                       controllers.App.index2
+
+GET     /app/browser                                controllers.App.index2
+GET     /app/wait                                   controllers.App.waitingRoom
+
+GET     /app/editor                                 controllers.Editor.index
+GET     /app/editor/                                controllers.Editor.index2
+
+GET     /app/glossary                               controllers.Glossary.index1
+GET     /app/glossary/                              controllers.Glossary.index2
+GET     /app/glossary/:id                           controllers.Glossary.pageR(id)
+GET     /app/glossary/:id/                          controllers.Glossary.page(id)
+
+GET     /app/exercises/:id/status                   controllers.Exercise.read(id)
+
+GET     /app/slides                                 controllers.Slide.index
+GET     /app/slides/                                controllers.Slide.index2
+GET     /app/slides/:id                             controllers.Slide.redirect(id)
+GET     /app/slides/:id/                            controllers.Slide.load(id)
+GET     /app/slides/:id1/:id2                       controllers.Slide.redirect2(id1, id2)
+GET     /app/slides/:id1/:id2/                      controllers.Slide.load2(id1, id2)
+
+GET     /app/logout                                 controllers.Auth.logout
+
+
+# === API
+
+POST    /api/compile                                controllers.API.compile
+POST    /api/execute                                controllers.API.execute
+POST    /api/decompile/java                         controllers.API.decompileAsJava
+POST    /api/decompile/scala                        controllers.API.decompileAsScala
+POST    /api/exercises/:id                          controllers.Exercise.write(id)
+
+
+# === ASSETS
+
+GET     /assets/img/*file                           controllers.Assets.at(path="/public/images", file)
+GET     /assets/font/*file                          controllers.Assets.at(path="/public/font", file)
+GET     /assets/:ver/:typeOf/*file                  controllers.MyAssets.at(typeOf, file, ver)
+
+GET     /robots.txt                                 controllers.MyAssets.robots
+GET     /favicon.ico                                controllers.Assets.at(path="/public/images", file="favicon.ico")
+GET     /crossdomain.xml                            controllers.Assets.at(path="/public", file="crossdomain.xml")
+#GET     /manifest.appcache                         controllers.MyAssets.frontManifest

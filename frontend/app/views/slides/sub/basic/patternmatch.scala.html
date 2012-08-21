@@ -1,0 +1,160 @@
+@defining("Pattern Matching") { topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slidehead() {
+            @topic
+        } {
+
+        }
+
+        <!--################################################################################## -->
+
+        @slide(topic = topic) {
+            <!-- Syntax -->
+
+            <div class="sidebyside p60_40">
+                @snippet() {
+                    @sourceblock(fragment = false) {
+                        |def interpret(msg: String) {
+                        |  msg match {
+                        |    case "OUT"    => println("The end")
+                        |    case "OVER"   => println("Your turn")
+                        |    case "MAYDAY" => println("We need help!")
+                        |  }
+                        |}
+                    }
+                    @callblock() {
+                        |interpret("MAYDAY")
+                    }
+                    @outblock() {
+                        |We need help!
+                    }
+                }
+                @empty()
+            </div>
+
+            <hr/>
+
+            @infobox() {
+                Ein Ausdruck kann mittels <code>match</code> gegen verschiedene Alternativen -
+                eingeleitet durch <code>case</code> - "gematched" werden.
+            }
+        }
+
+        <!--################################################################################## -->
+
+        @slide(topic = topic) {
+            <!-- MatchError / Wildcard -->
+
+            <div class="sidebyside">
+                @snippet() {
+                    @sourceblock(fragment = false) {
+                        |def interpret(msg: String) =
+                        |  msg match {
+                        |    case "OUT"    => "The end"
+                        |    case "OVER"   => "Your turn"
+                        |    case "MAYDAY" => "We need help!"
+                        |  }
+                    }
+                    @callblock() {
+                        |println(interpret("Ready for take-off"))
+                    }
+                    @outblock(error = true) {
+                        |scala.MatchError: Ready for take-off
+                    }
+                }
+                @snippet() {
+                    @sourceblock() {
+                        |def interpret(msg: String) =
+                        |  msg match {
+                        |    case "OUT"    => "The end"
+                        |    case "OVER"   => "Your turn"
+                        |    case "MAYDAY" => "We need help!"
+                        |    case _        => msg
+                        |  }
+                    }
+                    @callblock() {
+                        |println(interpret("Ready for take-off"))
+                    }
+                    @outblock() {
+                        |Ready for take-off
+                    }
+                }
+            </div>
+
+            <hr/>
+
+            @infobox() {
+                Trifft kein Pattern zu wird eine <code>MatchError</code>-Exception geworfen;
+                mit dem <span class="nobreak">Wildcard-Pattern <code>_</code></span>
+                kann jedoch ein Standardverhalten für diesen Fall definiert werden.
+            }
+        }
+
+        <!--################################################################################## -->
+
+        @slide(topic = topic) {
+            <!-- Names -->
+
+            <div class="sidebyside">
+                @snippet() {
+                    @sourceblock(fragment = false) {
+                        |def interpret(msg: String) =
+                        |  msg match {
+                        |    case "OUT"    => "The end"
+                        |    case "OVER"   => "Your turn"
+                        |    case "MAYDAY" => "We need help!"
+                        |    case m        => m.toUpperCase
+                        |  }
+                    }
+                    @callblock() {
+                        |println(interpret("Ready for take-off"))
+                    }
+                    @outblock() {
+                        |READY FOR TAKE-OFF
+                    }
+                }
+                @empty()
+            </div>
+
+            <hr/>
+
+            @infobox() {
+                Folgt auf <code>case</code> ein Variablenname <comment>(muss mit einem Kleinbuchstaben anfangen)</comment>
+                kann dieser im Ergebnis-Ausdruck (rechts von <code>=></code>) verwendet werden.
+            }
+        }
+
+        <!--################################################################################## -->
+
+        @uebung("000") {
+
+            Die Übung ist unter
+                <code>/src/main/scala/de/learnscala/uebungen/<em>U050.scala</em></code>
+            zu finden.
+
+            <hr/>
+
+            Die dazugehörige Testspezifikation unter
+                <code>/src/test/scala/de/learnscala/specs/<var>U050.scala</var></code>.
+        }
+    }
+}
+
+<!--
+e match {
+  case pat1 => e1: T1
+  case pat2a | ... | pat2n => e2: T2
+  ...
+  case patn => en: Tn
+}
+
+        def days(month: Int, leap: Boolean): Int =
+          month match {
+            case 2 if leap       => 29 // guarded pattern
+            case 2               => 28 // note: order is important here!
+            case 4 | 6 | 9 | 11  => 30 // alternative pattern
+            case _               => 31 // wildcard pattern
+          }
+-->

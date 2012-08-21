@@ -1,0 +1,66 @@
+@slide(title = "Bedingungen") {
+
+    <div class="sidebyside">
+        @snippet() {
+            @sourceblock(fragment = false) {
+                |def sufficientFuel(f: Float) =
+                |   if (f >= 50.0) true else false
+            }
+            @outblock() {
+                |sufficientFuel: (f: Float)Boolean
+            }
+        }
+        @fragment {
+            Methode <code>sufficientFuel</code> hat den Rückgabetyp der Bedingung: <code>Boolean</code>
+        }
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        Eine Bedingung hat immer einen Wert.
+    }
+}
+
+@slide() {
+
+    <div class="sidebyside p66_33">
+        @snippet() {
+            @sourceblock(fragment = false) {
+                |def almostThere(x0: Int, y0: Int, x: Int, y: Int) = {
+                |   val distance = {
+                |       val dx = x - x0
+                |       val dy = y - y0
+                |       Math.sqrt(dx * dx + dy * dy)
+                |   }
+                |   distance < 20
+                |}
+            }
+            @outblock() {
+                |almostThere: (x0: Int, y0: Int, x: Int, y: Int)Boolean
+            }
+        }
+        @fragment {
+            Variable <code>distance</code> hat den Typ der <code>sqrt</code>-Methode: <code>Double</code>
+        }
+    </div>
+
+    <hr/>
+
+    @infobox() {
+        Ein Block hat immer einen Wert - und zwar den Wert des letzten Ausdrucks
+    }
+}
+
+
+@uebung("000") {
+
+    Die Übung ist unter
+        <code>/src/main/scala/de/learnscala/uebungen/<em>U030.scala</em></code>
+    zu finden.
+
+    <hr/>
+
+    Die dazugehörige Testspezifikation unter
+        <code>/src/test/scala/de/learnscala/specs/<var>U030.scala</var></code>.
+}

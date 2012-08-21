@@ -1,40 +1,64 @@
 import sbt._
 import Keys._
-//import org.sbtidea._
+import org.sbtidea._
+import PlayProject._
 
-object ExercisesBuild extends Build with Deps {
+object ProjectBuild extends MyBuild {
 
-    override lazy val settings =
-        super.settings ++ Seq(
-            scalaVersion := "2.10.0-M6"
-        )
+    val v = "0.1"
+    val org = "de.learnscala"
+    val modBase = "modules/"
 
     lazy val root =
-        Project(id = "LearnScala", base = file("."))
-            //.settings(libraryDependencies ++= Seq(http))
-            .settings(libraryDependencies ++= Seq(Test.specs2, Test.mockito, Test.junit))
-            //.settings(SbtIdeaPlugin.ideaSettings: _*)
-            .settings(resolvers ++= Seq("releases" at "http://oss.sonatype.org/content/repositories/releases"))
-}
+        Project("learnscala", file("."))
+            .aggregate(frontend)
 
 
-trait Deps {
+    // ==== PROJECTS
 
-    val akka2 = "com.typesafe.akka" % "akka-actor" % "2.0.2"
-    val h2 = "com.h2database" % "h2" % "1.3.166"
-    val http = "org.apache.httpcomponents" % "httpclient" % "4.2"
-    val jodaTime = "joda-time" % "joda-time" % "2.1"
-    val spray = "cc.spray" % "spray-server" % "1.0-M2"
-    val sprayIo = "cc.spray" % "spray-io" % "1.0-M2"
-    val sprayCan = "cc.spray" % "spray-can" % "1.0-M2"
-    val sprayClient = "cc.spray" % "spray-client" % "1.0-M2"
+    lazy val frontend =
+        MyProject("frontend", file("frontend"))
+            .settings(myPlaySettings: _*)
+            .settings(libraryDependencies ++= Seq(sun_tools))
+            .settings(templatesImport += "views.html.comp._")
+            .dependsOn(mod_web_play, mod_data_mongo, mod_test_unit % "test->test")
+
+    /*
+    // use RootProject ("AttributeKey ID collisions detected for: 'pgp-signer'")
+    lazy val exercises =
+        MyProject("exercises", file("exercises"), isCloud)
+            .settings(moduleSettings: _*)
+            .settings(libraryDependencies ++= Seq(http, jodaTime, jodaConvert))
+            .settings(libraryDependencies ++= Seq(Test.specs2, Test.junit, Test.mockito, Test.scheck))
+            .settings(libraryDependencies ++= Seq(squeryl, Test.h2).map(_.copy(configurations = Some("compile"))))
+    */
 
 
-    object Test {
-        val junit = "junit" % "junit" % "4.7"
-        val mockito = "org.mockito" % "mockito-all" % "1.9.0" % "test"
-        val scheck = "org.scalacheck" %% "scalacheck" % "1.10.0" % "test"
-        val specs2 = "org.specs2" %% "specs2" % "1.11" % "test"
+    // ==== SETTINGS
+
+    override lazy val settings =
+        super.settings ++ SbtIdeaPlugin.ideaSettings ++ buildSettings ++ Seq(
+            javaHome := Some(file(jdk6Home))
+        )
+
+    println("JRE HOME: " + System.getProperty("java.home"))
+    println("JDK HOME: " + jdk6Home)
+
+
+    // ==== DEPENDENCIES
+
+    val sun_tools_file = file(jdk6Home + fileSep + "lib" + fileSep + "tools.jar").getCanonicalPath
+    lazy val sun_tools = "com.sun" % "tools" % "1.6.0" from ("file:///" + sun_tools_file)
+
+    println("TOOLS.jar: " + sun_tools_file)
+
+
+    // ==== OTHER
+
+    lazy val jdk6Home = {
+        val jdk = Option(System.getProperty("JDK6_HOME", System.getenv("JDK6_HOME")))
+        val jre = Option(System.getProperty("java.home", System.getProperty("java_home", System.getenv("JAVA_HOME"))))
+        val path = jdk.getOrElse(jre.map(_ + fileSep + "..").getOrElse("/usr/lib/jdk"))
+        new File(path).getCanonicalPath
     }
-
 }

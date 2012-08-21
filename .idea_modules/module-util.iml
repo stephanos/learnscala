@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="scala" name="Scala">
+      <configuration>
+        <option name="compilerLibraryLevel" value="Project" />
+        <option name="compilerLibraryName" value="scala-2.9.1" />
+        <option name="fsc" value="true" />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" inherit-compiler-output="false">
+    <output url="file://$MODULE_DIR$/../modules/module-util/target/scala-2.9.1/classes" />
+    <output-test url="file://$MODULE_DIR$/../modules/module-util/target/scala-2.9.1/test-classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../modules/module-util">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/module-util/src/main/scala" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/module-util/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/module-util/src/main/resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/module-util/src/test/scala" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/module-util/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/module-util/src/test/resources" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/module-util/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="org.scala-lang_scala-library_2.9.1" level="project" />
+    <orderEntry type="library" name="commons-lang_commons-lang_2.6" level="project" />
+    <orderEntry type="library" name="commons-codec_commons-codec_1.6" level="project" />
+    <orderEntry type="library" name="org.apache.commons_commons-math_2.2" level="project" />
+    <orderEntry type="library" name="commons-io_commons-io_2.3" level="project" />
+    <orderEntry type="library" name="joda-time_joda-time_2.1" level="project" />
+    <orderEntry type="library" name="org.joda_joda-convert_1.2" level="project" />
+    <orderEntry type="library" name="ch.qos.logback_logback-classic_1.0.3" level="project" />
+    <orderEntry type="library" name="ch.qos.logback_logback-core_1.0.3" level="project" />
+    <orderEntry type="library" name="org.slf4j_slf4j-api_1.6.4" level="project" />
+    <orderEntry type="library" name="org.slf4j_jcl-over-slf4j_1.6.4" level="project" />
+    <orderEntry type="library" name="janino_janino_2.5.10" level="project" />
+    <orderEntry type="library" name="net.liftweb_lift-json_2.9.1_2.4" level="project" />
+    <orderEntry type="library" name="com.thoughtworks.paranamer_paranamer_2.3" level="project" />
+    <orderEntry type="library" name="org.scala-lang_scalap_2.9.1" level="project" />
+    <orderEntry type="library" name="org.scala-lang_scala-compiler_2.9.1" level="project" />
+    <orderEntry type="library" name="javax.mail_mail_1.4.4" level="project" />
+    <orderEntry type="library" name="javax.activation_activation_1.1" level="project" />
+    <orderEntry type="library" name="org.mindrot_jbcrypt_0.3m" level="project" />
+    <orderEntry type="library" name="org.xerial.snappy_snappy-java_1.0.4.1" level="project" />
+    <orderEntry type="library" scope="TEST" name="org.specs2_specs2_2.9.1_1.11_test" level="project" />
+    <orderEntry type="library" scope="TEST" name="org.specs2_specs2-scalaz-core_2.9.1_6.0.1_test" level="project" />
+    <orderEntry type="library" scope="TEST" name="org.mockito_mockito-all_1.9.0_test" level="project" />
+    <orderEntry type="module" module-name="module-test-unit" exported="" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/module-test-unit/target/scala-2.9.1/classes" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../modules/module-test-unit/src/main/scala" />
+          <root url="file://$MODULE_DIR$/../modules/module-test-unit/src/main/java" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>
+

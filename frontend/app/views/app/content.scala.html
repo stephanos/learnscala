@@ -1,0 +1,228 @@
+@import comp._
+
+@layout.internal("Inhalt") {
+    <section id="main" class="slidedecks">
+
+        <div class="reveal">
+            <div class="slides">
+                <table border="1">
+                    <colgroup>
+                        <col width="5%">
+                        <col width="19%">
+                        <col width="19%">
+                        <col width="19%">
+                        <col width="19%">
+                        <col width="19%">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th><h4>Allgemein</h4></th>
+                            <th><h4>Objekte</h4></th>
+                            <!--<th>Typen</th>-->
+                            <th><h4>Funktionen</h4></th>
+                            <th><h4>Erweitert</h4></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="level">
+                                <h4>I</h4>
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Einführung", "basic", "introduction", status = "")
+                                    @topic("Geschichte", "basic", "history", status = "")
+                                    @topic("Erste Schritte", "basic")
+                                    @topic("Kontrollstrukturen", "basic")
+                                    @topic("Methoden", "basic")
+                                    @topic("Ausnahmen", "basic")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Klassen")
+                                    @topic("Vererbung I")
+                                    @topic("Objekte")
+                                    @topic("Zugriffsrechte")
+                                    @topic("Pakete")
+                                }
+                            </td>
+                            <!--<td>
+                                @topics {
+
+                                }
+                            </td>-->
+                            <td>
+                                @topics {
+
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Werkzeuge I", "ext", "tools1", status = "")
+                                    @topic("Werkzeuge II", "ext", "tools2", status = "")
+                                }
+                            </td>
+                        </tr>
+                        <tr class="divider">
+                            <td colspan="10">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="level">
+                                <h4>II</h4>
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Operatoren", "basic")
+                                    @topic("Annotationen", "basic")
+                                    @topic("Reflektion", "basic")
+                                    @topic("Reguläre Ausdrücke", "basic")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Hierarchie", "oop", "typehierarchy", status = "")
+                                    @topic("Traits")
+                                    @topic("Case-Klassen")
+                                    @topic("Vererbung II")
+                                    @topic("Typ-Parameter I")
+                                }
+                            </td>
+                            <!--<td>
+                                @topics {
+
+                                }
+                            </td>-->
+                            <td>
+                                @topics {
+                                    @topic("Option")
+                                    @topic("Tuple")
+                                    @topic("for")
+                                    @topic("Kollektionen")
+                                    @topic("Anonyme Funktionen")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("XML", "ext", "xml", status = "incomplete")
+                                    @topic("JSON")
+                                    @topic("Swing")
+                                    @topic("Testen")
+                                }
+                            </td>
+                        </tr>
+                        <tr class="divider">
+                            <td colspan="10">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="level">
+                                <h4>III</h4>
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Parsen")
+                                    @topic("Extraktoren")
+                                    @topic("Dynamic")
+                                    @topic("Lazy")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Typ-Parameter II")
+                                }
+                            </td>
+                            <!--<td>
+                                @topics {
+
+                                }
+                            </td>-->
+                            <td>
+                                @topics {
+                                    @topic("Streams")
+                                    @topic("Parallele Kollektionen")
+                                    @topic("Call-by-Name", "fp", "call_by_name")
+                                    @topic("Partial Functions", "fp", "partial")
+                                    @topic("Currying", "fp", "currying")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Aktoren")
+                                    @topic("Utilities")
+                                    @topic("Datenbanken")
+                                    @topic("Web Frameworks")
+                                }
+                            </td>
+                        </tr>
+                        <tr class="divider">
+                            <td colspan="10">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td class="level">
+                                <h4>IV</h4>
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Makros")
+                                    @topic("Delimited Continuations")
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Early Definitions")
+                                    @topic("Self-Types")
+                                    @topic("Abstrakte Typen")
+                                    @topic("Strukturelle Typen")
+                                }
+                            </td>
+                            <!--<td>
+                                @topics {
+
+                                }
+                            </td>-->
+                            <td>
+                                @topics {
+
+                                }
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Scalaz")
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <a class="btn btn-icon btn-danger" id="btn-resetprogress" href="javascript:resetProgress()">/</a>
+            </div>
+        </div>
+
+    </section>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            initProgress();
+        });
+    </script>
+}
+
+@topics(content: Html) = {
+  <ul>
+    @content
+  </ul>
+}
+
+@topic(label: String, chpt: String = "", file: String = "", status: String = "planned") = {
+  <li class="topic @status">
+    @if(status == "planned") {
+      <span>@label</span>
+    } else {
+      <a href='/app/slides/@{if(chpt != "") chpt + "/" else ""}@file/#/'>
+        <input type="checkbox" class="status" data-key='@{chpt + "_" + file}'/>
+        @label
+      </a>
+    }
+  </li>
+}
