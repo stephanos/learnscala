@@ -1,20 +1,4 @@
-# Eclipse
-.metadata
-.classpath
-.project
-.cache
-
-# IntelliJ
-*.iws
-*.ipr
-*.iml
-.idea/libraries
-
-# sbt
+external/
+project/
 target/
-
-# other
-.DS_Store
-*.prefs
-_old/
-*.log
+tmp/
