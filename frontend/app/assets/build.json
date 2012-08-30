@@ -1,0 +1,75 @@
+{
+    "shim":{
+        "lib/dom/jquery":{
+            "exports":"$"
+        },
+        "lib/util/underscore":{
+              "exports":"_"
+        },
+        "lib/util/underscore.str":{
+            "exports":"_.str"
+        },
+        "lib/init/modernizr":{
+            "exports":"Modernizr"
+        },
+        "lib/reveal":{
+            "deps":["app/slide/log"],
+            "exports":"Reveal"
+        },
+        "lib/editor/codemirror":{
+            "exports":"CodeMirror"
+        },
+        "lib/util/moment":{
+            "exports":"moment"
+        },
+        "lib/editor/clike":{
+            "deps":["lib/editor/codemirror"],
+            "exports":"CodeMirror"
+        },
+        "lib/editor/runmode":{
+            "deps":["lib/editor/codemirror"],
+            "exports":"CodeMirror"
+        },
+        "lib/util/spin":["jquery"],
+        "lib/dom/vanadium":["jquery"],
+        "lib/dom/splitter":["jquery"],
+        "lib/dom/bootstrap":["jquery"]
+    },
+
+    "paths":{
+        "jquery":"lib/dom/jquery"
+    },
+
+    "modules":[
+        {
+            "name":"base",
+            "include":[
+                "lib/init/almond",
+                "lib/dom/vanadium"
+            ]
+        },
+        {
+            "name":"util",
+            "include":[
+                "lib/init/modernizr",
+                "lib/util/underscore",
+                "lib/util/underscore.str"
+            ],
+            "exclude":["base"]
+        },
+        {
+            "name":"editor",
+            "include":[
+                "app/editor/init"
+            ],
+            "exclude":["base", "util"]
+        },
+        {
+            "name":"slide",
+            "include":[
+                "app/slide/init"
+            ],
+            "exclude":["base", "util", "editor"]
+        }
+    ]
+}

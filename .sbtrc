@@ -1,4 +1,6 @@
-alias web   = ;project frontend  ;run
+alias web   = ;project frontend ;run
+alias ass   = ;project frontend ;play-copy-assets;
+
 alias utest = ;project exercises ;test
 alias ubungen = utest
 alias uebungen = utest

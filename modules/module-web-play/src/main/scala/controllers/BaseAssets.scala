@@ -16,10 +16,9 @@ trait BaseAssets {
 
     def at(typeOf: String, file: String, ver: String = "") = {
         val path = typeOf match {
-            case "js" => ("/public/javascripts", file)
-            case "css" => ("/public/stylesheets", file)
+            case "js" => ("/public/scripts", file)
+            case "css" => ("/public/styles", file)
             case "img" => ("/public/images", file)
-            case "view" => ("/public/templates", file)
             case _ => ("/public", file)
         }
         Assets.at(path._1, path._2)
@@ -47,13 +46,16 @@ trait BaseAssets {
         urlsOf("/css" + path)
 
     protected def jsUrl(path: String) =
-        urlsOf("/js" + path)
+        urlsOf("/js" + path + jsExt)
 
 
     //~ INTERNALS =================================================================================
 
     private def randomHash =
         if (isCloud) "" else "?" + new Date().getTime
+
+    private def jsExt =
+        if (isCloud) ".min.js" else ".js"
 
     private lazy val baseDomain = if (isProduction) "static." + domain else ""
     private lazy val httpDomain = if (isProduction) "http://" + baseDomain else baseDomain

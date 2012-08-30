@@ -7,9 +7,9 @@
     @ide()
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            initStandaloneEditor($("#editor"));
-            subtleToolbar();
+        require(["jquery", "app/editor/init"], function($, Editor) {
+            Editor.initStandaloneEditor($("#editor"));
+            Editor.subtleToolbar();
         });
     </script>
 }

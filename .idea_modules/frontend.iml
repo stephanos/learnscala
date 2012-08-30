@@ -20,6 +20,9 @@
       <sourceFolder url="file://$MODULE_DIR$/../frontend/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/../frontend/test/resources" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/../frontend/target/scala-2.9.1/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/../frontend/target/scala-2.9.1/classes" />
+      <excludeFolder url="file://$MODULE_DIR$/../frontend/target/scala-2.9.1/classes_managed" />
+      <excludeFolder url="file://$MODULE_DIR$/../frontend/target/scala-2.9.1/resource_managed" />
       <excludeFolder url="file://$MODULE_DIR$/../frontend/target/streams" />
     </content>
     <orderEntry type="inheritedJdk" />

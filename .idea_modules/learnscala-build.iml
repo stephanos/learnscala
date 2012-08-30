@@ -64,8 +64,6 @@
           <root url="jar://$USER_HOME$/.ivy2/cache/com.jolbox/bonecp/bundles/bonecp-0.7.1.RELEASE.jar!/" />
           <root url="jar://$USER_HOME$/.sbt/boot/scala-2.9.1/lib/scala-compiler.jar!/" />
           <root url="jar://$USER_HOME$/.ivy2/cache/javax.validation/validation-api/jars/validation-api-1.0.0.GA.jar!/" />
-          <root url="jar://$USER_HOME$/.ivy2/cache/scala_2.9.1/sbt_0.11.3/com.typesafe.sbteclipse/sbteclipse-plugin/jars/sbteclipse-plugin-2.1.0.jar!/" />
-          <root url="jar://$USER_HOME$/.ivy2/cache/scala_2.9.1/sbt_0.11.3/com.typesafe.sbteclipse/sbteclipse-core/jars/sbteclipse-core-2.1.0.jar!/" />
           <root url="jar://$USER_HOME$/.sbt/boot/scala-2.9.1/org.scala-sbt/sbt/0.11.3/jsch-0.1.46.jar!/" />
           <root url="jar://$USER_HOME$/.sbt/boot/scala-2.9.1/org.scala-sbt/sbt/0.11.3/classpath_2.9.1-0.11.3.jar!/" />
           <root url="jar://$USER_HOME$/.sbt/boot/scala-2.9.1/org.scala-sbt/sbt/0.11.3/sbt_2.9.1-0.11.3.jar!/" />
@@ -80,6 +78,7 @@
           <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.httpcomponents/httpcore/jars/httpcore-4.1.2.jar!/" />
           <root url="jar://$USER_HOME$/.sbt/boot/scala-2.9.1/org.scala-sbt/sbt/0.11.3/incremental-compiler_2.9.1-0.11.3.jar!/" />
           <root url="jar://$USER_HOME$/.ivy2/cache/scala_2.9.1/sbt_0.11.3/com.jsuereth/xsbt-gpg-plugin/jars/xsbt-gpg-plugin-0.6.jar!/" />
+          <root url="jar://$USER_HOME$/.ivy2/cache/scala_2.9.1/sbt_0.11.3/com.typesafe.sbteclipse/sbteclipse-core/jars/sbteclipse-core-2.1.0-M2.jar!/" />
           <root url="jar://$USER_HOME$/.ivy2/cache/dom4j/dom4j/jars/dom4j-1.6.1.jar!/" />
           <root url="jar://$USER_HOME$/.sbt/boot/scala-2.9.1/org.scala-sbt/sbt/0.11.3/compile_2.9.1-0.11.3.jar!/" />
           <root url="jar://$USER_HOME$/.ivy2/cache/asm/asm/jars/asm-3.3.1.jar!/" />

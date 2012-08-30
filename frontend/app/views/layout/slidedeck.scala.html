@@ -2,7 +2,6 @@
 
 @head = {
     <link href='@MyAssets.css_slide._2' type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="@MyAssets.js_d3._2"></script>
 }
 
 @internal(title, clazz=clazz, head=head) {
@@ -26,47 +25,47 @@
     </div>
 
     <!-- SLIDE -->
-    <script src="@MyAssets.js_slide._2" type="text/javascript"></script>
+    <script type="text/javascript" src="@MyAssets.js_slide._2"></script>
     <script type="text/javascript">
-        // Parse the query string into a key/value object
-        var query = {};
-        location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
-            query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
-        } );
+        require(["lib/reveal", "app/slide/init"], function(Reveal, SlideInit) {
+            // Parse the query string into a key/value object
+            var query = {};
+            location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+                query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+            } );
 
-        Reveal.initialize({
-            // Display controls in the bottom right corner
-            controls: false,
+            Reveal.initialize({
+                // Display controls in the bottom right corner
+                controls: false,
 
-            // Display a presentation progress bar
-            progress: true,
+                // Display a presentation progress bar
+                progress: true,
 
-            // If true; each slide will be pushed to the browser history
-            history: true,
+                // If true; each slide will be pushed to the browser history
+                history: true,
 
-            // Loops the presentation, defaults to false
-            loop: false,
+                // Loops the presentation, defaults to false
+                loop: false,
 
-            // Flags if mouse wheel navigation should be enabled
-            mouseWheel: false,
+                // Flags if mouse wheel navigation should be enabled
+                mouseWheel: false,
 
-            // Apply a 3D roll to links on hover
-            rollingLinks: false,
+                // Apply a 3D roll to links on hover
+                rollingLinks: false,
 
-            // UI style
-            theme: query.theme || 'default', // default/neon
+                // UI style
+                theme: query.theme || 'default', // default/neon
 
-            // Transition style
-            transition: query.transition || 'fade' // linear
-        });
+                // Transition style
+                transition: query.transition || 'fade' // linear
+            });
 
-        Reveal.addEventListener('slidechanged', function (event) {
-            //logSlide(event.indexh)
-        });
+            Reveal.addEventListener('slidechanged', function (event) {
+                //logSlide(event.indexh)
+            });
 
-        $(document).ready(function() {
-            window.initSlides();
-        });
+            new SlideInit();
+        })
     </script>
 
     <!-- Style modal -->
