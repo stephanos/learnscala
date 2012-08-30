@@ -1,7 +1,7 @@
 define [
   "jquery", "lib/util/underscore", "lib/reveal", "app/editor/init",
-  "lib/util/moment", "app/slide/time", "lib/chart/piechart"
-], ($, _, Reveal, Editor, moment, Timer, PieChart) ->
+  "lib/util/moment", "app/slide/time", "app/slide/chart", "lib/chart/piechart"
+], ($, _, Reveal, Editor, moment, Timer) ->
 
   class Slide
 
@@ -86,7 +86,7 @@ define [
     embedEditor: ->
       $("#navi a.openEditor").bind("click",
         (evt) ->
-          initModalEditor()
+          Editor.initModalEditor()
           evt.preventDefault()
       )
 
@@ -169,7 +169,7 @@ define [
         (idx, elem) ->
           key = "countdown_" + idx
 
-          upd = ->
+          window.upd = ->
             time = Timer.getTime(key)
             ms_end = time[1]
             ms_start = time[0]
@@ -194,13 +194,13 @@ define [
           $(elem).find(".minus").bind("click", () ->
             $(elem).data("start", $(elem).data("start") - 60)
             Timer.addTime(key, -60)
-            upd()
+            window.upd()
           )
 
           $(elem).find(".plus").bind("click", () ->
             $(elem).data("start", $(elem).data("start") + 60)
             Timer.addTime(key, 60)
-            upd()
+            window.upd()
           )
 
           $(elem).find(".toggle").bind("click", () ->
@@ -210,7 +210,7 @@ define [
             else
               Timer.setTime(key, $(elem).data("start"))
               $(elem).data("state", "running")
-              self.updateClockSchedule(upd, 500)
+              self.updateClockSchedule(window.upd, 500)
           )
       )
 
@@ -313,8 +313,8 @@ define [
 
     updateClockSchedule: (upd, t) ->
       setTimeout(() =>
-          if(upd())
-            @updateClockSchedule(upd, t)
+          if(window.upd && window.upd())
+            @updateClockSchedule(window.upd, t)
       , t)
 
     subtleToolbar: ->

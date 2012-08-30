@@ -13,8 +13,8 @@
     </div>
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            window.createChart('@id');
+        require(["jquery", "app/slide/chart"], function($, Chart) {
+            new Chart('@id');
         });
     </script>
 }

@@ -6,6 +6,9 @@
         "lib/util/underscore":{
               "exports":"_"
         },
+        "lib/chart/d3":{
+          "exports":"d3"
+        },
         "lib/util/underscore.str":{
             "exports":"_.str"
         },

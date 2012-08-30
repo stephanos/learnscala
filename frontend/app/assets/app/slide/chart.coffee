@@ -1,62 +1,76 @@
-require [
-  "lib/chart/d3"
-], () ->
-  window.createChart = (id) ->
+define [
+  "jquery", "lib/util/underscore",  "lib/chart/d3"
+], ($, _, d3) ->
 
-    target = "#chart-" + id
+  class Chart
 
-    pad = 5
-    width = $(target).parent().width()
-    height = $(target).parent().height()
+    constructor: (id) ->
 
-    svg = d3.select(target)
-      .append("svg:svg")
-      .attr("width", width)
-      .attr("height", height)
+      target = "#chart-" + id
 
-    updateChart = (init) ->
-      $.get('/app/exercises/' + id, (data) ->
+      pad = 5
+      width = $(target).parent().width()
+      height = $(target).parent().height()
 
-        console.log(data)
+      svg = d3.select(target)
+        .append("svg:svg")
+        .attr("width", width)
+        .attr("height", height)
 
-        # find max value
-        max = _.max(_.map(data, (v) -> v.pending + v.success + v.fail + v.skip + v.error))
+      updateChart = (init) ->
+        status = $("#progress-" + id + " .btn").hasClass("btn-success")
 
-        # sort data
-        dataset = _(_(data).sortBy((v) -> v.user)).map((v) -> {"success": v.success, "error": v.error + v.fail})
-
-        #console.log(dataset)
-
-        # init
-        if(!init)
+        if (!status || !init)
           svg.selectAll(".bar.success").remove()
           svg.selectAll(".bar.fail").remove()
 
-        # render
-        w_bar = width / dataset.length
-        getHeight = (d) -> height * (d / max)
+        if (status)
+          $.get('/app/exercises/' + id, (data) ->
 
-        svg.selectAll(".bar.success")
-          .data(dataset)
-          .enter()
-          .append("rect")
-          .attr("class", "bar success")
-          .attr("x", (d, i) -> i * w_bar)
-          .attr("y", (d) ->	height - getHeight(d.success))
-          .attr("width", w_bar - pad)
-          .attr("height", (d) -> getHeight(d.success))
+            # find max value
+            max = _.max(_.map(data, (v) -> v.pending + v.success + v.fail + v.skip + v.error))
 
-        svg.selectAll(".bar.fail")
-          .data(dataset)
-          .enter()
-          .append("rect")
-          .attr("class", "bar fail")
-          .attr("x", (d, i) -> i * w_bar)
-          .attr("y", (d) ->	Math.max(0, height - getHeight(d.error) - getHeight(d.success)))
-          .attr("width", w_bar - pad)
-          .attr("height", (d) -> getHeight(d.error))
+            # sort data
+            dataset = _(_(data).sortBy((v) -> v.user)).map((v) -> {"success": v.success, "error": v.error + v.fail})
+
+            console.log(data)
+            console.log(dataset)
+
+            # render
+            w_bar = width / dataset.length
+            getHeight = (d) -> height * (d / max)
+
+            svg.selectAll(".bar.success")
+              .data(dataset)
+              .enter()
+              .append("rect")
+              .attr("class", "bar success")
+              .attr("x", (d, i) -> i * w_bar)
+              .attr("y", (d) ->	height - getHeight(d.success))
+              .attr("width", Math.max(0, w_bar - pad))
+              .attr("height", (d) -> getHeight(d.success))
+
+            svg.selectAll(".bar.fail")
+              .data(dataset)
+              .enter()
+              .append("rect")
+              .attr("class", "bar fail")
+              .attr("x", (d, i) -> i * w_bar)
+              .attr("y", (d) ->	Math.max(0, height - getHeight(d.error) - getHeight(d.success)))
+              .attr("width", Math.max(0, w_bar - pad))
+              .attr("height", (d) -> getHeight(d.error))
+          )
+
+      # update (regularly)
+      updateChart(true)
+      setInterval((() -> updateChart()), 5 * 1000) #15
+
+      # on/off switch
+      $("#progress-" + id + " .btn").click((evt) ->
+          target = $(evt.target)
+          if($(target).hasClass("btn-success"))
+            $(target).removeClass("btn-success").addClass("btn-danger").text("Off")
+          else
+            $(target).removeClass("btn-danger").addClass("btn-success").text("On")
+            updateChart(true)
       )
-
-    # update (regularly)
-    updateChart(true)
-    setInterval((() -> updateChart()), 5 * 1000) #15
