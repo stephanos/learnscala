@@ -196,15 +196,15 @@
                     </tbody>
                 </table>
 
-                <a class="btn btn-icon btn-danger" id="btn-resetprogress" href="javascript:resetProgress()">/</a>
+                <a class="btn btn-icon btn-danger" id="btn-resetprogress" href="javascript:window.Progress.resetProgress()">/</a>
             </div>
         </div>
 
     </section>
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            initProgress();
+        require(["app/progress"], function(Progress) {
+            Progress.initProgress();
         });
     </script>
 }

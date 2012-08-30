@@ -1043,54 +1043,6 @@ define("lib/reveal", ["app/slide/log"], (function (global) {
     }
 }(this)));
 
-
-define('app/slide/progress',["jquery"], function($) {
-  window.resetProgress = function() {
-    var key;
-    if (confirm('Reset progress - are you sure?')) {
-      for (key in localStorage) {
-        if (_.str.contains(key, "progress.")) {
-          localStorage.removeItem(key);
-        }
-      }
-      return document.location.reload();
-    }
-  };
-  window.initProgress = function() {
-    return $(".slidedecks .status").each(function(idx, input) {
-      var key;
-      $(input).click(updateProgress);
-      key = getProgressKey(input);
-      if (localStorage[key]) {
-        return setProgress(input, true);
-      }
-    });
-  };
-  window.updateProgress = function(evt) {
-    if ($(this).is(':checked')) {
-      return setProgress($(this), true);
-    } else {
-      return setProgress($(this), void 0);
-    }
-  };
-  window.setProgress = function(input, val) {
-    var key, li;
-    key = getProgressKey(input);
-    li = $(input).parent().parent();
-    $(li).removeClass("done");
-    localStorage.removeItem(key);
-    $(input).attr("checked", false);
-    if (val) {
-      $(li).addClass("done");
-      localStorage[key] = true;
-      return $(input).attr("checked", true);
-    }
-  };
-  return window.getProgressKey = function(input) {
-    return "progress." + $(input).data("key");
-  };
-});
-
 // moment.js
 // version : 1.7.0
 // author : Tim Wood
@@ -2405,7 +2357,7 @@ Thanks to Philip Thrasher for the jquery plugin boilerplate for coffee script
 define("lib/chart/piechart",[], function(){});
 
 
-define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/editor/init", "app/slide/progress", "app/slide/time", "lib/chart/piechart"], function($, _, Reveal, Editor, Progress, Timer, PieChart) {
+define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/editor/init", "app/slide/time", "lib/chart/piechart"], function($, _, Reveal, Editor, Timer, PieChart) {
   var Slide;
   return Slide = (function() {
     var embedDocs;

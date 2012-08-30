@@ -53,7 +53,8 @@
             "include":[
                 "lib/init/modernizr",
                 "lib/util/underscore",
-                "lib/util/underscore.str"
+                "lib/util/underscore.str",
+                "app/progress"
             ],
             "exclude":["base"]
         },

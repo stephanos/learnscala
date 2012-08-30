@@ -1791,3 +1791,68 @@ define("lib/util/underscore.str", (function (global) {
         return global._.str;
     }
 }(this)));
+
+
+define('app/progress',["jquery"], function($) {
+  var Progress, p;
+  Progress = (function() {
+
+    function Progress() {}
+
+    Progress.prototype.initProgress = function() {
+      var _this = this;
+      return $(".slidedecks .status").each(function(idx, input) {
+        var key;
+        $(input).click(_this.updateProgress);
+        key = _this.getProgressKey(input);
+        if (localStorage[key]) {
+          return _this.setProgress(input, true);
+        }
+      });
+    };
+
+    Progress.prototype.resetProgress = function() {
+      var key;
+      if (confirm('Reset progress - are you sure?')) {
+        for (key in localStorage) {
+          if (_.str.contains(key, "progress.")) {
+            localStorage.removeItem(key);
+          }
+        }
+        return document.location.reload();
+      }
+    };
+
+    Progress.prototype.updateProgress = function(evt) {
+      if ($(this).is(':checked')) {
+        return window.Progress.setProgress($(this), true);
+      } else {
+        return window.Progress.setProgress($(this), void 0);
+      }
+    };
+
+    Progress.prototype.setProgress = function(input, val) {
+      var key, li;
+      key = window.Progress.getProgressKey(input);
+      li = $(input).parent().parent();
+      $(li).removeClass("done");
+      localStorage.removeItem(key);
+      $(input).attr("checked", false);
+      if (val) {
+        $(li).addClass("done");
+        localStorage[key] = true;
+        return $(input).attr("checked", true);
+      }
+    };
+
+    Progress.prototype.getProgressKey = function(input) {
+      return "progress." + $(input).data("key");
+    };
+
+    return Progress;
+
+  })();
+  p = new Progress;
+  window.Progress = p;
+  return p;
+});
