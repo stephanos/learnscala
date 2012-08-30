@@ -409,11 +409,17 @@
             text-align: center;
 
             .body {
+                @p: 10px;
                 @h: 150px;
+                @w2: @w - 2 * @p;
                 color: @c_text;
-                padding: 10px;
+                padding: @p;
                 background-color: @_bg;
-                height: @h; line-height: @h;
+                .dim(@w2, @h);
+                overflow: hidden;
+                >div {
+                    .dim(@w2, @h);
+                }
             }
             .footer {
                 height: 40px;

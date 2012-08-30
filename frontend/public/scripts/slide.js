@@ -9235,12 +9235,10 @@ define('app/slide/chart',["jquery", "lib/util/underscore", "lib/chart/d3"], func
   return Chart = (function() {
 
     function Chart(id) {
-      var height, pad, svg, target, updateChart, width;
-      target = "#chart-" + id;
+      var pad, svg, target, updateChart;
       pad = 5;
-      width = $(target).parent().width();
-      height = $(target).parent().height();
-      svg = d3.select(target).append("svg:svg").attr("width", width).attr("height", height);
+      target = "#chart-" + id;
+      svg = d3.select(target).append("svg:svg");
       updateChart = function(init) {
         var status;
         status = $("#progress-" + id + " .btn").hasClass("btn-success");
@@ -9250,7 +9248,10 @@ define('app/slide/chart',["jquery", "lib/util/underscore", "lib/chart/d3"], func
         }
         if (status) {
           return $.get('/app/exercises/' + id, function(data) {
-            var dataset, getHeight, max, w_bar;
+            var dataset, getHeight, height, max, w_bar, width;
+            width = 280;
+            height = 150;
+            svg.attr("width", width).attr("height", height);
             max = _.max(_.map(data, function(v) {
               return v.pending + v.success + v.fail + v.skip + v.error;
             }));
@@ -9264,7 +9265,7 @@ define('app/slide/chart',["jquery", "lib/util/underscore", "lib/chart/d3"], func
             });
             console.log(data);
             console.log(dataset);
-            w_bar = width / dataset.length;
+            w_bar = Math.max(pad, width / dataset.length);
             getHeight = function(d) {
               return height * (d / max);
             };
@@ -9272,14 +9273,14 @@ define('app/slide/chart',["jquery", "lib/util/underscore", "lib/chart/d3"], func
               return i * w_bar;
             }).attr("y", function(d) {
               return height - getHeight(d.success);
-            }).attr("width", Math.max(0, w_bar - pad)).attr("height", function(d) {
+            }).attr("width", w_bar - pad).attr("height", function(d) {
               return getHeight(d.success);
             });
             return svg.selectAll(".bar.fail").data(dataset).enter().append("rect").attr("class", "bar fail").attr("x", function(d, i) {
               return i * w_bar;
             }).attr("y", function(d) {
               return Math.max(0, height - getHeight(d.error) - getHeight(d.success));
-            }).attr("width", Math.max(0, w_bar - pad)).attr("height", function(d) {
+            }).attr("width", w_bar - pad).attr("height", function(d) {
               return getHeight(d.error);
             });
           });

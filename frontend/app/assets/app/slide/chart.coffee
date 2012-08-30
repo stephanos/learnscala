@@ -6,16 +6,9 @@ define [
 
     constructor: (id) ->
 
-      target = "#chart-" + id
-
       pad = 5
-      width = $(target).parent().width()
-      height = $(target).parent().height()
-
-      svg = d3.select(target)
-        .append("svg:svg")
-        .attr("width", width)
-        .attr("height", height)
+      target = "#chart-" + id
+      svg = d3.select(target).append("svg:svg")
 
       updateChart = (init) ->
         status = $("#progress-" + id + " .btn").hasClass("btn-success")
@@ -27,6 +20,11 @@ define [
         if (status)
           $.get('/app/exercises/' + id, (data) ->
 
+            # find width / height (WEIRD: height() did not work properly)
+            width = 280
+            height = 150
+            svg.attr("width", width).attr("height", height)
+
             # find max value
             max = _.max(_.map(data, (v) -> v.pending + v.success + v.fail + v.skip + v.error))
 
@@ -37,7 +35,7 @@ define [
             console.log(dataset)
 
             # render
-            w_bar = width / dataset.length
+            w_bar = Math.max(pad, width / dataset.length)
             getHeight = (d) -> height * (d / max)
 
             svg.selectAll(".bar.success")
@@ -47,7 +45,7 @@ define [
               .attr("class", "bar success")
               .attr("x", (d, i) -> i * w_bar)
               .attr("y", (d) ->	height - getHeight(d.success))
-              .attr("width", Math.max(0, w_bar - pad))
+              .attr("width", w_bar - pad)
               .attr("height", (d) -> getHeight(d.success))
 
             svg.selectAll(".bar.fail")
@@ -57,7 +55,7 @@ define [
               .attr("class", "bar fail")
               .attr("x", (d, i) -> i * w_bar)
               .attr("y", (d) ->	Math.max(0, height - getHeight(d.error) - getHeight(d.success)))
-              .attr("width", Math.max(0, w_bar - pad))
+              .attr("width", w_bar - pad)
               .attr("height", (d) -> getHeight(d.error))
           )
 
