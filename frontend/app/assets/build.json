@@ -54,6 +54,7 @@
                 "lib/init/modernizr",
                 "lib/util/underscore",
                 "lib/util/underscore.str",
+                "lib/dom/bootstrap",
                 "app/progress"
             ],
             "exclude":["base"]

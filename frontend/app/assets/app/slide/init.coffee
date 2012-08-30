@@ -1,7 +1,7 @@
 define [
   "jquery", "lib/util/underscore", "lib/reveal", "app/editor/init",
-  "app/slide/time", "lib/chart/piechart"
-], ($, _, Reveal, Editor, Timer, PieChart) ->
+  "lib/util/moment", "app/slide/time", "lib/chart/piechart"
+], ($, _, Reveal, Editor, moment, Timer, PieChart) ->
 
   class Slide
 
@@ -137,7 +137,7 @@ define [
 
 
     #######################################################################################################################
-    embedDocs = ->
+    embedDocs: ->
       # insert in navi
       $('<li id="naviDocs">
             <a href="#" class="openDocs">
@@ -164,12 +164,13 @@ define [
 
     #######################################################################################################################
     initCountdowns: ->
+      self = @
       $('div.countdown').each(
         (idx, elem) ->
           key = "countdown_" + idx
 
           upd = ->
-            time = getTime(key)
+            time = Timer.getTime(key)
             ms_end = time[1]
             ms_start = time[0]
             if(ms_start)
@@ -192,13 +193,13 @@ define [
 
           $(elem).find(".minus").bind("click", () ->
             $(elem).data("start", $(elem).data("start") - 60)
-            addTime(key, -60)
+            Timer.addTime(key, -60)
             upd()
           )
 
           $(elem).find(".plus").bind("click", () ->
             $(elem).data("start", $(elem).data("start") + 60)
-            addTime(key, 60)
+            Timer.addTime(key, 60)
             upd()
           )
 
@@ -209,13 +210,14 @@ define [
             else
               Timer.setTime(key, $(elem).data("start"))
               $(elem).data("state", "running")
-              updateClockSchedule(upd, 500)
+              self.updateClockSchedule(upd, 500)
           )
       )
 
 
     #######################################################################################################################
     initTimer: ->
+      self = @
       target = $('#timer')
 
       $('<li class="dropdown" id="naviTimer">
@@ -258,14 +260,14 @@ define [
       $("#naviTimer ul a").bind("click", (evt) ->
         min = $(this).data("min")
         if(min)
-          setTime("timer", min * 60)
+          Timer.setTime("timer", min * 60)
         else
           addmin = $(this).data("addmin")
           if(addmin)
             Timer.addTime("timer", addmin * 60)
           else if($(this).hasClass("toggle"))
             $(target).toggle()
-        @updateTimer()
+        updateTimer()
         false
       )
 
@@ -281,7 +283,7 @@ define [
       )
 
       # update manually
-      updateTimer: ->
+      updateTimer = ->
         time = Timer.getTime("timer")
         ms_end = time[1]
         ms_start = time[0]
@@ -305,13 +307,16 @@ define [
         true
 
       # update every 10s
-      updateClockSchedule(updateTimer, 10000)
+      @updateClockSchedule(self.updateTimer, 10000)
       updateTimer()
 
 
     updateClockSchedule: (upd, t) ->
-      setTimeout(() ->
+      setTimeout(() =>
           if(upd())
-            updateClockSchedule(upd, t)
+            @updateClockSchedule(upd, t)
       , t)
+
+    subtleToolbar: ->
+      $("#navi").addClass("subtle")
 

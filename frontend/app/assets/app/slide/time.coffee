@@ -4,7 +4,7 @@ define [
 
   class Time
 
-    setTime = (key, s) ->
+    setTime: (key, s) ->
       if(s <= 0)
         localStorage[key + ".start"] = undefined
         localStorage[key + ".end"] = undefined
@@ -12,14 +12,12 @@ define [
         localStorage[key + ".start"] = moment().toDate()
         localStorage[key + ".end"] = moment().add('seconds', s).toDate()
 
-
-    addTime = (key, s) ->
+    addTime: (key, s) ->
       end = localStorage[key + ".end"]
       if(end)
         localStorage[key + ".end"] = moment(end).add('seconds', s).toDate()
 
-
-    getTime = (key) ->
+    getTime: (key) ->
       [localStorage[key + ".start"], localStorage[key + ".end"]]
 
   new Time

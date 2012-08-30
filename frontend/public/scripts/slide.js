@@ -2158,11 +2158,10 @@ define("lib/util/moment", (function (global) {
 define('app/slide/time',["lib/util/moment"], function(moment) {
   var Time;
   Time = (function() {
-    var addTime, getTime, setTime;
 
     function Time() {}
 
-    setTime = function(key, s) {
+    Time.prototype.setTime = function(key, s) {
       if (s <= 0) {
         localStorage[key + ".start"] = void 0;
         return localStorage[key + ".end"] = void 0;
@@ -2172,7 +2171,7 @@ define('app/slide/time',["lib/util/moment"], function(moment) {
       }
     };
 
-    addTime = function(key, s) {
+    Time.prototype.addTime = function(key, s) {
       var end;
       end = localStorage[key + ".end"];
       if (end) {
@@ -2180,7 +2179,7 @@ define('app/slide/time',["lib/util/moment"], function(moment) {
       }
     };
 
-    getTime = function(key) {
+    Time.prototype.getTime = function(key) {
       return [localStorage[key + ".start"], localStorage[key + ".end"]];
     };
 
@@ -2357,10 +2356,9 @@ Thanks to Philip Thrasher for the jquery plugin boilerplate for coffee script
 define("lib/chart/piechart",[], function(){});
 
 
-define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/editor/init", "app/slide/time", "lib/chart/piechart"], function($, _, Reveal, Editor, Timer, PieChart) {
+define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/editor/init", "lib/util/moment", "app/slide/time", "lib/chart/piechart"], function($, _, Reveal, Editor, moment, Timer, PieChart) {
   var Slide;
   return Slide = (function() {
-    var embedDocs;
 
     function Slide(clazz) {
       var li;
@@ -2473,7 +2471,7 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
       });
     };
 
-    embedDocs = function() {
+    Slide.prototype.embedDocs = function() {
       $('<li id="naviDocs">\
             <a href="#" class="openDocs">\
                 <span>Docs</span>\
@@ -2499,12 +2497,14 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
     };
 
     Slide.prototype.initCountdowns = function() {
+      var self;
+      self = this;
       return $('div.countdown').each(function(idx, elem) {
         var key, upd;
         key = "countdown_" + idx;
         upd = function() {
           var diff, end, mm, ms_end, ms_start, now, state, time;
-          time = getTime(key);
+          time = Timer.getTime(key);
           ms_end = time[1];
           ms_start = time[0];
           if (ms_start) {
@@ -2529,12 +2529,12 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
         };
         $(elem).find(".minus").bind("click", function() {
           $(elem).data("start", $(elem).data("start") - 60);
-          addTime(key, -60);
+          Timer.addTime(key, -60);
           return upd();
         });
         $(elem).find(".plus").bind("click", function() {
           $(elem).data("start", $(elem).data("start") + 60);
-          addTime(key, 60);
+          Timer.addTime(key, 60);
           return upd();
         });
         return $(elem).find(".toggle").bind("click", function() {
@@ -2545,14 +2545,15 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
           } else {
             Timer.setTime(key, $(elem).data("start"));
             $(elem).data("state", "running");
-            return updateClockSchedule(upd, 500);
+            return self.updateClockSchedule(upd, 500);
           }
         });
       });
     };
 
     Slide.prototype.initTimer = function() {
-      var target;
+      var self, target, updateTimer;
+      self = this;
       target = $('#timer');
       $('<li class="dropdown" id="naviTimer">\
           <a class="dropdown-toggle" data-toggle="dropdown" href="#naviTimer">\
@@ -2594,7 +2595,7 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
         var addmin, min;
         min = $(this).data("min");
         if (min) {
-          setTime("timer", min * 60);
+          Timer.setTime("timer", min * 60);
         } else {
           addmin = $(this).data("addmin");
           if (addmin) {
@@ -2603,7 +2604,7 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
             $(target).toggle();
           }
         }
-        this.updateTimer();
+        updateTimer();
         return false;
       });
       target.easyPieChart({
@@ -2617,36 +2618,39 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
         lineWidth: 15,
         size: 30
       });
-      ({
-        updateTimer: function() {
-          var elapsed, end, ms_end, ms_start, now, percent, start, time, togo, total;
-          time = Timer.getTime("timer");
-          ms_end = time[1];
-          ms_start = time[0];
-          if (ms_start) {
-            now = moment();
-            end = moment(ms_end);
-            start = moment(ms_start);
-            total = end.diff(start, 'minutes');
-            togo = Math.max(0, end.diff(now, 'minutes'));
-            elapsed = now.diff(start, 'minutes');
-            percent = Math.min(100, Math.max(1, 100 * elapsed / total));
-          }
-          $(target).data("easyPieChart").update(percent || 100);
-          $(target).find("div").text(togo || "");
-          return true;
+      updateTimer = function() {
+        var elapsed, end, ms_end, ms_start, now, percent, start, time, togo, total;
+        time = Timer.getTime("timer");
+        ms_end = time[1];
+        ms_start = time[0];
+        if (ms_start) {
+          now = moment();
+          end = moment(ms_end);
+          start = moment(ms_start);
+          total = end.diff(start, 'minutes');
+          togo = Math.max(0, end.diff(now, 'minutes'));
+          elapsed = now.diff(start, 'minutes');
+          percent = Math.min(100, Math.max(1, 100 * elapsed / total));
         }
-      });
-      updateClockSchedule(updateTimer, 10000);
+        $(target).data("easyPieChart").update(percent || 100);
+        $(target).find("div").text(togo || "");
+        return true;
+      };
+      this.updateClockSchedule(self.updateTimer, 10000);
       return updateTimer();
     };
 
     Slide.prototype.updateClockSchedule = function(upd, t) {
+      var _this = this;
       return setTimeout(function() {
         if (upd()) {
-          return updateClockSchedule(upd, t);
+          return _this.updateClockSchedule(upd, t);
         }
       }, t);
+    };
+
+    Slide.prototype.subtleToolbar = function() {
+      return $("#navi").addClass("subtle");
     };
 
     return Slide;
