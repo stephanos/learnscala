@@ -24,8 +24,8 @@ trait BaseAssets {
         Assets.at(path._1, path._2)
     }
 
-    def urlsOf(path: String) = {
-        val uri = "/assets/" + build + path + randomHash
+    def urlsOf(path: String, hash: Boolean = true) = {
+        val uri = "/assets/" + build + path + (if(hash) randomHash else "")
         (httpDomain + uri, httpsDomain + uri)
     }
 

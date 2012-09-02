@@ -21,4 +21,5 @@ object MyAssets
     lazy val css_app = cssUrl("/app.css")
     lazy val css_ide = cssUrl("/ide.css")
     lazy val css_slide = cssUrl("/slide.css")
+    lazy val css_slide_print = cssUrl("/slide.print.css")
 }
