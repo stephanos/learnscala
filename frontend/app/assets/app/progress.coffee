@@ -4,19 +4,19 @@ define [
 
   class Progress
 
-    initProgress: () ->
+    init: () ->
       $(".slidedecks .status").each(
         (idx, input) =>
           # bind click
-          $(input).click(@updateProgress)
+          $(input).click(@update)
 
           # read status
-          key = @getProgressKey(input)
+          key = @getKey(input)
           if(localStorage[key])
-            @setProgress(input, true)
+            @set(input, true)
       )
 
-    resetProgress: () ->
+    reset: () ->
       if(confirm('Reset progress - are you sure?'))
 
         # remove keys
@@ -27,14 +27,14 @@ define [
         # reload
         document.location.reload()
 
-    updateProgress: (evt) ->
+    update: (evt) ->
       if($(this).is(':checked'))
-        window.Progress.setProgress($(this), true)
+        window.Progress.set($(this), true)
       else
-        window.Progress.setProgress($(this), undefined)
+        window.Progress.set($(this), undefined)
 
-    setProgress: (input, val) ->
-      key = window.Progress.getProgressKey(input)
+    set: (input, val) ->
+      key = window.Progress.getKey(input)
       li = $(input).parent().parent()
 
       # reset
@@ -45,10 +45,14 @@ define [
       # set ?
       if(val)
         $(li).addClass("done")
-        localStorage[key] = true
+        @write(key, true)
         $(input).attr("checked", true)
 
-    getProgressKey: (input) ->
+    write: (key, val) ->
+      console.log("[STORAGE] '" + key + "' = " + val)
+      localStorage[key] = val
+
+    getKey: (input) ->
       "progress." + $(input).data("key")
 
   p = new Progress

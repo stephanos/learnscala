@@ -1,7 +1,7 @@
 @import comp._
 
 @layout.internal("Inhalt") {
-    <section id="main" class="slidedecks">
+    <section id="dashboard" class="slidedecks">
 
         <div class="reveal">
             <div class="slides">
@@ -196,7 +196,7 @@
                     </tbody>
                 </table>
 
-                <a class="btn btn-icon btn-danger" id="btn-resetprogress" href="javascript:window.Progress.resetProgress()">/</a>
+                <a class="btn btn-icon btn-danger" id="btn-resetprogress" href="javascript:window.Progress.reset()">/</a>
             </div>
         </div>
 
@@ -204,7 +204,7 @@
 
     <script type="text/javascript">
         require(["app/progress"], function(Progress) {
-            Progress.initProgress();
+            Progress.init();
         });
     </script>
 }
@@ -220,10 +220,12 @@
     @if(status == "planned") {
       <span>@label</span>
     } else {
-      <a href='/app/slides/@{if(chpt != "") chpt + "/" else ""}@file/#/'>
-        <input type="checkbox" class="status" data-key='@{chpt + "_" + file}'/>
-        @label
-      </a>
+      @defining("/app/slides/" + (if(chpt != "") chpt + "/" else "") + file + "/#/") { url =>
+          <a href="@url">
+            <input type="checkbox" class="status" data-key='@url'/>
+            @label
+          </a>
+      }
     }
   </li>
 }

@@ -62,8 +62,14 @@
                 transition: query.transition || 'fade' // linear
             });
 
+            var slides = $("#slidedeck section").length;
+
             Reveal.addEventListener('slidechanged', function (event) {
-                //logSlide(event.indexh)
+                if(slides - event.indexh === 1) {
+                    require(["app/progress"], function(Progress) {
+                        Progress.write("progress." + location.pathname + "#/", true)
+                    });
+                }
             });
 
             new SlideInit();
