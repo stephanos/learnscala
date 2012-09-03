@@ -2252,19 +2252,19 @@ define('app/progress',["jquery"], function($) {
 
     function Progress() {}
 
-    Progress.prototype.initProgress = function() {
+    Progress.prototype.init = function() {
       var _this = this;
       return $(".slidedecks .status").each(function(idx, input) {
         var key;
-        $(input).click(_this.updateProgress);
-        key = _this.getProgressKey(input);
+        $(input).click(_this.update);
+        key = _this.getKey(input);
         if (localStorage[key]) {
-          return _this.setProgress(input, true);
+          return _this.set(input, true);
         }
       });
     };
 
-    Progress.prototype.resetProgress = function() {
+    Progress.prototype.reset = function() {
       var key;
       if (confirm('Reset progress - are you sure?')) {
         for (key in localStorage) {
@@ -2276,29 +2276,34 @@ define('app/progress',["jquery"], function($) {
       }
     };
 
-    Progress.prototype.updateProgress = function(evt) {
+    Progress.prototype.update = function(evt) {
       if ($(this).is(':checked')) {
-        return window.Progress.setProgress($(this), true);
+        return window.Progress.set($(this), true);
       } else {
-        return window.Progress.setProgress($(this), void 0);
+        return window.Progress.set($(this), void 0);
       }
     };
 
-    Progress.prototype.setProgress = function(input, val) {
+    Progress.prototype.set = function(input, val) {
       var key, li;
-      key = window.Progress.getProgressKey(input);
+      key = window.Progress.getKey(input);
       li = $(input).parent().parent();
       $(li).removeClass("done");
       localStorage.removeItem(key);
       $(input).attr("checked", false);
       if (val) {
         $(li).addClass("done");
-        localStorage[key] = true;
+        this.write(key, true);
         return $(input).attr("checked", true);
       }
     };
 
-    Progress.prototype.getProgressKey = function(input) {
+    Progress.prototype.write = function(key, val) {
+      console.log("[STORAGE] '" + key + "' = " + val);
+      return localStorage[key] = val;
+    };
+
+    Progress.prototype.getKey = function(input) {
       return "progress." + $(input).data("key");
     };
 

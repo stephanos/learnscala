@@ -6,8 +6,8 @@
 .cache
 
 # SBT
-project/project/
-target/
+project/project
+target
 
 # IntelliJ
 .idea/libraries
@@ -15,7 +15,7 @@ target/
 # other
 *.log
 .DS_Store
-exercises/
-external/
-tmp/
-out/
+exercises
+external
+tmp
+out
