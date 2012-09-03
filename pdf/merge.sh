@@ -4,14 +4,19 @@
 rm -Rf out/
 mkdir -p out/
 
-# merge slides
+# === merge slides
+
 echo "merging slides"
+
 for f in `ls -d tmp/slides/*/*`
     do
         # dir and file name
         dir=`dirname $f`
         name=`basename $f`
         dirname=`basename $dir`
+
+        # extract first pages
+        for pdf in `ls $f` ; do pdftk "$f/$pdf" cat 1 output "$f/${pdf}2" ; done
 
         # rewrite dir
         #if [[ dirname = "ext" ]]
@@ -31,9 +36,17 @@ for f in `ls -d tmp/slides/*/*`
 
         # merge
         echo " - $out"
-        pdftk $f/*.pdf output $PWD/$out
+        pdftk $f/*.pdf2 output $PWD/$out
 done
 
-# merge glossary
+
+# === glossary
+
 echo "merging glossary"
-pdftk tmp/glossary/*/*.pdf output out/glossary.pdf
+
+# extract first pages (sometimes a blank page sneaks in)
+for file in tmp/glossary/*/*.pdf ; do pdftk "$file" cat 1 output "${file}2" ; done
+#for file in *.pdf ; do pdftk "$file" cat 1 output "${file%.pdf}-page1.pdf" ; done
+
+# combine
+pdftk tmp/glossary/*/*.pdf2 output out/glossary.pdf

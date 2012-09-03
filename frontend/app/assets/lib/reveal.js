@@ -1015,12 +1015,14 @@ var Reveal = (function(){
 	 * Toggles the slide overview mode on and off.
 	 */
 	function toggleOverview() {
+        /*
 		if( overviewIsActive() ) {
 			deactivateOverview();
 		}
 		else {
 			activateOverview();
 		}
+		*/
 	}
 	
 	// Expose some methods publicly
