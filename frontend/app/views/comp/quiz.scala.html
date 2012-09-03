@@ -1,6 +1,6 @@
-@(heading: Html = Html("Quiz"), append: Html = Html.empty)(content: Html)
+@(heading: Html = Html("Quiz"), append: Html = Html.empty, topic: String = null)(content: Html)
 
-@headslide(title = "Quiz") {
+@headslide(title = "Quiz", topic = topic) {
     @heading@append
 } {
     @content
