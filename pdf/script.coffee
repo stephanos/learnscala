@@ -12,12 +12,6 @@ startPath =
     phantom.exit()
 console.log("starting at " + startPath)
 
-branding =
-  if phantom.args.length > 1
-      phantom.args[1]
-  else
-    ""
-
 #######################################
 ## HELPER
 
@@ -25,26 +19,39 @@ createUrl = (path) ->
   "http://localhost:9000" + path
 
 getPage = (path, cb) ->
+  url = createUrl(path)
   page = webpage.create()
-  page.open(createUrl(path), () ->
 
-    # setup page & PDF
-    pscale = 2.2
-    page.paperSize = {
-      width: viewport.width * pscale, height: viewport.height * pscale,
-      orientation: 'portrait', margin: '0cm'
-    }
-    page.viewportSize = viewport
+  page.onError = (msg, trace) ->
+      console.log(msg)
+      phantom.exit()
 
-    # trigger "print" mode
-    page.evaluate(-> $("body").addClass("print"))
+  page.onLoadFinished = (status) ->
 
-    # remove animations
-    page.evaluate(-> $(".fragment").removeClass("fragment"))
+    # load page again
+    page.open(url, () ->
 
-    # return page (after short timeout)
-    setTimeout(cb(page), delay)
-  )
+      # setup page & PDF
+      pscale = 2.2
+      page.paperSize = {
+        width: viewport.width * pscale, height: viewport.height * pscale,
+        orientation: 'portrait', margin: '0cm'
+      }
+      page.viewportSize = viewport
+
+      # trigger "print" mode
+      page.evaluate(-> $("body").addClass("print"))
+
+      # remove animations
+      page.evaluate(-> $(".fragment").removeClass("fragment"))
+
+      # return page (after short timeout)
+      setTimeout(
+        () -> cb(page),
+        delay)
+    )
+
+  page.open(url)
 
 captureSlides = (page, slides, slide, outpath, cb) ->
   if(slide == 0)
@@ -88,7 +95,10 @@ captureLinks = (links, cb) ->
           outpath = link.split("/")[2] + "/" + link.split("/")[3] + "/" + num + title
 
         # capture each slide
-        captureSlides(page, slides, slides, outpath, next)
+        captureSlides(page, slides, slides, outpath, () ->
+          page.release()
+          next()
+        )
       )
     else
       next()
@@ -114,8 +124,8 @@ String.prototype.endsWith = (suffix) ->
 
 page = webpage.create()
 
-page.onConsoleMessage = (msg) ->
-  console.log msg
+#page.onConsoleMessage = (msg) ->
+#  console.log msg
 
 page.onLoadFinished = (status) ->
   url = getUrl(page)
@@ -125,6 +135,12 @@ page.onLoadFinished = (status) ->
       phantom.exit()
     )
   else
-    phantom.exit()
+    if(status == "success")
+      if(url.indexOf("/glossary") >= 0 || url.indexOf("/slides") >= 0)
+        captureLinks([startPath], () ->
+          phantom.exit()
+        )
+    else
+      phantom.exit()
 
 page.open(createUrl(startPath))

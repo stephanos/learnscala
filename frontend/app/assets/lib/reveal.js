@@ -713,7 +713,7 @@ var Reveal = (function(){
 
 		// Update progress if enabled
 		if( config.progress && dom.progress ) {
-			dom.progressbar.style.width = ( indexh / ( document.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR ).length - 1 ) ) * window.innerWidth + 'px';
+			dom.progressbar.style.width = (100 * indexh / ( document.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR ).length - 1 )) + "%" // HACK
 		}
 
 		// Close the overview if it's active
