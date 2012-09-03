@@ -1,60 +1,140 @@
-scale = 1.0
-zoom = scale #* 0.99
+webpage = require('webpage')
 
-utils = require('utils')
-casper = require("casper").create(
-  viewportSize: {width: 1024 * scale, height: 786 * scale},
-  verbose: true,
-  logLevel: "debug",
-  onError: (self, m) ->
-    console.log('FATAL: ' + m)
-    self.exit()
-)
-#casper.on('http.status.404', pageerror);
+delay = 500
+renderers = []
+viewport = { width: 1024, height: 768 }
+
+startPath =
+  if phantom.args.length > 0
+    phantom.args[0]
+  else
+    console.log("missing start path!")
+    phantom.exit()
+console.log("starting at " + startPath)
+
+branding =
+  if phantom.args.length > 1
+      phantom.args[1]
+  else
+    ""
 
 #######################################
 ## HELPER
 
-getUrl = (path) ->
+createUrl = (path) ->
   "http://localhost:9000" + path
 
-getLinks = (sel) ->
-  links = document.querySelectorAll ("a")
-  Array::map.call links, (e) -> e.getAttribute "href"
+getPage = (path, cb) ->
+  page = webpage.create()
+  page.open(createUrl(path), () ->
 
-snapshot = (self, links) ->
-  casper.each(links, (casper, link, i) ->
-    url = getUrl(link) + "#/"
-    if(link.indexOf("/glossary") >= 0)
-      self.thenOpen(url, ->
-        self.wait(500, ->
-          name = link.split("/")[3]
-          self.evaluate(-> $("body").addClass("print"))
-          self.capture("tmp/glossary/" + name + ".png")
-        )
-      )
+    # setup page & PDF
+    pscale = 2.2
+    page.paperSize = {
+      width: viewport.width * pscale, height: viewport.height * pscale,
+      orientation: 'portrait', margin: '0cm'
+    }
+    page.viewportSize = viewport
+
+    # trigger "print" mode
+    page.evaluate(-> $("body").addClass("print"))
+
+    # remove animations
+    page.evaluate(-> $(".fragment").removeClass("fragment"))
+
+    # return page (after short timeout)
+    setTimeout(cb(page), delay)
   )
 
+captureSlides = (page, slides, slide, outpath, cb) ->
+  if(slide == 0)
+    cb()
+  else
+    # make snapshot
+    num = slides - slide
+    if(num < 10) then num = "0" + num
+    getPDF(page, outpath + "/" + num, () ->
+
+      # move to next slide
+      page.evaluate(-> Reveal.navigateRight())
+
+      # call recursively
+      captureSlides(page, slides, slide - 1, outpath, cb)
+    )
+
+captureLinks = (links, cb) ->
+  if(links.length == 0)
+    cb()
+  else
+    link = links[0]
+    next = () -> captureLinks(links[1..], cb)
+    if(link.indexOf("/") == 0)
+      getPage(link, (page) ->
+
+        # read title
+        num = "" # TODO ?
+        title = getTitle(page)
+        if(!title) then throw new Error("link " + link + " has no title (h3)!")
+        title = title.replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/\s/g, "")
+
+        # read slides
+        slides = Math.max(1, page.evaluate(-> $('.slides section').length))
+        console.log("rendering " + link + " with " + slides + " slide(s)")
+
+        # calc output file name
+        if(link.indexOf("/glossary") >= 0)
+          outpath = "glossary/" + link.split("/")[3]
+        else
+          outpath = link.split("/")[2] + "/" + link.split("/")[3] + "/" + num + title
+
+        # capture each slide
+        captureSlides(page, slides, slides, outpath, next)
+      )
+    else
+      next()
+
+getPDF = (page, outpath, cb) ->
+  outpath = "tmp/" + outpath + ".pdf"
+  console.log(" - " + outpath)
+  page.render(outpath)
+  cb()
+
+getUrl = (page) ->
+  page.evaluate (-> document.location.href)
+
+getTitle = (page) ->
+  page.evaluate (-> document.title)
+
+String.prototype.endsWith = (suffix) ->
+    this.indexOf(suffix, this.length - suffix.length) != -1
+
+
 #######################################
-## GLOSSARY
+## MAIN
 
-# login
-casper.start getUrl("/users/login"), ->
-  @fill "form[action='/users/do_login']", { name: "stephanos", pass: "stephanos" }, true
+page = webpage.create()
 
-# visit glossary
-casper.then ->
-  casper.open(getUrl("/app/glossary"))
+page.onConsoleMessage = (msg) ->
+  console.log msg
 
-# extract links
-casper.then ->
-  links = @evaluate(getLinks)
-  snapshot(@, links[..1])
+page.onLoadFinished = (status) ->
+  url = getUrl(page)
+  links = page.evaluate (-> Array::map.call ($(".slides a")), (e) -> $(e).attr("href"))
+  if(url.endsWith("/glossary") || url.endsWith("/slides"))
+    captureLinks(links, () ->
+      phantom.exit()
+    )
+  else
+    phantom.exit()
 
-# exit
-casper.run ->
-  #@echo(@getTitle())
-  #@echo(@getCurrentUrl())
-  @exit()
+page.open(createUrl(startPath))
 
-
+###
+paperSize.header.height = page.evaluate(function() {
+    return PhantomJSPrinting.header.height;
+});
+paperSize.header.contents = phantom.callback(function(pageNum, numPages) {
+    return page.evaluate(function(pageNum, numPages){return PhantomJSPrinting.header.contents(pageNum, numPages);}, pageNum, numPages);
+});
+page.paperSize = paperSize;
+###
