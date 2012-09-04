@@ -1,13 +1,36 @@
 define [
-  "jquery"
-], ($) ->
+  "jquery", "lib/util/underscore"
+], ($, _) ->
 
   class Progress
 
     init: () ->
-      $(".slidedecks .status").each(
-        (idx, input) =>
+      $(".slidedecks a").each(
+        (idx, link) =>
+
+          # calc status
+          deps = $(link).data("deps")
+          if(deps)
+            deps = deps.split("/")
+            missing = _.filter(deps, (id) =>
+              localStorage[@getKey(@getItem(id).find("input"))] != true
+            )
+            if(missing.length > 0)
+              li = $(link).parent()
+              li.addClass("req")
+              reqs = ""
+              _.each(missing, (id) => reqs += "<li>" + @getItem(id).data("label") + "</li>")
+              li.attr("title", "Voraussetzungen: <ul>" + reqs + "</ul>")
+              $(li).tooltip({
+                html: true,
+                placement: "bottom",
+                delay: { show: 500, hide: 100 }
+              })
+              _.each(missing, (md) ->
+              )
+
           # bind click
+          input = $(link).find("input")
           $(input).click(@update)
 
           # read status
@@ -15,6 +38,9 @@ define [
           if(localStorage[key])
             @set(input, true)
       )
+
+    getItem: (id) ->
+      $("a[data-id='" + id + "']")
 
     reset: () ->
       if(confirm('Reset progress - are you sure?'))

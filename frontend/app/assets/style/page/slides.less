@@ -57,6 +57,7 @@
                         &.planned, &.todo { .bg(fade(@red, @f)); }
                         &.incomplete { .bg(fade(@yellow, @f)); }
                         &.done { .bg(fade(@green, @f)); }
+                        &.req { .bg(fade(@gray, @f)); }
 
                         >a, >span {
                             display: block;
@@ -112,5 +113,15 @@
         &:hover {
             .opacity(100);
         }
+    }
+}
+
+.tooltip {
+    .bold();
+    font-size: 115%;
+    ul {
+        margin: 10px 20px;
+        padding-left: 5px;
+        text-align: left;
     }
 }
