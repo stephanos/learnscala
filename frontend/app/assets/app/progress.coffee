@@ -7,26 +7,29 @@ define [
     init: () ->
       $(".slidedecks a").each(
         (idx, link) =>
+          li = $(link).parent()
+
+          # reset
+          $(link).parent().tooltip("destroy")
+          $(link).find("input").unbind()
+          li.removeClass("req")
 
           # calc status
           deps = $(link).data("deps")
           if(deps)
-            deps = deps.split("/")
-            missing = _.filter(deps, (id) =>
-              localStorage[@getKey(@getItem(id).find("input"))] != true
+            deps = deps.split(",")
+            missing = _.reject(deps, (id) =>
+              localStorage[@getKey(@getItem(id).find("input"))]
             )
             if(missing.length > 0)
-              li = $(link).parent()
               li.addClass("req")
               reqs = ""
               _.each(missing, (id) => reqs += "<li>" + @getItem(id).data("label") + "</li>")
               li.attr("title", "Voraussetzungen: <ul>" + reqs + "</ul>")
-              $(li).tooltip({
+              $(li).tooltip(
                 html: true,
                 placement: "bottom",
                 delay: { show: 500, hide: 100 }
-              })
-              _.each(missing, (md) ->
               )
 
           # bind click
@@ -36,7 +39,7 @@ define [
           # read status
           key = @getKey(input)
           if(localStorage[key])
-            @set(input, true)
+            @apply(input, true)
       )
 
     getItem: (id) ->
@@ -58,20 +61,25 @@ define [
         window.Progress.set($(this), true)
       else
         window.Progress.set($(this), undefined)
+      window.Progress.init()
 
     set: (input, val) ->
       key = window.Progress.getKey(input)
+      localStorage.removeItem(key)
+      if(val)
+        @write(key, true)
+      @apply(input, val)
+
+    apply: (input, val) ->
       li = $(input).parent().parent()
 
       # reset
       $(li).removeClass("done")
-      localStorage.removeItem(key)
       $(input).attr("checked", false)
 
       # set ?
       if(val)
         $(li).addClass("done")
-        @write(key, true)
         $(input).attr("checked", true)
 
     write: (key, val) ->
