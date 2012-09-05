@@ -13,33 +13,34 @@ object Exercise extends MyController {
             if (userIsAdmin(req)) {
                 val status = StatusRepo.read(id)
                 import net.liftweb.json.JsonDSL._
-                /*
                 jOk(
                     status.map {
-                        s =>
-                            ("user" -> s.user.value) ~
-                                ("fail" -> s.fail.value.toString) ~ ("skip" -> s.skip.value.toString)~
-                                ("success" -> s.success.value.toString) ~ ("error" -> s.error.value.toString)~
-                                ("pending" -> s.pending.value.toString)
+                        s => ("user" -> s.user.value) ~ ("results" -> s.results.value)
                     }
                 )
+
+                /*
+                def r(max: Int = 5) = scala.util.Random.nextInt(max)
+                val l = 2 + r()
+                def res = (0 to l).map(_ => r(2))
+                jOk((0 to 12).map(i => ("user" -> i) ~ ("results" -> res.dropRight(r(1)))))
                 */
-                def r = scala.util.Random.nextInt(5)
+
                 jOk(
-                List(
-                    ("user" -> "1") ~ ("fail" -> r) ~ ("skip" -> r) ~ ("success" -> r) ~ ("error" -> r) ~ ("pending" -> r),
-                    ("user" -> "2") ~ ("fail" -> r) ~ ("skip" -> r) ~ ("success" -> r) ~ ("error" -> r) ~ ("pending" -> r),
-                    ("user" -> "3") ~ ("fail" -> r) ~ ("skip" -> r) ~ ("success" -> r) ~ ("error" -> r) ~ ("pending" -> r),
-                    ("user" -> "4") ~ ("fail" -> r) ~ ("skip" -> r) ~ ("success" -> r) ~ ("error" -> r) ~ ("pending" -> r),
-                    ("user" -> "5") ~ ("fail" -> r) ~ ("skip" -> r) ~ ("success" -> r) ~ ("error" -> r) ~ ("pending" -> r),
-                    ("user" -> "6") ~ ("fail" -> r) ~ ("skip" -> r) ~ ("success" -> r) ~ ("error" -> r) ~ ("pending" -> r),
-                    ("user" -> "7") ~ ("fail" -> r) ~ ("skip" -> r) ~ ("success" -> r) ~ ("error" -> r) ~ ("pending" -> r),
-                    ("user" -> "8") ~ ("fail" -> r) ~ ("skip" -> r) ~ ("success" -> r) ~ ("error" -> r) ~ ("pending" -> r),
-                    ("user" -> "9") ~ ("fail" -> r) ~ ("skip" -> r) ~ ("success" -> r) ~ ("error" -> r) ~ ("pending" -> r),
-                    ("user" -> "10") ~ ("fail" -> r) ~ ("skip" -> r) ~ ("success" -> r) ~ ("error" -> r) ~ ("pending" -> r),
-                    ("user" -> "11") ~ ("fail" -> r) ~ ("skip" -> r) ~ ("success" -> r) ~ ("error" -> r) ~ ("pending" -> r),
-                    ("user" -> "12") ~ ("fail" -> r) ~ ("skip" -> r) ~ ("success" -> r) ~ ("error" -> r) ~ ("pending" -> r)
-                ).take(12)
+                    List(
+                        ("user" -> "1") ~ ("results" -> List(0, 0)),
+                        ("user" -> "2") ~ ("results" -> List(1, 1, 1)),
+                        ("user" -> "3") ~ ("results" -> List(0, 1, 1)),
+                        ("user" -> "4") ~ ("results" -> List(2, 1, 1)),
+                        ("user" -> "5") ~ ("results" -> List(1, 1, 2)),
+                        ("user" -> "6") ~ ("results" -> List(0, 2, 2)),
+                        ("user" -> "7") ~ ("results" -> List(0, 0, 0, 0)),
+                        ("user" -> "8") ~ ("results" -> List(2, 1, 1)),
+                        ("user" -> "9") ~ ("results" -> List(1, 1, 2)),
+                        ("user" -> "10") ~ ("results" -> List(0, 2, 2)),
+                        ("user" -> "11") ~ ("results" -> List(0, 2, 2)),
+                        ("user" -> "12") ~ ("results" -> List(0, 2, 2))
+                    )
                 )
             } else {
                 Unauthorized("Only the admin can request the exercise status")
@@ -57,12 +58,25 @@ object Exercise extends MyController {
             val status = StatusDoc.create
             status.user.set(user)
             status.exercise.set(exercise)
-            status.fail.set((xml \\ "fail").text.trim.toInt)
-            status.success.set((xml \\ "success").text.trim.toInt)
-            status.pending.set((xml \\ "pending").text.trim.toInt)
-            status.error.set((xml \\ "error").text.trim.toInt)
-            status.skip.set((xml \\ "skip").text.trim.toInt)
+            status.results.set((xml \\ "task").map(_.text.trim.toInt).toList)
+
             StatusRepo.write(status)
             Ok
     }
+
+    /*<test id="S030" user="b8:f6:b1:17:c6:75">
+        <task num="0">
+            2
+        </task><task num="1">
+            1
+        </task><task num="2">
+            1
+        </task>
+        <start>
+            1346760761441
+        </start>
+        <end>
+            1346760761441
+        </end>
+    </test>*/
 }

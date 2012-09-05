@@ -445,10 +445,14 @@
 
         /* TEST PROGRESS */
         .testprogress {
-            .bar {
+            .circle {
+                @cs: #666;
+                stroke: @cs;
+                stroke-width: 1.5px;
+
                 @f: 60%;
-                &.fail    { fill: fade(@red, @f); }
-                &.pending { fill: fade(@yellow, @f); }
+                &.failure { fill: fade(@red, @f); }
+                &.pending { fill: fade(@gray, @f / 2.5); stroke: fade(@cs, @f / 2.5); }
                 &.success { fill: fade(@green, @f); }
             }
         }

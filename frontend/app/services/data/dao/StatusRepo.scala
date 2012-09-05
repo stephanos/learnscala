@@ -13,11 +13,7 @@ object StatusRepo extends CommonDAO {
         StatusDoc
             .where(_.exercise eqs status.exercise.is)
             .and(_.user eqs status.user.is)
-            .modify(_.fail setTo status.fail.is)
-            .modify(_.pending setTo status.pending.is)
-            .modify(_.error setTo status.error.is)
-            .modify(_.skip setTo status.skip.is)
-            .modify(_.success setTo status.success.is)
+            .modify(_.results setTo status.results.is)
             .upsertOne(WriteConcern.SAFE)
     }
 

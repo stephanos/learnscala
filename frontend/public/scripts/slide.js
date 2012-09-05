@@ -9370,7 +9370,7 @@ define('app/slide/chart',["jquery", "lib/util/underscore", "lib/chart/d3"], func
 
     function Chart(id) {
       var pad, svg, target, updateChart;
-      pad = 5;
+      pad = 10;
       target = "#chart-" + id;
       svg = d3.select(target).append("svg:svg");
       updateChart = function(init) {
@@ -9382,41 +9382,75 @@ define('app/slide/chart',["jquery", "lib/util/underscore", "lib/chart/d3"], func
         }
         if (status) {
           return $.get('/app/exercises/' + id, function(data) {
-            var dataset, getHeight, height, max, w_bar, width;
+            var dataset, grid_m_x, grid_m_y, grid_p_x, grid_p_y, grid_size, height, r, t, tasks, users, width, _i, _ref, _results;
             width = 280;
             height = 150;
             svg.attr("width", width).attr("height", height);
-            max = _.max(_.map(data, function(v) {
-              return v.pending + v.success + v.fail + v.skip + v.error;
-            }));
-            dataset = _(_(data).sortBy(function(v) {
-              return v.user;
-            })).map(function(v) {
+            users = data.length;
+            tasks = _.max(_.map(_.groupBy(_.map(data, function(v) {
+              return v.results.length;
+            }), function(v) {
+              return v;
+            }), function(v, k) {
               return {
-                "success": v.success,
-                "error": v.error + v.fail
+                key: k,
+                val: v.length
               };
-            });
+            }), function(l) {
+              return l.val;
+            }).key;
             console.log(data);
+            dataset = _.sortBy(_.map(data, function(ov) {
+              var v, _i, _l, _ref, _results;
+              v = {};
+              _.extend(v, ov);
+              _l = v.results.length;
+              if (_l > tasks) {
+                v.results = v.results.slice(0, (tasks - 1) + 1 || 9e9);
+              } else if (_l < tasks) {
+                _((function() {
+                  _results = [];
+                  for (var _i = 0, _ref = tasks - _l - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; 0 <= _ref ? _i++ : _i--){ _results.push(_i); }
+                  return _results;
+                }).apply(this)).each(function(r) {
+                  return v.results.push(-1);
+                });
+              }
+              return v;
+            }), function(v) {
+              return v.user;
+            });
             console.log(dataset);
-            w_bar = Math.max(pad, width / dataset.length);
-            getHeight = function(d) {
-              return height * (d / max);
-            };
-            svg.selectAll(".bar.success").data(dataset).enter().append("rect").attr("class", "bar success").attr("x", function(d, i) {
-              return i * w_bar;
-            }).attr("y", function(d) {
-              return height - getHeight(d.success);
-            }).attr("width", w_bar - pad).attr("height", function(d) {
-              return getHeight(d.success);
-            });
-            return svg.selectAll(".bar.fail").data(dataset).enter().append("rect").attr("class", "bar fail").attr("x", function(d, i) {
-              return i * w_bar;
-            }).attr("y", function(d) {
-              return Math.max(0, height - getHeight(d.error) - getHeight(d.success));
-            }).attr("width", w_bar - pad).attr("height", function(d) {
-              return getHeight(d.error);
-            });
+            grid_size = Math.min((width - 2) / users, (height - 2) / tasks);
+            grid_p_y = grid_size * 0.05;
+            grid_p_x = grid_p_y * 3;
+            r = (grid_size - 2 * grid_p_x) / 2;
+            grid_m_x = (width - (2 * r * users) - (grid_p_x * 2 * users)) / 2;
+            grid_m_y = (height - (2 * r * tasks) - (grid_p_y * 2 * tasks)) / 2;
+            _results = [];
+            for (t = _i = 0, _ref = tasks - 1; 0 <= _ref ? _i <= _ref : _i >= _ref; t = 0 <= _ref ? ++_i : --_i) {
+              _results.push((function(t) {
+                var c, pdata;
+                c = String.fromCharCode(65 + t);
+                pdata = _.map(dataset, function(v) {
+                  return {
+                    user: v.user,
+                    result: v.results[t]
+                  };
+                });
+                return svg.selectAll(".circle." + c).data(pdata).enter().append("circle").attr("class", function(obj) {
+                  var col, v;
+                  v = obj.result;
+                  col = v === 0 ? "success" : v === 2 ? "failure" : "pending";
+                  return "circle " + c + " " + col;
+                }).attr("r", r).attr("cx", function(d, i) {
+                  return grid_m_x + 1 + r + (i * grid_p_x * 2) + (i * r * 2);
+                }).attr("cy", function(d, i) {
+                  return height - grid_m_y - 1 - r - (t * grid_p_y * 2) - (t * r * 2);
+                });
+              })(t));
+            }
+            return _results;
           });
         }
       };

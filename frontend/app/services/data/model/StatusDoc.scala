@@ -7,7 +7,7 @@ import services.data.MyDocDB
 import com.foursquare.rogue.Rogue._
 
 import net.liftweb.mongodb.record._
-import net.liftweb.record.field.IntField
+import field.MongoListField
 
 class StatusDoc
     extends MongoRecord[StatusDoc] with DocMongoId[StatusDoc] {
@@ -20,21 +20,8 @@ class StatusDoc
     object user extends TextField(this) with MyField {
         def naming = n("user")
     }
-
-    object fail extends IntField(this) with MyField {
-        def naming = n("fail")
-    }
-    object skip extends IntField(this) with MyField {
-        def naming = n("skip")
-    }
-    object success extends IntField(this) with MyField {
-        def naming = n("success")
-    }
-    object pending extends IntField(this) with MyField {
-        def naming = n("pending")
-    }
-    object error extends IntField(this) with MyField {
-        def naming = n("error")
+    object results extends MongoListField[StatusDoc, Int](this) with MyField {
+        def naming = n("results")
     }
 }
 
