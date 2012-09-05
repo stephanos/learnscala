@@ -21,8 +21,7 @@ object Exercise extends MyController {
 
                 /*
                 def r(max: Int = 5) = scala.util.Random.nextInt(max)
-                val l = 2 + r()
-                def res = (0 to l).map(_ => r(2))
+                def res = (0 to 2 + r()).map(_ => r(2))
                 jOk((0 to 12).map(i => ("user" -> i) ~ ("results" -> res.dropRight(r(1)))))
                 */
 
