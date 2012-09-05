@@ -26,6 +26,7 @@ object Exercise extends MyController {
                 jOk((0 to 12).map(i => ("user" -> i) ~ ("results" -> res.dropRight(r(1)))))
                 */
 
+                /*
                 jOk(
                     List(
                         ("user" -> "1") ~ ("results" -> List(0, 0)),
@@ -42,6 +43,7 @@ object Exercise extends MyController {
                         ("user" -> "12") ~ ("results" -> List(0, 2, 2))
                     )
                 )
+                */
             } else {
                 Unauthorized("Only the admin can request the exercise status")
             }

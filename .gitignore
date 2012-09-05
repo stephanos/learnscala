@@ -13,6 +13,7 @@ target
 .idea/libraries
 
 # other
+RUNNING_PID
 *.log
 .DS_Store
 exercises
