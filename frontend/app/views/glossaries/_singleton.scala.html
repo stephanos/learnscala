@@ -1,3 +1,50 @@
 @layout.simpledeck("Singleton") {
-    TODO
+
+    @sidebyside((50,45)) {
+        <div class="indent">
+            <ul>
+                <li>
+                    <code>object</code> definiert ein Singleton
+                </li>
+                <li>
+                    Compiler instanziert es automatisch bei der ersten Nutzung
+                </li>
+                <li>
+                    ersetzt das <var>static</var>-Konzept aus Java
+                </li>
+                <li>
+                    kann von einer Klasse und/oder mehreren @glossary("Traits") erben
+                </li>
+                <li>
+                    ein Objekt kann ein @glossary("Companion") zu einer Klasse sein, wenn es den selben Namen trägt
+                </li>
+            </ul>
+        </div>
+    } {
+        @snippet() {
+            @sourceblock() {
+                |object Main {
+                |   def main(args: Array[String]) {
+                |       println("Hello, world!")
+                |   }
+                |}
+            }
+        }
+
+        <hr/>
+
+        @snippet() {
+            @sourceblock() {
+                |class Point(val x: Int, val y: Int)
+                |
+                |object Point {
+                |   def apply(x: Int, y: Int) =
+                |       new Point(x,y)
+                |}
+            }
+            @callblock() {
+                |Point.apply(0, 5)
+            }
+        }
+    }
 }
