@@ -2323,6 +2323,67 @@ define('app/slide/time',["lib/util/moment"], function(moment) {
   return new Time;
 });
 
+
+define('app/slide/overlay',["jquery", "lib/util/underscore"], function($, _, d3) {
+  var Overlay;
+  return Overlay = (function() {
+
+    function Overlay() {
+      var canvas, context, drawLine, finishDrawing, getPosition;
+      canvas = document.getElementById("board");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      context = canvas.getContext("2d");
+      context.lineWidth = 4;
+      context.lineCap = "round";
+      context.strokeStyle = "red";
+      drawLine = function(mouseEvent, canvas, context) {
+        var position;
+        canvas.style.cursor = "pointer";
+        position = getPosition(mouseEvent, canvas);
+        context.lineTo(position.X, position.Y);
+        return context.stroke();
+      };
+      finishDrawing = function(mouseEvent, canvas, context) {
+        drawLine(mouseEvent, canvas, context);
+        context.closePath();
+        return $(canvas).unbind("mousemove").unbind("mouseup").unbind("mouseout");
+      };
+      getPosition = function(mouseEvent, canvas) {
+        var x, y;
+        if (mouseEvent.pageX && mouseEvent.pageY) {
+          x = mouseEvent.pageX;
+          y = mouseEvent.pageY;
+        } else {
+          x = mouseEvent.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+          y = mouseEvent.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        }
+        return {
+          X: x - canvas.offsetLeft,
+          Y: y - canvas.offsetTop
+        };
+      };
+      $("#board").mousedown(function(mouseEvent) {
+        var position;
+        position = getPosition(mouseEvent, canvas);
+        console.log(position);
+        context.moveTo(position.X, position.Y);
+        context.beginPath();
+        return $(this).mousemove(function(mouseEvent) {
+          return drawLine(mouseEvent, canvas, context);
+        }).mouseup(function(mouseEvent) {
+          return finishDrawing(mouseEvent, canvas, context);
+        }).mouseout(function(mouseEvent) {
+          return finishDrawing(mouseEvent, canvas, context);
+        });
+      });
+    }
+
+    return Overlay;
+
+  })();
+});
+
 (function() {
   if (!Date.now) Date.now = function() {
     return +(new Date);
@@ -9644,7 +9705,7 @@ Thanks to Philip Thrasher for the jquery plugin boilerplate for coffee script
 define("lib/chart/piechart",[], function(){});
 
 
-define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/editor/init", "lib/util/moment", "app/slide/time", "app/slide/chart", "lib/chart/piechart"], function($, _, Reveal, Editor, moment, Timer) {
+define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/editor/init", "lib/util/moment", "app/slide/time", "app/slide/overlay", "app/slide/chart", "lib/chart/piechart"], function($, _, Reveal, Editor, moment, Timer, Overlay) {
   var Slide;
   return Slide = (function() {
 
@@ -9662,6 +9723,7 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
         li.parent().append(li);
         li.find(".divider").remove();
         this.initCountdowns();
+        new Overlay();
         this.initTimer();
       } else {
         $(".fragment").removeClass("fragment");

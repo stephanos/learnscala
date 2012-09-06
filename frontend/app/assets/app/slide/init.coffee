@@ -1,7 +1,7 @@
 define [
   "jquery", "lib/util/underscore", "lib/reveal", "app/editor/init",
-  "lib/util/moment", "app/slide/time", "app/slide/chart", "lib/chart/piechart"
-], ($, _, Reveal, Editor, moment, Timer) ->
+  "lib/util/moment", "app/slide/time", "app/slide/overlay", "app/slide/chart", "lib/chart/piechart"
+], ($, _, Reveal, Editor, moment, Timer, Overlay) ->
 
   class Slide
 
@@ -27,6 +27,7 @@ define [
 
         # slide
         @initCountdowns()
+        new Overlay()
         @initTimer()
 
       else
