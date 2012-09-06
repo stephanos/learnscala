@@ -1,3 +1,40 @@
 @layout.simpledeck("return") {
-    TODO
+
+    @sidebyside((45,51)) {
+        <div class="indent">
+            <ul>
+                <li>
+                    TODO
+                </li>
+            </ul>
+        </div>
+    } {
+        @snippet() {
+            @sourceblock() {
+                |def fullname(fname: String, lname: String): String =
+            }
+            @outblock() {
+                |
+            }
+        }
+        @codesub() {
+
+        }
+
+        <hr class="half"/>
+
+        @snippet() {
+            @sourceblock() {
+                |def toMile(km: Float) =
+                |   return km * 1.60934
+            }
+            @outblock(error = true) {
+                |error: method toMile has return statement;
+                |       needs result type
+            }
+        }
+        @codesub() {
+            <var>Achtung</var>: <code>return</code> verhindert @glossary("Typ-Inferenz")
+        }
+    }
 }
