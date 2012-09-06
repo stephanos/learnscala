@@ -79,10 +79,9 @@ captureLinks = (links, cb) ->
       getPage(link, (page) ->
 
         # read title
-        num = "" # TODO ?
         title = getTitle(page)
         if(!title) then throw new Error("link " + link + " has no title (h3)!")
-        title = title.replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/\s/g, "")
+        title = title.replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/\s/g, "_")
 
         # read slides
         slides = Math.max(1, page.evaluate(-> $('.slides section').length))
@@ -92,7 +91,9 @@ captureLinks = (links, cb) ->
         if(link.indexOf("/glossary") >= 0)
           outpath = "glossary/" + link.split("/")[3]
         else
-          outpath = link.split("/")[2] + "/" + link.split("/")[3] + "/" + num + title
+          url = page.evaluate(-> document.location.href).replace(/\/#\//g, "")
+          code = url.substr(url.lastIndexOf("/") + 1)
+          outpath = link.split("/")[2] + "/" + link.split("/")[3] + "/" + code + "_" + title
 
         # capture each slide
         captureSlides(page, slides, slides, outpath, () ->

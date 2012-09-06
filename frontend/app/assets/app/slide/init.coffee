@@ -27,7 +27,7 @@ define [
 
         # slide
         @initCountdowns()
-        new Overlay()
+        #new Overlay()
         @initTimer()
 
       else
