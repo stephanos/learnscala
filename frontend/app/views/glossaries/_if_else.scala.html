@@ -1,0 +1,71 @@
+@layout.simpledeck("if & else") {
+
+    @sidebyside((45,51)) {
+        <div class="indent">
+            <ul>
+                <li>
+                    Kontrollstruktur
+                </li>
+                <li>
+                    hat <span class="underline">immer</span> einen Rückgabewert und -Typ
+                </li>
+                <li>
+                    der Rückgabetyp ist der gemeinsame Typ aller einzelnen Bedinungszweige
+                    (unter Berücksichtigung von @glossary("implicit")) - siehe auch @glossary("Typ-Hierarchie")
+                </li>
+                <li>
+                    ist <code>else</code> nicht definiert, wird automatisch der Typ <code>Unit</code> verwendet
+                </li>
+            </ul>
+        </div>
+    } {
+        @snippet() {
+            @sourceblock() {
+                |// schematisch:
+                |if (p1: Boolean)
+                |   expr_1: Type1
+                |else if(p2: Boolean)
+                |   expr_2: Type2
+                |..
+                |else
+                |   expr_n: TypeN
+            }
+        }
+
+        <hr/>
+
+        @snippet() {
+            @sourceblock() {
+                |def r(p: Boolean) = if(p) 1 else 1.0
+            }
+            @outblock() {
+                |r: (p: Boolean)Double
+            }
+        }
+
+        <hr class="half"/>
+
+        @snippet() {
+            @sourceblock() {
+                |def r(p: Boolean) = if(p) 1
+            }
+            @outblock() {
+                |r: (p: Boolean)AnyVal
+            }
+        }
+
+        <hr class="half"/>
+
+        @snippet() {
+            @sourceblock() {
+                |def r(p: Boolean) = if(p) 1 else "1"
+            }
+            @outblock() {
+                |r: (p: Boolean)Any
+            }
+        }
+        @codesub() {
+
+        }
+    }
+}

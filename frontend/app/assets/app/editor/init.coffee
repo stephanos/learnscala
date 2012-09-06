@@ -228,7 +228,7 @@ define [
           else
             num = $(elem).data("num")
             _.filter(self.readRawCode($(elem).closest('div.snippet'), editable),
-              (b) -> isCodeBlock(b) && b["num"] <= num
+              (b) -> self.isCodeBlock(b) && b["num"] <= num
             )
         else
           if($(elem).hasClass("raw-block"))

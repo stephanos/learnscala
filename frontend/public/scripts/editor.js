@@ -5110,7 +5110,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
           } else {
             num = $(elem).data("num");
             return _.filter(self.readRawCode($(elem).closest('div.snippet'), editable), function(b) {
-              return isCodeBlock(b) && b["num"] <= num;
+              return self.isCodeBlock(b) && b["num"] <= num;
             });
           }
         } else {
