@@ -1,3 +1,83 @@
 @layout.simpledeck("Typ-Inferenz") {
-    TODO
+
+    @sidebyside((45,51)) {
+        <div class="indent">
+            <ul>
+                <li>
+                    Scala kann Typeninformationen oftmals selbst ermitteln,
+                    so dass der Entwickler keine Typangabe definieren muss:
+                    <hr class="half"/>
+                    <ul>
+                        <li>
+                            <em>Variablen</em>: Typ inklusive Typ-Parameter
+                        </li>
+                        <li>
+                            <em>Methode</em>: Rückgabetyp
+                        </li>
+                        <li>
+                            <em>Funktionsliteral</em>: Parametertypen (nur bei Übergabe an Funktion / Methode)
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Typen von Methoden- und Klassenparameter müssen dagegen <span class="underline">immer</span>
+                    angegeben werden
+                </li>
+            </ul>
+        </div>
+    } {
+        @snippet() {
+            @sourceblock() {
+                |val age = 42
+            }
+            @outblock() {
+                |age: Int = 42
+            }
+        }
+        @codesub() {
+            Wert '42' hat den Typ Int
+        }
+
+        <hr class="half"/>
+
+        @snippet() {
+            @sourceblock() {
+                |def divide (a: Int, b: Int) = a / b
+            }
+            @outblock() {
+                |divide: (a: Int, b: Int)Int
+            }
+        }
+        @codesub() {
+            'divide' hat den Rückgabetyp Int
+        }
+
+        <hr class="half"/>
+
+        @snippet() {
+            @sourceblock() {
+                |val list = List(1,2,3)
+            }
+            @outblock() {
+                |list: List[Int] = List(1, 2, 3)
+            }
+        }
+        @codesub() {
+            'list' ist vom Typ List[Int]
+        }
+
+        <hr class="half"/>
+
+        @snippet() {
+            @sourceblock() {
+                |List(1,2,3).map(x => x * 2)
+            }
+            @outblock() {
+                |res0: List[Int] = List(2, 4, 6)
+            }
+        }
+        @codesub() {
+            'x' hat den Typ Int
+        }
+    }
 }
