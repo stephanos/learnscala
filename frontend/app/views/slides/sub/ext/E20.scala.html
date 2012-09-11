@@ -292,222 +292,216 @@ TODO
         @defining("Auslesen") { title =>
 
             @slide(topic = topic, title = title, subtitle = "XPath", subsubtitle = "") {
-                <div class="sidebyside p40_60">
+                @sidebyside((40,60)) {
                     @parsecode("xpath")
-                    <div>
-                        @snippet() {
-                            @callblock(reference = "xpath") {
-                                |html \ "body"
-                            }
-                            @outblock() {
-                                |res0: scala.xml.NodeSeq = NodeSeq(&lt;body&gt; ...)
-                            }
-                            @callblock() {
-                                |html \ "ul"
-                            }
-                            @outblock() {
-                                |res1: scala.xml.NodeSeq = NodeSeq()
-                            }
+                } {
+                    @snippet() {
+                        @callblock(reference = "xpath") {
+                            |html \ "body"
                         }
-                        @codesub() {
-                            Operator <code>\</code> extrahiert direkte Sub-Elemente
+                        @outblock() {
+                            |res0: scala.xml.NodeSeq = NodeSeq(&lt;body&gt; ...)
                         }
+                        @callblock() {
+                            |html \ "ul"
+                        }
+                        @outblock() {
+                            |res1: scala.xml.NodeSeq = NodeSeq()
+                        }
+                    }
+                    @codesub() {
+                        Operator <code>\</code> extrahiert direkte Sub-Elemente
+                    }
 
-                        <hr class="half"/>
+                    <hr class="half"/>
 
-                        @snippet() {
-                            @callblock(reference = "xpath") {
-                                |(html \\ "li").length
-                            }
-                            @outblock() {
-                                |res0: Int = 6
-                            }
+                    @snippet() {
+                        @callblock(reference = "xpath") {
+                            |(html \\ "li").length
                         }
-                        @codesub() {
-                            Operator <code>\\</code> extrahiert alle Sub-Elemente
+                        @outblock() {
+                            |res0: Int = 6
                         }
+                    }
+                    @codesub() {
+                        Operator <code>\\</code> extrahiert alle Sub-Elemente
+                    }
 
-                        <hr class="half"/>
+                    <hr class="half"/>
 
-                        @snippet() {
-                            @callblock(reference = "xpath") {
-                                |(html \ "body" \ "_" \ "li").length
-                            }
-                            @outblock() {
-                                |res0: Int = 6
-                            }
+                    @snippet() {
+                        @callblock(reference = "xpath") {
+                            |(html \ "body" \ "_" \ "li").length
                         }
-                        @codesub() {
-                             Wildcard <code>"_"</code> trifft auf alle Elemente zu
+                        @outblock() {
+                            |res0: Int = 6
                         }
+                    }
+                    @codesub() {
+                         Wildcard <code>"_"</code> trifft auf alle Elemente zu
+                    }
 
-                        <hr class="half"/>
+                    <hr class="half"/>
 
-                        @snippet() {
-                            @callblock(reference = "xpath") {
-                                |html \ "body" \\ "@@class"
-                            }
-                            @outblock() {
-                                |res0: scala.xml.NodeSeq = NodeSeq(clearfix, center, center)
-                            }
+                    @snippet() {
+                        @callblock(reference = "xpath") {
+                            |html \ "body" \\ "@@class"
                         }
-                        @codesub() {
-                            <code>@@</code> extrahiert das Attribut
+                        @outblock() {
+                            |res0: scala.xml.NodeSeq = NodeSeq(clearfix, center, center)
                         }
-                    </div>
-                </div>
+                    }
+                    @codesub() {
+                        <code>@@</code> extrahiert das Attribut
+                    }
+                }
             }
 
             <!--################################################################################## -->
 
             @slide(topic = topic, title = title, subtitle = "XPath", subsubtitle = "") {
-                <div class="sidebyside p40_60">
+                @sidebyside((40,60)) {
                     @parsecode("")
-                    <div>
-                        @snippet() {
-                            @callblock(reference = "xpath") {
-                                |(html \\ "li")(1)
-                            }
-                            @outblock() {
-                                |res0: scala.xml.Node = <li> Scala </li>
-                            }
+                } {
+                    @snippet() {
+                        @callblock(reference = "xpath") {
+                            |(html \\ "li")(1)
                         }
-                        @codesub() {
-                            <code>Node</code> ist eine Sequenz, hat daher auch die Operationen einer Sequenz
+                        @outblock() {
+                            |res0: scala.xml.Node = <li> Scala </li>
                         }
+                    }
+                    @codesub() {
+                        <code>Node</code> ist eine Sequenz, hat daher auch die Operationen einer Sequenz
+                    }
 
-                        <hr class="half"/>
+                    <hr class="half"/>
 
-                        @snippet() {
-                            @callblock(reference = "xpath") {
-                                |(html \\ "li") map { _.text.trim }
-                            }
-                            @outblock() {
-                                |res0: Seq[String] = List("Java", "Scala", "Groovy",
-                                |                         "C#", "F#", "JScript")
-                            }
+                    @snippet() {
+                        @callblock(reference = "xpath") {
+                            |(html \\ "li") map { _.text.trim }
                         }
-                        @codesub() {
-                            <code>text</code> liefert Inhalt des XML-Elements
+                        @outblock() {
+                            |res0: Seq[String] = List("Java", "Scala", "Groovy",
+                            |                         "C#", "F#", "JScript")
                         }
+                    }
+                    @codesub() {
+                        <code>text</code> liefert Inhalt des XML-Elements
+                    }
 
-                        <hr class="half"/>
+                    <hr class="half"/>
 
-                        @snippet() {
-                            @callblock(reference = "xpath") {
-                                |for (e <- html \ "body" \ "_") println(e.label)
-                            }
-                            @outblock() {
-                                |ul
-                                |ol
-                            }
+                    @snippet() {
+                        @callblock(reference = "xpath") {
+                            |for (e <- html \ "body" \ "_") println(e.label)
                         }
-                        @codesub() {
-                            <code>label</code> liefert den Tag-Namen des XML-Elements
+                        @outblock() {
+                            |ul
+                            |ol
                         }
+                    }
+                    @codesub() {
+                        <code>label</code> liefert den Tag-Namen des XML-Elements
+                    }
 
-                        <hr class="half"/>
+                    <hr class="half"/>
 
-                        @snippet() {
-                            @callblock(reference = "xpath") {
-                                |(html \ "body" \ "_") map (_.attributes)
-                            }
-                            @outblock() {
-                                |res0: Seq[MetaData] = List(class="center",
-                                |                          class="center")
-                            }
+                    @snippet() {
+                        @callblock(reference = "xpath") {
+                            |(html \ "body" \ "_") map (_.attributes)
                         }
-                        @codesub() {
-                            <code>attributes</code> liefert die Meta-Daten des XML-Elements
+                        @outblock() {
+                            |res0: Seq[MetaData] = List(class="center",
+                            |                          class="center")
                         }
-                    </div>
-                </div>
+                    }
+                    @codesub() {
+                        <code>attributes</code> liefert die Meta-Daten des XML-Elements
+                    }
+                }
             }
 
             <!--################################################################################## -->
 
             @*@slide(topic = topic, title = title, subtitle = "Pattern Matching") {
-                <div class="sidebyside p40_60">
+                @sidebyside((40,60)) {
                     @parsecode("pmatch")
-                    <div>
-                        @snippet() {
-                            @sourceblock(reference = "pmatch") {
-                                |def hasClass(n: Node, cls: String): Unit =
-                                |  n match {
-                                |    case n if (n.attributes("class").text == cls) =>
-                                |      print(n.label)
-                                |    case _ => n foreach (hasClass(_, cls))
-                                |  }
-                                |
-                            }
-                            @callblock() {
-                                |hasClass(html, "center")
-                            }
-                            @outblock() {
-                                |ul
-                                |ol
-                            }
+                } {
+                    @snippet() {
+                        @sourceblock(reference = "pmatch") {
+                            |def hasClass(n: Node, cls: String): Unit =
+                            |  n match {
+                            |    case n if (n.attributes("class").text == cls) =>
+                            |      print(n.label)
+                            |    case _ => n foreach (hasClass(_, cls))
+                            |  }
+                            |
                         }
-                        @codesub() {
-
+                        @callblock() {
+                            |hasClass(html, "center")
                         }
-
-                        <hr/>
-
-                        @snippet() {
-                            @sourceblock(reference = "pmatch") {
-                                |def printElem(n: Node, p: (Elem) => Boolean): Unit =
-                                |  n match {
-                                |    case e: Elem if(p(e)) => println(e.text.trim)
-                                |    case _ => n map (printElem(_, p))
-                                |  }
-                            }
-                            @callblock() {
-                                |printElem(html, _.text contains "#")
-                            }
-                            @outblock() {
-                                |C#
-                                |F#
-                            }
+                        @outblock() {
+                            |ul
+                            |ol
                         }
-                        @codesub() {
+                    }
+                    @codesub() {
 
+                    }
+
+                    <hr/>
+
+                    @snippet() {
+                        @sourceblock(reference = "pmatch") {
+                            |def printElem(n: Node, p: (Elem) => Boolean): Unit =
+                            |  n match {
+                            |    case e: Elem if(p(e)) => println(e.text.trim)
+                            |    case _ => n map (printElem(_, p))
+                            |  }
                         }
-                    </div>
-                </div>
+                        @callblock() {
+                            |printElem(html, _.text contains "#")
+                        }
+                        @outblock() {
+                            |C#
+                            |F#
+                        }
+                    }
+                    @codesub() {
 
+                    }
+                }
                 <hr/>
             }
 
             <!--################################################################################## -->
 
             @slide(topic = topic, title = title, subtitle = "Pattern Matching") {
-                <div class="sidebyside p40_60">
+                @sidebyside((40,60)) {
                     @parsecode("")
-                    <div>
-                        @snippet() {
-                            @sourceblock(reference = "pmatch") {
-                                |def describe(n: Node): String =
-                                |  n match {
-                                |    case &lt;ol&gt;{_}&lt;/ol&gt; => "ordered list with "
-                                |    case &lt;ul&gt;{_}&lt;/ul&gt; => "unordered list with "
-                                |    case _ => "unknown"
-                                |  }
-                            }
-                            @callblock() {
-                                |(html \ "body" \ "_") map { describe(_) } foreach println
-                            }
-                            @outblock() {
-                                |"ordered list with "
-                                |"unordered list with "
-                            }
+                } {
+                    @snippet() {
+                        @sourceblock(reference = "pmatch") {
+                            |def describe(n: Node): String =
+                            |  n match {
+                            |    case &lt;ol&gt;{_}&lt;/ol&gt; => "ordered list with "
+                            |    case &lt;ul&gt;{_}&lt;/ul&gt; => "unordered list with "
+                            |    case _ => "unknown"
+                            |  }
                         }
-                        @codesub() {
-
+                        @callblock() {
+                            |(html \ "body" \ "_") map { describe(_) } foreach println
                         }
-                    </div>
-                </div>
+                        @outblock() {
+                            |"ordered list with "
+                            |"unordered list with "
+                        }
+                    }
+                    @codesub() {
 
+                    }
+                }
                 <hr/>
             }*@
 
@@ -551,7 +545,7 @@ TODO
 
         @defining("Transformieren") { title =>
             @slide(topic = topic, title = title) {
-                <div class="sidebyside p40_60">
+                @sidebyside((40,60)) {
                     @snippet() {
                         @sourcecode(id = "transform") {
                             |val html =
@@ -587,31 +581,29 @@ TODO
                             |  &lt;/html&gt;
                         }
                     }
-                    <div>
-                        @callcode(reference = "transform") {
-                            |import scala.xml._
-                            |import scala.xml.transform._
-                            |
-                            |val trfrm = new RewriteRule {
-                            |  override def transform(n: Node) =
-                            |    n match {
-                            |      case e: Elem if(e.label == "ul") =>
-                            |        e.copy(label = "ol")
-                            |      case e: Elem if(e.label == "ol") =>
-                            |        e.copy(label = "ul")
-                            |      case _ => n
-                            |    }
-                            |}
-                            |
-                            |new RuleTransformer(trfrm).transform(html)
-                        }
-                        @codesub() {
-                            <code>RuleTransformer</code> kann eine oder mehrere <code>RewriteRule</code>
-                            auf einen <code>Node</code> und dessen Sub-Elemente anwenden
-                        }
-                    </div>
-                </div>
-
+                } {
+                    @callcode(reference = "transform") {
+                        |import scala.xml._
+                        |import scala.xml.transform._
+                        |
+                        |val trfrm = new RewriteRule {
+                        |  override def transform(n: Node) =
+                        |    n match {
+                        |      case e: Elem if(e.label == "ul") =>
+                        |        e.copy(label = "ol")
+                        |      case e: Elem if(e.label == "ol") =>
+                        |        e.copy(label = "ul")
+                        |      case _ => n
+                        |    }
+                        |}
+                        |
+                        |new RuleTransformer(trfrm).transform(html)
+                    }
+                    @codesub() {
+                        <code>RuleTransformer</code> kann eine oder mehrere <code>RewriteRule</code>
+                        auf einen <code>Node</code> und dessen Sub-Elemente anwenden
+                    }
+                }
                 <hr/>
             }
         }

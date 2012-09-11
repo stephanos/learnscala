@@ -37,8 +37,7 @@
 
             <hr/><hr/>
 
-            <div class="fragment sidebyside">
-                <div>
+                @sidebyside(fragment = true) {
                     <hr/>
                     @snippet() {
                         @callblock(reference = "plane", fragment = false) {
@@ -54,14 +53,12 @@
                             |res1: Plane = Plane@@50394ec
                         }
                     }
-                </div>
-                <div>
+                } {
                     @infobox(hr = false) {
                         <code>class</code> definiert eine Klasse, sie ist standardmäßig öffentlich.
                         <code>new</code> erstellt eine Instanz.
                     }
-                </div>
-            </div>
+                }
         }
 
         <!--################################################################################## -->
@@ -86,7 +83,7 @@
 
             <hr/><hr/>
 
-            <div class="fragment sidebyside p60_40">
+            @sidebyside((60,40), fragment = true) {
                 @snippet() {
                     @sourceblock(fragment = false) {
                         |class Plane(model: String, seats: Int) {
@@ -103,10 +100,11 @@
                         |res0: Plane = Plane@@3ee32abc
                     }
                 }
+            } {
                 @codenote() {
                     Anweisungen im Rumpf werden bei der Initialisierung ausgeführt
                 }
-            </div>
+            }
 
             <hr/>
 

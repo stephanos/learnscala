@@ -135,78 +135,72 @@ TODO
 
             @slide(topic = topic, title = title, subtitle = "Resource") {
 
-                <div class="sidebyside p75_25">
-                    <div>
-                        @sourcecode(id = "ctrl-resource") {
-                            |import java.io._
-                            |
-                            |def withResource[R &lt;: Closeable](res: => R)(f: (R) => Unit) = {
-                            |   val r = res
-                            |   try {
-                            |       f(r)
-                            |   } finally {
-                            |       r.close()
-                            |   }
-                            |}
-                        }
-                    </div>
+                @sidebyside((75,25)) {
+                    @sourcecode(id = "ctrl-resource") {
+                        |import java.io._
+                        |
+                        |def withResource[R &lt;: Closeable](res: => R)(f: (R) => Unit) = {
+                        |   val r = res
+                        |   try {
+                        |       f(r)
+                        |   } finally {
+                        |       r.close()
+                        |   }
+                        |}
+                    }
+                } {
                     @codenote() {
                         <code>withResource</code> schließt nach Ende der Funktion - oder nach einem Fehler -
                         die verwendete Resource
                     }
-                </div>
+                }
 
                 <hr/>
 
-                <div class="sidebyside p75_25">
-                    <div>
-                        @callcode(reference = "ctrl-resource") {
-                            |withResource(new FileInputStream(new File("file.txt"))) {
-                            |   stream =>
-                            |       // read 'stream' ...
-                            |}
-                        }
-                    </div>
-                    @empty()
-                </div>
+                @sidebyside((75,25)) {
+                    @callcode(reference = "ctrl-resource") {
+                        |withResource(new FileInputStream(new File("file.txt"))) {
+                        |   stream =>
+                        |       // read 'stream' ...
+                        |}
+                    }
+                } {
+                }
             }
 
             <!--################################################################################## -->
 
             @slide(topic = topic, title = title, subtitle = "Unless") {
 
-                <div class="sidebyside p75_25">
-                    <div>
-                        @sourcecode(id = "ctrl-unless") {
-                            |def unless(condition: => Boolean)(body: => Unit) {
-                            |   if (!condition)
-                            |       body
-                            |}
-                        }
-                    </div>
+                @sidebyside((75,25)) {
+                    @sourcecode(id = "ctrl-unless") {
+                        |def unless(condition: => Boolean)(body: => Unit) {
+                        |   if (!condition)
+                        |       body
+                        |}
+                    }
+                } {
                     @codenote() {
                         <code>unless</code> ist das Gegenstück zu <code>if</code> - es führt eine Funktion nur aus,
                         wenn ihre Bedingung falsch ist
                     }
-                </div>
+                }
 
                 <hr/>
 
-                <div class="sidebyside p75_25">
-                    <div>
-                        @snippet() {
-                            @callblock(reference = "ctrl-unless") {
-                                |unless(1 == 42) {
-                                |   print("unless!")
-                                |}
-                            }
-                            @outblock() {
-                                |unless!
-                            }
+                @sidebyside((75,25)) {
+                    @snippet() {
+                        @callblock(reference = "ctrl-unless") {
+                            |unless(1 == 42) {
+                            |   print("unless!")
+                            |}
                         }
-                    </div>
-                    @empty()
-                </div>
+                        @outblock() {
+                            |unless!
+                        }
+                    }
+                } {
+                }
             }
 
             <!--################################################################################## -->

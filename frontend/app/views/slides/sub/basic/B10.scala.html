@@ -36,7 +36,7 @@
         @headslide(topic = topic, title = "Skriptsprache") {
             Scala ist ... <span class='fragment'><em>eine Skriptsprache</em></span>
         } {
-            <div class="fragment sidebyside p60_40">
+            @sidebyside((60,40), fragment = true) {
                 @snippet() {
                     @sourceblock(fragment = false) {
                         |val i: Int = 5
@@ -51,33 +51,32 @@
                         |25
                     }
                 }
+            } {
                 <div>
                     interaktive Konsole: <br/> Read-Eval-Print-Loop (REPL)
                 </div>
-            </div>
+            }
 
             <hr/>
 
-            <div class="fragment sidebyside p60_40">
+            @sidebyside((60,40), fragment = true) {
                 @callcode(fragment = false) {
                     |println("Hello World")
                 }
-                <div>
-                   keine Semikolons
-                </div>
-            </div>
+            } {
+               keine Semikolons
+            }
 
             <hr/>
 
-            <div class="fragment sidebyside p60_40">
+            @sidebyside((60,40), fragment = true) {
                 @callcode(fragment = false) {
                     |val i = 1 + 2 * 3      // type of i is Int
                     |val s = "Scala rocks"  // type of s is String
                 }
-                <div>
-                    Typinferenz
-                </div>
-            </div>
+            } {
+                Typinferenz
+            }
 
             <hr/>
 
@@ -91,37 +90,36 @@
         @headslide(topic = topic, title = "Objektorientiert") {
             Scala ist ... <span><em>objektorientiert</em></span>
         } {
-            <div class="fragment sidebyside">
+            @sidebyside(fragment = true) {
                 @callcode(fragment = false) {
                     |42.toFloat
                     |(3.14f).floor
                 }
-                <div>
-                    jeder Wert ist ein Objekt
-                </div>
-            </div>
+            } {
+                jeder Wert ist ein Objekt
+            }
 
             <hr/>
 
-            <div class="fragment sidebyside">
+            @sidebyside(fragment = true) {
                 @sourcecode(fragment = false) {
                     |class MonsterTruck extends Car
                 }
-                <div>
-                    Klassen und Vererbung
-                </div>
-            </div>
+            } {
+                Klassen und Vererbung
+            }
 
             <hr/>
 
-            <div class="fragment sidebyside">
+            @sidebyside(fragment = true) {
                 @sourcecode(fragment = false) {
                     |class FlyingCar extends Car with Wings
                 }
+            } {
                 <div>
                     Mixin-Mechanismus
                 </div>
-            </div>
+            }
 
             @tipbox() {
                 Alles ist ein Objekt: Bekannte Objektorientierung mit Mehrfachvererbung.
@@ -133,36 +131,33 @@
         @headslide(topic = topic, title = "Knapp und Präzise") {
             Scala ist ... <span><em>knapp und präzise</em></span>
         } {
-            <div class="fragment sidebyside p60_40">
+            @sidebyside((60,40), fragment = true) {
                 @sourcecode(fragment = false) {
                     |class MyCar(wheels: Int = 4)
                 }
-                <div>
-                    weniger Boilerplate-Code
-                </div>
-            </div>
+            } {
+                weniger Boilerplate-Code
+            }
 
             <hr/>
 
-            <div class="fragment sidebyside p60_40">
+            @sidebyside((60,40), fragment = true) {
                 @sourcecode(fragment = false) {
                     |trait Logging
                 }
-                <div>
-                    Traits zur Wiederverwendung
-                </div>
-            </div>
+            } {
+                Traits zur Wiederverwendung
+            }
 
             <hr/>
 
-            <div class="fragment sidebyside p60_40">
+            @sidebyside((60,40), fragment = true) {
                 @sourcecode(fragment = false) {
                     |def getUserAttributes[T](fn: (User) => List[T])
                 }
-                <div>
-                    Closures
-                </div>
-            </div>
+            } {
+                Closures
+            }
 
             @tipbox() {
                 50% weniger Code: Schneller zu schreiben und leichter zu lesen.
@@ -174,21 +169,20 @@
         @headslide(topic = topic, title = "Funktional") {
             Scala ist ... <span><em>funktional</em></span>
         } {
-            <div class="fragment sidebyside p66_33">
+            @sidebyside((66,33), fragment = true) {
                 @callcode(fragment = false) {
                     |val names = users.map(_.username)
                     |
                     |val minors = users.map(_.age()).filter(_ < 18)
                 }
-                <div>
-                    wiederverwendbare Code-Blöcke ohne Seiteneffekte
-                </div>
-            </div>
+            } {
+                wiederverwendbare Code-Blöcke ohne Seiteneffekte
+            }
 
             <hr/>
 
             <!-- TODO: better example? composable? futures? -->
-            <div class="fragment sidebyside p66_33">
+            @sidebyside((66,33), fragment = true) {
                 @sourcecode(fragment = false) {
                     |def matchTest(arg: String, value: Any) =
                     | (arg, value) match {
@@ -197,10 +191,9 @@
                     |   case (a,v) => sys.error("unknown arg:" + a)
                     |}
                 }
-                <div>
-                    Pattern Matching
-                </div>
-            </div>
+            } {
+                Pattern Matching
+            }
 
             @tipbox() {
                 Leichtgewichtige aber mächtige Funktionen für besseren Code.
@@ -212,36 +205,33 @@
         @headslide(topic = topic, title = "Statisch") {
             Scala ist ... <span><em>statisch typisiert</em></span>
         } {
-            <div class="fragment sidebyside p66_33">
+            @sidebyside((66,33), fragment = true) {
                 @callcode(fragment = false) {
                     |val i = 1 + 2 * 3    // the type of i is Int
                 }
-                <div>
-                    Typinferenz
-                </div>
-            </div>
+            } {
+                Typinferenz
+            }
 
             <hr/>
 
-            <div class="fragment sidebyside p66_33">
+            @sidebyside((66,33), fragment = true) {
                 @callcode(fragment = false) {
                     |val j: Int = "test"  // COMPILER ERROR!
                 }
-                <div>
-                    Typensicherheit
-                </div>
-            </div>
+            } {
+                Typensicherheit
+            }
 
             <hr/>
 
-            <div class="fragment sidebyside p66_33">
+            @sidebyside((66,33), fragment = true) {
                 @sourcecode(fragment = false) {
                     |def cloneAndReset(o: Cloneable with Resetable) = ..
                 }
-                <div>
-                    Compound Types
-                </div>
-            </div>
+            } {
+                Compound Types
+            }
 
             @tipbox() {
                 Sicheres Refactoring, weniger Flüchtigkeitsfehler & Testaufwand
@@ -253,7 +243,7 @@
         @headslide(topic = topic, title = "Java") {
             Scala ist ... <span><em>Java</em></span>
         } {
-            <div class="fragment sidebyside p60_40">
+            @sidebyside((60,40), fragment = true) {
                 @sourcecode(fragment = false) {
                     |import org.apache.http.client._
                     |import org.apache.http.client.methods._
@@ -263,13 +253,12 @@
                     |val resp = client.execute(get)
                     |...
                 }
-                <div>
-                    <ul class="no-bullets indent10">
-                        <li><var>Java</var> aus <em>Scala</em> aufrufen: <br/> &nbsp; fast reibungslos</li>
-                        <li><em>Scala</em> aus <var>Java</var> aufrufen: <br/> &nbsp; geht <comment>(mit Ausnahmen)</comment></li>
-                    </ul>
-                </div>
-            </div>
+            } {
+                <ul class="no-bullets indent10">
+                    <li><var>Java</var> aus <em>Scala</em> aufrufen: <br/> &nbsp; fast reibungslos</li>
+                    <li><em>Scala</em> aus <var>Java</var> aufrufen: <br/> &nbsp; geht <comment>(mit Ausnahmen)</comment></li>
+                </ul>
+            }
 
             @tipbox() {
                 Leicht zu integrieren mit bestehendem Code und bekannten Bibliotheken.
@@ -281,20 +270,19 @@
         @headslide(topic = topic, title = "Erweiterbar") {
             Scala ist ... <span><em>erweiterbar</em></span>
         } {
-            <div class="fragment sidebyside p60_40">
+            @sidebyside((60,40), fragment = true) {
                 @sourcecode(fragment = false) {
                     |retry(3) {
                     |   connectToDatabase()
                     |}
                 }
-                <div>
-                    eigene Kontrollstrukturen
-                </div>
-            </div>
+            } {
+                eigene Kontrollstrukturen
+            }
 
             <hr/>
 
-            <div class="fragment sidebyside p60_40">
+            @sidebyside((60,40), fragment = true) {
                 @sourcecode(fragment = false) {
                     @Html("""
                     |"The 'Hello world' string" should {
@@ -302,10 +290,9 @@
                     |        "Hello world" must have size(11)
                     """)
                 }
-                <div>
-                    eigene Sprachen: <br/>Domain Specific Language
-                </div>
-            </div>
+            } {
+                eigene Sprachen: <br/>Domain Specific Language
+            }
 
             @tipbox() {
                 Scala lässt sich flexibel an ein Problem anpassen.

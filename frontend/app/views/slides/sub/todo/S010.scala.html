@@ -99,7 +99,7 @@
 
 
 @slide() {
-    <div class="sidebyside p45_55">
+    @sidebyside((45,55)) {
         @snippet() {
             @callblock(fragment = false) {
                 |val passengers = 42
@@ -108,15 +108,14 @@
                 |passengers: Int = 42
             }
         }
-        <div>
-            <code>passengers</code> wird mit dem Wert <code>42</code> initialisiert,
-            der Typ <code>Int</code> wird zugewiesen
-        </div>
-    </div>
+    } {
+        <code>passengers</code> wird mit dem Wert <code>42</code> initialisiert,
+        der Typ <code>Int</code> wird zugewiesen
+    }
 
     <hr/><hr/>
 
-    <div class="fragment sidebyside p45_55">
+    @sidebyside((45,55), fragment = true) {
         @snippet() {
             @callblock(fragment = false) {
                 |val fuel = 3.14f
@@ -125,11 +124,10 @@
                 |fuel: Float = 3.14
             }
         }
-        <div>
-            <code>fuel</code> wird mit dem Wert <code>3.14f</code> initialisiert,
-            der Compiler erkennt den Typ <code>Float</code>
-        </div>
-    </div>
+    } {
+        <code>fuel</code> wird mit dem Wert <code>3.14f</code> initialisiert,
+        der Compiler erkennt den Typ <code>Float</code>
+    }
 
     <hr/><hr/>
 
@@ -180,7 +178,7 @@
 
 @slide() {
 
-    <div class="sidebyside p40_60">
+    @sidebyside((40,60)) {
         @snippet() {
             @callblock(fragment = false) {
                 |var fuel = 3.14f
@@ -195,12 +193,13 @@
                 |fuel: Float = 3.0
             }
         }
+    } {
         @fragment {
             Variable <code>fuel</code> wird initialisiert
             <hr/>
             Der Wert wird mit einer weiteren Anweisung überschrieben
         }
-    </div>
+    }
 
     <hr/>
 

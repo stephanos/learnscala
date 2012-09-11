@@ -93,21 +93,22 @@
 @slide() {
     <!-- Upper Bound -->
 
-    <div class="sidebyside p75_25">
+    @sidebyside((75,25)) {
         @snippet() {
             @sourceblock(id = "pair3", include = "crew-traits", fragment = false) {
                 |case class CockpitPair[T <: CockpitCrew](one: T, two: T)
             }
         }
+    } {
         @codenote() {
             <code>CockpitPair</code> erwartet 2 Parameter vom Typ <code>T</code> - dieser ist "mindestens" vom Typ
             <code>CockpitCrew</code>
         }
-    </div>
+    }
 
     <hr/><hr/>
 
-    <div class="sidebyside p75_25">
+    @sidebyside((75,25)) {
         @snippet() {
             @callblock(reference = "pair3") {
                 |CockpitPair(Pilot(), Stewardess())
@@ -117,14 +118,15 @@
                 |       method apply's type parameter bounds [T <: CockpitCrew]
             }
         }
+    } {
         @codenote() {
             <code>Stewardess</code> entspricht <var>nicht</var> dem Typ <code>CockpitCrew</code>
         }
-    </div>
+    }
 
     <hr/>
 
-    <div class="sidebyside p75_25">
+    @sidebyside((75,25)) {
         @snippet() {
             @callblock(reference = "pair3") {
                 |val cp = CockpitPair(Pilot(), CoPilot())
@@ -133,10 +135,11 @@
                 |cp: CockpitPair[CockpitCrew] = ...
             }
         }
+    } {
         @codenote() {
             <code>Pilot</code> und <code>CoPilot</code> <em>entsprechen</em> dem Typ <code>CockpitCrew</code>
         }
-    </div>
+    }
 
     <hr/><hr/>
 

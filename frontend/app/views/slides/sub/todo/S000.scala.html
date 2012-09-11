@@ -1,34 +1,30 @@
 @slide() {
 
-    <div class="sidebyside p40_60">
-        <div>
-            @snippet() {
-                @callblock(fragment = false) {
-                    |42
-                }
-                @outblock() {
-                    |res0: Int = 42
-                }
+    @sidebyside((40,60)) {
+        @snippet() {
+            @callblock(fragment = false) {
+                |42
             }
-        </div>
-
-        <div>
-            <ul class="indent">
-                <li class="fragment">
-                    <code>res0</code> ist der Name der Variable <br/>
-                    <comment>(fortlaufend nummeriert)</comment>
-                </li>
-                <li class="fragment">
-                    <code>Int</code> ist Typ der Variable <br/>
-                    <comment>(automatisch ermittelt)</comment>
-                </li>
-                <li class="fragment">
-                    <code>42</code> ist Wert der Variable <br/>
-                    <comment>(via <code>toString()</code>)</comment>
-                </li>
-            </ul>
-        </div>
-    </div>
+            @outblock() {
+                |res0: Int = 42
+            }
+        }
+    } {
+        <ul class="indent">
+            <li class="fragment">
+                <code>res0</code> ist der Name der Variable <br/>
+                <comment>(fortlaufend nummeriert)</comment>
+            </li>
+            <li class="fragment">
+                <code>Int</code> ist Typ der Variable <br/>
+                <comment>(automatisch ermittelt)</comment>
+            </li>
+            <li class="fragment">
+                <code>42</code> ist Wert der Variable <br/>
+                <comment>(via <code>toString()</code>)</comment>
+            </li>
+        </ul>
+    }
 }
 
 
@@ -48,7 +44,7 @@
 
     <hr/>
 
-    <div class="fragment sidebyside">
+    @sidebyside(fragment = true) {
         @snippet() {
             @callblock(fragment = false) {
                 |42.isWhole()
@@ -57,14 +53,13 @@
                 |res1: Boolean = true
             }
         }
-        <div>
-            Methode <code>isWhole</code>
-        </div>
-    </div>
+    } {
+        Methode <code>isWhole</code>
+    }
 
     <hr/>
 
-    <div class="fragment sidebyside">
+    @sidebyside(fragment = true) {
         @snippet() {
             @callblock(fragment = false) {
                 |42.==(42)
@@ -73,10 +68,9 @@
                 |res2: Boolean = true
             }
         }
-        <div>
-            Methode <code>==</code>
-        </div>
-    </div>
+    } {
+        Methode <code>==</code>
+    }
 
     <hr/>
 

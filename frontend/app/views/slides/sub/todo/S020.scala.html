@@ -169,66 +169,61 @@
 @slide() {
     <!-- Optionales -->
 
-    <div class="sidebyside p40_60">
+    @sidebyside((40,60)) {
         @sourcecode(id = "ready", fragment = false) {
             |def ready(): String =
             |   return "Ready for take-off"
         }
-        <div>
-            <strong><em>ohne</em></strong> geschweifte Klammern<br/>
-            <comment>Wann? Bei nur einer Zeile</comment>
-        </div>
-    </div>
+    } {
+        <strong><em>ohne</em></strong> geschweifte Klammern<br/>
+        <comment>Wann? Bei nur einer Zeile</comment>
+    }
 
     <hr/>
 
-    <div class="fragment sidebyside p40_60">
+    @sidebyside((40,60), fragment = true) {
         @sourcecode(fragment = false) {
             |def ready(): String =
             |   "Ready for take-off"
         }
-        <div>
-            <strong><em>ohne</em></strong> <code>return</code><br/>
-            <comment>Wann? Immer, Rückgabe ist Ergebnis des letzten Ausdrucks</comment>
-        </div>
-    </div>
+    } {
+        <strong><em>ohne</em></strong> <code>return</code><br/>
+        <comment>Wann? Immer, Rückgabe ist Ergebnis des letzten Ausdrucks</comment>
+    }
 
     <hr/>
 
-    <div class="fragment sidebyside p40_60">
+    @sidebyside((40,60), fragment = true) {
         @sourcecode(fragment = false) {
             |def ready: String =
             |   "Ready for take-off"
         }
-        <div>
-            <strong><em>ohne</em></strong> Parameterliste<br/>
-            <comment>Wann? Keine Parameter</comment>
-        </div>
-    </div>
+    } {
+        <strong><em>ohne</em></strong> Parameterliste<br/>
+        <comment>Wann? Keine Parameter</comment>
+    }
 
     <hr/>
 
-    <div class="fragment sidebyside p40_60">
+    @sidebyside((40,60), fragment = true) {
         @sourcecode(fragment = false) {
             |def ready =
             |   "Ready for take-off"
         }
-        <div>
-            <strong><em>ohne</em></strong> Rückgabetyp<br/>
-            <comment>Wann? Nicht rekursiv oder überladen</comment>
-        </div>
-    </div>
+    } {
+        <strong><em>ohne</em></strong> Rückgabetyp<br/>
+        <comment>Wann? Nicht rekursiv oder überladen</comment>
+    }
 
     <hr/>
 
-    <div class="fragment sidebyside p40_60">
+    @sidebyside((40,60), fragment = true) {
         @sourcecode(fragment = false) {
             |def ready = "Ready for take-off"
         }
-        <div>
-            <strong><em>ohne</em></strong> Zeilenumbruch
-        </div>
-    </div>
+    } {
+        <strong><em>ohne</em></strong> Zeilenumbruch
+    }
 }
 
 
@@ -252,7 +247,7 @@
 
     <hr/><hr/>
 
-    <div class="fragment sidebyside p60_40">
+    @sidebyside((40,60), fragment = true) {
         @snippet() {
             @sourceblock(id = "add", fragment = false) {
                 |def add(x: Float, y: Float) =
@@ -262,11 +257,10 @@
                 |add: (x: Float, y: Float)Float
             }
         }
-        <div>
-            Methode <code>add</code> mit 2 <code>Float</code>-Parameter
-            und Rückgabetyp <code>Float</code>
-        </div>
-    </div>
+    } {
+        Methode <code>add</code> mit 2 <code>Float</code>-Parameter
+        und Rückgabetyp <code>Float</code>
+    }
 
     <hr/>
 
@@ -332,7 +326,7 @@
 @slide() {
     <!-- Aufruf -->
 
-    <div class="sidebyside p40_60">
+    @sidebyside((40,60)) {
         @snippet() {
             @callblock(fragment = false) {
                 |42.isWhole
@@ -341,14 +335,13 @@
                 |res0: Boolean = true
             }
         }
-        <div>
-            Aufruf der <em>parameterlosen</em> Methode <code>isWhole</code>
-        </div>
-    </div>
+    } {
+        Aufruf der <em>parameterlosen</em> Methode <code>isWhole</code>
+    }
 
     <hr/>
 
-    <div class="fragment sidebyside p40_60">
+    @sidebyside((40,60), fragment = true) {
         @snippet() {
             @callblock(fragment = false) {
                 |42.compare(42)
@@ -375,14 +368,13 @@
                 |res3: Int = 0
             }
         }
-        <div>
-            Aufruf der <em>1-parametrigen</em> Methode <code>compare</code>
-        </div>
-    </div>
+    } {
+        Aufruf der <em>1-parametrigen</em> Methode <code>compare</code>
+    }
 
     <hr/>
 
-    <div class="fragment sidebyside p40_60">
+    @sidebyside((40,60), fragment = true) {
         @snippet() {
             @callblock(fragment = false) {
                 |add (1, 2)
@@ -391,10 +383,9 @@
                 |res0: Float = 3.0
             }
         }
-        <div>
-            Aufruf der <em>2-parametrigen</em> Methode <code>add</code>
-        </div>
-    </div>
+    } {
+        Aufruf der <em>2-parametrigen</em> Methode <code>add</code>
+    }
 
     <!--@tipbox() {
         Runde Klammern bei Methoden ohne oder mit nur 1 Parameter sind optional;

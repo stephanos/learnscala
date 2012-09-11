@@ -207,7 +207,7 @@
 
             <hr/>
 
-            <div class="fragment sidebyside p60_40">
+            @sidebyside((60,40), fragment = true) {
                 @snippet() {
                     @callblock(reference = "apply", fragment = false) {
                         val p = Plane("Boeing 737",189)
@@ -222,11 +222,12 @@
                         error: not enough arguments for method apply
                     }
                 }
+            } {
                 @codenote() {
                     <code>apply</code> wird versucht aufzurufen,
                     wenn keine explizite Methode angegeben wird
                 }
-            </div>
+            }
 
             @infobox() {
                 Die Methode <code>apply</code> kann implizit durch
