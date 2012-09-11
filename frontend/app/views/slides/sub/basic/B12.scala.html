@@ -1,0 +1,95 @@
+@defining("Erste Schritte") { implicit topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slidehead() {
+            @topic
+        } {
+
+        }
+
+        <!--################################################################################## -->
+
+        @slide() {
+
+            @sidebyside((40,60)) {
+                @snippet() {
+                    @callblock(fragment = false) {
+                        |42
+                    }
+                    @outblock() {
+                        |res0: Int = 42
+                    }
+                }
+            } {
+                <ul class="indent">
+                    <li class="fragment">
+                        <code>res0</code> ist der Name der Variable <br/>
+                        <comment>(fortlaufend nummeriert)</comment>
+                    </li>
+                    <li class="fragment">
+                        <code>Int</code> ist Typ der Variable <br/>
+                        <comment>(automatisch ermittelt)</comment>
+                    </li>
+                    <li class="fragment">
+                        <code>42</code> ist Wert der Variable <br/>
+                        <comment>(via <code>toString()</code>)</comment>
+                    </li>
+                </ul>
+            }
+        }
+
+        <!--################################################################################## -->
+
+        @slide() {
+            @sidebyside() {
+                @snippet() {
+                    @callblock(fragment = false) {
+                        |42.toString()
+                    }
+                    @outblock() {
+                        |res0: java.lang.String = 42
+                    }
+                }
+            } {
+                Methode <code>toString</code> von Objekt <code>42</code>
+            }
+
+            <hr/>
+
+            @sidebyside(fragment = true) {
+                @snippet() {
+                    @callblock(fragment = false) {
+                        |42.isWhole()
+                    }
+                    @outblock() {
+                        |res1: Boolean = true
+                    }
+                }
+            } {
+                Methode <code>isWhole</code>
+            }
+
+            <hr/>
+
+            @sidebyside(fragment = true) {
+                @snippet() {
+                    @callblock(fragment = false) {
+                        |42.==(42)
+                    }
+                    @outblock() {
+                        |res2: Boolean = true
+                    }
+                }
+            } {
+                Methode <code>==</code>
+            }
+
+            <hr/>
+
+            @infobox() {
+                Alles ist ein Objekt und jedes Objekt kann Operatoren als Methoden haben.
+            }
+        }
+    }
+}
