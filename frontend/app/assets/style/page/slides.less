@@ -59,10 +59,16 @@
                         &.done { .bg(fade(@green, @f)); }
                         &.req { .bg(fade(@gray, @f)); }
 
-                        >a, >span {
+                        @p: 3px;
+                        >span {
                             display: block;
-                            padding: 4px 4px;
+                            padding: @p;
+                        }
+                        >a, >input {
                             text-decoration: none;
+                            display: inline-block;
+                            margin: 0 0 0 @p;
+                            padding: @p 0;
                         }
                     }
                 }

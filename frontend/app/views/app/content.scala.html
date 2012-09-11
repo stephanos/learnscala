@@ -228,10 +228,10 @@
         <span>@label</span>
     } else {
       @defining("/app/slides/" + (if(chpt != "") chpt + "/" else "") + id + "/#/") { url =>
-          <a href="@url" data-id="@id" data-label="@label" data-deps='@{deps.map(_.id).mkString(",")}'>
-            <input type="checkbox" class="status" data-key="@url"/>
-            @label
-          </a>
+        <input type="checkbox" class="status" data-key="@url"/>
+        <a href="@url" data-id="@id" data-label="@label" data-deps='@{deps.map(_.id).mkString(",")}'>
+          @label
+        </a>
       }
     }
   </li>
