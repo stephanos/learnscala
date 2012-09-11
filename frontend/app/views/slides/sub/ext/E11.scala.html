@@ -1,4 +1,4 @@
-@defining("Werkzeuge II") { topic =>
+@defining("Werkzeuge II") { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -10,13 +10,13 @@
 
         <!--################################################################################## -->
 
-        @slide(topic = topic) {
+        @slide() {
             @overview
         }
 
         <!--################################################################################## -->
 
-        @headslide(topic = topic, title = "Maven") {
+        @headslide(title = "Maven") {
             <em>Maven</em>
         } {
             @sidebyside((33,66)) {
@@ -60,7 +60,7 @@
 
         @defining("SBT") { title =>
 
-            @headslide(topic = topic, title = title) {
+            @headslide(title = title) {
                 <em>@title</em>
             } {
                 <div class="indent">
@@ -83,7 +83,7 @@
 
             <!--################################################################################## -->
 
-            @headslide(topic = topic, title = title, subtitle = "Beispiel") {
+            @headslide(title = title, subtitle = "Beispiel") {
                 <em>@title</em>: Beispiel
             } {
                 @sidebyside((40,60)) {
@@ -143,13 +143,13 @@
 
         <!--################################################################################## -->
 
-        @slide(topic = topic) {
+        @slide() {
             @overview
         }
 
         <!--################################################################################## -->
 
-        @slide(topic = topic, title = "IDE") {
+        @slide(title = "IDE") {
             <div class="indent">
                 @sidebyside() {
                     <h3>
@@ -211,7 +211,7 @@
 
         <!--################################################################################## -->
 
-        @slide(topic = topic) {
+        @slide() {
             @overview
         }
 
@@ -219,7 +219,7 @@
 
         @defining("Setup") { title =>
 
-            @headslide(topic = topic, title = title, subtitle = "IntelliJ") {
+            @headslide(title = title, subtitle = "IntelliJ") {
                 <em>IntelliJ IDE</em> einrichten
             } {
                 <div class="indent">
@@ -248,7 +248,7 @@
                 </div>
             }
 
-            @headslide(topic = topic, title = title, subtitle = "Eclipse") {
+            @headslide(title = title, subtitle = "Eclipse") {
                 <em>Eclipse IDE</em> einrichten
             } {
                 <div class="indent">
@@ -311,7 +311,7 @@
                 </div>
             }
 
-            @headslide(topic = topic, title = title, subtitle = "Übungen") {
+            @headslide(title = title, subtitle = "Übungen") {
                 <em>Übungen</em> vorbereiten
             } {
                 <div class="indent">

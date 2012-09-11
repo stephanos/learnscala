@@ -1,4 +1,4 @@
-@defining("Geschichte") { topic =>
+@defining("Geschichte") { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -10,7 +10,7 @@
 
         <!--################################################################################## -->
 
-        @slide(topic = topic, title = "Martin Odersky") {
+        @slide(title = "Martin Odersky") {
             <div class="left w40p">
                 <img src="/assets/img/odersky.jpg" width="100%" alt="Martin Odersky">
 
@@ -34,7 +34,7 @@
 
         <!--################################################################################## -->
 
-        @headslide(topic = topic, title = "Versionshistorie") {
+        @headslide(title = "Versionshistorie") {
             <em>Versions</em>historie
         } {
             <div class="indent">
@@ -132,7 +132,7 @@
 
         <!--################################################################################## -->
 
-        @headslide(topic = topic, title = "Ursprünge") {
+        @headslide(title = "Ursprünge") {
             Ursprünge
         } {
             <div class="indent">
@@ -159,7 +159,7 @@
 
         <!--################################################################################## -->
 
-        @headslide(topic = topic, title = "Zusammenfassung") {
+        @headslide(title = "Zusammenfassung") {
             Zusammenfassung
         } {
             <div class="indent">

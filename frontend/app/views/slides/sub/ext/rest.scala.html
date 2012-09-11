@@ -5,7 +5,7 @@
     TODO
 }-->
 
-@defining("Web II") { topic =>
+@defining("Web II") { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -19,7 +19,7 @@
 
         @defining("Unfiltered") { title =>
 
-            @headslide(topic = topic, title = title) {
+            @headslide(title = title) {
                 @title
             } {
 
@@ -30,7 +30,7 @@
 
         @defining("Spray") { title =>
 
-            @headslide(topic = topic, title = title) {
+            @headslide(title = title) {
                 @title
             } {
                 <div class="indent">
@@ -57,7 +57,7 @@
 
             <!--################################################################################## -->
 
-            @headslide(topic = topic, title = title, subtitle = "Beispiel") {
+            @headslide(title = title, subtitle = "Beispiel") {
                 @title
             } {
                 @sourcecode(fragment = false) {

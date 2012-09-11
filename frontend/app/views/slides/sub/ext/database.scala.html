@@ -6,7 +6,7 @@ TODO
     - Casbah
 -->
 
-@defining("Datenbank") { topic =>
+@defining("Datenbank") { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -21,7 +21,7 @@ TODO
 
     @defining("Rogue") { title =>
 
-        @headslide(topic = topic, title = title) {
+        @headslide(title = title) {
             @title
         } {
             <div class="indent">
@@ -45,7 +45,7 @@ TODO
             </div>
         }
 
-        @headslide(topic = topic, title = title) {
+        @headslide(title = title) {
             @title
         } {
             @sourcecode(fragment = false) {

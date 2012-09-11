@@ -1,0 +1,180 @@
+@defining("Typ-Parameter") { implicit topic =>
+    
+    @layout.slidedeck(topic) {
+        
+        @slidehead() {
+            @topic
+        } {
+
+        }
+        
+        <!--################################################################################## -->
+        
+        @slide() {
+        
+            @snippet() {
+                @sourceblock(id = "crew-traits", fragment = false) {
+                    |sealed trait Crew
+                    |sealed trait CabinCrew extends Crew
+                    |sealed trait CockpitCrew extends Crew { def fly() = println("flying") }
+                    |
+                    |case class Pilot extends CockpitCrew
+                    |case class CoPilot extends CockpitCrew
+                    |case class Stewardess extends CabinCrew
+                }
+            }
+        
+            @sidebyside((66,33)) {
+                <hr/>
+                @snippet() {
+                    @sourceblock(id = "pair1", reference = "crew-traits") {
+                        |case class Pair[T, S](one: T, two: S)
+                    }
+                }
+                <hr/>
+                @snippet() {
+                    @callblock(reference = "pair1") {
+                        |val cockpit = Pair(Pilot(), CoPilot())
+                    }
+                    @outblock() {
+                        |cockpit: Pair[Pilot,CoPilot] = Pair(Pilot(),CoPilot())
+                    }
+                }
+                <hr/>
+                @snippet() {
+                    @callblock(reference = "pair1") {
+                        |val couple = Pair[Crew, Crew](Pilot(), Stewardess())
+                    }
+                    @outblock() {
+                        |couple: Pair[Crew,Crew] = Pair(Pilot(),Stewardess())
+                    }
+                }
+            } {
+            }
+        
+            @infobox() {
+                Eine Klasse kann einen oder mehrere Typ-Parameter haben, sie werden in eckige Klammern nach dem
+                Namen spezifiziert. Beim Instanziieren wird der Typ automatisch erkannt.
+            }
+        }
+
+        <!--################################################################################## -->
+        
+        @slide() {
+            <!-- Typenüberprüfung -->
+        
+            @sidebyside((66,33)) {
+                @snippet() {
+                    @sourceblock(id = "pair2", reference = "crew-traits", fragment = false) {
+                        |case class Pair[T](one: T, two: T) {
+                        |
+                        |  def canFlyPlane =
+                        |    one.isInstanceOf[CockpitCrew] ||
+                        |      two.isInstanceOf[CockpitCrew]
+                        |}
+                    }
+                }
+                <hr/><hr/>
+                @snippet() {
+                    @callblock(reference = "pair2") {
+                        |Pair(Pilot(), CoPilot()).canFlyPlane
+                    }
+                    @outblock() {
+                        |true
+                    }
+                }
+                <hr/><hr/>
+                @snippet() {
+                    @callblock(reference = "pair2") {
+                        |Pair(Pilot(), Stewardess()).canFlyPlane
+                    }
+                    @outblock() {
+                        |false
+                    }
+                }
+            } {
+            }
+        
+            @infobox() {
+                Methoden können ebenfalls Typ-Parameter haben,
+                wie zum Beispiel die Methoden <code>isInstanceOf[T]</code> (Typüberprüfung) von AnyRef.
+            }
+        }
+
+        <!--################################################################################## -->
+        
+        @slide() {
+            <!-- Upper Bound -->
+        
+            @sidebyside((75,25)) {
+                @snippet() {
+                    @sourceblock(id = "pair3", include = "crew-traits", fragment = false) {
+                        |case class CockpitPair[T <: CockpitCrew](one: T, two: T)
+                    }
+                }
+            } {
+                @codenote() {
+                    <code>CockpitPair</code> erwartet 2 Parameter vom Typ <code>T</code> - dieser ist "mindestens" vom Typ
+                    <code>CockpitCrew</code>
+                }
+            }
+        
+            <hr/><hr/>
+        
+            @sidebyside((75,25)) {
+                @snippet() {
+                    @callblock(reference = "pair3") {
+                        |CockpitPair(Pilot(), Stewardess())
+                    }
+                    @outblock(error = true) {
+                        |error: inferred type arguments [Crew] do not conform to
+                        |       method apply's type parameter bounds [T <: CockpitCrew]
+                    }
+                }
+            } {
+                @codenote() {
+                    <code>Stewardess</code> entspricht <var>nicht</var> dem Typ <code>CockpitCrew</code>
+                }
+            }
+        
+            <hr/>
+        
+            @sidebyside((75,25)) {
+                @snippet() {
+                    @callblock(reference = "pair3") {
+                        |val cp = CockpitPair(Pilot(), CoPilot())
+                    }
+                    @outblock() {
+                        |cp: CockpitPair[CockpitCrew] = ...
+                    }
+                }
+            } {
+                @codenote() {
+                    <code>Pilot</code> und <code>CoPilot</code> <em>entsprechen</em> dem Typ <code>CockpitCrew</code>
+                }
+            }
+        
+            <hr/><hr/>
+        
+        
+            @infobox() {
+                Mit <code>[T &lt;: SuperClass]</code> wird für den Typ-Parameter ein erforderter Sub-Typ definiert
+                <span class="nobreak">("Upper Bound")</span>, den der entsprechende Parameter "mindestens" aufweisen muss.
+            }
+        }
+
+        <!--################################################################################## -->
+        
+        @uebung("000") {
+        
+            Die Übung ist unter
+                <code>/src/main/scala/de/learnscala/uebungen/<em>U210.scala</em></code>
+            zu finden.
+        
+            <hr/>
+        
+            Die dazugehörige Testspezifikation unter
+                <code>/src/test/scala/de/learnscala/specs/<var>S210.scala</var></code>.
+        }
+    }   
+}

@@ -4,7 +4,7 @@ TODO
     - jerkson
 -->
 
-@defining("JSON") { topic =>
+@defining("JSON") { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -16,7 +16,7 @@ TODO
 
         @defining("Jerkson") { title =>
 
-            @headslide(topic = topic, title = title) {
+            @headslide(title = title) {
                 Jerkson
             } {
                 <div class="indent">

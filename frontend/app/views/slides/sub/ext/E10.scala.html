@@ -5,7 +5,7 @@ TODO:
     - scala-swing
 -->
 
-@defining("Werkzeuge I") { topic =>
+@defining("Werkzeuge I") { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -17,13 +17,13 @@ TODO:
 
         <!--################################################################################## -->
 
-        @slide(topic = topic, title = "Übersicht") {
+        @slide(title = "Übersicht") {
             @overview
         }
 
         <!--################################################################################## -->
 
-        @slide(topic = topic, title = "JARs") {
+        @slide(title = "JARs") {
             <div class="indent">
                 @sidebyside() {
                     <div class="fragment">
@@ -112,7 +112,7 @@ TODO:
 
         <!--################################################################################## -->
 
-        @slide(topic = topic) {
+        @slide() {
             @overview
         }
 
@@ -120,7 +120,7 @@ TODO:
 
         @defining("Kommandozeile") { title =>
 
-            @headslide(topic = topic, title = title, subtitle = "scalac") {
+            @headslide(title = title, subtitle = "scalac") {
                 &gt;<em> scalac</em>
             } {
                 <div class="indent">
@@ -138,7 +138,7 @@ TODO:
 
             <!--################################################################################## -->
 
-            @headslide(topic = topic, title = title, subtitle = "fsc") {
+            @headslide(title = title, subtitle = "fsc") {
                 &gt;<em> fsc</em>
             } {
                 <div class="indent">
@@ -161,7 +161,7 @@ TODO:
 
             <!--################################################################################## -->
 
-            @headslide(topic = topic, title = title, subtitle = "scala") {
+            @headslide(title = title, subtitle = "scala") {
                 &gt;<em> scala</em>
             } {
                 <div class="indent">
@@ -210,7 +210,7 @@ TODO:
 
         <!--################################################################################## -->
 
-        @headslide(topic = topic, title = "Installation") {
+        @headslide(title = "Installation") {
             <em>Scala</em> installieren
         } {
             <div class="indent">

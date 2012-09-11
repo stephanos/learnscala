@@ -1,4 +1,4 @@
-@defining("Pakete") { topic =>
+@defining("Pakete") { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -10,7 +10,7 @@
 
         <!--################################################################################## -->
 
-        @slide(topic = topic) {
+        @slide() {
 
             @sidebyside((60,40)) {
                 @sourcecode(fragment = false) {
@@ -36,7 +36,7 @@
 
         <!--################################################################################## -->
 
-        @slide(topic = topic) {
+        @slide() {
             <!-- private[Package] -->
 
             @sidebyside((60,40)) {
@@ -77,7 +77,7 @@
 
         <!--################################################################################## -->
 
-        @slide(topic = topic) {
+        @slide() {
             <!-- Package Objects -->
 
             @sidebyside((66,33)) {

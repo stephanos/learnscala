@@ -1,4 +1,4 @@
-@defining("For") { topic =>
+@defining("For") { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -9,7 +9,7 @@
 
         <!--################################################################################## -->
 
-        @slide(topic = topic) {
+        @slide() {
 
             @sidebyside((80,20)) {
                 @snippet() {
@@ -84,7 +84,7 @@
 
         <!--################################################################################## -->
 
-        @slide(topic = topic) {
+        @slide() {
 
             @sidebyside((80,20)) {
                 @snippet() {
@@ -132,7 +132,7 @@
 
         <!--################################################################################## -->
 
-        @slide(topic = topic) {
+        @slide() {
 
             @sidebyside((80,20)) {
                 @snippet() {
@@ -180,7 +180,7 @@
 
         <!--################################################################################## -->
 
-        @slide(topic = topic) {
+        @slide() {
 
             @sourcecode(fragment = false, id = "is_prime") {
                 |def isPrime(n: Int) = List.range(2, n) forall (x => n % x != 0)

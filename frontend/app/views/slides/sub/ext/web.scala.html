@@ -3,7 +3,7 @@ TODO
     - Scalate ?
 -->
 
-@defining("Web I") { topic =>
+@defining("Web I") { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -17,7 +17,7 @@ TODO
 
         @defining("Play2") { title =>
 
-            @headslide(topic = topic, title = title) {
+            @headslide(title = title) {
                 @title
             } {
                 <div class="indent">
@@ -98,7 +98,7 @@ TODO
 
         @defining("Lift") { title =>
 
-            @headslide(topic = topic, title = title) {
+            @headslide(title = title) {
                 @title
             } {
 
@@ -109,7 +109,7 @@ TODO
 
         @defining("Scalatra") { title =>
 
-            @headslide(topic = topic, title = title) {
+            @headslide(title = title) {
                 @title
             } {
 

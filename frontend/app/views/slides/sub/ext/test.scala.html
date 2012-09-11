@@ -7,7 +7,7 @@ TODO
     - http://twitter.github.com/scala_school/specs.html
 -->
 
-@defining("Testen") { topic =>
+@defining("Testen") { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -19,7 +19,7 @@ TODO
 
         <!--################################################################################## -->
 
-        @slide(topic = topic) {
+        @slide() {
             @Images.testTools()
         }
 
@@ -27,7 +27,7 @@ TODO
 
         @defining("ScalaTest") { title =>
 
-            @slide(topic = topic, title = title) {
+            @slide(title = title) {
 
             }
         }
@@ -36,7 +36,7 @@ TODO
 
         @defining("Specs") { title =>
 
-            @slide(topic = topic, title = title) {
+            @slide(title = title) {
                 @sidebyside((66,33)) {
                     @sourcecode(fragment = false) {
                         |import org.specs2.mutable._
@@ -69,7 +69,7 @@ TODO
 
         @defining("Mockito") { title =>
 
-            @slide(topic = topic, title = title) {
+            @slide(title = title) {
 
 
             }
@@ -79,7 +79,7 @@ TODO
 
         @defining("ScalaCheck") { title =>
 
-            @slide(topic = topic, title = title) {
+            @slide(title = title) {
 
 
             }
@@ -89,7 +89,7 @@ TODO
 
         @defining("SBT") { title =>
 
-            @slide(topic = topic, title = title) {
+            @slide(title = title) {
 
             }
         }

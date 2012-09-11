@@ -1,4 +1,4 @@
-@defining("Typhierarchie") { topic =>
+@defining("Typhierarchie") { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -10,37 +10,37 @@
 
         <!--################################################################################## -->
 
-        @slide(topic = topic, title = "Any") {
+        @slide(title = "Any") {
             @content.any(Images.types(0))
         }
 
         <!--################################################################################## -->
 
-        @slide(topic = topic, title = "AnyVal") {
+        @slide(title = "AnyVal") {
             @content.anyval(Images.types(1))
         }
 
         <!--################################################################################## -->
 
-        @slide(topic = topic, title = "AnyRef") {
+        @slide(title = "AnyRef") {
             @content.anyref(Images.types(2))
         }
 
         <!--################################################################################## -->
 
-        @slide(topic = topic, title = "Null") {
+        @slide(title = "Null") {
             @content.nulls(Images.types(3))
         }
 
         <!--################################################################################## -->
 
-        @slide(topic = topic, title = "Nothing") {
+        @slide(title = "Nothing") {
             @content.nothing(Images.types(4))
         }
 
         <!--################################################################################## -->
 
-        @slide(topic = topic, title = "Insgesamt") {
+        @slide(title = "Insgesamt") {
             @Images.types(4)
         }
 

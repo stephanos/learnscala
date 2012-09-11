@@ -6,7 +6,7 @@ TODO
     - Übung
 -->
 
-@defining("XML") { topic =>
+@defining("XML") { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -18,7 +18,7 @@ TODO
 
         @defining("Erstellen") { title =>
 
-            @slide(topic = topic, title = title, subtitle = "Literale") {
+            @slide(title = title, subtitle = "Literale") {
                 @snippet() {
                     @sourceblock() {
                         |val xml =
@@ -64,7 +64,7 @@ TODO
 
             <!--################################################################################## -->
 
-            @slide(topic = topic, title = title, subtitle = "Literale", subsubtitle = "Dynamisch") {
+            @slide(title = title, subtitle = "Literale", subsubtitle = "Dynamisch") {
                 @snippet() {
                     @sourceblock() {
                         |def xml(name: String) = &lt;h1&gt; Welcome {name}! &lt;/h1&gt;
@@ -98,7 +98,7 @@ TODO
 
             <!--################################################################################## -->
 
-            @slide(topic = topic, title = title, subtitle = "Literale", subsubtitle = "Dynamisch II") {
+            @slide(title = title, subtitle = "Literale", subsubtitle = "Dynamisch II") {
 
                 @snippet() {
                     @sourceblock() {
@@ -151,7 +151,7 @@ TODO
 
             <!--################################################################################## -->
 
-            @slide(topic = topic, title = title, subtitle = "Literale", subsubtitle = "Attribute") {
+            @slide(title = title, subtitle = "Literale", subsubtitle = "Attribute") {
                 @snippet() {
                     @callblock() {
                         |val xml = &lt;person male="true"&gt; Paul &lt;/person&gt;
@@ -202,14 +202,14 @@ TODO
 
             <!--################################################################################## -->
 
-            @*@slide(topic = topic, title = title, subtitle = "Manuell") {
+            @*@slide(title = title, subtitle = "Manuell") {
                 TODO
                 <!--http://scalatutorial.de/topic176.html#xmlErzeugen-->
             }*@
 
             <!--################################################################################## -->
 
-            @slide(topic = topic, title = title, subtitle = "Anwendungsbeispiel") {
+            @slide(title = title, subtitle = "Anwendungsbeispiel") {
                 @snippet(id = "books_out") {
                     @sourceblock() {
                         |case class Book ( title: String, pages: Int, year: Int, available: Boolean ) {
@@ -252,7 +252,7 @@ TODO
 
         <!--################################################################################## -->
 
-        @slide(topic = topic, title = "Typenhierarchie") {
+        @slide(title = "Typenhierarchie") {
             @sidebyside() {
                 @Images.xmlHierarchy()
             } {
@@ -291,7 +291,7 @@ TODO
 
         @defining("Auslesen") { title =>
 
-            @slide(topic = topic, title = title, subtitle = "XPath", subsubtitle = "") {
+            @slide(title = title, subtitle = "XPath", subsubtitle = "") {
                 @sidebyside((40,60)) {
                     @parsecode("xpath")
                 } {
@@ -359,7 +359,7 @@ TODO
 
             <!--################################################################################## -->
 
-            @slide(topic = topic, title = title, subtitle = "XPath", subsubtitle = "") {
+            @slide(title = title, subtitle = "XPath", subsubtitle = "") {
                 @sidebyside((40,60)) {
                     @parsecode("")
                 } {
@@ -424,7 +424,7 @@ TODO
 
             <!--################################################################################## -->
 
-            @*@slide(topic = topic, title = title, subtitle = "Pattern Matching") {
+            @*@slide(title = title, subtitle = "Pattern Matching") {
                 @sidebyside((40,60)) {
                     @parsecode("pmatch")
                 } {
@@ -477,7 +477,7 @@ TODO
 
             <!--################################################################################## -->
 
-            @slide(topic = topic, title = title, subtitle = "Pattern Matching") {
+            @slide(title = title, subtitle = "Pattern Matching") {
                 @sidebyside((40,60)) {
                     @parsecode("")
                 } {
@@ -507,7 +507,7 @@ TODO
 
             <!--################################################################################## -->
 
-            @slide(topic = topic, title = title, subtitle = "Anwendungsbeispiel") {
+            @slide(title = title, subtitle = "Anwendungsbeispiel") {
                 @snippet(id = "books_in") {
                     @sourceblock() {
                         |case class Book ( title: String, pages: Int, year: Int, available: Boolean )
@@ -544,7 +544,7 @@ TODO
         <!--################################################################################## -->
 
         @defining("Transformieren") { title =>
-            @slide(topic = topic, title = title) {
+            @slide(title = title) {
                 @sidebyside((40,60)) {
                     @snippet() {
                         @sourcecode(id = "transform") {
@@ -611,7 +611,7 @@ TODO
         <!--################################################################################## -->
 
         @defining("Speichern und Laden") { title =>
-            @slide(topic = topic, title = title) {
+            @slide(title = title) {
                 @snippet() {
                     @sourceblock() {
                         |val xml = &lt;ul&gt; &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt; &lt;/ul&gt;
