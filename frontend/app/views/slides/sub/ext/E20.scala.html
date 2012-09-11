@@ -554,12 +554,10 @@ TODO
                             |      &lt;ul&gt; // unordered
                             |        &lt;li&gt; Java &lt;/li&gt;
                             |        &lt;li&gt; Scala &lt;/li&gt;
-                            |        &lt;li&gt; Groovy &lt;/li&gt;
                             |      &lt;/ul&gt;
                             |      &lt;ol&gt; // ordered
                             |        &lt;li&gt; C# &lt;/li&gt;
                             |        &lt;li&gt; F# &lt;/li&gt;
-                            |        &lt;li&gt; JScript &lt;/li&gt;
                             |      &lt;/ol&gt;
                             |    &lt;/body&gt;
                             |  &lt;/html&gt;
@@ -570,34 +568,35 @@ TODO
                             |      &lt;ol&gt; // ordered
                             |        &lt;li&gt; Java &lt;/li&gt;
                             |        &lt;li&gt; Scala &lt;/li&gt;
-                            |        &lt;li&gt; Groovy &lt;/li&gt;
                             |      &lt;/ol&gt;
                             |      &lt;ul&gt; // unordered
                             |        &lt;li&gt; C# &lt;/li&gt;
                             |        &lt;li&gt; F# &lt;/li&gt;
-                            |        &lt;li&gt; JScript &lt;/li&gt;
                             |      &lt;/ul&gt;
                             |    &lt;/body&gt;
                             |  &lt;/html&gt;
                         }
                     }
                 } {
-                    @callcode(reference = "transform") {
-                        |import scala.xml._
-                        |import scala.xml.transform._
-                        |
-                        |val trfrm = new RewriteRule {
-                        |  override def transform(n: Node) =
-                        |    n match {
-                        |      case e: Elem if(e.label == "ul") =>
-                        |        e.copy(label = "ol")
-                        |      case e: Elem if(e.label == "ol") =>
-                        |        e.copy(label = "ul")
-                        |      case _ => n
-                        |    }
-                        |}
-                        |
-                        |new RuleTransformer(trfrm).transform(html)
+                    @snippet() {
+                        @sourceblock(reference = "transform") {
+                            |import scala.xml._
+                            |import scala.xml.transform._
+                            |
+                            |val trfrm = new RewriteRule {
+                            |  override def transform(n: Node) =
+                            |    n match {
+                            |      case e: Elem if(e.label == "ul") =>
+                            |        e.copy(label = "ol")
+                            |      case e: Elem if(e.label == "ol") =>
+                            |        e.copy(label = "ul")
+                            |      case _ => n
+                            |    }
+                            |}
+                        }
+                        @callblock() {
+                            |new RuleTransformer(trfrm).transform(html)
+                        }
                     }
                     @codesub() {
                         <code>RuleTransformer</code> kann eine oder mehrere <code>RewriteRule</code>
@@ -614,7 +613,12 @@ TODO
             @slide(title = title) {
                 @snippet() {
                     @sourceblock() {
-                        |val xml = &lt;ul&gt; &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt; &lt;/ul&gt;
+                        |val xml =
+                        |   &lt;ul&gt;
+                        |       &lt;li&gt;Milk&lt;/li&gt;
+                        |       &lt;li&gt;Butter&lt;/li&gt;
+                        |       &lt;li&gt;Honey&lt;/li&gt;
+                        |   &lt;/ul&gt;
                     }
                     @outblock() {
                         |xml: scala.xml.Elem = &lt;ul&gt; &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt; &lt;/ul&gt;
@@ -638,7 +642,7 @@ TODO
                     }
                 }
                 @codesub() {
-                    <code>loadFile</code> kann eine Datei laden und parst den Inhalt mit Hilfe von Javas SAX Parser
+                    <code>loadFile</code> kann eine Datei laden und parst den Inhalt mit Hilfe von Javas <em>SAX Parser</em>
                 }
             }
         }

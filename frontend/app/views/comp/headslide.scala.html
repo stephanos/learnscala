@@ -1,4 +1,4 @@
-@(id: String = null, subsubtitle: String = null, subtitle: String = null, title: String = null, topic: String = null, chapter: String = null)(head: Html = Html.empty)(body: Html = Html.empty)
+@(id: String = null, subsubtitle: String = null, subtitle: String = null, title: String = null, chapter: String = null)(head: Html = Html.empty)(body: Html = Html.empty)(implicit topic: String = null)
 
 <section @{if(id == null) "" else "data-id=slide-" + id}
          @{if(title == null) "" else "data-title='" + title + "'"}
