@@ -7,39 +7,40 @@ define [
     init: () ->
       $(".slidedecks a").each(
         (idx, link) =>
-          li = $(link).parent()
+          if($(link).data("id"))
+            li = $(link).parent()
+            input = $(li).find("input")
 
-          # reset
-          $(link).parent().tooltip("destroy")
-          $(link).find("input").unbind()
-          li.removeClass("req")
+            # reset
+            $(li).tooltip("destroy")
+            $(input).unbind()
+            li.removeClass("req")
 
-          # calc status
-          deps = $(link).data("deps")
-          if(deps)
-            deps = deps.split(",")
-            missing = _.reject(deps, (id) =>
-              localStorage[@getKey(@getItem(id).find("input"))]
-            )
-            if(missing.length > 0)
-              li.addClass("req")
-              reqs = ""
-              _.each(missing, (id) => reqs += "<li>" + @getItem(id).data("label") + "</li>")
-              li.attr("title", "Voraussetzungen: <ul>" + reqs + "</ul>")
-              $(li).tooltip(
-                html: true,
-                placement: "bottom",
-                delay: { show: 500, hide: 100 }
+            # calc status
+            deps = $(link).data("deps")
+            if(deps)
+              deps = deps.split(",")
+              missing = _.reject(deps, (id) =>
+                localStorage[@getKey(@getItem(id).parent().find("input"))]
               )
+              if(missing.length > 0)
+                li.addClass("req")
+                reqs = ""
+                _.each(missing, (id) => reqs += "<li>" + @getItem(id).data("label") + "</li>")
+                li.attr("title", "Voraussetzungen: <ul>" + reqs + "</ul>")
+                $(li).tooltip(
+                  html: true,
+                  placement: "bottom",
+                  delay: { show: 500, hide: 100 }
+                )
 
-          # bind click
-          input = $(link).find("input")
-          $(input).click(@update)
+            # bind click
+            $(input).click(@update)
 
-          # read status
-          key = @getKey(input)
-          if(localStorage[key])
-            @apply(input, true)
+            # read status
+            key = @getKey(input)
+            if(localStorage[key] != undefined)
+              @apply(input, true)
       )
 
     getItem: (id) ->
@@ -71,7 +72,7 @@ define [
       @apply(input, val)
 
     apply: (input, val) ->
-      li = $(input).parent().parent()
+      li = $(input).parent()
 
       # reset
       $(li).removeClass("done")
