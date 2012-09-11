@@ -54,7 +54,7 @@ TODO
             }
             <sub></sub>
 
-            <hr/>
+            @spacer()
 
             @sourcecode() {
                 |BlogPosts where (_.clicks > 100)
@@ -62,7 +62,7 @@ TODO
             }
             <sub></sub>
 
-            <hr/>
+            @spacer()
 
             @sourcecode() {
                 |BlogPosts where (_.tags in List("scala", "mongodb"))
@@ -70,7 +70,7 @@ TODO
             }
             <sub></sub>
 
-            <hr/>
+            @spacer()
 
             @sourcecode() {
                 |BlogPosts where (_.created before new Date())
@@ -78,7 +78,7 @@ TODO
             }
             <sub></sub>
 
-            <hr/>
+            @spacer()
 
             @sourcecode() {
                 |BlogPosts where (_.id eqs 1)

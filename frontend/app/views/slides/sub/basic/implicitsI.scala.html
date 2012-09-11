@@ -39,13 +39,13 @@
                 }
             }
 
-            <hr/><hr/>
+            @spacer2()
 
             @sourcecode() {
                 |// Predef.scala
                 |implicit def int2long(x: Int): Long = x.toLong
             }
-            <hr/>
+            @spacer()
             @fragment {
                 <sub>
                     <!--Wenn beim Aufruf einer Methode der Typ von Argument und Parameter nicht zusammenpassen,
@@ -76,7 +76,7 @@
                 }
             }
 
-            <hr/>
+            @spacer()
 
             @sidebyside((60,40)) {
                 @snippet() {
@@ -94,7 +94,7 @@
                 }
             }
 
-            <hr/>
+            @spacer()
 
             @sidebyside((60,40)) {
                 @snippet() {
@@ -112,14 +112,14 @@
                 }
             }
 
-            <hr/><hr/>
+            @spacer2()
 
             @sourcecode() {
                 |// Predef.scala
                 |implicit def augmentString(x: String) = new StringOps(x)
                 |implicit def intWrapper   (x: Int)    = new runtime.RichInt(x)
             }
-            <hr/>
+            @spacer()
             @fragment {
                 <sub>
                     <!--Beim Aufruf einer nicht existierenden Methode sucht Scala nach einer
@@ -148,7 +148,7 @@
                 <ol>
                     <li class="fragment">
                         <em>Keyword</em>
-                        <hr/>
+                        @spacer()
                         <ul>
                             <li>
                                 Nur Methoden mit <code>implicit</code> werden auch als Implicits angesehen.
@@ -157,7 +157,7 @@
                     </li>
                     <li class="fragment">
                         <em>Scope</em>
-                        <hr/>
+                        @spacer()
                         <ul>
                             <li>
                                 Nur <code>implicits</code> im aktuellen Scope werden verwendet.
@@ -166,7 +166,7 @@
                     </li>
                     <li class="fragment">
                         <em>"Immer nur einer"</em>
-                        <hr/>
+                        @spacer()
                         <ul>
                             <li>
                                 Es wird stets nur <em>1</em> Implicit gleichzeitig verwendet.
@@ -175,7 +175,7 @@
                     </li>
                     <li class="fragment">
                         <em>"Explizit hat Vorrang"</em>
-                        <hr/>
+                        @spacer()
                         <ul>
                             <li>
                                 Implicits werden nur bei Typenfehlern herangezogen.
@@ -184,7 +184,7 @@
                     </li>
                     <li class="fragment">
                         <em>Eindeutig</em>
-                        <hr/>
+                        @spacer()
                         <ul>
                             <li>
                                 Nur wenn es genau ein mögliches Implicit gibt, wird es angewandt.
@@ -208,7 +208,7 @@
             } {
             }
 
-            <hr/>
+            @spacer()
 
             <!-- directly -->
             @sidebyside((60,40)) {
@@ -229,7 +229,7 @@
                 }
             }
 
-            <hr/>
+            @spacer()
 
             <!-- import -->
             @sidebyside((60,40)) {
@@ -253,7 +253,7 @@
                 }
             }
 
-            <hr/>
+            @spacer()
 
             <!-- companion -->
             @sidebyside((60,40)) {
@@ -285,7 +285,7 @@
                 <code>/src/main/scala/de/learnscala/uebungen/<em>U410.scala</em></code>
             zu finden.
 
-            <hr/>
+            @spacer()
 
             Die dazugehörige Testspezifikation unter
                 <code>/src/test/scala/de/learnscala/specs/<var>U410.scala</var></code>.

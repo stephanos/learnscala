@@ -22,7 +22,7 @@
         }
     }
 
-    <hr/>
+    @spacer()
 
     @sidebyside() {
         @snippet() {
@@ -41,7 +41,7 @@
         }
     }
 
-    <hr/>
+    @spacer()
 
     @infobox() {
         Mittels <code>extend</code> erben Klassen und Objekte von (maximal) einer anderen Klasse.
@@ -58,7 +58,7 @@
         } {
             @codenote() {
                 <code>Plane</code> erwartet den Parameter <code>model</code>
-                <hr/>
+                @spacer()
             }
         }
         @codesplit() {
@@ -68,7 +68,7 @@
             @codenote() {
                 <code>PassengerPlane</code> gibt den Parameter <code>model</code> an <code>Plane</code> weiter
                 <!--und erwartet einen zusätzlichen Parameter <code>capacity</code>-->
-                <hr/>
+                @spacer()
             }
         }
         @codesplit() {
@@ -83,7 +83,7 @@
         }(null)
     }
 
-    <hr/>
+    @spacer()
 
     @infobox() {
         Bei der Vererbung muss der primäre Konstruktor der erbende Klasse
@@ -100,7 +100,7 @@
             |class Plane(val model: String)
         } {
             <code>Plane</code> erwartet den Parameter <code>model</code>
-            <hr/>
+            @spacer()
         }
         @codesplit() {
             |class PassengerPlane(model: String, val seats: Int)
@@ -108,7 +108,7 @@
         } {
             <code>PassengerPlane</code> gibt den Parameter <code>model</code> an <code>Plane</code> weiter
             und erwartet einen zusätzlichen Parameter <code>capacity</code>
-            <hr/>
+            @spacer()
         }
         @codesplit() {
             |class DummyPlane()
@@ -121,7 +121,7 @@
         }(null)
     }
 
-    <hr/>
+    @spacer()
 
     @infobox() {
 
@@ -149,7 +149,7 @@
         }
     }
 
-    <hr/><hr/>
+    @spacer2()
 
     @sidebyside((60,40)) {
         @snippet() {
@@ -166,7 +166,7 @@
         }
     }
 
-    <hr/><hr/>
+    @spacer2()
 
     @infobox() {
         <code>final</code> verhindert, dass eine Klasse vererbt werden kann;
@@ -201,7 +201,7 @@
         }
     }
 
-    <hr/>
+    @spacer()
 
     @sidebyside((70,30)) {
         @snippet() {
@@ -257,7 +257,7 @@
         }
     }
 
-    <hr/>
+    @spacer()
 
     @sidebyside((70,30)) {
         @snippet() {
@@ -308,7 +308,7 @@
         }
     }
 
-    <hr/>
+    @spacer()
 
     @infobox() {
         Eine Methode ohne Parameter kann durch ein <code>val</code> überschrieben werden;
@@ -331,7 +331,7 @@
     } {
     }
 
-    <hr/>
+    @spacer()
 
     @sidebyside((66,33)) {
         @snippet() {
@@ -348,7 +348,7 @@
     } {
     }
 
-    <hr/>
+    @spacer()
 
     @infobox() {
         Durch den Modifier <code>final</code> vor einem Feld oder einer Methode kann das Überschreiben
@@ -373,7 +373,7 @@
     } {
     }
 
-    <hr/>
+    @spacer()
 
     @sidebyside((66,33)) {
         @snippet() {
@@ -387,7 +387,7 @@
     } {
     }
 
-    <hr/>
+    @spacer()
 
     @infobox() {
         Mit Hilfe von <code>super</code> kann explizit auf Methoden und Felder der vererbten Klasse zugegriffen werden.
@@ -438,7 +438,7 @@
     } {
     }
 
-    <hr/><hr/>
+    @spacer2()
 
     @sidebyside((66,33)) {
         @snippet() {
@@ -453,7 +453,7 @@
     } {
     }
 
-    <hr/>
+    @spacer()
 
     @sidebyside((66,33)) {
         @snippet() {
@@ -469,7 +469,7 @@
     } {
     }
 
-    <hr/>
+    @spacer()
 
     @infobox() {
         Eine Klasse die ein Feld oder eine Methode ohne Implementierung enthält,
@@ -487,7 +487,7 @@
         <code>/src/main/scala/de/learnscala/uebungen/<em>U130.scala</em></code>
     zu finden.
 
-    <hr/>
+    @spacer()
 
     Die dazugehörige Testspezifikation unter
         <code>/src/test/scala/de/learnscala/specs/<var>S130.scala</var></code>.

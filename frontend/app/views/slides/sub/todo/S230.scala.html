@@ -5,7 +5,7 @@
         <img class="naked"
             src="https://docs.google.com/drawings/pub?id=1kRUpQWsq_eIhXBq3vk18o094FoN4ERSA8kZv-iG6Jb4&amp;w=450">
     } {
-        <hr/><hr/><hr/>
+        @spacer2()@spacer()
         <ul>
             <li class="fragment">
                 <code>scala.collection.immutable</code> enthält <br/>
@@ -14,7 +14,7 @@
             <li class="fragment">
                 <code>scala.collection.mutable</code> enthält <br/>
                 <var>veränderliche</var>, sequenzielle Collections
-                <hr/><hr/><hr/>
+                @spacer2()@spacer()
             </li>
             <li class="fragment">
                 <code>scala.collection.parallel.immutable</code> enthält <br/>
@@ -38,13 +38,13 @@
     } {
         @fragment {
             <h4>Traversable</h4>
-            <hr/>
+            @spacer()
             <div class="indent">
                 <ul>
                     <li>Super-Klasse von allen Collections</li>
                     <li class="fragment">
                         abstrakte Methode <code>foreach</code>: wendet eine Funktion auf alle Elemente an
-                        <hr/>
+                        @spacer()
                         @sourcecode(fragment = false) {
                             |def foreach[U](f: Elem => U): Unit
                         }
@@ -70,7 +70,7 @@
                 |res0: List[Int] = List(1, 2, 3, 4, 5, 6)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |List(1,2,3) head
@@ -79,7 +79,7 @@
                 |res1: Int = 1
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |List(1,2,3) tail
@@ -88,7 +88,7 @@
                 |res2: List[Int] = List(2, 3)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |List(1,2,3) last
@@ -97,7 +97,7 @@
                 |res3: Int = 6
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |List(1,2,3) mkString ","
@@ -106,7 +106,7 @@
                 |res4: String = 1,2,3
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |List(1,2,3) sum
@@ -131,7 +131,7 @@
                 |res6: List[Int] = List(1, 2)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |List(1,2,3) drop 2
@@ -140,7 +140,7 @@
                 |res7: List[Int] = List(3)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |List(1,2,3) toArray
@@ -149,7 +149,7 @@
                 |res8: Array[Int) = Array(1,2,3)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |List(1,2,3) size
@@ -158,7 +158,7 @@
                 |res9: Int = 3
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |List(1,2,3) map (_ * 2)
@@ -167,7 +167,7 @@
                 |res10: List[Int] = List(2,4,6)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |List(1,2,3) filter (_ % 2 == 0)
@@ -190,13 +190,13 @@
     } {
         @fragment {
             <h4>Iterable</h4>
-            <hr/>
+            @spacer()
             <div class="indent">
                 <ul>
                     <li>erbt von <code>Traversable</code></li>
                     <li class="fragment">
                         implementiert <code>foreach</code>
-                        <hr/>
+                        @spacer()
                         @sourcecode(fragment = false) {
                             |def foreach[U](f: Elem => U) {
                             |  val it = iterator
@@ -206,7 +206,7 @@
                     </li>
                     <li class="fragment">
                         abstrakte Methode <code>iterator</code>
-                        <hr/>
+                        @spacer()
                         @sourcecode(fragment = false) {
                             |def iterator: Iterator[A]
                         }
@@ -233,13 +233,13 @@
     } {
         @fragment {
             <h4>Set</h4>
-            <hr/>
+            @spacer()
             <div class="indent">
                 <ul>
                     <li><code>Iterable</code> ohne gleiche Elemente</li>
                     <li class="fragment">
                         <code>HashSet</code>
-                        <hr/>
+                        @spacer()
                         <ul>
                             <li>Standardimplementierung</li>
                             <li class="fragment">
@@ -251,7 +251,7 @@
                     </li>
                     <li class="fragment">
                         <code>SortedSet</code>
-                        <hr/>
+                        @spacer()
                         <ul>
                             <li>
                                 sortiert Elemente beim Einfügen
@@ -276,7 +276,7 @@
                 |res0: Set[Int] = Set(1, 2, 3)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |Set(1, 2, 3) + 4
@@ -285,7 +285,7 @@
                 |res1: Set[Int] = Set(1, 2, 3, 4)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |Set(1, 2, 3) + 3
@@ -294,7 +294,7 @@
                 |res2: Set[Int] = Set(1, 2, 3)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |Set(1, 2, 3) + (2, 4)
@@ -303,7 +303,7 @@
                 |res3: Set[Int] = Set(1, 2, 3, 4)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |Set(1, 2, 3) ++ Set(2, 4)
@@ -312,7 +312,7 @@
                 |res4: Set[Int] = Set(1, 2, 3, 4)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |Set(1, 2, 3) -- Set(1, 2)
@@ -338,7 +338,7 @@
                     |res6: Set[Int] = Set()
                 }
             }
-            <hr class="half"/>
+            @spacer_half()
             @snippet() {
                 @callblock() {
                     |Set(1) subsetOf Set(1, 2, 3)
@@ -347,7 +347,7 @@
                     |res7: Boolean = true
                 }
             }
-            <hr class="half"/>
+            @spacer_half()
             @snippet() {
                 @callblock() {
                     |Set(1, 2, 3) contains (42)
@@ -356,7 +356,7 @@
                     |res8: Boolean = false
                 }
             }
-            <hr class="half"/>
+            @spacer_half()
             @snippet() {
                 @callblock() {
                     |Set(1, 2, 3) intersect Set(1)
@@ -365,7 +365,7 @@
                     |res9: Set[Int] = Set(1)
                 }
             }
-            <hr class="half"/>
+            @spacer_half()
             @snippet() {
                 @callblock() {
                     |Set(1, 2, 3) union Set(2, 4)
@@ -374,7 +374,7 @@
                     |res10: Set[Int] = Set(1, 2, 3, 4)
                 }
             }
-            <hr class="half"/>
+            @spacer_half()
             @snippet() {
                 @callblock() {
                     |Set(1, 2, 3) diff Set(2)
@@ -397,14 +397,14 @@
     } {
         @fragment {
             <h4>Map</h4>
-            <hr/>
+            @spacer()
             <div class="indent">
                 <ul>
                     <li><code>Iterable</code> aus Schlüssel-Wert-Paaren</li>
 
                     <li class="fragment">
                         <code>HashMap</code>
-                        <hr/>
+                        @spacer()
                         <ul>
                             <li>
                                 Standardimplementierung
@@ -416,7 +416,7 @@
                     </li>
                     <li class="fragment">
                         <code>TreeMap</code>
-                        <hr/>
+                        @spacer()
                         <ul>
                             <li>
                                 Standardimplementierung von <code>SortedMap</code>
@@ -444,7 +444,7 @@
                 |res0: Map[String,Int] = Map(a -> 1, b -> 2)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |Map("a" -> 1, "b" -> 2)("a")
@@ -453,7 +453,7 @@
                 |res1: Int = 1
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |Map("a" -> 1, "b" -> 2) + ("c" -> 3)
@@ -462,7 +462,7 @@
                 |res2: Map[String,Int] = Map(a -> 1, b -> 2, c -> 3)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |Map("a" -> 1, "b" -> 2) ++ Map("c" -> 3, "d" -> 4)
@@ -471,7 +471,7 @@
                 |res3: Map[String,Int] = Map(a -> 1, b -> 2, c -> 3, d -> 4)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |Map("a" -> 1, "b" -> 2) - "a"
@@ -480,7 +480,7 @@
                 |res4: Map[String,Int] = Map(b -> 2)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |Map("a" -> 1, "b" -> 2) -- Set("a", "c")
@@ -505,7 +505,7 @@
                 |res6: Boolean = false
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |Map("a" -> 1, "b" -> 2) keySet
@@ -514,7 +514,7 @@
                 |res7: Set[String] = Set(a, b)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |Map("a" -> 1, "b" -> 2) values
@@ -523,7 +523,7 @@
                 |res8: Iterable[Int] = MapLike(1, 2)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |Map("a" -> 1, "b" -> 2) contains ("z")
@@ -532,7 +532,7 @@
                 |res9: Boolean = false
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |Map("a" -> 1, "bb" -> 2) filterKeys (_.length > 1)
@@ -541,7 +541,7 @@
                 |res10: Map[String,Int] = Map(bb -> 2)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |Map("a" -> 1, "b" -> 2) mapValues (_ * 10)
@@ -564,13 +564,13 @@
     } {
         @fragment {
             <h4>Seq</h4>
-            <hr/>
+            @spacer()
             <div class="indent">
                 <ul>
                     <li>geordnete <code>Iterable</code></li>
                     <li class="fragment">
                         <code>IndexedSeq</code>
-                        <hr/>
+                        @spacer()
                         <ul>
                             <li>
                                 optimiert für Direktzugriff
@@ -582,7 +582,7 @@
                     </li>
                     <li class="fragment">
                         <code>LinearSeq</code>
-                        <hr/>
+                        @spacer()
                         <ul>
                             <li>
                                 optimiert für sequenziellen Zugriff
@@ -594,7 +594,7 @@
                     </li>
                     <li class="fragment">
                         <code>Buffer</code>
-                        <hr/>
+                        @spacer()
                         <ul>
                             <li>
                                 optimiert fürs Anhängen
@@ -622,7 +622,7 @@
                 |res0: List[Int] = List(3, 2, 1)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |List(1,2,3,3,2,1) distinct
@@ -631,7 +631,7 @@
                 |res1: List[Int] = List(1, 2, 3)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |List(1,2,3) endsWith Seq(2,3)
@@ -640,7 +640,7 @@
                 |res2: Boolean = true
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |List(1,2,3) indexOf 2
@@ -649,7 +649,7 @@
                 |res3: Int = 1
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |List(3,2,1) sorted
@@ -658,7 +658,7 @@
                 |res4: List[Int] = List(1, 2, 3)
             }
         }
-        <hr class="half"/>
+        @spacer_half()
         @snippet() {
             @callblock() {
                 |List(333,22,1) sortBy (_.toString.length)
@@ -674,13 +674,13 @@
 
 @slide() {
 
-    <hr/><hr/>
+    @spacer2()
 
     @sidebyside() {
         <img class="naked"
              src="https://docs.google.com/drawings/pub?id=1kRUpQWsq_eIhXBq3vk18o094FoN4ERSA8kZv-iG6Jb4&amp;w=400">
     } {
-        <hr/><hr/><hr/><hr/>
+        @spacer2()@spacer2()
         <img class="naked"
              src="https://docs.google.com/drawings/pub?id=18hUCwlgzHjlqSjhoZucpRy6-JNRGCfssi_ruOcsToM0&amp;w=450">
     }
@@ -693,7 +693,7 @@
         <code>/src/main/scala/de/learnscala/uebungen/<em>U230.scala</em></code>
     zu finden.
 
-    <hr/>
+    @spacer()
 
     Die dazugehörige Testspezifikation unter
         <code>/src/test/scala/de/learnscala/specs/<var>S230.scala</var></code>.

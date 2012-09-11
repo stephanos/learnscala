@@ -35,10 +35,10 @@
                 </ul>
             }
 
-            <hr/><hr/>
+            @spacer2()
 
                 @sidebyside(fragment = true) {
-                    <hr/>
+                    @spacer()
                     @snippet() {
                         @callblock(reference = "plane", fragment = false) {
                             |new Plane()
@@ -81,7 +81,7 @@
                 }
             }
 
-            <hr/><hr/>
+            @spacer2()
 
             @sidebyside((60,40), fragment = true) {
                 @snippet() {
@@ -106,7 +106,7 @@
                 }
             }
 
-            <hr/>
+            @spacer()
 
             @infobox() {
                 Der primäre Konstruktor <comment>("primary constructor")</comment>
@@ -133,7 +133,7 @@
                     |val p = new Plane("Boeing", "737", 189)
                 }
             }
-            <hr/><hr/>
+            @spacer2()
 
             @infobox() {
                 <code>def this</code> leitet einen Konstruktor ein, <code>this(..)</code> ruft ihn auf.
@@ -157,7 +157,7 @@
                     |   val wings = 2
                     |}
                 }
-                <hr/>
+                @spacer()
                 @outcode() {
                     |// Plane.class dekompiliert:
                     |public class Plane extends [...] {
@@ -321,7 +321,7 @@
                 <code>/src/main/scala/de/learnscala/uebungen/<em>U100.scala</em></code>
             zu finden.
 
-            <hr/>
+            @spacer()
 
             Die dazugehörige Testspezifikation unter
                 <code>/src/test/scala/de/learnscala/specs/<var>S100.scala</var></code>.

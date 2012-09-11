@@ -47,7 +47,7 @@ TODO
                     <code>scala.xml.Elem</code> beschreibt ein allgemeines XML-Element
                 }
 
-                <hr/>
+                @spacer()
 
                 @snippet() {
                     @sourceblock() {
@@ -80,7 +80,7 @@ TODO
                     dynamische Blöcke mit Scala-Code durch Umschließen von <code>@("{")</code> und <code>@("}")</code>
                 }
 
-                <hr/>
+                @spacer()
 
                 @snippet() {
                     @callblock() {
@@ -119,7 +119,7 @@ TODO
                     werden automatisch in die entsprechende Escape-Sequenz umgewandelt
                 }
 
-                <hr/>
+                @spacer()
 
                 @snippet() {
                     @callblock() {
@@ -134,7 +134,7 @@ TODO
                     Blöcke können wiederum XML-Literale enthalten
                 }
 
-                <hr/>
+                @spacer()
 
                 @snippet() {
                     @sourceblock() {
@@ -164,7 +164,7 @@ TODO
                     XML-Elemente können mit Attributen versehen werden
                 }
 
-                <hr/>
+                @spacer()
 
                 @snippet() {
                     @sourceblock() {
@@ -182,7 +182,7 @@ TODO
                     Attribut-Block vom Typ <code>Boolean</code> ist <span class="underline">nicht</span> erlaubt
                 }
 
-                <hr/>
+                @spacer()
 
                 @snippet() {
                     @sourceblock() {
@@ -227,7 +227,7 @@ TODO
                     }
                 }
 
-                <hr/>
+                @spacer()
 
                 @snippet() {
                     @callblock(reference = "books_out") {
@@ -256,7 +256,7 @@ TODO
             @sidebyside() {
                 @Images.xmlHierarchy()
             } {
-                <hr/>
+                @spacer()
                 @snippet() {
                     @sourceblock() {
                         |import xml._
@@ -281,7 +281,7 @@ TODO
                 }
             }
 
-            <!--<hr/>
+            <!--@spacer()
             @codenote() {
                 Jedes XML-Element in Scala ist vom Typ <code>Node</code> - einem NodeSeq.
             }-->
@@ -313,7 +313,7 @@ TODO
                         Operator <code>\</code> extrahiert direkte Sub-Elemente
                     }
 
-                    <hr class="half"/>
+                    @spacer_half()
 
                     @snippet() {
                         @callblock(reference = "xpath") {
@@ -327,7 +327,7 @@ TODO
                         Operator <code>\\</code> extrahiert alle Sub-Elemente
                     }
 
-                    <hr class="half"/>
+                    @spacer_half()
 
                     @snippet() {
                         @callblock(reference = "xpath") {
@@ -341,7 +341,7 @@ TODO
                          Wildcard <code>"_"</code> trifft auf alle Elemente zu
                     }
 
-                    <hr class="half"/>
+                    @spacer_half()
 
                     @snippet() {
                         @callblock(reference = "xpath") {
@@ -375,7 +375,7 @@ TODO
                         <code>Node</code> ist eine Sequenz, hat daher auch die Operationen einer Sequenz
                     }
 
-                    <hr class="half"/>
+                    @spacer_half()
 
                     @snippet() {
                         @callblock(reference = "xpath") {
@@ -390,7 +390,7 @@ TODO
                         <code>text</code> liefert Inhalt des XML-Elements
                     }
 
-                    <hr class="half"/>
+                    @spacer_half()
 
                     @snippet() {
                         @callblock(reference = "xpath") {
@@ -405,7 +405,7 @@ TODO
                         <code>label</code> liefert den Tag-Namen des XML-Elements
                     }
 
-                    <hr class="half"/>
+                    @spacer_half()
 
                     @snippet() {
                         @callblock(reference = "xpath") {
@@ -450,7 +450,7 @@ TODO
 
                     }
 
-                    <hr/>
+                    @spacer()
 
                     @snippet() {
                         @sourceblock(reference = "pmatch") {
@@ -472,7 +472,7 @@ TODO
 
                     }
                 }
-                <hr/>
+                @spacer()
             }
 
             <!--################################################################################## -->
@@ -502,7 +502,7 @@ TODO
 
                     }
                 }
-                <hr/>
+                @spacer()
             }*@
 
             <!--################################################################################## -->
@@ -525,7 +525,7 @@ TODO
                         |}
                     }
                 }
-                <hr/>
+                @spacer()
                 @snippet() {
                     @callblock(reference = "books_in") {
                         |Book(&lt;book available="true"&gt;
@@ -603,7 +603,7 @@ TODO
                         auf einen <code>Node</code> und dessen Sub-Elemente anwenden
                     }
                 }
-                <hr/>
+                @spacer()
             }
         }
 
@@ -631,7 +631,7 @@ TODO
                     Objekt <code>XML</code> bietet eine <code>save</code>-Methode zum serialisieren einer <code>Node</code>-Instanz
                 }
 
-                <hr/>
+                @spacer()
 
                 @snippet() {
                     @callblock(reference = "save") {

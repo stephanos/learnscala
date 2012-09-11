@@ -32,7 +32,7 @@
         </ul>
     }
 
-    <hr/>
+    @spacer()
 
     @infobox() {
         <code>val</code> leitet eine Variable ein, der Typ folgt <strong>hinter</strong> dem Namen.
@@ -63,7 +63,7 @@
         definiert und versucht zu überschreiben.
     }
 
-    <hr/>
+    @spacer()
 
     @infobox() {
         <code>val</code> kann nicht überschrieben werden, sie ist unveränderlich (immutable).
@@ -90,7 +90,7 @@
         aber mit dem String <code>Java</code> initialisiert
     }
 
-    <hr/>
+    @spacer()
 
     @infobox() {
         Der Compiler stellt sicher, dass Variablentyp und -wert zusammenpassen.
@@ -113,7 +113,7 @@
         der Typ <code>Int</code> wird zugewiesen
     }
 
-    <hr/><hr/>
+    @spacer2()
 
     @sidebyside((45,55), fragment = true) {
         @snippet() {
@@ -129,7 +129,7 @@
         der Compiler erkennt den Typ <code>Float</code>
     }
 
-    <hr/><hr/>
+    @spacer2()
 
     @infobox() {
         Der Variablentyp kann weggelassen werden, der Compiler leitet ihn ab.
@@ -162,7 +162,7 @@
         }
     }
 
-    <hr/>
+    @spacer()
 
     @tipbox() {
         Semikolons weglassen, außer mehrere Anweisungen stehen in einer Zeile.
@@ -196,12 +196,12 @@
     } {
         @fragment {
             Variable <code>fuel</code> wird initialisiert
-            <hr/>
+            @spacer()
             Der Wert wird mit einer weiteren Anweisung überschrieben
         }
     }
 
-    <hr/>
+    @spacer()
 
     @infobox() {
         <code>var</code> kann überschrieben werden, sie ist veränderlich (mutable).

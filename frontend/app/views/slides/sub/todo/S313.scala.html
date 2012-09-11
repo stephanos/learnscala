@@ -21,13 +21,13 @@
         @codenote() {
             Methode <code>log</code> gibt Nachricht aus, wenn der <code>Logger</code> aktiv ist
         }
-        <hr/>
+        @spacer()
         @codenote() {
             <var>Problem:</var> Nachricht wird aufwendig formatiert - egal ob Logger aktiv ist
         }
     }
 
-    <hr/>
+    @spacer()
 
     @sidebyside((70,30)) {
         @snippet() {
@@ -58,7 +58,7 @@
             Methode <code>log</code> erwartet nun eine Funktion, dadurch kann die Formatierung der
             Nachricht erst ausgeführt werden, wenn der <code>Logger</code> auch aktiv ist
         }
-        <hr/>
+        @spacer()
         @codenote() {
             <var>Problem:</var> Syntax ist doch sehr gewöhnungsbedürftig
         }
@@ -96,12 +96,12 @@
         @codenote() {
             <code>=></code> wandelt einen Parameter von call-by-value in <em>call-by-name</em> um
         }
-        <hr/>
+        @spacer()
         @codenote() {
             <em>call-by-name</em> bedeutet, der Ausdruck wird erst beim Zugriff berechnet;
             die Auswertung ist also verzögert
         }
-        <hr/>
+        @spacer()
         @codenote() {
             <var>Achtung:</var> Ausdruck wird bei <strong>jedem</strong> Zugriff neu berechnet
         }
@@ -115,7 +115,7 @@
         <code>/src/main/scala/de/learnscala/uebungen/<em>U313.scala</em></code>
     zu finden.
 
-    <hr/>
+    @spacer()
 
     Die dazugehörige Testspezifikation unter
         <code>/src/test/scala/de/learnscala/specs/<var>U313.scala</var></code>.

@@ -66,7 +66,7 @@ TODO:
                     </div>
                 }
 
-                <hr/><hr/>
+                @spacer2()
 
                 @sidebyside() {
                     <div class="fragment">
@@ -126,7 +126,7 @@ TODO:
                 <div class="indent">
                     <ul>
                         <li><em>Skript</em>: kompiliert <em>Scala-Code</em> zu <var>Java-Bytecode</var>
-                            <hr/>
+                            @spacer()
                             @outcode(fragment = true) {
                                 |$ scalac HelloWorld.scala
                             }
@@ -147,13 +147,13 @@ TODO:
                         <li><em>Skript</em>: kompiliert Scala-Code mittels Hintergrundprozess</li>
                         <li class="fragment">
                             kompiliert schneller als <em>scalac</em>: Startzeit fällt weg plus Caching
-                            <hr/>
+                            @spacer()
                             @outcode() {
                                 |$ fsc HelloWorld.scala   // erster Aufruf, Prozess wird gestartet und kompiliert
                                 |
                                 |$ fsc HelloWorld.scala   // zweiter Aufruf, Prozess kompiliert direkt
                             }
-                            <hr/>
+                            @spacer()
                         </li>
                     </ul>
                 </div>
@@ -168,21 +168,21 @@ TODO:
                     <ul>
                         <li>
                             <em>Skript</em>: führt Scala-Programme aus
-                            <hr/>
+                            @spacer()
                             <div class="indent">
                                 <ol>
                                     <li class="fragment">
                                         kompilierte Programme
-                                        <hr class="half"/>
+                                        @spacer_half()
                                         @outcode() {
                                             |$ scala HelloWorld
                                             |
                                             |$ Hello World
                                         }
-                                        <hr class="half"/>
+                                        @spacer_half()
                                         @fragment {
                                             alternativ kann natürlich auch <var>java</var> verwendet werden:
-                                            <hr class="half"/>
+                                            @spacer_half()
                                             @outcode() {
                                                 |$ java -classpath lib/scala-library.jar HelloWorld
                                                 |
@@ -192,7 +192,7 @@ TODO:
                                     </li>
                                     <li class="fragment">
                                         interaktive Programme
-                                        <hr class="half"/>
+                                        @spacer_half()
                                         @outcode() {
                                             |$ scala
                                             |
@@ -217,16 +217,16 @@ TODO:
                 <ol>
                     <li>
                         Installieren von Java 6 (oder höher)
-                        <hr/>
+                        @spacer()
                     </li>
                     <li>
                         <code>&gt; java -version</code>
-                        <hr/>
+                        @spacer()
                     </li>
                     <li>
                         Installieren von Typesafe Stack via <code>www.typesafe.com/stack/download</code><br/>
                         <comment>keine Admin-Rechte? dann bitte <code>www.scala-lang.org/downloads</code></comment>
-                        <hr/>
+                        @spacer()
                     </li>
                     <li>
                         <code>&gt; scala -version</code><br/>

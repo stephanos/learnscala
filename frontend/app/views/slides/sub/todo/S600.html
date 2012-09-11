@@ -66,14 +66,14 @@
         |listOfFiles foreach (file => sendToS3(file))
     }
 
-    <hr/>
+    @spacer()
 
     @sourcecode() {
         |// parallel
         |listOfFiles.par foreach (file => sendToS3(file))
     }
 
-    <hr/><hr/>
+    @spacer2()
 
     @snippet() {
         @sourceblock() {

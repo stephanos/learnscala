@@ -2,7 +2,7 @@
 
     @sidebyside((45,45)) {
         <h5 class="black">Wer hat Zugriff?</h5>
-        <hr class="half"/>
+        @spacer_half()
 
         @sourcecode() {
             |class Plane {
@@ -13,7 +13,7 @@
             alle Klassen
         }
 
-        <hr class="half"/>
+        @spacer_half()
 
         @sourcecode() {
             |class Plane {
@@ -24,7 +24,7 @@
             <code>Plane</code> und seine Unterklassen - siehe @glossary("protected")
         }
 
-        <hr class="half"/>
+        @spacer_half()
 
         @sourcecode() {
             |class Plane {
@@ -37,7 +37,7 @@
     } {
 
         <h5 class="black">Was kann eingeschränkt werden?</h5>
-        <hr class="half"/>
+        @spacer_half()
 
         @sourcecode() {
             |class private Plane
@@ -46,7 +46,7 @@
             Klassen
         }
 
-        <hr class="half"/>
+        @spacer_half()
 
         @sourcecode() {
             |object private Plane
@@ -55,7 +55,7 @@
             @glossary("Objekte")
         }
 
-        <hr class="half"/>
+        @spacer_half()
 
         @sourcecode() {
             |class Plane private (seats: Int) {
@@ -66,7 +66,7 @@
             primäre und sekundäre Konstruktoren
         }
 
-        <hr class="half"/>
+        @spacer_half()
 
         @sourcecode() {
             |class Plane(private val seats: Int) {

@@ -33,7 +33,7 @@
         </div>
     }
 
-    <hr/>
+    @spacer()
 
     @infobox() {
         <code>def</code> leitet eine Methode ein - diese hat immer einen Rückgabetyp.
@@ -154,7 +154,7 @@
         }
     }
 
-    <hr/>
+    @spacer()
 
     @infobox() {
         Hat eine Methode keinen Rückgabewert, hat sie den Typ <code>Unit</code>.<br/>
@@ -179,7 +179,7 @@
         <comment>Wann? Bei nur einer Zeile</comment>
     }
 
-    <hr/>
+    @spacer()
 
     @sidebyside((40,60), fragment = true) {
         @sourcecode(fragment = false) {
@@ -191,7 +191,7 @@
         <comment>Wann? Immer, Rückgabe ist Ergebnis des letzten Ausdrucks</comment>
     }
 
-    <hr/>
+    @spacer()
 
     @sidebyside((40,60), fragment = true) {
         @sourcecode(fragment = false) {
@@ -203,7 +203,7 @@
         <comment>Wann? Keine Parameter</comment>
     }
 
-    <hr/>
+    @spacer()
 
     @sidebyside((40,60), fragment = true) {
         @sourcecode(fragment = false) {
@@ -215,7 +215,7 @@
         <comment>Wann? Nicht rekursiv oder überladen</comment>
     }
 
-    <hr/>
+    @spacer()
 
     @sidebyside((40,60), fragment = true) {
         @sourcecode(fragment = false) {
@@ -245,7 +245,7 @@
         und Rückgabetyp <code>Int</code>
     }
 
-    <hr/><hr/>
+    @spacer2()
 
     @sidebyside((40,60), fragment = true) {
         @snippet() {
@@ -262,7 +262,7 @@
         und Rückgabetyp <code>Float</code>
     }
 
-    <hr/>
+    @spacer()
 
     @infobox() {
         Parameter werden durch Komma getrennt und müssen einen Typ haben.
@@ -286,7 +286,7 @@
         |}
     }
 
-    <hr/>
+    @spacer()
 
     @sidebyside((66,33)) {
         @snippet() {
@@ -298,7 +298,7 @@
                 |The weather is nice.
             }
         }
-        <hr/>
+        @spacer()
         @snippet() {
             @callblock(reference = "method_default") {
                 |announce("London", weather = "rainy")
@@ -308,7 +308,7 @@
                 |The weather is rainy.
             }
         }
-        <hr/>
+        @spacer()
         @snippet() {
             @callblock(reference = "method_default") {
                 |announce(time = "in 10 minutes", town = "Paris")
@@ -339,7 +339,7 @@
         Aufruf der <em>parameterlosen</em> Methode <code>isWhole</code>
     }
 
-    <hr/>
+    @spacer()
 
     @sidebyside((40,60), fragment = true) {
         @snippet() {
@@ -372,7 +372,7 @@
         Aufruf der <em>1-parametrigen</em> Methode <code>compare</code>
     }
 
-    <hr/>
+    @spacer()
 
     @sidebyside((40,60), fragment = true) {
         @snippet() {

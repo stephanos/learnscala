@@ -10,7 +10,7 @@
     } {
     }
 
-    <hr/><hr/>
+    @spacer2()
 
     @snippet(id = "map_passengers") {
         @sourceblock() {
@@ -20,7 +20,7 @@
             |passengers: List[String] = List(Bob Bobster, Cal Calster, Dan Danster)
         }
     }
-    <hr/>
+    @spacer()
     @snippet() {
         @callblock(reference = "map_passengers") {
             |passengers map { _.toUpperCase }
@@ -29,7 +29,7 @@
             |res0: List[String] = List(BOB BOBSTER, CAL CALSTER, DAN DANSTER)
         }
     }
-    <hr/>
+    @spacer()
     @snippet() {
         @callblock(reference = "map_passengers") {
             |passengers map { _.size }
@@ -53,7 +53,7 @@
     } {
     }
 
-    <hr/><hr/>
+    @spacer2()
 
     @snippet(id = "flatmap_passengers") {
         @sourceblock() {
@@ -65,7 +65,7 @@
             |                                      List(Dan Danster, Ed Edster))
         }
     }
-    <hr/>
+    @spacer()
     @snippet() {
         @callblock(reference = "flatmap_passengers") {
             |passengers map { _ map { _.toUpperCase } }
@@ -74,7 +74,7 @@
             |res0: List[String] = List(List(BOB BOBSTER, CAL CALSTER), List(DAN DANSTER, ED EDSTER))
         }
     }
-    <hr/>
+    @spacer()
     @snippet() {
         @callblock(reference = "flatmap_passengers") {
             |passengers flatMap { _ map { _.size } }
@@ -83,7 +83,7 @@
             |res1: List[Int] = List(11, 15, 11, 9)
         }
     }
-    <hr/>
+    @spacer()
     @snippet() {
         @callblock(reference = "flatmap_passengers") {
             |passengers flatMap { _ map { _.toUpperCase } }
@@ -92,7 +92,7 @@
             |res0: List[String] = List(BOB BOBSTER, CAL CALSTER, DAN DANSTER, ED EDSTER)
         }
     }
-    <hr/>
+    @spacer()
     @snippet() {
         @callblock(reference = "flatmap_passengers") {
             |passengers flatMap { _ map { _.size } }
@@ -116,7 +116,7 @@
     } {
     }
 
-    <hr/><hr/>
+    @spacer2()
 
     @snippet() {
         @sourceblock(id = "filter_passengers") {
@@ -126,7 +126,7 @@
             |passengers: List[String] = List(Bob Bobster, Cal Calster, Dan Bobster)
         }
     }
-    <hr/>
+    @spacer()
     @snippet() {
         @callblock(reference = "filter_passengers") {
             |passengers filter { _ endsWith "Bobster" }
@@ -135,7 +135,7 @@
             |res0: List[String] = List(Bob Bobster, Dan Bobster)
         }
     }
-    <hr/>
+    @spacer()
     @snippet() {
         @callblock(reference = "filter_passengers") {
             |passengers filter { s => (s endsWith "Bobster") && (s startsWith "B") }
@@ -159,7 +159,7 @@
     } {
     }
 
-    <hr/><hr/>
+    @spacer2()
 
     @snippet() {
         @sourceblock(id = "foldLeft_nums") {
@@ -169,7 +169,7 @@
             |nums: List[Int] = List(1,2,3,4,5)
         }
     }
-    <hr/>
+    @spacer()
     @snippet() {
         @callblock(reference = "foldLeft_nums") {
             |nums.foldLeft(0) { (total, n) =>
@@ -180,7 +180,7 @@
             |res0: Int = 15
         }
     }
-    <hr/>
+    @spacer()
     @snippet() {
         @callblock(reference = "foldLeft_nums") {
             |nums.foldLeft(0)(_ + _)
@@ -200,7 +200,7 @@
         }
     }
 
-    <hr/><hr/>
+    @spacer2()
 
     @snippet() {
         @callblock(reference = "numbers5") {
@@ -211,7 +211,7 @@
         }
     }
 
-    <hr/><hr/>
+    @spacer2()
 
     @snippet() {
         @callblock(reference = "numbers5") {
@@ -239,7 +239,7 @@
         <code>/src/main/scala/de/learnscala/uebungen/<em>U311.scala</em></code>
     zu finden.
 
-    <hr/>
+    @spacer()
 
     Die dazugehörige Testspezifikation unter
         <code>/src/test/scala/de/learnscala/specs/<var>U311.scala</var></code>.

@@ -13,7 +13,7 @@
                 |      Map(Roy -> Pilot(), Moss -> CoPilot(), Jen -> Stewardess())
             }
         }
-        <hr/>
+        @spacer()
         @snippet() {
             @callblock(reference = "crew-traits") {
                 |val m2 = Map("Roy"  -> Pilot(),
@@ -49,7 +49,7 @@
             |      Map(Roy -> Pilot(), Moss -> CoPilot(), Jen -> Stewardess())
         }
     }
-    <hr/>
+    @spacer()
     @snippet() {
         @callblock(reference = "crew-map") {
             |val pilot = m("Roy")
@@ -58,7 +58,7 @@
             |pilot: Crew = Pilot()
         }
     }
-    <hr/>
+    @spacer()
     @snippet() {
         @callblock(reference = "crew-map") {
             |m + ("Paul" -> Stewardess())
@@ -68,7 +68,7 @@
             |       Map(Roy -> Pilot(), Moss -> CoPilot(), Jen -> Stewardess(), Paul -> Stewardess())
         }
     }
-    <hr/>
+    @spacer()
     @snippet() {
         @callblock(reference = "crew-map") {
             |m("Moss") = Pilot()
@@ -85,7 +85,7 @@
         <code>/src/main/scala/de/learnscala/uebungen/<em>U223.scala</em></code>
     zu finden.
 
-    <hr/>
+    @spacer()
 
     Die dazugehörige Testspezifikation unter
         <code>/src/test/scala/de/learnscala/specs/<var>S223.scala</var></code>.
@@ -104,7 +104,7 @@
         }
     }
 
-    <hr/>
+    @spacer()
 
     @snippet() {
         @callblock() {
@@ -115,7 +115,7 @@
         }
     }
 
-    <hr/>
+    @spacer()
 
     @snippet() {
         @callblock(reference = "crew-traits") {

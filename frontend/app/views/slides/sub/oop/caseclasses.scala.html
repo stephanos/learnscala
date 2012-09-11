@@ -17,7 +17,7 @@
                         |case class Plane(model: String, seats: Int)
                     }
                 }
-                <hr/>
+                @spacer()
                 @snippet() {
                     @callblock(id = "plane_case_new", reference = "plane_case") {
                         |val p = new Plane("Boeing 737", 189)
@@ -26,7 +26,7 @@
                         |p: Plane = Plane(Boeing 737,189)
                     }
                 }
-                <hr/>
+                @spacer()
                 @snippet() {
                     @callblock() {
                         |println(p.seats)
@@ -35,7 +35,7 @@
                         |189
                     }
                 }
-                <hr/>
+                @spacer()
                 @snippet() {
                     @callblock(reference = "plane_case_new") {
                         |val p2 = p.copy(seats = 190)
@@ -103,7 +103,7 @@
                         |case class Stewardess(age: Int, male: Boolean) extends Employee
                     }
                 }
-                <hr/>
+                @spacer()
                 @snippet() {
                     @sourceblock(id = "match_salary", reference = "case_class_match") {
                         |def getSalary(e: Employee) =
@@ -115,7 +115,7 @@
                         |  }
                     }
                 }
-                <hr/>
+                @spacer()
                 @snippet() {
                     @callblock(reference = "match_salary") {
                         |val s1 = getSalary(Pilot(25))
@@ -146,7 +146,7 @@
                 <code>/src/main/scala/de/learnscala/uebungen/<em>U150.scala</em></code>
             zu finden.
 
-            <hr/>
+            @spacer()
 
             Die dazugehörige Testspezifikation unter
                 <code>/src/test/scala/de/learnscala/specs/<var>S150.scala</var></code>.

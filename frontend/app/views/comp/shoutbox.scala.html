@@ -1,9 +1,9 @@
 @(typeOf: String, hr: Boolean = true, fragment: Boolean = true)(body: Html)
 
 @if(hr) {
-    <hr/><hr/>
+    @spacer2()
 } else {
-    <hr/>
+    @spacer()
 }
 
 <div class='@{if(fragment)"fragment" else ""} shoutbox @typeOf clearfix'>

@@ -5,7 +5,7 @@
         <ul>
             <li class="@clazz no-bullet">
                 <var>JARs</var>
-                <hr/>
+                @spacer()
                 <ul>
                     <li>
                         <em>scala-compiler.jar</em> generiert Java-Bytecode aus Quelldateien
@@ -22,7 +22,7 @@
         <ul>
             <li class="@clazz no-bullet">
                 <var>Skripts</var>
-                <hr/>
+                @spacer()
                 <ul>
                     <li>
                         <em>scalac</em> kompiliert Scala- und Java-Code zu Bytecode -
@@ -37,14 +37,14 @@
     </div>
 }
 
-<hr/><hr/>
+@spacer2()
 
 @sidebyside() {
     <div class="indent">
         <ul>
             <li class="@clazz no-bullet">
                 <var>Build-Tools</var>
-                <hr/>
+                @spacer()
                 <ul>
                     <li>Integration mit <em>Maven</em> via plugin</li>
                     <li><em>SBT</em>, das offizielle Tool: schnell, stabil und in Scala, für Scala</li>
@@ -57,7 +57,7 @@
         <ul>
             <li class="@clazz no-bullet">
                 <var>IDEs</var>
-                <hr/>
+                @spacer()
                 <ul>
                     <li>Projekt wird aus <em>SBT</em> erstellt</li>
                     <li><em>Eclipse</em> oder <em>IntelliJ</em>? Egal!</li>
