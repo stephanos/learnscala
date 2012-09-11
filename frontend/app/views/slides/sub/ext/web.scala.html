@@ -52,21 +52,19 @@ TODO
             @headslide() {
                 @title
             } {
-                <div class="sidebyside">
-                    <div>
-                        @sourcecode(fragment = false) {
-                            |// app/views/hello.scala.html
-                            |@@(name: String)
-                            |
-                            |&lt;html&gt;
-                            |  &lt;body&gt;
-                            |    &lt;h1&gt;Hello @@name!&lt;/h1&gt;
-                            |  &lt;/body&gt;
-                            |&lt;/html&gt;
-                        }
-                        <sub>View</sub>
-                    </div>
-
+                @sidebyside() {
+                    @sourcecode(fragment = false) {
+                        |// app/views/hello.scala.html
+                        |@@(name: String)
+                        |
+                        |&lt;html&gt;
+                        |  &lt;body&gt;
+                        |    &lt;h1&gt;Hello @@name!&lt;/h1&gt;
+                        |  &lt;/body&gt;
+                        |&lt;/html&gt;
+                    }
+                    <sub>View</sub>
+                } {
                     @fragment {
                         @sourcecode(fragment = false) {
                             |// app/controllers.Application.scala
@@ -82,7 +80,7 @@ TODO
                         }
                         <sub>Controller</sub>
                     }
-                </div>
+                }
 
                 <hr/><hr/>
 

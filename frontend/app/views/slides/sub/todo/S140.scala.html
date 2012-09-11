@@ -1,7 +1,7 @@
 @slide(title = "Traits") {
     <!-- as interfaces -->
 
-    <div class="sidebyside">
+    @sidebyside() {
         @snippet() {
             @sourceblock(id = "logger1", fragment = false) {
                 |trait Logger {
@@ -19,12 +19,12 @@
                 |       cannot be instantiated
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/>
 
-    <div class="sidebyside">
+    @sidebyside() {
         @snippet() {
             @sourceblock(reference = "logger1") {
                 |class SimpleLogger extends Logger {
@@ -43,8 +43,8 @@
                 |MAYDAY!
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     @infobox() {
         Ein Trait kann wie ein Java <code>interface</code> mittels <code>extends</code> vererbt werden
@@ -56,7 +56,7 @@
 @slide() {
     <!-- with implementation -->
 
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @sourceblock(id = "logger2", fragment = false) {
                 |trait Logger {
@@ -76,12 +76,12 @@
                 |       cannot be instantiated
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/>
 
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @sourceblock(reference = "logger2") {
                 |class Plane extends Logger {
@@ -89,8 +89,8 @@
                 |}
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     @infobox() {
         Ein Trait kann - im Unterschied zu einem Interface - implementierte Methoden enthalten.
@@ -101,7 +101,7 @@
 @*@slide() {
     <!-- hierarchie -->
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet() {
             @sourceblock(fragment = false) {
                 |trait Logger {
@@ -119,8 +119,8 @@
                 |}
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     @infobox() {
         Ein Trait kann von einem anderen Trait erben.
@@ -131,7 +131,7 @@
 @slide() {
     <!-- rich -->
 
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @sourceblock(id = "logger3", fragment = false) {
                 |trait Logger {
@@ -142,12 +142,12 @@
                 |}
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/>
 
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @sourceblock(reference = "logger3") {
                 |class Plane extends Logger {
@@ -166,8 +166,8 @@
                 |INFO: Ready for take-off
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     @infobox() {
         Ein Trait kann mehrere implementierte Hilfsmethoden haben,
@@ -179,7 +179,7 @@
 @slide() {
     <!-- bei Instanziierung -->
 
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @sourceblock(fragment = false) {
                 |trait Logger {
@@ -209,8 +209,8 @@
                 |Ready for take-off
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     @infobox() {
         Ein Trait kann auch erst bei der Erstellung einer Instanz "dazu gemixt" werden.
@@ -221,7 +221,7 @@
 @slide() {
     <!-- with -->
 
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @sourceblock(fragment = false) {
                 |trait Logger {
@@ -239,8 +239,8 @@
                 |}
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     @infobox() {
         Bei Vererbung mehrere Traits steht immer zuerst das <code>extends</code> - egal ob Klasse oder Trait -
@@ -252,7 +252,7 @@
 @slide() {
     <!-- stackable -->
 
-    <div class="sidebyside">
+    @sidebyside() {
         @snippet(id = "log_time_upper") {
             @sourceblock(fragment = false, reference = "plane_log_ready") {
                 |trait Logger {
@@ -278,26 +278,25 @@
                 |}
             }
         }
-        <div>
-            @snippet() {
-                @callblock(reference = "log_time_upper") {
-                    |new Plane with TimedLog with UpperLog
-                }
-                @outblock() {
-                    |Sun Jan 01 00:00:00 2012 READY FOR TAKE-OFF
-                }
+    } {
+        @snippet() {
+            @callblock(reference = "log_time_upper") {
+                |new Plane with TimedLog with UpperLog
             }
-            <hr/>
-            @snippet() {
-                @callblock(reference = "log_time_upper") {
-                    |new Plane with UpperLog with TimedLog
-                }
-                @outblock() {
-                    |SUN JAN 01 00:00:00 2012 READY FOR TAKE-OFF
-                }
+            @outblock() {
+                |Sun Jan 01 00:00:00 2012 READY FOR TAKE-OFF
             }
-        </div>
-    </div>
+        }
+        <hr/>
+        @snippet() {
+            @callblock(reference = "log_time_upper") {
+                |new Plane with UpperLog with TimedLog
+            }
+            @outblock() {
+                |SUN JAN 01 00:00:00 2012 READY FOR TAKE-OFF
+            }
+        }
+    }
 
     @infobox() {
         Beim Aufruf einer Methode in einer Klasse mit <code>traits</code> wird
@@ -309,14 +308,14 @@
 @*@slide() {
     <!-- linearisierung -->
 
-    <div class="sidebyside p70_30">
+    @sidebyside((70,30)) {
         @snippet() {
             @sourceblock(fragment = false) {
                 |
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     @infobox() {
 

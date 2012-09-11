@@ -1,6 +1,6 @@
-@(w: (Int, Int) = (50, 50), gap: Double = 3.0)(cl: Html = empty())(cr: Html = empty())
+@(w: (Int, Int) = (50, 50), fragment: Boolean = false, gap: Double = 3.0)(cl: Html = empty())(cr: Html = empty())
 
-<div class="sidebyside">
+<div class='sidebyside @{if(fragment) "fragment"}'>
     <div style="width: @{w._1 - gap / 2}%; float: left">
         @cl
     </div>

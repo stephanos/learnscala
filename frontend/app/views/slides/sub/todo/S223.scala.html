@@ -1,41 +1,39 @@
 @slide(title = "Map") {
     <!-- Map -->
 
-    <div class="sidebyside p80_20">
-        <div>
-            @snippet() {
-                @callblock(reference = "crew-traits", fragment = false) {
-                    |val m1 = Map(("Roy",  Pilot()),
-                    |             ("Moss", CoPilot()),
-                    |             ("Jen", Stewardess()))
-                }
-                @outblock() {
-                    |m1: Map[String,Crew] =
-                    |      Map(Roy -> Pilot(), Moss -> CoPilot(), Jen -> Stewardess())
-                }
+    @sidebyside((80,20)) {
+        @snippet() {
+            @callblock(reference = "crew-traits", fragment = false) {
+                |val m1 = Map(("Roy",  Pilot()),
+                |             ("Moss", CoPilot()),
+                |             ("Jen", Stewardess()))
             }
-            <hr/>
-            @snippet() {
-                @callblock(reference = "crew-traits") {
-                    |val m2 = Map("Roy"  -> Pilot(),
-                    |             "Moss" -> CoPilot(),
-                    |             "Jen" -> Stewardess())
-                }
-                @outblock() {
-                    |m2: Map[String,Crew] =
-                    |      Map(Roy -> Pilot(), Moss -> CoPilot(), Jen -> Stewardess())
-                }
-                @callblock() {
-                    |val a2 = m2.toArray
-                }
-                @outblock() {
-                    |a2: Array[(String, Crew)] =
-                    |       Array((Roy,Pilot()), (Moss,CoPilot()), (Jen,Stewardess()))
-                }
+            @outblock() {
+                |m1: Map[String,Crew] =
+                |      Map(Roy -> Pilot(), Moss -> CoPilot(), Jen -> Stewardess())
             }
-        </div>
-        @empty()
-    </div>
+        }
+        <hr/>
+        @snippet() {
+            @callblock(reference = "crew-traits") {
+                |val m2 = Map("Roy"  -> Pilot(),
+                |             "Moss" -> CoPilot(),
+                |             "Jen" -> Stewardess())
+            }
+            @outblock() {
+                |m2: Map[String,Crew] =
+                |      Map(Roy -> Pilot(), Moss -> CoPilot(), Jen -> Stewardess())
+            }
+            @callblock() {
+                |val a2 = m2.toArray
+            }
+            @outblock() {
+                |a2: Array[(String, Crew)] =
+                |       Array((Roy,Pilot()), (Moss,CoPilot()), (Jen,Stewardess()))
+            }
+        }
+    } {
+    }
 }
 
 

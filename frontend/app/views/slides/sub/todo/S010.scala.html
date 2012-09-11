@@ -1,39 +1,36 @@
 @slide(title = "Variablen") {
 
-    <div class="sidebyside">
-        <div>
-            @snippet() {
-                @callblock(fragment = false) {
-                    |val passengers: Int = 42
-                }
-                @outblock() {
-                    |passengers: Int = 42
-                }
+    @sidebyside() {
+        @snippet() {
+            @callblock(fragment = false) {
+                |val passengers: Int = 42
             }
-        </div>
-        <div>
-            <ul class="indent">
-                <li class="fragment">
-                    <code>val</code> beginnt Variable
-                </li>
-                <li class="fragment">
-                    <code>passengers</code> ist der Name
-                </li>
-                <li class="fragment">
-                    <code>:</code> trennt Name und Typ
-                </li>
-                <li class="fragment">
-                    <code>Int</code> ist der Typ
-                </li>
-                <li class="fragment">
-                    <code>=</code> weist Wert zu
-                </li>
-                <li class="fragment">
-                    <code>42</code> ist der Wert
-                </li>
-            </ul>
-        </div>
-    </div>
+            @outblock() {
+                |passengers: Int = 42
+            }
+        }
+    } {
+        <ul class="indent">
+            <li class="fragment">
+                <code>val</code> beginnt Variable
+            </li>
+            <li class="fragment">
+                <code>passengers</code> ist der Name
+            </li>
+            <li class="fragment">
+                <code>:</code> trennt Name und Typ
+            </li>
+            <li class="fragment">
+                <code>Int</code> ist der Typ
+            </li>
+            <li class="fragment">
+                <code>=</code> weist Wert zu
+            </li>
+            <li class="fragment">
+                <code>42</code> ist der Wert
+            </li>
+        </ul>
+    }
 
     <hr/>
 
@@ -44,7 +41,7 @@
 
 
 @slide() {
-    <div class="sidebyside">
+    @sidebyside() {
         @snippet() {
             @callblock(fragment = false) {
                 |val passengers: Int = 42
@@ -61,11 +58,10 @@
                 |                    ^
             }
         }
-        <div>
-            <code>passengers</code> wird mit <code>val</code>
-            definiert und versucht zu überschreiben.
-        </div>
-    </div>
+    } {
+        <code>passengers</code> wird mit <code>val</code>
+        definiert und versucht zu überschreiben.
+    }
 
     <hr/>
 
@@ -76,7 +72,7 @@
 
 
 @slide() {
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @callblock(fragment = false) {
                 |val passengers: Int = "Java"
@@ -89,11 +85,10 @@
                 |                                ^
             }
         }
-        <div>
-            <code>passengers</code> wird als <code>Int</code> definiert
-            aber mit dem String <code>Java</code> initialisiert
-        </div>
-    </div>
+    } {
+        <code>passengers</code> wird als <code>Int</code> definiert
+        aber mit dem String <code>Java</code> initialisiert
+    }
 
     <hr/>
 
@@ -145,7 +140,7 @@
 
 @slide() {
 
-    <div class="sidebyside">
+    @sidebyside() {
         @snippet() {
             @callblock(fragment = false) {
                 |val a = 1
@@ -156,6 +151,7 @@
                 |b: Int = 2
             }
         }
+    } {
         @snippet() {
             @callblock() {
                 |val a = 1; val b = 2
@@ -166,7 +162,7 @@
                 |b: Int = 2
             }
         }
-    </div>
+    }
 
     <hr/>
 

@@ -1,74 +1,68 @@
 @(clazz: String = "fragment")
 
-<div class="sidebyside">
-    <div>
-        <div class="indent">
-            <ul>
-                <li class="@clazz no-bullet">
-                    <var>JARs</var>
-                    <hr/>
-                    <ul>
-                        <li>
-                            <em>scala-compiler.jar</em> generiert Java-Bytecode aus Quelldateien
-                        </li>
-                        <li>
-                            <em>scala-library.jar</em> enthält Scala-Klassen und -Sprachelemente
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+@sidebyside() {
+    <div class="indent">
+        <ul>
+            <li class="@clazz no-bullet">
+                <var>JARs</var>
+                <hr/>
+                <ul>
+                    <li>
+                        <em>scala-compiler.jar</em> generiert Java-Bytecode aus Quelldateien
+                    </li>
+                    <li>
+                        <em>scala-library.jar</em> enthält Scala-Klassen und -Sprachelemente
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
-    <div>
-        <div class="indent">
-            <ul>
-                <li class="@clazz no-bullet">
-                    <var>Skripts</var>
-                    <hr/>
-                    <ul>
-                        <li>
-                            <em>scalac</em> kompiliert Scala- und Java-Code zu Bytecode -
-                            <em>fsc</em> auch, nur schneller als Daemon
-                        </li>
-                        <li>
-                            <em>scala</em> führt Scala-Programme aus
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+} {
+    <div class="indent">
+        <ul>
+            <li class="@clazz no-bullet">
+                <var>Skripts</var>
+                <hr/>
+                <ul>
+                    <li>
+                        <em>scalac</em> kompiliert Scala- und Java-Code zu Bytecode -
+                        <em>fsc</em> auch, nur schneller als Daemon
+                    </li>
+                    <li>
+                        <em>scala</em> führt Scala-Programme aus
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
-</div>
+}
 
 <hr/><hr/>
 
-<div class="sidebyside">
-    <div>
-        <div class="indent">
-            <ul>
-                <li class="@clazz no-bullet">
-                    <var>Build-Tools</var>
-                    <hr/>
-                    <ul>
-                        <li>Integration mit <em>Maven</em> via plugin</li>
-                        <li><em>SBT</em>, das offizielle Tool: schnell, stabil und in Scala, für Scala</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+@sidebyside() {
+    <div class="indent">
+        <ul>
+            <li class="@clazz no-bullet">
+                <var>Build-Tools</var>
+                <hr/>
+                <ul>
+                    <li>Integration mit <em>Maven</em> via plugin</li>
+                    <li><em>SBT</em>, das offizielle Tool: schnell, stabil und in Scala, für Scala</li>
+                </ul>
+            </li>
+        </ul>
     </div>
-    <div>
-        <div class="indent">
-            <ul>
-                <li class="@clazz no-bullet">
-                    <var>IDEs</var>
-                    <hr/>
-                    <ul>
-                        <li>Projekt wird aus <em>SBT</em> erstellt</li>
-                        <li><em>Eclipse</em> oder <em>IntelliJ</em>? Egal!</li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+} {
+    <div class="indent">
+        <ul>
+            <li class="@clazz no-bullet">
+                <var>IDEs</var>
+                <hr/>
+                <ul>
+                    <li>Projekt wird aus <em>SBT</em> erstellt</li>
+                    <li><em>Eclipse</em> oder <em>IntelliJ</em>? Egal!</li>
+                </ul>
+            </li>
+        </ul>
     </div>
-</div>
+}

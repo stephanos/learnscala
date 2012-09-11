@@ -1,28 +1,28 @@
 @slide(title = "Option") {
 
 
-    <div class="sidebyside p70_30">
+    @sidebyside((70,30)) {
         @sourcecode(fragment = false) {
             |def findPassenger(row: Int, col: String): Passenger
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/><hr/>
 
-    <div class="sidebyside p70_30">
+    @sidebyside((70,30)) {
         @sourcecode(id = "find_opt") {
             |case class Passenger(name: String)
             |
             |def findPassenger(row: Int, col: String): Option[Passenger] =
             |   if(row < 1) None else Some(Passenger("Bob"))
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/>
 
-    <div class="sidebyside p70_30">
+    @sidebyside((70,30)) {
         @snippet() {
             @callblock(reference = "find_opt") {
                 |val p = findPassenger(2, "A")
@@ -37,12 +37,12 @@
                 |res0: Passenger = Passenger("Bob")
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/>
 
-    <div class="sidebyside p70_30">
+    @sidebyside((70,30)) {
         @snippet() {
             @callblock(reference = "find_opt") {
                 |val p = findPassenger(0, "B")
@@ -57,15 +57,15 @@
                 |java.util.NoSuchElementException: None.get
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 }
 
 
 @slide() {
     <!-- Option: Pattern Match -->
 
-    <div class="sidebyside p70_30">
+    @sidebyside((70,30)) {
         @snippet() {
             @sourceblock(id = "opt_match", reference = "find_opt", fragment = false) {
                 |def getName(p: Option[Passenger]) =
@@ -75,12 +75,12 @@
                 |  }
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/>
 
-    <div class="sidebyside p70_30">
+    @sidebyside((70,30)) {
         @snippet() {
             @callblock(reference = "opt_match") {
                 |getName(findPassenger(1, "A"))
@@ -95,12 +95,12 @@
                 |res1: String = No Name
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/><hr/>
 
-    <div class="sidebyside p70_30">
+    @sidebyside((70,30)) {
         @snippet() {
             @callblock(reference = "opt_match") {
                 |findPassenger(1, "A").map(_.name).getOrElse("No Name")
@@ -109,8 +109,8 @@
                 |res0: String = Bob
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 }
 
 

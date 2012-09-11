@@ -37,7 +37,7 @@ object Global
         //setStdOut(MyPrintStream.stdout.orig)
 
         // stop database
-        MyDocDB.stopDB()
+        if(isProduction) MyDocDB.stopDB()
 
         // shut down
         onShutdown()

@@ -1,7 +1,7 @@
 @slide(title = "Exceptions") {
     <!-- Catch -->
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet() {
             @sourceblock(fragment = false) {
                 |def getWords(msg: String) =
@@ -23,8 +23,8 @@
                 |No message
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     @infobox() {
         In einem <code>try/catch</code>-Block kommt Pattern Matching zum Einsatz.
@@ -34,7 +34,7 @@
 @slide() {
     <!-- Throw -->
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet() {
             @sourceblock(id = "fuel-exception", fragment = false) {
                 |def sufficientFuel(f: Float) =
@@ -48,8 +48,8 @@
                 |java.lang.RuntimeException: Not enough fuel!
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     @infobox() {
         Mit <code>throw</code> wird eine Ausnahme ausgelöst,

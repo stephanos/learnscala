@@ -1,6 +1,6 @@
 @slide(title = "Bedingungen") {
 
-    <div class="sidebyside">
+    @sidebyside() {
         @snippet() {
             @sourceblock(fragment = false) {
                 |def sufficientFuel(f: Float) =
@@ -10,10 +10,11 @@
                 |sufficientFuel: (f: Float)Boolean
             }
         }
+    } {
         @fragment {
             Methode <code>sufficientFuel</code> hat den Rückgabetyp der Bedingung: <code>Boolean</code>
         }
-    </div>
+    }
 
     <hr/>
 
@@ -24,7 +25,7 @@
 
 @slide() {
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet() {
             @sourceblock(fragment = false) {
                 |def almostThere(x0: Int, y0: Int, x: Int, y: Int) = {
@@ -40,10 +41,11 @@
                 |almostThere: (x0: Int, y0: Int, x: Int, y: Int)Boolean
             }
         }
+    } {
         @fragment {
             Variable <code>distance</code> hat den Typ der <code>sqrt</code>-Methode: <code>Double</code>
         }
-    </div>
+    }
 
     <hr/>
 

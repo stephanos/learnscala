@@ -1,7 +1,7 @@
 @slide(title = "List") {
 
 
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @callblock(id = "list_stewards", fragment = false) {
                 |val stewards = List("Jen", "Jo", "Jim")
@@ -16,12 +16,12 @@
                 |res0: List[String] = List(Jen, Jo, Jim)
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/><hr/>
 
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @callblock() {
                 |List(1, "a", true)
@@ -30,12 +30,12 @@
                 |res0: List[Any] = List(1, a, true)
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/><hr/>
 
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @callblock() {
                 |List()
@@ -44,12 +44,12 @@
                 |res0: List[Nothing] = List()
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/><hr/>
 
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @callblock() {
                 |"Jen" :: "Jo" :: "Jim" :: Nil
@@ -64,15 +64,15 @@
                 |res1: List[String] = List(Jen, Jo, Jim)
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 }
 
 
 @slide() {
     <!-- List: Pattern match -->
 
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @sourceblock(reference = "list_stewards", fragment = false) {
                 |def printList(ls: List[String]) {
@@ -93,8 +93,8 @@
                 |Jim
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 }
 
 

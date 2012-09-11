@@ -11,7 +11,7 @@
 
         @slide(topic = topic) {
 
-            <div class="sidebyside p80_20">
+            @sidebyside((80,20)) {
                 @snippet() {
                     @callblock(fragment = false) {
                         |for (i <- 1 to 10) print(i + " ")
@@ -20,12 +20,12 @@
                         |1 2 3 4 5 6 7 8 9 10
                     }
                 }
-                @empty()
-            </div>
+            } {
+            }
 
             <hr/><hr/>
 
-            <div class="sidebyside p80_20">
+            @sidebyside((80,20)) {
                 @snippet() {
                     @callblock() {
                         |for (i <- 1 to 10) yield i
@@ -34,12 +34,12 @@
                         |res0: IndexedSeq[Int] = Vector(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
                     }
                 }
-                @empty()
-            </div>
+            } {
+            }
 
             <hr/><hr/>
 
-            <div class="sidebyside p80_20">
+            @sidebyside((80,20)) {
                 @snippet() {
                     @callblock() {
                         |for (i <- 1 to 10) yield i * 2
@@ -48,12 +48,12 @@
                         |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
                     }
                 }
-                @empty()
-            </div>
+            } {
+            }
 
             <hr/><hr/>
 
-            <div class="sidebyside p80_20">
+            @sidebyside((80,20)) {
                 @snippet() {
                     @callblock() {
                         |for (i <- 1 to 3; j <- 1 to i) yield i * j
@@ -62,12 +62,12 @@
                         |res0: IndexedSeq[Int] = Vector(1, 2, 4, 3, 6, 9)
                     }
                 }
-                @empty()
-            </div>
+            } {
+            }
 
             <hr/><hr/>
 
-            <div class="sidebyside p80_20">
+            @sidebyside((80,20)) {
                 @snippet() {
                     @callblock() {
                         |for (i <- 1 to 10; j <- 1 to 10) yield {
@@ -78,15 +78,15 @@
                         |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
                     }
                 }
-                @empty()
-            </div>
+            } {
+            }
         }
 
         <!--################################################################################## -->
 
         @slide(topic = topic) {
 
-            <div class="sidebyside p80_20">
+            @sidebyside((80,20)) {
                 @snippet() {
                     @callblock(fragment = false) {
                         |for (i <- 1 to 10; double = i * 2) yield double
@@ -95,12 +95,12 @@
                         |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
                     }
                 }
-                @empty()
-            </div>
+            } {
+            }
 
             <hr/><hr/>
 
-            <div class="sidebyside p80_20">
+            @sidebyside((80,20)) {
                 @snippet() {
                     @callblock() {
                         |for (i <- 1 to 10 if i % 2 == 0) yield i
@@ -109,12 +109,12 @@
                         |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10)
                     }
                 }
-                @empty()
-            </div>
+            } {
+            }
 
             <hr/><hr/>
 
-            <div class="sidebyside p80_20">
+            @sidebyside((80,20)) {
                 @snippet() {
                     @callblock() {
                         |for {
@@ -126,15 +126,15 @@
                         |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10)
                     }
                 }
-                @empty()
-            </div>
+            } {
+            }
         }
 
         <!--################################################################################## -->
 
         @slide(topic = topic) {
 
-            <div class="sidebyside p80_20">
+            @sidebyside((80,20)) {
                 @snippet() {
                     @callblock(fragment = false) {
                         |for (i <- 1 to 10; double = i * 2) yield double
@@ -143,12 +143,12 @@
                         |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
                     }
                 }
-                @empty()
-            </div>
+            } {
+            }
 
             <hr/><hr/>
 
-            <div class="sidebyside p80_20">
+            @sidebyside((80,20)) {
                 @snippet() {
                     @callblock() {
                         |for (i <- 1 to 10 if i % 2 == 0) yield i
@@ -157,12 +157,12 @@
                         |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10)
                     }
                 }
-                @empty()
-            </div>
+            } {
+            }
 
             <hr/><hr/>
 
-            <div class="sidebyside p80_20">
+            @sidebyside((80,20)) {
                 @snippet() {
                     @callblock() {
                         |for {
@@ -174,8 +174,8 @@
                         |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10)
                     }
                 }
-                @empty()
-            </div>
+            } {
+            }
         }
 
         <!--################################################################################## -->
@@ -188,7 +188,7 @@
 
             <hr/><hr/><hr/>
 
-            <div class="sidebyside">
+            @sidebyside() {
                 @snippet() {
                     @callblock(reference = "is_prime") {
                         |for { i <- List.range(1, 10)
@@ -199,6 +199,7 @@
                         |res0: List[Int] = List(1, 2, 3, 5, 7)
                     }
                 }
+            } {
                 @snippet() {
                     @callblock(reference = "is_prime") {
                         |List.range(1, 10) filter {
@@ -209,11 +210,11 @@
                         |res0: List[Int] = List(1, 2, 3, 5, 7)
                     }
                 }
-            </div>
+            }
 
             <hr/><hr/><hr/>
 
-            <div class="sidebyside">
+            @sidebyside() {
                 @snippet() {
                     @callblock(reference = "is_prime") {
                         |for { i <- List.range(1, 5)
@@ -227,6 +228,7 @@
                         |                             (4,1), (4,3))
                     }
                 }
+            } {
                 @snippet() {
                     @callblock(reference = "is_prime") {
                         |List.range(1, 5) flatMap { i =>
@@ -240,7 +242,7 @@
                         |                             (4,1), (4,3))
                     }
                 }
-            </div>
+            }
         }
 
         <!--################################################################################## -->

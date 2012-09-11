@@ -13,35 +13,33 @@
         }
     }
 
-    <div class="sidebyside p66_33">
-        <div>
-            <hr/>
-            @snippet() {
-                @sourceblock(id = "pair1", reference = "crew-traits") {
-                    |case class Pair[T, S](one: T, two: S)
-                }
+    @sidebyside((66,33)) {
+        <hr/>
+        @snippet() {
+            @sourceblock(id = "pair1", reference = "crew-traits") {
+                |case class Pair[T, S](one: T, two: S)
             }
-            <hr/>
-            @snippet() {
-                @callblock(reference = "pair1") {
-                    |val cockpit = Pair(Pilot(), CoPilot())
-                }
-                @outblock() {
-                    |cockpit: Pair[Pilot,CoPilot] = Pair(Pilot(),CoPilot())
-                }
+        }
+        <hr/>
+        @snippet() {
+            @callblock(reference = "pair1") {
+                |val cockpit = Pair(Pilot(), CoPilot())
             }
-            <hr/>
-            @snippet() {
-                @callblock(reference = "pair1") {
-                    |val couple = Pair[Crew, Crew](Pilot(), Stewardess())
-                }
-                @outblock() {
-                    |couple: Pair[Crew,Crew] = Pair(Pilot(),Stewardess())
-                }
+            @outblock() {
+                |cockpit: Pair[Pilot,CoPilot] = Pair(Pilot(),CoPilot())
             }
-        </div>
-        @empty()
-    </div>
+        }
+        <hr/>
+        @snippet() {
+            @callblock(reference = "pair1") {
+                |val couple = Pair[Crew, Crew](Pilot(), Stewardess())
+            }
+            @outblock() {
+                |couple: Pair[Crew,Crew] = Pair(Pilot(),Stewardess())
+            }
+        }
+    } {
+    }
 
     @infobox() {
         Eine Klasse kann einen oder mehrere Typ-Parameter haben, sie werden in eckige Klammern nach dem
@@ -53,39 +51,37 @@
 @slide() {
     <!-- Typenüberprüfung -->
 
-    <div class="sidebyside p66_33">
-        <div>
-            @snippet() {
-                @sourceblock(id = "pair2", reference = "crew-traits", fragment = false) {
-                    |case class Pair[T](one: T, two: T) {
-                    |
-                    |  def canFlyPlane =
-                    |    one.isInstanceOf[CockpitCrew] ||
-                    |      two.isInstanceOf[CockpitCrew]
-                    |}
-                }
+    @sidebyside((66,33)) {
+        @snippet() {
+            @sourceblock(id = "pair2", reference = "crew-traits", fragment = false) {
+                |case class Pair[T](one: T, two: T) {
+                |
+                |  def canFlyPlane =
+                |    one.isInstanceOf[CockpitCrew] ||
+                |      two.isInstanceOf[CockpitCrew]
+                |}
             }
-            <hr/><hr/>
-            @snippet() {
-                @callblock(reference = "pair2") {
-                    |Pair(Pilot(), CoPilot()).canFlyPlane
-                }
-                @outblock() {
-                    |true
-                }
+        }
+        <hr/><hr/>
+        @snippet() {
+            @callblock(reference = "pair2") {
+                |Pair(Pilot(), CoPilot()).canFlyPlane
             }
-            <hr/><hr/>
-            @snippet() {
-                @callblock(reference = "pair2") {
-                    |Pair(Pilot(), Stewardess()).canFlyPlane
-                }
-                @outblock() {
-                    |false
-                }
+            @outblock() {
+                |true
             }
-        </div>
-        @empty()
-    </div>
+        }
+        <hr/><hr/>
+        @snippet() {
+            @callblock(reference = "pair2") {
+                |Pair(Pilot(), Stewardess()).canFlyPlane
+            }
+            @outblock() {
+                |false
+            }
+        }
+    } {
+    }
 
     @infobox() {
         Methoden können ebenfalls Typ-Parameter haben,

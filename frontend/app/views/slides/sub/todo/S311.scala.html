@@ -1,14 +1,14 @@
 @slide(title = "map") {
     <!--map-->
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @sourcecode(fragment = false) {
             |trait Traversable[A] {
             |  def map[B](f: (A) => B): Traversable[B]
             |}
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/><hr/>
 
@@ -44,14 +44,14 @@
 @slide(title = "flatMap") {
     <!--flatMap-->
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @sourcecode(fragment = false) {
             |trait Traversable[A] {
             |  def flatMap[B](f: A => Traversable[B]): Traversable[B]
             |}
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/><hr/>
 
@@ -107,14 +107,14 @@
 @slide(title = "filter") {
     <!--filter-->
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @sourcecode(fragment = false) {
             |trait Traversable[A] {
             |  def filter(f: A => Boolean): Traversable[A]
             |}
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/><hr/>
 
@@ -150,14 +150,14 @@
 @slide(title = "foldLeft") {
     <!--foldLeft-->
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @sourcecode(fragment = false) {
             |trait Traversable[A] {
             |  def foldLeft[B](z: B)(f: (B, A) => B): B
             |}
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/><hr/>
 

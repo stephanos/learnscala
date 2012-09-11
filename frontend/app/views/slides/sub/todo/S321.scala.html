@@ -1,7 +1,7 @@
 @slide(title = "Example") {
     <!-- Example -->
 
-    <div class="sidebyside p80_20">
+    @sidebyside((80,20)) {
         @snippet() {
             @sourceblock(fragment = false) {
                 |object FileMatcher @("{")
@@ -25,14 +25,14 @@
                 |@("}")
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 }
 
 
 @slide() {
 
-    <div class="sidebyside p80_20">
+    @sidebyside((80,20)) {
         @snippet() {
             @sourceblock(fragment = false) {
                 |object FileMatcher @("{")
@@ -59,6 +59,6 @@
                 |@("}")
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 }

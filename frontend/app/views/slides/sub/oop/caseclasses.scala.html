@@ -11,49 +11,47 @@
 
         @slide(topic = topic) {
 
-            <div class="sidebyside p60_40">
-                <div>
-                    @snippet() {
-                        @sourceblock(id = "plane_case", fragment = false) {
-                            |case class Plane(model: String, seats: Int)
-                        }
+            @sidebyside((60,40)) {
+                @snippet() {
+                    @sourceblock(id = "plane_case", fragment = false) {
+                        |case class Plane(model: String, seats: Int)
                     }
-                    <hr/>
-                    @snippet() {
-                        @callblock(id = "plane_case_new", reference = "plane_case") {
-                            |val p = new Plane("Boeing 737", 189)
-                        }
-                        @outblock() {
-                            |p: Plane = Plane(Boeing 737,189)
-                        }
+                }
+                <hr/>
+                @snippet() {
+                    @callblock(id = "plane_case_new", reference = "plane_case") {
+                        |val p = new Plane("Boeing 737", 189)
                     }
-                    <hr/>
-                    @snippet() {
-                        @callblock() {
-                            |println(p.seats)
-                        }
-                        @outblock() {
-                            |189
-                        }
+                    @outblock() {
+                        |p: Plane = Plane(Boeing 737,189)
                     }
-                    <hr/>
-                    @snippet() {
-                        @callblock(reference = "plane_case_new") {
-                            |val p2 = p.copy(seats = 190)
-                        }
-                        @outblock() {
-                            |p2: Plane = Plane(Boeing 737,190)
-                        }
-                        @callblock() {
-                            |print(p == p.copy())
-                        }
-                        @outblock() {
-                            |true
-                        }
+                }
+                <hr/>
+                @snippet() {
+                    @callblock() {
+                        |println(p.seats)
                     }
-                </div>
-                @empty()
-            </div>
+                    @outblock() {
+                        |189
+                    }
+                }
+                <hr/>
+                @snippet() {
+                    @callblock(reference = "plane_case_new") {
+                        |val p2 = p.copy(seats = 190)
+                    }
+                    @outblock() {
+                        |p2: Plane = Plane(Boeing 737,190)
+                    }
+                    @callblock() {
+                        |print(p == p.copy())
+                    }
+                    @outblock() {
+                        |true
+                    }
+                }
+            } {
+            }
 
             @infobox(hr = false) {
                 Steht <code>case</code> vor einer Klassendefinition, dann wird:
@@ -69,7 +67,7 @@
         @slide(topic = topic) {
             <!-- Vererbung -->
 
-            <div class="sidebyside p60_40">
+            @sidebyside((60,40)) {
                 @snippet() {
                     @sourceblock(fragment = false) {
                         |case class A(s: String)
@@ -82,8 +80,8 @@
                         |res0: A = A(b)
                     }
                 }
-                @empty()
-            </div>
+            } {
+            }
 
             @infobox() {
                 Case Classes sind ideal für Data Transfer Objects (DTO) bzw. Value Objects (VO);
@@ -96,46 +94,44 @@
         @slide(topic = topic) {
         <!-- Pattern Matching -->
 
-            <div class="sidebyside p70_30">
-                <div>
-                    @snippet() {
-                        @sourceblock(id = "case_class_match", fragment = false) {
-                            |sealed trait Employee { val age: Int }
-                            |
-                            |case class Pilot(age: Int) extends Employee
-                            |case class Stewardess(age: Int, male: Boolean) extends Employee
-                        }
+            @sidebyside((70,30)) {
+                @snippet() {
+                    @sourceblock(id = "case_class_match", fragment = false) {
+                        |sealed trait Employee { val age: Int }
+                        |
+                        |case class Pilot(age: Int) extends Employee
+                        |case class Stewardess(age: Int, male: Boolean) extends Employee
                     }
-                    <hr/>
-                    @snippet() {
-                        @sourceblock(id = "match_salary", reference = "case_class_match") {
-                            |def getSalary(e: Employee) =
-                            |  e match {
-                            |    case Pilot(age) if(age > 50) => 130000
-                            |    case p: Pilot                => 80000 + (p.age * 1000)
-                            |    case Stewardess(_, true)     => 50000
-                            |    case Stewardess(_, _)        => 40000
-                            |  }
-                        }
+                }
+                <hr/>
+                @snippet() {
+                    @sourceblock(id = "match_salary", reference = "case_class_match") {
+                        |def getSalary(e: Employee) =
+                        |  e match {
+                        |    case Pilot(age) if(age > 50) => 130000
+                        |    case p: Pilot                => 80000 + (p.age * 1000)
+                        |    case Stewardess(_, true)     => 50000
+                        |    case Stewardess(_, _)        => 40000
+                        |  }
                     }
-                    <hr/>
-                    @snippet() {
-                        @callblock(reference = "match_salary") {
-                            |val s1 = getSalary(Pilot(25))
-                        }
-                        @outblock() {
-                            |s1: Int = 105000
-                        }
-                        @callblock() {
-                            |val s2 = getSalary(Stewardess(30, false))
-                        }
-                        @outblock() {
-                            |s2: Int = 40000
-                        }
+                }
+                <hr/>
+                @snippet() {
+                    @callblock(reference = "match_salary") {
+                        |val s1 = getSalary(Pilot(25))
                     }
-                </div>
-                @empty()
-            </div>
+                    @outblock() {
+                        |s1: Int = 105000
+                    }
+                    @callblock() {
+                        |val s2 = getSalary(Stewardess(30, false))
+                    }
+                    @outblock() {
+                        |s2: Int = 40000
+                    }
+                }
+            } {
+            }
 
             @infobox() {
                 Case Classes können im Pattern Matching dekonstruiert und mit Hilfe des primären Konstruktors

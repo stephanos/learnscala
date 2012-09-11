@@ -1,83 +1,76 @@
 @slide(title = "Schleifen") {
 
-    <div class="sidebyside">
-        <div>
-            @snippet() {
-                @sourceblock(fragment = false) {
-                    |def countdown() {
-                    |  var i = 10
-                    |  while (i >= 0) {
-                    |    print(i + " ");
-                    |    i -= 1
-                    |  }
-                    |}
-                }
-                @callblock() {
-                    |countdown()
-                }
-                @outblock() {
-                    |10 9 8 7 6 5 4 3 2 1 0
-                }
+    @sidebyside() {
+        @snippet() {
+            @sourceblock(fragment = false) {
+                |def countdown() {
+                |  var i = 10
+                |  while (i >= 0) {
+                |    print(i + " ");
+                |    i -= 1
+                |  }
+                |}
             }
-        </div>
-
-        <div>
-            @snippet() {
-                @sourceblock() {
-                    |def countdown() {
-                    |  var i = 10
-                    |  do {
-                    |    print(i + " ")
-                    |    i -= 1
-                    |  } while (i >= 0)
-                    |}
-                }
-                @callblock() {
-                    |countdown()
-                }
-                @outblock() {
-                    |10 9 8 7 6 5 4 3 2 1 0
-                }
+            @callblock() {
+                |countdown()
             }
-        </div>
-    </div>
+            @outblock() {
+                |10 9 8 7 6 5 4 3 2 1 0
+            }
+        }
+    } {
+        @snippet() {
+            @sourceblock() {
+                |def countdown() {
+                |  var i = 10
+                |  do {
+                |    print(i + " ")
+                |    i -= 1
+                |  } while (i >= 0)
+                |}
+            }
+            @callblock() {
+                |countdown()
+            }
+            @outblock() {
+                |10 9 8 7 6 5 4 3 2 1 0
+            }
+        }
+    }
 
     <hr/>
 
-    <div class="sidebyside">
-        <div>
-            @snippet() {
-                @sourceblock() {
-                    |def countdown() {
-                    |  for (i <- 10 to 0 by -1)
-                    |    print(i + " ")
-                    |}
+    @sidebyside() {
+        @snippet() {
+            @sourceblock() {
+                |def countdown() {
+                |  for (i <- 10 to 0 by -1)
+                |    print(i + " ")
                 |}
-                @callblock() {
-                    |countdown()
-                }
-                @outblock() {
-                    |10 9 8 7 6 5 4 3 2 1 0
-                }
+            |}
+            @callblock() {
+                |countdown()
             }
-        </div>
-        <div>
-            @snippet() {
-                @sourceblock() {
-                    |def countdown() {
-                    |  for (i <- 10 until -1 by -1)
-                    |    print(i + " ")
-                    |}
+            @outblock() {
+                |10 9 8 7 6 5 4 3 2 1 0
+            }
+        }
+    } {
+        @snippet() {
+            @sourceblock() {
+                |def countdown() {
+                |  for (i <- 10 until -1 by -1)
+                |    print(i + " ")
                 |}
-                @callblock() {
-                    |countdown()
-                }
-                @outblock() {
-                    |10 9 8 7 6 5 4 3 2 1 0
-                }
+            |}
+            @callblock() {
+                |countdown()
             }
-        </div>
-    </div>
+            @outblock() {
+                |10 9 8 7 6 5 4 3 2 1 0
+            }
+        }
+    }
 
     <hr/>
 

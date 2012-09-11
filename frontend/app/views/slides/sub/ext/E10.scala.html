@@ -25,7 +25,7 @@ TODO:
 
         @slide(topic = topic, title = "JARs") {
             <div class="indent">
-                <div class="sidebyside">
+                @sidebyside() {
                     <div class="fragment">
                         <h3>
                             <em>scala-compiler</em>.jar
@@ -44,6 +44,7 @@ TODO:
                             </ul>
                         </div>
                     </div>
+                } {
                     <div class="fragment">
                         <h3>
                             <em>scala-library</em>.jar
@@ -63,11 +64,11 @@ TODO:
                             </ul>
                         </div>
                     </div>
-                </div>
+                }
 
                 <hr/><hr/>
 
-                <div class="sidebyside">
+                @sidebyside() {
                     <div class="fragment">
                         <h3>
                             <em>scala-reflect</em>.jar
@@ -86,6 +87,7 @@ TODO:
                             </ul>
                         </div>
                     </div>
+                } {
                     <div class="fragment">
                         <h3>
                             <em>scala-actors</em>.jar
@@ -104,7 +106,7 @@ TODO:
                             </ul>
                         </div>
                     </div>
-                </div>
+                }
             </div>
         }
 

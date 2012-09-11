@@ -33,7 +33,7 @@
 
 
 @slide() {
-    <div class="sidebyside">
+    @sidebyside() {
         @snippet() {
             @callblock(fragment = false) {
                 |42.toString()
@@ -42,10 +42,9 @@
                 |res0: java.lang.String = 42
             }
         }
-        <div>
-            Methode <code>toString</code> von Objekt <code>42</code>
-        </div>
-    </div>
+    } {
+        Methode <code>toString</code> von Objekt <code>42</code>
+    }
 
     <hr/>
 

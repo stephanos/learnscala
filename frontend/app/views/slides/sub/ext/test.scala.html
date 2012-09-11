@@ -37,7 +37,7 @@ TODO
         @defining("Specs") { title =>
 
             @slide(topic = topic, title = title) {
-                <div class="sidebyside p66_33">
+                @sidebyside((66,33)) {
                     @sourcecode(fragment = false) {
                         |import org.specs2.mutable._
                         |
@@ -59,7 +59,8 @@ TODO
                         |   }
                         |}
                     }
-                </div>
+                } {
+                }
             }
 
         }

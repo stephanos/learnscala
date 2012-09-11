@@ -1,8 +1,8 @@
 @(image: Html)
 
-<div class="sidebyside p60_40">
+@sidebyside((60,40)) {
     @image
-
+} {
     @fragment {
         <h4>Typ 'AnyRef'</h4>
         <hr/>
@@ -24,4 +24,4 @@
             </ul>
         </div>
     }
-</div>
+}

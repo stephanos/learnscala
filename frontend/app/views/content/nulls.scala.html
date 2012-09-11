@@ -1,8 +1,8 @@
 @(image: Html)
 
-<div class="sidebyside p60_40">
+@sidebyside((60,40)) {
     @image
-
+} {
     @fragment {
         <h4>Typ 'Null'</h4>
         <hr/>
@@ -19,11 +19,11 @@
             <hr/>
         </div>
     }
-</div>
+}
 
 <hr/>
 
-<div class="sidebyside">
+@sidebyside() {
     @snippet() {
          @callblock() {
              |val i: Int = null
@@ -34,7 +34,7 @@
              |required: Int
          }
     }
-
+} {
     @snippet() {
          @callblock() {
              |val s: String = null
@@ -43,4 +43,4 @@
              |s: String = null
          }
     }
-</div>
+}

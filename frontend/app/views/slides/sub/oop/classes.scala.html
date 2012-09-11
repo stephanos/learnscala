@@ -12,31 +12,28 @@
 
         @slide(topic = topic) {
 
-            <div class="sidebyside">
-                <div>
-                    @snippet() {
-                        @callblock(fragment = false) {
-                            |class Plane
-                        }
-                        @outblock() {
-                            |defined class Plane
-                        }
+            @sidebyside() {
+                @snippet() {
+                    @callblock(fragment = false) {
+                        |class Plane
                     }
-                </div>
-                <div>
-                    <ul class="indent20">
-                        <li class="fragment">
-                            <code>class</code> leitet eine Klasse ein
-                        </li>
-                        <li class="fragment">
-                            <code>Plane</code> ist der Name der Klasse
-                        </li>
-                        <li class="fragment">
-                            <code>{}</code> sind nicht nötig bei leerem Rumpf
-                        </li>
-                    </ul>
-                </div>
-            </div>
+                    @outblock() {
+                        |defined class Plane
+                    }
+                }
+            } {
+                <ul class="indent20">
+                    <li class="fragment">
+                        <code>class</code> leitet eine Klasse ein
+                    </li>
+                    <li class="fragment">
+                        <code>Plane</code> ist der Name der Klasse
+                    </li>
+                    <li class="fragment">
+                        <code>{}</code> sind nicht nötig bei leerem Rumpf
+                    </li>
+                </ul>
+            }
 
             <hr/><hr/>
 
@@ -72,7 +69,7 @@
         @slide(topic = topic) {
             <!-- primary constructor -->
 
-            <div class="sidebyside p60_40">
+            @sidebyside((60,40)) {
                 @snippet() {
                     @sourceblock(fragment = false) {
                         |class Plane(model: String)
@@ -81,10 +78,11 @@
                         |val p = new Plane("Boeing 737")
                     }
                 }
+            } {
                 @fragment {
                     Klassenparameter ähnlich <br/> den Methodenparametern
                 }
-            </div>
+            }
 
             <hr/><hr/>
 
@@ -154,31 +152,30 @@
         @slide(topic = topic) {
             <!-- val -> get / var -> get/set -->
 
-            <div class="sidebyside">
-                <div>
-                    @sourcecode(id = "plane6", fragment = false) {
-                        |class Plane(val model: String,
-                        |            var seats: Int) {
-                        |   val wings = 2
-                        |}
-                    }
-                    <hr/>
-                    @outcode() {
-                        |// Plane.class dekompiliert:
-                        |public class Plane extends [...] {
-                        |
-                        |    private final String model;
-                        |    public String model();         // get
-                        |
-                        |    private final int wings;
-                        |    public int wings();            // get
-                        |
-                        |    private int seats;
-                        |    public int seats();            // get
-                        |    public void seats_$eq(int);    // set
-                        |}
-                    }
-                </div>
+            @sidebyside() {
+                @sourcecode(id = "plane6", fragment = false) {
+                    |class Plane(val model: String,
+                    |            var seats: Int) {
+                    |   val wings = 2
+                    |}
+                }
+                <hr/>
+                @outcode() {
+                    |// Plane.class dekompiliert:
+                    |public class Plane extends [...] {
+                    |
+                    |    private final String model;
+                    |    public String model();         // get
+                    |
+                    |    private final int wings;
+                    |    public int wings();            // get
+                    |
+                    |    private int seats;
+                    |    public int seats();            // get
+                    |    public void seats_$eq(int);    // set
+                    |}
+                }
+            } {
                 @snippet() {
                     @callblock() {
                         |val p = new Plane("Boeing 737", 189)
@@ -205,7 +202,7 @@
                         |2
                     }
                 }
-            </div>
+            }
 
             @infobox() {
                 Scala generiert überschreibbare, öffentliche Zugriffsmethoden:<br/>
@@ -263,7 +260,7 @@
         @slide(topic = topic) {
             <!-- Methoden -->
 
-            <div class="sidebyside">
+            @sidebyside() {
                 @snippet() {
                     @sourceblock(id = "plane8", fragment = false) {
                         |class Plane {
@@ -284,35 +281,34 @@
                         |}
                     }
                 }
-                <div>
-                    @snippet() {
-                        @callblock(reference = "plane8") {
-                            |val p = new Plane
-                        }
-                        @outblock() {
-                            |p: Plane = Plane@@2142115
-                        }
-                        @callblock() {
-                            |p.gearUp()
-                        }
-                        @outblock() {
-                            |landing gear is up
-                        }
-                        @callblock() {
-                            |val flying = p.isInTheAir
-                        }
-                        @outblock() {
-                            |flying: Boolean = true
-                        }
-                        @callblock() {
-                            |p.gearDown()
-                        }
-                        @outblock() {
-                            |landing gear is down
-                        }
+            } {
+                @snippet() {
+                    @callblock(reference = "plane8") {
+                        |val p = new Plane
                     }
-                </div>
-            </div>
+                    @outblock() {
+                        |p: Plane = Plane@@2142115
+                    }
+                    @callblock() {
+                        |p.gearUp()
+                    }
+                    @outblock() {
+                        |landing gear is up
+                    }
+                    @callblock() {
+                        |val flying = p.isInTheAir
+                    }
+                    @outblock() {
+                        |flying: Boolean = true
+                    }
+                    @callblock() {
+                        |p.gearDown()
+                    }
+                    @outblock() {
+                        |landing gear is down
+                    }
+                }
+            }
 
             @infobox() {
                 Methoden einer Klasse sind standardmäßig öffentlich, <br/>

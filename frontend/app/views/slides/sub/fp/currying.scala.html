@@ -21,7 +21,7 @@ TODO
 
         @slide(topic = topic, title = "") {
 
-            <div class="sidebyside p66_33">
+            @sidebyside((66,33)) {
                 @snippet() {
                     @sourceblock(id = "retry") {
                         |def retry[T](n: Int)(fn: => T): T = {
@@ -37,47 +37,53 @@ TODO
                         |retry: [T](n: Int)(fn: => T)T
                     }
                 }
-                <div>
-                    @codenote() {
-                        <code>Currying</code> erlaubt es, <em>mehrere Parameterlisten</em> zu definieren
-                    }
-                </div>
-            </div>
+            } {
+                @codenote() {
+                    <code>Currying</code> erlaubt es, <em>mehrere Parameterlisten</em> zu definieren
+                }
+            }
 
             <hr/>
 
-            <div class="sidebyside p60_40">
+            @sidebyside((60,40)) {
                 @callcode(reference = "connect2db") {
                     |val r = retry(2) {
                     |   connectToDatabase()
                     |}
                 }
+            } {
                 @codenote() {
                     <code>retry</code> kann wie eine Kontrollstruktur eingesetzt werden
                 }
-            </div>
+            }
+
             <hr class="half"/>
-            <div class="sidebyside p60_40">
+
+            @sidebyside((60,40)) {
                 @outcode() {
                     |connecting
                     |connecting
                     |r: Boolean = true
                 }
+            } {
                 @codenote() {
                     <em>Erfolg:</em> das Ergebnis erscheint, die erste Ausnahme wird ignoriert
                 }
-            </div>
+            }
+
             <hr class="half"/>
-            <div class="sidebyside p60_40">
+
+            @sidebyside((60,40)) {
                 @outcode() {
                     |connecting
                     |connecting
                     |java.lang.AssertionError: assertion failed
                 }
+            } {
                 @codenote() {
                     <var>Fehler:</var> nach 2 gescheiterten Versuchen wird die Ausnahme geworfen
                 }
-            </div>
+            }
         }
 
         <!--################################################################################## -->
@@ -86,46 +92,43 @@ TODO
 
             @*@slide(topic = topic, title = title, subtitle = "Thread") {
 
-                <div class="sidebyside p60_40">
-                    <div>
-                        @sourcecode(id = "ctrl-thread") {
-                            |def runInThread(block: => Unit) {
-                            |   new Thread {
-                            |       override def run() {
-                            |           block
-                            |       }
-                            |   }.start()
-                            |}
-                        }
-                    </div>
+                @sidebyside((60,40)) {
+                    @sourcecode(id = "ctrl-thread") {
+                        |def runInThread(block: => Unit) {
+                        |   new Thread {
+                        |       override def run() {
+                        |           block
+                        |       }
+                        |   }.start()
+                        |}
+                    }
+                } {
                     @codenote() {
                         <code>runInThread</code> führt eine Funktion innerhalb eines eigenen Threads aus
                     }
-                </div>
+                }
 
                 <hr/>
 
-                <div class="sidebyside p60_40">
-                    <div>
-                        @snippet() {
-                            @callblock(reference = "ctrl-thread") {
-                                |println(Thread.currentThread.getName)
-                            }
-                            @outblock() {
-                                |Thread-767
-                            }
-                            @callblock() {
-                                |runInThread {
-                                |   println(Thread.currentThread.getName)
-                                |}
-                            }
-                            @outblock() {
-                                |Thread-1144
-                            }
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @callblock(reference = "ctrl-thread") {
+                            |println(Thread.currentThread.getName)
                         }
-                    </div>
-                    @empty()
-                </div>
+                        @outblock() {
+                            |Thread-767
+                        }
+                        @callblock() {
+                            |runInThread {
+                            |   println(Thread.currentThread.getName)
+                            |}
+                        }
+                        @outblock() {
+                            |Thread-1144
+                        }
+                    }
+                } {
+                }
             }*@
 
             <!--################################################################################## -->
@@ -210,7 +213,7 @@ TODO
 
             @slide(topic = topic, title = title, subtitle = "Timed") {
 
-                <div class="sidebyside p70_30">
+                @sidebyside((70,30)) {
                     @sourcecode(id = "ctrl-time") {
                         |def timed[T](f: => T) = {
                         |   val start = System.nanoTime
@@ -219,14 +222,15 @@ TODO
                         |   (r, t)
                         |}
                     }
+                } {
                     @codenote() {
                         <code>timed</code> errechnet wieviel Zeit eine Funktion zur Ausführung benötigt
                     }
-                </div>
+                }
 
                 <hr/>
 
-                <div class="sidebyside p60_40">
+                @sidebyside((60,40)) {
                     @snippet() {
                         @callblock(reference = "factorial") {
                             |val (f, t) = timed { factorial(1000) }
@@ -236,8 +240,8 @@ TODO
                             |0.00150658
                         }
                     }
-                    @empty()
-                </div>
+                } {
+                }
             }
         }
 

@@ -12,7 +12,7 @@
 
         @slide(topic = topic) {
 
-            <div class="sidebyside p60_40">
+            @sidebyside((60,40)) {
                 @snippet() {
                     @sourceblock(fragment = false) {
                         |def factorial(n: Int): BigInt = {
@@ -26,6 +26,11 @@
                     @outblock() {
                         |factorial: (n: Int)Int
                     }
+                }
+
+                <hr/>
+
+                @snippet() {
                     @callblock() {
                         |factorial(4)
                     }
@@ -39,17 +44,15 @@
                         |res1: BigInt = 2846259680917054518906..
                     }
                 }
-                <div>
-
-                </div>
-            </div>
+            } {
+            }
         }
 
         <!--################################################################################## -->
 
         @slide(topic = topic) {
 
-            <div class="sidebyside p60_40">
+            @sidebyside((60,40)) {
                 @snippet() {
                     @sourceblock(fragment = false) {
                         |def factorial(n: Int) =
@@ -59,14 +62,12 @@
                         |error: recursive method factorial needs result type
                     }
                 }
-                <div>
-
-                </div>
-            </div>
+            } {
+            }
 
             <hr/>
 
-            <div class="sidebyside p60_40">
+            @sidebyside((60,40)) {
                 @snippet() {
                     @sourceblock() {
                         |def factorial(n: Int): BigInt =
@@ -88,12 +89,11 @@
                         |java.lang.StackOverflowError
                     }
                 }
-                <div>
-                    @codenote() {
+            } {
+                @codenote() {
 
-                    }
-                </div>
-            </div>
+                }
+            }
         }
 
         <!--################################################################################## -->
@@ -101,7 +101,7 @@
         @slide(topic = topic) {
             <!-- @@tailrec I -->
 
-            <div class="sidebyside p60_40">
+            @sidebyside((60,40)) {
                 @snippet() {
                     @sourceblock(fragment = false) {
                         |import scala.annotation.tailrec
@@ -111,30 +111,28 @@
                         |   if (n == 0) BigInt(1) else n * factorial(n - 1)
                     }
                 }
-                <div>
-                    @codenote() {
-                        Annotation <code>@@tailrec</code> stellt sicher,
-                        dass der Compiler die rekursive Funktion intern in eine Schleife umwandelt
-                    }
-                </div>
-            </div>
-            <div class="sidebyside p60_40">
+            } {
+                @codenote() {
+                    Annotation <code>@@tailrec</code> stellt sicher,
+                    dass der Compiler die rekursive Funktion intern in eine Schleife umwandelt
+                }
+            }
+            @sidebyside((60,40)) {
                 @snippet() {
                     @outblock(error = true) {
                         |error: could not optimize @@tailrec annotated method:
                         |       contains recursive call not in tail position
                     }
                 }
-                <div>
-                    @codenote() {
-                        <var>Bedingung:</var> letzte Anweisung ist Rekursionsaufruf
-                    }
-                </div>
-            </div>
+            } {
+                @codenote() {
+                    <var>Bedingung:</var> letzte Anweisung ist Rekursionsaufruf
+                }
+            }
 
             <hr/><hr/>
 
-            <div class="sidebyside p60_40">
+            @sidebyside((60,40)) {
                 @snippet() {
                     @sourceblock() {
                         |import scala.annotation.tailrec
@@ -144,24 +142,23 @@
                         |   if (n == 0) acc else factorial(n - 1, acc * n)
                     }
                 }
-                <div>
-                    @codenote() {
-                        Zwischenergebnis der Multiplikation wird zu Parameter
-                    }
-                </div>
-            </div>
-            <div class="sidebyside p60_40">
+            } {
+                @codenote() {
+                    Zwischenergebnis der Multiplikation wird zu Parameter
+                }
+            }
+
+            @sidebyside((60,40)) {
                 @snippet() {
                     @outblock() {
                         |factorial: (n: Int, acc: BigInt)BigInt
                     }
                 }
-                <div>
-                    @codenote() {
-                        <var>Nachteil:</var> Hilfsparameter ist Teil der Signatur
-                    }
-                </div>
-            </div>
+            } {
+                @codenote() {
+                    <var>Nachteil:</var> Hilfsparameter ist Teil der Signatur
+                }
+            }
         }
 
         <!--################################################################################## -->
@@ -169,7 +166,7 @@
         @slide(topic = topic) {
             <!-- @@tailrec II -->
 
-            <div class="sidebyside p60_40">
+            @sidebyside((60,40)) {
                 @snippet() {
                     @sourceblock(id = "tailrec", fragment = false) {
                         |import scala.annotation.tailrec
@@ -186,17 +183,16 @@
                         |factorial: (n: Int)BigInt
                     }
                 }
-                <div>
-                    @codenote() {
-                        <em>Lösung:</em>
-                        Definition einer internen Methode
-                    }
-                </div>
-            </div>
+            } {
+                @codenote() {
+                    <em>Lösung:</em>
+                    Definition einer internen Methode
+                }
+            }
 
             <hr/><hr/>
 
-            <div class="sidebyside p60_40">
+            @sidebyside((60,40)) {
                 @snippet() {
                     @callblock(reference = "tailrec") {
                         |factorial(4)
@@ -211,12 +207,11 @@
                         |res1: BigInt = 2846259680917054518906..
                     }
                 }
-                <div>
-                    @codenote() {
-                        Kein <code>StackOverflow</code> mehr
-                    }
-                </div>
-            </div>
+            } {
+                @codenote() {
+                    Kein <code>StackOverflow</code> mehr
+                }
+            }
         }
 
         <!--################################################################################## -->

@@ -1,40 +1,37 @@
 @slide(title = "Methoden") {
 
-    <div class="sidebyside">
-        <div>
-            @snippet() {
-                @sourceblock(fragment = false) {
-                    |def ready(): String = {
-                    |   return "Ready for take-off"
-                    |}
-                }
-                @outblock() {
-                    |ready: String
-                }
+    @sidebyside() {
+        @snippet() {
+            @sourceblock(fragment = false) {
+                |def ready(): String = {
+                |   return "Ready for take-off"
+                |}
             }
+            @outblock() {
+                |ready: String
+            }
+        }
+    } {
+        <div class="indent">
+            <ul>
+                <li class="fragment">
+                    <code>def</code> startet die Definition
+                </li>
+                <li class="fragment">
+                    <code>ready</code> ist der Name der Methode
+                </li>
+                <li class="fragment">
+                    <code>()</code> beinhaltet die Liste der Parameter
+                </li>
+                <li class="fragment">
+                    <code>String</code> ist der Rückgabetyp
+                </li>
+                <li class="fragment">
+                    <code>{ .. }</code> enthält Implementierung
+                </li>
+            </ul>
         </div>
-        <div>
-            <div class="indent">
-                <ul>
-                    <li class="fragment">
-                        <code>def</code> startet die Definition
-                    </li>
-                    <li class="fragment">
-                        <code>ready</code> ist der Name der Methode
-                    </li>
-                    <li class="fragment">
-                        <code>()</code> beinhaltet die Liste der Parameter
-                    </li>
-                    <li class="fragment">
-                        <code>String</code> ist der Rückgabetyp
-                    </li>
-                    <li class="fragment">
-                        <code>{ .. }</code> enthält Implementierung
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    }
 
     <hr/>
 
@@ -133,7 +130,7 @@
 @slide() {
     <!-- Unit -->
 
-    <div class="sidebyside">
+    @sidebyside() {
         @snippet() {
             @sourceblock(fragment = false) {
                 |def ready() = {
@@ -144,7 +141,7 @@
                 |ready: Unit
             }
         }
-
+    } {
         @snippet() {
             @sourceblock() {
                 |def ready() {
@@ -155,7 +152,7 @@
                 |ready: Unit
             }
         }
-    </div>
+    }
 
     <hr/>
 
@@ -238,7 +235,7 @@
 @slide() {
     <!-- Parameter -->
 
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @sourceblock(id = "double", fragment = false) {
                 |def double(x: Int) =
@@ -248,11 +245,10 @@
                 |double: (x: Int)Int
             }
         }
-        <div>
-            Methode <code>double</code> mit 1 <code>Int</code>-Parameter
-            und Rückgabetyp <code>Int</code>
-        </div>
-    </div>
+    } {
+        Methode <code>double</code> mit 1 <code>Int</code>-Parameter
+        und Rückgabetyp <code>Int</code>
+    }
 
     <hr/><hr/>
 
@@ -295,41 +291,41 @@
         |           "The weather is " + weather + ".")
         |}
     }
+
     <hr/>
-    <div class="sidebyside p66_33">
-        <div>
-            @snippet() {
-                @callblock(reference = "method_default") {
-                    |announce("Berlin")
-                }
-                @outblock() {
-                    |We will be landing in Berlin shortly.
-                    |The weather is nice.
-                }
+
+    @sidebyside((66,33)) {
+        @snippet() {
+            @callblock(reference = "method_default") {
+                |announce("Berlin")
             }
-            <hr/>
-            @snippet() {
-                @callblock(reference = "method_default") {
-                    |announce("London", weather = "rainy")
-                }
-                @outblock() {
-                    |We will be landing in London shortly.
-                    |The weather is rainy.
-                }
+            @outblock() {
+                |We will be landing in Berlin shortly.
+                |The weather is nice.
             }
-            <hr/>
-            @snippet() {
-                @callblock(reference = "method_default") {
-                    |announce(time = "in 10 minutes", town = "Paris")
-                }
-                @outblock() {
-                    |We will be landing in Paris in 10 minutes.
-                    |The weather is nice.
-                }
+        }
+        <hr/>
+        @snippet() {
+            @callblock(reference = "method_default") {
+                |announce("London", weather = "rainy")
             }
-        </div>
-        @empty()
-    </div>
+            @outblock() {
+                |We will be landing in London shortly.
+                |The weather is rainy.
+            }
+        }
+        <hr/>
+        @snippet() {
+            @callblock(reference = "method_default") {
+                |announce(time = "in 10 minutes", town = "Paris")
+            }
+            @outblock() {
+                |We will be landing in Paris in 10 minutes.
+                |The weather is nice.
+            }
+        }
+    } {
+    }
 }
 
 

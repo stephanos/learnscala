@@ -1,6 +1,6 @@
 @slide(title = "Vererbung") {
 
-    <div class="sidebyside">
+    @sidebyside() {
         @snippet() {
             @sourceblock(fragment = false) {
                 |class Plane
@@ -15,15 +15,16 @@
                 |defined class PassengerPlane
             }
         }
+    } {
         @fragment {
             <code>PassengerPlane</code> und <code>CargoPlane</code> <br/>
             erben von <code>Plane</code>
         }
-    </div>
+    }
 
     <hr/>
 
-    <div class="sidebyside">
+    @sidebyside() {
         @snippet() {
             @sourceblock() {
                 |class Plane
@@ -34,11 +35,11 @@
                 |defined module Plane
             }
         }
+    } {
         @fragment {
             Objekt <code>Plane</code> erbt von der Klasse <code>Plane</code>
         }
-
-    </div>
+    }
 
     <hr/>
 
@@ -131,7 +132,7 @@
 @slide() {
     <!-- sealed <> final -->
 
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @sourceblock(fragment = false) {
                 |final class Plane
@@ -142,14 +143,15 @@
                 |error: illegal inheritance from final class Plane
             }
         }
+    } {
         @codenote() {
             Klasse <code>CargoPlane</code> versucht von <code>Plane</code> zu erben, doch die ist <code>final</code>
         }
-    </div>
+    }
 
     <hr/><hr/>
 
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @sourceblock() {
                 |sealed class Plane
@@ -158,10 +160,11 @@
                 |class PassengerPlane extends Plane
             }
         }
+    } {
         @codenote() {
             Klasse <code>Plane</code> ist <code>sealed</code> und erlaubt daher die Vererbung nur innerhalb der gleichen Datei
         }
-    </div>
+    }
 
     <hr/><hr/>
 
@@ -175,7 +178,7 @@
 @slide() {
     <!-- override -->
 
-    <div class="sidebyside p70_30">
+    @sidebyside((70,30)) {
         @snippet() {
             @sourceblock(fragment = false) {
                 |class Plane {
@@ -192,14 +195,15 @@
                 |       value turbines needs `override' modifier
             }
         }
+    } {
         @codenote() {
             <code>CargoPlane</code> versucht das vererbte Feld <code>turbines</code> zu überschreiben
         }
-    </div>
+    }
 
     <hr/>
 
-    <div class="sidebyside p70_30">
+    @sidebyside((70,30)) {
         @snippet() {
             @sourceblock() {
                 |class Plane {
@@ -216,10 +220,11 @@
                 |defined class CargoPlane
             }
         }
+    } {
         @codenote() {
             <code>CargoPlane</code> überschreibt das vererbte Feld <code>turbines</code>
         }
-    </div>
+    }
 
     @infobox() {
         Zum Überschreiben von Feldern und Methoden muss <code>override</code> vorangestellt werden.
@@ -230,7 +235,7 @@
 @slide() {
     <!-- override 2 -->
 
-    <div class="sidebyside p70_30">
+    @sidebyside((70,30)) {
         @snippet() {
             @sourceblock(fragment = false) {
                 |class Plane {
@@ -246,14 +251,15 @@
                 |error: value trbines overrides nothing
             }
         }
+    } {
         @codenote() {
             <code>CargoPlane</code> versucht das nicht existierende Feld <code>trbines</code> zu überschreiben
         }
-    </div>
+    }
 
     <hr/>
 
-    <div class="sidebyside p70_30">
+    @sidebyside((70,30)) {
         @snippet() {
             @sourceblock() {
                 |class Plane {
@@ -270,10 +276,11 @@
                 |       value turbines has incompatible type
             }
         }
+    } {
         @codenote() {
             <code>CargoPlane</code> versucht das Feld <code>turbines</code> mit einem anderen Typ zu überschreiben
         }
-    </div>
+    }
 
     @infobox() {
         Durch den erforderlichen Modifier <code>override</code> wird vom Compiler erkannt,
@@ -285,7 +292,7 @@
 @slide() {
     <!-- override 3: val/def/var -->
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet() {
             @sourceblock(fragment = false) {
                 |class Plane(model: String) {
@@ -295,10 +302,11 @@
                 |}
             }
         }
+    } {
         @fragment {
             <code>toString</code> wird als Konstante definiert
         }
-    </div>
+    }
 
     <hr/>
 
@@ -312,7 +320,7 @@
 @slide() {
     <!-- override 4: final -->
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet() {
             @sourceblock(id = "plane-final-members", fragment = false) {
                 |class Plane {
@@ -320,12 +328,12 @@
                 |}
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/>
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet() {
             @sourceblock(reference = "plane-final-members") {
                 |class CargoPlane extends Plane {
@@ -337,8 +345,8 @@
                 |       value wings cannot override final member
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/>
 
@@ -352,7 +360,7 @@
 @slide() {
     <!-- super -->
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet() {
             @sourceblock(id = "plane-super", fragment = false) {
                 |class Plane(model: String) {
@@ -362,12 +370,12 @@
                 |}
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/>
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet() {
             @callblock(reference = "plane-super") {
                 |val p = new Plane("Boeing 737")
@@ -376,8 +384,8 @@
                 |p: Plane = Plane@@4088e7c9[model=Boeing 737]
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/>
 
@@ -389,7 +397,7 @@
 
 @*<!--@slide() {
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet() {
             @sourceblock(fragment = false) {
                 |class Plane(model: String)
@@ -404,8 +412,8 @@
                 |p: Plane = Plane@@4088e7c9[model=Boeing 737]
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     @infobox() {
         Anonyme Unterklassen
@@ -416,7 +424,7 @@
 @slide() {
     <!-- abstract -->
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet() {
             @sourceblock(id = "plane_abstract", fragment = false) {
                 |abstract class Plane {
@@ -427,12 +435,12 @@
                 |defined class Plane
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/><hr/>
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet() {
             @sourceblock(reference = "plane_abstract") {
                 |class CargoPlane extends Plane
@@ -442,12 +450,12 @@
                 |       model in class Plane of type String is not defined
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/>
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet() {
             @sourceblock(reference = "plane_abstract") {
                 |class CargoPlane extends Plane {
@@ -458,8 +466,8 @@
                 |defined class CargoPlane
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/>
 

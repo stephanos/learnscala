@@ -1,6 +1,6 @@
 @(clazz: String = "fragment")
 
-<div class="sidebyside">
+@sidebyside() {
     <div class="@clazz">
         @snippet() {
             @callblock() {
@@ -20,7 +20,7 @@
             <code>val</code> ist nicht überschreibbar
         </sub>
     </div>
-
+} {
     <div class="@clazz">
         @snippet() {
             @callblock() {
@@ -40,11 +40,11 @@
             <code>var</code> ist überschreibbar
         </sub>
     </div>
-</div>
+}
 
 <hr/><hr/>
 
-<div class="sidebyside">
+@sidebyside() {
     <div class="@clazz">
         @snippet() {
             @callblock() {
@@ -63,8 +63,7 @@
         <sub>
             Datentypen sind optional
         </sub>
-    </div>
-
+} {
     <div class="@clazz">
         @snippet() {
             @callblock() {
@@ -84,4 +83,4 @@
             Alles ist ein Objekt, <br/> Operatoren sind Methoden
         </sub>
     </div>
-</div>
+}

@@ -1,7 +1,7 @@
 @slide(title = "Funktionen") {
     <!-- Funktionen sind Objekte -->
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet() {
             @callblock(fragment = false) {
                 |val f = { x => x + 1 }
@@ -10,14 +10,15 @@
                 |error: missing parameter type
             }
         }
+    } {
         @codenote() {
             Funktionen ohne Kontext müssen Parametertypen angeben
         }
-    </div>
+    }
 
     <hr/><hr/>
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet() {
             @callblock() {
                 |val f = (x: Int) => x + 1
@@ -26,14 +27,15 @@
                 |f: (Int) => Int = &lt;function1&gt;
             }
         }
+    } {
         @codenote() {
             Wert von <code>f</code> ist nun eine Funktion: <em>Funktionen sind Objekte!</em>
         }
-    </div>
+    }
 
     <hr/><hr/>
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet(id = "f1") {
             @callblock() {
                 |val f1: Function1[Int, Int] = x => x + 1
@@ -42,13 +44,13 @@
                 |f1: (Int) => Int = &lt;function1&gt;
             }
         }
-        <div>
-            @codenote() {
-                Funktionen mit 1 Parameter sind vom Typ <code>Function1</code>
-            }
-        </div>
-    </div>
-    <div class="sidebyside p66_33">
+    } {
+        @codenote() {
+            Funktionen mit 1 Parameter sind vom Typ <code>Function1</code>
+        }
+    }
+
+    @sidebyside((66,33)) {
         @snippet() {
             @callblock(reference = "f1", clazz = "end") {
                 |f1(9)  // f1.apply(9)
@@ -57,16 +59,15 @@
                 |res0: Int = 10
             }
         }
-        <div>
-            @codenote() {
-                Funktionen besitzten <code>apply</code>-Methode zum Aufruf
-            }
-        </div>
-    </div>
+    } {
+        @codenote() {
+            Funktionen besitzten <code>apply</code>-Methode zum Aufruf
+        }
+    }
 
     <hr/><hr/>
 
-    <div class="sidebyside p66_33">
+    @sidebyside((66,33)) {
         @snippet() {
             @callblock() {
                 |val f2: Function2[Int, Int, Boolean] = (x, y) => x > y
@@ -75,10 +76,11 @@
                 |f2: (Int, Int) => Boolean = &lt;function2&gt;
             }
         }
+    } {
         @codenote() {
             Funktionen mit 2 Parametern sind vom Typ <code>Function2</code> usw.
         }
-    </div>
+    }
 }
 
 

@@ -13,7 +13,7 @@
         @slide(topic = topic) {
             <!-- Syntax -->
 
-            <div class="sidebyside p60_40">
+            @sidebyside((60,40)) {
                 @snippet() {
                     @sourceblock(fragment = false) {
                         |def interpret(msg: String) {
@@ -31,8 +31,8 @@
                         |We need help!
                     }
                 }
-                @empty()
-            </div>
+            } {
+            }
 
             <hr/>
 
@@ -47,7 +47,7 @@
         @slide(topic = topic) {
             <!-- MatchError / Wildcard -->
 
-            <div class="sidebyside">
+            @sidebyside() {
                 @snippet() {
                     @sourceblock(fragment = false) {
                         |def interpret(msg: String) =
@@ -64,6 +64,7 @@
                         |scala.MatchError: Ready for take-off
                     }
                 }
+            } {
                 @snippet() {
                     @sourceblock() {
                         |def interpret(msg: String) =
@@ -81,7 +82,7 @@
                         |Ready for take-off
                     }
                 }
-            </div>
+            }
 
             <hr/>
 
@@ -97,7 +98,7 @@
         @slide(topic = topic) {
             <!-- Names -->
 
-            <div class="sidebyside">
+            @sidebyside() {
                 @snippet() {
                     @sourceblock(fragment = false) {
                         |def interpret(msg: String) =
@@ -115,8 +116,8 @@
                         |READY FOR TAKE-OFF
                     }
                 }
-                @empty()
-            </div>
+            } {
+            }
 
             <hr/>
 

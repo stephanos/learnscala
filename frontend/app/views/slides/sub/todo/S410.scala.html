@@ -2,34 +2,33 @@
     Implicits
     <!-- (A) conversions to an expected type -->
 } {
-    <div class="sidebyside">
-        <div>
-            @snippet() {
-                @sourceblock(fragment = false) {
-                    |def asSeconds(ms: Long) = ms / 1000
-                }
-                @outblock() {
-                    |asSeconds: (ms: Long)Long
-                }
-                @callblock() {
-                    |asSeconds(1000L)  // Long
-                }
-                @outblock() {
-                    |res0: Long = 1
-                }
-                @callblock() {
-                    |asSeconds(1000)   // Int
-                }
-                @outblock() {
-                    |res0: Long = 1
-                }
+    @sidebyside() {
+        @snippet() {
+            @sourceblock(fragment = false) {
+                |def asSeconds(ms: Long) = ms / 1000
             }
-        </div>
+            @outblock() {
+                |asSeconds: (ms: Long)Long
+            }
+            @callblock() {
+                |asSeconds(1000L)  // Long
+            }
+            @outblock() {
+                |res0: Long = 1
+            }
+            @callblock() {
+                |asSeconds(1000)   // Int
+            }
+            @outblock() {
+                |res0: Long = 1
+            }
+        }
+    } {
         @codenote() {
             Methode <code>asSeconds</code> erwartet ein Argument vom Typ <code>Long</code> -
             doch trotzdem ist der Aufruf mit <code>Int</code> erfolgreich
         }
-    </div>
+    }
 
     <hr/><hr/>
 
@@ -51,60 +50,57 @@
 @slide() {
     <!-- (B) conversions of the receiver of a selection -->
 
-    <div class="sidebyside p60_40">
-        <div>
-            @snippet() {
-                @callblock(fragment = false) {
-                    |1 -> 'a'
-                }
-                @outblock() {
-                    |res0: (Int, Char) = (1,a)
-                }
+    @sidebyside((60,40)) {
+        @snippet() {
+            @callblock(fragment = false) {
+                |1 -> 'a'
             }
-        </div>
+            @outblock() {
+                |res0: (Int, Char) = (1,a)
+            }
+        }
+    } {
         @codenote() {
             Hm, <br/>
             <code>Int</code> hat keine Methode <code>-></code>
         }
-    </div>
+    }
 
     <hr/>
 
-    <div class="sidebyside p60_40">
-        <div>
-            @snippet() {
-                @callblock() {
-                    |1 to 10
-                }
-                @outblock() {
-                    |res0: List[Int] = List(1,2,3,4,5,6,7,8,9,10)
-                }
+    @sidebyside((60,40)) {
+        @snippet() {
+            @callblock() {
+                |1 to 10
             }
-        </div>
+            @outblock() {
+                |res0: List[Int] = List(1,2,3,4,5,6,7,8,9,10)
+            }
+        }
+    } {
         @codenote() {
             Hmm, <br/>
             <code>Int</code> hat auch keine Methode <code>to</code>
         }
-    </div>
+    }
 
     <hr/>
 
-    <div class="sidebyside p60_40">
-        <div>
-            @snippet() {
-                @callblock() {
-                    |"Hello".toList
-                }
-                @outblock() {
-                    |res0: List[Char] = List(H, e, l, l, o)
-                }
+    @sidebyside((60,40)) {
+        @snippet() {
+            @callblock() {
+                |"Hello".toList
             }
-        </div>
+            @outblock() {
+                |res0: List[Char] = List(H, e, l, l, o)
+            }
+        }
+    } {
         @codenote() {
             Hmmm, <br/>
             <code>String</code> hat keine Methode <code>toList</code>
         }
-    </div>
+    }
 
     <hr/><hr/>
 
@@ -190,18 +186,18 @@
 @slide() {
     <!-- Scope -->
 
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @sourcecode(id = "euro_dollar", fragment = false) {
             |case class EUR(v: Float)
             |case class USD(v: Float)
         }
-        @empty()
-    </div>
+    } {
+    }
 
     <hr/>
 
     <!-- directly -->
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @sourceblock(reference = "euro_dollar") {
                 |implicit def USD2EUR(x: USD) = EUR(x.v * 0.81f)
@@ -213,15 +209,16 @@
                 |eur: EUR = EUR(4.05)
             }
         }
+    } {
         @codenote() {
             Implicit wird direkt im Scope definiert
         }
-    </div>
+    }
 
     <hr/>
 
     <!-- import -->
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @sourceblock(reference = "euro_dollar") {
                 |object Convert {
@@ -236,15 +233,16 @@
                 |eur: EUR = EUR(4.05)
             }
         }
+    } {
         @codenote() {
             Implicit wird in einem Objekt definiert und importiert
         }
-    </div>
+    }
 
     <hr/>
 
     <!-- companion -->
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @sourceblock(reference = "euro_dollar") {
                 |object USD {
@@ -258,10 +256,11 @@
                 |eur: EUR = EUR(4.05)
             }
         }
+    } {
         @codenote() {
             Implicit wird im Companion Object definiert
         }
-    </div>
+    }
 }
 
 
@@ -282,7 +281,7 @@
     <!-- Example: Time (plus View Bounds) -->
 
     <!-- directly -->
-    <div class="sidebyside p60_40">
+    @sidebyside((60,40)) {
         @snippet() {
             @sourceblock() {
                 |case class Euro(value: Float)
@@ -293,6 +292,6 @@
                 |   Euro(x.value * 0.81f)
             }
         }
-        @empty()
-    </div>
+    } {
+    }
 }*@
