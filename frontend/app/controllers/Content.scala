@@ -11,8 +11,10 @@ object Content extends MyController {
 
     // === ALLGEMEIN
 
-    val einfuehrung = Slide("B10", "Einführung", "basic", status = "")
-    val geschichte = Slide("B11", "Geschichte", "basic", status = "")
+    lazy val einfuehrung = Slide("B10", "Einführung", "basic", status = "")
+    lazy val geschichte = Slide("B11", "Geschichte", "basic", Seq(einfuehrung), status = "")
+    lazy val ersteSchritte = Slide("B12", "Erste Schritte", "basic", Seq(tools1), status = "")
+    lazy val kontrollstrukturen = Slide("B13", "Kontrollstrukturen", "basic", Seq(tools2), status = "")
 
     // === OBJEKTE
 
@@ -22,8 +24,8 @@ object Content extends MyController {
 
     // === ERWEITERT
 
-    val tools1 = Slide("E10", "Werkzeuge I", "ext", status = "")
-    val tools2 = Slide("E11", "Werkzeuge II", "ext", Seq(tools1), status = "")
+    lazy val tools1 = Slide("E10", "Werkzeuge I", "ext", Seq(geschichte), status = "")
+    lazy val tools2 = Slide("E11", "Werkzeuge II", "ext", Seq(ersteSchritte), status = "")
 
 
     // ================================================================================================================
@@ -31,12 +33,12 @@ object Content extends MyController {
 
     // === ALLGEMEIN
 
-    val recursion = Slide("B25", "Rekursion", "basic", status = "incomplete")
+    lazy val recursion = Slide("B25", "Rekursion", "basic", status = "incomplete")
 
 
     // === OBJEKTE
 
-    val hierarchy = Slide("O20", "Hierarchie", "oop", status = "")
+    lazy val hierarchy = Slide("O20", "Hierarchie", "oop", status = "")
 
 
     // === FUNKTIONEN
@@ -44,7 +46,7 @@ object Content extends MyController {
 
     // === ERWEITERT
 
-    val xml = Slide("E20", "XML", "ext", status = "incomplete")
+    lazy val xml = Slide("E20", "XML", "ext", status = "incomplete")
 
 
     // ================================================================================================================
