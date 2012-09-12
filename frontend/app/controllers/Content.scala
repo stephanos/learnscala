@@ -41,8 +41,8 @@ object Content extends MyController {
 
 
     // === OBJEKTE
-
     lazy val hierarchy = Slide("O20", "Hierarchie", "oop", status = "")
+    lazy val traits = Slide("O21", "Traits", "oop", status = "")
 
 
     // === FUNKTIONEN
