@@ -17,7 +17,11 @@ object Content extends MyController {
     lazy val kontrollstrukturen = Slide("B13", "Kontrollstrukturen", "basic", Seq(tools2), status = "")
 
     // === OBJEKTE
-
+    lazy val klassen = Slide("O10", "Klassen", "oop", Seq(), status = "")
+    lazy val vererbung1 = Slide("O11", "Vererbung I", "oop", Seq(klassen), status = "")
+    lazy val objekte = Slide("O12", "Objekte", "oop", Seq(vererbung1), status = "")
+    lazy val sichtbarkeit = Slide("O13", "Sichtbarkeit", "oop", Seq(objekte), status = "")
+    lazy val pakete = Slide("O14", "Pakete", "oop", Seq(sichtbarkeit), status = "")
 
     // === FUNKTIONEN
 

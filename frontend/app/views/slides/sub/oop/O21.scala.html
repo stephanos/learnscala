@@ -1,0 +1,352 @@
+@defining("Traits") { implicit topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slidehead() {
+            @topic
+        } {
+        }
+
+        <!--################################################################################## -->
+
+        @slide() {
+            <!-- as interfaces -->
+
+            @sidebyside() {
+                @snippet() {
+                    @sourceblock(id = "logger1", fragment = false) {
+                        |trait Logger {
+                        |  def log(msg: String)
+                        |}
+                    }
+                    @outblock() {
+                        |defined trait Logger
+                    }
+                    @callblock() {
+                        |new Logger
+                    }
+                    @outblock(error = true) {
+                        |error: trait Logger is abstract;
+                        |       cannot be instantiated
+                    }
+                }
+            } {
+            }
+
+            @spacer()
+
+            @sidebyside() {
+                @snippet() {
+                    @sourceblock(reference = "logger1") {
+                        |class SimpleLogger extends Logger {
+                        |  def log(msg: String) {
+                        |    println(msg)
+                        |  }
+                        |}
+                    }
+                    @outblock() {
+                        |defined class SimpleLogger
+                    }
+                    @callblock() {
+                        |new SimpleLogger().log("MAYDAY!")
+                    }
+                    @outblock() {
+                        |MAYDAY!
+                    }
+                }
+            } {
+            }
+
+            @infobox() {
+                Ein Trait kann wie ein Java <code>interface</code> mittels <code>extends</code> vererbt werden
+                und abstrakte Methoden definieren.
+            }
+        }
+
+
+        @slide() {
+            <!-- with implementation -->
+
+            @sidebyside((60,40)) {
+                @snippet() {
+                    @sourceblock(id = "logger2", fragment = false) {
+                        |trait Logger {
+                        |  def log(msg: String) {
+                        |     println(msg)
+                        |  }
+                        |}
+                    }
+                    @outblock() {
+                        |defined trait Logger
+                    }
+                    @callblock() {
+                        |new Logger
+                    }
+                    @outblock(error = true) {
+                        |error: trait Logger is abstract;
+                        |       cannot be instantiated
+                    }
+                }
+            } {
+            }
+
+            @spacer()
+
+            @sidebyside((60,40)) {
+                @snippet() {
+                    @sourceblock(reference = "logger2") {
+                        |class Plane extends Logger {
+                        |  log("Ready for take-off")
+                        |}
+                    }
+                }
+            } {
+            }
+
+            @infobox() {
+                Ein Trait kann - im Unterschied zu einem Interface - implementierte Methoden enthalten.
+            }
+        }
+
+
+        @*@slide() {
+            <!-- hierarchie -->
+
+            @sidebyside((66,33)) {
+                @snippet() {
+                    @sourceblock(fragment = false) {
+                        |trait Logger {
+                        |  def log(msg: String) { println(msg) }
+                        |}
+                    }
+                    @sourceblock() {
+                        |trait SecretLogger with Logger {
+                        |  def secretLog(msg: String) { log(msg.reverse) }
+                        |}
+                    }
+                    @sourceblock() {
+                        |class Plane extends SecretLogger {
+                        |  secretLog("VIP is on board")
+                        |}
+                    }
+                }
+            } {
+            }
+
+            @infobox() {
+                Ein Trait kann von einem anderen Trait erben.
+            }
+        }*@
+
+
+        @slide() {
+            <!-- rich -->
+
+            @sidebyside((60,40)) {
+                @snippet() {
+                    @sourceblock(id = "logger3", fragment = false) {
+                        |trait Logger {
+                        |  def log(msg: String)
+                        |
+                        |  def info(msg: String) { log("INFO: " + msg) }
+                        |  def warn(msg: String) { log("WARN: " + msg) }
+                        |}
+                    }
+                }
+            } {
+            }
+
+            @spacer()
+
+            @sidebyside((60,40)) {
+                @snippet() {
+                    @sourceblock(reference = "logger3") {
+                        |class Plane extends Logger {
+                        |  info("Ready for take-off")
+                        |
+                        |  override def log(msg: String) { println(msg) }
+                        |}
+                    }
+                    @outblock() {
+                        |defined class Plane
+                    }
+                    @callblock() {
+                        |new Plane()
+                    }
+                    @outblock() {
+                        |INFO: Ready for take-off
+                    }
+                }
+            } {
+            }
+
+            @infobox() {
+                Ein Trait kann mehrere implementierte Hilfsmethoden haben,
+                die ein paar wenige abstrakte Methoden aufrufen <comment>("rich interfaces")</comment>.
+            }
+        }
+
+
+        @slide() {
+            <!-- bei Instanziierung -->
+
+            @sidebyside((60,40)) {
+                @snippet() {
+                    @sourceblock(fragment = false) {
+                        |trait Logger {
+                        |  def log(msg: String) { }
+                        |}
+                    }
+                    @sourceblock(id = "plane_log_ready") {
+                        |class Plane extends Logger {
+                        |  log("Ready for take-off")
+                        |}
+                    }
+                    @callblock() {
+                        |new Plane()
+                    }
+                    @outblock() {
+                        |(nothing)
+                    }
+                    @sourceblock() {
+                        |trait SimpleLogger extends Logger {
+                        |  override def log(msg: String) { println(msg) }
+                        |}
+                    }
+                    @callblock() {
+                        |new Plane with SimpleLogger
+                    }
+                    @outblock() {
+                        |Ready for take-off
+                    }
+                }
+            } {
+            }
+
+            @infobox() {
+                Ein Trait kann auch erst bei der Erstellung einer Instanz "dazu gemixt" werden.
+            }
+        }
+
+
+        @slide() {
+            <!-- with -->
+
+            @sidebyside((60,40)) {
+                @snippet() {
+                    @sourceblock(fragment = false) {
+                        |trait Logger {
+                        |  def log(msg: String) { println(msg) }
+                        |}
+                    }
+                    @sourceblock() {
+                        |trait SecretLogger {
+                        |  def secretLog(msg: String) { println(msg.reverse) }
+                        |}
+                    }
+                    @sourceblock() {
+                        |class Plane extends Logger with SecretLogger {
+                        |  secretLog("VIP is on board")
+                        |}
+                    }
+                }
+            } {
+            }
+
+            @infobox() {
+                Bei Vererbung mehrere Traits steht immer zuerst das <code>extends</code> - egal ob Klasse oder Trait -
+                und alle folgenden Traits werden via <code>with</code> abgetrennt.
+            }
+        }
+
+
+        @slide() {
+            <!-- stackable -->
+
+            @sidebyside() {
+                @snippet(id = "log_time_upper") {
+                    @sourceblock(fragment = false, reference = "plane_log_ready") {
+                        |trait Logger {
+                        |
+                        |  def log(msg: String) { println(msg) }
+                        |}
+                    }
+                    @sourceblock() {
+                        |trait TimedLog extends Logger {
+                        |
+                        |  override def log(msg: String) {
+                        |    import java.util._
+                        |    super.log(new Date() + " " + msg)
+                        |  }
+                        |}
+                    }
+                    @sourceblock() {
+                        |trait UpperLog extends Logger {
+                        |
+                        |  override def log(msg: String) {
+                        |    super.log(msg.toUpperCase)
+                        |  }
+                        |}
+                    }
+                }
+            } {
+                @snippet() {
+                    @callblock(reference = "log_time_upper") {
+                        |new Plane with TimedLog with UpperLog
+                    }
+                    @outblock() {
+                        |Sun Jan 01 00:00:00 2012 READY FOR TAKE-OFF
+                    }
+                }
+                @spacer()
+                @snippet() {
+                    @callblock(reference = "log_time_upper") {
+                        |new Plane with UpperLog with TimedLog
+                    }
+                    @outblock() {
+                        |SUN JAN 01 00:00:00 2012 READY FOR TAKE-OFF
+                    }
+                }
+            }
+
+            @infobox() {
+                Beim Aufruf einer Methode in einer Klasse mit <code>traits</code> wird
+                die Methode im rechtesten Trait zuerst, mit <code>super</code> dann die Methode im Trait links davon aufgerufen.
+            }
+        }
+
+
+        @*@slide() {
+            <!-- linearisierung -->
+
+            @sidebyside((70,30)) {
+                @snippet() {
+                    @sourceblock(fragment = false) {
+                        |
+                    }
+                }
+            } {
+            }
+
+            @infobox() {
+
+            }
+        }*@
+
+        <!--
+            - abstract class or trait ?
+        -->
+
+
+        @uebung("000") {
+            Die Übung ist unter
+                <code>/src/main/scala/de/learnscala/uebungen/<em>U140.scala</em></code>
+            zu finden.
+
+            @spacer()
+
+            Die dazugehörige Testspezifikation unter
+                <code>/src/test/scala/de/learnscala/specs/<var>S140.scala</var></code>.
+        }
+    }
+}
