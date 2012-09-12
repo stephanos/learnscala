@@ -1793,7 +1793,7 @@ define("lib/util/underscore.str", (function (global) {
 }(this)));
 
 /* ============================================================
- * bootstrap-dropdown.js v2.1.0
+ * bootstrap-dropdown.js v2.0.4
  * http://twitter.github.com/bootstrap/javascript.html#dropdowns
  * ============================================================
  * Copyright 2012 Twitter, Inc.
@@ -1820,7 +1820,7 @@ define("lib/util/underscore.str", (function (global) {
  /* DROPDOWN CLASS DEFINITION
   * ========================= */
 
-  var toggle = '[data-toggle=dropdown]'
+  var toggle = '[data-toggle="dropdown"]'
     , Dropdown = function (element) {
         var $el = $(element).on('click.dropdown.data-api', this.toggle)
         $('html').on('click.dropdown.data-api', function () {
@@ -1835,82 +1835,34 @@ define("lib/util/underscore.str", (function (global) {
   , toggle: function (e) {
       var $this = $(this)
         , $parent
+        , selector
         , isActive
 
       if ($this.is('.disabled, :disabled')) return
 
-      $parent = getParent($this)
+      selector = $this.attr('data-target')
+
+      if (!selector) {
+        selector = $this.attr('href')
+        selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
+      }
+
+      $parent = $(selector)
+      $parent.length || ($parent = $this.parent())
 
       isActive = $parent.hasClass('open')
 
       clearMenus()
 
-      if (!isActive) {
-        $parent.toggleClass('open')
-        $this.focus()
-      }
+      if (!isActive) $parent.toggleClass('open')
 
       return false
-    }
-
-  , keydown: function (e) {
-      var $this
-        , $items
-        , $active
-        , $parent
-        , isActive
-        , index
-
-      if (!/(38|40|27)/.test(e.keyCode)) return
-
-      $this = $(this)
-
-      e.preventDefault()
-      e.stopPropagation()
-
-      if ($this.is('.disabled, :disabled')) return
-
-      $parent = getParent($this)
-
-      isActive = $parent.hasClass('open')
-
-      if (!isActive || (isActive && e.keyCode == 27)) return $this.click()
-
-      $items = $('[role=menu] li:not(.divider) a', $parent)
-
-      if (!$items.length) return
-
-      index = $items.index($items.filter(':focus'))
-
-      if (e.keyCode == 38 && index > 0) index--                                        // up
-      if (e.keyCode == 40 && index < $items.length - 1) index++                        // down
-      if (!~index) index = 0
-
-      $items
-        .eq(index)
-        .focus()
     }
 
   }
 
   function clearMenus() {
-    getParent($(toggle))
-      .removeClass('open')
-  }
-
-  function getParent($this) {
-    var selector = $this.attr('data-target')
-      , $parent
-
-    if (!selector) {
-      selector = $this.attr('href')
-      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
-    }
-
-    $parent = $(selector)
-    $parent.length || ($parent = $this.parent())
-
-    return $parent
+    $(toggle).parent().removeClass('open')
   }
 
 
@@ -1933,18 +1885,16 @@ define("lib/util/underscore.str", (function (global) {
    * =================================== */
 
   $(function () {
-    $('html')
-      .on('click.dropdown.data-api touchstart.dropdown.data-api', clearMenus)
+    $('html').on('click.dropdown.data-api', clearMenus)
     $('body')
-      .on('click.dropdown touchstart.dropdown.data-api', '.dropdown', function (e) { e.stopPropagation() })
-      .on('click.dropdown.data-api touchstart.dropdown.data-api'  , toggle, Dropdown.prototype.toggle)
-      .on('keydown.dropdown.data-api touchstart.dropdown.data-api', toggle + ', [role=menu]' , Dropdown.prototype.keydown)
+      .on('click.dropdown', '.dropdown form', function (e) { e.stopPropagation() })
+      .on('click.dropdown.data-api', toggle, Dropdown.prototype.toggle)
   })
 
 }(window.jQuery);
 
 /* ===================================================
- * bootstrap-transition.js v2.1.0
+ * bootstrap-transition.js v2.1.1
  * http://twitter.github.com/bootstrap/javascript.html#transitions
  * ===================================================
  * Copyright 2012 Twitter, Inc.
@@ -2005,7 +1955,7 @@ define("lib/util/underscore.str", (function (global) {
 }(window.jQuery);
 
 /* =========================================================
- * bootstrap-modal.js v2.1.0
+ * bootstrap-modal.js v2.1.1
  * http://twitter.github.com/bootstrap/javascript.html#modals
  * =========================================================
  * Copyright 2012 Twitter, Inc.
@@ -2245,7 +2195,7 @@ define("lib/util/underscore.str", (function (global) {
 }(window.jQuery);
 
 /* ===========================================================
- * bootstrap-tooltip.js v2.1.0
+ * bootstrap-tooltip.js v2.1.1
  * http://twitter.github.com/bootstrap/javascript.html#tooltips
  * Inspired by the original jQuery.tipsy by Jason Frame
  * ===========================================================
@@ -2532,38 +2482,40 @@ define('app/progress',["jquery", "lib/util/underscore"], function($, _) {
       var _this = this;
       return $(".slidedecks a").each(function(idx, link) {
         var deps, input, key, li, missing, reqs;
-        li = $(link).parent();
-        $(link).parent().tooltip("destroy");
-        $(link).find("input").unbind();
-        li.removeClass("req");
-        deps = $(link).data("deps");
-        if (deps) {
-          deps = deps.split(",");
-          missing = _.reject(deps, function(id) {
-            return localStorage[_this.getKey(_this.getItem(id).find("input"))];
-          });
-          if (missing.length > 0) {
-            li.addClass("req");
-            reqs = "";
-            _.each(missing, function(id) {
-              return reqs += "<li>" + _this.getItem(id).data("label") + "</li>";
+        if ($(link).data("id")) {
+          li = $(link).parent();
+          input = $(li).find("input");
+          $(li).tooltip("destroy");
+          $(input).unbind();
+          li.removeClass("req");
+          deps = $(link).data("deps");
+          if (deps) {
+            deps = deps.split(",");
+            missing = _.reject(deps, function(id) {
+              return localStorage[_this.getKey(_this.getItem(id).parent().find("input"))];
             });
-            li.attr("title", "Voraussetzungen: <ul>" + reqs + "</ul>");
-            $(li).tooltip({
-              html: true,
-              placement: "bottom",
-              delay: {
-                show: 500,
-                hide: 100
-              }
-            });
+            if (missing.length > 0) {
+              li.addClass("req");
+              reqs = "";
+              _.each(missing, function(id) {
+                return reqs += "<li>" + _this.getItem(id).data("label") + "</li>";
+              });
+              li.attr("title", "Voraussetzungen: <ul>" + reqs + "</ul>");
+              $(li).tooltip({
+                html: true,
+                placement: "bottom",
+                delay: {
+                  show: 500,
+                  hide: 100
+                }
+              });
+            }
           }
-        }
-        input = $(link).find("input");
-        $(input).click(_this.update);
-        key = _this.getKey(input);
-        if (localStorage[key]) {
-          return _this.apply(input, true);
+          $(input).click(_this.update);
+          key = _this.getKey(input);
+          if (localStorage[key] !== void 0) {
+            return _this.apply(input, true);
+          }
         }
       });
     };
@@ -2605,7 +2557,7 @@ define('app/progress',["jquery", "lib/util/underscore"], function($, _) {
 
     Progress.prototype.apply = function(input, val) {
       var li;
-      li = $(input).parent().parent();
+      li = $(input).parent();
       $(li).removeClass("done");
       $(input).attr("checked", false);
       if (val) {

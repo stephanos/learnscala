@@ -9737,8 +9737,8 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
              <span>Go To</span>\
              <b class="caret"></b>\
            </a>\
-           <span class="divider">|</span>\
            <ul class="dropdown-menu"></ul>\
+           <span class="divider">|</span>\
          </li>').insertAfter($("#naviSlides"));
       titles = [];
       subtitles = [];
@@ -9904,7 +9904,7 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
       var self, target, updateTimer;
       self = this;
       target = $('#timer');
-      $('<li class="dropdown" id="naviTimer">\
+      $('<li id="naviTimer" class="dropdown">\
           <a class="dropdown-toggle" data-toggle="dropdown" href="#naviTimer">\
             <span>Timer</span>\
             <b class="caret"></b>\
