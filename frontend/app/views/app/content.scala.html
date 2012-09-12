@@ -181,9 +181,11 @@
 }
 
 @topics(content: Html) = {
-  <ul>
-    @content
-  </ul>
+  <div>
+      <ul>
+        @content
+      </ul>
+  </div>
 }
 
 @topic2(s: Slide) = {
@@ -192,6 +194,7 @@
 
 @topic(label: String, id: String = "", chpt: String = "", deps: Seq[Slide] = Seq(), status: String = "planned") = {
   <li class="topic @status">
+
     @if(status == "planned") {
         <span>@label</span>
     } else {

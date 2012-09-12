@@ -28,7 +28,7 @@
             tr {
                 td {
                     vertical-align: top;
-                    border-right: 5px solid #ccc;
+                    //border-right: 5px solid #ccc;
                     &.last { border-right: 0; }
 
                     &.level {
@@ -38,37 +38,41 @@
                         vertical-align: middle;
                     }
 
-                    ul {
-                        padding: 0;
-                        margin: 5px 1px;
-                    }
+                    >div {
+                        padding: 5px 4px;
 
-                    li {
-                        margin-bottom: 7px;
-                        list-style: none;
-
-                        border: 1px solid #ccc;
-
-                        @bg: darken(#fff, 1%);
-                        background-color: @bg;
-                        &:hover { background-color: darken(@bg, 2%); }
-
-                        @f: 10%;
-                        &.planned, &.todo { .bg(fade(@red, @f)); }
-                        &.incomplete { .bg(fade(@yellow, @f)); }
-                        &.done { .bg(fade(@green, @f)); }
-                        &.req { .bg(fade(@gray, @f)); }
-
-                        @p: 7px;
-                        >span {
-                            display: block;
-                            padding: @p;
+                        ul {
+                            padding: 0;
+                            margin: 0;
                         }
-                        >a, >input {
-                            text-decoration: none;
-                            display: inline-block;
-                            margin: 0 0 0 @p;
-                            padding: @p 0;
+
+                        li {
+                            margin-bottom: 7px;
+                            list-style: none;
+
+                            border: 1px solid #ccc;
+
+                            @bg: darken(#fff, 1%);
+                            background-color: @bg;
+                            &:hover { background-color: darken(@bg, 2%); }
+
+                            @f: 10%;
+                            &.planned, &.todo { .bg(fade(@red, @f)); }
+                            &.incomplete { .bg(fade(@yellow, @f)); }
+                            &.done { .bg(fade(@green, @f)); }
+                            &.req { .bg(fade(@gray, @f)); }
+
+                            @p: 7px;
+                            >span {
+                                display: block;
+                                padding: @p;
+                            }
+                            >a, >input {
+                                text-decoration: none;
+                                display: inline-block;
+                                margin: 0 0 0 @p;
+                                padding: @p 0;
+                            }
                         }
                     }
                 }
