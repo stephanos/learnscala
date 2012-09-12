@@ -14,7 +14,10 @@ mkdir -p out/
 # merge PDFs
 ./slides-merge.sh
 ./glossary-merge.sh
-cp -R ./ext/* out/extra/
+cp -R ext/* out/extra/
+
+# render markdown
+./md.rb
 
 # bundle to ZIP
 ./bundle

@@ -24,9 +24,8 @@ object Content extends MyController {
     // === OBJEKTE
     lazy val klassen1 = Slide("O10", "Klassen I", oop, Seq(ersteSchritte))
     lazy val vererbung1 = Slide("O11", "Vererbung I", oop, Seq(klassen1))
-    lazy val objekte = Slide("O12", "Objekte", oop, Seq(vererbung1))
-    lazy val sichtbarkeit = Slide("O13", "Sichtbarkeit", oop, Seq(objekte))
-    lazy val pakete = Slide("O14", "Pakete", oop, Seq(sichtbarkeit))
+    lazy val objekte = Slide("O12", "Objekte", oop, Seq(klassen1))
+    lazy val pakete = Slide("O13", "Pakete", oop, Seq(klassen1))
 
     // === FUNKTIONEN
 
@@ -44,8 +43,8 @@ object Content extends MyController {
     // === ALLGEMEIN
 
     lazy val annotationen = Slide("B21", "Annotationen", basic, Seq())
-    lazy val recursion = Slide("B22", "Rekursion", basic, Seq())
-    lazy val implicit1 = Slide("B23", "Implicits I", basic, Seq())
+    lazy val recursion = Slide("B25", "Rekursion", basic, Seq())
+    lazy val implicit1 = Slide("B25", "Implicits I", basic, Seq())
 
 
     // === OBJEKTE
