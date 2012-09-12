@@ -13,7 +13,6 @@ TODO
         @slidehead() {
             @topic
         } {
-
         }
     }
 
@@ -21,9 +20,8 @@ TODO
 
     @defining("Rogue") { title =>
 
-        @headslide(title = title) {
-            @title
-        } {
+        @slide(title = title) {
+
             <div class="indent">
                 <ul>
                     <li>
@@ -45,9 +43,8 @@ TODO
             </div>
         }
 
-        @headslide(title = title) {
-            @title
-        } {
+        @slide(title = title) {
+
             @sourcecode(fragment = false) {
                 |BlogPosts where (_.id eqs 1)
                 |          get

@@ -54,13 +54,13 @@
 
                             @bg: darken(#fff, 1%);
                             background-color: @bg;
-                            &:hover { background-color: darken(@bg, 2%); }
+                            //&:hover { background-color: darken(@bg, 2%); }
 
                             @f: 10%;
-                            &.planned, &.todo { .bg(fade(@red, @f)); }
+                            &.req { .bg(fade(@gray, @f)); } // must be first
                             &.incomplete { .bg(fade(@yellow, @f)); }
+                            &.todo { .bg(fade(@red, @f)); }
                             &.done { .bg(fade(@green, @f)); }
-                            &.req { .bg(fade(@gray, @f)); }
 
                             @p: 7px;
                             >span {

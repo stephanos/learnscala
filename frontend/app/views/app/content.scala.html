@@ -75,19 +75,20 @@
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Operatoren")
+                                    <!--@topic("Operatoren")-->
                                     @topic2(annotationen)
-                                    @topic("Reguläre Ausdrücke")
+                                    <!--@topic("Reguläre Ausdrücke")-->
                                     @topic2(recursion)
                                 }
                             </td>
                             <td>
                                 @topics {
-                                    @topic2(hierarchy)
+                                    @topic2(typen1)
                                     @topic2(traits)
                                     @topic2(klassen2)
                                     @topic2(vererbung2)
                                     @topic2(generics1)
+                                    @topic2(implicit1)
                                 }
                             </td>
                             <!--<td>
@@ -97,20 +98,19 @@
                             </td>-->
                             <td>
                                 @topics {
-                                    @topic("Option")
-                                    @topic("Tuple")
-                                    @topic("for")
+                                    <!--@topic("Option")-->
+                                    <!--@topic("Tuple")-->
                                     @topic2(kollektionen1)
-                                    @topic("Anonyme Funktionen")
+                                    @topic2(forexpr)
                                 }
                             </td>
                             <td>
                                 @topics {
                                     @topic2(xml)
-                                    @topic("JSON")
-                                    @topic("Swing")
-                                    @topic("Testen")
-                                    @topic("Interoperabilität")
+                                    <!--@topic2(jsond)-->
+                                    @topic2(tests)
+                                    @topic2(swing)
+                                    @topic2(interop)
                                 }
                             </td>
                         </tr>
@@ -123,22 +123,22 @@
                             </td>
                             <td>
                                 @topics {
+                                    @topic2(reflection)
+                                    @topic2(macros)
+                                    @topic2(dynamic)
                                     <!--@topic("Parsen")-->
-                                    @topic("Reflektion")
-                                    @topic("Dynamic")
-                                    @topic("Lazy")
-                                    @topic("Extraktoren")
-                                    <!--@topic("Makros")-->
+                                    <!--@topic("Lazy")-->
+                                    <!--@topic("Extraktoren")-->
                                     <!--@topic("Delimited Continuations")-->
                                 }
                             </td>
                             <td>
                                 @topics {
                                     <!--@topic("Early Definitions")-->
+                                    @topic2(implicit2)
                                     @topic2(generics2)
-                                    @topic("Self-Types")
-                                    @topic("Abstrakte Typen")
-                                    @topic("Strukturelle Typen")
+                                    @topic2(typen2)
+                                    @topic("DSL")
                                 }
                             </td>
                             <!--<td>
@@ -148,18 +148,18 @@
                             </td>-->
                             <td>
                                 @topics {
-                                    @topic2(kollektionen1)
+                                    @topic2(kollektionen2)
                                     @topic("Partial Functions")
                                     @topic("Kontrollabstraktion")
                                 }
                             </td>
                             <td>
                                 @topics {
-                                    @topic("Aktoren")
+                                    @topic2(aktoren)
                                     <!--@topic("Utilities")-->
-                                    @topic("Datenbanken")
-                                    @topic("Web Frameworks")
-                                    @topic("Scalaz")
+                                    @topic2(dbase)
+                                    @topic2(web)
+                                    @topic2(scalaz)
                                 }
                             </td>
                         </tr>
@@ -192,18 +192,13 @@
   @topic(s.label, s.id, s.chpt, s.deps, s.status)
 }
 
-@topic(label: String, id: String = "", chpt: String = "", deps: Seq[Slide] = Seq(), status: String = "planned") = {
+@topic(label: String, id: String = "", chpt: String = "", deps: Seq[Slide] = Seq(), status: String = "todo") = {
   <li class="topic @status">
-
-    @if(status == "planned") {
-        <span>@label</span>
-    } else {
       @defining("/app/slides/" + (if(chpt != "") chpt + "/" else "") + id + "/#/") { url =>
         <input type="checkbox" class="status" data-key="@url"/>
         <a href="@url" data-id="@id" data-label="@label" data-deps='@{deps.map(_.id).mkString(",")}'>
           @label
         </a>
       }
-    }
   </li>
 }
