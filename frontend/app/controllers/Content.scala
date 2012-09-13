@@ -58,13 +58,13 @@ object Content extends MyController {
 
     // === FUNKTIONEN
 
-    lazy val kollektionen1 = Slide("F20", "Kollektionen I", fp, Seq())
-    lazy val forexpr = Slide("F21", "for", fp, Seq())
+    lazy val kollektionen1 = Slide("F20", "Kollektionen I", fp, Seq(generics1))
+    lazy val forexpr = Slide("F21", "for", fp, Seq(kollektionen1))
 
 
     // === ERWEITERT
 
-    lazy val xml = Slide("E20", "XML", ext, Seq(), status = "complete")
+    lazy val xml = Slide("E20", "XML", ext, Seq(forexpr), status = "complete")
     lazy val jsond = Slide("E21", "JSON", ext, Seq())
     lazy val tests = Slide("E22", "Testen", ext, Seq())
     lazy val swing = Slide("E23", "Swing", ext, Seq())
