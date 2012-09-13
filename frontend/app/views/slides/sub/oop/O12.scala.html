@@ -10,7 +10,7 @@
 
         <!--################################################################################## -->
 
-        @slide() {
+        @slide(title = "static ?") {
 
             @sidebyside((60,40)) {
                 @sourcecode(fragment = false) {
@@ -42,8 +42,7 @@
 
         <!--################################################################################## -->
 
-        @slide() {
-            <!-- Singleton -->
+        @slide(title = "Singleton") {
 
             @codesplits((60,40), id="planefactory", fragment = false){
                 @splitstart(reference = "plane") {
@@ -87,104 +86,104 @@
 
         <!--################################################################################## -->
 
-        @slide() {
-            <!-- Companion Object -->
+        @defining("Companion") { title =>
 
-            @sidebyside((70,30)) {
-                @callcode(fragment = false) {
-                    |val bigNumber = BigInt("1234567890")
-                }
-                @codenote() {
-                    erstellt ein <code>BigInt</code> mit dem Wert 1234567890
-                }
-            } {
-            }
+            @slide(title = title) {
 
-            @spacer2()
-
-            @sidebyside((70,30), fragment = true) {
-                @callcode(fragment = false) {
-                    |val countdown = Array(10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
-                }
-            } {
-                @codenote() {
-                    erstellt ein <code>Array</code> aus den Zahlen von 10 bis 0
-                }
-            }
-
-            @spacer()
-
-            @infobox() {
-                Für viele Datentypen und -strukturen gibt es gleichnamige Objekte
-                <comment>("Companion Objects")</comment> mit speziellen Factory-Methoden.
-            }
-        }
-
-        <!--################################################################################## -->
-
-        @slide() {
-            <!-- Sichtbarkeit -->
-
-            @sidebyside() {
-                @sourcecode(id = "plane2", clazz = "first", fragment = false) {
-                    |class Plane private (val model: String,
-                    |                     val seats: Int) {
-                    |
-                    |  def totalCount = Plane.countOfPlanes
-                    |}
-                }
-            } {
-                @codenote() {
-                    Klasse <code>Plane</code> hat einen privaten Konstruktor
-                }
-            }
-
-            @sidebyside() {
-                @sourcecode(id = "planeobj", clazz = "last", reference = "plane2") {
-                    |
-                    |object Plane {
-                    |
-                    |  private var countOfPlanes = 0
-                    |
-                    |  def create(mdl: String, s: Int) = {
-                    |    countOfPlanes += 1
-                    |    new Plane(mdl, s)
-                    |  }
-                    |}
-                }
-            } {
-                @fragment {
+                @sidebyside((70,30)) {
+                    @callcode(fragment = false) {
+                        |val bigNumber = BigInt("1234567890")
+                    }
+                } {
                     @codenote() {
-                        Companion Object <code>Plane</code> kann aber eine neue Instanz erstellen:
+                        erstellt ein <code>BigInt</code> mit dem Wert 1234567890
                     }
-                    @spacer()
-                    @snippet() {
-                        @callblock(reference = "planeobj", fragment = false) {
-                            val p = Plane.create("Boeing 737",189)
-                        }
-                        @outblock() {
-                            |p: Plane = Plane@@536502d
-                        }
-                        @callblock() {
-                            println(p.totalCount)
-                        }
-                        @outblock() {
-                            |1
-                        }
+                }
+
+                @spacer2()
+
+                @sidebyside((70,30), fragment = true) {
+                    @callcode(fragment = false) {
+                        |val countdown = Array(10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
                     }
+                } {
+                    @codenote() {
+                        erstellt ein <code>Array</code> aus den Zahlen von 10 bis 0
+                    }
+                }
+
+                @spacer()
+
+                @infobox() {
+                    Für viele Datentypen und -strukturen gibt es gleichnamige Objekte
+                    <comment>("Companion Objects")</comment> mit speziellen Factory-Methoden.
                 }
             }
 
-            @infobox() {
-                Das Companion Object einer Klasse muss den selben Namen tragen und in der selben Datei
-                definiert werden, dann hat es privaten Zugriff - und umgekehrt.
+            <!--################################################################################## -->
+
+            @slide(title = title) {
+
+                @sidebyside() {
+                    @sourcecode(id = "plane2", clazz = "first", fragment = false) {
+                        |class Plane private (val model: String,
+                        |                     val seats: Int) {
+                        |
+                        |  def totalCount = Plane.countOfPlanes
+                        |}
+                    }
+                } {
+                    @codenote() {
+                        Klasse <code>Plane</code> hat einen privaten Konstruktor
+                    }
+                }
+
+                @sidebyside() {
+                    @sourcecode(id = "planeobj", clazz = "last", reference = "plane2") {
+                        |
+                        |object Plane {
+                        |
+                        |  private var countOfPlanes = 0
+                        |
+                        |  def create(mdl: String, s: Int) = {
+                        |    countOfPlanes += 1
+                        |    new Plane(mdl, s)
+                        |  }
+                        |}
+                    }
+                } {
+                    @fragment {
+                        @codenote() {
+                            Companion Object <code>Plane</code> kann aber eine neue Instanz erstellen:
+                        }
+                        @spacer()
+                        @snippet() {
+                            @callblock(reference = "planeobj", fragment = false) {
+                                val p = Plane.create("Boeing 737",189)
+                            }
+                            @outblock() {
+                                |p: Plane = Plane@@536502d
+                            }
+                            @callblock() {
+                                println(p.totalCount)
+                            }
+                            @outblock() {
+                                |1
+                            }
+                        }
+                    }
+                }
+
+                @infobox() {
+                    Das Companion Object einer Klasse muss den selben Namen tragen und in der selben Datei
+                    definiert werden, dann hat es privaten Zugriff - und umgekehrt.
+                }
             }
         }
 
         <!--################################################################################## -->
 
-        @slide() {
-            <!-- apply() -->
+        @slide(title = "apply") {
 
             @sidebyside((60,40)) {
                 @sourcecode(id = "apply", reference = "plane2", fragment = false) {
@@ -251,8 +250,7 @@
 
         <!--################################################################################## -->
 
-        @slide() {
-            <!-- Predef -->
+        @slide(title = "Predef") {
 
             @sidebyside((66,33)) {
                 @snippet() {

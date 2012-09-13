@@ -1,0 +1,75 @@
+@defining("Kontrollabstraktion") { implicit topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slidehead() {
+            @topic
+        } {
+
+        }
+
+        <!--################################################################################## -->
+
+    }
+}
+
+<!--
+file:///Volumes/HOTSTUFF/LearnScala/slides/uni%20muenchen/06-kontrollabstraktion-syska-wilhelmi/praesentation.pdf
+
+object BreakLoop {
+
+    object Break extends RuntimeException
+
+    object Continue extends Exception
+
+    def break {
+        throw Break
+    }
+
+    def continue {
+        throw Continue
+    }
+
+    def whileTrue(block: => Unit) {
+        try {
+            try {
+                while (true) try {
+                    block
+                }
+                catch {
+                    case Continue =>
+                }
+            }
+            catch {
+                case Break =>
+            }
+        }
+    }
+
+    def whileTrue(condition: => Boolean)(block: => Unit) {
+        try {
+            while (condition)
+                try {
+                    block
+                }
+                catch {
+                    case Continue =>
+                }
+        }
+        catch {
+            case Break =>
+        }
+    }
+}
+
+import BreakLoop._
+object TestBreak extends App {
+    var i = 0
+    whileTrue {
+        i += 1
+        if (i < 3) continue
+        if (i >= 5) break
+        if (i >= 5) break
+    }
+}
+-->
