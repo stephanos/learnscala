@@ -1,12 +1,8 @@
 <!--
-    - SCALA -> JAVA
-        - Collection conversion
-
-    - JAVA -> SCALA
-        - Arrays, Maps
-        - annotations
-
-    http://twitter.github.com/scala_school/java.html
+    - http://twitter.github.com/scala_school/java.html
+    - Pragmatic Programming Scala, page 156
+    - Programming in Scala, page 710
+    - Programming Scala, page 369
 -->
 
 @defining("Interoperabilität") { implicit topic =>
@@ -21,18 +17,71 @@
 
         <!--################################################################################## -->
 
+        @headslide() {
+
+        } {
+            @sidebyside((50,50)) {
+                <h3><em>Scala</em> -> <var>Java</var></h3>
+
+                <ul class="indent">
+                    <li class="fragment">
+                        fast reibungslos,<br/>
+                        mit wenigen Ausnahmen:
+                        @spacer_half()
+                        <ul class="indent">
+                            <li>statics</li>
+                            <li>Kollektionen</li>
+                        </ul>
+                    </li>
+                </ul>
+            } {
+                <h3><var>Java</var> -> <em>Scala</em></h3>
+                <ul class="indent">
+                    <li class="fragment">
+                        gut - aber mit Hindernissen:
+                        @spacer_half()
+                        <ul class="indent">
+                            <li>Felder</li>
+                            <li>Objekte</li>
+                            <li>Traits</li>
+                            <li>Ausnahmen</li>
+                            <li>Funktionen</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">
+                        @underline("Hilfreich"):
+                        Tool <var>javap</var> (aus dem JDK) kann Bytecode von Scala-Klassen dekompilieren
+                    </li>
+                </ul>
+            }
+        }
+
+        <!--################################################################################## -->
+
         @defining(<span><em>Scala</em> -> <var>Java</var></span>) { title =>
 
+            @slidehead(htmlTitle = title) {
+                @title
+            } {
+            }
+
+            <!--################################################################################## -->
+
             @defining("Kollektionen") { subtitle =>
-                @headslide(htmlTitle = title) {
+                @headslide(htmlTitle = title, subtitle = subtitle) {
                     @title: @subtitle
                 } {
-                    @sourcecode() {
-                        |class Book
-                    }
 
-                    <br/><br/>
-                    <!--@apilink("Test", "scala/collection/JavaConversions$")-->
+                }
+            }
+
+            <!--################################################################################## -->
+
+            @defining("static") { subtitle =>
+                @headslide(htmlTitle = title, subtitle = subtitle) {
+                    @title: @subtitle
+                } {
+
                 }
             }
         }
@@ -40,6 +89,13 @@
         <!--################################################################################## -->
 
         @defining(<span><var>Java</var> -> <em>Scala</em></span>) { title =>
+
+            @slidehead(htmlTitle = title) {
+                @title
+            } {
+            }
+
+            <!--################################################################################## -->
 
             @defining("Klassen") { subtitle =>
 
@@ -55,12 +111,17 @@
                             |public class Book
                             |  extends java.lang.Object
                             |  implements scala.ScalaObject {
+                            |
                             |    public Book();
                             |}
                         }
+                        @codesub() {
+                            jede Scala-Klasse erbt automatisch von <code>java.lang.Object</code> und
+                            implementiert <code>scala.ScalaObject</code>
+                        }
                     }
 
-                    @spacer_half()
+                    @spacer()
 
                     @sidebyside((47,53)) {
                         @sourcecode() {
@@ -69,13 +130,79 @@
                     } {
                         @outcode() {
                             |public class Book [..] {
+                            |
                             |  public Book(java.lang.String);
                             |}
                         }
                     }
 
                     @spacer_half()
+                }
+            }
 
+            <!--################################################################################## -->
+
+            @defining("Methoden") { subtitle =>
+
+                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
+                    @title: @subtitle
+                } {
+                    <!-- static & currying -->
+                }
+
+                <!--################################################################################## -->
+
+                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "Operatoren") {
+                    @title: @subtitle
+                } {
+                    @sidebyside((35,65)) {
+                        @sourcecode() {
+                            |
+                            |abstract class Operators {
+                            |
+                            |  def >()
+                            |  def <()
+                            |  def +()
+                            |  def -()
+                            |
+                            |  def ?()
+                            |  def &()
+                            |  def !()
+                            |  def %()
+                            |  def ::()
+                            |}
+                        }
+                    } {
+                        @outcode() {
+                            |public abstract class Operators extends [..] {
+                            |  public Operators();
+                            |
+                            |  public abstract void $greater();
+                            |  public abstract void $less();
+                            |  public abstract void $plus();
+                            |  public abstract void $minus();
+                            |
+                            |  public abstract void $qmark();
+                            |  public abstract void $amp();
+                            |  public abstract void $bang();
+                            |  public abstract void $percent();
+                            |  public abstract void $colon$colon();
+                            |}
+                        }
+                        @codesub() {
+                            Symbole werden übersetzt in <var>Java</var>-kompatible Bezeichnungen
+                        }
+                    }
+                }
+            }
+
+            <!--################################################################################## -->
+
+            @defining("Felder") { subtitle =>
+
+                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
+                    @title: @subtitle
+                } {
                     @sidebyside((47,53)) {
                         @sourcecode() {
                             |class Book(val title: String)
@@ -91,7 +218,7 @@
                         }
                     }
 
-                    @spacer_half()
+                    @spacer()
 
                     @sidebyside((47,53)) {
                         @sourcecode() {
@@ -110,7 +237,9 @@
                     }
                 }
 
-                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
+                <!--################################################################################## -->
+
+                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "Get & Set") {
                     @title: @subtitle
                 } {
                     @sidebyside((50,50)) {
@@ -178,7 +307,7 @@
 
                 <!--################################################################################## -->
 
-                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
+                @*<!--@headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "Get & Set") {
                     @title: @subtitle
                 } {
                     @sidebyside((47,53)) {
@@ -239,7 +368,7 @@
                             |}
                         }
                     }
-                }
+                }-->*@
             }
 
             <!--################################################################################## -->
@@ -249,7 +378,7 @@
                 @headslide(htmlTitle = title, subtitle = subtitle) {
                     @title: @subtitle
                 } {
-                    @sidebyside((45,55)) {
+                    @sidebyside((43,57)) {
                         @sourcecode() {
                             |import java.io._
                             |
@@ -268,11 +397,14 @@
                             |  [..]
                             |}
                         }
+                        @codesub() {
+                            <em>Scala</em> ignoriert <var>geprüfte Ausnahmen</var> <comment>(checked exceptions)</comment>
+                        }
                     }
 
                     @spacer()
 
-                    @sidebyside((45,55)) {
+                    @sidebyside((43,57)) {
                         @sourcecode() {
                             |import java.io._
                             |
@@ -291,6 +423,9 @@
                             |  public int read() throws java.io.IOException;
                             |  [..]
                             |}
+                        }
+                        @codesub() {
+                            @@throws fügt der Signatur die spezifizierten Ausnahmen hinzu
                         }
                     }
                 }
@@ -316,14 +451,14 @@
                             |}
                         }
                         @codesub() {
-                            Trait ohne konkrete Methoden entspricht einem Interface
+                            <em>Trait</em> ohne konkrete Methoden entspricht einem <var>Interface</var>
                         }
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @sidebyside((35,65)) {
-                        @sourcecode() {
+                        @sourcecode(id = "trait") {
                             |trait Logging {
                             |  def log(msg: String) {
                             |    println(msg)
@@ -331,16 +466,34 @@
                             |}
                         }
                     } {
-                        @outcode() {
-                            |public abstract class Logging$class extends Object {
-                            |  public static void log(Logging, java.lang.String);
-                            |  public static void $init$(Logging);
-                            |}
-                            |
-                            |public interface Logging extends scala.ScalaObject {
-                            |  public abstract void log(java.lang.String);
-                            |}
+                        @traitBytecode
+                        @codesub() {
+                            <em>Trait</em> mit implementierten Methoden entspricht in einem <var>Interface</var> <br/>
+                            @underline("und") einer <var>abstrakten Klasse</var> mit den Methoden als <var>statics</var>
                         }
+                    }
+                }
+
+                <!--################################################################################## -->
+
+                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "Vererbung") {
+                    @title: @subtitle
+                } {
+                    @traitBytecode
+
+                    @spacer()
+
+                    @sourcecode(reference = "trait", lang = "java") {
+                        |public class Service implements Logging {
+                        |
+                        |  public void log(String msg) {
+                        |    Logging$class.log(this, msg);
+                        |  }
+                        |}
+                    }
+                    @codesub() {
+                        <var>Java-Klasse</var> implementiert das <var>Interface</var>,
+                        Methoden des <em>Traits</em> können via Delegation ausgeführt werden
                     }
                 }
             }
@@ -348,59 +501,89 @@
             <!--################################################################################## -->
 
             @defining("Objekte") { subtitle =>
-                <!-- http://www.artima.com/pins1ed/combining-scala-and-java.html -->
 
-                @headslide(htmlTitle = title, subtitle = subtitle) {
+                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
                     @title: @subtitle
                 } {
-                }
-            }
-
-            <!--################################################################################## -->
-
-            @defining("Operatoren") { subtitle =>
-                <!-- http://www.codecommit.com/blog/java/interop-between-java-and-scala -->
-
-                @headslide(htmlTitle = title, subtitle = subtitle) {
-                    @title: @subtitle
-                } {
-                    @sidebyside((35,65)) {
+                    @sidebyside((38,62)) {
                         @sourcecode() {
+                            |class Person(val name: String)
                             |
-                            |abstract class Operators {
-                            |
-                            |  def >()
-                            |  def <()
-                            |  def +()
-                            |  def -()
-                            |
-                            |  def ?()
-                            |  def &()
-                            |  def !()
-                            |  def %()
-                            |  def ::()
+                            |object Person {
+                            |  def apply(n: String) =
+                            |    new Person(n)
                             |}
                         }
                     } {
                         @outcode() {
-                            |public abstract class Operators extends [..] {
-                            |  public Operators();
+                            |public final class Person$ extends [..] {
+                            |  public static final Person$ MODULE$;
+                            |  public static {};
+                            |  public Person apply(java.lang.String);
+                            |  private Person$();
+                            |}
                             |
-                            |  public abstract void $greater();
-                            |  public abstract void $less();
-                            |  public abstract void $plus();
-                            |  public abstract void $minus();
-                            |
-                            |  public abstract void $qmark();
-                            |  public abstract void $amp();
-                            |  public abstract void $bang();
-                            |  public abstract void $percent();
-                            |  public abstract void $colon$colon();
+                            |public class Person extends [..] {
+                            |  private final java.lang.String name;
+                            |  public static final Person apply(java.lang.String);
+                            |  public java.lang.String name();
+                            |  public Person(java.lang.String);
                             |}
                         }
                         @codesub() {
-                            Symbole werden übersetzt in <var>Java</var>-kompatible Bezeichnungen
+                            test
                         }
+                    }
+                }
+
+                <!--################################################################################## -->
+
+                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
+                    @title: @subtitle
+                } {
+                    @sidebyside((33,66)) {
+                        @sourcecode() {
+                            |object StringUtil {
+                            |  def trim(s: String) {
+                            |    s.trim()
+                            |  }
+                            |}
+                        }
+                    } {
+                        @outcode() {
+                            |public final class StringUtil$ extends [..] {
+                            |  public static final StringUtil$ MODULE$;
+                            |  public static {};
+                            |  public void trim(java.lang.String);
+                            |  private StringUtil$();
+                            |}
+                            |
+                            |public final class StringUtil extends java.lang.Object {
+                            |  public static final void trim(java.lang.String);
+                            |}
+                        }
+                        @codesub() {
+                            test
+                        }
+                    }
+                }
+
+                <!--################################################################################## -->
+
+                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
+                    @title: @subtitle
+                } {
+
+                    @sourcecode(reference = "trait", lang = "java") {
+                        |public class Service implements Logging {
+                        |
+                        |  public void log(String msg) {
+                        |    Logging$class.log(this, msg);
+                        |  }
+                        |}
+                    }
+                    @codesub() {
+
                     }
                 }
             }
@@ -418,5 +601,18 @@
 
             <!-- Varianz ? -->
         }
+    }
+}
+
+@traitBytecode = {
+    @outcode() {
+        |public abstract class Logging$class extends Object {
+        |  public static void log(Logging, java.lang.String);
+        |  public static void $init$(Logging);
+        |}
+        |
+        |public interface Logging extends scala.ScalaObject {
+        |  public abstract void log(java.lang.String);
+        |}
     }
 }
