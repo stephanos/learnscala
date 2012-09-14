@@ -6,7 +6,8 @@
 
     TODO
         - generics
-        - functions
+        - boxing ?
+        - Sichtbarkeit ?
 -->
 
 @defining("Interoperabilität") { implicit topic =>
@@ -30,10 +31,9 @@
                 <ul class="indent">
                     <li class="fragment">
                         fast reibungslos,<br/>
-                        mit wenigen Ausnahmen:
+                        mit einer Ausnahme:
                         @spacer_half()
                         <ul class="indent">
-                            <li>statics</li>
                             <li>Kollektionen</li>
                         </ul>
                     </li>
@@ -74,17 +74,50 @@
                 @headslide(htmlTitle = title, subtitle = subtitle) {
                     @title: @subtitle
                 } {
-                    TODO
-                }
-            }
+                    <!--
+                        http://stackoverflow.com/questions/8301947/what-is-the-difference-between-javaconverters-and-javaconversions-in-scala
+                    -->
+                    @snippet() {
+                        @callblock() {
+                            |import scala.collection.JavaConversions._
+                            |val javaList: java.util.List[Int] = List(1, 2, 3)
+                        }
+                        @outblock() {
+                            |javaList: java.util.List[Int] = [1, 2, 3]
+                        }
+                        @callblock() {
+                            |javaList.foreach(print)
+                        }
+                        @outblock() {
+                            |123
+                        }
+                    }
+                    @codesub() {
+                        <code>JavaConversions</code> enthält Implicits zur automatischen Umwandlung zwischen Kollektionen
+                        aus Scala und Java <comment class="nobreak">(dabei wird ein Wrapper verwendet)</comment>
+                    }
 
-            <!--################################################################################## -->
+                    @spacer()
 
-            @defining("static") { subtitle =>
-                @headslide(htmlTitle = title, subtitle = subtitle) {
-                    @title: @subtitle
-                } {
-                    TODO
+                    @snippet() {
+                        @callblock() {
+                            |import scala.collection.JavaConverters._
+                            |val javaList = List(1, 2, 3).asJava
+                        }
+                        @outblock() {
+                            |javaList: java.util.List[Int] = [1, 2, 3]
+                        }
+                        @callblock() {
+                            |val scalaList = javaList.asScala
+                        }
+                        @outblock() {
+                            |scalaList: scala.collection.mutable.Buffer[Int] = Buffer(1, 2, 3)
+                        }
+                    }
+                    @codesub() {
+                        <code>JavaConverters</code> erweitert Kollektionen um die Methoden <code>asScala</code> bzw. <code>asJava</code>
+                        zur expliziten Umwandlung
+                    }
                 }
             }
         }
@@ -570,7 +603,53 @@
                 @headslide(htmlTitle = title, subtitle = subtitle) {
                     @title: @subtitle
                 } {
-                     TODO
+                    @sidebyside((50,50)) {
+                        @sourcecode() {
+                            |class Hello {
+                            |  def print(f: String => String) {
+                            |    println(f("Hello World"))
+                            |  }
+                            |}
+                        }
+                    } {
+                        @outcode() {
+                            |public class Hello extends [..] {
+                            |  public void print(scala.Function1);
+                            |  public Hello();
+                            |}
+                        }
+                        @codesub() {
+                            <code>f: String => String</code> entspricht <code>Function1</code>,<br/>
+                            einer Funktion mit einem Parameter
+                        }
+                    }
+
+                    @spacer()
+
+                    @sidebyside((65,35)) {
+                        @sourcecode(reference = "trait", lang = "java") {
+                            |import scala.runtime.AbstractFunction1;
+                            |
+                            |public class Main {
+                            |
+                            |  public void shoutHello() {
+                            |    Hello h = new Hello();
+                            |    h.print(new AbstractFunction1&lt;String, String&gt;() {
+                            |       public String apply(String arg) {
+                            |         return arg.toUpperCase();
+                            |       }
+                            |    });
+                            |  }
+                            |}
+                        }
+                    } {
+                        @spacer()
+                        @codenote() {
+                            <em>Closure</em> kann durch
+                            Implementierung von <code>apply</code> der Klasse <code>AbstractFunction1</code>
+                            erstellt werden
+                        }
+                    }
                 }
             }
         }
