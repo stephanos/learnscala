@@ -3,6 +3,10 @@
     - Pragmatic Programming Scala, page 156
     - Programming in Scala, page 710
     - Programming Scala, page 369
+
+    TODO
+        - generics
+        - functions
 -->
 
 @defining("Interoperabilität") { implicit topic =>
@@ -38,9 +42,13 @@
                 <h3><var>Java</var> -> <em>Scala</em></h3>
                 <ul class="indent">
                     <li class="fragment">
-                        gut - aber mit Hindernissen:
+                        gut - speziell für Kompatibilität optimiert
+                    </li>
+                    <li class="fragment">
+                        Spezialfälle:
                         @spacer_half()
                         <ul class="indent">
+                            <li>Methoden</li>
                             <li>Felder</li>
                             <li>Objekte</li>
                             <li>Traits</li>
@@ -60,18 +68,13 @@
 
         @defining(<span><em>Scala</em> -> <var>Java</var></span>) { title =>
 
-            @slidehead(htmlTitle = title) {
-                @title
-            } {
-            }
-
             <!--################################################################################## -->
 
             @defining("Kollektionen") { subtitle =>
                 @headslide(htmlTitle = title, subtitle = subtitle) {
                     @title: @subtitle
                 } {
-
+                    TODO
                 }
             }
 
@@ -81,7 +84,7 @@
                 @headslide(htmlTitle = title, subtitle = subtitle) {
                     @title: @subtitle
                 } {
-
+                    TODO
                 }
             }
         }
@@ -89,11 +92,6 @@
         <!--################################################################################## -->
 
         @defining(<span><var>Java</var> -> <em>Scala</em></span>) { title =>
-
-            @slidehead(htmlTitle = title) {
-                @title
-            } {
-            }
 
             <!--################################################################################## -->
 
@@ -131,7 +129,7 @@
                         @outcode() {
                             |public class Book [..] {
                             |
-                            |  public Book(java.lang.String);
+                            |    public Book(java.lang.String);
                             |}
                         }
                     }
@@ -147,7 +145,11 @@
                 @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
                     @title: @subtitle
                 } {
-                    <!-- static & currying -->
+                    TODO
+                    <!--
+                        - static
+                        - currying
+                    -->
                 }
 
                 <!--################################################################################## -->
@@ -155,10 +157,10 @@
                 @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "Operatoren") {
                     @title: @subtitle
                 } {
-                    @sidebyside((35,65)) {
+                    @sidebyside((35,60)) {
                         @sourcecode() {
-                            |
                             |abstract class Operators {
+                            |
                             |
                             |  def >()
                             |  def <()
@@ -216,6 +218,10 @@
                             |  public java.lang.String title();
                             |}
                         }
+                        @codesub() {
+                            <em>val</em> resultiert in einer privaten Variable<br/>
+                            und einer gleichnamigen, öffentlichen Zugriffsmethode
+                        }
                     }
 
                     @spacer()
@@ -234,6 +240,10 @@
                             |  public void title_$eq(java.lang.String);
                             |}
                         }
+                        @codesub() {
+                            <em>var</em> erhält zusätzlich eine schreibende Methode
+                            <span class="nobreak">mit dem Suffix <code>_=</code></span> (entspricht <code>_$eq</code> in Java)
+                        }
                     }
                 }
 
@@ -247,6 +257,9 @@
                             |import scala.reflect.BeanProperty
                             |
                             |class Book(@@BeanProperty val title:String)
+                        }
+                        @codesub() {
+                            <code>@@BeanProperty</code> erstellt eine get-Methode für <em>val</em>
                         }
                     } {
                         @outcode() {
@@ -289,6 +302,9 @@
                             |import scala.reflect.BeanProperty
                             |
                             |class Book(@@BeanProperty var price:Float)
+                        }
+                        @codesub() {
+                            <code>@@BeanProperty</code> erstellt get- und set-Methoden für <em>var</em>
                         }
                     } {
                         @outcode() {
@@ -425,7 +441,7 @@
                             |}
                         }
                         @codesub() {
-                            @@throws fügt der Signatur die spezifizierten Ausnahmen hinzu
+                            <code>@@throws</code> fügt der Signatur die spezifizierten Ausnahmen hinzu
                         }
                     }
                 }
@@ -505,42 +521,6 @@
                 @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
                     @title: @subtitle
                 } {
-                    @sidebyside((38,62)) {
-                        @sourcecode() {
-                            |class Person(val name: String)
-                            |
-                            |object Person {
-                            |  def apply(n: String) =
-                            |    new Person(n)
-                            |}
-                        }
-                    } {
-                        @outcode() {
-                            |public final class Person$ extends [..] {
-                            |  public static final Person$ MODULE$;
-                            |  public static {};
-                            |  public Person apply(java.lang.String);
-                            |  private Person$();
-                            |}
-                            |
-                            |public class Person extends [..] {
-                            |  private final java.lang.String name;
-                            |  public static final Person apply(java.lang.String);
-                            |  public java.lang.String name();
-                            |  public Person(java.lang.String);
-                            |}
-                        }
-                        @codesub() {
-                            test
-                        }
-                    }
-                }
-
-                <!--################################################################################## -->
-
-                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
-                    @title: @subtitle
-                } {
                     @sidebyside((33,66)) {
                         @sourcecode() {
                             |object StringUtil {
@@ -553,32 +533,27 @@
                         @outcode() {
                             |public final class StringUtil$ extends [..] {
                             |  public static final StringUtil$ MODULE$;
-                            |  public static {};
                             |  public void trim(java.lang.String);
                             |  private StringUtil$();
                             |}
                             |
-                            |public final class StringUtil extends java.lang.Object {
+                            |public final class StringUtil extends [..] {
                             |  public static final void trim(java.lang.String);
                             |}
                         }
                         @codesub() {
-                            test
+                            <em>Objekte</em> werden zu Klassen mit den entsprechenden Methoden als <var>static</var><br/>
+                            <comment>(delegieren den Aufruf an das generierte Singleton (erkennbar am <code>$</code>))</comment>
                         }
                     }
-                }
 
-                <!--################################################################################## -->
-
-                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
-                    @title: @subtitle
-                } {
+                    @spacer()
 
                     @sourcecode(reference = "trait", lang = "java") {
-                        |public class Service implements Logging {
+                        |public class Logger {
                         |
                         |  public void log(String msg) {
-                        |    Logging$class.log(this, msg);
+                        |    println(StringUtil.trim(msg));
                         |  }
                         |}
                     }
@@ -595,11 +570,9 @@
                 @headslide(htmlTitle = title, subtitle = subtitle) {
                     @title: @subtitle
                 } {
-
+                     TODO
                 }
             }
-
-            <!-- Varianz ? -->
         }
     }
 }
