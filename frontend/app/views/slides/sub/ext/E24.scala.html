@@ -32,7 +32,7 @@
                     }
 
                     <br/><br/>
-                    @apilink("Test", "scala/collection/JavaConversions$")
+                    <!--@apilink("Test", "scala/collection/JavaConversions$")-->
                 }
             }
         }
@@ -269,7 +269,9 @@
                             |}
                         }
                     }
-                    @spacer_half()
+
+                    @spacer()
+
                     @sidebyside((45,55)) {
                         @sourcecode() {
                             |import java.io._
@@ -301,6 +303,45 @@
                 @headslide(htmlTitle = title, subtitle = subtitle) {
                     @title: @subtitle
                 } {
+                    @sidebyside((35,65)) {
+                        @sourcecode() {
+                            |trait Logging {
+                            |  def log(msg: String)
+                            |}
+                        }
+                    } {
+                        @outcode() {
+                            |public interface Logging {
+                            |  public abstract void log(java.lang.String);
+                            |}
+                        }
+                        @codesub() {
+                            Trait ohne konkrete Methoden entspricht einem Interface
+                        }
+                    }
+
+                    @spacer2()
+
+                    @sidebyside((35,65)) {
+                        @sourcecode() {
+                            |trait Logging {
+                            |  def log(msg: String) {
+                            |    println(msg)
+                            |  }
+                            |}
+                        }
+                    } {
+                        @outcode() {
+                            |public abstract class Logging$class extends Object {
+                            |  public static void log(Logging, java.lang.String);
+                            |  public static void $init$(Logging);
+                            |}
+                            |
+                            |public interface Logging extends scala.ScalaObject {
+                            |  public abstract void log(java.lang.String);
+                            |}
+                        }
+                    }
                 }
             }
 
@@ -323,6 +364,44 @@
                 @headslide(htmlTitle = title, subtitle = subtitle) {
                     @title: @subtitle
                 } {
+                    @sidebyside((35,65)) {
+                        @sourcecode() {
+                            |
+                            |abstract class Operators {
+                            |
+                            |  def >()
+                            |  def <()
+                            |  def +()
+                            |  def -()
+                            |
+                            |  def ?()
+                            |  def &()
+                            |  def !()
+                            |  def %()
+                            |  def ::()
+                            |}
+                        }
+                    } {
+                        @outcode() {
+                            |public abstract class Operators extends [..] {
+                            |  public Operators();
+                            |
+                            |  public abstract void $greater();
+                            |  public abstract void $less();
+                            |  public abstract void $plus();
+                            |  public abstract void $minus();
+                            |
+                            |  public abstract void $qmark();
+                            |  public abstract void $amp();
+                            |  public abstract void $bang();
+                            |  public abstract void $percent();
+                            |  public abstract void $colon$colon();
+                            |}
+                        }
+                        @codesub() {
+                            Symbole werden übersetzt in <var>Java</var>-kompatible Bezeichnungen
+                        }
+                    }
                 }
             }
 
