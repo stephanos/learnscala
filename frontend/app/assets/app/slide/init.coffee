@@ -147,19 +147,34 @@ define [
             <span class="divider">|</span>
         </li>').insertAfter($("#naviEditor"))
 
-      # bind click event
-      $("#naviDocs").bind("click", () ->
+      showDocs = (uri) ->
+        url = "http://www.scala-lang.org/api/current/index.html#" + (uri ? "")
+        console.log(url)
         m = $("#docsModal")
-        m.bind("shown", (evt) ->
+        m.bind("shown", () ->
           mbody = $(m).find(".modal-body")
           if($(mbody).is(":empty"))
             $(mbody).html('
-              <iframe src="http://www.scala-lang.org/api/current/index.html" width="99.5%" height="99.5%"
+              <iframe src="' + url + '" width="99.5%" height="99.5%"
                       style="position: absolute; top: 5px; bottom: 5px; left: 5px; right: 5px; overflow: hidden"></iframe>
             ')
+          else
+            $("#docsModal iframe").attr("src", url)
         )
         m.modal()
-        false
+
+      # bind click event
+      $("#naviDocs").bind("click", () ->
+          showDocs()
+          false
+      )
+
+      # wire API links
+      $("a.api-link").bind("click", (evt) ->
+          elem = $(evt.target)
+          uri = $(elem).data("uri")
+          showDocs(uri)
+          false
       )
 
 

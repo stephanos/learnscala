@@ -2500,7 +2500,7 @@ define('app/progress',["jquery", "lib/util/underscore"], function($, _) {
               _.each(missing, function(id) {
                 return reqs += "<li>" + _this.getItem(id).data("label") + "</li>";
               });
-              li.attr("title", "Voraussetzung: <ul>" + reqs + "</ul>");
+              li.attr("title", "Voraussetzungen: <ul>" + reqs + "</ul>");
               $(li).tooltip({
                 html: true,
                 placement: "bottom",

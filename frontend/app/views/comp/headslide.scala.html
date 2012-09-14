@@ -1,34 +1,38 @@
-@(id: String = null, subsubtitle: String = null, subtitle: String = null, title: String = null, chapter: String = null)(head: Html = Html.empty)(body: Html = Html.empty)(implicit topic: String = null)
+@(id: String = null, subsubtitle: String = null, subtitle: String = null,
+  title: String = null, chapter: String = null, htmlTitle: xml.Elem = null)(head: Html = Html.empty)(body: Html = Html.empty)(implicit topic: String = null)
 
-<section @{if(id == null) "" else "data-id=slide-" + id}
-         @{if(title == null) "" else "data-title='" + title + "'"}
-         @{if(topic == null) "" else "data-topic='" + topic + "'"}
-         @{if(subtitle == null) "" else "data-subtitle='" + subtitle + "'"}
-         @{if(subsubtitle == null) "" else "data-subsubtitle='" + subsubtitle + "'"}
-         @{if(chapter == null) "" else "data-chapter='" + chapter + "'"}>
+@defining(Option(title).getOrElse(htmlTitle)) { theTitle =>
 
-    @headbody()(head)(body) {
-        <span class="topic">@topic</span>
-        @if(title != "" && title != null) {
-            <span class="divider">/</span>
-            <span class="title">@title</span>
+    <section @{if(id == null) "" else "data-id=slide-" + id}
+             @{if(theTitle == null) "" else "data-title='" + theTitle + "'"}
+             @{if(topic == null) "" else "data-topic='" + topic + "'"}
+             @{if(subtitle == null) "" else "data-subtitle='" + subtitle + "'"}
+             @{if(subsubtitle == null) "" else "data-subsubtitle='" + subsubtitle + "'"}
+             @{if(chapter == null) "" else "data-chapter='" + chapter + "'"}>
+
+        @headbody()(head)(body) {
+            <span class="topic">@topic</span>
+            @if(theTitle != "" && theTitle != null) {
+                <span class="divider">/</span>
+                <span class="title">@theTitle</span>
+            }
+            @if(subtitle != "" && subtitle != null) {
+                <span class="divider">/</span>
+                <span class="title">@subtitle</span>
+            }
+            @if(subsubtitle != "" && subsubtitle != null) {
+                <span class="divider">/</span>
+                <span class="title">@subsubtitle</span>
+            }
+
+            <div class="slide-end fragment">
+                &#8226;
+            </div>
+
+            <div class="branding hidden">
+                <!--<img src="/assets/img/tutego.jpg" height="20px"/>-->
+                tutego.de @@ IT Designers GmbH
+            </div>
         }
-        @if(subtitle != "" && subtitle != null) {
-            <span class="divider">/</span>
-            <span class="title">@subtitle</span>
-        }
-        @if(subsubtitle != "" && subsubtitle != null) {
-            <span class="divider">/</span>
-            <span class="title">@subsubtitle</span>
-        }
-
-        <div class="slide-end fragment">
-            &#8226;
-        </div>
-
-        <div class="branding hidden">
-            <!--<img src="/assets/img/tutego.jpg" height="20px"/>-->
-            tutego.de @@ IT Designers GmbH
-        </div>
-    }
-</section>
+    </section>
+}

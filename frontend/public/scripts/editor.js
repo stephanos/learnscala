@@ -4752,6 +4752,23 @@ CodeMirror.defineMode("clike", function(config, parserConfig) {
     return "string";
   }
 
+    CodeMirror.defineMIME("text/x-java", {
+        name:"clike",
+        keywords:words("abstract assert boolean break byte case catch char class const continue default " +
+            "do double else enum extends final finally float for goto if implements import " +
+            "instanceof int interface long native new package private protected public " +
+            "return short static strictfp super switch synchronized this throw throws transient " +
+            "try void volatile while"),
+        blockKeywords:words("catch class do else finally for if switch try while"),
+        atoms:words("true false null"),
+        hooks:{
+            "@":function (stream, state) {
+                stream.eatWhile(/[\w\$_]/);
+                return "meta";
+            }
+        }
+    });
+
   CodeMirror.defineMIME("text/x-scala", {
     name: "clike",
     keywords: words(
@@ -4892,14 +4909,16 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
     };
 
     Editor.prototype.createCodeBlock = function(block, elem, status, clear, spin) {
-      var code, noText, num, opts, self, text, type;
+      var code, lang, noText, num, opts, self, text, type;
       self = this;
       if (_.isString(block)) {
         num = "";
         type = "";
+        lang = null;
         text = block;
       } else {
         num = block["num"];
+        lang = block["lang"];
         type = block["type"];
         text = block["text"];
       }
@@ -4915,7 +4934,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
           'class': "cm-s-ambiance " + type,
           "data-num": num
         }).appendTo($(elem));
-        CodeMirror.runMode(text, "text/x-scala", code[0]);
+        CodeMirror.runMode(text, "text/x-" + (lang != null ? lang : "scala"), code[0]);
       }
       if (status === "wait") {
         opts = {
@@ -5137,7 +5156,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
     };
 
     Editor.prototype.readRawBlock = function(elem, editable) {
-      var content, incl, lines, ref, self, subs, type;
+      var content, incl, lang, lines, ref, self, subs, type;
       self = this;
       subs = [];
       content = "";
@@ -5152,6 +5171,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
           subs.push(ref);
         }
       }
+      lang = $(elem).data("lang");
       lines = _.str.lines(_.str.trim($(elem).text()));
       _.forEach(lines, function(l, i) {
         var linedata;
@@ -5168,6 +5188,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
       });
       return {
         num: 0,
+        lang: lang,
         type: type,
         text: content,
         subs: _.flatten(subs)

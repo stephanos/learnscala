@@ -37,9 +37,11 @@ define [
       if(_.isString(block))
         num = ""
         type = ""
+        lang = null
         text = block
       else
         num = block["num"]
+        lang = block["lang"]
         type = block["type"]
         text = block["text"]
   
@@ -53,7 +55,7 @@ define [
 
       if(!noText)
         code = $("<pre/>", {'class': "cm-s-ambiance " + type, "data-num": num}).appendTo($(elem))
-        CodeMirror.runMode(text, "text/x-scala", code[0])
+        CodeMirror.runMode(text, "text/x-" + (lang ? "scala"), code[0])
         #btn = $("<div class='btn-group'><button class='btn btn-icon btn-fullscreen'></button></div>").appendTo($(code))
   
       if(status == "wait")
@@ -262,6 +264,9 @@ define [
       if(editable)
         ref = @readRawCode($("#" + $(elem).data("reference")), editable)
         if(!_.isEmpty(ref)) then subs.push(ref)
+
+      # read language
+      lang = $(elem).data("lang")
   
       # extract text
       lines = _.str.lines(_.str.trim($(elem).text()))
@@ -280,6 +285,7 @@ define [
   
       {
         num: 0
+        lang: lang
         type: type
         text: content
         subs: _.flatten(subs)

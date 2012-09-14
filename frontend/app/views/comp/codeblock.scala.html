@@ -1,8 +1,9 @@
-@(typeOf: String, id: String = null, fragment: Boolean = false, clazz: String = null, include: String = null, reference: String = null)(data: Html)
+@(typeOf: String, id: String = null, fragment: Boolean = false, clazz: String = null, include: String = null, reference: String = null, lang: String = null)(data: Html)
 
 <div class="raw-block"
      data-type='@{if(fragment) "fragment" else ""} @typeOf @clazz'
      @{if(id == null) "" else "id=snippet-" + id}
+     @{if(lang == null) "" else "data-lang=" + lang}
      @{if(include == null) "" else "data-include=snippet-" + include}
      @{if(reference == null) "" else "data-reference=snippet-" + reference}>
         @data

@@ -9821,26 +9821,41 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
     };
 
     Slide.prototype.embedDocs = function() {
+      var showDocs;
       $('<li id="naviDocs">\
             <a href="#" class="openDocs">\
                 <span>Docs</span>\
             </a>\
             <span class="divider">|</span>\
         </li>').insertAfter($("#naviEditor"));
-      return $("#naviDocs").bind("click", function() {
-        var m;
+      showDocs = function(uri) {
+        var m, url;
+        url = "http://www.scala-lang.org/api/current/index.html#" + (uri != null ? uri : "");
+        console.log(url);
         m = $("#docsModal");
-        m.bind("shown", function(evt) {
+        m.bind("shown", function() {
           var mbody;
           mbody = $(m).find(".modal-body");
           if ($(mbody).is(":empty")) {
             return $(mbody).html('\
-              <iframe src="http://www.scala-lang.org/api/current/index.html" width="99.5%" height="99.5%"\
+              <iframe src="' + url + '" width="99.5%" height="99.5%"\
                       style="position: absolute; top: 5px; bottom: 5px; left: 5px; right: 5px; overflow: hidden"></iframe>\
             ');
+          } else {
+            return $("#docsModal iframe").attr("src", url);
           }
         });
-        m.modal();
+        return m.modal();
+      };
+      $("#naviDocs").bind("click", function() {
+        showDocs();
+        return false;
+      });
+      return $("a.api-link").bind("click", function(evt) {
+        var elem, uri;
+        elem = $(evt.target);
+        uri = $(elem).data("uri");
+        showDocs(uri);
         return false;
       });
     };

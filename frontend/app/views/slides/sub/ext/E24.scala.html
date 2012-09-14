@@ -1,6 +1,12 @@
 <!--
-TODO
-   - Collection conversion
+    - SCALA -> JAVA
+        - Collection conversion
+
+    - JAVA -> SCALA
+        - Arrays, Maps
+        - annotations
+
+    http://twitter.github.com/scala_school/java.html
 -->
 
 @defining("Interoperabilität") { implicit topic =>
@@ -10,23 +16,328 @@ TODO
         @slidehead() {
             @topic
         } {
-            Wie man mit Java gut auskommt
+            Wie man mit <var>Java</var> gut auskommt
         }
 
         <!--################################################################################## -->
 
-        @defining("Java aus Scala") { title =>
-            @slide(title = title) {
+        @defining(<span><em>Scala</em> -> <var>Java</var></span>) { title =>
 
+            @defining("Kollektionen") { subtitle =>
+                @headslide(htmlTitle = title) {
+                    @title: @subtitle
+                } {
+                    @sourcecode() {
+                        |class Book
+                    }
+
+                    <br/><br/>
+                    @apilink("Test", "scala/collection/JavaConversions$")
+                }
             }
         }
 
         <!--################################################################################## -->
 
-        @defining("Scala aus Java") { title =>
-            @slide(title = title) {
+        @defining(<span><var>Java</var> -> <em>Scala</em></span>) { title =>
 
+            @defining("Klassen") { subtitle =>
+
+                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
+                    @title: @subtitle
+                } {
+                    @sidebyside((47,53)) {
+                        @sourcecode() {
+                            |class Book
+                        }
+                    } {
+                        @outcode() {
+                            |public class Book
+                            |  extends java.lang.Object
+                            |  implements scala.ScalaObject {
+                            |    public Book();
+                            |}
+                        }
+                    }
+
+                    @spacer_half()
+
+                    @sidebyside((47,53)) {
+                        @sourcecode() {
+                            |class Book(title: String)
+                        }
+                    } {
+                        @outcode() {
+                            |public class Book [..] {
+                            |  public Book(java.lang.String);
+                            |}
+                        }
+                    }
+
+                    @spacer_half()
+
+                    @sidebyside((47,53)) {
+                        @sourcecode() {
+                            |class Book(val title: String)
+                        }
+                    } {
+                        @outcode() {
+                            |public class Book [..] {
+                            |  public Book(java.lang.String);
+                            |
+                            |  private final java.lang.String title;
+                            |  public java.lang.String title();
+                            |}
+                        }
+                    }
+
+                    @spacer_half()
+
+                    @sidebyside((47,53)) {
+                        @sourcecode() {
+                            |class Book(var title: String)
+                        }
+                    } {
+                        @outcode() {
+                            |public class Book [..] {
+                            |  public Book(java.lang.String);
+                            |
+                            |  private final java.lang.String title;
+                            |  public java.lang.String title();
+                            |  public void title_$eq(java.lang.String);
+                            |}
+                        }
+                    }
+                }
+
+                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
+                    @title: @subtitle
+                } {
+                    @sidebyside((50,50)) {
+                        @sourcecode() {
+                            |import scala.reflect.BeanProperty
+                            |
+                            |class Book(@@BeanProperty val title:String)
+                        }
+                    } {
+                        @outcode() {
+                            |public class Book [..] {
+                            |  public Book(java.lang.String);
+                            |
+                            |  private final java.lang.String title;
+                            |  public java.lang.String title();
+                            |  public java.lang.String getTitle();
+                            |}
+                        }
+                    }
+
+                    @spacer_half()
+
+                    @sidebyside((50,50)) {
+                        @sourcecode() {
+                            |import scala.reflect.BooleanBeanProperty
+                            |
+                            |class Book {
+                            |  @@BooleanBeanProperty var available = _
+                            |}
+                        }
+                    } {
+                        @outcode() {
+                            |public class Book [..] {
+                            |  public Book();
+                            |
+                            |  private final boolean available;
+                            |  public boolean available();
+                            |  public boolean isAvailable();
+                            |}
+                        }
+                    }
+
+                    @spacer_half()
+
+                    @sidebyside((50,50)) {
+                        @sourcecode() {
+                            |import scala.reflect.BeanProperty
+                            |
+                            |class Book(@@BeanProperty var price:Float)
+                        }
+                    } {
+                        @outcode() {
+                            |public class Book [..] {
+                            |  public Book(java.lang.String);
+                            |
+                            |  private float price;
+                            |  public float price();
+                            |  public void price_$eq(float);
+                            |  public float getPrice();
+                            |  public void setPrice(float);
+                            |}
+                        }
+                    }
+                }
+
+                <!--################################################################################## -->
+
+                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
+                    @title: @subtitle
+                } {
+                    @sidebyside((47,53)) {
+                        @sourcecode() {
+                            |
+                            |
+                            |class Book(val title:String) {
+                            |  var price = 12.95f
+                            |  val available = true
+                            |}
+                        }
+                        @spacer_half()
+                        @outcode() {
+                            |public class Book extends [..] {
+                            |  public Book(java.lang.String);
+                            |
+                            |  private final java.lang.String title;
+                            |  public java.lang.String title();
+                            |
+                            |
+                            |  private float price;
+                            |  public float price();
+                            |  public void price_$eq(float);
+                            |
+                            |
+                            |
+                            |  private final boolean available;
+                            |  public boolean available();
+                            |}
+                        }
+                    } {
+                        @sourcecode() {
+                            |import scala.reflect._
+                            |
+                            |class Book(@@BeanProperty val title:String) {
+                            |  @@BeanProperty var price = 12.95f
+                            |  @@BooleanBeanProperty var available = true
+                            |}
+                        }
+                        @spacer_half()
+                        @outcode() {
+                            |public class Book extends [..] {
+                            |  public Book(java.lang.String);
+                            |
+                            |  private final java.lang.String title;
+                            |  public java.lang.String title();
+                            |  public java.lang.String getTitle();
+                            |
+                            |  private float price;
+                            |  public float price();
+                            |  public void price_$eq(float);
+                            |  public float getPrice();
+                            |  public void setPrice(float);
+                            |
+                            |  private final boolean available;
+                            |  public boolean available();
+                            |  public boolean isAvailable();
+                            |}
+                        }
+                    }
+                }
             }
+
+            <!--################################################################################## -->
+
+            @defining("Ausnahmen") { subtitle =>
+
+                @headslide(htmlTitle = title, subtitle = subtitle) {
+                    @title: @subtitle
+                } {
+                    @sidebyside((45,55)) {
+                        @sourcecode() {
+                            |import java.io._
+                            |
+                            |class Reader(fname: String) {
+                            |
+                            |  def read() = {
+                            |    val fr = new FileReader(fname)
+                            |    new BufferedReader(fr).read()
+                            |  }
+                            |}
+                        }
+                    } {
+                        @outcode() {
+                            |public class Reader extends [..] {
+                            |  public int read()
+                            |  [..]
+                            |}
+                        }
+                    }
+                    @spacer_half()
+                    @sidebyside((45,55)) {
+                        @sourcecode() {
+                            |import java.io._
+                            |
+                            |class Reader(fname: String) {
+                            |
+                            |  @@throws(classOf[IOException])
+                            |  def read() = {
+                            |    val fr = new FileReader(fname)
+                            |    new BufferedReader(fr).read()
+                            |  }
+                            |}
+                        }
+                    } {
+                        @outcode() {
+                            |public class Reader extends [..] {
+                            |  public int read() throws java.io.IOException;
+                            |  [..]
+                            |}
+                        }
+                    }
+                }
+            }
+
+            <!--################################################################################## -->
+
+            @defining("Traits") { subtitle =>
+
+                @headslide(htmlTitle = title, subtitle = subtitle) {
+                    @title: @subtitle
+                } {
+                }
+            }
+
+            <!--################################################################################## -->
+
+            @defining("Objekte") { subtitle =>
+                <!-- http://www.artima.com/pins1ed/combining-scala-and-java.html -->
+
+                @headslide(htmlTitle = title, subtitle = subtitle) {
+                    @title: @subtitle
+                } {
+                }
+            }
+
+            <!--################################################################################## -->
+
+            @defining("Operatoren") { subtitle =>
+                <!-- http://www.codecommit.com/blog/java/interop-between-java-and-scala -->
+
+                @headslide(htmlTitle = title, subtitle = subtitle) {
+                    @title: @subtitle
+                } {
+                }
+            }
+
+            <!--################################################################################## -->
+
+            @defining("Funktionen") { subtitle =>
+
+                @headslide(htmlTitle = title, subtitle = subtitle) {
+                    @title: @subtitle
+                } {
+
+                }
+            }
+
+            <!-- Varianz ? -->
         }
     }
 }
