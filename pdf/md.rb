@@ -15,7 +15,17 @@ text2 = GitHub::Markup.render("README.md", text).
         gsub("ö", "&ouml;").gsub("Ö", "&Ouml;").gsub("ä", "&auml;").gsub("Ä", "&Auml;").
         gsub("ü", "&uuml;").gsub("Ü", "&Uuml;").gsub("ß", "&szlig;")
 
-File.open(pwd + "/out/linksammlung.html", 'w') { |file| file.write(css2 + text2) }
+File.open(pwd + "/out/links.html", 'w') { |file| file.write(css2 + text2) }
+
+# read MD and convert to HTML
+text = File.read(pwd + "/../exercises/PROJECTS.md")
+text2 = GitHub::Markup.render("README.md", text).
+        gsub("ö", "&ouml;").gsub("Ö", "&Ouml;").gsub("ä", "&auml;").gsub("Ä", "&Auml;").
+        gsub("ü", "&uuml;").gsub("Ü", "&Uuml;").gsub("ß", "&szlig;")
+
+File.open(pwd + "/out/projekte.html", 'w') { |file| file.write(css2 + text2) }
+
+
 
 # read HTML and convert to PDF
 #kit = PDFKit.new(text2, :page_size => 'A4')
