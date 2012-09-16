@@ -70,19 +70,6 @@ trait Settings extends TaskStage with Env {
 
     import PlayProject._
 
-    /*
-    val styleComp =
-        AssetsCompiler("less", (_ ** "*.less"), lessEntryPoints, {
-            (name, min) => name.replace(".less", if (min) ".min.css" else ".css")
-        }, {
-            (file, options) => {
-                println(" - compiling '" + file.getName + "'")
-                val css = NodeJs.call("asseto", file.getAbsolutePath)
-                (css, Some(css), Seq(file))
-            }
-        }, lessOptions)
-        */
-
     val ueberEntryPoints = SettingKey[PathFinder]("play-ueber-entry-points")
     val ueberComp =
         AssetsCompiler("ueber", _ / "assets" ** "*" , ueberEntryPoints,
@@ -90,11 +77,13 @@ trait Settings extends TaskStage with Env {
             (name, min) => if (min) name.replace(".js", ".min.js") else name
         }, {
             (file, options) => {
-                val folder = file.getParentFile
-                println(" - compiling " + folder.getName)
-                val input = folder.getAbsolutePath
-                NodeJs.call("/usr/local/share/npm/lib/node_modules/asseto/bin/asseto",
-                    input, input.replaceAllLiterally("app/assets", "public"))
+                if(!isCloud) {
+                    val folder = file.getParentFile
+                    println(" - compiling " + folder.getName)
+                    val input = folder.getAbsolutePath
+                    NodeJs.call("/usr/local/share/npm/lib/node_modules/asseto/bin/asseto",
+                        input, input.replaceAllLiterally("app/assets", "public"))
+                }
                 ("", None, Seq(file))
             }
         }, coffeescriptOptions)
