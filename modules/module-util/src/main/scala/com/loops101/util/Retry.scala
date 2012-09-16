@@ -3,13 +3,10 @@ package com.loops101.util
 import scala.util.control.Exception._
 
 // taken from: https://gist.github.com/983175
-case class Retry[T](maxRetry: Int = 3) {
+class Retry[T](val maxRetry: Int) {
 
     private var retryCount = 0
     private var block: () => T = _
-
-    def apply(op: => T): Retry[T] =
-        retry(op)
 
     def retry(op: => T): Retry[T] = {
         block = () => {
@@ -30,4 +27,10 @@ case class Retry[T](maxRetry: Int = 3) {
             block()
         }
     }
+}
+
+object Retry {
+
+    def apply[T](maxRetry: Int = 3)(op: => T): Retry[T] =
+        new Retry[T](maxRetry).retry(op)
 }
