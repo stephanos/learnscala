@@ -144,10 +144,43 @@
 
         <!--################################################################################## -->
 
-        @headslide(title = "Regeln") {
-            Regeln
-        } {
-            <div class="indent">
+        @defining("Regeln") { title =>
+
+            @headslide(title = title) {
+                @title<span class="fragment">: <em>Schlüsselwort</em></span>
+            } {
+            }
+
+            <!--################################################################################## -->
+
+            @headslide(title = title) {
+                @title: <em>Geltungsbereich</em>
+            } {
+            }
+
+            <!--################################################################################## -->
+
+            @headslide(title = title) {
+                @title: <em>Eindeutigkeit</em>
+            } {
+            }
+
+            <!--################################################################################## -->
+
+            @headslide(title = title) {
+                @title: <em>Explizit hat Vorrang</em>
+            } {
+            }
+
+            <!--################################################################################## -->
+
+            @headslide(title = title) {
+                @title: <em>Immer nur einer</em>
+            } {
+            }
+        }
+
+            <!--<div class="indent">
                 <ol>
                     <li class="fragment">
                         <em>Keyword</em>
@@ -177,7 +210,7 @@
                     </li>
                     @spacer_half()
                     <li class="fragment">
-                        <em>Explizit hat Vorrang</em>
+                        <em></em>
                         <ul>
                             <li>
                                 Implicits werden nur bei Typenfehlern herangezogen.
@@ -194,8 +227,7 @@
                         </ul>
                     </li>
                 </ol>
-            </div>
-        }
+            </div>-->
 
         <!--################################################################################## -->
 
