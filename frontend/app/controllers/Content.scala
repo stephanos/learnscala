@@ -43,7 +43,7 @@ object Content extends MyController {
     // === ALLGEMEIN
 
     lazy val annotationen = Slide("B21", "Annotationen", basic, Seq())
-    lazy val implicit1 = Slide("B24", "Implicits I", basic, Seq())
+    lazy val implicit1 = Slide("B24", "Implicits I", basic, Seq(), status="complete")
     lazy val recursion = Slide("B25", "Rekursion", basic, Seq())
 
 

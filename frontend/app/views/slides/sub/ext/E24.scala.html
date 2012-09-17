@@ -650,6 +650,24 @@
                     }
                 }
             }
+
+            <!--################################################################################## -->
+
+            @defining("Tipp") { subtitle =>
+
+                @headslide(htmlTitle = title, subtitle = subtitle) {
+                    @title: @subtitle
+                } {
+                    <ul class="indent">
+                        <li>
+                            Schnittstellen als Java-Klassen bzw. -Interface definieren
+                        </li>
+                        <li>
+                            erlaubt Nutzung aller Scala-Features ohne Einschränkungen zwecks Interoperabilität
+                        </li>
+                    </ul>
+                }
+            }
         }
     }
 }
