@@ -141,7 +141,7 @@
             @defining("Explizit hat Vorrang") { regel =>
 
                 @headslide(title = title, subtitle = regel) {
-                    @title: <em>@regel</em>
+                    @title<span class="fragment">: <em>@regel</em></span>
                 } {
                     @sidebyside((66,33)) {
                         @snippet() {
@@ -157,7 +157,7 @@
 
                     @sidebyside((66,33)) {
                         @snippet() {
-                            @callblock(reference = "euro_dollar") {
+                            @callblock(id = "euro_dollar_implicit", reference = "euro_dollar") {
                                 |implicit def USD2EUR(x: USD) = new EUR(x.v * 0.8f)
                             }
                             @outblock() {
@@ -166,19 +166,26 @@
                         }
                     } {
                         @codenote() {
-
+                            implizite Typ-Konvertierung von <br/>
+                            <code>USD</code> in <code>EUR</code>
                         }
                     }
 
-                    @spacer()
+                    @spacer_half()
 
                     @sidebyside((66,33)) {
                        @snippet() {
-                           @callblock(reference = "euro_dollar") {
-                               |implicit def USD2EUR(x: USD) = new EUR(x.v * 0.8f)
+                           @sourceblock(reference = "euro_dollar_implicit") {
+                               |object Cashier {
+                               |    def pay(x: EUR) = println("payed %.2f€".format(x.v))
+                               |    def pay(x: USD) = println("payed %.2f$".format(x.v))
+                               |}
+                           }
+                           @callblock() {
+                               |Cashier.pay(new USD(5))
                            }
                            @outblock() {
-                               |USD2EUR: (x: USD)EUR
+                               |payed 5.00$
                            }
                        }
                     } {
@@ -200,11 +207,11 @@
             @defining("Schlüsselwort") { regel =>
 
                 @headslide(title = title, subtitle = regel) {
-                    @title<span class="fragment">: <em>@regel</em></span>
+                    @title: <em>@regel</em>
                 } {
                     @sidebyside((66,33)) {
                         @snippet() {
-                            @sourceblock(id = "euro_dollar") {
+                            @sourceblock() {
                                 |class EUR(val v: Float)
                                 |class USD(val v: Float)
                             }
@@ -332,7 +339,7 @@
                         }
                     }
 
-                    @infobox() {
+                    @infobox(hr = false) {
                         Die Definition muss sich im aktuellen Scope befinden; oder im jeweiligen Companion-Objekt.
                     }
                 }
@@ -345,6 +352,47 @@
                 @headslide(title = title, subtitle = regel) {
                     @title: <em>@regel</em>
                 } {
+                    @sidebyside((71,29)) {
+                        @sourcecode(id = "euro_dollar_implicits2", reference = "euro_dollar") {
+                            |object Bank {
+                            |  implicit def USD2EUR_bank(x: USD) = new EUR(x.v * 0.8f)
+                            |}
+                            |object ExchangeOffice {
+                            |  implicit def USD2EUR_xchg(x: USD) = new EUR(x.v * 0.7f)
+                            |}
+                        }
+                    } {
+                        @codenote() {
+                        }
+                    }
+
+                    @spacer_half()
+
+                    @sidebyside((71,29)) {
+                        @snippet() {
+                            @callblock(reference = "euro_dollar_implicits2") {
+                                |import Bank._, ExchangeOffice._
+                                |val eur: EUR = new USD(5)
+                            }
+                            @outblock(error = true) {
+                                |error   : type mismatch;
+                                |found   : USD
+                                |required: EUR
+                                |Note that implicit conversions are not applicable because
+                                | they are ambiguous: both method
+                                |   USD2EUR_bank in object Bank of type (x: USD)EUR
+                                | and method
+                                |   USD2EUR_xchg in object ExchangeOffice of type (x: USD)EUR
+                                | are possible conversion functions from USD to EUR
+                            }
+                        }
+                    } {
+                        @codenote() {
+                            2 Umwandlungsmethoden von <code>USD</code> nach <code>EUR</code> werden importiert -
+                            der Compiler weiß nicht, welche er bevorzugen soll
+                        }
+                    }
+
                     @infobox() {
                         Die Umwandlung muss eindeutig sein -
                         bei mehreren Methoden wird ein Typfehler gemeldet.
@@ -399,8 +447,8 @@
                         }
                     } {
                         @codenote() {
-                            Compiler kann <code>USD</code> nicht auf <code>GBP</code> mittels
-                            Zwischenschritt <code>EUR</code> umwandeln
+                            <code>USD</code> kann @underline("nicht") auf <code>GBP</code> mittels
+                            Zwischenschritt <code>EUR</code> umgewandelt werden
                         }
                     }
 
