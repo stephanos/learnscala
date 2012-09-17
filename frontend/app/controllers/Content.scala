@@ -43,8 +43,8 @@ object Content extends MyController {
     // === ALLGEMEIN
 
     lazy val annotationen = Slide("B21", "Annotationen", basic, Seq())
+    lazy val implicit1 = Slide("B24", "Implicits I", basic, Seq())
     lazy val recursion = Slide("B25", "Rekursion", basic, Seq())
-    lazy val implicit1 = Slide("B25", "Implicits I", basic, Seq())
 
 
     // === OBJEKTE
@@ -79,12 +79,12 @@ object Content extends MyController {
     lazy val dynamic = Slide("B30", "Dynamic", basic)
     lazy val reflection = Slide("B31", "Reflection", basic)
     lazy val macros = Slide("B32", "Makros", basic)
+    lazy val implicit2 = Slide("B34", "Implicits II", basic, Seq())
 
     // === OBJEKTE
 
     lazy val generics2 = Slide("O30", "Typ-Parameter II", oop, Seq(generics1))
     lazy val typen2 = Slide("O31", "Typen II", oop, Seq(typen1, implicit1))
-    lazy val implicit2 = Slide("O33", "Implicits II", basic, Seq())
 
 
     // === FUNKTIONEN

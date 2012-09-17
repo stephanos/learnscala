@@ -140,15 +140,13 @@
                     } {
                         @outcode() {
                             |public class Book
-                            |  extends java.lang.Object
-                            |  implements scala.ScalaObject {
+                            |  extends java.lang.Object {
                             |
                             |    public Book();
                             |}
                         }
                         @codesub() {
-                            jede Scala-Klasse erbt automatisch von <code>java.lang.Object</code> und
-                            implementiert <code>scala.ScalaObject</code>
+                            jede Scala-Klasse erbt automatisch von <code>java.lang.Object</code>
                         }
                     }
 
@@ -663,7 +661,7 @@
         |  public static void $init$(Logging);
         |}
         |
-        |public interface Logging extends scala.ScalaObject {
+        |public interface Logging {
         |  public abstract void log(java.lang.String);
         |}
     }

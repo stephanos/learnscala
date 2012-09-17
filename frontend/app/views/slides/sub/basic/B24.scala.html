@@ -1,3 +1,6 @@
+<!--
+    - implicit class
+-->
 @defining("Implicits I") { implicit topic =>
 
     @layout.slidedeck(topic) {
@@ -10,124 +13,125 @@
 
         <!--################################################################################## -->
 
-        @slide(title = "Implicits") {
-            @sidebyside() {
-                @snippet() {
-                    @sourceblock(fragment = false) {
-                        |def asSeconds(ms: Long) = ms / 1000
+        @defining("Einführung") { title =>
+
+            @slide(title = title, subtitle = "conversion to an expected type") {
+                @sidebyside() {
+                    @snippet() {
+                        @sourceblock(fragment = false) {
+                            |def asSeconds(ms: Long) = ms / 1000
+                        }
+                        @outblock() {
+                            |asSeconds: (ms: Long)Long
+                        }
+                        @callblock() {
+                            |asSeconds(1000L)  // Long
+                        }
+                        @outblock() {
+                            |res0: Long = 1
+                        }
+                        @callblock() {
+                            |asSeconds(1000)   // Int
+                        }
+                        @outblock() {
+                            |res0: Long = 1
+                        }
                     }
-                    @outblock() {
-                        |asSeconds: (ms: Long)Long
-                    }
-                    @callblock() {
-                        |asSeconds(1000L)  // Long
-                    }
-                    @outblock() {
-                        |res0: Long = 1
-                    }
-                    @callblock() {
-                        |asSeconds(1000)   // Int
-                    }
-                    @outblock() {
-                        |res0: Long = 1
+                } {
+                    @codenote() {
+                        Methode <code>asSeconds</code> erwartet ein Argument vom Typ <code>Long</code> -
+                        doch trotzdem ist der Aufruf mit <code>Int</code> erfolgreich
                     }
                 }
-            } {
-                @codenote() {
-                    Methode <code>asSeconds</code> erwartet ein Argument vom Typ <code>Long</code> -
-                    doch trotzdem ist der Aufruf mit <code>Int</code> erfolgreich
+
+                @spacer()
+
+                @sourcecode() {
+                    |// Predef.scala
+                    |implicit def int2long(x: Int): Long = x.toLong
                 }
+                @codesub() {
+                    Objekt <code>Predef</code> definiert eine implizierte Konvertierungsmethode
+                }
+
+                <!--@infobox() {
+                    Wenn beim Aufruf einer Methode der Typ von Argument und Parameter nicht zusammenpassen,
+                    sucht Scala nach einer <code>implicit</code>-Definition zur Konvertierung.
+                }-->
             }
 
-            @spacer2()
+            <!--################################################################################## -->
 
-            @sourcecode() {
-                |// Predef.scala
-                |implicit def int2long(x: Int): Long = x.toLong
-            }
-            @spacer()
-            @fragment {
-                <sub>
-                    <!--Wenn beim Aufruf einer Methode der Typ von Argument und Parameter nicht zusammenpassen,
-                    sucht Scala nach einer <code>implicit</code>-Definition zur Konvertierung
-                    ("implicit conversion to an expected type").-->
-                </sub>
-            }
-        }
-
-        <!--################################################################################## -->
-
-        @slide() {
-            <!-- (B) conversions of the receiver of a selection -->
-
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @callblock(fragment = false) {
-                        |1 -> 'a'
+            @slide(title = title, subtitle = "conversion of the receiver of a selection") {
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @callblock(fragment = false) {
+                            |1 -> 'a'
+                        }
+                        @outblock() {
+                            |res0: (Int, Char) = (1,a)
+                        }
                     }
-                    @outblock() {
-                        |res0: (Int, Char) = (1,a)
+                } {
+                    @codenote() {
+                        Hm, <br/>
+                        <code>Int</code> hat keine Methode <code>-></code>
                     }
                 }
-            } {
-                @codenote() {
-                    Hm, <br/>
-                    <code>Int</code> hat keine Methode <code>-></code>
-                }
-            }
 
-            @spacer()
+                @spacer()
 
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @callblock() {
-                        |1 to 10
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @callblock() {
+                            |1 to 10
+                        }
+                        @outblock() {
+                            |res0: List[Int] = List(1,2,3,4,5,6,7,8,9,10)
+                        }
                     }
-                    @outblock() {
-                        |res0: List[Int] = List(1,2,3,4,5,6,7,8,9,10)
-                    }
-                }
-            } {
-                @codenote() {
-                    Hmm, <br/>
-                    <code>Int</code> hat auch keine Methode <code>to</code>
-                }
-            }
-
-            @spacer()
-
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @callblock() {
-                        |"Hello".toList
-                    }
-                    @outblock() {
-                        |res0: List[Char] = List(H, e, l, l, o)
+                } {
+                    @codenote() {
+                        Hmm, <br/>
+                        <code>Int</code> hat auch keine Methode <code>to</code>
                     }
                 }
-            } {
-                @codenote() {
-                    Hmmm, <br/>
-                    <code>String</code> hat keine Methode <code>toList</code>
+
+                @spacer()
+
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @callblock() {
+                            |"Hello".toList
+                        }
+                        @outblock() {
+                            |res0: List[Char] = List(H, e, l, l, o)
+                        }
+                    }
+                } {
+                    @codenote() {
+                        Hmmm, <br/>
+                        <code>String</code> hat keine Methode <code>toList</code>
+                    }
                 }
-            }
 
-            @spacer2()
+                @spacer()
 
-            @sourcecode() {
-                |// Predef.scala
-                |implicit def augmentString(x: String) = new StringOps(x)
-                |implicit def intWrapper   (x: Int)    = new runtime.RichInt(x)
-            }
-            @spacer()
-            @fragment {
-                <sub>
-                    <!--Beim Aufruf einer nicht existierenden Methode sucht Scala nach einer
-                    <code>implicit</code>-Definition um eine Typ-Konvertierungen durchführen
-                    - in diesem Fall von <code>String</code> zu <code>StringOps</code> und
+                @sourcecode() {
+                    |// Predef.scala
+                    |implicit def augmentString(x: String) = new StringOps(x)
+                    |implicit def intWrapper   (x: Int)    = new runtime.RichInt(x)
+                }
+                @codesub() {
+                    <code>Predef</code> definiert implizite Konvertierung
+                    von <code>String</code> zu <code>StringOps</code> und
                     <code>Int</code> zu <code>RichInt</code>
-                    ("implicit conversions of the receiver of a selection").-->
-                </sub>
+                }
+
+                <!--@infobox() {
+                    Beim Aufruf einer nicht existierenden Methode sucht Scala nach einer
+                    <code>implicit</code>-Definition um eine Typ-Konvertierungen durchführen.
+                }-->
             }
         }
 
@@ -140,51 +144,49 @@
 
         <!--################################################################################## -->
 
-        @headslide() {
-            Implicits: Regeln
-            <!-- Rules -->
+        @headslide(title = "Regeln") {
+            Regeln
         } {
             <div class="indent">
                 <ol>
                     <li class="fragment">
                         <em>Keyword</em>
-                        @spacer()
                         <ul>
                             <li>
                                 Nur Methoden mit <code>implicit</code> werden auch als Implicits angesehen.
                             </li>
                         </ul>
                     </li>
+                    @spacer_half()
                     <li class="fragment">
                         <em>Scope</em>
-                        @spacer()
                         <ul>
                             <li>
                                 Nur <code>implicits</code> im aktuellen Scope werden verwendet.
                             </li>
                         </ul>
                     </li>
+                    @spacer_half()
                     <li class="fragment">
-                        <em>"Immer nur einer"</em>
-                        @spacer()
+                        <em>Immer nur einer</em>
                         <ul>
                             <li>
                                 Es wird stets nur <em>1</em> Implicit gleichzeitig verwendet.
                             </li>
                         </ul>
                     </li>
+                    @spacer_half()
                     <li class="fragment">
-                        <em>"Explizit hat Vorrang"</em>
-                        @spacer()
+                        <em>Explizit hat Vorrang</em>
                         <ul>
                             <li>
                                 Implicits werden nur bei Typenfehlern herangezogen.
                             </li>
                         </ul>
                     </li>
+                    @spacer_half()
                     <li class="fragment">
                         <em>Eindeutig</em>
-                        @spacer()
                         <ul>
                             <li>
                                 Nur wenn es genau ein mögliches Implicit gibt, wird es angewandt.
@@ -197,7 +199,7 @@
 
         <!--################################################################################## -->
 
-        @slide() {
+        @slide(title = "Scope") {
             <!-- Scope -->
 
             @sidebyside((60,40)) {
@@ -225,11 +227,11 @@
                 }
             } {
                 @codenote() {
-                    Implicit wird direkt im Scope definiert
+                    <em>(A)</em> Implicit wird direkt im Scope definiert
                 }
             }
 
-            @spacer()
+            @spacer_half()
 
             <!-- import -->
             @sidebyside((60,40)) {
@@ -249,11 +251,11 @@
                 }
             } {
                 @codenote() {
-                    Implicit wird in einem Objekt definiert und importiert
+                    <em>(B)</em> Implicit wird in einem Objekt definiert und importiert
                 }
             }
 
-            @spacer()
+            @spacer_half()
 
             <!-- companion -->
             @sidebyside((60,40)) {
@@ -272,7 +274,7 @@
                 }
             } {
                 @codenote() {
-                    Implicit wird im Companion Object definiert
+                    <em>(C)</em> Implicit wird im Companion Object definiert
                 }
             }
         }
