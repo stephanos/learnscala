@@ -8,14 +8,14 @@
         @slidehead() {
             @topic
         } {
-
+            Implizite Typ-Konvertierungen
         }
 
         <!--################################################################################## -->
 
         @defining("Einführung") { title =>
 
-            @slide(title = title, subtitle = "conversion to an expected type") {
+            @slide(title = title) {
                 @sidebyside() {
                     @snippet() {
                         @sourceblock(fragment = false) {
@@ -62,7 +62,7 @@
 
             <!--################################################################################## -->
 
-            @slide(title = title, subtitle = "conversion of the receiver of a selection") {
+            @slide(title = title) {
                 @sidebyside((60,40)) {
                     @snippet() {
                         @callblock(fragment = false) {
@@ -137,178 +137,160 @@
 
         <!--################################################################################## -->
 
-        @*@slide() {
-            <!-- (C) implicit parameters -->
-
-        }*@
-
-        <!--################################################################################## -->
-
         @defining("Regeln") { title =>
 
-            @headslide(title = title) {
-                @title<span class="fragment">: <em>Schlüsselwort</em></span>
-            } {
+            @defining("Explizit hat Vorrang") { regel =>
+
+                @headslide(title = title, subtitle = regel) {
+                    @title: <em>@regel</em>
+                } {
+                    @infobox() {
+                        Implicits werden nur bei Typenfehlern herangezogen.
+                    }
+                }
             }
 
             <!--################################################################################## -->
 
-            @headslide(title = title) {
-                @title: <em>Geltungsbereich</em>
-            } {
+            @defining("Schlüsselwort") { regel =>
+
+                @headslide(title = title, subtitle = regel) {
+                    @title<span class="fragment">: <em>@regel</em></span>
+                } {
+
+                    @infobox() {
+                        Zur impliziten Umwandlung werden nur Methoden verwendet,
+                        die mit <code>implicit</code> markiert sind.
+                    }
+                }
             }
 
             <!--################################################################################## -->
 
-            @headslide(title = title) {
-                @title: <em>Eindeutigkeit</em>
-            } {
+            @defining("Scope") { regel =>
+
+                @headslide(title = title, subtitle = regel) {
+                    @title: <em>@regel</em>
+                } {
+                    @infobox() {
+                        Die Definition muss sichtbar sein, d.h. sich im aktuellen Scope befinden;
+                        oder sich im jeweiligen Companion-Objekt befinden.
+                    }
+                }
+
+                <!--################################################################################## -->
+
+                @slide(title = title, subtitle = regel) {
+                    @sidebyside((60,40)) {
+                        @sourcecode(id = "euro_dollar", fragment = false) {
+                            |case class EUR(v: Float)
+                            |case class USD(v: Float)
+                        }
+                    } {
+                    }
+
+                    @spacer()
+
+                    <!-- directly -->
+                    @sidebyside((60,40)) {
+                        @snippet() {
+                            @sourceblock(reference = "euro_dollar") {
+                                |implicit def USD2EUR(x: USD) = EUR(x.v * 0.81f)
+                            }
+                            @callblock() {
+                                |val eur: EUR = USD(5)
+                            }
+                            @outblock() {
+                                |eur: EUR = EUR(4.05)
+                            }
+                        }
+                    } {
+                        @codenote() {
+                            <em>(A)</em> Implicit wird direkt im Scope definiert
+                        }
+                    }
+
+                    @spacer_half()
+
+                    <!-- import -->
+                    @sidebyside((60,40)) {
+                        @snippet() {
+                            @sourceblock(reference = "euro_dollar") {
+                                |object Convert {
+                                |  implicit def USD2EUR(x: USD) = EUR(x.v * 0.81f)
+                                |}
+                            }
+                            @callblock() {
+                                |import Convert.USD2EUR
+                                |val eur: EUR = USD(5)
+                            }
+                            @outblock() {
+                                |eur: EUR = EUR(4.05)
+                            }
+                        }
+                    } {
+                        @codenote() {
+                            <em>(B)</em> Implicit wird in einem Objekt definiert und importiert
+                        }
+                    }
+
+                    @spacer_half()
+
+                    <!-- companion -->
+                    @sidebyside((60,40)) {
+                        @snippet() {
+                            @sourceblock(reference = "euro_dollar") {
+                                |object USD {
+                                |  implicit def USD2EUR(x: USD) = EUR(x.v * 0.81f)
+                                |}
+                            }
+                            @callblock() {
+                                |val eur: EUR = USD(5)
+                            }
+                            @outblock() {
+                                |eur: EUR = EUR(4.05)
+                            }
+                        }
+                    } {
+                        @codenote() {
+                            <em>(C)</em> Implicit wird im Companion Object definiert
+                        }
+                    }
+                }
             }
 
             <!--################################################################################## -->
 
-            @headslide(title = title) {
-                @title: <em>Explizit hat Vorrang</em>
-            } {
+            @defining("Eindeutigkeit") { regel =>
+
+                @headslide(title = title, subtitle = regel) {
+                    @title: <em>@regel</em>
+                } {
+                    @infobox() {
+                        Die Umwandlung muss eindeutig sein -
+                        bei mehreren Methoden wird ein Typfehler gemeldet.
+                    }
+                }
             }
 
             <!--################################################################################## -->
 
-            @headslide(title = title) {
-                @title: <em>Immer nur einer</em>
-            } {
+            @defining("Immer nur einer") { regel =>
+
+                @headslide(title = title, subtitle = regel) {
+                    @title: <em>@regel</em>
+                } {
+                    @infobox() {
+                        Es wird pro Typfehler stets nur maximal eine implizite Umwandelung eingesetzt.
+                    }
+                }
             }
         }
 
-            <!--<div class="indent">
-                <ol>
-                    <li class="fragment">
-                        <em>Keyword</em>
-                        <ul>
-                            <li>
-                                Nur Methoden mit <code>implicit</code> werden auch als Implicits angesehen.
-                            </li>
-                        </ul>
-                    </li>
-                    @spacer_half()
-                    <li class="fragment">
-                        <em>Scope</em>
-                        <ul>
-                            <li>
-                                Nur <code>implicits</code> im aktuellen Scope werden verwendet.
-                            </li>
-                        </ul>
-                    </li>
-                    @spacer_half()
-                    <li class="fragment">
-                        <em>Immer nur einer</em>
-                        <ul>
-                            <li>
-                                Es wird stets nur <em>1</em> Implicit gleichzeitig verwendet.
-                            </li>
-                        </ul>
-                    </li>
-                    @spacer_half()
-                    <li class="fragment">
-                        <em></em>
-                        <ul>
-                            <li>
-                                Implicits werden nur bei Typenfehlern herangezogen.
-                            </li>
-                        </ul>
-                    </li>
-                    @spacer_half()
-                    <li class="fragment">
-                        <em>Eindeutig</em>
-                        <ul>
-                            <li>
-                                Nur wenn es genau ein mögliches Implicit gibt, wird es angewandt.
-                            </li>
-                        </ul>
-                    </li>
-                </ol>
-            </div>-->
-
         <!--################################################################################## -->
 
-        @slide(title = "Scope") {
-            <!-- Scope -->
+        @slide(title = "Anwendungsbeispiel") {
 
-            @sidebyside((60,40)) {
-                @sourcecode(id = "euro_dollar", fragment = false) {
-                    |case class EUR(v: Float)
-                    |case class USD(v: Float)
-                }
-            } {
-            }
-
-            @spacer()
-
-            <!-- directly -->
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @sourceblock(reference = "euro_dollar") {
-                        |implicit def USD2EUR(x: USD) = EUR(x.v * 0.81f)
-                    }
-                    @callblock() {
-                        |val eur: EUR = USD(5)
-                    }
-                    @outblock() {
-                        |eur: EUR = EUR(4.05)
-                    }
-                }
-            } {
-                @codenote() {
-                    <em>(A)</em> Implicit wird direkt im Scope definiert
-                }
-            }
-
-            @spacer_half()
-
-            <!-- import -->
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @sourceblock(reference = "euro_dollar") {
-                        |object Convert {
-                        |  implicit def USD2EUR(x: USD) = EUR(x.v * 0.81f)
-                        |}
-                    }
-                    @callblock() {
-                        |import Convert.USD2EUR
-                        |val eur: EUR = USD(5)
-                    }
-                    @outblock() {
-                        |eur: EUR = EUR(4.05)
-                    }
-                }
-            } {
-                @codenote() {
-                    <em>(B)</em> Implicit wird in einem Objekt definiert und importiert
-                }
-            }
-
-            @spacer_half()
-
-            <!-- companion -->
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @sourceblock(reference = "euro_dollar") {
-                        |object USD {
-                        |  implicit def USD2EUR(x: USD) = EUR(x.v * 0.81f)
-                        |}
-                    }
-                    @callblock() {
-                        |val eur: EUR = USD(5)
-                    }
-                    @outblock() {
-                        |eur: EUR = EUR(4.05)
-                    }
-                }
-            } {
-                @codenote() {
-                    <em>(C)</em> Implicit wird im Companion Object definiert
-                }
-            }
         }
 
         <!--################################################################################## -->
@@ -324,27 +306,5 @@
             Die dazugehörige Testspezifikation unter
                 <code>/src/test/scala/de/learnscala/specs/<var>U410.scala</var></code>.
         }
-
-        <!--################################################################################## -->
-
-
-        @*@slide() {
-            <!-- Example: Time (plus View Bounds) -->
-
-            <!-- directly -->
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @sourceblock() {
-                        |case class Euro(value: Float)
-                        |case class Dollar(value: Float)
-                    }
-                    @sourceblock() {
-                        |implicit def dollarToEuro(x: Dollar): Euro =
-                        |   Euro(x.value * 0.81f)
-                    }
-                }
-            } {
-            }
-        }*@
     }
 }

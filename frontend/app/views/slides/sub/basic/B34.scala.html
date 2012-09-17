@@ -3,6 +3,7 @@
     - implicit -> view bounds
     - @@implicitNotFound
     - Evidence
+    - implicitly[T]
     - CanBuildFrom
 -->
 @defining("Implicits II") { implicit topic =>
@@ -19,3 +20,24 @@
 
     }
 }
+
+
+
+@*@slide() {
+    <!-- Example: Time (plus View Bounds) -->
+
+    <!-- directly -->
+    @sidebyside((60,40)) {
+        @snippet() {
+            @sourceblock() {
+                |case class Euro(value: Float)
+                |case class Dollar(value: Float)
+            }
+            @sourceblock() {
+                |implicit def dollarToEuro(x: Dollar): Euro =
+                |   Euro(x.value * 0.81f)
+            }
+        }
+    } {
+    }
+}*@
