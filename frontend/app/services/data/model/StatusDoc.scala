@@ -8,6 +8,7 @@ import com.foursquare.rogue.Rogue._
 
 import net.liftweb.mongodb.record._
 import field.MongoListField
+import com.loops101.util.EnvUtil
 
 class StatusDoc
     extends MongoRecord[StatusDoc] with DocMongoId[StatusDoc] {
@@ -32,7 +33,7 @@ object StatusDoc
 
     override def collectionName = name("status", "ls")
 
-    override val maxSize = 100
+    override val maxSize = if(EnvUtil.isCloud) 1 else 100
 
     val exerciseUserIdx = StatusDoc.index(_.exercise, Asc, _.user, Asc)
     override val mongoIndexList = List(exerciseUserIdx)
