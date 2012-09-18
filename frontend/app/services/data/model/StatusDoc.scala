@@ -32,7 +32,7 @@ object StatusDoc
 
     override def collectionName = name("status", "ls")
 
-    override val maxSize = 1000
+    override val maxSize = 100
 
     val exerciseUserIdx = StatusDoc.index(_.exercise, Asc, _.user, Asc)
     override val mongoIndexList = List(exerciseUserIdx)
