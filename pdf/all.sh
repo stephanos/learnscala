@@ -20,4 +20,4 @@ cp -R ext/* out/extra/
 ./md.rb
 
 # bundle to ZIP
-./bundle
+./bundle.sh

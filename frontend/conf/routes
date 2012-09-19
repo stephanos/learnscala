@@ -1,9 +1,9 @@
-GET     /                                           controllers.Home.index
+GET     /                                           controllers.Home.redirect
+GET     /schulungen/                                controllers.Home.redirect2
+
+GET     /schulungen/scala-seminar                   controllers.Home.index
 GET     /impressum                                  controllers.Home.imprint
 GET     /kontakt                                    controllers.Home.contact
-GET     /buchung                                    controllers.Home.booking
-GET     /termine                                    controllers.Home.events
-GET     /inhalt                                     controllers.Home.details
 GET     /backdoor                                   controllers.Home.backdoor
 GET     /google1388dbffebf166ff.html                controllers.Home.gverify
 

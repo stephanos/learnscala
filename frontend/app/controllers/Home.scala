@@ -5,6 +5,14 @@ import controllers.base.MyController
 
 object Home extends MyController {
 
+    def redirect = Action {
+        Redirect(routes.Home.index())
+    }
+
+    def redirect2 = Action {
+        Redirect(routes.Home.index())
+    }
+
     def index = Action {
         implicit req =>
             Ok(views.html.index())
@@ -14,21 +22,6 @@ object Home extends MyController {
         implicit req =>
             Ok(views.html.contact())
     }
-
-    def booking = Action {
-        implicit req =>
-            Ok(views.html.booking())
-    }
-
-    def events = Action {
-        implicit req =>
-            Ok(views.html.events())
-    }
-
-    def details = Action {
-            implicit req =>
-                Ok(views.html.details())
-        }
 
     def imprint = Action {
         implicit req =>

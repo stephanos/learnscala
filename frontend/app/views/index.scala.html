@@ -17,13 +17,12 @@
             <p>
                 Damit werden Programme deutlich kürzer, verständlicher, performanter und fehlerfreier
                 - die Schulung hilft Ihnen diese <strong>Vorteile schnellstmöglich zu nutzen</strong>.
-                <a href="@routes.Home.details">Lernen Sie mehr</a>.
             </p>
         </div>
         <div class="span2">&nbsp;</div>
     </div>
 
-    <div class="row">
+    <!--<div class="row">
         <div class="span2">&nbsp;</div>
         <div class="span8">
             <div class="row">
@@ -65,10 +64,6 @@
                                 das Unternehmen 'Typesafe' steht hinter Scala
                             </li>
                         </ul>
-                        </p>
-
-                        <p class="center">
-                            <a href="@routes.Home.details">&gt; Erfahren Sie mehr &lt</a>
                         </p>
                     </div>
                 </div>
@@ -112,16 +107,123 @@
                             </li>
                         </ul>
                         </p>
-
-                        <p class="center">
-                            <a href="@routes.Home.details">&gt; Erfahren Sie mehr &lt</a>
-                        </p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="span1">&nbsp;</div>
+    </div>-->
+
+    <div>
+
+        <div class="unit">
+            @front.about()
+        </div>
+
+
+        <div class="unit">
+            <hr class="soften"/>
+            <h3>Ziel</h3>
+            <hr class="soften"/>
+
+            @front.ziel()
+        </div>
+
+
+        <div class="unit">
+            <hr class="soften"/>
+            <h3>Inhalt der Schulung</h3>
+            <hr class="soften"/>
+        </div>
+
+        <div class="row">
+            <div class="span2">&nbsp;</div>
+            <div class="span4 contents">
+                @front.inhalt1()
+            </div>
+            <div class="span4 contents">
+                @front.inhalt2()
+            </div>
+            <div class="span2">&nbsp;</div>
+        </div>
+
+
+        <div class="unit">
+            <hr class="soften"/>
+            <h3>Kursvoraussetzungen</h3>
+            <hr class="soften"/>
+
+            @front.voraussetzung()
+        </div>
+
+
+        <div class="unit">
+            <hr class="soften"/>
+            <h3 id="#preview">Einführungsfolie</h3>
+            <hr class="soften"/>
+
+            <div class="unit" style="width: 100%">
+                <script async class="speakerdeck-embed" data-id="4ffd7a1a526894000103514f" data-ratio="1.3315994798439532" src="//speakerdeck.com/assets/embed.js"></script>
+                <script async class="speakerdeck-embed" data-id="5059fc736dd027000200016a" data-ratio="1.3315994798439532" src="//speakerdeck.com/assets/embed.js"></script>
+                <script async class="speakerdeck-embed" data-id="5059fcc59b9767000200036e" data-ratio="1.3315994798439532" src="//speakerdeck.com/assets/embed.js"></script>
+            </div>
+
+            <!--<p class="center">
+                <a href="">&gt; Weitere Folien &lt</a>
+            </p>-->
+        </div>
+
+
+        <div class="unit">
+            <hr class="soften"/>
+            <h3>Trainer</h3>
+            <hr class="soften"/>
+
+            @front.trainer()
+        </div>
+
     </div>
+</div>
+
+<div>
+
+    <div class="unit">
+        <hr class="soften"/>
+        <h3>Firmenintern</h3>
+        <hr class="soften"/>
+        <p>
+            In ganz Deutschland, Österreich und der Schweiz
+            möglich - <br/>
+            über 2, 3 oder gar 4 Tage, mit bis zu 12 Teilnehmern und Ihren speziellen Anforderungen.
+        </p>
+
+        <p>
+            Bitte kontaktieren Sie dafür meinen <strong>Kooperationspartner tutego</strong>:
+            <ul>
+                <li><a href="mailto:info@@tutego.de?subject=Scala-Schulung+mit+Stephan+Behnke">info@@tutego.de</a> oder</li>
+                <li>telefonisch unter <strong>0800 888 3467</strong></li>
+            </ul>
+        </p>
+
+        <p>
+            <strong>Nächste Termine:</strong>
+        <ul>
+            <li>August: <a href="https://www.devbliss.com/">devbliss GmbH</a>, Berlin</li>
+            <li>Oktober: Esslingen</li>
+        </ul>
+        </p>
+    </div>
+
+    <div class="unit">
+        <hr class="soften"/>
+        <h3>Öffentlich</h3>
+        <hr class="soften"/>
+        <p>
+            In Vorbereitung.<br/>
+            Momentan Priorität für firmeninterne Anfragen.<br/><br/>
+        </p>
+    </div>
+
 </div>
 
 }

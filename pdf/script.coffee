@@ -130,8 +130,8 @@ page = webpage.create()
 
 page.onLoadFinished = (status) ->
   url = getUrl(page)
-  links = page.evaluate (-> Array::map.call ($(".slides a")), (e) -> $(e).attr("href"))
   if(url.endsWith("/glossary") || url.endsWith("/slides"))
+    links = page.evaluate (-> Array::map.call ($(".slides a:not(.todo)")), (e) -> $(e).attr("href"))
     captureLinks(links, () ->
       phantom.exit()
     )

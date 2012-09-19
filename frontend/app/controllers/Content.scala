@@ -68,7 +68,7 @@ object Content extends MyController {
     lazy val jsond = Slide("E21", "JSON", ext, Seq())
     lazy val tests = Slide("E22", "Testen", ext, Seq())
     lazy val swing = Slide("E23", "Swing", ext, Seq())
-    lazy val interop = Slide("E24", "Interoperabilität", ext, Seq(implicit1, kollektionen1, traits), status = "")
+    lazy val interop = Slide("E24", "Interoperabilität", ext, Seq(implicit1, kollektionen1, traits), status = "complete")
 
 
     // ================================================================================================================

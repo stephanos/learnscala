@@ -194,8 +194,8 @@
 @topic(label: String, id: String = "", chpt: String = "", deps: Seq[Slide] = Seq(), status: String = "todo") = {
   <li class="topic @status">
       @defining("/app/slides/" + (if(chpt != "") chpt + "/" else "") + id + "/#/") { url =>
-        <input type="checkbox" class="status" data-key="@url"/>
-        <a href="@url" data-id="@id" data-label="@label" data-deps='@{deps.map(_.id).mkString(",")}'>
+        <input type="checkbox" data-key="@url"/>
+        <a href="@url" data-id="@id" data-label="@label" data-deps='@{deps.map(_.id).mkString(",")}' class="@status">
           @label
         </a>
       }

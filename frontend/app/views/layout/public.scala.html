@@ -7,7 +7,7 @@
         @t = @{
             if(title.isEmpty) "" else "| " + title
         }
-        <title>Scala Lernen: Schulung für Softwareentwickler @t</title>
+        <title>Praxisnahe, deutschsprachige Scala Schulungen @t</title>
 
         @*<!-- META -->*@
         <meta charset="utf-8">
@@ -31,9 +31,16 @@
             <header id="top">
                 <header class="shoutout">
                     <div class="inner">
-                        <h2>
+                        <h2 id="heading">
                             @if(subtitle == null) {
-                                <span>Praxisnahe Schulung <br/>für den Einstieg in Scala</span>
+                                <hr class="soften"/>
+                                <div class="left"></div>
+                                <div class="middle">
+                                    Praxisnahe Schulung<br/>
+                                    für den Einstieg in Scala
+                                </div>
+                                <div class="right"></div>
+                                <hr class="soften"/>
                             } else {
                                 @subtitle
                             }
@@ -51,7 +58,7 @@
 
             <footer id="bottom">
                 <div>
-                    <a href="/">Home</a> | <a href="@routes.Home.imprint">Impressum</a>
+                    <a href="/">Home</a> | <a href="@routes.Home.contact">Kontakt</a> | <a href="@routes.Home.imprint">Impressum</a>
                 </div>
                 <div>
                     Copyright 2011 - 2012, 101 Loops
