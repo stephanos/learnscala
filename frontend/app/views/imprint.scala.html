@@ -1,183 +1,186 @@
-@layout.public("Impressum", crawl = false) {
+@defining("Impressum") { title =>
 
-<section id="main">
-    <div class="box">
+    @layout.public(title, crawl = false, subtitle = Html(title)) {
 
-        <!--<hr class="soften"/>
-        <h3>Impressum</h3>
-        <hr class="soften"/>-->
+    <section id="main">
+        <div class="box">
 
-        <section>
+            <!--<hr class="soften"/>
+            <h3>Impressum</h3>
+            <hr class="soften"/>-->
 
-            <div id="imprint">
-                <div>
-                    <p></p>
+            <section>
 
-                    <h4>101 Loops UG (haftungsbeschränkt)</h4>
-                    <p>
-                        Jägerstraße 62<br/>
-                        12621 Berlin, Germany
-                    </p>
+                <div id="imprint">
+                    <div>
+                        <p></p>
 
-                    <h4>Kontakt</h4>
-                    <p>
-                        hello@@101loops.com
-                    </p>
+                        <h4>101 Loops UG (haftungsbeschränkt)</h4>
+                        <p>
+                            Jägerstraße 62<br/>
+                            12621 Berlin, Germany
+                        </p>
 
-                    <h4>Handelsregister</h4>
-                    <p>
-                        AG Charlottenburg HRB 139628 B<br/>
-                        UstID: nicht vorhanden
-                    </p>
+                        <h4>Kontakt</h4>
+                        <p>
+                            hello@@101loops.com
+                        </p>
 
-                    <h4>Geschäftsführer</h4>
-                    <p>
-                        Stephan Behnke
-                    </p>
+                        <h4>Handelsregister</h4>
+                        <p>
+                            AG Charlottenburg HRB 139628 B<br/>
+                            UstID: nicht vorhanden
+                        </p>
+
+                        <h4>Geschäftsführer</h4>
+                        <p>
+                            Stephan Behnke
+                        </p>
+                    </div>
                 </div>
-            </div>
 
-            <h4>Haftung für Inhalte</h4>
+                <h4>Haftung für Inhalte</h4>
 
-            <div>
-                Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für
-                die
-                Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir
-                jedoch keine
-                Gewähr übernehmen. Als Diensteanbieter sind wir gemäß &sect; 7
-                Abs.1
-                TMG für eigene
-                Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect;
-                8
-                bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte
-                oder
-                gespeicherte fremde Informationen zu überwachen oder nach Umständen zu
-                forschen, die
-                auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder
-                Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon
-                unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt
-                der Kenntnis
-                einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden
-                Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
-            </div>
+                <div>
+                    Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für
+                    die
+                    Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir
+                    jedoch keine
+                    Gewähr übernehmen. Als Diensteanbieter sind wir gemäß &sect; 7
+                    Abs.1
+                    TMG für eigene
+                    Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach &sect;&sect;
+                    8
+                    bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte
+                    oder
+                    gespeicherte fremde Informationen zu überwachen oder nach Umständen zu
+                    forschen, die
+                    auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder
+                    Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon
+                    unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt
+                    der Kenntnis
+                    einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden
+                    Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
+                </div>
 
-            <h4>Haftung für Links</h4>
+                <h4>Haftung für Links</h4>
 
-            <div>
-                Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte
-                wir
-                keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch
-                keine
-                Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets
-                der jeweilige
-                Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum
-                Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft.
-                Rechtswidrige
-                Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente
-                inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte
-                einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen
-                werden wir derartige Links umgehend entfernen.
-            </div>
+                <div>
+                    Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte
+                    wir
+                    keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch
+                    keine
+                    Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets
+                    der jeweilige
+                    Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum
+                    Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft.
+                    Rechtswidrige
+                    Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente
+                    inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte
+                    einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen
+                    werden wir derartige Links umgehend entfernen.
+                </div>
 
-            <h4>Urheberrecht</h4>
+                <h4>Urheberrecht</h4>
 
-            <div>
-                Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
-                unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung,
-                Verbreitung und jede Art der Verwertung außerhalb der Grenzen des
-                Urheberrechtes
-                bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
-                Downloads und Kopien dieser Seite sind nur für den privaten, nicht
-                kommerziellen
-                Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt
-                wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte
-                Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine
-                Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden
-                Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte
-                umgehend entfernen.
-            </div>
+                <div>
+                    Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
+                    unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung,
+                    Verbreitung und jede Art der Verwertung außerhalb der Grenzen des
+                    Urheberrechtes
+                    bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+                    Downloads und Kopien dieser Seite sind nur für den privaten, nicht
+                    kommerziellen
+                    Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt
+                    wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte
+                    Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine
+                    Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden
+                    Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte
+                    umgehend entfernen.
+                </div>
 
-            <h4>Datenschutz</h4>
+                <h4>Datenschutz</h4>
 
-            <div>
-                Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten
-                möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name,
-                Anschrift oder eMail-Adressen) erhoben werden, erfolgt dies, soweit möglich,
-                stets
-                auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung
-                nicht
-                an Dritte weitergegeben.
-            </div>
-            <div>
-                Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der
-                Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser
-                Schutz
-                der Daten vor dem Zugriff durch Dritte ist nicht möglich.
-            </div>
-            <div>
-                Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten
-                durch
-                Dritte zur übersendung von nicht ausdrücklich angeforderter Werbung und
-                Informationsmaterialien wird hiermit ausdrücklich widersprochen. Die Betreiber
-                der
-                Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten
-                Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.
-            </div>
+                <div>
+                    Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten
+                    möglich. Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name,
+                    Anschrift oder eMail-Adressen) erhoben werden, erfolgt dies, soweit möglich,
+                    stets
+                    auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung
+                    nicht
+                    an Dritte weitergegeben.
+                </div>
+                <div>
+                    Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der
+                    Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser
+                    Schutz
+                    der Daten vor dem Zugriff durch Dritte ist nicht möglich.
+                </div>
+                <div>
+                    Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten
+                    durch
+                    Dritte zur übersendung von nicht ausdrücklich angeforderter Werbung und
+                    Informationsmaterialien wird hiermit ausdrücklich widersprochen. Die Betreiber
+                    der
+                    Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten
+                    Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.
+                </div>
 
-            <h4>Datenschutzerklärung für Google Analytics</h4>
+                <h4>Datenschutzerklärung für Google Analytics</h4>
 
-            <div>
-                Diese Website benutzt Google Analytics, einen Webanalysedienst der Google Inc.
-                ("Google"). Google Analytics verwendet sog. "Cookies", Textdateien, die auf Ihrem
-                Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie
-                ermöglichen. Die durch den Cookie erzeugten Informationen über Ihre
-                Benutzung dieser
-                Website werden in der Regel an einen Server von Google in den USA übertragen
-                und
-                dort gespeichert. Im Falle der Aktivierung der IP-Anonymisierung auf dieser Webseite
-                wird Ihre IP-Adresse von Google jedoch innerhalb von Mitgliedstaaten der
-                Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den
-                Europäischen Wirtschaftsraum zuvor gekürzt.
-            </div>
+                <div>
+                    Diese Website benutzt Google Analytics, einen Webanalysedienst der Google Inc.
+                    ("Google"). Google Analytics verwendet sog. "Cookies", Textdateien, die auf Ihrem
+                    Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie
+                    ermöglichen. Die durch den Cookie erzeugten Informationen über Ihre
+                    Benutzung dieser
+                    Website werden in der Regel an einen Server von Google in den USA übertragen
+                    und
+                    dort gespeichert. Im Falle der Aktivierung der IP-Anonymisierung auf dieser Webseite
+                    wird Ihre IP-Adresse von Google jedoch innerhalb von Mitgliedstaaten der
+                    Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den
+                    Europäischen Wirtschaftsraum zuvor gekürzt.
+                </div>
 
-            <div>
-                Nur in Ausnahmefällen wird die volle IP-Adresse an einen Server von Google in
-                den
-                USA übertragen und dort gekürzt. Im Auftrag des Betreibers dieser Website
-                wird
-                Google diese Informationen benutzen, um Ihre Nutzung der Website auszuwerten, um
-                Reports über die Websiteaktivitäten zusammenzustellen und um weitere mit
-                der
-                Websitenutzung und der Internetnutzung verbundene Dienstleistungen gegenüber
-                dem
-                Websitebetreiber zu erbringen. Die im Rahmen von Google Analytics von Ihrem Browser
-                übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt.
-            </div>
+                <div>
+                    Nur in Ausnahmefällen wird die volle IP-Adresse an einen Server von Google in
+                    den
+                    USA übertragen und dort gekürzt. Im Auftrag des Betreibers dieser Website
+                    wird
+                    Google diese Informationen benutzen, um Ihre Nutzung der Website auszuwerten, um
+                    Reports über die Websiteaktivitäten zusammenzustellen und um weitere mit
+                    der
+                    Websitenutzung und der Internetnutzung verbundene Dienstleistungen gegenüber
+                    dem
+                    Websitebetreiber zu erbringen. Die im Rahmen von Google Analytics von Ihrem Browser
+                    übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt.
+                </div>
 
-            <div>
-                Sie können die Speicherung der Cookies durch eine entsprechende Einstellung
-                Ihrer
-                Browser-Software verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem
-                Fall gegebenenfalls nicht sämtliche Funktionen dieser Website vollumfänglich
-                werden
-                nutzen können. Sie können darüber hinaus die Erfassung der durch das
-                Cookie
-                erzeugten und auf Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse)
-                an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem sie das
-                unter dem folgenden Link verfügbare Browser-Plugin herunterladen und
-                installieren:
-                http://tools.google.com/dlpage/gaoptout?hl=de.
-            </div>
-        </section>
+                <div>
+                    Sie können die Speicherung der Cookies durch eine entsprechende Einstellung
+                    Ihrer
+                    Browser-Software verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem
+                    Fall gegebenenfalls nicht sämtliche Funktionen dieser Website vollumfänglich
+                    werden
+                    nutzen können. Sie können darüber hinaus die Erfassung der durch das
+                    Cookie
+                    erzeugten und auf Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse)
+                    an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem sie das
+                    unter dem folgenden Link verfügbare Browser-Plugin herunterladen und
+                    installieren:
+                    http://tools.google.com/dlpage/gaoptout?hl=de.
+                </div>
+            </section>
 
-        <footer>
-            <div style="float: right">
-                Last updated on February 14, 2012
-            </div>
-            <div class="clearfix"></div>
-        </footer>
+            <footer>
+                <div style="float: right">
+                    Last updated on February 14, 2012
+                </div>
+                <div class="clearfix"></div>
+            </footer>
 
         </div>
-</section>
+    </section>
 
+    }
 }

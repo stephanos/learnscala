@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /agb
 Disallow: /app/*
 Disallow: /users/*
 Disallow: /imprint

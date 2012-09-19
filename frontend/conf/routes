@@ -4,6 +4,7 @@ GET     /schulungen/                                controllers.Home.redirect2
 GET     /schulungen/scala-seminar                   controllers.Home.index
 GET     /impressum                                  controllers.Home.imprint
 GET     /kontakt                                    controllers.Home.contact
+GET     /agb                                        controllers.Home.AGB
 GET     /backdoor                                   controllers.Home.backdoor
 GET     /google1388dbffebf166ff.html                controllers.Home.gverify
 

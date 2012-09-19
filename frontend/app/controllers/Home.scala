@@ -13,6 +13,11 @@ object Home extends MyController {
         Redirect(routes.Home.index())
     }
 
+    def AGB = Action {
+        implicit req =>
+            Ok(views.html.agb())
+    }
+
     def index = Action {
         implicit req =>
             Ok(views.html.index())

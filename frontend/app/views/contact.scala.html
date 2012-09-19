@@ -1,55 +1,58 @@
 @()(implicit flash: Flash)
 
-@layout.public("Kontakt") {
+@defining("Kontakt") { title =>
 
-<div>
+    @layout.public(title, crawl = false, subtitle = Html(title)) {
 
-    <div class='alert hide alert-@flash.get("type")'>
-        @flash.get("message")
-    </div>
+    <div>
 
-    <div class="unit">
-        <p>
-            Zur Kontaktaufnahme bitte entweder direkt eine E-Mail an den Trainer
-            <a href="mailto:stephan@@learnscala.de">Stephan Behnke</a>
-            senden oder das folgende Formular verwenden.
-        </p>
-    </div>
+        <div class='alert hide alert-@flash.get("type")'>
+            @flash.get("message")
+        </div>
 
-    <div class="unit">
-        <form action="@routes.Contact.doMail" method="POST" class="contact form-horizontal">
-            <fieldset>
-                <div class="control-group">
-                    <label class="control-label">Ihre E-Mail</label>
+        <div class="unit">
+            <p>
+                Zur Kontaktaufnahme bitte entweder direkt eine E-Mail an den Trainer
+                <a href="mailto:stephan@@learnscala.de">Stephan Behnke</a>
+                senden oder das folgende Formular verwenden.
+            </p>
+        </div>
 
-                    <div class="controls">
-                        <input type="text" class="input-xlarge :required;;mail_label :email;;mail_label :only_on_submit" name="mail"/>
+        <div class="unit">
+            <form action="@routes.Contact.doMail" method="POST" class="contact form-horizontal">
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label">Ihre E-Mail</label>
 
-                        <div id="mail_label" style="display:none">
-                            Bitte geben Sie eine gültige E-Mail-Adresse ein
+                        <div class="controls">
+                            <input type="text" class="input-xlarge :required;;mail_label :email;;mail_label :only_on_submit" name="mail"/>
+
+                            <div id="mail_label" style="display:none">
+                                Bitte geben Sie eine gültige E-Mail-Adresse ein
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="control-group">
-                    <label class="control-label">Ihre Nachricht</label>
+                    <div class="control-group">
+                        <label class="control-label">Ihre Nachricht</label>
 
-                    <div class="controls">
-                        <textarea class=":required;;text_label :only_on_submit" rows="5" name="text"></textarea>
+                        <div class="controls">
+                            <textarea class=":required;;text_label :only_on_submit" rows="5" name="text"></textarea>
 
-                        <div id="text_label" style="display:none">
-                            Bitte eine Nachricht einfügen
+                            <div id="text_label" style="display:none">
+                                Bitte eine Nachricht einfügen
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-actions">
-                    <button type="submit" class="btn">Senden</button>
-              </div>
-            </fieldset>
-        </form>
+                    <div class="form-actions">
+                        <button type="submit" class="btn">Senden</button>
+                  </div>
+                </fieldset>
+            </form>
+        </div>
+
     </div>
 
-</div>
-
+    }
 }
