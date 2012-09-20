@@ -23,6 +23,11 @@ object Home extends MyController {
             Ok(views.html.index())
     }
 
+    def folien = Action {
+        implicit req =>
+            Ok(views.html.folien())
+    }
+
     def contact = Action {
         implicit req =>
             Ok(views.html.contact())

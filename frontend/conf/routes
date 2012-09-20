@@ -2,6 +2,7 @@ GET     /                                           controllers.Home.redirect
 GET     /schulungen/                                controllers.Home.redirect2
 
 GET     /schulungen/scala-seminar                   controllers.Home.index
+GET     /schulungen/scala-seminar/folien            controllers.Home.folien
 GET     /impressum                                  controllers.Home.imprint
 GET     /kontakt                                    controllers.Home.contact
 GET     /agb                                        controllers.Home.AGB

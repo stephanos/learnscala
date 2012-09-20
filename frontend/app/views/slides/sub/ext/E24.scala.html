@@ -173,15 +173,14 @@
 
             @defining("Methoden") { subtitle =>
 
+                @*<!--
                 @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
                     @title: @subtitle
                 } {
                     TODO
-                    <!--
                         - static
                         - currying
-                    -->
-                }
+                }-->*@
 
                 <!--################################################################################## -->
 
@@ -233,7 +232,7 @@
 
             @defining("Felder") { subtitle =>
 
-                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
+                @*@headslide(htmlTitle = title, subtitle = subtitle) {
                     @title: @subtitle
                 } {
                     @sidebyside((47,53)) {
@@ -276,11 +275,11 @@
                             <span class="nobreak">mit dem Suffix <code>_=</code></span> (entspricht <code>_$eq</code> in Java)
                         }
                     }
-                }
+                }*@
 
                 <!--################################################################################## -->
 
-                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "Get & Set") {
+                @*@headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "Get & Set") {
                     @title: @subtitle
                 } {
                     @sidebyside((50,50)) {
@@ -350,7 +349,7 @@
                             |}
                         }
                     }
-                }
+                }*@
 
                 <!--################################################################################## -->
 
@@ -465,22 +464,14 @@
                             |}
                         }
                     } {
-                        @outcode() {
-                            |public class Reader extends [..] {
-                            |  public int read() throws java.io.IOException;
-                            |  [..]
-                            |}
-                        }
-                        @codesub() {
-                            <code>@@throws</code> fügt der Signatur die spezifizierten Ausnahmen hinzu
-                        }
+
                     }
                 }
             }
 
             <!--################################################################################## -->
 
-            @defining("Traits") { subtitle =>
+            @*@defining("Traits") { subtitle =>
 
                 @headslide(htmlTitle = title, subtitle = subtitle) {
                     @title: @subtitle
@@ -543,11 +534,11 @@
                         Methoden des <em>Traits</em> können via Delegation ausgeführt werden
                     }
                 }
-            }
+            }*@
 
             <!--################################################################################## -->
 
-            @defining("Objekte") { subtitle =>
+            @*@defining("Objekte") { subtitle =>
 
                 @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
                     @title: @subtitle
@@ -592,7 +583,7 @@
 
                     }
                 }
-            }
+            }*@
 
             <!--################################################################################## -->
 
