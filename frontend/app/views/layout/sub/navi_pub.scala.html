@@ -1,27 +1,37 @@
-@*<!--
-<div id="pubnav">
-    <hr class="soften"/>
-
-    <h3>
-        <a href="/">Übersicht</a>
-    </h3>
-
-    <h3>
-        <a href="@routes.Home.details">Details</a>
-    </h3>
-
-    <h3>
-        <a href="@routes.Home.events">Termine</a>
-    </h3>
-
-    <h3>
-        <a href="@routes.Home.contact">Kontakt</a>
-    </h3>
-
-    <hr class="soften"/>
+<div id="logo">
+    <a href="https://www.learnscala.de">
+        <img src="/assets/img/learnscala.png" height="60" width="48" alt="LearnScala">
+    </a>
 </div>
 
-<div id="navi">
+<nav>
+    <ul>
+        <li>
+            <a href="/">
+                <span class="head">NEWS</span>
+                <span class="sub">was gibt's neues ?</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/schulungen/scala-training">
+                <span class="head">TRAINING</span>
+                <span class="sub">schneller lernen ?</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/links">
+                <span class="head">LINKS</span>
+                <span class="sub">mehr Infos ?</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<hr/>
+
+@*<!--<div id="navi">
     <ul>
         <li>
             <a href="@routes.Auth.login">

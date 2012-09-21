@@ -36,11 +36,62 @@ body {
     }
     */
 
-    .container {
-        min-width: 275px;
+    >div.container {
+        min-width: 600px;
         max-width: 900px;
 
-        margin-top: 20px;
+        >header {
+            @h: 60px;
+            padding: 20px 0 20px;
+            margin: 0 0 20px 0;
+
+            border-bottom: 2px solid rgba(78, 68, 60, 0.1);
+
+            #logo {
+                width: 15%;
+                float: left;
+                height: @h;
+                img { padding-left: 10px; }
+            }
+
+            nav {
+                width: 85%;
+                float: left;
+                height: @h;
+
+                ul {
+                    list-style: none;
+
+                    li {
+                        float: left;
+                        width: 33%;
+                        margin: 14px 0 0 0;
+
+                        a {
+                            .col(fadeout(#690, 40%));
+
+                            .no-underline();
+                            &.active span { .col(#690); }
+                            &:hover span { .col(#690); }
+
+                            span {
+                                display: block;
+                                .transition(color 0.2s ease-in-out);
+
+                                &.head { .fsize(20px); .lheight(26px); .bold(); .uppercase(); font-family: 'Graublau Web'; }
+                                &.sub { .fsize(14px); }
+                            }
+                        }
+                    }
+                }
+            }
+
+            hr {
+                visibility: hidden;
+                clear: both;
+                margin: 0;
+            }
+        }
 
         >section {
             margin: 0 auto;
@@ -59,7 +110,7 @@ body {
             }
         }
 
-        #bottom {
+        >footer {
             margin: 40px 0 20px 0;
             text-align: center;
             font-family: 'Lucida Sans Unicode', 'Lucida Grande', Tahoma, sans-serif;
@@ -77,23 +128,6 @@ ul.reasons {
 
 span.underline {
     text-decoration: underline;
-}
-
-#pubnav {
-    margin: 35px 0;
-    text-align: center;
-    h3 { display: inline; .capitalize(); padding: 0 20px; }
-}
-
-.shoutout {
-    margin: 20px 0;
-
-    h2 {
-        font-size: 36px;
-        margin-left: 5%;
-        margin-right: 5%;
-        line-height: 50px;
-    }
 }
 
 p {

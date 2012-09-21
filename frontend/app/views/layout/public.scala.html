@@ -7,7 +7,7 @@
         @t = @{
             if(title.isEmpty) "" else "| " + title
         }
-        <title>Praxisnahe, deutschsprachige Scala Schulungen @t</title>
+        <title>Lernen Sie Scala - @t</title>
 
         @*<!-- META -->*@
         <meta charset="utf-8">
@@ -29,28 +29,10 @@
 
         <div class="container">
             <header id="top">
-                <header class="shoutout">
-                    <div class="inner">
-                        <h2 id="heading">
-                            <hr class="soften"/>
-                            @if(subtitle == null) {
-                                <div class="middle">
-                                    Praxisnahe Schulung<br/>
-                                    für den Einstieg in Scala
-                                </div>
-                            } else {
-                                @subtitle
-                            }
-                            <hr class="soften"/>
-                        </h2>
-                    </div>
-                </header>
+                @sub.navi_pub()
             </header>
 
             <section id="main">
-                @if(!hideNav) {
-                    @sub.navi_pub()
-                }
                 @content
             </section>
 
