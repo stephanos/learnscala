@@ -1,4 +1,4 @@
-@(err: Option[Throwable] = None)
+@(err: Option[Throwable] = None)(implicit req: RequestHeader)
 
 @layout.public("Interner Fehler", crawl = false, hideNav = true, subtitle = Html("Oh. Ehm. Das tut mir leid.")) {
     <div class="box header-box alert-box error-box">

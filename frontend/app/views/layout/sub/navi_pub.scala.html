@@ -1,3 +1,5 @@
+@()(implicit req: RequestHeader)
+
 <div id="logo">
     <a href="https://www.learnscala.de">
         <img src="/assets/img/learnscala.png" height="60" width="48" alt="LearnScala">
@@ -7,21 +9,21 @@
 <nav>
     <ul>
         <li>
-            <a href="@routes.Home.news">
+            <a href="@routes.Home.news" class='@{if(req.uri.contains("/news")) "active"}'>
                 <span class="head">NEWS</span>
                 <span class="sub">was gibt's neues ?</span>
             </a>
         </li>
 
         <li>
-            <a href="@routes.Home.training">
+            <a href="@routes.Home.training" class='@{if(req.uri.contains("/schulung")) "active"}'>
                 <span class="head">TRAINING</span>
                 <span class="sub">schneller lernen ?</span>
             </a>
         </li>
 
         <li>
-            <a href="@routes.Home.links">
+            <a href="@routes.Home.links" class='@{if(req.uri.contains("/links")) "active"}'>
                 <span class="head">LINKS</span>
                 <span class="sub">mehr Infos ?</span>
             </a>

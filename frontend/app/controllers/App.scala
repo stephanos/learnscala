@@ -14,7 +14,8 @@ object App extends MyController {
     }
 
     def invalidBrowser = Action {
-        Ok(views.html.error.unsupported())
+        implicit req =>
+            Ok(views.html.error.unsupported())
     }
 
     def index2 =
