@@ -10,22 +10,25 @@
     <ul>
         <li>
             <a href="@routes.Home.news" class='@{if(req.uri.contains("/news")) "active"}'>
-                <span class="head">NEWS</span>
-                <span class="sub">was gibt's neues ?</span>
+                <span class="head">Aktuelles</span>
             </a>
         </li>
 
         <li>
             <a href="@routes.Home.training" class='@{if(req.uri.contains("/schulung")) "active"}'>
-                <span class="head">TRAINING</span>
-                <span class="sub">schneller lernen ?</span>
+                <span class="head">Training</span>
             </a>
         </li>
 
         <li>
             <a href="@routes.Home.links" class='@{if(req.uri.contains("/links")) "active"}'>
-                <span class="head">LINKS</span>
-                <span class="sub">mehr Infos ?</span>
+                <span class="head">Links</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="@routes.Home.contact" class='@{if(req.uri.contains("/kontakt")) "active"}'>
+                <span class="head">Kontakt</span>
             </a>
         </li>
     </ul>

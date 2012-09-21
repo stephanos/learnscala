@@ -6,11 +6,11 @@ import controllers.base.MyController
 object Home extends MyController {
 
     def redirect = Action {
-        Redirect(routes.Home.training())
+        Redirect(routes.Home.news())
     }
 
     def redirect2 = Action {
-        Redirect(routes.Home.training())
+        Redirect(routes.Home.news())
     }
 
     def AGB = Action {

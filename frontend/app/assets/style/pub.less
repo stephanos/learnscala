@@ -41,10 +41,11 @@ body {
         max-width: 900px;
 
         >header {
-            @h: 60px;
-            padding: 20px 0 20px;
-            margin: 0 0 20px 0;
+            @h: 20px;
+            padding: 10px 0 10px;
+            margin: 20px 0 20px 0;
 
+            border-top: 2px solid rgba(78, 68, 60, 0.1);
             border-bottom: 2px solid rgba(78, 68, 60, 0.1);
 
             #logo {
@@ -52,6 +53,7 @@ body {
                 float: left;
                 height: @h;
                 img { padding-left: 10px; }
+                visibility: hidden;
             }
 
             nav {
@@ -60,16 +62,16 @@ body {
                 height: @h;
 
                 ul {
+                    margin: 0;
                     list-style: none;
 
                     li {
                         float: left;
-                        width: 33%;
-                        margin: 14px 0 0 0;
+                        width: 20%;
+                        //margin: 14px 0 0 0;
+                        text-align: center;
 
                         a {
-                            .col(fadeout(#690, 40%));
-
                             .no-underline();
                             &.active span { .col(#690); }
                             &:hover span { .col(#690); }
@@ -77,9 +79,12 @@ body {
                             span {
                                 display: block;
                                 .transition(color 0.2s ease-in-out);
-
-                                &.head { .fsize(20px); .lheight(26px); .bold(); .uppercase(); font-family: 'Graublau Web'; }
-                                &.sub { .fsize(14px); }
+                                .fsize(20px);
+                                .lheight(@h);
+                                .bold();
+                                //.uppercase();
+                                font-family: 'Graublau Web';
+                                .col(fadeout(#690, 40%));
                             }
                         }
                     }
