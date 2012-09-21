@@ -22,6 +22,14 @@ getPage = (path, cb) ->
   url = createUrl(path)
   page = webpage.create()
 
+  # setup page & PDF
+  pscale = 2.2
+  page.paperSize = {
+    width: viewport.width * pscale, height: viewport.height * pscale,
+    orientation: 'portrait', margin: '0cm'
+  }
+  page.viewportSize = viewport
+
   page.onError = (msg, trace) ->
       console.log(msg)
       phantom.exit()
@@ -30,14 +38,6 @@ getPage = (path, cb) ->
 
     # load page again
     page.open(url, () ->
-
-      # setup page & PDF
-      pscale = 2.2
-      page.paperSize = {
-        width: viewport.width * pscale, height: viewport.height * pscale,
-        orientation: 'portrait', margin: '0cm'
-      }
-      page.viewportSize = viewport
 
       # trigger "print" mode
       page.evaluate(-> $("body").addClass("print"))
@@ -64,6 +64,8 @@ captureSlides = (page, slides, slide, outpath, cb) ->
 
       # move to next slide
       page.evaluate(-> Reveal.navigateRight())
+
+      #console.log(page.evaluate(-> $("section.present").width()))
 
       # call recursively
       captureSlides(page, slides, slide - 1, outpath, cb)

@@ -1,6 +1,7 @@
 // LIB
 @import "bootstrap/bootstrap.less";
 @import "bootstrap/type.less";
+@import "bootstrap/navs.less";
 
 @import "lib/const.less";
 @import "lib/mixins.less";
@@ -73,8 +74,8 @@ body {
 
                         a {
                             .no-underline();
-                            &.active span { .col(#690); }
-                            &:hover span { .col(#690); }
+                            &.active span { .col(#eee); }
+                            &:hover span { .col(#eee); }
 
                             span {
                                 display: block;
@@ -84,7 +85,7 @@ body {
                                 .bold();
                                 //.uppercase();
                                 font-family: 'Graublau Web';
-                                .col(fadeout(#690, 40%));
+                                .col(fadeout(#eee, 40%));
                             }
                         }
                     }
