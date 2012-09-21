@@ -6,11 +6,11 @@ import controllers.base.MyController
 object Home extends MyController {
 
     def redirect = Action {
-        Redirect(routes.Home.index())
+        Redirect(routes.Home.training())
     }
 
     def redirect2 = Action {
-        Redirect(routes.Home.index())
+        Redirect(routes.Home.training())
     }
 
     def AGB = Action {
@@ -18,9 +18,9 @@ object Home extends MyController {
             Ok(views.html.agb())
     }
 
-    def index = Action {
+    def training = Action {
         implicit req =>
-            Ok(views.html.index())
+            Ok(views.html.training())
     }
 
     def links = Action {
@@ -31,6 +31,11 @@ object Home extends MyController {
     def folien = Action {
         implicit req =>
             Ok(views.html.folien())
+    }
+
+    def news = Action {
+        implicit req =>
+            Ok(views.html.news())
     }
 
     def contact = Action {

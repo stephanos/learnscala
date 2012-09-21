@@ -1,8 +1,9 @@
 GET     /                                           controllers.Home.redirect
 GET     /schulungen/                                controllers.Home.redirect2
 
-GET     /schulungen/scala-training                  controllers.Home.index
-GET     /schulungen/scala-training/folien            controllers.Home.folien
+GET     /news                                       controllers.Home.news
+GET     /schulungen/scala-training                  controllers.Home.training
+GET     /schulungen/scala-training/folien           controllers.Home.folien
 GET     /impressum                                  controllers.Home.imprint
 GET     /kontakt                                    controllers.Home.contact
 GET     /links                                      controllers.Home.links
