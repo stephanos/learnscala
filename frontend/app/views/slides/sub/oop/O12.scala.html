@@ -13,74 +13,100 @@
         @slide(title = "static ?") {
 
             @sidebyside((60,40)) {
-                @sourcecode(fragment = false) {
-                    |class Plane(val model: String, val seats: Int) {
-                    |
-                    |   static var countOfPlanes = 0
-                    |}
+                @snippet() {
+                    @sourceblock(fragment = false) {
+                        |class AccountFactory {
+                        |
+                        |  static var lastNumber = 0
+                        |
+                        |  def newAccount(owner: String) = {
+                        |    lastNumber += 1
+                        |    new Accounts(lastNumber)
+                        |  }
+                        |}
+                    }
+                    @outblock(error = true) {
+                        |error: ';' expected but 'var' found.
+                        |       static var lastNumber = 0
+                    }
                 }
             } {
-            }
-
-            @sidebyside((60,40), fragment = true) {
-                @outcode(error = true, fragment = false) {
-                    |error: ';' expected but 'val' found.
-                    |       static var countOfPlanes = 0
+                @codenote() {
+                    <code>static</code> gibt es in Scala nicht ...
                 }
-            } {
-                <code>static</code> gibt es in Scala nicht ...
             }
         }
 
 
         <object>
-            @sourcecode(id = "plane") {
-                |class Plane(val model: String,
-                |            val seats: Int)
+            @sourcecode(id = "account") {
+                |class Account(val owner: String, val number: Int)
             }
         </object>
 
         <!--################################################################################## -->
 
-        @slide(title = "Singleton") {
+        @defining("Singleton") { title =>
 
-            @codesplits((60,40), id="planefactory", fragment = false){
-                @splitstart(reference = "plane") {
-                    |object PlaneFactory @("{")
-                }{
-                    ... aber Objekte.
+            @slide(title = title) {
+
+                @codesplits((60,40), id="accountfactory", fragment = false){
+                    @splitstart(reference = "account") {
+                        |object AccountFactory @("{")
+                    }{
+                        ... aber Objekte.
+                    }
+                    @codesplit() {
+                        |   var lastNumber = 0
+                    } {
+                        @li{<em>globaler Zustand</em>}
+                    }
+                    @codesplit() {
+                        |   def newAccount(owner: String) = {
+                        |       lastNumber += 1
+                        |       new Account(owner, lastNumber)
+                        |   }
+                    } {
+                        @li{<em>Factory</em>-Methoden}
+                    }
+                    @splitend() {
+                        |@("}")
+                    }(null)
                 }
-                @codesplit() {
-                    |   var countOfPlanes = 0
+
+                @spacer()
+
+                @sidebyside((60,40)) {
+                    @callcode(reference = "accountfactory") {
+                        |val acc = AccountFactory.newAccount("Bob")
+                    }
                 } {
-                    @li{<em>globaler Zustand</em>}
                 }
-                @codesplit() {
-                    |   def create(model: String, seats: Int) = {
-                    |       countOfPlanes += 1
-                    |       new Plane(model, seats)
-                    |   }
-                } {
-                    @li{<em>Factory</em>-Methoden}
+
+                @infobox() {
+                    <code>object</code> definiert ein Singleton-Objekt:
+                    Es existiert <strong>genau eine Instanz</strong>,
+                    die beim ersten Zugriff instanziiert wird - Parameter gibt es nicht.
                 }
-                @splitend() {
-                    |@("}")
-                }(null)
             }
 
-            @spacer()
+            @slide(title = title, subtitle = "Beispiel") {
 
-            @sidebyside((60,40)) {
-                @callcode(reference = "planefactory") {
-                    |val p = PlaneFactory.create("Boeing 737", 189)
+                @sidebyside((60,40)) {
+                    @sourcecode() {
+                        |object MyApplication {
+                        |
+                        |  def main(args: Array[String]) {
+                        |    println("Hello World!")
+                        |  }
+                        |}
+                    }
+                } {
+                    @codenote() {
+                        Singleton <code>MyApplication</code> definiert
+                        den Einstiegspunkt <code>main</code> zum Ausführen
+                    }
                 }
-            } {
-            }
-
-            @infobox() {
-                <code>object</code> definiert ein Singleton-Objekt:
-                Es existiert <strong>genau eine Instanz</strong>,
-                die beim ersten Zugriff instanziiert wird - Parameter gibt es nicht.
             }
         }
 
@@ -90,8 +116,77 @@
 
             @slide(title = title) {
 
+                @sidebyside((60,40)) {
+                    @sourcecode(id = "account2", fragment = false) {
+                        |// Account.scala
+                        |class Account private (val owner: String,
+                        |                       val number: Int) {
+                        |
+                        |  def totalCount = Account.lastNumber
+                        |}
+                    }
+                } {
+                    @codenote() {
+                        Klasse <code>Account</code> hat einen privaten Konstruktor
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside((60,40)) {
+                    @sourcecode(id = "accountobj", reference = "account2") {
+                        |// Account.scala
+                        |object Account {
+                        |
+                        |  private var lastNumber = 0
+                        |
+                        |  def newAccount(owner: String) = {
+                        |    lastNumber += 1
+                        |    new Account(owner, lastNumber)
+                        |  }
+                        |}
+                    }
+                } {
+                    @codenote() {
+                        Companion Object <code>Account</code> definiert Factory-Methode
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @callblock(reference = "accountobj") {
+                            |val acc = Account.newAccount("Bob")
+                        }
+                        @outblock() {
+                            |acc: Account = Account@@536502d
+                        }
+                        @callblock() {
+                            |println(acc.totalCount)
+                        }
+                        @outblock() {
+                            |1
+                        }
+                    }
+                } {
+                    @codenote() {
+                        Companion Object und Klasse haben gegenseitig privaten Zugriff
+                    }
+                }
+
+                <!--@infobox() {
+                    Das Companion Object einer Klasse muss den selben Namen tragen und in der selben Datei
+                    definiert werden, dann hat es privaten Zugriff - und umgekehrt.
+                }-->
+            }
+
+            <!--################################################################################## -->
+
+            @slide(title = title, subtitle = "Beispiele") {
+
                 @sidebyside((70,30)) {
-                    @callcode(fragment = false) {
+                    @callcode() {
                         |val bigNumber = BigInt("1234567890")
                     }
                 } {
@@ -102,8 +197,8 @@
 
                 @spacer2()
 
-                @sidebyside((70,30), fragment = true) {
-                    @callcode(fragment = false) {
+                @sidebyside((70,30)) {
+                    @callcode() {
                         |val countdown = Array(10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
                     }
                 } {
@@ -112,72 +207,10 @@
                     }
                 }
 
-                @spacer()
-
-                @infobox() {
+                <!--@infobox() {
                     Für viele Datentypen und -strukturen gibt es gleichnamige Objekte
                     <comment>("Companion Objects")</comment> mit speziellen Factory-Methoden.
-                }
-            }
-
-            <!--################################################################################## -->
-
-            @slide(title = title) {
-
-                @sidebyside() {
-                    @sourcecode(id = "plane2", clazz = "first", fragment = false) {
-                        |class Plane private (val model: String,
-                        |                     val seats: Int) {
-                        |
-                        |  def totalCount = Plane.countOfPlanes
-                        |}
-                    }
-                } {
-                    @codenote() {
-                        Klasse <code>Plane</code> hat einen privaten Konstruktor
-                    }
-                }
-
-                @sidebyside() {
-                    @sourcecode(id = "planeobj", clazz = "last", reference = "plane2") {
-                        |
-                        |object Plane {
-                        |
-                        |  private var countOfPlanes = 0
-                        |
-                        |  def create(mdl: String, s: Int) = {
-                        |    countOfPlanes += 1
-                        |    new Plane(mdl, s)
-                        |  }
-                        |}
-                    }
-                } {
-                    @fragment {
-                        @codenote() {
-                            Companion Object <code>Plane</code> kann aber eine neue Instanz erstellen:
-                        }
-                        @spacer()
-                        @snippet() {
-                            @callblock(reference = "planeobj", fragment = false) {
-                                val p = Plane.create("Boeing 737",189)
-                            }
-                            @outblock() {
-                                |p: Plane = Plane@@536502d
-                            }
-                            @callblock() {
-                                println(p.totalCount)
-                            }
-                            @outblock() {
-                                |1
-                            }
-                        }
-                    }
-                }
-
-                @infobox() {
-                    Das Companion Object einer Klasse muss den selben Namen tragen und in der selben Datei
-                    definiert werden, dann hat es privaten Zugriff - und umgekehrt.
-                }
+                }-->
             }
         }
 
@@ -186,21 +219,21 @@
         @slide(title = "apply") {
 
             @sidebyside((60,40)) {
-                @sourcecode(id = "apply", reference = "plane2", fragment = false) {
-                    |object Plane {
-                    |
-                    |  private var countOfPlanes = 0
-                    |
-                    |  def apply(model: String, seats: Int) = {
-                    |    countOfPlanes += 1
-                    |    new Plane(model, seats)
-                    |  }
-                    |}
+                @sourcecode(id = "apply", reference = "account2", fragment = false) {
+                        |object Account {
+                        |
+                        |  private var lastNumber = 0
+                        |
+                        |  def apply(owner: String) = {
+                        |    lastNumber += 1
+                        |    new Account(owner, lastNumber)
+                        |  }
+                        |}
                 }
             } {
                 @codenote() {
                     Objekt enthält <code>apply</code>-Methode
-                    zum Erstellen einer neuen Instanz von <code>Plane</code>
+                    zum Erstellen einer neuen Instanz von <code>Account</code>
                 }
             }
 
@@ -209,30 +242,85 @@
             @sidebyside((60,40), fragment = true) {
                 @snippet() {
                     @callblock(reference = "apply", fragment = false) {
-                        val p = Plane("Boeing 737",189)
+                        val acc = Account("Bob")
                     }
                     @outblock() {
-                        |p: Plane = Plane@@536502d
+                        |p: Account = Account@@536502d
                     }
                     @callblock() {
-                        val p = Plane()
+                        |val acc = Account()
                     }
                     @outblock() {
-                        error: not enough arguments for method apply
+                        |error: not enough arguments for method apply
                     }
                 }
             } {
                 @codenote() {
-                    <code>apply</code> wird versucht aufzurufen,
+                    <code>apply</code> wird aufgerufen,
                     wenn keine explizite Methode angegeben wird
                 }
             }
 
-            @infobox() {
+            <!--@infobox() {
                 Die Methode <code>apply</code> kann implizit durch
                 Angabe einer Parameterliste hinter einem Objekt <comment class="nobreak">(Object(arg1, ..., argN))</comment>
                 aufgerufen werden - das verkürzt den Code!
+            }-->
+        }
+
+        <!--################################################################################## -->
+
+        @slide(title = "Predef") {
+
+            @sidebyside((66,33)) {
+                @snippet() {
+                    @callblock(fragment = false) {
+                        |Predef.println("Account was created")
+                    }
+                    @outblock() {
+                        |Account was created
+                    }
+                    @callblock() {
+                        |println("Account was created")
+                    }
+                    @outblock() {
+                        |Account was created
+                    }
+                }
+            } {
+                @codenote() {
+                    Methode <code>println</code> - Teil des Objekts @apilink("Predef", "Predef$") -
+                    kann ohne Objektreferenz verwendet werden
+                }
             }
+
+            @spacer2()
+
+            @sidebyside((66,33)) {
+                @snippet() {
+                    @callblock() {
+                        |val accountNumber = -42
+                    }
+                    @callblock() {
+                        |require(accountNumber > 0, "Invalid account number!")
+                    }
+                    @outblock() {
+                        |java.lang.IllegalArgumentException:
+                        | requirement failed: Invalid account number
+                        |       at scala.Predef$.require(Predef.scala:157)
+                    }
+                }
+            } {
+                @codenote() {
+                    Methode <code>require</code> wirft <code>IllegalArgumentException</code>
+                    falls die Bedingung nicht wahr ist
+                }
+            }
+
+            <!--@infobox() {
+                Das <code>Predef</code>-Objekt wird automatisch für jede Klasse importiert,
+                es enthält hilfreiche Befehle, Typen und Werte - kann aber nicht erweitert werden.
+            }-->
         }
 
         <!--################################################################################## -->
@@ -246,64 +334,6 @@
 
             Die dazugehörige Testspezifikation unter
                 <code>/src/test/scala/de/learnscala/specs/<var>S110.scala</var></code>.
-        }
-
-        <!--################################################################################## -->
-
-        @slide(title = "Predef") {
-
-            @sidebyside((66,33)) {
-                @snippet() {
-                    @callblock(fragment = false) {
-                        |Predef.println("Ready for take-off")
-                    }
-                    @outblock() {
-                        |Ready for take-off
-                    }
-                    @callblock() {
-                        |println("Ready for take-off")
-                    }
-                    @outblock() {
-                        |Ready for take-off
-                    }
-                }
-            } {
-                @codenote() {
-                    Methode <code>println</code> - Teil des Objekts <code>Predef</code>
-                    - kann ohne Objektreferenz verwendet werden
-                }
-            }
-
-            @spacer()
-
-            @sidebyside((66,33)) {
-                @snippet() {
-                    @callblock() {
-                        |val pilotIsAlive = false
-                    }
-                    @outblock() {
-                        |pilotIsAlive: Boolean = false
-                    }
-                    @callblock() {
-                        |require(pilotIsAlive == true, "Co-Pilot needed!")
-                    }
-                    @outblock() {
-                        |java.lang.IllegalArgumentException:
-                        | requirement failed: Co-Pilot needed!
-                        |       at scala.Predef$.require(Predef.scala:157)
-                    }
-                }
-            } {
-                @codenote() {
-                    Methode <code>require</code> wirft <code>IllegalArgumentException</code>
-                    falls die Bedingung nicht wahr ist
-                }
-            }
-
-            @infobox() {
-                Das <code>Predef</code>-Objekt wird automatisch für jede Klasse importiert,
-                es enthält hilfreiche Befehle, Typen und Werte - kann aber nicht erweitert werden.
-            }
         }
     }
 }

@@ -8,7 +8,7 @@ class MyController
     extends BaseController with Errors {
 
     protected def userIsAdmin(implicit req: RequestHeader) =
-        req.session.get(USER_ID) == Some("stephanos")
+        isLocal || req.session.get(USER_ID) == Some("stephanos")
 
     protected def getByName(path: String) = {
         val c = Class.forName(path)
