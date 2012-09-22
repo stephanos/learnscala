@@ -77,6 +77,8 @@ define [
                 <a href="#/' + idx + '"> - ' + subtitle + '</a>
               </li>
             ')
+          else
+            subtitles.push("<empty>")
 
             #$(naviElemLinks).find(">li").last().find("ul")
             #  .append('<li><a href="#/' + idx + '">' + subtitle + '</a></li>')

@@ -50,7 +50,7 @@
 
             @slide(title = title) {
 
-                @codesplits((60,40), id="accountfactory", fragment = false){
+                @codesplits((60,40), id="accountfactory"){
                     @splitstart(reference = "account") {
                         |object AccountFactory @("{")
                     }{
@@ -77,8 +77,13 @@
                 @spacer()
 
                 @sidebyside((60,40)) {
-                    @callcode(reference = "accountfactory") {
-                        |val acc = AccountFactory.newAccount("Bob")
+                    @snippet() {
+                        @callblock(reference = "accountfactory") {
+                            |val acc = AccountFactory.newAccount("Bob")
+                        }
+                        @outblock() {
+                            |acc: Account = Account@@536502d
+                        }
                     }
                 } {
                 }
@@ -90,7 +95,59 @@
                 }-->
             }
 
-            @slide(title = title, subtitle = "Beispiel") {
+            @slide(title = title, subtitle = "Instanz") {
+
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @sourceblock() {
+                            |object AccountFactory(startNumber: Int) {
+                            |
+                            |  var lastNumber = startNumber
+                            |}
+                        }
+                        @outblock(error = true) {
+                            |error: objects may not have parameters
+                        }
+                    }
+                } {
+                    @codenote() {
+                        Objekte werden automatisch instanziiert, Parameter sind daher nicht erlaubt
+                    }
+                }
+
+                @spacer2()
+
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @sourceblock() {
+                            |object AccountFactory {
+                            |
+                            |  // constructor:
+                            |  println("starting AccountFactory")
+                            |
+                            |  // field:
+                            |  var lastNumber = 42
+                            |}
+                        }
+                        @outblock() {
+                            |defined module AccountFactory
+                        }
+                        @callblock() {
+                            |println(AccountFactory.lastNumber)
+                        }
+                        @outblock() {
+                            |starting AccountFactory
+                            |42
+                        }
+                    }
+                } {
+                    @codenote() {
+                        Objekte werden beim ersten Zugriff instanziiert
+                    }
+                }
+            }
+
+            @slide(title = title, subtitle = "Beispiele") {
 
                 @sidebyside((60,40)) {
                     @sourcecode() {
@@ -107,6 +164,40 @@
                         den Einstiegspunkt <code>main</code> zum Ausführen
                     }
                 }
+
+                @spacer()
+
+                @sidebyside((60,40)) {
+                    @sourcecode() {
+                        |object StringUtil {
+                        |
+                        |  def isEmpty(s: String) =
+                        |    if(s == null) true else s.isEmpty()
+                        |}
+                    }
+                } {
+                    @codenote() {
+                        Singleton <code>StringUtil</code> definiert
+                        nützliche Methoden für die Arbeit mit Strings
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside((60,40)) {
+                    @sourcecode() {
+                        |object Currency {
+                        |
+                        |  val euro   = "€"
+                        |  val dollar = "$"
+                        |}
+                    }
+                } {
+                    @codenote() {
+                        Singleton <code>Currency</code> definiert
+                        Währungssymbole als Konstanten
+                    }
+                }
             }
         }
 
@@ -117,7 +208,7 @@
             @slide(title = title) {
 
                 @sidebyside((60,40)) {
-                    @sourcecode(id = "account2", fragment = false) {
+                    @sourcecode(id = "account2") {
                         |// Account.scala
                         |class Account private (val owner: String,
                         |                       val number: Int) {
@@ -219,7 +310,7 @@
         @slide(title = "apply") {
 
             @sidebyside((60,40)) {
-                @sourcecode(id = "apply", reference = "account2", fragment = false) {
+                @sourcecode(id = "apply", reference = "account2") {
                         |object Account {
                         |
                         |  private var lastNumber = 0
@@ -241,7 +332,7 @@
 
             @sidebyside((60,40), fragment = true) {
                 @snippet() {
-                    @callblock(reference = "apply", fragment = false) {
+                    @callblock(reference = "apply") {
                         val acc = Account.apply("Bob")
                     }
                     @outblock() {
@@ -250,7 +341,7 @@
                 }
             } {
                 @codenote() {
-                    Methode <code>apply</code> wird explizit aufgerufen
+                    Methode <code>apply</code> wird @underline("explizit") aufgerufen
                 }
             }
 
@@ -258,7 +349,7 @@
 
             @sidebyside((60,40), fragment = true) {
                 @snippet() {
-                    @callblock(reference = "apply", fragment = false) {
+                    @callblock(reference = "apply") {
                         val acc = Account("Bob")
                     }
                     @outblock() {
@@ -267,7 +358,7 @@
                 }
             } {
                 @codenote() {
-                    Methode <code>apply</code> wird implizit aufgerufen
+                    Methode <code>apply</code> wird @underline("implizit") aufgerufen
                 }
             }
 
@@ -278,7 +369,7 @@
                     @callblock() {
                         |val acc = Account()
                     }
-                    @outblock() {
+                    @outblock(error = true) {
                         |error: not enough arguments for method apply
                     }
                 }
