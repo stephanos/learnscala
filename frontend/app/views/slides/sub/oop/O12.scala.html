@@ -83,11 +83,11 @@
                 } {
                 }
 
-                @infobox() {
+                <!--@infobox() {
                     <code>object</code> definiert ein Singleton-Objekt:
                     Es existiert <strong>genau eine Instanz</strong>,
                     die beim ersten Zugriff instanziiert wird - Parameter gibt es nicht.
-                }
+                }-->
             }
 
             @slide(title = title, subtitle = "Beispiel") {
@@ -242,11 +242,39 @@
             @sidebyside((60,40), fragment = true) {
                 @snippet() {
                     @callblock(reference = "apply", fragment = false) {
+                        val acc = Account.apply("Bob")
+                    }
+                    @outblock() {
+                        |acc: Account = Account@@536502d
+                    }
+                }
+            } {
+                @codenote() {
+                    Methode <code>apply</code> wird explizit aufgerufen
+                }
+            }
+
+            @spacer_half()
+
+            @sidebyside((60,40), fragment = true) {
+                @snippet() {
+                    @callblock(reference = "apply", fragment = false) {
                         val acc = Account("Bob")
                     }
                     @outblock() {
-                        |p: Account = Account@@536502d
+                        |acc: Account = Account@@536502d
                     }
+                }
+            } {
+                @codenote() {
+                    Methode <code>apply</code> wird implizit aufgerufen
+                }
+            }
+
+            @spacer_half()
+
+            @sidebyside((60,40), fragment = true) {
+                @snippet() {
                     @callblock() {
                         |val acc = Account()
                     }
@@ -255,10 +283,6 @@
                     }
                 }
             } {
-                @codenote() {
-                    <code>apply</code> wird aufgerufen,
-                    wenn keine explizite Methode angegeben wird
-                }
             }
 
             <!--@infobox() {
