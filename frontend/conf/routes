@@ -1,10 +1,15 @@
-GET     /                                           controllers.Home.redirect
-GET     /schulungen/                                controllers.Home.redirect2
+GET     /                                           controllers.Home.blog
 
-GET     /news                                       controllers.Home.news
+GET     /schulungen/                                controllers.Home.redirect2
 GET     /schulungen/scala-training                  controllers.Home.training
+#GET     /schulungen/scala-training/berlin           controllers.Home.training
+#GET     /schulungen/scala-training/hamburg          controllers.Home.training
+#GET     /schulungen/scala-training/frankfurt        controllers.Home.training
+#GET     /schulungen/scala-training/muenchen         controllers.Home.training
+#GET     /schulungen/scala-training/stuttgart        controllers.Home.training
 GET     /schulungen/scala-training/folien           controllers.Home.folien
 GET     /impressum                                  controllers.Home.imprint
+GET     /artikel/:d/:t                              controllers.Home.entry(d,t)
 GET     /kontakt                                    controllers.Home.contact
 GET     /links                                      controllers.Home.links
 GET     /agb                                        controllers.Home.AGB

@@ -1,0 +1,9 @@
+@()(implicit flash: Flash, req: RequestHeader)
+
+@defining("News") { title =>
+
+    @layout.public(title, subtitle = Html(title)) {
+
+        @Home.loadEntry("2012-05-05", "scala-2-10-erster-milestone")
+    }
+}
