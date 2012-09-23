@@ -9767,6 +9767,8 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
                 <a href="#/' + idx + '"> - ' + subtitle + '</a>\
               </li>\
             ');
+        } else {
+          return subtitles.push("<empty>");
         }
       });
     };
