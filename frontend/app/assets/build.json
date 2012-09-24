@@ -35,6 +35,7 @@
             "deps":["lib/editor/codemirror"],
             "exports":"CodeMirror"
         },
+        "lib/dom/iframe":["jquery"],
         "lib/util/spin":["jquery"],
         "lib/dom/vanadium":["jquery"],
         "lib/dom/splitter":["jquery"],
