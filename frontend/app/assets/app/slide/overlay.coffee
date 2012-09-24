@@ -1,5 +1,5 @@
 define [
-  "jquery", "lib/util/underscore", "lib/util/fokus"
+  "jquery", "lib/util/underscore"
 ], ($, _, d3) ->
 
   class Overlay

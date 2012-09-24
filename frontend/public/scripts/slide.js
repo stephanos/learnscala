@@ -9723,6 +9723,8 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
         li.parent().append(li);
         li.find(".divider").remove();
         this.initCountdowns();
+        new Overlay();
+        new Overlay();
         this.initTimer();
       } else {
         $(".fragment").removeClass("fragment");
