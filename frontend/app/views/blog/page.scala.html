@@ -1,4 +1,4 @@
-@(title: String, date: String)(content: Html)
+@(title: String, date: String, withComments: Boolean = true)(content: Html)
 
 @layout.public(title) {
 
@@ -12,6 +12,8 @@
             @content
         </article>
 
-        @comp.disqus()
+        @if(withComments) {
+            @comp.disqus()
+        }
     </div>
 }

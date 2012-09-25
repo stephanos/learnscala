@@ -28,7 +28,9 @@ object Blog extends MyController {
         val m_url = "/" + dir.replaceAllLiterally(".", "/").replaceAllLiterally("d", "") + "/" + c.getMethod("url").invoke(null).asInstanceOf[String]
         val m_title = c.getMethod("title").invoke(null).asInstanceOf[String]
 
-        val date = new SimpleDateFormat("dd. MMMM", Locale.GERMAN).format(new Date(year, month - 1, day))
+        val d = new Date(year, month - 1, day)
+        val isOld = d.getTime < new Date(2012, 8, 25).getTime
+        val dateStr = new SimpleDateFormat("dd. MMMM", Locale.GERMAN).format(d)
 
         lazy val head = getByName("views.html.blog." + dir + ".head")
 
@@ -36,9 +38,9 @@ object Blog extends MyController {
             if(!m_url.endsWith(url))
                 throw new RedirectException(m_url)
             val body = getByName("views.html.blog." + dir + ".body")
-            views.html.blog.page(m_title, date)(head + body)
+            views.html.blog.page(m_title, dateStr, !isOld)(head + body)
         } else {
-            views.html.blog.snippet(m_title, m_url, date)(head)
+            views.html.blog.snippet(m_title, m_url, dateStr)(head)
         }
     }
 
