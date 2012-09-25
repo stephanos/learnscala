@@ -1,13 +1,15 @@
-@(title: String, url: String)(content: Html)
+@(title: String, url: String, date: String)(content: Html)
 
 <div class="blog unit snippet">
     <h2>
         <a href="@url">
             @title
         </a>
+        <span class="date">@date</span>
     </h2>
 
     <article>
         @content
+        <a href="@url">weiterlesen</a>
     </article>
 </div>

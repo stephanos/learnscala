@@ -1,10 +1,11 @@
-@(title: String)(content: Html)
+@(title: String, date: String)(content: Html)
 
 @layout.public(title) {
 
     <div class="blog unit">
         <h2>
             @title
+            <span class="date">@date</span>
         </h2>
 
         <article>
