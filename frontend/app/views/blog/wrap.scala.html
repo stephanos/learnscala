@@ -1,0 +1,12 @@
+@(title: String)(content: Html)
+
+@layout.public(title) {
+
+    <h2>@title</h2>
+
+    <!-- BODY -->
+    @content
+
+    <!-- DISQUS -->
+    @comp.disqus()
+}

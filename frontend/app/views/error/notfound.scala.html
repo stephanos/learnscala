@@ -1,4 +1,4 @@
-@(path: Option[String] = None)(implicit req: RequestHeader)
+@(path: Option[String] = None)
 
 @layout.public("Not Found", crawl = false, hideNav = true, subtitle = Html("Seite nicht gefunden: 404")) {
     @notfound_box()

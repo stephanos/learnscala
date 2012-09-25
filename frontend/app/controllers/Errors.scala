@@ -13,17 +13,17 @@ trait Errors
 
 
     def accessDenied(req: RequestHeader) =
-        Unauthorized(views.html.error.accessdenied()(req))
+        Unauthorized(views.html.error.accessdenied())
 
     def notFound(req: RequestHeader) =
         if (req.domain.startsWith("static."))
             NotFound
         else
-            NotFound(views.html.error.notfound()(req))
+            NotFound(views.html.error.notfound())
 
     def internalError(req: RequestHeader) =
-        InternalServerError(views.html.error.internalerror()(req))
+        InternalServerError(views.html.error.internalerror())
 
     def badRequest(req: RequestHeader) =
-        BadRequest(views.html.error.internalerror()(req))
+        BadRequest(views.html.error.internalerror())
 }

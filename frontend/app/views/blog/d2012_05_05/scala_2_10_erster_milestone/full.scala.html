@@ -1,9 +1,5 @@
-@()(implicit req: RequestHeader)
+@()
 
-@defining("Scala 2.10, der erste Milestone") { title =>
-
-    @layout.public(title) {
-
-        @content()
-    }
+@blog.wrap("Scala 2.10, der erste Milestone") {
+    @content()
 }
