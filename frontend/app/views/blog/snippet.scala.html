@@ -1,0 +1,13 @@
+@(title: String, url: String)(content: Html)
+
+<div class="blog unit snippet">
+    <h2>
+        <a href="@url">
+            @title
+        </a>
+    </h2>
+
+    <article>
+        @content
+    </article>
+</div>

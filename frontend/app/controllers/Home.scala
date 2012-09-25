@@ -6,15 +6,15 @@ import controllers.base.MyController
 object Home extends MyController {
 
     def redirect = Action {
-        Redirect(routes.Home.blog())
+        Redirect(routes.Blog.index())
     }
 
     def redirect2 = Action {
-        Redirect(routes.Home.blog())
+        Redirect(routes.Blog.index())
     }
 
     def redirect3 = Action {
-        Redirect(routes.Home.blog())
+        Redirect(routes.Blog.index())
     }
 
     def AGB = Action {
@@ -42,11 +42,6 @@ object Home extends MyController {
             Ok(views.html.folien())
     }
 
-    def blog = Action {
-        implicit req =>
-            Ok(views.html.blogs())
-    }
-
     def contact = Action {
         implicit req =>
             Ok(views.html.contact())
@@ -62,16 +57,6 @@ object Home extends MyController {
             Ok(views.html.backdoor())
     }
 
-    def entry(date: String, title: String) = Action {
-        implicit req =>
-            Ok(loadEntry(date, title, full = true))
-    }
-
-    def loadEntry(date: String, title: String, full: Boolean = false) = {
-        val dir = "d" + date.replaceAllLiterally("-", "_") + "."
-        val file = title.replaceAllLiterally("-", "_") + (if (full) ".full" else ".content")
-        getByName("views.html.blog." + dir + file)
-    }
 
     def gverify = Action {
         Ok("google-site-verification: google1388dbffebf166ff.html")

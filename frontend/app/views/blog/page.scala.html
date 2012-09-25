@@ -3,14 +3,14 @@
 @layout.public(title) {
 
     <div class="blog unit">
-        <h2>@title</h2>
+        <h2>
+            @title
+        </h2>
 
-        <!-- BODY -->
         <article>
             @content
         </article>
 
-        <!-- DISQUS -->
         @comp.disqus()
     </div>
 }
