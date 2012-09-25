@@ -197,7 +197,7 @@ define [
               state = $(elem).data("state")
               diff = if(state == "running") then end.diff(now, 'seconds') else $(elem).data("start")
               $(elem).data("start", diff)
-              console.log(diff)
+              #console.log(diff)
 
               if(diff < 0)
                 $(elem).addClass("over")
