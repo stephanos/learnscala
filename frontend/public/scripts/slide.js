@@ -9869,7 +9869,7 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
         var key;
         key = "countdown_" + idx;
         window.upd = function() {
-          var diff, end, mm, ms_end, ms_start, now, state, time;
+          var diff, end, mm, ms_end, ms_start, now, ss, state, time;
           time = Timer.getTime(key);
           ms_end = time[1];
           ms_start = time[0];
@@ -9878,17 +9878,18 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
             end = moment(ms_end);
             state = $(elem).data("state");
             diff = state === "running" ? end.diff(now, 'seconds') : $(elem).data("start");
-            if (diff >= 0) {
-              $(elem).data("start", diff);
-              $(elem).find(".mm").text(Math.floor(diff / 60));
-              mm = diff % 60;
-              console.log("diff: " + diff);
-              $(elem).find(".ss").text((mm < 10 ? "0" : "") + mm);
-              return state === "running";
+            $(elem).data("start", diff);
+            if (diff < 0) {
+              $(elem).addClass("over");
             } else {
-              $(elem).data("active", "false");
-              return false;
+              $(elem).removeClass("over");
             }
+            mm = diff / 60;
+            mm = diff >= 0 ? Math.floor(mm) : Math.ceil(mm);
+            $(elem).find(".mm").text(mm);
+            ss = Math.abs(diff % 60);
+            $(elem).find(".ss").text((ss < 10 ? "0" : "") + ss);
+            return state === "running";
           } else {
             return false;
           }

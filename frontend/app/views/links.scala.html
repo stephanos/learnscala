@@ -2,14 +2,18 @@
 
 @defining("Links") { title =>
 
-    @layout.public(title, subtitle = Html(title)) {
+@layout.public(title, subtitle = Html(title), classes = "links") {
+
+    <h2>Werkzeuge</h2>
+
+    <div class="list">
 
         <h3>Typesafe Stack</h3>
 
         <p>Installationspaket mit Scala und SBT (ben&ouml;tigt Admin-Rechte)</p>
 
         <blockquote>
-        <p><a href="http://www.typesafe.com/stack/download">http://www.typesafe.com/stack/download</a></p>
+            <a href="http://www.typesafe.com/stack/download">http://www.typesafe.com/stack/download</a>
         </blockquote>
 
         <h3>Scala Distribution</h3>
@@ -17,25 +21,29 @@
         <p>Scala-Bibliotheken und -Tools</p>
 
         <blockquote>
-        <p><a href="http://www.scala-lang.org/downloads">http://www.scala-lang.org/downloads</a></p>
+            <a href="http://www.scala-lang.org/downloads">http://www.scala-lang.org/downloads</a>
         </blockquote>
 
         <h3>Scala-IDE</h3>
 
-        <p>Plugin f&uuml;r <a href="http://eclipse.org/">Eclipse</a>: Debugger, Navigation und Autovervollst&auml;ndigung</p>
+        <p>Plugin f&uuml;r <a href="http://eclipse.org/">Eclipse</a>: Debugger, Navigation und Autovervollst&auml;ndigung
+        </p>
 
         <blockquote>
-        <p><a href="http://scala-ide.org">http://scala-ide.org</a></p>
+            <a href="http://scala-ide.org">http://scala-ide.org</a>
         </blockquote>
+    </div>
 
-        <h2>Offizielles</h2>
+    <h2>Offizielles</h2>
+
+    <div class="list">
 
         <h3>Scala</h3>
 
         <p>Offizielle Webseite zu Scala</p>
 
         <blockquote>
-        <p><a href="http://www.scala-lang.org">http://www.scala-lang.org</a></p>
+            <a href="http://www.scala-lang.org">http://www.scala-lang.org</a>
         </blockquote>
 
         <h3>Typesafe</h3>
@@ -43,7 +51,7 @@
         <p>Die Firma hinter Scala: Typesafe Stack, Support, Training und Consulting</p>
 
         <blockquote>
-        <p><a href="http://typesafe.com">http://typesafe.com</a></p>
+            <a href="http://typesafe.com">http://typesafe.com</a>
         </blockquote>
 
         <h3>Scala API</h3>
@@ -51,7 +59,7 @@
         <p>Durchsuchbare Dokumentation der Scala-API</p>
 
         <blockquote>
-        <p><a href="http://www.scala-lang.org/api/current/index.html">http://www.scala-lang.org/api/current/index.html</a></p>
+            <a href="http://www.scala-lang.org/api/current/index.html">http://www.scala-lang.org/api/current/index.html</a>
         </blockquote>
 
         <h3>Scala Sprachspezifikation</h3>
@@ -59,7 +67,7 @@
         <p>Spezifikation aller Regeln der Scala Sprache (schwer verdaulich)</p>
 
         <blockquote>
-        <p><a href="http://www.scala-lang.org/docu/files/ScalaReference.pdf">http://www.scala-lang.org/docu/files/ScalaReference.pdf</a></p>
+            <a href="http://www.scala-lang.org/docu/files/ScalaReference.pdf">http://www.scala-lang.org/docu/files/ScalaReference.pdf</a>
         </blockquote>
 
         <h3>Scala Tour</h3>
@@ -67,7 +75,7 @@
         <p>&Uuml;bersicht wichtiger Features der Sprache</p>
 
         <blockquote>
-        <p><a href="http://www.scala-lang.org/node/104">http://www.scala-lang.org/node/104</a></p>
+            <a href="http://www.scala-lang.org/node/104">http://www.scala-lang.org/node/104</a>
         </blockquote>
 
         <h3>Scala Style Guide</h3>
@@ -75,7 +83,7 @@
         <p>Allgemeine, empfohlene Richtlinien zur Schreibweise von Scala-Code</p>
 
         <blockquote>
-        <p><a href="http://docs.scala-lang.org/style/">http://docs.scala-lang.org/style/</a></p>
+            <a href="http://docs.scala-lang.org/style/">http://docs.scala-lang.org/style/</a>
         </blockquote>
 
         <h3>Scala Dokumentation</h3>
@@ -83,7 +91,7 @@
         <p>Tutorials, Guides, Glossar und mehr</p>
 
         <blockquote>
-        <p><a href="http://docs.scala-lang.org">http://docs.scala-lang.org</a></p>
+            <a href="http://docs.scala-lang.org">http://docs.scala-lang.org</a>
         </blockquote>
 
         <h3>Scala User Mailing-Liste</h3>
@@ -91,17 +99,20 @@
         <p>Community zum Austausch von Fragen und Projekten</p>
 
         <blockquote>
-        <p><a href="https://groups.google.com/forum/?fromgroups#!forum/scala-user">https://groups.google.com/forum/?fromgroups#!forum/scala-user</a></p>
+            <a href="https://groups.google.com/forum/?fromgroups#!forum/scala-user">https://groups.google.com/forum/?fromgroups#!forum/scala-user</a>
         </blockquote>
+    </div>
 
-        <h2>Lernmaterial</h2>
+    <h2>Lernmaterial</h2>
+
+    <div class="list">
 
         <h3>Scala School</h3>
 
         <p>Einf&uuml;hrungskurs von Twitter</p>
 
         <blockquote>
-        <p><a href="http://twitter.github.com/scala_school">http://twitter.github.com/scala_school</a></p>
+            <a href="http://twitter.github.com/scala_school">http://twitter.github.com/scala_school</a>
         </blockquote>
 
         <h3>ScalaTutorial.de</h3>
@@ -109,7 +120,7 @@
         <p>Deutschsprachige, umfassende &Uuml;bersicht</p>
 
         <blockquote>
-        <p><a href="http://scalatutorial.de">http://scalatutorial.de</a></p>
+            <a href="http://scalatutorial.de">http://scalatutorial.de</a>
         </blockquote>
 
         <h3>Ninety-Nine Scala Problems</h3>
@@ -117,7 +128,7 @@
         <p>99 &Uuml;bungen mit unterschiedlichem Schwierigkeitsgrad (inklusive L&ouml;sungen)</p>
 
         <blockquote>
-        <p><a href="http://aperiodic.net/phil/scala/s-99/">http://aperiodic.net/phil/scala/s-99/</a></p>
+            <a href="http://aperiodic.net/phil/scala/s-99/">http://aperiodic.net/phil/scala/s-99/</a>
         </blockquote>
 
         <h3>Dokumente der EPFL Universit&auml;t</h3>
@@ -125,11 +136,14 @@
         <p>Verschiedene Dokumente zur Einf&uuml;hrung in die Scala-Welt, jeweils mit anderer Herangehensweise</p>
 
         <blockquote>
-        <ul>
-        <li><a href="http://www.scala-lang.org/docu/files/ScalaByExample.pdf">http://www.scala-lang.org/docu/files/ScalaByExample.pdf</a></li>
-        <li><a href="http://www.scala-lang.org/docu/files/ScalaOverview.pdf">http://www.scala-lang.org/docu/files/ScalaOverview.pdf</a></li>
-        <li><a href="http://www.scala-lang.org/docu/files/ScalaTutorial.pdf">http://www.scala-lang.org/docu/files/ScalaTutorial.pdf</a></li>
-        </ul>
+            <ul>
+                <li><a href="http://www.scala-lang.org/docu/files/ScalaByExample.pdf">http://www.scala-lang.org/docu/files/ScalaByExample.pdf</a>
+                </li>
+                <li><a href="http://www.scala-lang.org/docu/files/ScalaOverview.pdf">http://www.scala-lang.org/docu/files/ScalaOverview.pdf</a>
+                </li>
+                <li><a href="http://www.scala-lang.org/docu/files/ScalaTutorial.pdf">http://www.scala-lang.org/docu/files/ScalaTutorial.pdf</a>
+                </li>
+            </ul>
         </blockquote>
 
         <h3>Scala Quick Reference</h3>
@@ -137,7 +151,7 @@
         <p>Kompakte Kurz&uuml;bersicht der wichtigsten Regeln und Funktionen</p>
 
         <blockquote>
-        <p><a href="http://www.scala-lang.org/sites/default/files/pdfs/Scala%20Quick%20Reference.pdf">http://www.scala-lang.org/sites/default/files/pdfs/Scala%20Quick%20Reference.pdf</a></p>
+            <a href="http://www.scala-lang.org/sites/default/files/pdfs/Scala%20Quick%20Reference.pdf">http://www.scala-lang.org/sites/default/files/pdfs/Scala%20Quick%20Reference.pdf</a>
         </blockquote>
 
         <h3>Scalatron</h3>
@@ -145,7 +159,7 @@
         <p>Multiplayer-Spiel in dem jeder Teilnehmer einen Bot in Scala programmiert und diese gegeneinander antreten</p>
 
         <blockquote>
-        <p><a href="https://github.com/scalatron/scalatron">https://github.com/scalatron/scalatron</a></p>
+            <a href="https://github.com/scalatron/scalatron">https://github.com/scalatron/scalatron</a>
         </blockquote>
 
         <h3>Scala Wiki auf Stackoverflow</h3>
@@ -153,7 +167,7 @@
         <p>Zusammenstellung grundlegender, wichtiger Fragen und Antworten rund um Scala</p>
 
         <blockquote>
-        <p><a href="http://stackoverflow.com/tags/scala/info">http://stackoverflow.com/tags/scala/info</a></p>
+            <a href="http://stackoverflow.com/tags/scala/info">http://stackoverflow.com/tags/scala/info</a>
         </blockquote>
 
         <h3>Scala Puzzles</h3>
@@ -161,7 +175,7 @@
         <p>Online &Uuml;bungskurs f&uuml;r erste Schritte in Scala</p>
 
         <blockquote>
-        <p><a href="http://scalapuzzles.org">http://scalapuzzles.org</a></p>
+            <a href="http://scalapuzzles.org">http://scalapuzzles.org</a>
         </blockquote>
 
         <h3>Scala Puzzlers</h3>
@@ -169,7 +183,7 @@
         <p>Quiz zu Fallstricken und Sonderf&auml;llen in Scala (fortgeschritten)</p>
 
         <blockquote>
-        <p><a href="http://scalapuzzlers.com">http://scalapuzzlers.com</a></p>
+            <a href="http://scalapuzzlers.com">http://scalapuzzlers.com</a>
         </blockquote>
 
         <h3>ScalaDays 2011</h3>
@@ -177,17 +191,20 @@
         <p>Alle Pr&auml;sentationen als PDF oder Video von der wichtigsten Scala-Messe</p>
 
         <blockquote>
-        <p><a href="https://wiki.scala-lang.org/x/AgAU">https://wiki.scala-lang.org/x/AgAU</a></p>
+            <a href="https://wiki.scala-lang.org/x/AgAU">https://wiki.scala-lang.org/x/AgAU</a>
         </blockquote>
+    </div>
 
-        <h2>Blogs</h2>
+    <h2>Blogs</h2>
+
+    <div class="list">
 
         <h3>Algorithmically Challenged</h3>
 
         <p>Blog von Daniel Sobral, einem Scala-Entwickler</p>
 
         <blockquote>
-        <p><a href="http://dcsobral.blogspot.de">http://dcsobral.blogspot.de</a></p>
+            <a href="http://dcsobral.blogspot.de">http://dcsobral.blogspot.de</a>
         </blockquote>
 
         <h3>Coderspiel</h3>
@@ -195,7 +212,7 @@
         <p>Blog von Nathan Hamblen, Erfinder von dispatch und unfiltered</p>
 
         <blockquote>
-        <p><a href="http://code.technically.us">http://code.technically.us</a></p>
+            <a href="http://code.technically.us">http://code.technically.us</a>
         </blockquote>
 
         <h3>Implicitly</h3>
@@ -203,7 +220,7 @@
         <p>Vorstellung neuer Bibliotheken und neuer Versionen aus der Scala-Welt</p>
 
         <blockquote>
-        <p><a href="http://implicit.ly">http://implicit.ly</a></p>
+            <a href="http://implicit.ly">http://implicit.ly</a>
         </blockquote>
 
         <h3>Planet Scala</h3>
@@ -211,34 +228,41 @@
         <p>Aggregator wichtiger Scala-Blogs</p>
 
         <blockquote>
-        <p><a href="http://www.planetscala.com">http://www.planetscala.com</a></p>
+            <a href="http://www.planetscala.com">http://www.planetscala.com</a>
         </blockquote>
 
-        <h2>B&uuml;cher</h2>
+    </div>
+
+    <h2>B&uuml;cher</h2>
+
+    <div class="list">
 
         <h3>Programming in Scala, Martin Odersky, Januar 2011</h3>
 
-        <p>Das Buch vom Erfinder der Sprache, Martin Odersky. Es gibt einen sehr guten &Uuml;berblick &uuml;ber die Sprache, erkl&auml;rt dabei oftmals die Hintergr&uuml;nde der Sprachregeln und gibt Tipps zum richtigen Umgang.</p>
+        <p>Das Buch vom Erfinder der Sprache, Martin Odersky. Es gibt einen sehr guten &Uuml;berblick &uuml;ber die Sprache,
+            erkl&auml;rt dabei oftmals die Hintergr&uuml;nde der Sprachregeln und gibt Tipps zum richtigen Umgang.</p>
 
         <blockquote>
-        <p><a href="http://www.amazon.de/dp/0981531644">http://www.amazon.de/dp/0981531644</a></p>
+            <a href="http://www.amazon.de/dp/0981531644">http://www.amazon.de/dp/0981531644</a>
         </blockquote>
 
         <h3>Durchstarten mit Scala, Heiko Seeberger, Mai 2011</h3>
 
-        <p>Das Buch f&uuml;hrt ganz behutsam in die Sprache ein, ohne zu &uuml;berfordern. Ein fantastischer Einstieg f&uuml;r die ersten paar Wochen.</p>
+        <p>Das Buch f&uuml;hrt ganz behutsam in die Sprache ein, ohne zu &uuml;berfordern. Ein fantastischer Einstieg f&uuml;r
+            die ersten paar Wochen.</p>
 
         <blockquote>
-        <p><a href="http://www.amazon.de/dp/3868020640">http://www.amazon.de/dp/3868020640</a></p>
+            <a href="http://www.amazon.de/dp/3868020640">http://www.amazon.de/dp/3868020640</a>
         </blockquote>
 
         <h3>Scala for the Impatient, Cay Horstmann, M&auml;rz 2012</h3>
 
-        <p>Das Buch enth&auml;lt weniger ausf&uuml;hrliche Erkl&auml;rungen sondern vielmehr eine &uuml;bersichtliche Aufbereitung der Fakten - wenig geeignet zum Lernen, aber sehr gut zum schnellen Nachschlagen.</p>
+        <p>Das Buch enth&auml;lt weniger ausf&uuml;hrliche Erkl&auml;rungen sondern vielmehr eine &uuml;bersichtliche
+            Aufbereitung der Fakten - wenig geeignet zum Lernen, aber sehr gut zum schnellen Nachschlagen.</p>
 
         <blockquote>
-        <p><a href="http://www.amazon.de/dp/0321774094">http://www.amazon.de/dp/0321774094</a></p>
+            <a href="http://www.amazon.de/dp/0321774094">http://www.amazon.de/dp/0321774094</a>
         </blockquote>
-
-    }
+    </div>
+}
 }
