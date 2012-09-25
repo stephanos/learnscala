@@ -196,16 +196,22 @@ define [
               end = moment(ms_end)
               state = $(elem).data("state")
               diff = if(state == "running") then end.diff(now, 'seconds') else $(elem).data("start")
-              if(diff >= 0)
-                $(elem).data("start", diff)
-                $(elem).find(".mm").text(Math.floor(diff / 60))
-                mm = diff % 60
-                console.log("diff: " + diff)
-                $(elem).find(".ss").text((if(mm < 10) then "0" else "") + mm)
-                state == "running"
+              $(elem).data("start", diff)
+              console.log(diff)
+
+              if(diff < 0)
+                $(elem).addClass("over")
               else
-                $(elem).data("active", "false")
-                false
+                $(elem).removeClass("over")
+
+              mm = diff / 60
+              mm = if(diff >= 0) then Math.floor(mm) else Math.ceil(mm)
+              $(elem).find(".mm").text(mm)
+
+              ss = Math.abs(diff % 60)
+              $(elem).find(".ss").text((if(ss < 10) then "0" else "") + ss)
+              state == "running"
+
             else
               false
 
