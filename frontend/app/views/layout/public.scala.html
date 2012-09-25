@@ -1,4 +1,4 @@
-@(title: String = "", crawl: Boolean = true, hideNav: Boolean = false, subtitle: Html = null)(content: Html)
+@(title: String = "", crawl: Boolean = true, hideNav: Boolean = false, subtitle: Html = null, classes: String = "")(content: Html)
 <!DOCTYPE html>
 
 <html>
@@ -25,7 +25,7 @@
         <script type="text/javascript" src="@MyAssets.js_base._2"></script>
     </head>
 
-    <body>
+    <body class="@classes">
 
         @sub.navi_pub()
 

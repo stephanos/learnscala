@@ -13,6 +13,10 @@ object Home extends MyController {
         Redirect(routes.Home.blog())
     }
 
+    def redirect3 = Action {
+        Redirect(routes.Home.blog())
+    }
+
     def AGB = Action {
         implicit req =>
             Ok(views.html.agb())
@@ -21,6 +25,11 @@ object Home extends MyController {
     def training = Action {
         implicit req =>
             Ok(views.html.training())
+    }
+
+    def training2(place: String) = Action {
+        implicit req =>
+            Ok(getByName("views.html.events." + place))
     }
 
     def links = Action {
@@ -60,7 +69,7 @@ object Home extends MyController {
 
     def loadEntry(date: String, title: String, full: Boolean = false) = {
         val dir = "d" + date.replaceAllLiterally("-", "_") + "."
-        val file = title.replaceAllLiterally("-", "_") + (if(full) ".full" else ".content")
+        val file = title.replaceAllLiterally("-", "_") + (if (full) ".full" else ".content")
         getByName("views.html.blog." + dir + file)
     }
 

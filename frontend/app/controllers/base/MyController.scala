@@ -12,7 +12,6 @@ class MyController
 
     protected def getByName(path: String) = {
         val c = Class.forName(path)
-        c.getMethods.foreach(println)
         val m = c.getMethod("render")
         m.invoke(null).asInstanceOf[Html]
     }

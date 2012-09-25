@@ -2,11 +2,15 @@
 
 @layout.public(title) {
 
-    <h2>@title</h2>
+    <div class="blog">
+        <h2>@title</h2>
 
-    <!-- BODY -->
-    @content
+        <!-- BODY -->
+        <article>
+            @content
+        </article>
 
-    <!-- DISQUS -->
-    @comp.disqus()
+        <!-- DISQUS -->
+        @comp.disqus()
+    </div>
 }
