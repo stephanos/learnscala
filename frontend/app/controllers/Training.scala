@@ -24,6 +24,11 @@ object Training extends MyController {
             Ok(views.html.folien())
     }
 
+    def why = Action {
+        implicit req =>
+            Ok(views.html.why())
+    }
+
     def pick(snippets: Html*): Html = {
         snippets(scala.util.Random.nextInt(snippets.length))
     }

@@ -1,6 +1,6 @@
-@(title: String = "")(content: Html)
+@(title: String)(content: Html)
 
-@layout.public(title = title, classes = "training") {
+@layout.public(title = "Workshop: " + title, classes = "training") {
 
     @*<a href='@routes.Training.trainings("berlin")'>
         <img src="http://www.eventbrite.de/custombutton?eid=3910432208" alt="Workshop in Berlin"/>
@@ -19,8 +19,21 @@
             @content
         </div>
         <div class="span3 events_v">
-            <div class="scala">
+            <div class="scala well">
                 <img width="150" src='@MyAssets.urlOf("/img/scala-logo.png", true)'/>
+                <nav id="kurs_navi">
+                    <ul>
+                        <li>
+                            <a href="@routes.Training.index()">Kursbeschreibung</a>
+                        </li>
+                        <li>
+                            <a href="@routes.Training.folien()">Beispielfolien</a>
+                        </li>
+                        <li>
+                            <a href="@routes.Training.why()">Warum Scala ?</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
 
             <div class="well" style="padding-left: 0; padding-right: 0;">
