@@ -20,17 +20,18 @@
         </div>
         <div class="span3 events_v">
             <div class="scala well">
-                <img width="150" src='@MyAssets.urlOf("/img/scala-logo.png", true)'/>
+                @*<img width="150" src='@MyAssets.urlOf("/img/scala-logo.png", true)'/>*@
+                @*<img width="50" src='@MyAssets.urlOf("/img/learnscala.png", true)'/>*@
                 <nav id="kurs_navi">
                     <ul>
-                        <li>
+                        <li class="descr">
                             <a href="@routes.Training.index()">Kursbeschreibung</a>
                         </li>
-                        <li>
-                            <a href="@routes.Training.folien()">Beispielfolien</a>
+                        <li class="why">
+                            <a href="@routes.Training.why()">Warum Scala</a>
                         </li>
-                        <li>
-                            <a href="@routes.Training.why()">Warum Scala ?</a>
+                        <li class="slide">
+                            <a href="@routes.Training.folien()">Beispielfolien</a>
                         </li>
                     </ul>
                 </nav>
@@ -96,3 +97,16 @@
     </div>
     <div class="member"> - Hendrik B.</div>
 }
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        var href = window.location.href;
+        if(href.indexOf("/warum") > -1) {
+            $(".why a").addClass("active")
+        } else if(href.indexOf("/folie") > -1) {
+            $(".slide a").addClass("active")
+        } else {
+            $(".descr a").addClass("active")
+        }
+    });
+</script>

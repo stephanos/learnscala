@@ -305,9 +305,25 @@ blockquote {
   margin-top: 10px;
   text-align: left;
 
-  li {
-    a {
+  ul {
+    list-style: none;
 
+    li {
+      padding: 7px 0;
+
+      a {
+        padding: 7px 5px;
+        font-size: 110%;
+        border-left: 5px transparent solid;
+        .no-underline();
+
+        &:hover {
+          border-left-color: fadeout(@c_emph, 40%);
+        }
+        &.active {
+          border-left-color: @c_emph;
+        }
+      }
     }
   }
 }
