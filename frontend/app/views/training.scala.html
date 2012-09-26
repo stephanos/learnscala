@@ -29,15 +29,25 @@
             </div>
         </div>
         <div class="span4">
-            <div style="margin-left: 20px;">
+            <div style="margin: 0 20px;">
                 <h3>Kursvoraussetzungen</h3>
                 @front.voraussetzung()
             </div>
         </div>
     </div>
 
-    <div class="row" style="margin-left: 0">
-        <h3>Trainer</h3>
-        @front.trainer()
+    <div class="row">
+        <div class="span4">
+            <div>
+                <h3>Trainer</h3>
+                @front.trainer()
+            </div>
+        </div>
+        <div class="span4">
+            <div style="margin: 0 20px;">
+                <h3>Aufbau</h3>
+                @front.aufbau()
+            </div>
+        </div>
     </div>
 }
