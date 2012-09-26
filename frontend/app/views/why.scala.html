@@ -2,9 +2,7 @@
 
 @layout.kurs("Warum Scala?") {
 
-    <h3>Warum eigentlich Scala?</h3>
-
-    <div>
+    <div style="margin-left: 0;">
         @front.intro()
     </div>
 
@@ -12,13 +10,21 @@
         <div class="span4">
             <div>
                 <h3>Manager</h3>
-                @front.manager()
+                <div>
+                    @front.manager()
+                    <p class="center">
+                        <a href="@routes.Training.index">&gt; Scala lernen &lt;</a>
+                    </p>
+                </div>
             </div>
         </div>
         <div class="span4">
-            <div style="margin: 0 20px;">
+            <div>
                 <h3>Entwickler</h3>
                 @front.entwickler()
+                <p class="center">
+                    <a href="@routes.Training.index">&gt; Scala lernen &lt;</a>
+                </p>
             </div>
         </div>
     </div>
