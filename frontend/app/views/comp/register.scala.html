@@ -1,0 +1,20 @@
+@(city: String, date: String, place: String, code: String)
+
+<div class="event_register">
+    <div class="inner">
+        <div class="name">
+            <a href='@routes.Training.trainings(code)'>@city</a>
+        </div>
+        <div class="date">
+            @date
+        </div>
+        @*<!--<div class="location">
+            @place
+        </div>-->*@
+        <div class="button">
+            <a class="btn btn-success" href='@routes.Training.trainings(code)' title="Jetzt registrieren!">
+                Infos
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,150 +1,43 @@
-@()(implicit flash: Flash, req: RequestHeader)
+@()
 
-@layout.public() {
-
-<div>
-
-    <a href='@routes.Training.trainings("berlin")'><img src="http://www.eventbrite.de/custombutton?eid=3910432208" alt="Eventbrite - Learn Scala: Workshop in Berlin" /></a>
-
-    <div class="row">
-        <div class="span2">&nbsp;</div>
-        <div class="span8" style="margin-bottom: 20px">
-            @front.intro()
-        </div>
-        <div class="span2">&nbsp;</div>
-    </div>
-
-    <!--<div class="row">
-        <div class="span2">&nbsp;</div>
-        <div class="span8">
-            <div class="row">
-                <div class="span4">
-                    <div>
-                        <hr class="soften"/>
-                        <h3>Manager ?</h3>
-                        <hr class="soften"/>
-                    </div>
-                </div>
-                <div class="span4">
-                    <div>
-                        <hr class="soften"/>
-                        <h3>Entwickler ?</h3>
-                        <hr class="soften"/>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="span1">&nbsp;</div>
-    </div>-->
+@layout.kurs() {
 
     <div>
-
-        <div class="unit">
-            @front.about()
-        </div>
-
-
-        <div class="unit">
-            <hr class="soften"/>
-            <h3>Ziel</h3>
-            <hr class="soften"/>
-
-            @front.ziel()
-        </div>
-
-
-        <div class="unit">
-            <hr class="soften"/>
-            <h3>Inhalt der Schulung</h3>
-            <hr class="soften"/>
-        </div>
-
-        <div class="row">
-            <div class="span2">&nbsp;</div>
-            <div class="span4 contents">
-                @front.inhalt1()
-            </div>
-            <div class="span4 contents">
-                @front.inhalt2()
-            </div>
-            <div class="span2">&nbsp;</div>
-        </div>
-
-
-        <div class="unit">
-            <hr class="soften"/>
-            <h3>Kursvoraussetzungen</h3>
-            <hr class="soften"/>
-
-            @front.voraussetzung()
-        </div>
-
-
-        <div class="unit">
-            <hr class="soften"/>
-            <h3 id="#preview">Einführungsfolie</h3>
-            <hr class="soften"/>
-
-            <div class="unit" style="width: 100%">
-
-            </div>
-
-            <!--<p class="center">
-                <a href="">&gt; Weitere Folien &lt</a>
-            </p>-->
-        </div>
-
-
-        <div class="unit">
-            <hr class="soften"/>
-            <h3>Trainer</h3>
-            <hr class="soften"/>
-
-            @front.trainer()
-        </div>
-
-    </div>
-</div>
-
-<div>
-
-    <div class="unit">
-        <hr class="soften"/>
-        <h3>Firmenintern</h3>
-        <hr class="soften"/>
-        <p>
-            In ganz Deutschland, Österreich und der Schweiz
-            möglich - <br/>
-            über 2, 3 oder gar 4 Tage, mit bis zu 12 Teilnehmern und Ihren speziellen Anforderungen.
-        </p>
-
-        <p>
-            Bitte kontaktieren Sie dafür meinen <strong>Kooperationspartner tutego</strong>:
-            <ul>
-                <li><a href="mailto:info@@tutego.de?subject=Scala-Schulung+mit+Stephan+Behnke">info@@tutego.de</a> oder</li>
-                <li>telefonisch unter <strong>0800 888 3467</strong></li>
-            </ul>
-        </p>
-
-        <p>
-            <strong>Nächste Termine:</strong>
-        <ul>
-            <li>August: <a href="https://www.devbliss.com/">devbliss GmbH</a>, Berlin</li>
-            <li>Oktober: Esslingen</li>
-        </ul>
-        </p>
+        @front.intro()
+        @front.about()
     </div>
 
-    <div class="unit">
-        <hr class="soften"/>
-        <h3>Öffentlich</h3>
-        <hr class="soften"/>
-        <p>
-            In Vorbereitung.<br/>
-            Momentan Priorität für firmeninterne Anfragen.<br/><br/>
-        </p>
+    <div class="row">
+        <h3 style="margin-left: 20px;">Inhalt</h3>
+
+        <div class="span4 contents">
+            @front.inhalt1()
+        </div>
+        <div class="span4 contents">
+            @front.inhalt2()
+            @*<div>
+                <a href="@routes.Training.folien">Beispielfolien</a>
+            </div>*@
+        </div>
     </div>
 
-</div>
+    <div class="row">
+        <div class="span4">
+            <div>
+                <h3>Schulungsziele</h3>
+                @front.ziel()
+            </div>
+        </div>
+        <div class="span4">
+            <div style="margin-left: 20px;">
+                <h3>Kursvoraussetzungen</h3>
+                @front.voraussetzung()
+            </div>
+        </div>
+    </div>
 
+    <div class="row" style="margin-left: 0">
+        <h3>Trainer</h3>
+        @front.trainer()
+    </div>
 }

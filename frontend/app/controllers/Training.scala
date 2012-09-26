@@ -2,6 +2,7 @@ package controllers
 
 import play.api.mvc._
 import controllers.base.MyController
+import play.api.templates.Html
 
 object Training extends MyController {
 
@@ -21,6 +22,10 @@ object Training extends MyController {
     def folien = Action {
         implicit req =>
             Ok(views.html.folien())
+    }
+
+    def pick(snippets: Html*): Html = {
+        snippets(scala.util.Random.nextInt(snippets.length))
     }
 
     def trainings(place: String) = Action {
