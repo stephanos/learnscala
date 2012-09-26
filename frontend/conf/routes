@@ -72,6 +72,7 @@ GET     /assets/font/*file                          controllers.Assets.at(path="
 GET     /assets/:ver/:typeOf/*file                  controllers.MyAssets.at(typeOf, file, ver)
 
 GET     /robots.txt                                 controllers.MyAssets.robots
+#GET     /sitemap                                    controllers.Assets.at(path="/public", file="sitemap.xml")
 GET     /favicon.ico                                controllers.Assets.at(path="/public/images", file="favicon.ico")
 GET     /crossdomain.xml                            controllers.Assets.at(path="/public", file="crossdomain.xml")
 
