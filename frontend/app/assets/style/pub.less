@@ -312,15 +312,19 @@ blockquote {
       padding: 7px 0;
 
       a {
+        .col(fadeout(@c_emph, 10%));
         padding: 7px 5px;
         font-size: 110%;
         border-left: 5px transparent solid;
         .no-underline();
+        //.transition(all 0.2s ease-in-out);
 
         &:hover {
-          border-left-color: fadeout(@c_emph, 40%);
+          .col(@c_emph);
+          border-left-color: fadeout(@c_emph, 20%);
         }
         &.active {
+          .col(@c_emph);
           border-left-color: @c_emph;
         }
       }
