@@ -1,15 +1,17 @@
 GET     /                                           controllers.Blog.index
 
-GET     /schulungen                                 controllers.Home.redirect
-GET     /schulungen/                                controllers.Home.redirect2
-GET     /schulungen/scala-training                  controllers.Home.training
-GET     /schulungen/scala-training/folien           controllers.Home.folien
-GET     /schulungen/scala-training/:id              controllers.Home.training2(id)
+GET     /schulungen                                 controllers.Training.redirect
+GET     /schulungen/                                controllers.Training.redirect2
+GET     /schulungen/scala-training                  controllers.Training.index
+GET     /schulungen/scala-training/folien           controllers.Training.folien
+GET     /schulungen/scala-training/:id              controllers.Training.trainings(id)
+
 GET     /impressum                                  controllers.Home.imprint
-GET     /artikel/                                   controllers.Home.redirect3
+GET     /artikel/                                   controllers.Home.redirect
 GET     /kontakt                                    controllers.Home.contact
 GET     /links                                      controllers.Home.links
 GET     /agb                                        controllers.Home.AGB
+
 GET     /backdoor                                   controllers.Home.backdoor
 GET     /google1388dbffebf166ff.html                controllers.Home.gverify
 

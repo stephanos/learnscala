@@ -9,37 +9,14 @@ object Home extends MyController {
         Redirect(routes.Blog.index())
     }
 
-    def redirect2 = Action {
-        Redirect(routes.Blog.index())
-    }
-
-    def redirect3 = Action {
-        Redirect(routes.Blog.index())
-    }
-
     def AGB = Action {
         implicit req =>
             Ok(views.html.agb())
     }
 
-    def training = Action {
-        implicit req =>
-            Ok(views.html.training())
-    }
-
-    def training2(place: String) = Action {
-        implicit req =>
-            Ok(getByName("views.html.events." + place))
-    }
-
     def links = Action {
         implicit req =>
             Ok(views.html.links())
-    }
-
-    def folien = Action {
-        implicit req =>
-            Ok(views.html.folien())
     }
 
     def contact = Action {

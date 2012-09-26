@@ -1,36 +1,35 @@
 @()
 
-@*
 <!--<div id="logo">
     <a href="https://www.learnscala.de">
         <img src="/assets/img/learnscala.png" height="60" width="48" alt="LearnScala">
     </a>
 </div>-->
 
-<!--<div class="navbar navbar-inverse">
+<div class="navbar navbar-inverse">
     <div class="navbar-inner">
         <div class="container">
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li class='@{if(req.uri.contains("/news")) "active"}'>
-                        <a href="@routes.Home.news">
-                            <span class="head">Aktuelles</span>
+                    <li class="blog">
+                        <a href="@routes.Blog.index">
+                            <span class="head">Blog</span>
                         </a>
                     </li>
 
-                    <li class='@{if(req.uri.contains("/schulung")) "active"}'>
-                        <a href="@routes.Home.training">
+                    <li class="train">
+                        <a href="@routes.Training.index">
                             <span class="head">Training</span>
                         </a>
                     </li>
 
-                    <li class='@{if(req.uri.contains("/links")) "active"}'>
+                    <li class="link">
                         <a href="@routes.Home.links">
                             <span class="head">Links</span>
                         </a>
                     </li>
 
-                    <li class='@{if(req.uri.contains("/kontakt")) "active"}'>
+                    <li class="mail">
                         <a href="@routes.Home.contact">
                             <span class="head">Kontakt</span>
                         </a>
@@ -41,8 +40,6 @@
     </div>
 </div>
 
-<hr/>-->
-*@
 
 @*<!--<div id="navi">
     <ul>

@@ -2,6 +2,7 @@
 @import "bootstrap/bootstrap.less";
 @import "bootstrap/type.less";
 @import "bootstrap/navs.less";
+@import "bootstrap/navbar.less";
 
 @import "lib/const.less";
 @import "lib/mixins.less";
@@ -41,10 +42,16 @@ body {
         text-align: justify;
     }
 
+    div.container {
+        width: 700px;
+        min-width: 700px;
+        max-width: 700px;
+    }
+
     &.event {
-        >div.container {
-            width: 975px;
-            max-width: 975px;
+        div.container {
+            //width: 975px;
+            //max-width: 975px;
         }
     }
 
@@ -54,87 +61,34 @@ body {
         h3 { margin-top: 25px; }
         p { margin-top: 10px; }
 
-        >div.container {
-            width: 700px;
-            max-width: 700px;
-        }
         div.list {
             margin-left: 20px;
         }
     }
 
-    >div.container {
-        width: 900px;
-        min-width: 600px;
-        max-width: 900px;
-
-        >header {
-            @h: 20px;
-            padding: 10px 0 10px;
-            margin: 20px 0 20px 0;
-
-            border-top: 2px solid rgba(78, 68, 60, 0.1);
-            border-bottom: 2px solid rgba(78, 68, 60, 0.1);
-
-            #logo {
-                width: 15%;
-                float: left;
-                height: @h;
-                img { padding-left: 10px; }
-                visibility: hidden;
-            }
-
-            nav {
-                width: 85%;
-                float: left;
-                height: @h;
-
-                ul {
-                    margin: 0;
-                    list-style: none;
-
-                    li {
-                        float: left;
-                        width: 20%;
-                        //margin: 14px 0 0 0;
-                        text-align: center;
-
-                        a {
-                            .no-underline();
-                            &.active span { .col(#eee); }
-                            &:hover span { .col(#eee); }
-
-                            span {
-                                display: block;
-                                .transition(color 0.2s ease-in-out);
-                                .fsize(20px);
-                                .lheight(@h);
-                                .bold();
-                                //.uppercase();
-                                font-family: 'Graublau Web';
-                                .col(fadeout(#eee, 40%));
-                            }
-                        }
-                    }
+    >.navbar {
+        .navbar-inner {
+            .round(0);
+            li {
+                margin-right: 20px;
+                .transition(color 0.2s ease-in-out);
+                a {
+                    padding: 10px 20px;
                 }
             }
-
-            hr {
-                visibility: hidden;
-                clear: both;
-                margin: 0;
-            }
         }
+    }
 
+    >div.container {
         >section {
             margin: 0 auto;
 
             .unit {
-                width: 600px;
-                margin: 0 auto;
-                margin-top: 50px;
+                width: 100%;
+                //margin: 0 auto;
+                margin-top: 40px;
                 p {
-                    margin-top: 20px;
+                    margin-top: 25px;
                     line-height: 1.7;
                 }
                 &.first {

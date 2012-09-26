@@ -45,6 +45,21 @@
         </div>
 
         @sub.analytics()
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var href = window.location.href;
+                if(href.indexOf("/schulung") > -1) {
+                   $(".train").addClass("active")
+                } else if(href.indexOf("/link") > -1) {
+                    $(".link").addClass("active")
+                } else if(href.indexOf("/kontakt") > -1) {
+                    $(".mail").addClass("active")
+                } else if(pathname = "/" || href.indexOf("/2012/") > -1 || href.indexOf("/2013/") > -1) {
+                    $(".blog").addClass("active")
+                }
+            });
+        </script>
     </body>
 
 </html>
