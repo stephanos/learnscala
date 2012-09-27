@@ -5086,13 +5086,15 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
     };
 
     Editor.prototype.callAPI = function(target, output, source, call) {
-      var self;
+      var apiBase, self, uri;
       self = this;
       this.createCodeBlock("", output, "wait");
+      uri = window.location.hostname;
+      apiBase = uri.indexOf("localhost") > -1 ? "" : "http://api.learnscala.de";
       return $.ajax({
         type: 'POST',
         timeout: 15000,
-        url: "/api/" + target,
+        url: apiBase + "/api/" + target,
         data: "source=" + encodeURIComponent(source != null ? source : "") + "&call=" + encodeURIComponent(call != null ? call : ""),
         success: function(data, status) {
           var text, _ref;

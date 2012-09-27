@@ -190,12 +190,19 @@ define [
 
       # clear console
       @createCodeBlock("", output, "wait")
-  
+
+      uri = window.location.hostname
+      apiBase =
+        if(uri.indexOf("localhost") > -1)
+          ""
+        else
+          "http://api.learnscala.de"
+
       # issue call
       $.ajax(
         type: 'POST',
         timeout: 15000,
-        url: "/api/" + target,
+        url: apiBase + "/api/" + target,
         data: "source=" + encodeURIComponent(source ? "") + "&call=" + encodeURIComponent(call ? ""),
   
         success: (data, status) ->
