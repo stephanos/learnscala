@@ -19,6 +19,11 @@ object Home extends MyController {
             Ok(views.html.links())
     }
 
+    def glossary = Action {
+        implicit req =>
+            Ok(views.html.links())
+    }
+
     def contact = Action {
         implicit req =>
             Ok(views.html.contact())

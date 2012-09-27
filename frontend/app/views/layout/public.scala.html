@@ -1,4 +1,4 @@
-@(title: String = "", crawl: Boolean = true, hideNav: Boolean = false, subtitle: Html = null, meta: String = "", classes: String = "")(content: Html)
+@(title: String = "", crawl: Boolean = true, hideNav: Boolean = false, subtitle: Html = null,  meta: String = "", classes: String = "")(content: Html)
 <!DOCTYPE html>
 
 <html>
@@ -19,7 +19,7 @@
         <meta name="description" content="@meta"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Favicons -->
+        @* FAVICON *@
         @* For retina-display iPads *@
         <link href='@MyAssets.urlOf("/img/apple-touch-icon-xlarge.png", true)' rel="apple-touch-icon-precomposed" sizes="144x144" type="image/png"/>
         @* For retina-display iPhones *@
