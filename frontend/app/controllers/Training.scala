@@ -6,34 +6,40 @@ import play.api.templates.Html
 
 object Training extends MyController {
 
-    def index = Action {
+    def akkaIndex = Action {
         implicit req =>
-            Ok(views.html.training())
+            Ok(views.html.training.akka.description())
+    }
+
+    def scalaIndex = Action {
+        implicit req =>
+            Ok(views.html.training.scala.description())
     }
 
     def redirect = Action {
-        Redirect(routes.Training.index())
+        Redirect(routes.Blog.index())
     }
 
     def redirect2 = Action {
-        Redirect(routes.Training.index())
+        Redirect(routes.Blog.index())
     }
 
-    def folien = Action {
+    def scalaFolien = Action {
         implicit req =>
-            Ok(views.html.folien())
+            Ok(views.html.training.scala.folien())
     }
 
-    def why = Action {
+    def scalaWhy = Action {
         implicit req =>
-            Ok(views.html.why())
+            Ok(views.html.training.scala.why())
     }
 
-    def pick(snippets: Html*): Html = {
-        snippets(scala.util.Random.nextInt(snippets.length))
+    def akkaWhy = Action {
+        implicit req =>
+            Ok(views.html.training.akka.why())
     }
 
-    def trainings(place: String) = Action {
+    def scalaTrainings(place: String) = Action {
         implicit req =>
             Ok(getByName("views.html.events." + place))
     }

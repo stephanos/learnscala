@@ -2,10 +2,14 @@ GET     /                                           controllers.Blog.index
 
 GET     /schulungen                                 controllers.Training.redirect
 GET     /schulungen/                                controllers.Training.redirect2
-GET     /schulungen/scala-training                  controllers.Training.index
-GET     /schulungen/scala-training/folien           controllers.Training.folien
-GET     /schulungen/scala-training/warum-scala      controllers.Training.why
-GET     /schulungen/scala-training/oeffentlich/:id  controllers.Training.trainings(id)
+
+GET     /schulungen/scala-training                  controllers.Training.scalaIndex
+GET     /schulungen/scala-training/folien           controllers.Training.scalaFolien
+GET     /schulungen/scala-training/warum-scala      controllers.Training.scalaWhy
+GET     /schulungen/scala-training/oeffentlich/:id  controllers.Training.scalaTrainings(id)
+
+GET     /schulungen/akka-training                   controllers.Training.akkaIndex
+GET     /schulungen/akka-training/warum-akka        controllers.Training.akkaWhy
 
 GET     /impressum                                  controllers.Home.imprint
 GET     /artikel/                                   controllers.Home.redirect

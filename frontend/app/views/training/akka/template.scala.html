@@ -1,0 +1,21 @@
+@(title: String, meta: String = "")(content: Html)
+
+@layout.kurs(title, baseTitle = "Schulung 'Einführung in Akka': ", heading =  """Professionelles Training "Einführung in Akka"""", meta) {
+
+    <div class="scala well">
+        <nav id="kurs_navi">
+            <ul>
+                <li class="descr">
+                    <a href="@routes.Training.akkaIndex()">Kursbeschreibung</a>
+                </li>
+                <li class="why">
+                    <a href="@routes.Training.akkaWhy()">Warum Akka</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    @training.comp.firmenintern()
+} {
+    @content
+}

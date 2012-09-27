@@ -1,0 +1,73 @@
+@(title: String, meta: String = "")(content: Html)
+    
+@layout.kurs(title, baseTitle = "Schulung 'Einführung in Scala': ", heading = """Professionelles Training "Einführung in Scala"""", meta) {
+
+    <div class="logo_link">
+        <a class="scala" href="@routes.Training.scalaIndex">
+            <img width="150" src='@MyAssets.urlOf("/img/scala-logo.png", true)' alt="Scala Schulung"/>
+        </a>
+    </div>
+
+    <div class="scala well">
+
+        <nav id="kurs_navi">
+            <ul>
+                <li class="descr">
+                    <a href="@routes.Training.scalaIndex()">Kursbeschreibung</a>
+                </li>
+                <li class="why">
+                    <a href="@routes.Training.scalaWhy()">Warum Scala</a>
+                </li>
+                <li class="slide">
+                    <a href="@routes.Training.scalaFolien()">Beispielfolien</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="well" style="padding-left: 0; padding-right: 0;">
+        <h4>Offene Termine</h4>
+        @register("Berlin", "21. - 23. Januar 2013", "Friedrichstraße 88", "berlin")
+        @register("Hamburg", "4. - 7. Februar 2013", "Friedrichstraße 88", "hamburg")
+        @register("Frankfurt a. M.", "18. - 21. Februar 2013", "Friedrichstraße 88", "frankfurt")
+        @register("Stuttgart", "4. - 7. März 2013", "Friedrichstraße 88", "stuttgart")
+        @register("München", "18. - 21. März 2013", "Friedrichstraße 88", "muenchen")
+    </div>
+
+    @training.comp.firmenintern()
+
+    <div class="well">
+        <h4>Feedback</h4>
+
+        @Training.pick(feedback1, feedback2, feedback3)
+    </div>
+} {
+    @content
+}
+
+@feedback1 = {
+    <div class="feedback">
+        "Was mir gefallen hat, ist die individuelle Art, wie Stephan mit mir
+        und den anderen Teilnehmern umgegangen ist. One-on-One Hilfe und Tipps
+        waren reichlich vorhanden."
+    </div>
+    <div class="member"> - Kifah A.</div>
+}
+
+@feedback2 = {
+    <div class="feedback">
+        "Die Schulung hat alle Unterschiede zw. Java und Scala aufgezeigt und durch verschiedene Übungen verinnerlicht,
+        [..]
+        @*Die Übungen können einen besser zum gewünschten Ergebnis führen, damit man diese nicht aus Versehen falsch löst.*@
+        das Quiz zwischendurch lockert auf, da man mit den anderen zusammen über die Antworten diskutieren kann."
+    </div>
+    <div class="member"> - Marco R.</div>
+}
+
+@feedback3 = {
+    <div class="feedback">
+        "Kenntnisreiche Einführung in die Welt von Scala. Fundiert und auf den Punkt gebracht.
+        Die vielen Übungen veranschaulichen und vertiefen die Materie. Prima!"
+    </div>
+    <div class="member"> - Hendrik B.</div>
+}

@@ -1,6 +1,6 @@
-@(title: String, meta: String = "")(content: Html)
+@(title: String, baseTitle: String, heading: String, meta: String = "")(sidebar: Html)(content: Html)
 
-@layout.public(title = "Schulung 'Einführung in Scala': " + title, meta = meta, classes = "training") {
+@layout.public(title = baseTitle + title, meta = meta, classes = "training") {
 
     @*<a href='@routes.Training.trainings("berlin")'>
         <img src="http://www.eventbrite.de/custombutton?eid=3910432208" alt="Scala-Schulung in Berlin"/>
@@ -9,7 +9,7 @@
     <div class="row">
         <div class="unit">
             <h2>
-                Professionelles Training "Einführung in Scala"
+                @heading
             </h2>
         </div>
     </div>
@@ -19,83 +19,25 @@
             @content
         </div>
         <div class="span3 events_v">
-            <div class="scala well">
-                @*<img width="150" src='@MyAssets.urlOf("/img/scala-logo.png", true)'/>*@
-                @*<img width="50" src='@MyAssets.urlOf("/img/learnscala.png", true)'/>*@
-                <nav id="kurs_navi">
-                    <ul>
-                        <li class="descr">
-                            <a href="@routes.Training.index()">Kursbeschreibung</a>
-                        </li>
-                        <li class="why">
-                            <a href="@routes.Training.why()">Warum Scala</a>
-                        </li>
-                        <li class="slide">
-                            <a href="@routes.Training.folien()">Beispielfolien</a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+            @*<a class="logo_link akka" href="@routes.Training.akkaIndex">
+                <img src='@MyAssets.urlOf("/img/akka-logo.png", true)' alt="Scala Schulung"/>
+            </a>*@
 
-            <div class="well" style="padding-left: 0; padding-right: 0;">
-                <h4>Offene Termine</h4>
-                @register("Berlin", "21. - 23. Januar 2013", "Friedrichstraße 88", "berlin")
-                @register("Hamburg", "4. - 7. Februar 2013", "Friedrichstraße 88", "hamburg")
-                @register("Frankfurt a. M.", "18. - 21. Februar 2013", "Friedrichstraße 88", "frankfurt")
-                @register("Stuttgart", "4. - 7. März 2013", "Friedrichstraße 88", "stuttgart")
-                @register("München", "18. - 21. März 2013", "Friedrichstraße 88", "muenchen")
-            </div>
+            @*<table>
+                <tr>
+                    <td width="50%">
 
-            <div class="well">
-                <h4>Firmenintern</h4>
+                    </td>
+                    <td width="50%">
 
-                <div>
-                    Kontaktieren Sie einfach meinen <strong>Kooperations-partner Tutego</strong> für eine flexible,
-                    zugeschnittene Schulung direkt bei Ihnen.
-                </div>
-                <br/>
-                <div>
-                    Via E-Mail <a href="mailto:info@@tutego.de?subject=Scala-Schulung+mit+Stephan+Behnke">info@@tutego.de</a> oder
-                    telefonisch unter <strong style="white-space: nowrap;">0800 888 3467</strong> (kostenfrei).
-                </div>
-                <br/>
-                <img class="logo" src='@MyAssets.urlOf("/img/tutego.jpeg", true)'/>
-            </div>
+                    </td>
+                </tr>
+            </table>*@
+            @*<img width="50" src='@MyAssets.urlOf("/img/learnscala.png", true)'/>*@
 
-            <div class="well">
-                <h4>Feedback</h4>
-
-                @Training.pick(feedback1, feedback2, feedback3)
-            </div>
+            @sidebar
         </div>
     </div>
-}
-
-@feedback1 = {
-    <div class="feedback">
-        "Was mir gefallen hat, ist die individuelle Art, wie Stephan mit mir
-        und den anderen Teilnehmern umgegangen ist. One-on-One Hilfe und Tipps
-        waren reichlich vorhanden."
-    </div>
-    <div class="member"> - Kifah A.</div>
-}
-
-@feedback2 = {
-    <div class="feedback">
-        "Die Schulung hat alle Unterschiede zw. Java und Scala aufgezeigt und durch verschiedene Übungen verinnerlicht,
-        [..]
-        @*Die Übungen können einen besser zum gewünschten Ergebnis führen, damit man diese nicht aus Versehen falsch löst.*@
-        das Quiz zwischendurch lockert auf, da man mit den anderen zusammen über die Antworten diskutieren kann."
-    </div>
-    <div class="member"> - Marco R.</div>
-}
-
-@feedback3 = {
-    <div class="feedback">
-        "Kenntnisreiche Einführung in die Welt von Scala. Fundiert und auf den Punkt gebracht.
-        Die vielen Übungen veranschaulichen und vertiefen die Materie. Prima!"
-    </div>
-    <div class="member"> - Hendrik B.</div>
 }
 
 <script type="text/javascript">
@@ -107,6 +49,12 @@
             $(".slide a").addClass("active")
         } else {
             $(".descr a").addClass("active")
+        }
+
+        if(href.indexOf("/akka") > -1) {
+            $("a.akka").addClass("active")
+        } else {
+            $("a.scala").addClass("active")
         }
     });
 </script>
