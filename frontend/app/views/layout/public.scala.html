@@ -1,4 +1,4 @@
-@(title: String = "", crawl: Boolean = true, hideNav: Boolean = false, subtitle: Html = null, classes: String = "")(content: Html)
+@(title: String = "", crawl: Boolean = true, hideNav: Boolean = false, subtitle: Html = null, meta: String = "", classes: String = "")(content: Html)
 <!DOCTYPE html>
 
 <html>
@@ -16,7 +16,23 @@
         } else {
             <meta name="robots" content="NOINDEX"/>
         }
+        <meta name="description" content="@meta"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Favicons -->
+        @*<!-- For retina-display iPads -->*@
+        <link href='@MyAssets.urlOf("/img/apple-touch-icon-xlarge.png", true)' rel="apple-touch-icon-precomposed" sizes="144x144" type="image/png"/>
+        @*<!-- For retina-display iPhones -->*@
+        <link href='@MyAssets.urlOf("/img/apple-touch-icon-large.png", true)' rel="apple-touch-icon-precomposed" sizes="114x114" type="image/png"/>
+        @*<!-- For iPad 1 -->*@
+        <link href='@MyAssets.urlOf("/img/apple-touch-icon-medium.png", true)' rel="apple-touch-icon-precomposed" sizes="72x72" type="image/png"/>
+        @*<!-- For iPhone 3G, iPod Touch and Android -->*@
+        <link href='@MyAssets.urlOf("/img/apple-touch-icon-small.png", true)' rel="apple-touch-icon-precomposed" type="image/png"/>
+        @*<!-- For Nokia -->*@
+        <link href='@MyAssets.urlOf("/img/apple-touch-icon-small.png", true)' rel="shortcut icon"/>
+        @*<!-- For everything else -->*@
+        <link href='@MyAssets.urlOf("/img/favicon.png", true)' rel="shortcut icon" type="image/png"/>
+        <link href='@MyAssets.urlOf("/img/favicon.ico", true)' rel="shortcut icon" type="image/x-icon"/>
 
         @*<!-- STYLE -->*@
         <link href='@MyAssets.css_pub._2' type="text/css" rel="stylesheet">

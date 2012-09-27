@@ -1,6 +1,6 @@
-@(title: String)(content: Html)
+@(title: String, meta: String = "")(content: Html)
 
-@layout.public(title = "Schulung: " + title, classes = "training") {
+@layout.public(title = "Schulung 'Einführung in Scala': " + title, meta = meta, classes = "training") {
 
     @*<a href='@routes.Training.trainings("berlin")'>
         <img src="http://www.eventbrite.de/custombutton?eid=3910432208" alt="Scala-Schulung in Berlin"/>
