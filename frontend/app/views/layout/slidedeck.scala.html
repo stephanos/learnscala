@@ -1,4 +1,4 @@
-@(title: String, clazz: String = "")(content: Html)
+@(title: String, clazz: String = "", history: Boolean = true)(content: Html)
 
 @head = {
     <link href='@MyAssets.css_slide._2' type="text/css" media="all" rel="stylesheet">
@@ -49,7 +49,7 @@
                 progress: true,
 
                 // If true; each slide will be pushed to the browser history
-                history: true,
+                history: @history,
 
                 // Loops the presentation, defaults to false
                 loop: false,

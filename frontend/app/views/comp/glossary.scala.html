@@ -1,2 +1,2 @@
 @(label: String, code: String = null)(implicit basePath: String = "/app/glossary" )
-<a class="nobreak" href='@basePath/@{if(code == null) label.toLowerCase.replaceAllLiterally("-", "").replaceAllLiterally(" ", "").replaceAllLiterally("ü", "ue").replaceAllLiterally("ä", "ae").replaceAllLiterally("ö", "oe") else code}/#/'>@label</a>
+<a class="nobreak" href='@basePath/@{if(code == null) label.toLowerCase.replaceAllLiterally("-", "").replaceAllLiterally(" ", "").replaceAllLiterally("ü", "ue").replaceAllLiterally("ä", "ae").replaceAllLiterally("ö", "oe") else code}'>@label</a>

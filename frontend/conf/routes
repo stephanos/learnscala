@@ -14,10 +14,10 @@ GET     /schulungen/akka-training/warum-akka        controllers.Training.akkaWhy
 GET     /editor                                     controllers.Editor.publicIndex
 GET     /editor/                                    controllers.Editor.publicIndexR
 
-GET     /glossar                                    controllers.Glossary.publicIndexR
-GET     /glossar/                                   controllers.Glossary.publicIndex
-GET     /glossar/:id                                controllers.Glossary.publicPageR(id)
-GET     /glossar/:id/                               controllers.Glossary.publicPage(id)
+GET     /glossar                                    controllers.Glossary.publicIndex
+GET     /glossar/                                   controllers.Glossary.publicIndexR
+GET     /glossar/:id                                controllers.Glossary.publicPage(id)
+GET     /glossar/:id/                               controllers.Glossary.publicPageR(id)
 
 GET     /impressum                                  controllers.Home.imprint
 GET     /kontakt                                    controllers.Home.contact
@@ -53,10 +53,10 @@ GET     /app/wait                                   controllers.App.waitingRoom
 GET     /app/editor                                 controllers.Editor.index
 GET     /app/editor/                                controllers.Editor.indexR
 
-GET     /app/glossary                               controllers.Glossary.indexR
-GET     /app/glossary/                              controllers.Glossary.index
-GET     /app/glossary/:id                           controllers.Glossary.pageR(id)
-GET     /app/glossary/:id/                          controllers.Glossary.page(id)
+GET     /app/glossary                               controllers.Glossary.index
+GET     /app/glossary/                              controllers.Glossary.indexR
+GET     /app/glossary/:id                           controllers.Glossary.page(id)
+GET     /app/glossary/:id/                          controllers.Glossary.pageR(id)
 
 GET     /app/exercises/:id                          controllers.Exercise.read(id)
 
