@@ -2,6 +2,8 @@ alias web   = ;project app-frontend ;run
 alias live  = ;project app-frontend ;start 80
 alias ass   = ;project app-frontend ;play-copy-assets;
 
+alias api   = ;project app-api; run
+
 alias utest = ;project exercises ;test
 alias ubungen = utest
 alias uebungen = utest

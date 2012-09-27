@@ -72,6 +72,7 @@ GET     /app/logout                                 controllers.Auth.logout
 
 # === API
 
+GET     /                                           controllers.API.hello
 POST    /api/compile                                controllers.API.compile
 POST    /api/execute                                controllers.API.execute
 POST    /api/decompile/java                         controllers.API.decompileAsJava
