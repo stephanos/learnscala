@@ -10,17 +10,17 @@
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/../modules/module-data-redis/target/scala-2.9.1/classes" />
-    <output-test url="file://$MODULE_DIR$/../modules/module-data-redis/target/scala-2.9.1/test-classes" />
+    <output url="file://$MODULE_DIR$/../modules/commons/module-data-redis/target/scala-2.9.1/classes" />
+    <output-test url="file://$MODULE_DIR$/../modules/commons/module-data-redis/target/scala-2.9.1/test-classes" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../modules/module-data-redis">
-      <sourceFolder url="file://$MODULE_DIR$/../modules/module-data-redis/src/main/scala" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../modules/module-data-redis/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../modules/module-data-redis/src/main/resources" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../modules/module-data-redis/src/test/scala" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../modules/module-data-redis/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../modules/module-data-redis/src/test/resources" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/../modules/module-data-redis/target" />
+    <content url="file://$MODULE_DIR$/../modules/commons/module-data-redis">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-data-redis/src/main/scala" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-data-redis/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-data-redis/src/main/resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-data-redis/src/test/scala" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-data-redis/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-data-redis/src/test/resources" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commons/module-data-redis/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -54,24 +54,33 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../modules/module-util/target/scala-2.9.1/classes" />
+          <root url="file://$MODULE_DIR$/../target/scala-2.9.1/classes_managed" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/commons/module-util/target/scala-2.9.1/classes" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../modules/module-util/src/main/scala" />
-          <root url="file://$MODULE_DIR$/../modules/module-util/src/main/java" />
+          <root url="file://$MODULE_DIR$/../modules/commons/module-util/src/main/scala" />
+          <root url="file://$MODULE_DIR$/../modules/commons/module-util/src/main/java" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../modules/module-test-unit/target/scala-2.9.1/classes" />
+          <root url="file://$MODULE_DIR$/../modules/commons/module-test-unit/target/scala-2.9.1/classes" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../modules/module-test-unit/src/main/scala" />
-          <root url="file://$MODULE_DIR$/../modules/module-test-unit/src/main/java" />
+          <root url="file://$MODULE_DIR$/../modules/commons/module-test-unit/src/main/scala" />
+          <root url="file://$MODULE_DIR$/../modules/commons/module-test-unit/src/main/java" />
         </SOURCES>
       </library>
     </orderEntry>

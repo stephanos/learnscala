@@ -5,23 +5,32 @@ import PlayProject._
 
 object ProjectBuild extends MyBuild {
 
-    val v = "0.1"
+    val v = "0.2"
     val org = "de.learnscala"
-    val modBase = "modules/"
+    val modBase = "modules/commons/"
 
     lazy val root =
         Project("learnscala", file("."))
-            .aggregate(frontend)
+            .aggregate(app_frontend, app_api, mod_api)
 
 
     // ==== PROJECTS
 
-    lazy val frontend =
-        MyProject("frontend", file("frontend"))
+    lazy val app_frontend =
+        MyProject("app-frontend", file("frontend"))
             .settings(myPlaySettings: _*)
-            .settings(libraryDependencies ++= Seq(sun_tools))
             .settings(templatesImport += "views.html.comp._")
-            .dependsOn(mod_web_play, mod_data_mongo, mod_test_unit % "test->test")
+            .dependsOn(mod_api, mod_data_mongo, mod_test_unit % "test->test")
+
+    lazy val app_api =
+        MyProject("app-api", file("api"))
+            .settings(myPlaySettings: _*)
+            .dependsOn(mod_api, mod_test_unit % "test->test")
+
+    lazy val mod_api =
+        MyProject("module-api", file("modules/module-api"))
+            .settings(libraryDependencies ++= Seq(playWeb, sun_tools))
+            .dependsOn(mod_web_play)
 
     /*
     // use RootProject ("AttributeKey ID collisions detected for: 'pgp-signer'")

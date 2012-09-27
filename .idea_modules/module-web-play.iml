@@ -10,17 +10,17 @@
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/../modules/module-web-play/target/scala-2.9.1/classes" />
-    <output-test url="file://$MODULE_DIR$/../modules/module-web-play/target/scala-2.9.1/test-classes" />
+    <output url="file://$MODULE_DIR$/../modules/commons/module-web-play/target/scala-2.9.1/classes" />
+    <output-test url="file://$MODULE_DIR$/../modules/commons/module-web-play/target/scala-2.9.1/test-classes" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../modules/module-web-play">
-      <sourceFolder url="file://$MODULE_DIR$/../modules/module-web-play/src/main/scala" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../modules/module-web-play/src/main/java" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../modules/module-web-play/src/main/resources" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/../modules/module-web-play/src/test/scala" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../modules/module-web-play/src/test/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/../modules/module-web-play/src/test/resources" isTestSource="true" />
-      <excludeFolder url="file://$MODULE_DIR$/../modules/module-web-play/target" />
+    <content url="file://$MODULE_DIR$/../modules/commons/module-web-play">
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-web-play/src/main/scala" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-web-play/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-web-play/src/main/resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-web-play/src/test/scala" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-web-play/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-web-play/src/test/resources" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/../modules/commons/module-web-play/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -66,8 +66,8 @@
     <orderEntry type="library" name="javassist_javassist_3.12.1.GA" level="project" />
     <orderEntry type="library" name="com.ning_async-http-client_1.7.0" level="project" />
     <orderEntry type="library" name="oauth.signpost_signpost-core_1.2.1.1" level="project" />
-    <orderEntry type="library" name="org.codehaus.jackson_jackson-core-asl_1.9.9" level="project" />
-    <orderEntry type="library" name="org.codehaus.jackson_jackson-mapper-asl_1.9.9" level="project" />
+    <orderEntry type="library" name="org.codehaus.jackson_jackson-core-asl_1.9.10" level="project" />
+    <orderEntry type="library" name="org.codehaus.jackson_jackson-mapper-asl_1.9.10" level="project" />
     <orderEntry type="library" name="org.reflections_reflections_0.9.6" level="project" />
     <orderEntry type="library" name="dom4j_dom4j_1.6.1" level="project" />
     <orderEntry type="library" name="xml-apis_xml-apis_1.0.b2" level="project" />
@@ -84,36 +84,45 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../modules/module-util/target/scala-2.9.1/classes" />
+          <root url="file://$MODULE_DIR$/../target/scala-2.9.1/classes_managed" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../modules/commons/module-util/target/scala-2.9.1/classes" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../modules/module-util/src/main/scala" />
-          <root url="file://$MODULE_DIR$/../modules/module-util/src/main/java" />
+          <root url="file://$MODULE_DIR$/../modules/commons/module-util/src/main/scala" />
+          <root url="file://$MODULE_DIR$/../modules/commons/module-util/src/main/java" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../modules/module-data-cache/target/scala-2.9.1/classes" />
+          <root url="file://$MODULE_DIR$/../modules/commons/module-data-cache/target/scala-2.9.1/classes" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../modules/module-data-cache/src/main/scala" />
-          <root url="file://$MODULE_DIR$/../modules/module-data-cache/src/main/java" />
+          <root url="file://$MODULE_DIR$/../modules/commons/module-data-cache/src/main/scala" />
+          <root url="file://$MODULE_DIR$/../modules/commons/module-data-cache/src/main/java" />
         </SOURCES>
       </library>
     </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../modules/module-test-web/target/scala-2.9.1/classes" />
+          <root url="file://$MODULE_DIR$/../modules/commons/module-test-web/target/scala-2.9.1/classes" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../modules/module-test-web/src/main/scala" />
-          <root url="file://$MODULE_DIR$/../modules/module-test-web/src/main/java" />
+          <root url="file://$MODULE_DIR$/../modules/commons/module-test-web/src/main/scala" />
+          <root url="file://$MODULE_DIR$/../modules/commons/module-test-web/src/main/java" />
         </SOURCES>
       </library>
     </orderEntry>

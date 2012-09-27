@@ -11,7 +11,7 @@
     <logger name="service" level="DEBUG"/>
     <logger name="controllers" level="DEBUG"/>
     <logger name="application" level="DEBUG"/>
-    <logger name="com.learnscala" level="DEBUG"/>
+    <logger name="de.learnscala" level="DEBUG"/>
     <logger name="com.loops101" level="DEBUG"/>
 
     <root level="INFO">

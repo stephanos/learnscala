@@ -1,6 +1,6 @@
-alias web   = ;project frontend ;run
-alias live  = ;project frontend ;start 80
-alias ass   = ;project frontend ;play-copy-assets;
+alias web   = ;project app-frontend ;run
+alias live  = ;project app-frontend ;start 80
+alias ass   = ;project app-frontend ;play-copy-assets;
 
 alias utest = ;project exercises ;test
 alias ubungen = utest

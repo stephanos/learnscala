@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea_modules/frontend.iml" filepath="$PROJECT_DIR$/.idea_modules/frontend.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/app-api.iml" filepath="$PROJECT_DIR$/.idea_modules/app-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/app-frontend.iml" filepath="$PROJECT_DIR$/.idea_modules/app-frontend.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/learnscala.iml" filepath="$PROJECT_DIR$/.idea_modules/learnscala.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/learnscala-build.iml" filepath="$PROJECT_DIR$/.idea_modules/learnscala-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-api.iml" filepath="$PROJECT_DIR$/.idea_modules/module-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-data-cache.iml" filepath="$PROJECT_DIR$/.idea_modules/module-data-cache.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-data-mongo.iml" filepath="$PROJECT_DIR$/.idea_modules/module-data-mongo.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-data-redis.iml" filepath="$PROJECT_DIR$/.idea_modules/module-data-redis.iml" />

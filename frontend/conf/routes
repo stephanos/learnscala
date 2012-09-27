@@ -76,6 +76,7 @@ POST    /api/compile                                controllers.API.compile
 POST    /api/execute                                controllers.API.execute
 POST    /api/decompile/java                         controllers.API.decompileAsJava
 POST    /api/decompile/scala                        controllers.API.decompileAsScala
+
 POST    /api/exercises/:id                          controllers.Exercise.write(id)
 
 
