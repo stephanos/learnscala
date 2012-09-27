@@ -11,6 +11,9 @@ GET     /schulungen/scala-training/oeffentlich/:id  controllers.Training.scalaTr
 GET     /schulungen/akka-training                   controllers.Training.akkaIndex
 GET     /schulungen/akka-training/warum-akka        controllers.Training.akkaWhy
 
+GET     /editor                                     controllers.Editor.publicIndex
+GET     /editor/                                    controllers.Editor.publicIndexR
+
 GET     /glossar                                    controllers.Glossary.publicIndexR
 GET     /glossar/                                   controllers.Glossary.publicIndex
 GET     /glossar/:id                                controllers.Glossary.publicPageR(id)
@@ -48,7 +51,7 @@ GET     /app/browser                                controllers.App.index2
 GET     /app/wait                                   controllers.App.waitingRoom
 
 GET     /app/editor                                 controllers.Editor.index
-GET     /app/editor/                                controllers.Editor.index2
+GET     /app/editor/                                controllers.Editor.indexR
 
 GET     /app/glossary                               controllers.Glossary.indexR
 GET     /app/glossary/                              controllers.Glossary.index
@@ -58,7 +61,7 @@ GET     /app/glossary/:id/                          controllers.Glossary.page(id
 GET     /app/exercises/:id                          controllers.Exercise.read(id)
 
 GET     /app/slides                                 controllers.Slide.index
-GET     /app/slides/                                controllers.Slide.index2
+GET     /app/slides/                                controllers.Slide.indexR
 GET     /app/slides/:id                             controllers.Slide.redirect(id)
 GET     /app/slides/:id/                            controllers.Slide.load(id)
 GET     /app/slides/:id1/:id2                       controllers.Slide.redirect2(id1, id2)

@@ -10,6 +10,15 @@ object Editor extends MyController {
         Ok(views.html.app.editor())
     }
 
-    def index2 =
-        index
+    def indexR = Action {
+        Redirect(routes.Editor.index())
+    }
+
+    def publicIndex = Action {
+        Ok(views.html.editor())
+    }
+
+    def publicIndexR = Action {
+        Redirect(routes.Editor.publicIndex())
+    }
 }
