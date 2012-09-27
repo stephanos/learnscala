@@ -1,5 +1,5 @@
-/* Modernizr 2.6.1 (Custom Build) | MIT & BSD
- * Build: http://modernizr.com/download/#-fontface-opacity-rgba-localstorage-svg-cssclasses-teststyles-prefixes
+/* Modernizr 2.6.2 (Custom Build) | MIT & BSD
+ * Build: http://modernizr.com/download/#-fontface-opacity-rgba-cssgradients-localstorage-svg-cssclasses-teststyles-prefixes
  */
 ;
 
@@ -7,7 +7,7 @@
 
 window.Modernizr = (function( window, document, undefined ) {
 
-    var version = '2.6.1',
+    var version = '2.6.2',
 
     Modernizr = {},
 
@@ -42,10 +42,10 @@ window.Modernizr = (function( window, document, undefined ) {
 
     injectElementWithStyles = function( rule, callback, nodes, testnames ) {
 
-      var style, ret, node,
+      var style, ret, node, docOverflow,
           div = document.createElement('div'),
                 body = document.body,
-                fakeBody = body ? body : document.createElement('body');
+                fakeBody = body || document.createElement('body');
 
       if ( parseInt(nodes, 10) ) {
                       while ( nodes-- ) {
@@ -60,12 +60,20 @@ window.Modernizr = (function( window, document, undefined ) {
           (body ? div : fakeBody).innerHTML += style;
       fakeBody.appendChild(div);
       if ( !body ) {
-                fakeBody.style.background = "";
+                fakeBody.style.background = '';
+                fakeBody.style.overflow = 'hidden';
+          docOverflow = docElement.style.overflow;
+          docElement.style.overflow = 'hidden';
           docElement.appendChild(fakeBody);
       }
 
       ret = callback(div, rule);
-        !body ? fakeBody.parentNode.removeChild(fakeBody) : div.parentNode.removeChild(div);
+        if ( !body ) {
+          fakeBody.parentNode.removeChild(fakeBody);
+          docElement.style.overflow = docOverflow;
+      } else {
+          div.parentNode.removeChild(div);
+      }
 
       return !!ret;
 
@@ -168,6 +176,18 @@ window.Modernizr = (function( window, document, undefined ) {
                     return (/^0.55$/).test(mStyle.opacity);
     };
 
+    tests['cssgradients'] = function() {
+        var str1 = 'background-image:',
+            str2 = 'gradient(linear,left top,right bottom,from(#9f9),to(white));',
+            str3 = 'linear-gradient(left top,#9f9, white);';
+
+        setCss(
+                       (str1 + '-webkit- '.split(' ').join(str2 + str1) +
+                       prefixes.join(str3 + str1)).slice(0, -str1.length)
+        );
+
+        return contains(mStyle.backgroundImage, 'gradient');
+    };
 
     tests['fontface'] = function() {
         var bool;
@@ -223,7 +243,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
          test = typeof test == 'function' ? test() : test;
 
-         if (enableClasses) {
+         if (typeof enableClasses !== "undefined" && enableClasses) {
            docElement.className += ' ' + (test ? '' : 'no-') + feature;
          }
          Modernizr[feature] = test;
