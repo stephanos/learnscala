@@ -15,7 +15,7 @@ object Glossary extends MyController {
     }
 
     def page(id: String) = Action {
-        Ok(getByName("views.html.glossaries._" + id))
+        Ok(getByName("views.html.glossaries._" + id, List(classOf[String]), List("/app/glossary")))
     }
 
     def pageR(id: String) = Action {
@@ -32,7 +32,7 @@ object Glossary extends MyController {
     }
 
     def publicPage(id: String) = Action {
-        Ok(getByName("views.html.glossaries._" + id))
+        Ok(getByName("views.html.glossaries._" + id, List(classOf[String]), List("/glossar")))
     }
 
     def publicPageR(id: String) = Action {

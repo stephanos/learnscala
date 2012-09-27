@@ -14,9 +14,9 @@ class MyController
     protected def userIsAdmin(implicit req: RequestHeader) =
         isLocal || req.session.get(USER_ID) == Some("stephanos")
 
-    protected def getByName(path: String) = {
+    protected def getByName(path: String, classes: List[Class[_]] = List(), args: List[AnyRef] = List()) = {
         val c = Class.forName(path)
-        val m = c.getMethod("render")
-        m.invoke(null).asInstanceOf[Html]
+        val m = c.getMethod("render", classes: _*)
+        m.invoke(null, args: _*).asInstanceOf[Html]
     }
 }
