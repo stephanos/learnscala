@@ -5,7 +5,7 @@ GET     /schulungen/                                controllers.Training.redirec
 GET     /schulungen/scala-training                  controllers.Training.index
 GET     /schulungen/scala-training/folien           controllers.Training.folien
 GET     /schulungen/scala-training/warum-scala      controllers.Training.why
-GET     /schulungen/scala-training/:id              controllers.Training.trainings(id)
+GET     /schulungen/scala-training/oeffentlich/:id  controllers.Training.trainings(id)
 
 GET     /impressum                                  controllers.Home.imprint
 GET     /artikel/                                   controllers.Home.redirect

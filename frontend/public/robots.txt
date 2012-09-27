@@ -3,3 +3,4 @@ Disallow: /agb
 Disallow: /app/*
 Disallow: /users/*
 Disallow: /impressum
+Disallow: /schulungen/scala-training/oeffentlich/*
