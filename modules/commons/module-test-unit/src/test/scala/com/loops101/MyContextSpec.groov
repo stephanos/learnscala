@@ -1,0 +1,50 @@
+/*
+package com.crashnote.spec
+
+import org.springframework.test.context.ContextConfiguration
+
+@ContextConfiguration(locations = ["context-test.xml"])
+abstract class MyContextSpec extends ContextSpec {
+
+    *//*
+
+*/
+/*
+    val xml: Array[String]
+    protected var beanInst: B = _
+
+    doBeforeSpec {
+        CONTEXT.start(xml)
+    }
+
+    // ==== helper methods ====
+
+    def bean()(implicit m: Manifest[B]) = {
+        if (beanInst == null)
+            beanInst = newBean(m)
+        beanInst
+    }
+
+    def newBean(implicit m: Manifest[B]) =
+        (CONTEXT.ctx.getBean(m.erasure)).asInstanceOf[B]
+     *//*
+*/
+/*
+
+}
+
+*//*
+
+*/
+/*
+@org.springframework.test.context.ContextConfiguration(locations = "/context.xml")
+class MyContextSpec extends Spec {
+
+        val cxtClient = new ClassPathXmlApplicationContext("classpath:_context-ctrl-client.xml");
+            val cxtServer = new ClassPathXmlApplicationContext("classpath:context.xml",
+                "classpath:context-ctrl-server-http.xml");
+}
+**/*
+/
+/*//*
+

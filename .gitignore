@@ -18,6 +18,7 @@ RUNNING_PID
 .DS_Store
 exercises
 external
+_old
 tmp
 api
 out

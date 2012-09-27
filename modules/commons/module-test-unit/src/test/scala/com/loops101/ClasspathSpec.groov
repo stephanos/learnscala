@@ -1,0 +1,8 @@
+/*
+package com.crashnote.spec
+
+abstract class ClasspathSpec extends Spec implements com.crashnote.spec.ClasspathElements {
+
+    def classpath = System.getProperty("java.class.path", ".").split(";")
+}
+*/
