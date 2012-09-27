@@ -4,7 +4,7 @@
     <link href='@MyAssets.css_slide._2' type="text/css" media="all" rel="stylesheet">
 }
 
-@internal(title, clazz=clazz, open=open, head=head) {
+@internal(title, clazz=clazz + (if(open) " open" else " closed"), open=open, head=head) {
     <!-- board -->
     <canvas id="board"></canvas>
 

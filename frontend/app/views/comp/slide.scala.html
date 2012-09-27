@@ -1,3 +1,3 @@
-@(id: String = null, subsubtitle: String = null, subtitle: String = null, title: String = null, chapter: String = null, htmlTitle: xml.Elem = null)(body: Html = Html.empty)(implicit topic: String = null)
+@(id: String = null, subsubtitle: String = null, subtitle: String = null, title: String = null, chapter: String = null, htmlTitle: xml.Elem = null, hideFooter: Boolean = false)(body: Html = Html.empty)(implicit topic: String = null)
 
-@headslide(id, subsubtitle, subtitle, title, chapter, htmlTitle)(Html(""))(body)(topic)
+@headslide(id, subsubtitle, subtitle, title, chapter, hideFooter, htmlTitle)(Html(""))(body)(topic)

@@ -1,16 +1,4 @@
-@*
-@layout.internal("Glossary") {
-
-    <div id="slidedeck" class="reveal">
-        <div class="slides">
-            <section style="display: block">
-                @glossaries.all()
-            </section>
-        </div>
-    </div>
-}
-*@
-
+@implicitFieldConstructor = @{ "/app/glossary" }
 @layout.simpledeck("Glossary", showhHead = false, clazz = "noheader", showHomeBtn = false) {
     @glossaries.all()
 }

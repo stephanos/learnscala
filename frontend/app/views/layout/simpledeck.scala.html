@@ -1,14 +1,14 @@
-@(title: String, subtitle: String = "", showhHead: Boolean = true, open: Boolean = false, clazz: String = "", showHomeBtn: Boolean = true)(content: Html)
+@(title: String, subtitle: String = "", showhHead: Boolean = true, open: Boolean = false, clazz: String = "", showHomeBtn: Boolean = true)(content: Html)(implicit basePath: String)
 
 @homeBtn = {
     @if(showHomeBtn) {
-        <a class="btn btn-icon" id="btn-glossary" href="/app/glossary"></a>
+        <a class="btn btn-icon" id="btn-glossary" href="@basePath"></a>
     }
 }
 
-@layout.slidedeck(title, clazz = "light " + clazz, open = open, history = false) {
+@layout.slidedeck(title, clazz = "light " + clazz, open = open || !basePath.contains("/app"), history = false) {
     @if(showhHead) {
-        @headslide() {
+        @headslide(hideFooter = true) {
             @title
             @if(subtitle != "") {
                 :
@@ -21,7 +21,7 @@
             @homeBtn
         }
     } else {
-        @slide() {
+        @slide(hideFooter = true) {
             @content
             @homeBtn
         }
