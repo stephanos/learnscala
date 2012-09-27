@@ -21,8 +21,18 @@ trait Errors
         else
             NotFound(views.html.error.notfound())
 
+    def notFoundPage() = Action {
+        implicit req =>
+            notFound(req)
+    }
+
     def internalError(req: RequestHeader) =
         InternalServerError(views.html.error.internalerror())
+
+    def internalErrorPage() = Action {
+        implicit req =>
+            internalError(req)
+    }
 
     def badRequest(req: RequestHeader) =
         BadRequest(views.html.error.internalerror())

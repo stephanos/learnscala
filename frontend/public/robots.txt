@@ -2,5 +2,6 @@ User-agent: *
 Disallow: /agb
 Disallow: /app/*
 Disallow: /users/*
+Disallow: /error/*
 Disallow: /impressum
 Disallow: /schulungen/scala-training/oeffentlich/*
