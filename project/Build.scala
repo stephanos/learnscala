@@ -29,7 +29,7 @@ object ProjectBuild extends MyBuild {
 
     lazy val mod_api =
         MyProject("module-api", file("modules/module-api"))
-            .settings(libraryDependencies ++= Seq(playWeb, sun_tools))
+            .settings(libraryDependencies ++= Seq(ehCache, playWeb, sun_tools))
             .dependsOn(mod_web_play)
 
     /*
