@@ -1,12 +1,10 @@
-@(title: String, clazz: String = "", history: Boolean = true)(content: Html)
+@(title: String, clazz: String = "", open: Boolean = false, history: Boolean = true)(content: Html)
 
 @head = {
     <link href='@MyAssets.css_slide._2' type="text/css" media="all" rel="stylesheet">
-    <!--<link href='@MyAssets.css_slide_print._2' type="text/css" media="print" rel="stylesheet">-->
-    <!--document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' ); -->
 }
 
-@internal(title, clazz=clazz, head=head) {
+@internal(title, clazz=clazz, open=open, head=head) {
     <!-- board -->
     <canvas id="board"></canvas>
 
@@ -35,36 +33,36 @@
     <script type="text/javascript" src="@MyAssets.js_slide._2"></script>
     <script type="text/javascript">
         require(["lib/reveal", "app/slide/init"], function(Reveal, SlideInit) {
-            // Parse the query string into a key/value object
+            @* Parse the query string into a key/value object *@
             var query = {};
             location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
                 query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
             } );
 
             Reveal.initialize({
-                // Display controls in the bottom right corner
+                @* Display controls in the bottom right corner *@
                 controls: false,
 
-                // Display a presentation progress bar
+                @* Display a presentation progress bar *@
                 progress: true,
 
-                // If true; each slide will be pushed to the browser history
+                @* If true; each slide will be pushed to the browser history *@
                 history: @history,
 
-                // Loops the presentation, defaults to false
+                @* Loops the presentation, defaults to false *@
                 loop: false,
 
-                // Flags if mouse wheel navigation should be enabled
+                @* Flags if mouse wheel navigation should be enabled *@
                 mouseWheel: false,
 
-                // Apply a 3D roll to links on hover
+                @* Apply a 3D roll to links on hover *@
                 rollingLinks: false,
 
-                // UI style
-                theme: query.theme || 'default', // default/neon
+                @* UI style *@
+                theme: query.theme || 'default', @* default/neon *@
 
-                // Transition style
-                transition: query.transition || 'fade' // linear
+                @* Transition style *@
+                transition: query.transition || 'fade' @* linear *@
             });
 
             var slides = $("#slidedeck section").length;

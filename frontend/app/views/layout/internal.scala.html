@@ -21,12 +21,24 @@
     </head>
 
     <body class="@clazz">
+        @* NAV BAR *@
+        @if(open) {
+            @sub.navi_pub()
+        }
+
         @content
 
+        @* NAV SLIP *@
         @if(!open) {
             @sub.navi_app()
         }
 
+        @* FOOTER *@
+        @if(open) {
+            @*@sub.footer()*@
+        }
+
+        @* GA *@
         @sub.analytics()
     </body>
 

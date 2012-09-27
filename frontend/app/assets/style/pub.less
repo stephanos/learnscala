@@ -1,12 +1,4 @@
-// LIB
-@import "bootstrap/bootstrap.less";
-@import "bootstrap/type.less";
-@import "bootstrap/navs.less";
-@import "bootstrap/navbar.less";
-
-@import "lib/const.less";
-@import "lib/mixins.less";
-@import "misc/vars.less";
+@import "nav.less";
 
 // STYLE
 @import "style/common.less";
@@ -75,19 +67,6 @@ body {
         }
     }
 
-    >.navbar {
-        .navbar-inner {
-            .round(0);
-            li {
-                margin-right: 20px;
-                .transition(color 0.2s ease-in-out);
-                a {
-                    padding: 10px 20px;
-                }
-            }
-        }
-    }
-
     >div.container {
         >section {
             margin: 0 auto;
@@ -109,16 +88,6 @@ body {
                 width: 100%;
                 height: 100%;
             }
-        }
-
-        >footer {
-            margin: 40px 0 20px 0;
-            text-align: center;
-            font-family: 'Lucida Sans Unicode', 'Lucida Grande', Tahoma, sans-serif;
-            font-size: 12px;
-            line-height: 1.5em;
-            color: rgba(78, 68, 60, 0.6);
-            div { margin: 4px 0; }
         }
     }
 }

@@ -1,4 +1,4 @@
-@(title: String, subtitle: String = "", showhHead: Boolean = true, clazz: String = "", showHomeBtn: Boolean = true)(content: Html)
+@(title: String, subtitle: String = "", showhHead: Boolean = true, open: Boolean = false, clazz: String = "", showHomeBtn: Boolean = true)(content: Html)
 
 @homeBtn = {
     @if(showHomeBtn) {
@@ -6,7 +6,7 @@
     }
 }
 
-@layout.slidedeck(title, clazz = "light " + clazz, history = false) {
+@layout.slidedeck(title, clazz = "light " + clazz, open = open, history = false) {
     @if(showhHead) {
         @headslide() {
             @title
