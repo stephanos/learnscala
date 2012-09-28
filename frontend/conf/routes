@@ -9,7 +9,7 @@ GET     /schulungen/scala-training/warum-scala      controllers.Training.scalaWh
 GET     /schulungen/scala-training/oeffentlich/:id  controllers.Training.scalaTrainings(id)
 
 GET     /schulungen/akka-training                   controllers.Training.akkaIndex
-GET     /schulungen/akka-training/warum-akka        controllers.Training.akkaWhy
+#GET     /schulungen/akka-training/warum-akka        controllers.Training.akkaWhy
 
 GET     /editor                                     controllers.Editor.publicIndex
 GET     /editor/                                    controllers.Editor.publicIndexR

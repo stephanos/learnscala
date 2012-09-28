@@ -34,11 +34,6 @@ object Training extends MyController {
             Ok(views.html.training.scala.why())
     }
 
-    def akkaWhy = Action {
-        implicit req =>
-            Ok(views.html.training.akka.why())
-    }
-
     def scalaTrainings(place: String) = Action {
         implicit req =>
             Ok(getByName("views.html.events." + place))
