@@ -1,9 +1,12 @@
 @()
 
-@template("Warum Scala?", meta = "Gründe warum Sie auf Scala setzen sollten - nutzen Sie die Vorteile schnellstmöglich mit der Schulung '" + Training.scala + "'") {
+@template("Vorteile von Scala?", meta = "Gründe warum Sie auf Scala setzen sollten - nutzen Sie die Vorteile schnellstmöglich mit der Schulung '" + Training.scala + "'") {
 
     <div style="margin-left: 0;">
-        @sub.intro()
+        <p>
+            Mit Scala werden Programme deutlich kürzer, verständlicher, performanter und fehlerfreier
+            - die Schulung hilft Ihnen diese <strong>Vorteile schnellstmöglich zu nutzen</strong>.
+        </p>
     </div>
 
     <div class="row">
@@ -13,7 +16,7 @@
                 <div>
                     @sub.manager()
                     <p class="center">
-                        <a href="@routes.Training.scalaIndex">&gt; Scala Schulung &lt;</a>
+                        <a href="@routes.Training.scalaIndex">&gt; Kursbeschreibung &lt;</a>
                     </p>
                 </div>
             </div>
@@ -23,7 +26,7 @@
                 <h3>Entwickler</h3>
                 @sub.entwickler()
                 <p class="center">
-                    <a href="@routes.Training.scalaIndex">&gt; Scala Schulung &lt;</a>
+                    <a href="@routes.Training.scalaIndex">&gt; Kursbeschreibung &lt;</a>
                 </p>
             </div>
         </div>
