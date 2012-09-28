@@ -8,19 +8,21 @@
 @import "lib/mixins.less";
 @import "misc/vars.less";
 
-//@import "style/ribbon.less";
-
 body {
   >.navbar {
     .navbar-inner {
       .round(0);
-      li {
-        margin-right: 20px;
-        .transition(color 0.2s ease-in-out);
-        a {
-          .fsize(14px);
-          font-family: 'Helvetica Neue', Helvetica, sans-serif;
-          padding: 10px 20px;
+      >.container {
+        position: relative;
+
+        li {
+          margin-right: 20px;
+          .transition(color 0.2s ease-in-out);
+          a {
+            .fsize(14px);
+            font-family: 'Helvetica Neue', Helvetica, sans-serif;
+            padding: 10px 20px;
+          }
         }
       }
     }
@@ -38,5 +40,30 @@ body {
 
   &.open {
     border-top: 6px @c_emph solid;
+  }
+
+  #scala_ribbon {
+    @h: 87px;
+    width: 110px; height: @h;
+    position: absolute; right: 0;
+    margin-top: -10px;
+    padding: 10px 20px;
+
+    .no-underline();
+    text-indent: -9999px;
+
+    background-image: url(/assets/img/ribbon.png?v4);
+    background-repeat: no-repeat;
+    background-position: 0px -5px;
+    &:hover {
+      height: @h + 5;
+      background-position: 0 0;
+    }
+    -webkit-transition: 0.10s ease-in;
+  }
+
+  // hide slide border when nav is visible
+  .reveal .slides {
+    border: 0;
   }
 }
