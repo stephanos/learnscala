@@ -1,6 +1,49 @@
 @()
 
-@template("Beschreibung") {
+@template("Kursbeschreibung") {
 
-    &nbsp;
+    <div>
+        @sub.about()
+    </div>
+
+    <div class="row">
+        <h3 style="margin-left: 20px;">Inhalt</h3>
+
+        <div class="span4 contents">
+            @sub.inhalt1()
+        </div>
+        <div class="span4 contents">
+            @sub.inhalt2()
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span4">
+            <div>
+                <h3>Schulungsziele</h3>
+                @sub.ziel()
+            </div>
+        </div>
+        <div class="span4">
+            <div style="margin: 0 20px;">
+                <h3>Kursvoraussetzungen</h3>
+                @sub.voraussetzung()
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="span4">
+            <div>
+                <h3>Trainer</h3>
+                @training.comp.trainer()
+            </div>
+        </div>
+        <div class="span4">
+            <div style="margin: 0 20px;">
+                <h3>Seminaraufbau</h3>
+                @sub.aufbau()
+            </div>
+        </div>
+    </div>
 }

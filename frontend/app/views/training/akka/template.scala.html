@@ -1,6 +1,6 @@
 @(title: String, meta: String = "")(content: Html)
 
-@layout.kurs(title, baseTitle = "Schulung 'Einführung in Akka': ", heading =  """Professionelle Schulung "Einführung in Akka"""", meta) {
+@layout.kurs(title, baseTitle = "Schulung 'Parallele Programmierung mit Akka': ", heading =  """Schulung "Parallele Programmierung mit Akka"""", meta) {
 
     <div class="logo_link">
         <a class="akka" href="@routes.Training.akkaIndex">
@@ -8,21 +8,30 @@
         </a>
     </div>
 
-
     <div class="scala well">
         <nav id="kurs_navi">
-            <ul>
+            <ul style="margin-left: 20px;">
                 <li class="descr">
-                    <a href="@routes.Training.akkaIndex()">Kursbeschreibung</a>
+                    <a href="@routes.Training.akkaIndex">Kursbeschreibung</a>
                 </li>
-                <li class="why">
+                @*<li class="why">
                     <a href="@routes.Training.akkaWhy()">Warum Akka</a>
-                </li>
+                </li>*@
             </ul>
         </nav>
     </div>
 
-    @training.comp.firmenintern()
+    @training.comp.firmenintern("Akka")
+
+    <div class="well">
+        <h4>Weitere Kurse</h4>
+
+        <div style="text-align: center">
+            <a href="@routes.Training.scalaIndex">
+                <img width="150" src='@MyAssets.urlOf("/img/scala-logo.png", true)' alt="Scala Schulung"/>
+            </a>
+        </div>
+    </div>
 } {
     @content
 }

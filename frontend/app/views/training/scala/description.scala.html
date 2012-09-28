@@ -1,19 +1,19 @@
 @()
 
-@template("Beschreibung", meta = "Kusrbeschreibung zur offenen bzw. firmeninternen Schulung 'Einführung in Scala'") {
+@template("Kursbeschreibung", meta = "Kursbeschreibung zur offenen bzw. firmeninternen Schulung 'Einführung in Scala'") {
 
     <div>
-        @front.about()
+        @sub.about()
     </div>
 
     <div class="row">
         <h3 style="margin-left: 20px;">Inhalt</h3>
 
         <div class="span4 contents">
-            @front.inhalt1()
+            @sub.inhalt1()
         </div>
         <div class="span4 contents">
-            @front.inhalt2()
+            @sub.inhalt2()
         </div>
     </div>
 
@@ -21,13 +21,13 @@
         <div class="span4">
             <div>
                 <h3>Schulungsziele</h3>
-                @front.ziel()
+                @sub.ziel()
             </div>
         </div>
         <div class="span4">
             <div style="margin: 0 20px;">
                 <h3>Kursvoraussetzungen</h3>
-                @front.voraussetzung()
+                @sub.voraussetzung()
             </div>
         </div>
     </div>
@@ -36,13 +36,13 @@
         <div class="span4">
             <div>
                 <h3>Trainer</h3>
-                @front.trainer()
+                @training.comp.trainer()
             </div>
         </div>
         <div class="span4">
             <div style="margin: 0 20px;">
                 <h3>Seminaraufbau</h3>
-                @front.aufbau()
+                @sub.aufbau()
             </div>
         </div>
     </div>
