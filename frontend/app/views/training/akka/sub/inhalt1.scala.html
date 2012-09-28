@@ -5,25 +5,38 @@
             <li>Geschichtliche Entstehen</li>
             <li>Lizenz und Dokumentation</li>
             <li>Fallbeispiele aus der Praxis</li>
-            <li>Architekturübersicht: Pakete und Services</li>
+            <li>Übersicht: Pakete und Services</li>
             <li>Die Konfigurationsdatei</li>
         </ul>
     </li>
+
     <li>
         <h4>Aktorenmodell</h4>
         <ul>
             <li>Theoretische Einordnung</li>
             <li>Herkunft von Erlang</li>
-            <li></li>
+            <li>Vergleich zu herkömmlichen Methoden via Threads</li>
             <li>Grundprinzipien: @i("fire-and-forget"), @i("share-nothing"), @i("let-it-crash")</li>
             <li>Kommunikation auf Nachrichtenbasis</li>
-            <li></li>
         </ul>
     </li>
+
     <li>
-        <h4 class="top">Aktorensystem mit Akka</h4>
+        <h4>Aktorensystem mit Akka</h4>
         <ul>
+            <li>Instanziieren via @i("actorOf") und terminieren mit der @i("PoisonPill")</li>
+            <li>Nachrichten empfangen durch @i("receive")</li>
             <li>Aktoren verknüpfen mit dem Event Bus: @i("subscribe") und @i("publish")</li>
+            <li>Statische Schnittstellen mit typisierten Aktoren</li>
+        </ul>
+    </li>
+
+    <li>
+        <h4>Futures</h4>
+        <ul>
+            <li>Ergebnisse von nebenläufigen Prozessen einholen</li>
+            <li>funktionale Programmierung zur Komposition und Transformation</li>
+            <li>Ausnahmen via Timeouts</li>
         </ul>
     </li>
 </ul>
