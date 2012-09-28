@@ -6,6 +6,12 @@ import play.api.templates.Html
 
 object Training extends MyController {
 
+    val scala = "Einführung in Scala"
+    val scalaS = scala // "Schulung \"" + scala + "\""
+
+    val akka = "Hochperformante, ausfallsichere Systeme mit Akka"
+    val akkaS = akka // "Schulung \"" + akka + "\""
+
     def akkaIndex = Action {
         implicit req =>
             Ok(views.html.training.akka.description())
