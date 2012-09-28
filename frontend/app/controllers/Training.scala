@@ -6,7 +6,7 @@ import play.api.templates.Html
 
 object Training extends MyController {
 
-    val scala = "Einführung in Scala"
+    val scala = "Objekt-funktionale Programmierung mit Scala"
     val scalaS = scala // "Schulung \"" + scala + "\""
 
     val akka = "Hochperformante, ausfallsichere Systeme mit Akka"
