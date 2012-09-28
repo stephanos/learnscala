@@ -9,7 +9,7 @@ object Training extends MyController {
     val scala = "Objekt-funktionale Programmierung mit Scala"
     val scalaS = scala // "Schulung \"" + scala + "\""
 
-    val akka = "Hochperformante, ausfallsichere Systeme mit Akka"
+    val akka = "Skalierbare, ausfallsichere Systeme mit Akka"
     val akkaS = akka // "Schulung \"" + akka + "\""
 
     def akkaIndex = Action {
