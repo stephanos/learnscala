@@ -2329,7 +2329,8 @@ define('app/slide/overlay',["jquery", "lib/util/underscore"], function($, _, d3)
   return Overlay = (function() {
 
     function Overlay() {
-      var canvas, context, drawLine, finishDrawing, getPosition;
+      var PADDING, canvas, clear, context, drawLine, finishDrawing, getPosition;
+      PADDING = 5;
       canvas = document.getElementById("board");
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -2363,6 +2364,35 @@ define('app/slide/overlay',["jquery", "lib/util/underscore"], function($, _, d3)
           Y: y - canvas.offsetTop
         };
       };
+      clear = function() {
+        return context.clearRect(0, 0, canvas.width, canvas.height);
+      };
+      $(document).mousedown((function(evt) {
+        if (evt.which === 1) {
+          window.start_x = evt.pageX;
+          return window.start_y = evt.pageY;
+        } else {
+          return clear();
+        }
+      }));
+      $(document).mouseup(function(evt) {
+        if (window.start_x && window.start_y) {
+          window.end_x = evt.pageX;
+          window.end_y = evt.pageY;
+          if (window.start_x !== window.end_x && window.end_y !== window.start_y) {
+            clear();
+            context.fillStyle = 'rgba( 0, 0, 0, 0.5)';
+            context.fillRect(0, 0, canvas.width, canvas.height);
+            context.clearRect(window.start_x - window.scrollX - PADDING, window.start_y - window.scrollY - PADDING, (window.end_x - window.start_x) + (PADDING * 2), (window.end_y - window.start_y) + (PADDING * 2));
+            window.start_x = null;
+            return window.start_y = null;
+          } else {
+            return clear();
+          }
+        } else {
+          return clear();
+        }
+      });
       $("#board").mousedown(function(mouseEvent) {
         var position;
         position = getPosition(mouseEvent, canvas);
@@ -9728,6 +9758,7 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
         $(".fragment").removeClass("fragment");
         $(".slide-end").remove();
       }
+      new Overlay();
     }
 
     Slide.prototype.embedNavi = function() {

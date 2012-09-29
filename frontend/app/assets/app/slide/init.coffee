@@ -27,12 +27,13 @@ define [
 
         # slide
         @initCountdowns()
-        #new Overlay()
         @initTimer()
 
       else
         $(".fragment").removeClass("fragment")
         $(".slide-end").remove()
+
+      new Overlay()
 
 
     #######################################################################################################################

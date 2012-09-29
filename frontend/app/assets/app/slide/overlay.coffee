@@ -5,6 +5,8 @@ define [
   class Overlay
 
     constructor: () ->
+      PADDING = 5
+
       # setup canvas
       canvas = document.getElementById("board")
       canvas.width = window.innerWidth
@@ -36,6 +38,53 @@ define [
           y = mouseEvent.clientY + document.body.scrollTop + document.documentElement.scrollTop
 
         { X: x - canvas.offsetLeft, Y: y - canvas.offsetTop }
+
+      clear = ->
+        context.clearRect( 0, 0, canvas.width, canvas.height )
+
+      $(document).mousedown ((evt) ->
+        if evt.which == 1
+          window.start_x = evt.pageX
+          window.start_y = evt.pageY
+        else
+          clear()
+      )
+
+      #$(document).dbclick((evt) ->
+      #  target = $(evt.target)
+      #)
+
+      #$(document).bind("contextmenu", (evt) ->
+      #    evt.preventDefault()
+      #    return false
+      #)
+
+      $(document).mouseup((evt) ->
+        if window.start_x && window.start_y
+          window.end_x = evt.pageX
+          window.end_y = evt.pageY
+
+          if window.start_x != window.end_x && window.end_y != window.start_y
+            # reset to a solid overlay
+            clear()
+            context.fillStyle = 'rgba( 0, 0, 0, 0.5)'
+            context.fillRect( 0, 0, canvas.width, canvas.height )
+
+            # cut out selection
+            context.clearRect(
+              window.start_x - window.scrollX - PADDING,
+              window.start_y - window.scrollY - PADDING,
+              ( window.end_x - window.start_x ) + ( PADDING * 2 ),
+              ( window.end_y - window.start_y ) + ( PADDING * 2 )
+            )
+
+            window.start_x = null
+            window.start_y = null
+          else
+            clear()
+        else
+          clear()
+      )
 
       $("#board").mousedown((mouseEvent) ->
         position = getPosition(mouseEvent, canvas)
