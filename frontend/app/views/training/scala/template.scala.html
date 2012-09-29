@@ -1,4 +1,4 @@
-@(title: String, meta: String = "")(content: Html)
+@(title: String, meta: String = "")(content: Html)(implicit req: RequestHeader)
     
 @layout.kurs(title, baseTitle = Training.scalaS + ": ", heading = Training.scalaS, meta) {
 

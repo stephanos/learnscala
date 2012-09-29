@@ -1,9 +1,9 @@
-@(city: String, date: String, place: String, code: String)
+@(city: String, date: String, place: String, code: String)(implicit req: RequestHeader)
 
 <div class="event_register">
     <div class="inner">
         <div class="name">
-            <a href='@routes.Training.scalaTrainings(code)'>@city</a>
+            <a href='http://@req.host@routes.Training.scalaTrainings(code)'>@city</a>
         </div>
         <div class="date">
             @date

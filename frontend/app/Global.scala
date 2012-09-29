@@ -75,7 +75,7 @@ object Global
         EnvUtil.isCloud && p.startsWith("/app")
 
     override protected def isEncryptedWhenLoggedOut(p: String): Boolean =
-        true // encrypt everything
+        !p.contains("/oeffentlich/") // encrypt everything except iframe pages
 
     override protected def onInternalRoute(req: RequestHeader, action: Action[_]): Action[_] = {
         val path = req.path
