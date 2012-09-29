@@ -9,124 +9,301 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
-
-            @sidebyside((80,20)) {
-                @snippet() {
-                    @callblock(fragment = false) {
-                        |for (i <- 1 to 10) print(i + " ")
+        @defining("Syntax") { title =>
+            @slide(title = title) {
+                @sidebyside((40,60)) {
+                    @sourcecode() {
+                        |for (sequence) expression
                     }
-                    @outblock() {
-                        |1 2 3 4 5 6 7 8 9 10
-                    }
-                }
-            } {
-            }
 
-            @spacer()
+                    @spacer()
 
-            @sidebyside((80,20)) {
-                @snippet() {
-                    @callblock() {
-                        |for (i <- 1 to 10) yield i
-                    }
-                    @outblock() {
-                        |res0: IndexedSeq[Int] = Vector(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-                    }
-                }
-            } {
-            }
-
-            @spacer()
-
-            @sidebyside((80,20)) {
-                @snippet() {
-                    @callblock() {
-                        |for (i <- 1 to 10) yield i * 2
-                    }
-                    @outblock() {
-                        |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
-                    }
-                }
-            } {
-            }
-
-            @spacer()
-
-            @sidebyside((80,20)) {
-                @snippet() {
-                    @callblock() {
-                        |for (i <- 1 to 3; j <- 1 to i) yield i * j
-                    }
-                    @outblock() {
-                        |res0: IndexedSeq[Int] = Vector(1, 2, 4, 3, 6, 9)
-                    }
-                }
-            } {
-            }
-
-            @spacer()
-
-            @sidebyside((80,20)) {
-                @snippet() {
-                    @callblock() {
-                        |for (i <- 1 to 10; j <- 1 to 10) yield {
-                        |  i * j
+                    @sourcecode() {
+                        |for (seq_0; seq_1; .. ; seq_n) {
+                        |  expression
                         |}
                     }
-                    @outblock() {
-                        |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
-                    }
-                }
-            } {
-            }
-        }
 
-        <!-- ################################################################################## -->
+                    @spacer_half()
 
-        @slide() {
-
-            @sidebyside((80,20)) {
-                @snippet() {
-                    @callblock(fragment = false) {
-                        |for (i <- 1 to 10; double = i * 2) yield double
-                    }
-                    @outblock() {
-                        |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
-                    }
-                }
-            } {
-            }
-
-            @spacer2()
-
-            @sidebyside((80,20)) {
-                @snippet() {
-                    @callblock() {
-                        |for (i <- 1 to 10 if i % 2 == 0) yield i
-                    }
-                    @outblock() {
-                        |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10)
-                    }
-                }
-            } {
-            }
-
-            @spacer2()
-
-            @sidebyside((80,20)) {
-                @snippet() {
-                    @callblock() {
+                    @sourcecode() {
                         |for {
-                        |   i <- 1 to 10
-                        |   if i % 2 == 0
-                        |} yield i
+                        |  seq_0
+                        |  seq_1
+                        |  ..
+                        |  seq_n
+                        |} {
+                        |  expression
+                        |}
                     }
-                    @outblock() {
-                        |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10)
+
+                    @spacer()
+
+                    @sourcecode() {
+                        |for (sequence) {
+                        |  expr_0
+                        |  expr_1
+                        |  ..
+                        |  expr_n
+                        |}
+                    }
+                } {
+                    @codenote() {
+                        Jeder for-Ausdruck besteht aus 2 Bestandteilen:
+                        @spacer()
+                        <ol class="indent">
+                            <li class="fragment">
+                                Sequenz aus
+                                @spacer_half()
+                                <ul>
+                                    <li><em>Generatoren</em></li>
+                                    <li><em>Definitionen</em></li>
+                                    <li><em>Filtern</em></li>
+                                </ul>
+                            </li>
+                            @spacer_half()
+                            <li class="fragment">
+                                <em>Ausdruck</em>
+                            </li>
+                        </ul>
                     }
                 }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("Generator") { title =>
+
+            @headslide(title = title) {
+                @title
             } {
+                @sidebyside((60,40)) {
+                    @sourcecode() {
+                        |for (variable <- collection) {
+                        |  ...
+                        |}
+                    }
+                } {
+                    @codenote() {
+                        <code>variable</code> wird schrittweise jedes Element aus <code>collection</code> zugewiesen
+                    }
+                }
+
+                @spacer2()
+
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @sourceblock() {
+                            |for (i <- 1 to 10) {
+                            |  print(i + " ")
+                            |}
+                        }
+                        @outblock() {
+                            |1 2 3 4 5 6 7 8 9 10
+                        }
+                    }
+                } {
+                    @codenote() {
+                        Methode <code>to</code> erstellt Kollektion mit Zahlen von 1 bis 10
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @sourceblock() {
+                            |for (i <- "Hello") print(i + " ")
+                        }
+                        @outblock() {
+                            |H e l l o
+                        }
+                    }
+                } {
+                    @codenote() {
+                        String <code>Hello</code> ist eine Kollektion aus Zeichen
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @headslide(title = title) {
+                @title
+            } {
+                @sidebyside((60,40)) {
+                    @sourcecode() {
+                        |for (var1 <- collect1; var2 <- collect2) {
+                        |  ...
+                        |}
+                    }
+                } {
+                    @codenote() {
+
+                    }
+                }
+
+                @spacer2()
+
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @sourceblock() {
+                            |for (i <- 1 to 3; j <- 1 to 3)
+                            |  print (i, j)
+                        }
+                        @outblock() {
+                            |(1,1)(1,2)(1,3)(2,1)(2,2)(2,3)(3,1)(3,2)(3,3)
+                        }
+                    }
+                } {
+                    @codenote() {
+                        2. Generator entspricht einer inneren Schleife
+                    }
+                }
+
+                @spacer()
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("Definition") { title =>
+
+            @headslide(title = title) {
+                @title
+            } {
+                @sidebyside((61,39)) {
+                    @snippet() {
+                        @sourceblock() {
+                            |for (i <- 1 to 10; double = i * 2)
+                            |  print (double + " ")
+                        }
+                        @outblock() {
+                            |2 4 6 8 10 12 14 16 18 20
+                        }
+                    }
+                } {
+                    @codenote() {
+                        Mit Definitionen sind Wertzuweisungen, mit ihnen können neue Variablen definiert werden
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside((61,39)) {
+                    @snippet() {
+                        @sourceblock() {
+                            |for (i <- 1 to 2; double = i * 2; j <- i to double)
+                            |  print (j, double)
+                        }
+                        @outblock() {
+                            |(1,2)(2,2)(2,4)(3,4)(4,4)
+                        }
+                    }
+                } {
+                    @codenote() {
+                        Definitionen können in beiden Blöcken verwendet werden
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside((61,39)) {
+                    @snippet() {
+                        @sourceblock() {
+                            |for (i <- 1 to 10; prev = i - 1; next = i + 1)
+                            |  print (prev, next)
+                        }
+                        @outblock() {
+                            |(0,2)(1,3)(2,4)(3,5)(4,6)(5,7)(6,8)(7,9)(8,10)(9,11)
+                        }
+                    }
+                } {
+                    @codenote() {
+                        Definitionen können beliebig oft verwendet werden
+                    }
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("Filter") { title =>
+
+            @headslide(title = title) {
+                @title
+            } {
+
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @sourceblock() {
+                            |for (i <- 1 to 10; if i % 2 == 0)
+                            |  print (i + " ")
+                        }
+                        @outblock() {
+                            |2 4 6 8 10
+                        }
+                    }
+                } {
+                    @codenote() {
+                        Filter ist ein Ausdruck vom Typ <code>Boolean</code>
+                        und entfernt Elemente des Generators für die der Ausdruck unwahr ist
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @sourceblock() {
+                            |for {
+                            |  i <- 1 to 10
+                            |  if i % 2 == 0
+                            |  if i % 3 == 0
+                            |} print (i + " ")
+                        }
+                        @outblock() {
+                            |6
+                        }
+                    }
+                } {
+                    @codenote() {
+                        Mehrere Filter werden einfach sequentiell angewandt
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @sourceblock() {
+                            |for {
+                            |  i <- 1 to 10         // Generator
+                            |  sqrt = Math.sqrt(i)  // Definition
+                            |  if sqrt % 3 == 0     // Filter
+                            |} print (i + " ")
+                        }
+                        @outblock() {
+                            |9
+                        }
+                    }
+                } {
+                    @codenote() {
+                        Filter können Bezug auf Definitionen nehmen
+                    }
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("Yield") { title =>
+
+            @headslide(title = title) {
+                @title
+            } {
+
             }
         }
 
@@ -134,65 +311,18 @@
 
         @slide() {
 
-            @sidebyside((80,20)) {
-                @snippet() {
-                    @callblock(fragment = false) {
-                        |for (i <- 1 to 10; double = i * 2) yield double
-                    }
-                    @outblock() {
-                        |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)
-                    }
-                }
-            } {
-            }
-
-            @spacer2()
-
-            @sidebyside((80,20)) {
-                @snippet() {
-                    @callblock() {
-                        |for (i <- 1 to 10 if i % 2 == 0) yield i
-                    }
-                    @outblock() {
-                        |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10)
-                    }
-                }
-            } {
-            }
-
-            @spacer2()
-
-            @sidebyside((80,20)) {
-                @snippet() {
-                    @callblock() {
-                        |for {
-                        |   i <- 1 to 10
-                        |   if i % 2 == 0
-                        |} yield i
-                    }
-                    @outblock() {
-                        |res0: IndexedSeq[Int] = Vector(2, 4, 6, 8, 10)
-                    }
-                }
-            } {
-            }
-        }
-
-        <!-- ################################################################################## -->
-
-        @slide() {
-
-            @sourcecode(fragment = false, id = "is_prime") {
+            @sourcecode(id = "is_prime") {
                 |def isPrime(n: Int) = List.range(2, n) forall (x => n % x != 0)
             }
 
-            @spacer2()@spacer()
+            @spacer2()
 
             @sidebyside() {
                 @snippet() {
                     @callblock(reference = "is_prime") {
-                        |for { i <- List.range(1, 10)
-                        |      if isPrime(i)
+                        |for {
+                        |   i <- List.range(1, 10)
+                        |   if isPrime(i)
                         |} yield i
                     }
                     @outblock() {
@@ -212,14 +342,15 @@
                 }
             }
 
-            @spacer2()@spacer()
+            @spacer()
 
             @sidebyside() {
                 @snippet() {
                     @callblock(reference = "is_prime") {
-                        |for { i <- List.range(1, 5)
-                        |      j <- List.range(1, i)
-                        |      if isPrime(i+j)
+                        |for {
+                        |   i <- List.range(1, 5)
+                        |   j <- List.range(1, i)
+                        |   if isPrime(i+j)
                         |} yield (i, j)
                         |
                     }

@@ -172,8 +172,9 @@
     </section>
 
     <script type="text/javascript">
-        require(['app/progress'], function(Progress) {
+        require(['app/util/progress', 'app/util/overlay'], function(Progress, Overlay) {
             Progress.init();
+            new Overlay();
             $("#navi").addClass("subtle");
         });
     </script>

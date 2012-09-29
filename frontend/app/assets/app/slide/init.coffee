@@ -1,6 +1,6 @@
 define [
   "jquery", "lib/util/underscore", "lib/reveal", "app/editor/init",
-  "lib/util/moment", "app/slide/time", "app/slide/overlay", "app/slide/chart", "lib/chart/piechart"
+  "lib/util/moment", "app/util/time", "app/util/overlay", "app/util/chart", "lib/chart/piechart"
 ], ($, _, Reveal, Editor, moment, Timer, Overlay) ->
 
   class Slide

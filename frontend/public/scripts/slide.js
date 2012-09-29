@@ -1,6 +1,6 @@
 
 
-define('app/slide/log',[], function() {
+define('app/util/log',[], function() {
   var Log;
   Log = (function() {
 
@@ -360,6 +360,9 @@ var Reveal = (function(){
 	 * @param {Object} event
 	 */
 	function onDocumentKeyDown( event ) {
+        // HACK: modal visible? don't react!
+        if($("#ideModal").is(':visible')) return;
+
 		// FFT: Use document.querySelector( ':focus' ) === null 
 		// instead of checking contentEditable?
 
@@ -1171,7 +1174,7 @@ var Reveal = (function(){
 	};
 	
 })();
-define("lib/reveal", ["app/slide/log"], (function (global) {
+define("lib/reveal", ["app/util/log"], (function (global) {
     return function () {
         return global.Reveal;
     }
@@ -2289,7 +2292,7 @@ define("lib/util/moment", (function (global) {
 }(this)));
 
 
-define('app/slide/time',["lib/util/moment"], function(moment) {
+define('app/util/time',["lib/util/moment"], function(moment) {
   var Time;
   Time = (function() {
 
@@ -2321,97 +2324,6 @@ define('app/slide/time',["lib/util/moment"], function(moment) {
 
   })();
   return new Time;
-});
-
-
-define('app/slide/overlay',["jquery", "lib/util/underscore"], function($, _, d3) {
-  var Overlay;
-  return Overlay = (function() {
-
-    function Overlay() {
-      var PADDING, canvas, clear, context, drawLine, finishDrawing, getPosition;
-      PADDING = 5;
-      canvas = document.getElementById("board");
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      context = canvas.getContext("2d");
-      context.lineWidth = 4;
-      context.lineCap = "round";
-      context.strokeStyle = "red";
-      drawLine = function(mouseEvent, canvas, context) {
-        var position;
-        canvas.style.cursor = "pointer";
-        position = getPosition(mouseEvent, canvas);
-        context.lineTo(position.X, position.Y);
-        return context.stroke();
-      };
-      finishDrawing = function(mouseEvent, canvas, context) {
-        drawLine(mouseEvent, canvas, context);
-        context.closePath();
-        return $(canvas).unbind("mousemove").unbind("mouseup").unbind("mouseout");
-      };
-      getPosition = function(mouseEvent, canvas) {
-        var x, y;
-        if (mouseEvent.pageX && mouseEvent.pageY) {
-          x = mouseEvent.pageX;
-          y = mouseEvent.pageY;
-        } else {
-          x = mouseEvent.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-          y = mouseEvent.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-        }
-        return {
-          X: x - canvas.offsetLeft,
-          Y: y - canvas.offsetTop
-        };
-      };
-      clear = function() {
-        return context.clearRect(0, 0, canvas.width, canvas.height);
-      };
-      $(document).mousedown((function(evt) {
-        if (evt.which === 1) {
-          window.start_x = evt.pageX;
-          return window.start_y = evt.pageY;
-        } else {
-          return clear();
-        }
-      }));
-      $(document).mouseup(function(evt) {
-        if (window.start_x && window.start_y) {
-          window.end_x = evt.pageX;
-          window.end_y = evt.pageY;
-          if (window.start_x !== window.end_x && window.end_y !== window.start_y) {
-            clear();
-            context.fillStyle = 'rgba( 0, 0, 0, 0.5)';
-            context.fillRect(0, 0, canvas.width, canvas.height);
-            context.clearRect(window.start_x - window.scrollX - PADDING, window.start_y - window.scrollY - PADDING, (window.end_x - window.start_x) + (PADDING * 2), (window.end_y - window.start_y) + (PADDING * 2));
-            window.start_x = null;
-            return window.start_y = null;
-          } else {
-            return clear();
-          }
-        } else {
-          return clear();
-        }
-      });
-      $("#board").mousedown(function(mouseEvent) {
-        var position;
-        position = getPosition(mouseEvent, canvas);
-        console.log(position);
-        context.moveTo(position.X, position.Y);
-        context.beginPath();
-        return $(this).mousemove(function(mouseEvent) {
-          return drawLine(mouseEvent, canvas, context);
-        }).mouseup(function(mouseEvent) {
-          return finishDrawing(mouseEvent, canvas, context);
-        }).mouseout(function(mouseEvent) {
-          return finishDrawing(mouseEvent, canvas, context);
-        });
-      });
-    }
-
-    return Overlay;
-
-  })();
 });
 
 (function() {
@@ -9455,7 +9367,7 @@ define("lib/chart/d3", (function (global) {
 }(this)));
 
 
-define('app/slide/chart',["jquery", "lib/util/underscore", "lib/chart/d3"], function($, _, d3) {
+define('app/util/chart',["jquery", "lib/util/underscore", "lib/chart/d3"], function($, _, d3) {
   var Chart;
   return Chart = (function() {
 
@@ -9735,7 +9647,7 @@ Thanks to Philip Thrasher for the jquery plugin boilerplate for coffee script
 define("lib/chart/piechart",[], function(){});
 
 
-define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/editor/init", "lib/util/moment", "app/slide/time", "app/slide/overlay", "app/slide/chart", "lib/chart/piechart"], function($, _, Reveal, Editor, moment, Timer, Overlay) {
+define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/editor/init", "lib/util/moment", "app/util/time", "app/util/overlay", "app/util/chart", "lib/chart/piechart"], function($, _, Reveal, Editor, moment, Timer, Overlay) {
   var Slide;
   return Slide = (function() {
 

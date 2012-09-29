@@ -8,9 +8,11 @@ define [
       PADDING = 5
 
       # setup canvas
-      canvas = document.getElementById("board")
+      canvas = document.createElement('canvas')
+      canvas.id = "overlay"
       canvas.width = window.innerWidth
       canvas.height = window.innerHeight
+      document.body.appendChild(canvas)
 
       # setup context
       context = canvas.getContext("2d")
@@ -86,7 +88,8 @@ define [
           clear()
       )
 
-      $("#board").mousedown((mouseEvent) ->
+      ###
+      $("#overlay").mousedown((mouseEvent) ->
         position = getPosition(mouseEvent, canvas)
         console.log(position)
         context.moveTo(position.X, position.Y)
@@ -101,3 +104,4 @@ define [
           finishDrawing(mouseEvent, canvas, context)
         )
       )
+      ###

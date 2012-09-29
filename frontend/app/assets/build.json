@@ -9,8 +9,6 @@
         "lib/chart/d3":{
           "exports":"d3"
         },
-        "lib/util/fokus":{
-        },
         "lib/util/underscore.str":{
             "exports":"_.str"
         },
@@ -18,7 +16,7 @@
             "exports":"Modernizr"
         },
         "lib/reveal":{
-            "deps":["app/slide/log"],
+            "deps":["app/util/log"],
             "exports":"Reveal"
         },
         "lib/editor/codemirror":{
@@ -61,7 +59,8 @@
                 "lib/util/underscore",
                 "lib/util/underscore.str",
                 "lib/dom/bootstrap",
-                "app/progress"
+                "app/util/overlay",
+                "app/util/progress"
             ],
             "exclude":["base"]
         },
