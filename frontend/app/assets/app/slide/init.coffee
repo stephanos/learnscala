@@ -33,7 +33,8 @@ define [
         $(".fragment").removeClass("fragment")
         $(".slide-end").remove()
 
-      new Overlay()
+      if(!$("body").hasClass("public"))
+        new Overlay()
 
 
     #######################################################################################################################

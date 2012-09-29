@@ -9758,7 +9758,9 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
         $(".fragment").removeClass("fragment");
         $(".slide-end").remove();
       }
-      new Overlay();
+      if (!$("body").hasClass("public")) {
+        new Overlay();
+      }
     }
 
     Slide.prototype.embedNavi = function() {
