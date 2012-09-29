@@ -1,20 +1,22 @@
 @(city: String, date: String, place: String, code: String)(implicit req: RequestHeader)
 
-<div class="event_register">
-    <div class="inner">
-        <div class="name">
-            <a href='http://@req.host@routes.Training.scalaTrainings(code)'>@city</a>
-        </div>
-        <div class="date">
-            @date
-        </div>
-        @*<div class="location">
-            @place
-        </div>*@
-        <div class="button">
-            <a class="btn btn-success" href='@routes.Training.scalaTrainings(code)' title="Jetzt registrieren!">
-                Infos
-            </a>
+@defining("http://" + req.host + routes.Training.scalaTrainings(code)) { url =>
+    <div class="event_register">
+        <div class="inner">
+            <div class="name">
+                <a href='@url'>@city</a>
+            </div>
+            <div class="date">
+                @date
+            </div>
+            @*<div class="location">
+                @place
+            </div>*@
+            <div class="button">
+                <a class="btn btn-success" href='@url' title="Jetzt registrieren!">
+                    Infos
+                </a>
+            </div>
         </div>
     </div>
-</div>
+}
