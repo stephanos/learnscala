@@ -23,6 +23,10 @@
 
     // color
     .bg(@c_code_bg);
+    .CodeMirror-focused .CodeMirror-lines pre.activeLine {
+      .bg(darken(@c_code_bg, 5%)); // highlight line on focus
+    }
+
     .border(@c_code_border);
     box-sizing: border-box;
 }

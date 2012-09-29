@@ -5079,9 +5079,14 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
         lineNumberFormatter: function(n) {
           return ">";
         },
+        onCursorActivity: function() {
+          editor.setLineClass(window.hlLine, null, null);
+          return window.hlLine = editor.setLineClass(editor.getCursor().line, null, "activeLine");
+        },
         matchBrackets: true,
         autoClearEmptyLines: true
       });
+      window.hlLine = editor.setLineClass(0, "activeLine");
       return editor;
     };
 

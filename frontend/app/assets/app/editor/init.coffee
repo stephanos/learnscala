@@ -177,9 +177,13 @@ define [
           indentUnit: 3,
           lineNumbers: typeOf == "call",
           lineNumberFormatter: (n) -> ">"
+          onCursorActivity: () ->
+            editor.setLineClass(window.hlLine, null, null)
+            window.hlLine = editor.setLineClass(editor.getCursor().line, null, "activeLine")
           matchBrackets: true,
           autoClearEmptyLines: true
         })
+      window.hlLine = editor.setLineClass(0, "activeLine")
   
       editor
   
