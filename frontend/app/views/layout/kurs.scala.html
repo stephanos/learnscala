@@ -1,6 +1,6 @@
 @(title: String, baseTitle: String, heading: String, meta: String = "")(sidebar: Html)(content: Html)
 
-@layout.public(title = baseTitle + title, meta = meta, classes = "training") {
+@layout.public(title = "Schulung | " + baseTitle + title, meta = meta, classes = "training") {
 
     @*<a href='@routes.Training.trainings("berlin")'>
         <img src="http://www.eventbrite.de/custombutton?eid=3910432208" alt="Scala-Schulung in Berlin"/>
