@@ -83,7 +83,8 @@ define [
         $(elem).parent().removeClass("success error").addClass(status)
 
       if(!noText)
-        code = $("<div/>", {'class': "wrapper cm-s-ambiance " + type + (if(frag) then " fragment"), "data-num": num}).appendTo($(elem))
+        type += " cm-s-ambiance"
+        code = $("<div/>", {'class': "wrapper " + type + (if(frag) then " fragment"), "data-num": num}).appendTo($(elem))
         CodeMirror.runMode(text, "text/x-" + (lang ? "scala"), code[0], { "class": type, "num": num })
         #btn = $("<div class='btn-group'><button class='btn btn-icon btn-fullscreen'></button></div>").appendTo($(code))
 
@@ -145,7 +146,7 @@ define [
         <div class="btn-group btn-group-left">
           <button class="btn btn-icon btn-changeview hide"></button>
         </div>
-        <div class="btn-group">
+        <div class="btn-group btn-group-right">
           <button class="btn btn-icon btn-success" id="btn-decompile-scala">6</button>
           <button class="btn btn-icon btn-success" id="btn-decompile-java">7</button>
         </div>').appendTo($(srcEditorDom))

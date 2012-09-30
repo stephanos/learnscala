@@ -347,7 +347,7 @@
 
             @slide(title = title) {
                 @sourcecode(id = "people") {
-                    |val ppl = List("Anna" -> "Adams", "Adam" -> "Adams", "Barb" -> "Brown", "Bob" -> "Brown")
+                    |val ppl = List("Anna" -> "Adams", "Adam" -> "Adams", "Barb" -> "Brown", "Bill" -> "Brown")
                 }
 
                 @spacer()
@@ -364,7 +364,7 @@
 
                 @sidebyside((50,50)) {
                     @snippet() {
-                        @callblock(reference = "people", hl = "last") {
+                        @callblock(reference = "people") {
                             |for {
                             |  p <- ppl                   // Generator
                             |  firstname = p._1           // Definition
@@ -372,7 +372,7 @@
                             |} print(firstname + " ")
                         }
                         @outblock() {
-                            |Barb Bob
+                            |Barb Bill
                         }
                     }
                     @codesub() {
@@ -388,7 +388,7 @@
                             |} foreach {p => print(p._1 + " ")}
                         }
                         @outblock() {
-                            |Barb Bob
+                            |Barb Bill
                         }
                     }
                     @codesub() {
@@ -408,7 +408,7 @@
                             |} yield firstname
                         }
                         @outblock() {
-                            |res0: List[String] = List(Barb, Bob)
+                            |res0: List[String] = List(Barb, Bill)
                         }
                     }
                     @codesub() {
@@ -424,7 +424,7 @@
                             |} map (_._1)
                         }
                         @outblock() {
-                            |res0: List[String] = List(Barb, Bob)
+                            |res0: List[String] = List(Barb, Bill)
                         }
                     }
                     @codesub() {
@@ -437,7 +437,7 @@
 
             @slide(title = title) {
                 @sourcecode() {
-                    |val ppl = List("Anna" -> "Adams", "Adam" -> "Adams", "Barb" -> "Brown", "Bob" -> "Brown")
+                    |val ppl = List("Anna" -> "Adams", "Adam" -> "Adams", "Barb" -> "Brown", "Bill" -> "Brown")
                 }
 
                 @spacer()
@@ -456,14 +456,16 @@
                     @snippet() {
                         @callblock(reference = "people") {
                             |for {
-                            |  p1 <- ppl              // Generator #1
-                            |  p2 <- ppl              // Generator #2
-                            |  if p1._2 == p2._2      // Filter
-                            |} println(firstname)
+                            |  p1 <- ppl                 // Gener. #1
+                            |  p2 <- ppl filter(_ != p1) // Gener. #2
+                            |  if p1._2 == p2._2         // Filter
+                            |} yield (p1, p2)
                         }
                         @outblock() {
-                            |Barb
-                            |Bob
+                            |List(((Anna,Adams),(Adam,Adams))
+                            |     ((Adam,Adams),(Anna,Adams))
+                            |     ((Barb,Brown),(Bill,Brown))
+                            |     ((Bill,Adams),(Barb,Brown)))
                         }
                     }
                     @codesub() {
@@ -472,15 +474,21 @@
                 } {
                     @snippet() {
                         @callblock(reference = "people") {
-                            |ppl.filter { p =>
-                            |  val firstname = p._1
-                            |  firstname.startsWith("B")
-                            |} foreach (p =>
-                            |  println(p._1)
+                            |ppl.flatMap { p1 =>
+                            |  ppl.filter {
+                            |    p2 => p1 != p2
+                            |  } filter {
+                            |    p2 => p1._2 == p2._2
+                            |  } map {
+                            |    p2 => (p1, p2)
+                            |  }
+                            |}
                         }
                         @outblock() {
-                            |Barb
-                            |Bob
+                            |List(((Anna,Adams),(Adam,Adams))
+                            |     ((Adam,Adams),(Anna,Adams))
+                            |     ((Barb,Brown),(Bill,Brown))
+                            |     ((Bill,Adams),(Barb,Brown)))
                         }
                     }
                     @codesub() {

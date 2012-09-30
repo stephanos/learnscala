@@ -111,13 +111,9 @@
     .CodeMirror-nonmatchingbracket {
         color: #f22;
     }
-
-    .CodeMirror-selected {
-        //.bg(@c_select);
-        background: rgba(255, 255, 255, 0.15);
-    }
 }
 
 .CodeMirror-focused .cm-s-ambiance .CodeMirror-selected {
-    background: rgba(255, 255, 255, 0.10);
+  .bg(@c_select);
+  .selection-bg(@c_select);
 }

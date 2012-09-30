@@ -7,6 +7,9 @@
     pre {
       .selectable();
     }
+    &:hover {
+      .btn-group { .opacity(100); }
+    }
 }
 
 .CodeMirror-scroll {
@@ -32,12 +35,6 @@
 
     .border(@c_code_border);
     box-sizing: border-box;
-}
-
-.CodeMirror, .snippet div.wrapper, .output-wrap {
-    pre:hover {
-        .btn-group { .opacity(100); }
-    }
 }
 
 .CodeMirror, .ide {
@@ -151,28 +148,34 @@ table.codesplit {
       // button
       .btn-group {
         &.btn-group-right {
-          right: 4px; bottom: 4px;
+          right: 4px; bottom: 0px;
         }
 
         &.btn-group-left {
-          left: -8px; bottom: 6px;
+          left: 0; bottom: 0;
           .btn {
             //display: none;
           }
 
           .btn.mark  {
-            .square(15px);
-            .round(10px);
+            .dim(6px, 30px);
+            .round(0);
+            padding: 0;
           }
         }
       }
 
       >pre.codeline {
+        overflow: hidden;
         position: relative;
         padding: 2px 10px;
 
+        &:hover {
+          .btn-group { .opacity(100); }
+        }
+
         &.highlight {
-          .bg(fade(@btnDangerBackground, 10%));
+          .bg(@c_select);
 
           .btn-group-left {
             display: block;

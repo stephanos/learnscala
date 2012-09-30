@@ -4965,8 +4965,9 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
         $(elem).parent().removeClass("success error").addClass(status);
       }
       if (!noText) {
+        type += " cm-s-ambiance";
         code = $("<div/>", {
-          'class': "wrapper cm-s-ambiance " + type + (frag ? " fragment" : void 0),
+          'class': "wrapper " + type + (frag ? " fragment" : void 0),
           "data-num": num
         }).appendTo($(elem));
         CodeMirror.runMode(text, "text/x-" + (lang != null ? lang : "scala"), code[0], {
@@ -5047,7 +5048,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
         <div class="btn-group btn-group-left">\
           <button class="btn btn-icon btn-changeview hide"></button>\
         </div>\
-        <div class="btn-group">\
+        <div class="btn-group btn-group-right">\
           <button class="btn btn-icon btn-success" id="btn-decompile-scala">6</button>\
           <button class="btn btn-icon btn-success" id="btn-decompile-java">7</button>\
         </div>').appendTo($(srcEditorDom));
