@@ -44,13 +44,13 @@ define [
       clear = ->
         context.clearRect( 0, 0, canvas.width, canvas.height )
 
-      $(document).mousedown ((evt) ->
-        if evt.which == 1
-          window.start_x = evt.pageX
-          window.start_y = evt.pageY
-        else
-          clear()
-      )
+      $(document).mousedown (evt) ->
+        if !$("#ideModal").is(':visible')
+          if evt.which == 1 && (evt.shiftKey || evt.ctrlKey || evt.altKey || evt.metaKey)
+            window.start_x = evt.pageX
+            window.start_y = evt.pageY
+          else
+            clear()
 
       #$(document).dbclick((evt) ->
       #  target = $(evt.target)
@@ -82,10 +82,6 @@ define [
 
             window.start_x = null
             window.start_y = null
-          else
-            clear()
-        else
-          clear()
       )
 
       ###

@@ -2537,14 +2537,16 @@ define('app/util/overlay',["jquery", "lib/util/underscore"], function($, _, d3) 
       clear = function() {
         return context.clearRect(0, 0, canvas.width, canvas.height);
       };
-      $(document).mousedown((function(evt) {
-        if (evt.which === 1) {
-          window.start_x = evt.pageX;
-          return window.start_y = evt.pageY;
-        } else {
-          return clear();
+      $(document).mousedown(function(evt) {
+        if (!$("#ideModal").is(':visible')) {
+          if (evt.which === 1 && (evt.shiftKey || evt.ctrlKey || evt.altKey || evt.metaKey)) {
+            window.start_x = evt.pageX;
+            return window.start_y = evt.pageY;
+          } else {
+            return clear();
+          }
         }
-      }));
+      });
       $(document).mouseup(function(evt) {
         if (window.start_x && window.start_y) {
           window.end_x = evt.pageX;
@@ -2556,11 +2558,7 @@ define('app/util/overlay',["jquery", "lib/util/underscore"], function($, _, d3) 
             context.clearRect(window.start_x - window.scrollX - PADDING, window.start_y - window.scrollY - PADDING, (window.end_x - window.start_x) + (PADDING * 2), (window.end_y - window.start_y) + (PADDING * 2));
             window.start_x = null;
             return window.start_y = null;
-          } else {
-            return clear();
           }
-        } else {
-          return clear();
         }
       });
       /*

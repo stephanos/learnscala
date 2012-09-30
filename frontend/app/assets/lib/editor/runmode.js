@@ -6,11 +6,11 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
   var tabSize = (options && options.tabSize) || CodeMirror.defaults.tabSize;
   if (isNode) {
     var node = callback, tmp = [], accum = [], col = 0;
-    wrap = function(arr) {
-        return "<pre class='codeline " + options.class +
+    var wrap = function(arr, clazz) {
+        return "<pre class='codeline " + options.class + " " + (clazz || "") +
                     "' data-num='" + options.num +
                     "' data-row='" + (row++) +
-                    "' >" +arr.join("") + "</pre>"
+                    "' >" + arr.join("") + "</pre>"
     };
     callback = function(text, style) {
       if (text == "\n") {
@@ -55,6 +55,6 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
   }
   if (isNode)
     if(tmp.length > 0)
-      accum.push (wrap(tmp));
+      accum.push (wrap(tmp, "last"));
     node.innerHTML = accum.join("");
 };

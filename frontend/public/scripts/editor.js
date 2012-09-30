@@ -4833,11 +4833,11 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
   var tabSize = (options && options.tabSize) || CodeMirror.defaults.tabSize;
   if (isNode) {
     var node = callback, tmp = [], accum = [], col = 0;
-    wrap = function(arr) {
-        return "<pre class='codeline " + options.class +
+    var wrap = function(arr, clazz) {
+        return "<pre class='codeline " + options.class + " " + (clazz || "") +
                     "' data-num='" + options.num +
                     "' data-row='" + (row++) +
-                    "' >" +arr.join("") + "</pre>"
+                    "' >" + arr.join("") + "</pre>"
     };
     callback = function(text, style) {
       if (text == "\n") {
@@ -4882,7 +4882,7 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
   }
   if (isNode)
     if(tmp.length > 0)
-      accum.push (wrap(tmp));
+      accum.push (wrap(tmp, "last"));
     node.innerHTML = accum.join("");
 };
 define("lib/editor/runmode", ["lib/editor/codemirror"], (function (global) {
@@ -4899,17 +4899,37 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
     function Editor() {}
 
     Editor.prototype.initSnippet = function(elem) {
-      var code, self;
+      var code, resetHighlights, self;
       self = this;
       code = $('<div class="code">').appendTo($(elem));
       _.forEach(self.readRawCode(elem), function(b) {
         return self.createCodeBlock(b, code);
       });
+      resetHighlights = function(evt) {
+        if (!evt || evt.shiftKey || evt.ctrlKey || evt.altKey || evt.metaKey) {
+          return $(elem).find("pre").removeClass("highlight");
+        }
+      };
       return $(elem).find("pre").each(function(idx, pre) {
-        var btn;
+        var loadBtn, markBtn;
         if (!$(pre).hasClass("output")) {
-          btn = $("<div class='btn-group'><button class='btn btn-icon btn-mini'>6</button></div>").appendTo($(pre));
-          return $(btn).bind("click", function(evt) {
+          markBtn = $("<div class='btn-group btn-group-left'><button class='btn btn-icon btn-mini mark'>&nbsp;</button></div>").prependTo($(pre));
+          $(markBtn).click(function(evt) {
+            resetHighlights(evt);
+            pre = $(evt.target).closest("pre");
+            return $(pre).toggleClass("highlight");
+          });
+          $(pre).click(function(evt) {
+            if (evt.shiftKey || evt.ctrlKey || evt.altKey || evt.metaKey) {
+              return markBtn.trigger("click");
+            }
+          });
+          $(pre).dblclick(function(evt) {
+            resetHighlights(evt);
+            return markBtn.trigger("click");
+          });
+          loadBtn = $("<div class='btn-group btn-group-right'><button class='btn btn-icon btn-mini load'>6</button></div>").appendTo($(pre));
+          return $(loadBtn).click(function(evt) {
             var blocks;
             pre = $(evt.target).closest("pre");
             blocks = self.readRawCode($(pre), true);
@@ -4920,7 +4940,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
     };
 
     Editor.prototype.createCodeBlock = function(block, elem, status, clear, spin) {
-      var code, frag, lang, noText, num, opts, self, text, type;
+      var code, frag, hl, hlight, hlights, lang, noText, num, opts, self, text, type, _fn, _i, _len, _ref;
       self = this;
       if (_.isString(block)) {
         num = "";
@@ -4928,12 +4948,14 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
         lang = null;
         text = block;
         frag = true;
+        hlight = null;
       } else {
         num = block["num"];
         lang = block["lang"];
         type = block["type"];
         text = block["text"];
         frag = block["frag"];
+        hlights = block["hlight"];
       }
       noText = _.str.isBlank(text);
       if (clear === true || noText) {
@@ -4951,6 +4973,27 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
           "class": type,
           "num": num
         });
+      }
+      if (hlights) {
+        _ref = hlights.split(" ");
+        _fn = function(hl) {
+          var lines, lines_c;
+          lines = $(code).find(".codeline");
+          lines_c = lines.length;
+          if (hl === "first" || hl === "start") {
+            hl = 1;
+          }
+          if (hl === "last" || hl === "end") {
+            hl = lines_c;
+          }
+          if (_.isNumber(hl) && hl >= 1 && hl <= lines_c) {
+            return $(lines.get(hl - 1)).addClass("highlight");
+          }
+        };
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          hl = _ref[_i];
+          _fn(hl);
+        }
       }
       if (status === "wait") {
         opts = {
@@ -5176,12 +5219,13 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
     };
 
     Editor.prototype.readRawBlock = function(elem, editable) {
-      var content, incl, isFragment, lang, lines, ref, self, subs, type;
+      var content, hlight, incl, isFragment, lang, lines, ref, self, subs, type;
       self = this;
       subs = [];
       content = "";
       type = _.str.trim($(elem).data("type"));
       isFragment = $(elem).data("fragment") === true;
+      hlight = $(elem).data("hlight");
       incl = this.readRawCode($("#" + $(elem).data("include")));
       if (!_.isEmpty(incl)) {
         subs.push(incl);
@@ -5208,6 +5252,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
         type: type,
         text: content,
         frag: isFragment,
+        hlight: hlight,
         subs: _.flatten(subs)
       };
     };

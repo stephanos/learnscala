@@ -15,22 +15,47 @@ define [
         (b) ->
           self.createCodeBlock(b, code)
       )
-  
-      # add "load"-buttons
+
+      resetHighlights = (evt) ->
+        if(!evt || evt.shiftKey || evt.ctrlKey || evt.altKey || evt.metaKey)
+          $(elem).find("pre").removeClass("highlight")
+
       $(elem).find("pre").each(
         (idx, pre) ->
           if(!$(pre).hasClass("output"))
-            btn = $("<div class='btn-group'><button class='btn btn-icon btn-mini'>6</button></div>").appendTo($(pre))
-            $(btn).bind("click",
-              (evt) ->
-                # find block (pre)
-                pre = $(evt.target).closest("pre")
-                # read snippet content
-                blocks = self.readRawCode($(pre), true)
-                # trigger modal
-                self.initModalEditor(blocks)
-            )
+
+            # add "mark"-buttons
+            markBtn = $("<div class='btn-group btn-group-left'><button class='btn btn-icon btn-mini mark'>&nbsp;</button></div>").prependTo($(pre))
+            $(markBtn).click (evt) ->
+              resetHighlights(evt)
+              # find block (pre)
+              pre = $(evt.target).closest("pre")
+              # toggle class
+              $(pre).toggleClass("highlight")
+
+            $(pre).click (evt) ->
+              if(evt.shiftKey || evt.ctrlKey || evt.altKey || evt.metaKey)
+                markBtn.trigger("click")
+
+            $(pre).dblclick (evt) ->
+              resetHighlights(evt)
+              markBtn.trigger("click")
+
+            # add "load"-buttons
+            loadBtn = $("<div class='btn-group btn-group-right'><button class='btn btn-icon btn-mini load'>6</button></div>").appendTo($(pre))
+            $(loadBtn).click (evt) ->
+              # find block (pre)
+              pre = $(evt.target).closest("pre")
+              # read snippet content
+              blocks = self.readRawCode($(pre), true)
+              # trigger modal
+              self.initModalEditor(blocks)
       )
+
+      #$(elem).mousedown((b) ->
+      #    if(b.which==2)
+      #      alert("MIDDLE")
+      #)
   
     createCodeBlock: (block, elem, status, clear, spin) ->
       self = @
@@ -65,9 +90,12 @@ define [
       if(hlights)
         for hl in hlights.split(" ")
           do (hl) ->
-            if(hl == "first" || hl == "start") then hl = 0
-            if(hl == "last" || hl == "end") then hl = $(code).find(".codeline").length
-            console.log(hl)
+            lines = $(code).find(".codeline")
+            lines_c = lines.length
+            if(hl == "first" || hl == "start") then hl = 1
+            if(hl == "last" || hl == "end") then hl = lines_c
+            if(_.isNumber(hl) && hl >= 1 && hl <= lines_c)
+              $(lines.get(hl - 1)).addClass("highlight")
   
       if(status == "wait")
         opts = {
