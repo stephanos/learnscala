@@ -322,7 +322,7 @@ define [
           start = moment(ms_start)
           total = end.diff(start, 'minutes')
           if !isNaN(total)
-            togo = Math.max(0, end.diff(now, 'minutes'))
+            togo = end.diff(now, 'minutes')
             elapsed = now.diff(start, 'minutes')
             #console.log(elapsed + "m of " + total + "m elapsed, " + togo + "m to go")
             percent = Math.min(100, Math.max(1, 100 * elapsed / total))

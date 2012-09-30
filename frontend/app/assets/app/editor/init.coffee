@@ -39,11 +39,13 @@ define [
         type = ""
         lang = null
         text = block
+        frag = true
       else
         num = block["num"]
         lang = block["lang"]
         type = block["type"]
         text = block["text"]
+        frag = block["frag"]
   
       noText = _.str.isBlank(text)
   
@@ -54,8 +56,8 @@ define [
         $(elem).parent().removeClass("success error").addClass(status)
 
       if(!noText)
-        code = $("<pre/>", {'class': "cm-s-ambiance " + type, "data-num": num}).appendTo($(elem))
-        CodeMirror.runMode(text, "text/x-" + (lang ? "scala"), code[0])
+        code = $("<div/>", {'class': "wrapper cm-s-ambiance " + type + (if(frag) then " fragment"), "data-num": num}).appendTo($(elem))
+        CodeMirror.runMode(text, "text/x-" + (lang ? "scala"), code[0], { "class": type, "num": num })
         #btn = $("<div class='btn-group'><button class='btn btn-icon btn-fullscreen'></button></div>").appendTo($(code))
   
       if(status == "wait")
@@ -144,8 +146,8 @@ define [
     initEditor: (elem, blocks, typeOf) ->
   
       # content
-      console.log(typeOf)
-      console.log(blocks)
+      #console.log(typeOf)
+      #console.log(blocks)
       getBlocks = (bs) ->
         res = []
         _.forEach(bs,
@@ -156,7 +158,7 @@ define [
         )
         _.flatten(res)
       blocks = getBlocks(blocks)
-      console.log(blocks)
+      #console.log(blocks)
   
       content =
         _.str.strip(_.reduce(blocks ? readRawCode(elem),
@@ -266,6 +268,7 @@ define [
       subs = []
       content = ""
       type = _.str.trim($(elem).data("type"))
+      isFragment = $(elem).data("fragment") == true
   
       # read snippet's include content
       incl = @readRawCode($("#" + $(elem).data("include")))
@@ -287,8 +290,8 @@ define [
           # append newline
           if(i != 0) then content += "\n"
           # mark call scripts with a '> '
-          console.log(l)
-          console.log(!_.str.isBlank(_.str.trim(l)))
+          #console.log(l)
+          #console.log(!_.str.isBlank(_.str.trim(l)))
           #if(_.str.contains(type, "call") && editable != true && !_.str.isBlank(_.str.trim(linedata))) then content += "> "
           # append content right from '|'
           content += linedata
@@ -299,6 +302,7 @@ define [
         lang: lang
         type: type
         text: content
+        frag: isFragment
         subs: _.flatten(subs)
       }
   

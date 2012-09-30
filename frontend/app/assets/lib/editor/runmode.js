@@ -1,12 +1,21 @@
+// HACK: wrap every line in <pre>
 CodeMirror.runMode = function(string, modespec, callback, options) {
+  var row = 1;
   var mode = CodeMirror.getMode(CodeMirror.defaults, modespec);
   var isNode = callback.nodeType == 1;
   var tabSize = (options && options.tabSize) || CodeMirror.defaults.tabSize;
   if (isNode) {
-    var node = callback, accum = [], col = 0;
+    var node = callback, tmp = [], accum = [], col = 0;
+    wrap = function(arr) {
+        return "<pre class='codeline " + options.class +
+                    "' data-num='" + options.num +
+                    "' data-row='" + (row++) +
+                    "' >" +arr.join("") + "</pre>"
+    };
     callback = function(text, style) {
       if (text == "\n") {
-        accum.push("<br>");
+        accum.push (wrap(tmp));
+        tmp = [];
         col = 0;
         return;
       }
@@ -29,9 +38,9 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
       }
 
       if (style)
-        accum.push("<span class=\"cm-" + CodeMirror.htmlEscape(style) + "\">" + escaped + "</span>");
+        tmp.push("<span class=\"cm-" + CodeMirror.htmlEscape(style) + "\">" + escaped + "</span>");
       else
-        accum.push(escaped);
+        tmp.push(escaped);
     }
   }
   var lines = CodeMirror.splitLines(string), state = CodeMirror.startState(mode);
@@ -45,5 +54,7 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
     }
   }
   if (isNode)
+    if(tmp.length > 0)
+      accum.push (wrap(tmp));
     node.innerHTML = accum.join("");
 };

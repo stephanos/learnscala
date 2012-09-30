@@ -2299,9 +2299,10 @@ define('app/util/time',["lib/util/moment"], function(moment) {
     function Time() {}
 
     Time.prototype.setTime = function(key, s) {
-      if (s <= 0) {
-        localStorage[key + ".start"] = void 0;
-        return localStorage[key + ".end"] = void 0;
+      console.log("[TIMER] set '" + key + "' to " + s + " seconds");
+      if (s <= -1000000) {
+        localStorage[key + ".start"] = null;
+        return localStorage[key + ".end"] = null;
       } else {
         localStorage[key + ".start"] = moment().toDate();
         return localStorage[key + ".end"] = moment().add('seconds', s).toDate();
@@ -2310,6 +2311,7 @@ define('app/util/time',["lib/util/moment"], function(moment) {
 
     Time.prototype.addTime = function(key, s) {
       var end;
+      console.log("[TIMER] add to '" + key + "' " + s + " seconds");
       end = localStorage[key + ".end"];
       if (end) {
         return localStorage[key + ".end"] = moment(end).add('seconds', s).toDate();
@@ -9895,7 +9897,7 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
               <a href="#" data-addmin="-5">-5m</a>\
             </li>\
             <li>\
-              <a href="#" data-min="-1">reset</a>\
+              <a href="#" data-min="-1000001">reset</a>\
             </li>\
             <li>\
               <a href="#" class="toggle">toggle</a>\
@@ -9940,25 +9942,33 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
           end = moment(ms_end);
           start = moment(ms_start);
           total = end.diff(start, 'minutes');
-          togo = Math.max(0, end.diff(now, 'minutes'));
-          elapsed = now.diff(start, 'minutes');
-          percent = Math.min(100, Math.max(1, 100 * elapsed / total));
+          if (!isNaN(total)) {
+            togo = end.diff(now, 'minutes');
+            elapsed = now.diff(start, 'minutes');
+            percent = Math.min(100, Math.max(1, 100 * elapsed / total));
+          }
         }
-        $(target).data("easyPieChart").update(percent || 100);
-        $(target).find("div").text(togo || "");
+        $(target).data("easyPieChart").update(percent != null ? percent : 100);
+        $(target).find("div").text(togo != null ? togo : "");
+        if (togo && togo === 0) {
+          $(target).addClass("zero");
+        } else if (togo && togo < 0) {
+          $(target).addClass("over");
+        } else {
+          $(target).removeClass("over");
+        }
         return true;
       };
-      this.updateClockSchedule(self.updateTimer, 10000);
-      return updateTimer();
+      return this.updateClockSchedule(updateTimer, 10000);
     };
 
     Slide.prototype.updateClockSchedule = function(upd, t) {
       var _this = this;
-      return setTimeout(function() {
-        if (window.upd && window.upd()) {
-          return _this.updateClockSchedule(window.upd, t);
-        }
-      }, t);
+      if (upd()) {
+        return setTimeout(function() {
+          return _this.updateClockSchedule(upd, t);
+        }, t);
+      }
     };
 
     Slide.prototype.subtleToolbar = function() {

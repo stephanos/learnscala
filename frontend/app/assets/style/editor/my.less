@@ -11,7 +11,7 @@
     position: relative;
 }
 
-.snippet pre, .CodeMirror {
+.snippet div.wrapper, .CodeMirror {
     position: relative;
 
     // font
@@ -31,7 +31,7 @@
     box-sizing: border-box;
 }
 
-.CodeMirror, .snippet pre, .output-wrap {
+.CodeMirror, .snippet div.wrapper, .output-wrap {
     &:hover {
         .btn-group { .opacity(100); }
     }
@@ -47,7 +47,7 @@
     }
 }
 
-.snippet pre, .CodeMirror, .ide {
+.snippet div.wrapper, .CodeMirror, .ide {
     // button
     .btn-group {
         .opacity(0);
@@ -70,7 +70,7 @@
     line-height: 1.5 * @fs_code;
 }
 
-.snippet pre {
+.snippet div.wrapper {
     // border default: dashed top and bottom
     @c_border_f: fadeout(@c_code_border, 10%);
     border-top: 0;
@@ -106,7 +106,7 @@ table.codesplit {
             &.code {
                 .bg(@c_code_bg);
                 .border-h(@c_code_border);
-                .snippet pre {
+                .snippet div.wrapper {
                     border: none;
                     .btn { display: none; }
                 }
@@ -115,12 +115,12 @@ table.codesplit {
 
         &:first-child { td.code { .border-top(@c_code_border); } }
         &:last-child  { td.code { .border-bottom(@c_code_border);
-                                  .snippet pre .btn { display: block; } }
+                                  .snippet div.wrapper .btn { display: block; } }
                       }
     }
 }
 
-.cm-s-ambiance.output, .ide .output-wrap {
+.snippet .cm-s-ambiance.output, .ide .output-wrap {
     // use gray for output background
     .bg(darken(#eee, 3%));
 
@@ -129,7 +129,7 @@ table.codesplit {
 }
 
 // use one plain color for output code
-.cm-s-ambiance.output, .ide .output .cm-s-ambiance {
+.snippet .cm-s-ambiance.output, .ide .output .cm-s-ambiance {
     .apply(#8f7b67);
     &.error { .apply(#cc6666); } //mix(@c, @c_hlight);
 
@@ -181,4 +181,24 @@ table.codesplit {
         background: transparent;
         &.active { background: @dc; }
     }
+}
+
+.snippet {
+  position: relative;
+
+  >div.raw {
+    display: none;
+  }
+
+  >div.code {
+
+    >div.wrapper {
+      overflow: hidden;
+      padding: 8px 0;
+
+      pre.codeline {
+        padding: 2px 10px;
+      }
+    }
+  }
 }

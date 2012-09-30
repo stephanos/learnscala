@@ -1,5 +1,5 @@
 import com.loops101.UnitSpec
-import services.code._
+import de.learnscala.api.impl._
 import scala.tools.nsc.interpreter.IR
 
 class CompilerSpec extends UnitSpec {

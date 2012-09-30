@@ -303,74 +303,188 @@
             @headslide(title = title) {
                 @title
             } {
+                @sidebyside((75,25)) {
+                    @snippet() {
+                        @sourceblock() {
+                            |for {
+                            |  i <- 1 to 10
+                            |} yield i
+                        }
+                        @outblock() {
+                            |res0: IndexedSeq[Int] = Vector(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+                        }
+                    }
+                } {
+                    @codenote() {
+                        <code>yield</code> gibt dem for-Ausdruck einen Rückgabewert
+                    }
+                }
 
+                @spacer()
+
+                @sidebyside((75,25)) {
+                    @snippet() {
+                        @sourceblock() {
+                            |for {
+                            |  i <- 1 to 10
+                            |} yield {
+                            |  val r = i + 1
+                            |  r
+                            |}
+                        }
+                        @outblock() {
+                            |res0: IndexedSeq[Int] = Vector(2, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+                        }
+                    }
+                } {
+                }
             }
         }
 
         <!-- ################################################################################## -->
 
-        @slide() {
+        @defining("Beispiel") { title =>
 
-            @sourcecode(id = "is_prime") {
-                |def isPrime(n: Int) = List.range(2, n) forall (x => n % x != 0)
+            @slide(title = title) {
+                @sourcecode(id = "people") {
+                    |val ppl = List("Anna" -> "Adams", "Adam" -> "Adams", "Barb" -> "Brown", "Bob" -> "Brown")
+                }
+
+                @spacer()
+
+                @fragment {
+                    <div class="tcenter">
+                        <span class="big underline">
+                            Vornamen die mit "B" beginnen ?
+                        </span>
+                    </div>
+                }
+
+                @spacer()
+
+                @sidebyside((50,50)) {
+                    @snippet() {
+                        @callblock(reference = "people") {
+                            |for {
+                            |  p <- ppl                   // Generator
+                            |  firstname = p._1           // Definition
+                            |  if p._1.startsWith("B")    // Filter
+                            |} print(firstname + " ")
+                        }
+                        @outblock() {
+                            |Barb Bob
+                        }
+                    }
+                    @codesub() {
+                        Ausgabe via for-Ausdruck
+                    }
+                } {
+                    @snippet() {
+                        @callblock(reference = "people") {
+                            |ppl filter {
+                            |  p =>
+                            |    val firstname = p._1
+                            |    firstname.startsWith("B")
+                            |} foreach {p => print(p._1 + " ")}
+                        }
+                        @outblock() {
+                            |Barb Bob
+                        }
+                    }
+                    @codesub() {
+                        Ausgabe via Funktionen höherer Ordnung
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside((50,50)) {
+                    @snippet() {
+                        @callblock(reference = "people") {
+                            |for {
+                            |  p <- ppl                   // Generator
+                            |  firstname = p._1           // Definition
+                            |  if p._1.startsWith("B")    // Filter
+                            |} yield firstname
+                        }
+                        @outblock() {
+                            |res0: List[String] = List(Barb, Bob)
+                        }
+                    }
+                    @codesub() {
+                        Rückgabe via for-Ausdruck
+                    }
+                } {
+                    @snippet() {
+                        @callblock(reference = "people") {
+                            |ppl filter {
+                            |  p =>
+                            |    val firstname = p._1
+                            |    firstname.startsWith("B")
+                            |} map (_._1)
+                        }
+                        @outblock() {
+                            |res0: List[String] = List(Barb, Bob)
+                        }
+                    }
+                    @codesub() {
+                        Rückgabe via Funktionen höherer Ordnung
+                    }
+                }
             }
 
-            @spacer2()
+            <!-- ################################################################################## -->
 
-            @sidebyside() {
-                @snippet() {
-                    @callblock(reference = "is_prime") {
-                        |for {
-                        |   i <- List.range(1, 10)
-                        |   if isPrime(i)
-                        |} yield i
-                    }
-                    @outblock() {
-                        |res0: List[Int] = List(1, 2, 3, 5, 7)
-                    }
+            @slide(title = title) {
+                @sourcecode() {
+                    |val ppl = List("Anna" -> "Adams", "Adam" -> "Adams", "Barb" -> "Brown", "Bob" -> "Brown")
                 }
-            } {
-                @snippet() {
-                    @callblock(reference = "is_prime") {
-                        |List.range(1, 10) filter {
-                        |   i => isPrime(i)
-                        |}
-                    }
-                    @outblock() {
-                        |res0: List[Int] = List(1, 2, 3, 5, 7)
-                    }
-                }
-            }
 
-            @spacer()
+                @spacer()
 
-            @sidebyside() {
-                @snippet() {
-                    @callblock(reference = "is_prime") {
-                        |for {
-                        |   i <- List.range(1, 5)
-                        |   j <- List.range(1, i)
-                        |   if isPrime(i+j)
-                        |} yield (i, j)
-                        |
-                    }
-                    @outblock() {
-                        |res0: List[(Int, Int)] = List((2,1), (3,2),
-                        |                              (4,1), (4,3))
-                    }
+                @fragment {
+                    <div class="tcenter">
+                        <span class="big underline">
+                            Welche Personen haben den gleichen Nachnamen ?
+                        </span>
+                    </div>
                 }
-            } {
-                @snippet() {
-                    @callblock(reference = "is_prime") {
-                        |List.range(1, 5) flatMap { i =>
-                        |  List.range(1, i)
-                        |    .filter(j => isPrime(i+j))
-                        |    .map(j => (i, j))
-                        |}
+
+                @spacer2()
+
+                @sidebyside((50,50)) {
+                    @snippet() {
+                        @callblock(reference = "people") {
+                            |for {
+                            |  p1 <- ppl              // Generator #1
+                            |  p2 <- ppl              // Generator #2
+                            |  if p1._2 == p2._2      // Filter
+                            |} println(firstname)
+                        }
+                        @outblock() {
+                            |Barb
+                            |Bob
+                        }
                     }
-                    @outblock() {
-                        |res0: List[(Int, Int)] = List((2,1), (3,2),
-                        |                              (4,1), (4,3))
+                    @codesub() {
+                        via for-Ausdruck
+                    }
+                } {
+                    @snippet() {
+                        @callblock(reference = "people") {
+                            |ppl.filter { p =>
+                            |  val firstname = p._1
+                            |  firstname.startsWith("B")
+                            |} foreach (p =>
+                            |  println(p._1)
+                        }
+                        @outblock() {
+                            |Barb
+                            |Bob
+                        }
+                    }
+                    @codesub() {
+                        via Funktionen höherer Ordnung
                     }
                 }
             }

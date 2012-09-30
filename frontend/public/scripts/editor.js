@@ -4825,15 +4825,24 @@ define("lib/editor/clike", ["lib/editor/codemirror"], (function (global) {
     }
 }(this)));
 
+// HACK: wrap every line in <pre>
 CodeMirror.runMode = function(string, modespec, callback, options) {
+  var row = 1;
   var mode = CodeMirror.getMode(CodeMirror.defaults, modespec);
   var isNode = callback.nodeType == 1;
   var tabSize = (options && options.tabSize) || CodeMirror.defaults.tabSize;
   if (isNode) {
-    var node = callback, accum = [], col = 0;
+    var node = callback, tmp = [], accum = [], col = 0;
+    wrap = function(arr) {
+        return "<pre class='codeline " + options.class +
+                    "' data-num='" + options.num +
+                    "' data-row='" + (row++) +
+                    "' >" +arr.join("") + "</pre>"
+    };
     callback = function(text, style) {
       if (text == "\n") {
-        accum.push("<br>");
+        accum.push (wrap(tmp));
+        tmp = [];
         col = 0;
         return;
       }
@@ -4856,9 +4865,9 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
       }
 
       if (style)
-        accum.push("<span class=\"cm-" + CodeMirror.htmlEscape(style) + "\">" + escaped + "</span>");
+        tmp.push("<span class=\"cm-" + CodeMirror.htmlEscape(style) + "\">" + escaped + "</span>");
       else
-        accum.push(escaped);
+        tmp.push(escaped);
     }
   }
   var lines = CodeMirror.splitLines(string), state = CodeMirror.startState(mode);
@@ -4872,6 +4881,8 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
     }
   }
   if (isNode)
+    if(tmp.length > 0)
+      accum.push (wrap(tmp));
     node.innerHTML = accum.join("");
 };
 define("lib/editor/runmode", ["lib/editor/codemirror"], (function (global) {
@@ -4909,18 +4920,20 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
     };
 
     Editor.prototype.createCodeBlock = function(block, elem, status, clear, spin) {
-      var code, lang, noText, num, opts, self, text, type;
+      var code, frag, lang, noText, num, opts, self, text, type;
       self = this;
       if (_.isString(block)) {
         num = "";
         type = "";
         lang = null;
         text = block;
+        frag = true;
       } else {
         num = block["num"];
         lang = block["lang"];
         type = block["type"];
         text = block["text"];
+        frag = block["frag"];
       }
       noText = _.str.isBlank(text);
       if (clear === true || noText) {
@@ -4930,11 +4943,14 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
         $(elem).parent().removeClass("success error").addClass(status);
       }
       if (!noText) {
-        code = $("<pre/>", {
-          'class': "cm-s-ambiance " + type,
+        code = $("<div/>", {
+          'class': "wrapper cm-s-ambiance " + type + (frag ? " fragment" : void 0),
           "data-num": num
         }).appendTo($(elem));
-        CodeMirror.runMode(text, "text/x-" + (lang != null ? lang : "scala"), code[0]);
+        CodeMirror.runMode(text, "text/x-" + (lang != null ? lang : "scala"), code[0], {
+          "class": type,
+          "num": num
+        });
       }
       if (status === "wait") {
         opts = {
@@ -5043,8 +5059,6 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
 
     Editor.prototype.initEditor = function(elem, blocks, typeOf) {
       var content, editor, getBlocks, textarea;
-      console.log(typeOf);
-      console.log(blocks);
       getBlocks = function(bs) {
         var res;
         res = [];
@@ -5061,7 +5075,6 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
         return _.flatten(res);
       };
       blocks = getBlocks(blocks);
-      console.log(blocks);
       content = _.str.strip(_.reduce(blocks != null ? blocks : readRawCode(elem), function(r, b) {
         return r += _.str.trim(b["text"], "\n") + "\n" + (typeOf === "source" ? "\n" : "");
       }, ""));
@@ -5163,11 +5176,12 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
     };
 
     Editor.prototype.readRawBlock = function(elem, editable) {
-      var content, incl, lang, lines, ref, self, subs, type;
+      var content, incl, isFragment, lang, lines, ref, self, subs, type;
       self = this;
       subs = [];
       content = "";
       type = _.str.trim($(elem).data("type"));
+      isFragment = $(elem).data("fragment") === true;
       incl = this.readRawCode($("#" + $(elem).data("include")));
       if (!_.isEmpty(incl)) {
         subs.push(incl);
@@ -5186,11 +5200,6 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
         if (i !== 0) {
           content += "\n";
         }
-        console.log(l);
-        console.log(!_.str.isBlank(_.str.trim(l)));
-        if (_.str.contains(type, "call") && editable !== true && !_.str.isBlank(_.str.trim(linedata))) {
-          content += "> ";
-        }
         return content += linedata;
       });
       return {
@@ -5198,6 +5207,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
         lang: lang,
         type: type,
         text: content,
+        frag: isFragment,
         subs: _.flatten(subs)
       };
     };
