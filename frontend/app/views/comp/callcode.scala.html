@@ -1,7 +1,8 @@
-@(id: String = null, fragment: Boolean = true, clazz: String = null, include: String = null, reference: String = null)(data: Html)
+@(id: String = null, fragment: Boolean = true, clazz: String = null, include: String = null,
+  reference: String = null, hl: String = null)(data: Html)
 
 @snippet(fragment = fragment) {
-    @callblock(id, false, clazz, include, reference) {
+    @callblock(id, false, clazz, include, reference, hl = hl) {
         @data
     }
 }

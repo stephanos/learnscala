@@ -40,12 +40,14 @@ define [
         lang = null
         text = block
         frag = true
+        hlight = null
       else
         num = block["num"]
         lang = block["lang"]
         type = block["type"]
         text = block["text"]
         frag = block["frag"]
+        hlights = block["hlight"]
   
       noText = _.str.isBlank(text)
   
@@ -59,6 +61,13 @@ define [
         code = $("<div/>", {'class': "wrapper cm-s-ambiance " + type + (if(frag) then " fragment"), "data-num": num}).appendTo($(elem))
         CodeMirror.runMode(text, "text/x-" + (lang ? "scala"), code[0], { "class": type, "num": num })
         #btn = $("<div class='btn-group'><button class='btn btn-icon btn-fullscreen'></button></div>").appendTo($(code))
+
+      if(hlights)
+        for hl in hlights.split(" ")
+          do (hl) ->
+            if(hl == "first" || hl == "start") then hl = 0
+            if(hl == "last" || hl == "end") then hl = $(code).find(".codeline").length
+            console.log(hl)
   
       if(status == "wait")
         opts = {
@@ -269,6 +278,7 @@ define [
       content = ""
       type = _.str.trim($(elem).data("type"))
       isFragment = $(elem).data("fragment") == true
+      hlight = $(elem).data("hlight")
   
       # read snippet's include content
       incl = @readRawCode($("#" + $(elem).data("include")))
@@ -303,6 +313,7 @@ define [
         type: type
         text: content
         frag: isFragment
+        hlight: hlight
         subs: _.flatten(subs)
       }
   
