@@ -1,3 +1,9 @@
+@*
+    - case classes
+    - sealed classes
+    - nested classes
+    - pattern matching
+*@
 @defining("Klassen II") { implicit topic =>
 
     @layout.slidedeck(topic) {
@@ -5,6 +11,19 @@
         @slidehead() {
             @topic
         } {
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide() {
+            @sidebyside((60,40)) {
+                @snippet() {
+                    @sourceblock(id = "plane_case", fragment = false) {
+                        |case class Plane(model: String, seats: Int)
+                    }
+                }
+            } {
+            }
         }
 
         <!-- ################################################################################## -->

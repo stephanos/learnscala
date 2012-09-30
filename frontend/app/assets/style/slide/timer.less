@@ -1,0 +1,28 @@
+#timer {
+    position: absolute;
+    bottom: 5px; right: 15px;
+    font-family: "Graublau";
+
+    canvas {
+        position: absolute;
+        top: 0; left: 0;
+    }
+
+    div {
+        color: @c_emph;
+        position: absolute;
+        top: 0; left: 0; bottom: 0; right: 0;
+
+        z-index: @z_slide_timer;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    &.zero div {
+      visibility: hidden;
+    }
+
+    &.over div {
+      color: @c_hlight;
+    }
+}

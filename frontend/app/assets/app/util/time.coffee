@@ -22,4 +22,10 @@ define [
     getTime: (key) ->
       [localStorage[key + ".start"], localStorage[key + ".end"]]
 
+    updateClockSchedule: (upd, t) ->
+      if(upd())
+        setTimeout(() =>
+            @updateClockSchedule(upd, t)
+        , t)
+
   new Time

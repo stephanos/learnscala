@@ -59,8 +59,10 @@
                 "lib/util/underscore",
                 "lib/util/underscore.str",
                 "lib/dom/bootstrap",
+                "app/util/timer",
                 "app/util/overlay",
-                "app/util/progress"
+                "app/util/progress",
+                "app/util/countdown"
             ],
             "exclude":["base"]
         },

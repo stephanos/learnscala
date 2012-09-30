@@ -4,7 +4,7 @@ define [
 
   class Overlay
 
-    constructor: () ->
+    constructor: ->
       PADDING = 5
 
       # setup canvas

@@ -1,7 +1,7 @@
 define [
   "jquery", "lib/util/underscore", "lib/reveal", "app/editor/init",
-  "lib/util/moment", "app/util/time", "app/util/overlay", "app/util/chart", "lib/chart/piechart"
-], ($, _, Reveal, Editor, moment, Timer, Overlay) ->
+  "app/util/timer", "app/util/countdown", "app/util/overlay", "app/util/chart"
+], ($, _, Reveal, Editor, Timer, Countdown, Overlay) ->
 
   class Slide
 
@@ -26,8 +26,8 @@ define [
         li.find(".divider").remove()
 
         # slide
-        @initCountdowns()
-        @initTimer()
+        new Countdown()
+        new Timer()
 
       else
         $(".fragment").removeClass("fragment")
@@ -47,7 +47,7 @@ define [
            </a>
            <ul class="dropdown-menu"></ul>
            <span class="divider">|</span>
-         </li>').insertAfter($("#naviSlides"))
+         </li>').prependTo($("#navi>ul"))
 
       titles = []
       subtitles = []
@@ -127,7 +127,7 @@ define [
               <span>Style</span>
           </a>
           <span class="divider">|</span>
-        </li>').insertAfter($("#naviDocs"))
+        </li>').appendTo($("#navi>ul"))
 
       # bind click event
       $("#naviStyle").bind("click", () ->
@@ -149,7 +149,7 @@ define [
                 <span>Docs</span>
             </a>
             <span class="divider">|</span>
-        </li>').insertAfter($("#naviEditor"))
+        </li>').appendTo($("#navi>ul"))
 
       showDocs = (uri) ->
         url = "http://www.scala-lang.org/api/current/index.html#" + (uri ? "")
@@ -181,173 +181,5 @@ define [
           false
       )
 
-
-    #######################################################################################################################
-    initCountdowns: ->
-      self = @
-      $('div.countdown').each(
-        (idx, elem) ->
-          key = "countdown_" + idx
-
-          window.upd = ->
-            time = Timer.getTime(key)
-            ms_end = time[1]
-            ms_start = time[0]
-            if(ms_start)
-              now = moment()
-              end = moment(ms_end)
-              state = $(elem).data("state")
-              diff = if(state == "running") then end.diff(now, 'seconds') else $(elem).data("start")
-              $(elem).data("start", diff)
-              #console.log(diff)
-
-              if(diff < 0)
-                $(elem).addClass("over")
-              else
-                $(elem).removeClass("over")
-
-              mm = diff / 60
-              mm = if(diff >= 0) then Math.floor(mm) else Math.ceil(mm)
-              $(elem).find(".mm").text(mm)
-
-              ss = Math.abs(diff % 60)
-              $(elem).find(".ss").text((if(ss < 10) then "0" else "") + ss)
-              state == "running"
-
-            else
-              false
-
-          $(elem).find(".minus").bind("click", () ->
-            $(elem).data("start", $(elem).data("start") - 60)
-            Timer.addTime(key, -60)
-            window.upd()
-          )
-
-          $(elem).find(".plus").bind("click", () ->
-            $(elem).data("start", $(elem).data("start") + 60)
-            Timer.addTime(key, 60)
-            window.upd()
-          )
-
-          $(elem).find(".toggle").bind("click", () ->
-            state = $(elem).data("state")
-            if(state == "running")
-              $(elem).data("state", "stopped")
-            else
-              Timer.setTime(key, $(elem).data("start"))
-              $(elem).data("state", "running")
-              self.updateClockSchedule(window.upd, 500)
-          )
-      )
-
-
-    #######################################################################################################################
-    initTimer: ->
-      self = @
-      target = $('#timer')
-
-      $('<li id="naviTimer" class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#naviTimer">
-            <span>Timer</span>
-            <b class="caret"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li>
-              <a href="#" data-min="90">90m</a>
-            </li>
-            <li>
-              <a href="#" data-min="60">60m</a>
-            </li>
-            <li>
-              <a href="#" data-min="45">45m</a>
-            </li>
-            <li>
-              <a href="#" data-min="30">30m</a>
-            </li>
-            <li>
-              <a href="#" data-min="15">15m</a>
-            </li>
-            <li>
-              <a href="#" data-addmin="5">+5m</a>
-            </li>
-            <li>
-              <a href="#" data-addmin="-5">-5m</a>
-            </li>
-            <li>
-              <a href="#" data-min="-1000001">reset</a>
-            </li>
-            <li>
-              <a href="#" class="toggle">toggle</a>
-            </li>
-          </ul>
-          <span class="divider">|</span>
-        </li>').insertAfter($("#naviDocs"))
-
-      $("#naviTimer ul a").bind("click", (evt) ->
-        min = $(this).data("min")
-        if(min)
-          Timer.setTime("timer", min * 60)
-        else
-          addmin = $(this).data("addmin")
-          if(addmin)
-            Timer.addTime("timer", addmin * 60)
-          else if($(this).hasClass("toggle"))
-            $(target).toggle()
-        updateTimer()
-        false
-      )
-
-      # init
-      target.easyPieChart(
-        barColor: (p) -> "#ddd" #if(p >= 95) then "#fc6b35" else "#ddd"
-        trackColor: "#eee"
-        scaleColor: false
-        animate: false
-        lineCap: 'butt'
-        lineWidth: 15
-        size: 30
-      )
-
-      # update manually
-      updateTimer = ->
-
-        time = Timer.getTime("timer")
-        ms_end = time[1]
-        ms_start = time[0]
-
-        # calculate
-        if(ms_start)
-          now = moment()
-          end = moment(ms_end)
-          start = moment(ms_start)
-          total = end.diff(start, 'minutes')
-          if !isNaN(total)
-            togo = end.diff(now, 'minutes')
-            elapsed = now.diff(start, 'minutes')
-            #console.log(elapsed + "m of " + total + "m elapsed, " + togo + "m to go")
-            percent = Math.min(100, Math.max(1, 100 * elapsed / total))
-
-        # update pie and label
-        $(target).data("easyPieChart").update(percent ? 100)
-        $(target).find("div").text(togo ? "")
-        if(togo && togo == 0)
-          $(target).addClass("zero")
-        else if(togo && togo < 0)
-          $(target).addClass("over")
-        else
-          $(target).removeClass("over")
-        true
-
-      # update every 10s
-      @updateClockSchedule(updateTimer, 10000)
-
-
-    updateClockSchedule: (upd, t) ->
-      if(upd())
-        setTimeout(() =>
-            @updateClockSchedule(upd, t)
-        , t)
-
     subtleToolbar: ->
       $("#navi").addClass("subtle")
-

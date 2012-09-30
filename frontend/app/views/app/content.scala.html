@@ -7,6 +7,7 @@
 
         <div class="reveal">
             <div class="slides">
+
                 <table border="1">
                     <colgroup>
                         <col width="5%">
@@ -165,16 +166,30 @@
                     </tbody>
                 </table>
 
+                <!-- reset button -->
                 <a class="btn btn-icon btn-danger" id="btn-resetprogress" href="javascript:window.Progress.reset()">/</a>
+
+                <!-- timer -->
+                <div id="timer" data-percent="100">
+                    <div></div>
+                </div>
             </div>
         </div>
-
     </section>
 
+    <!-- Countdown modal -->
+    <div id="countdownModal" class="modal hide">
+        <div class="modal-body">
+            @countdown(15)
+        </div>
+    </div>
+
     <script type="text/javascript">
-        require(['app/util/progress', 'app/util/overlay'], function(Progress, Overlay) {
+        require(['app/util/progress', 'app/util/overlay', "app/util/timer", "app/util/countdown"], function(Progress, Overlay, Timer, Countdown) {
             Progress.init();
+            new Countdown();
             new Overlay();
+            new Timer();
             $("#navi").addClass("subtle");
         });
     </script>

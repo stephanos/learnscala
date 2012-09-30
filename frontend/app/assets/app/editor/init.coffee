@@ -83,7 +83,7 @@ define [
         $(elem).parent().removeClass("success error").addClass(status)
 
       if(!noText)
-        type += " cm-s-ambiance"
+        type += " cm-s-ambiance "
         code = $("<div/>", {'class': "wrapper " + type + (if(frag) then " fragment"), "data-num": num}).appendTo($(elem))
         CodeMirror.runMode(text, "text/x-" + (lang ? "scala"), code[0], { "class": type, "num": num })
         #btn = $("<div class='btn-group'><button class='btn btn-icon btn-fullscreen'></button></div>").appendTo($(code))
