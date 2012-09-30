@@ -274,7 +274,7 @@ define [
               <a href="#" data-addmin="-5">-5m</a>
             </li>
             <li>
-              <a href="#" data-min="-1">reset</a>
+              <a href="#" data-min="-1000001">reset</a>
             </li>
             <li>
               <a href="#" class="toggle">toggle</a>
@@ -310,6 +310,7 @@ define [
 
       # update manually
       updateTimer = ->
+
         time = Timer.getTime("timer")
         ms_end = time[1]
         ms_start = time[0]
@@ -319,29 +320,33 @@ define [
           now = moment()
           end = moment(ms_end)
           start = moment(ms_start)
-
           total = end.diff(start, 'minutes')
-          togo = Math.max(0, end.diff(now, 'minutes'))
-          elapsed = now.diff(start, 'minutes')
-          #console.log(elapsed + "m of " + total + "m elapsed, " + togo + "m to go")
-          percent = Math.min(100, Math.max(1, 100 * elapsed / total))
+          if !isNaN(total)
+            togo = Math.max(0, end.diff(now, 'minutes'))
+            elapsed = now.diff(start, 'minutes')
+            #console.log(elapsed + "m of " + total + "m elapsed, " + togo + "m to go")
+            percent = Math.min(100, Math.max(1, 100 * elapsed / total))
 
         # update pie and label
-        #console.log(percent + "%")
-        $(target).data("easyPieChart").update(percent || 100)
-        $(target).find("div").text(togo || "")
+        $(target).data("easyPieChart").update(percent ? 100)
+        $(target).find("div").text(togo ? "")
+        if(togo && togo == 0)
+          $(target).addClass("zero")
+        else if(togo && togo < 0)
+          $(target).addClass("over")
+        else
+          $(target).removeClass("over")
         true
 
       # update every 10s
-      @updateClockSchedule(self.updateTimer, 10000)
-      updateTimer()
+      @updateClockSchedule(updateTimer, 10000)
 
 
     updateClockSchedule: (upd, t) ->
-      setTimeout(() =>
-          if(window.upd && window.upd())
-            @updateClockSchedule(window.upd, t)
-      , t)
+      if(upd())
+        setTimeout(() =>
+            @updateClockSchedule(upd, t)
+        , t)
 
     subtleToolbar: ->
       $("#navi").addClass("subtle")

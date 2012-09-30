@@ -5,14 +5,16 @@ define [
   class Time
 
     setTime: (key, s) ->
-      if(s <= 0)
-        localStorage[key + ".start"] = undefined
-        localStorage[key + ".end"] = undefined
+      console.log("[TIMER] set '" + key + "' to " + s + " seconds")
+      if(s <= -1000000)
+        localStorage[key + ".start"] = null
+        localStorage[key + ".end"] = null
       else
         localStorage[key + ".start"] = moment().toDate()
         localStorage[key + ".end"] = moment().add('seconds', s).toDate()
 
     addTime: (key, s) ->
+      console.log("[TIMER] add to '" + key + "' " + s + " seconds")
       end = localStorage[key + ".end"]
       if(end)
         localStorage[key + ".end"] = moment(end).add('seconds', s).toDate()

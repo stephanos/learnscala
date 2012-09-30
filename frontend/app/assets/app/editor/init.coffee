@@ -289,7 +289,7 @@ define [
           # mark call scripts with a '> '
           console.log(l)
           console.log(!_.str.isBlank(_.str.trim(l)))
-          if(_.str.contains(type, "call") && editable != true && !_.str.isBlank(_.str.trim(linedata))) then content += "> "
+          #if(_.str.contains(type, "call") && editable != true && !_.str.isBlank(_.str.trim(linedata))) then content += "> "
           # append content right from '|'
           content += linedata
       )

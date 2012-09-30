@@ -67,7 +67,7 @@
 
             Reveal.addEventListener('slidechanged', function (event) {
                 if(slides - event.indexh === 1) {
-                    require(["app/progress"], function(Progress) {
+                    require(["app/util/progress"], function(Progress) {
                         Progress.write("progress." + location.pathname + "#/", true)
                     });
                 }
