@@ -5152,7 +5152,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
       self = this;
       this.createCodeBlock("", output, "wait");
       uri = window.location.hostname;
-      apiBase = uri.indexOf("localhost") > -1 ? "" : "http://api.learnscala.de";
+      apiBase = uri.indexOf("localhost") > -1 ? "" : "https://api.learnscala.de";
       $.support.cors = true;
       return $.ajax({
         type: 'POST',
