@@ -243,6 +243,7 @@ define [
           "http://api.learnscala.de"
 
       # issue call
+      $.support.cors = true
       $.ajax(
         type: 'POST',
         timeout: 15000,

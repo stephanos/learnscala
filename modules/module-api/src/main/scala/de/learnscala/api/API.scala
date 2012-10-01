@@ -12,7 +12,7 @@ trait API  {
     protected def userIsAdmin(implicit req: RequestHeader): Boolean
 
     def hello = Action {
-        Ok("You should not be here.")
+        withCORS(Ok("You should not be here."))
     }
 
     def execute = Action(parse.urlFormEncoded) {
@@ -24,7 +24,7 @@ trait API  {
                 try {
                     val (r, out) = Interpreter((src, call))
                     if (r == IR.Success)
-                        Ok(out)
+                        withCORS(Ok(out))
                     else
                         BadRequest(out)
                 } catch {
@@ -52,7 +52,7 @@ trait API  {
                 try {
                     val (out, err) = (if(asJava) JDecoder(code) else Decoder(code))
                     if (out != null)
-                        Ok(out)
+                        withCORS(Ok(out))
                     else
                         BadRequest(err)
                 } catch {
@@ -72,7 +72,7 @@ trait API  {
                 try {
                     val (r, out) = Compiler(code)
                     if (r == true)
-                        Ok(out)
+                        withCORS(Ok(out))
                     else
                         BadRequest(out)
                 } catch {
@@ -84,4 +84,10 @@ trait API  {
                 Unauthorized("Only the admin can compile code")
             }
     }
+
+    private def withCORS(r: SimpleResult[_]) =
+        r.withHeaders(
+            "Access-Control-Allow-Origin" -> "www.learnscala.de",
+            "Access-Control-Allow-Methods" -> "POST, GET"
+        )
 }
