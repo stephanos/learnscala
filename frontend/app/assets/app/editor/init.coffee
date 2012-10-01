@@ -240,7 +240,7 @@ define [
         if(uri.indexOf("localhost") > -1)
           ""
         else
-          "http://api.learnscala.de"
+          "https://api.learnscala.de"
 
       # issue call
       $.support.cors = true
