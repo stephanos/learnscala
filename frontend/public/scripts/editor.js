@@ -5156,7 +5156,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
       $.support.cors = true;
       return $.ajax({
         type: 'POST',
-        timeout: 15000,
+        timeout: 6000,
         url: apiBase + "/api/" + target,
         data: "source=" + encodeURIComponent(source != null ? source : "") + "&call=" + encodeURIComponent(call != null ? call : ""),
         success: function(data, status) {

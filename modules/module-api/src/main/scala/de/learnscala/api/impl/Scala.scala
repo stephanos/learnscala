@@ -22,7 +22,7 @@ class Scala {
     }
 
     def interpret(code: (String, String)): (Result, String) =
-        runWithTimeout[(Result, String)](10000, (IR.Error, "timeout")) {
+        runWithTimeout[(Result, String)](5000, (IR.Error, "timeout")) {
             val (compiler, out) = encoder()
             val r = Console.withOut(new PrintStream(out, true)) {
                 @tailrec

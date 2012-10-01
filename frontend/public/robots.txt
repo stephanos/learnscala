@@ -1,5 +1,7 @@
 User-agent: *
 Disallow: /agb
+Disallow: /inhalt
+Disallow: /termine
 Disallow: /app/*
 Disallow: /users/*
 Disallow: /error/*

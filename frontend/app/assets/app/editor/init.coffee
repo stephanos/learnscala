@@ -246,7 +246,7 @@ define [
       $.support.cors = true
       $.ajax(
         type: 'POST',
-        timeout: 15000,
+        timeout: 6000,
         url: apiBase + "/api/" + target,
         data: "source=" + encodeURIComponent(source ? "") + "&call=" + encodeURIComponent(call ? ""),
   
