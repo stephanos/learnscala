@@ -87,7 +87,7 @@ trait API  {
 
     private def withCORS(r: SimpleResult[_]) =
         r.withHeaders(
-            "Access-Control-Allow-Origin" -> "www.learnscala.de",
+            "Access-Control-Allow-Origin" -> "https://www.learnscala.de",
             "Access-Control-Allow-Methods" -> "POST, GET"
         )
 }
