@@ -4965,7 +4965,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
         $(elem).parent().removeClass("success error").addClass(status);
       }
       if (!noText) {
-        type += " cm-s-ambiance";
+        type += " cm-s-ambiance ";
         code = $("<div/>", {
           'class': "wrapper " + type + (frag ? " fragment" : void 0),
           "data-num": num
