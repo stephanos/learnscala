@@ -1,10 +1,10 @@
-@(w: (Int, Int) = (50, 50), fragment: Boolean = false, gap: Double = 3.0)(cl: Html = empty())(cr: Html = empty())
+@(w: (Int, Int) = (50, 50), clazz: (String, String) = ("",""), fragment: Boolean = false, gap: Double = 3.0)(cl: Html = empty())(cr: Html = empty())
 
 <div class='sidebyside @{if(fragment) "fragment"}'>
-    <div style="width: @{w._1 - gap / 2}%; float: left">
+    <div class="@clazz._1" style="width: @{w._1 - gap / 2}%; float: left">
         @cl
     </div>
-    <div style="width: @{w._2 - gap / 2}%; float: right">
+    <div class="@clazz._2" style="width: @{w._2 - gap / 2}%; float: right">
         @cr
     </div>
 </div>

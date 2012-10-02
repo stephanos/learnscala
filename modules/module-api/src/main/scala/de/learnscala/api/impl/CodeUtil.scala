@@ -16,7 +16,7 @@ object CodeUtil {
     def decoder() =
         new ScalaDecoder()
 
-    def encoder(verbose: Boolean = false, unchecked: Boolean = false, deprecation: Boolean = false,
+    def encoder(verbose: Boolean = false, unchecked: Boolean = false, deprecation: Boolean = true,
                 out: ByteArrayOutputStream = new ByteArrayOutputStream): (Encoder, ByteArrayOutputStream) = {
 
         val s = new Settings()

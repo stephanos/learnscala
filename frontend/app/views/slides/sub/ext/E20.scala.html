@@ -21,33 +21,31 @@ TODO
             @slide(title = title, subtitle = "Literale") {
                 @snippet() {
                     @sourceblock() {
-                        |val xml =
-                        |  &lt;html&gt;
-                        |    &lt;head&gt;
-                        |      &lt;title&gt;Homepage&lt;/title&gt;
-                        |    &lt;/head&gt;
-                        |    &lt;body&gt;
-                        |      Welcome!
-                        |    &lt;/body&gt;
-                        |  &lt;/html&gt;
+                        |val xml = &lt;html&gt;
+                        |            &lt;head&gt;
+                        |              &lt;title&gt;Homepage&lt;/title&gt;
+                        |            &lt;/head&gt;
+                        |            &lt;body&gt;
+                        |              Welcome!
+                        |            &lt;/body&gt;
+                        |          &lt;/html&gt;
                     }
                     @outblock() {
-                        |xml: scala.xml.Elem =
-                        |  &lt;html&gt;
-                        |    &lt;head&gt;
-                        |      &lt;title&gt;Homepage&lt;/title&gt;
-                        |    &lt;/head&gt;
-                        |    &lt;body&gt;
-                        |      Welcome!
-                        |    &lt;/body&gt;
-                        |  &lt;/html&gt;
+                        |xml: scala.xml.Elem = &lt;html&gt;
+                        |                        &lt;head&gt;
+                        |                          &lt;title&gt;Homepage&lt;/title&gt;
+                        |                        &lt;/head&gt;
+                        |                        &lt;body&gt;
+                        |                          Welcome!
+                        |                        &lt;/body&gt;
+                        |                      &lt;/html&gt;
                     }
                 }
                 @codesub() {
                     <code>scala.xml.Elem</code> beschreibt ein allgemeines XML-Element
                 }
 
-                @spacer()
+                @spacer_half()
 
                 @snippet() {
                     @sourceblock() {

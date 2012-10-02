@@ -7,10 +7,15 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
   if (isNode) {
     var node = callback, tmp = [], accum = [], col = 0;
     var wrap = function(arr, clazz) {
+        var content;
+        if(arr.length == 0)
+            content = "&nbsp;";
+        else
+            content = arr.join("");
         return "<pre class='codeline " + options.class + " " + (clazz || "") +
                     "' data-num='" + options.num +
                     "' data-row='" + (row++) +
-                    "' >" + arr.join("") + "</pre>"
+                    "' >" + content + "</pre>"
     };
     callback = function(text, style) {
       if (text == "\n") {
