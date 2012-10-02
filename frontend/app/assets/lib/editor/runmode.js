@@ -12,7 +12,10 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
             content = "&nbsp;";
         else
             content = arr.join("");
-        return "<pre class='codeline " + options.class + " " + (clazz || "") +
+        var cls = "codeline " + options.class + " " + (clazz || "");
+        if(options.linebyline && row > 1)
+            cls += " fragment";
+        return "<pre class='" + cls +
                     "' data-num='" + options.num +
                     "' data-row='" + (row++) +
                     "' >" + content + "</pre>"

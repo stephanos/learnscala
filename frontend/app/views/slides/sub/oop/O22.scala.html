@@ -255,75 +255,113 @@
 
             <!-- ################################################################################## -->
 
-            @defining("Pattern Matching") { subtitle =>
+            @slide(title = title, subtitle = "Pattern Matching") {
+                @snippet() {
+                    @sourceblock(id = "empl") {
+                        |case class Employee (name: String, age: Int)
+                    }
+                }
 
-                @slide(title = title, subtitle = subtitle) {
+                @spacer2()
+
+                @sidebyside((60,40)) {
                     @snippet() {
-                        @sourceblock() {
-                            |case class Employee (name: String, age: Int)
+                        @sourceblock(reference = "empl", hl = "3") {
+                            |def shouldRetire(empl: Employee) =
+                            |  empl match {
+                            |    case Employee(n, a) if(a > 66) => true
+                            |    case _ => false
+                            |  }
+                        }
+                    }
+                } {
+                    @codenote() {
+                        <em>Konstruktor Pattern</em> lässt Case Class zerlegen,
+                        jeder Parameter kann mit einem Namen belegt werden
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @sourceblock(reference = "empl", hl = "3") {
+                            |def shouldRetire(empl: Employee) =
+                            |  empl match {
+                            |    case Employee(n, 65) => true
+                            |    case _ => false
+                            |  }
+                        }
+                    }
+                } {
+                    @codenote() {
+                        Verwendung der Konstante <code>65</code> (<em class="nobreak">Konstante Pattern</em>)
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @sourceblock(reference = "empl", hl = "3") {
+                            |def shouldRetire(empl: Employee) =
+                            |  empl match {
+                            |    case Employee(_, a) if(a > 66) => true
+                            |    case _ => false
+                            |  }
+                        }
+                    }
+                } {
+                    @codenote() {
+                        Parameter können mit Wildcard <code>_</code> ignoriert werden
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "sealed") {
+                @sidebyside((90,10)) {
+                    @snippet() {
+                        @sourceblock(id = "case_class_match") {
+                            |sealed abstract class Employee { val age: Int }
+                            |
+                            |case class Boss(age: Int) extends Employee
+                            |case class Developer(age: Int, knowsScala: Boolean) extends Employee
                         }
                     }
 
                     @spacer()
 
                     @snippet() {
-                        @sourceblock() {
-                            |def is
+                        @sourceblock(id = "match_salary", linebyline = true, reference = "case_class_match") {
+                            |def getSalary(e: Employee) =
+                            |  e match {
+                            |    case Boss(age) if(age > 50) => 130000
+                            |    case p: Boss                => 80000 + (p.age * 1000)
+                            |    case Developer(_, true)     => 50000
+                            |    case Developer(_, _)        => 40000
+                            |  }
                         }
                     }
-                }
 
-                <!-- ################################################################################## -->
+                    @spacer()
 
-                @slide(title = title, subtitle = subtitle, subsubtitle = "sealed") {
-
-                }
-
-                <!-- ################################################################################## -->
-
-                @slide(title = title, subtitle = subtitle, subsubtitle = "Beispiel") {
-                    @sidebyside((90,10)) {
-                        @snippet() {
-                            @sourceblock(id = "case_class_match") {
-                                |sealed abstract class Employee { val age: Int }
-                                |
-                                |case class Boss(age: Int) extends Employee
-                                |case class Developer(age: Int, knowsScala: Boolean) extends Employee
-                            }
+                    @snippet() {
+                        @callblock(reference = "match_salary") {
+                            |val s1 = getSalary(Boss(25))
                         }
-
-                        @spacer()
-
-                        @snippet() {
-                            @sourceblock(id = "match_salary", reference = "case_class_match") {
-                                |def getSalary(e: Employee) =
-                                |  e match {
-                                |    case Boss(age) if(age > 50) => 130000
-                                |    case p: Boss                => 80000 + (p.age * 1000)
-                                |    case Developer(_, true)     => 50000
-                                |    case Developer(_, _)        => 40000
-                                |  }
-                            }
+                        @outblock() {
+                            |s1: Int = 105000
                         }
-
-                        @spacer()
-
-                        @snippet() {
-                            @callblock(reference = "match_salary") {
-                                |val s1 = getSalary(Boss(25))
-                            }
-                            @outblock() {
-                                |s1: Int = 105000
-                            }
-                            @callblock() {
-                                |val s2 = getSalary(Developer(30, false))
-                            }
-                            @outblock() {
-                                |s2: Int = 40000
-                            }
+                        @callblock() {
+                            |val s2 = getSalary(Developer(30, false))
                         }
-                    } {
+                        @outblock() {
+                            |s2: Int = 40000
+                        }
                     }
+                } {
                 }
             }
         }

@@ -66,6 +66,7 @@ define [
         text = block
         frag = true
         hlight = null
+        linebyline = false
       else
         num = block["num"]
         lang = block["lang"]
@@ -73,6 +74,7 @@ define [
         text = block["text"]
         frag = block["frag"]
         hlights = block["hlight"]
+        linebyline = block["linebyline"]
   
       noText = _.str.isBlank(text)
   
@@ -85,16 +87,17 @@ define [
       if(!noText)
         type += " cm-s-ambiance "
         code = $("<div/>", {'class': "wrapper " + type + (if(frag) then " fragment"), "data-num": num}).appendTo($(elem))
-        CodeMirror.runMode(text, "text/x-" + (lang ? "scala"), code[0], { "class": type, "num": num })
+        CodeMirror.runMode(text, "text/x-" + (lang ? "scala"), code[0], { "class": type, "num": num, "linebyline": linebyline })
         #btn = $("<div class='btn-group'><button class='btn btn-icon btn-fullscreen'></button></div>").appendTo($(code))
 
       if(hlights)
-        for hl in hlights.split(" ")
+        for hl in hlights.toString().split(' ')
           do (hl) ->
             lines = $(code).find(".codeline")
             lines_c = lines.length
             if(hl == "first" || hl == "start") then hl = 1
             if(hl == "last" || hl == "end") then hl = lines_c
+            if(_.isString(hl)) then hl = parseInt(hl, 10)
             if(_.isNumber(hl) && hl >= 1 && hl <= lines_c)
               $(lines.get(hl - 1)).addClass("highlight")
   
@@ -309,6 +312,7 @@ define [
       type = _.str.trim($(elem).data("type"))
       isFragment = $(elem).data("fragment") == true
       hlight = $(elem).data("hlight")
+      linebyline = $(elem).data("linebyline")
   
       # read snippet's include content
       incl = @readRawCode($("#" + $(elem).data("include")))
@@ -344,6 +348,7 @@ define [
         text: content
         frag: isFragment
         hlight: hlight
+        linebyline: linebyline
         subs: _.flatten(subs)
       }
   

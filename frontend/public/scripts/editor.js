@@ -4839,7 +4839,10 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
             content = "&nbsp;";
         else
             content = arr.join("");
-        return "<pre class='codeline " + options.class + " " + (clazz || "") +
+        var cls = "codeline " + options.class + " " + (clazz || "");
+        if(options.linebyline && row > 1)
+            cls += " fragment";
+        return "<pre class='" + cls +
                     "' data-num='" + options.num +
                     "' data-row='" + (row++) +
                     "' >" + content + "</pre>"
@@ -4945,7 +4948,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
     };
 
     Editor.prototype.createCodeBlock = function(block, elem, status, clear, spin) {
-      var code, frag, hl, hlight, hlights, lang, noText, num, opts, self, text, type, _fn, _i, _len, _ref;
+      var code, frag, hl, hlight, hlights, lang, linebyline, noText, num, opts, self, text, type, _fn, _i, _len, _ref;
       self = this;
       if (_.isString(block)) {
         num = "";
@@ -4954,6 +4957,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
         text = block;
         frag = true;
         hlight = null;
+        linebyline = false;
       } else {
         num = block["num"];
         lang = block["lang"];
@@ -4961,6 +4965,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
         text = block["text"];
         frag = block["frag"];
         hlights = block["hlight"];
+        linebyline = block["linebyline"];
       }
       noText = _.str.isBlank(text);
       if (clear === true || noText) {
@@ -4977,11 +4982,12 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
         }).appendTo($(elem));
         CodeMirror.runMode(text, "text/x-" + (lang != null ? lang : "scala"), code[0], {
           "class": type,
-          "num": num
+          "num": num,
+          "linebyline": linebyline
         });
       }
       if (hlights) {
-        _ref = hlights.split(" ");
+        _ref = hlights.toString().split(' ');
         _fn = function(hl) {
           var lines, lines_c;
           lines = $(code).find(".codeline");
@@ -4991,6 +4997,9 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
           }
           if (hl === "last" || hl === "end") {
             hl = lines_c;
+          }
+          if (_.isString(hl)) {
+            hl = parseInt(hl, 10);
           }
           if (_.isNumber(hl) && hl >= 1 && hl <= lines_c) {
             return $(lines.get(hl - 1)).addClass("highlight");
@@ -5226,13 +5235,14 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
     };
 
     Editor.prototype.readRawBlock = function(elem, editable) {
-      var content, hlight, incl, isFragment, lang, lines, ref, self, subs, type;
+      var content, hlight, incl, isFragment, lang, linebyline, lines, ref, self, subs, type;
       self = this;
       subs = [];
       content = "";
       type = _.str.trim($(elem).data("type"));
       isFragment = $(elem).data("fragment") === true;
       hlight = $(elem).data("hlight");
+      linebyline = $(elem).data("linebyline");
       incl = this.readRawCode($("#" + $(elem).data("include")));
       if (!_.isEmpty(incl)) {
         subs.push(incl);
@@ -5260,6 +5270,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
         text: content,
         frag: isFragment,
         hlight: hlight,
+        linebyline: linebyline,
         subs: _.flatten(subs)
       };
     };

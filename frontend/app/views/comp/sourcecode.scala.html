@@ -1,8 +1,8 @@
 @(id: String = null, fragment: Boolean = true, clazz: String = null, include: String = null,
-  reference: String = null, lang: String = null, hl: String = null)(data: Html)
+  reference: String = null, lang: String = null, hl: String = null, linebyline: Boolean = false)(data: Html)
 
 @snippet(fragment = fragment) {
-    @sourceblock(id, false, clazz, include, reference, lang, hl) {
+    @sourceblock(id, false, clazz, include, reference, lang, hl, linebyline) {
         @data
     }
 }

@@ -34,7 +34,7 @@ object Content extends MyController {
 
     lazy val werkzeuge1 = Slide("E10", "Werkzeuge I", ext, Seq(geschichte), status = "complete")
     lazy val werkzeuge2 = Slide("E11", "Werkzeuge II", ext, Seq(ersteSchritte), status = "complete")
-    lazy val uebungen = Slide("E12", "Übungen", ext, Seq(werkzeuge2))
+    lazy val uebungen = Slide("E12", "Übungen", ext, Seq(werkzeuge2), status = "complete")
 
 
     // ================================================================================================================
@@ -49,9 +49,9 @@ object Content extends MyController {
 
     // === OBJEKTE
 
-    lazy val typen1 = Slide("O20", "Typen I", oop, Seq(), status = "incomplete")
+    lazy val typen1 = Slide("O20", "Typen I", oop, Seq(), status = "complete")
     lazy val traits = Slide("O21", "Traits", oop, Seq(klassen1, vererbung1))
-    lazy val klassen2 = Slide("O22", "Klassen II", oop, Seq(klassen1))
+    lazy val klassen2 = Slide("O22", "Klassen II", oop, Seq(klassen1), status = "complete")
     lazy val vererbung2 = Slide("O23", "Vererbung II", oop, Seq(vererbung1))
     lazy val generics1 = Slide("O24", "Typ-Parameter I", oop, Seq())
 
