@@ -9,6 +9,6 @@
      @{if(lang == null) "" else "data-lang=" + lang}
      @{if(include == null) "" else "data-include=snippet-" + include}
      @{if(reference == null) "" else "data-reference=snippet-" + reference}
-     @{if(linebyline == null) "" else "data-linebyline=" + linebyline}>
+     @{if(linebyline == true) "" else "data-linebyline=" + linebyline}>
         @data
 </div>

@@ -1,2 +1,2 @@
-@(text: String, url: String)
-<a href="@url" ref="nofollow" target="_blank">@text</a>
+@(text: String, url: String, nofollow: Boolean = true)
+<a href="@url" @{if(nofollow) "ref='nofollow'"} target="_blank">@text</a>
