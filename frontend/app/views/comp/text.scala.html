@@ -1,0 +1,7 @@
+@(fragment: Boolean = true)(content: Html)
+
+<div class='@{if(fragment) "fragment"}'>
+    @content
+</div>
+
+@spacer_half()

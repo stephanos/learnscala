@@ -1,6 +1,31 @@
 @(w: (Int, Int) = (50, 50), clazz: (String, String) = ("",""), fragment: Boolean = false, gap: Double = 3.0)(cl: Html = empty())(cr: Html = empty())
 
 <div class='sidebyside @{if(fragment) "fragment"}'>
+
+    <table>
+        <colgroup>
+            <col width="@{w._1 - gap / 2}%">
+            <col width="@{gap}%">
+            <col width="@{w._2 - gap / 2}%">
+        </colgroup>
+        <tbody>
+            <tr>
+                <td class="@clazz._1">
+                    @cl
+                </td>
+                <td>&nbsp;</td>
+                <td class="@clazz._2">
+                    @cr
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+
+@*
+<div class='sidebyside @{if(fragment) "fragment"}'>
     <div class="@clazz._1" style="width: @{w._1 - gap / 2}%; float: left">
         @cl
     </div>
@@ -8,3 +33,4 @@
         @cr
     </div>
 </div>
+*@

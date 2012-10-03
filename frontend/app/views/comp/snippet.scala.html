@@ -1,6 +1,8 @@
-@(fragment: Boolean = false, id: String = null)(data: Html)
+@(fragment: Boolean = false, id: String = null, clazz: String = "", w: Int = 0)(data: Html)
 
-<div class='snippet @{if(fragment) "fragment" else ""}' @{if(id == null) "" else "id=snippet-" + id}>
+<div class='snippet @{clazz} @{if(fragment) "fragment" else ""}'
+     @{if(w != 0) "style='display: inline-block; width:" + w + "%'"}
+     @{if(id == null) "" else "id=snippet-" + id}>
     <div class="raw">
         @data
     </div>

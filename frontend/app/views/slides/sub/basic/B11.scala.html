@@ -11,15 +11,14 @@
         <!-- ################################################################################## -->
 
         @slide(title = "Martin Odersky") {
-            <div class="left w40p">
+            @sidebyside((30,40)) {
                 <img src="/assets/img/odersky.jpg" width="100%" alt="Martin Odersky">
 
                 <div class="tcenter">
                     <var>Martin Odersky <br/>Der Erfinder von Scala</var>
                 </div>
-            </div>
-            <div class="right w50p">
-                <ul>
+            } {
+                <ul class="indent">
                     <li>geboren 1958</li>
                     <li><em>Doktor</em> an der ETH Zürich</li>
                     <li>Pizza-Sprache: <br/>Grundlage für <em>Java Generics</em> und <em>javac</em></li>
@@ -29,7 +28,7 @@
                     <li>2.3€ Mio. Forschungsgelder von der EU</li>
                     <li>gründete <var>Typesafe</var> für Support von Scala</li>
                 </ul>
-            </div>
+            }
         }
 
         <!-- ################################################################################## -->
@@ -135,26 +134,27 @@
         @headslide(title = "Ursprünge") {
             Ursprünge
         } {
-            <div class="indent">
-                <ul>
-                    <li class="fragment">
-                        <em>Java</em> und <em>C#</em><br/>
-                        ⇨ <i>Klassen, Pakete, Importe, Ausdrücke, Blöcke</i>
-                    </li>
-                    <li class="fragment">
-                        <em>Haskell</em> und <em>F#</em><br/>
-                        ⇨ <i>Funktionen höherer Ordnung, Implicits</i>
-                    </li>
-                    <li class="fragment">
-                        <em>Ruby</em> und <em>Smalltalk</em><br/>
-                        ⇨ <i>einheitliches Objektmodell</i>
-                    </li>
-                    <li class="fragment">
-                        <em>Erlang</em><br/>
-                        ⇨ <i>Aktoren-basierte Parallelprogrammierung</i>
-                    </li>
-                </ul>
-            </div>
+            <ul>
+                <li class="fragment">
+                    <em>Java</em> und <em>C#</em><br/>
+                    ⇨ <i>Klassen, Pakete, Importe, Ausdrücke, Blöcke</i>
+                </li>
+                @spacer_half()
+                <li class="fragment">
+                    <em>Haskell</em> und <em>F#</em><br/>
+                    ⇨ <i>Funktionen höherer Ordnung, Implicits</i>
+                </li>
+                @spacer_half()
+                <li class="fragment">
+                    <em>Ruby</em> und <em>Smalltalk</em><br/>
+                    ⇨ <i>einheitliches Objektmodell</i>
+                </li>
+                @spacer_half()
+                <li class="fragment">
+                    <em>Erlang</em><br/>
+                    ⇨ <i>Aktoren-basierte Parallelprogrammierung</i>
+                </li>
+            </ul>
         }
 
         <!-- ################################################################################## -->
@@ -162,14 +162,12 @@
         @headslide(title = "Zusammenfassung") {
             Zusammenfassung
         } {
-            <div class="indent">
-                <ul>
-                    <li>Scala gibt es <em>seit 2003</em></li>
-                    <li>kommt aus dem <em>akademischen Bereich</em></li>
-                    <li>hat starke Rückendeckung aus der <em>Wirtschaft</em></li>
-                    <li><em>vereint</em> gute Ideen aus Sprachen wie Haskell, Ruby, Erlang und Scala</li>
-                </ul>
-            </div>
+            <ul>
+                <li>Scala gibt es <em>seit 2003</em></li>
+                <li>kommt aus dem <em>akademischen Bereich</em></li>
+                <li>hat starke Rückendeckung aus der <em>Wirtschaft</em></li>
+                <li><em>vereint</em> gute Ideen aus Sprachen wie Haskell, Ruby, Erlang und Scala</li>
+            </ul>
         }
     }
 }

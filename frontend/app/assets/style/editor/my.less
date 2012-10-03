@@ -103,9 +103,11 @@ table.codesplit {
 
     font-size:   @fs_code;
     line-height: 1.1 * @fs_code;
+}
 
-    .selectable();
-    span { .selectable(); }
+.ide .output-wrap {
+  .selectable();
+  span { .selectable(); }
 }
 
 // use one plain color for output code
@@ -124,14 +126,21 @@ table.codesplit {
 
 .snippet {
 
+  width: 100%;
+  display: inline-block;
+
   >div.raw {
     display: none;
   }
 
   >div.code {
 
+    text-align: left;
+
     >div.wrapper {
-      padding: 8px 0;
+
+      padding: 20px 0;
+      &.output { padding: 8px 0; }
 
       // border default: dashed top and bottom
       @c_border_f: fadeout(@c_code_border, 10%);
@@ -171,7 +180,7 @@ table.codesplit {
       >pre.codeline {
         overflow: hidden;
         position: relative;
-        padding: 1px 10px;
+        padding: 1px 20px;
 
         &:hover {
           .btn-group { .opacity(100); }
@@ -191,6 +200,12 @@ table.codesplit {
           }
         }
       }
+    }
+  }
+
+  &.slim {
+    >div.code>div.wrapper {
+      padding: 8px 0;
     }
   }
 }

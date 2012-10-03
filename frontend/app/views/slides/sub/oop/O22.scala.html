@@ -24,12 +24,12 @@
                     @sourcecode(id = "case_class") {
                         |case class HttpStatus (code: Int)
                     }
-                    @codesub() {
-                        <code>case</code> Schlüsselwort steht vor <code>class</code>
-                    }
+                    @*@codesub() {*@
+                        @*<code>case</code> Schlüsselwort steht vor <code>class</code>*@
+                    @*}*@
                 }
 
-                @spacer()
+                @spacer2()
 
                 @sidebyside((50,50)) {
                     @snippet() {
@@ -43,12 +43,12 @@
                             |val s = HttpStatus(404)
                         }
                     }
-                    @codesub() {
-                        Instanziierung via Companion Object
-                    }
+                    @*@codesub() {*@
+                        @*Instanziierung via Companion Object*@
+                    @*}*@
                 }
 
-                @spacer_half()
+                @spacer()
 
                 @sidebyside((50,50)) {
                     @snippet() {
@@ -68,12 +68,12 @@
                             |res0: Int = 404
                         }
                     }
-                    @codesub() {
-                        Parameter <code>code</code> ist ein Feld der Klasse
-                    }
+                    @*@codesub() {*@
+                        @*Parameter <code>code</code> ist ein Feld der Klasse*@
+                    @*}*@
                 }
 
-                @spacer_half()
+                @spacer()
 
                 @sidebyside((50,50)) {
                     @snippet() {
@@ -93,12 +93,12 @@
                             |res0: String = HttpStatus(404)
                         }
                     }
-                    @codesub() {
-                        <code>toString</code> liefert ein lesbares Ergebnis
-                    }
+                    @*@codesub() {*@
+                        @*<code>toString</code> liefert ein lesbares Ergebnis*@
+                    @*}*@
                 }
 
-                @spacer_half()
+                @spacer()
 
                 @sidebyside((50,50)) {
                     @snippet() {
@@ -118,9 +118,9 @@
                             |eq: Boolean = true
                         }
                     }
-                    @codesub() {
-                        <code>equals</code> funktioniert
-                    }
+                    @*@codesub() {*@
+                        @*<code>equals</code> funktioniert*@
+                    @*}*@
                 }
             }
 
@@ -191,7 +191,7 @@
 
             @slide(title = title, subtitle = "Vererbung") {
 
-                @sidebyside((75,25)) {
+                @middle(w = 70) {
                     @snippet() {
                         @sourceblock(id = "case_point") {
                             |case class Employee(name: String)
@@ -206,38 +206,11 @@
                             |         dangerous bugs which are unlikely to be fixed.
                         }
                     }
-                } {
-                    @codenote() {
-                        <var>Warnung:</var> Case Class nicht vererben
-                    }
                 }
 
                 @spacer()
 
-                @*@sidebyside((75,25)) {
-                    @snippet() {
-                        @callblock(reference = "case_point") {
-                            |Point(0, 0) equals ColoredPoint(0, 0, "red")
-                        }
-                        @outblock() {
-                            |res0: Boolean = false
-                        }
-                        @callblock() {
-                            |ColoredPoint(0, 0, "red") equals Point(0, 0)
-                        }
-                        @outblock() {
-                            |res1: Boolean = false
-                        }
-                    }
-                } {
-                    @codenote() {
-                        <var>Problem:</var> <code>equals</code>
-                    }
-                }
-
-                @spacer()*@
-
-                @sidebyside((75,25)) {
+                @middle(w = 70) {
                     @snippet() {
                         @callblock(reference = "case_point") {
                             |Programmer("Bob", true).copy()
@@ -246,25 +219,23 @@
                             |res2: Employee = Employee(Bob)
                         }
                     }
-                } {
-                    @codenote() {
-                        <var>Problem:</var> <code>copy</code> instanziiert Basis-Klasse !
-                    }
                 }
             }
 
             <!-- ################################################################################## -->
 
             @slide(title = title, subtitle = "Pattern Matching") {
-                @snippet() {
-                    @sourceblock(id = "empl") {
-                        |case class Employee (name: String, age: Int)
+                @middle() {
+                    @snippet() {
+                        @sourceblock(id = "empl") {
+                            |case class Employee (name: String, age: Int)
+                        }
                     }
                 }
 
-                @spacer2()
+                @spacer()
 
-                @sidebyside((60,40)) {
+                @middle2() {
                     @snippet() {
                         @sourceblock(reference = "empl", hl = "3") {
                             |def shouldRetire(empl: Employee) =
@@ -281,9 +252,9 @@
                     }
                 }
 
-                @spacer()
+                @spacer_half()
 
-                @sidebyside((60,40)) {
+                @middle2() {
                     @snippet() {
                         @sourceblock(reference = "empl", hl = "3") {
                             |def shouldRetire(empl: Employee) =
@@ -299,9 +270,9 @@
                     }
                 }
 
-                @spacer()
+                @spacer_half()
 
-                @sidebyside((60,40)) {
+                @middle2() {
                     @snippet() {
                         @sourceblock(reference = "empl", hl = "3") {
                             |def shouldRetire(empl: Employee) =
@@ -321,32 +292,33 @@
             <!-- ################################################################################## -->
 
             @slide(title = title, subtitle = "sealed") {
-                @sidebyside((90,10)) {
-                    @snippet() {
-                        @sourceblock(id = "case_class_match") {
-                            |sealed abstract class Employee { val age: Int }
-                            |
-                            |case class Boss(age: Int) extends Employee
-                            |case class Developer(age: Int, knowsScala: Boolean) extends Employee
-                        }
+
+                @middle(w = 80) {
+                    @sourcecode(id = "case_class_match") {
+                        |sealed abstract class Employee { val age: Int }
+                        |
+                        |case class Boss(age: Int) extends Employee
+                        |case class Developer(age: Int, knowsScala: Boolean) extends Employee
                     }
+                }
 
-                    @spacer()
+                @spacer()
 
-                    @snippet() {
-                        @sourceblock(id = "match_salary", linebyline = true, reference = "case_class_match") {
-                            |def getSalary(e: Employee) =
-                            |  e match {
-                            |    case Boss(age) if(age > 50) => 130000
-                            |    case p: Boss                => 80000 + (p.age * 1000)
-                            |    case Developer(_, true)     => 50000
-                            |    case Developer(_, _)        => 40000
-                            |  }
-                        }
+                @middle(w = 80) {
+                    @sourcecode(id = "match_salary", linebyline = true, reference = "case_class_match") {
+                        |def getSalary(e: Employee) =
+                        |  e match {
+                        |    case Boss(age) if(age > 50) => 130000
+                        |    case p: Boss                => 80000 + (p.age * 1000)
+                        |    case Developer(_, true)     => 50000
+                        |    case Developer(_, _)        => 40000
+                        |  }
                     }
+                }
 
-                    @spacer()
+                @spacer()
 
+                @middle(w = 80) {
                     @snippet() {
                         @callblock(reference = "match_salary") {
                             |val s1 = getSalary(Boss(25))
@@ -361,7 +333,6 @@
                             |s2: Int = 40000
                         }
                     }
-                } {
                 }
             }
         }

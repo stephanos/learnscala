@@ -1,7 +1,7 @@
 @(id: String = null, fragment: Boolean = true, error: Boolean = false, clazz: String = null, include: String = null,
-  reference: String = null, hl: String = null)(data: Html)
+  reference: String = null, hl: String = null, w: Int = 0)(data: Html)
 
-@snippet(fragment = fragment) {
+@snippet(fragment = fragment, w = w) {
     @outblock(id, false, clazz, error, include, reference, hl = hl) {
         @data
     }

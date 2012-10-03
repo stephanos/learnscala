@@ -4920,22 +4920,22 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
       };
       return $(elem).find("pre").each(function(idx, pre) {
         var loadBtn, markBtn;
-        if (!$(pre).hasClass("output")) {
-          markBtn = $("<div class='btn-group btn-group-left'><button class='btn btn-icon btn-mini mark'>&nbsp;</button></div>").prependTo($(pre));
-          $(markBtn).click(function(evt) {
-            resetHighlights(evt);
-            pre = $(evt.target).closest("pre");
-            return $(pre).toggleClass("highlight");
-          });
-          $(pre).click(function(evt) {
-            if (evt.shiftKey || evt.ctrlKey || evt.altKey || evt.metaKey) {
-              return markBtn.trigger("click");
-            }
-          });
-          $(pre).dblclick(function(evt) {
-            resetHighlights(evt);
+        markBtn = $("<div class='btn-group btn-group-left'><button class='btn btn-icon btn-mini mark'>&nbsp;</button></div>").prependTo($(pre));
+        $(markBtn).click(function(evt) {
+          resetHighlights(evt);
+          pre = $(evt.target).closest("pre");
+          return $(pre).toggleClass("highlight");
+        });
+        $(pre).click(function(evt) {
+          if (evt.shiftKey || evt.ctrlKey || evt.altKey || evt.metaKey) {
             return markBtn.trigger("click");
-          });
+          }
+        });
+        $(pre).dblclick(function(evt) {
+          resetHighlights(evt);
+          return markBtn.trigger("click");
+        });
+        if (!$(pre).hasClass("output")) {
           loadBtn = $("<div class='btn-group btn-group-right'><button class='btn btn-icon btn-mini load'>6</button></div>").appendTo($(pre));
           return $(loadBtn).click(function(evt) {
             var blocks;

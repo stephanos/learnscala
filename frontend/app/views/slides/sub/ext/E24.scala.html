@@ -90,10 +90,11 @@
                             |123
                         }
                     }
-                    @codesub() {
-                        <code>JavaConversions</code> enthält Implicits zur automatischen Umwandlung zwischen Kollektionen
-                        aus Scala und Java <comment class="nobreak">(dabei wird ein Wrapper verwendet)</comment>
-                    }
+
+                    @*
+                    <code>JavaConversions</code> enthält Implicits zur Umwandlung zwischen Kollektionen
+                    aus Scala und Java @*<comment class="nobreak">(dabei wird ein Wrapper verwendet)</comment>
+                    *@
 
                     @spacer()
 
@@ -112,10 +113,11 @@
                             |scalaList: scala.collection.mutable.Buffer[Int] = Buffer(1, 2, 3)
                         }
                     }
-                    @codesub() {
+
+                    @*
                         <code>JavaConverters</code> erweitert Kollektionen um die Methoden <code>asScala</code> bzw. <code>asJava</code>
                         zur expliziten Umwandlung
-                    }
+                    *@
                 }
             }
         }
@@ -143,12 +145,13 @@
                             |    public Book();
                             |}
                         }
-                        @codesub() {
-                            jede Scala-Klasse erbt automatisch von <code>java.lang.Object</code>
-                        }
                     }
 
-                    @spacer()
+                    @codesub() {
+                        jede Scala-Klasse erbt automatisch von <code>java.lang.Object</code>
+                    }
+
+                    @spacer2()
 
                     @sidebyside((47,53)) {
                         @sourcecode() {
@@ -162,8 +165,6 @@
                             |}
                         }
                     }
-
-                    @spacer_half()
                 }
             }
 
@@ -185,7 +186,7 @@
                 @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "Operatoren") {
                     @title: @subtitle
                 } {
-                    @sidebyside((35,60)) {
+                    @sidebyside((40,60)) {
                         @sourcecode() {
                             |abstract class Operators {
                             |
@@ -219,10 +220,15 @@
                             |  public abstract void $colon$colon();
                             |}
                         }
-                        @codesub() {
-                            Symbole werden übersetzt in <var>Java</var>-kompatible Bezeichnungen
-                        }
                     }
+
+                    @*@codesub() {
+                        Scala erlaubt Zeichen zur Bennenung von Methoden, die nicht in Java gestattet sind.
+                    }
+
+                    @text() {
+                        Symbole werden daher in <var>Java</var>-kompatible Bezeichnungen übersetzt.
+                    }*@
                 }
             }
 
@@ -230,7 +236,7 @@
 
             @defining("Felder") { subtitle =>
 
-                @*@headslide(htmlTitle = title, subtitle = subtitle) {
+                @headslide(htmlTitle = title, subtitle = subtitle) {
                     @title: @subtitle
                 } {
                     @sidebyside((47,53)) {
@@ -246,13 +252,13 @@
                             |  public java.lang.String title();
                             |}
                         }
-                        @codesub() {
+                        @*@codesub() {
                             <em>val</em> resultiert in einer privaten Variable<br/>
                             und einer gleichnamigen, öffentlichen Zugriffsmethode
-                        }
+                        }*@
                     }
 
-                    @spacer()
+                    @spacer2()
 
                     @sidebyside((47,53)) {
                         @sourcecode() {
@@ -268,32 +274,31 @@
                             |  public void title_$eq(java.lang.String);
                             |}
                         }
-                        @codesub() {
+                        @*@codesub() {
                             <em>var</em> erhält zusätzlich eine schreibende Methode
                             <span class="nobreak">mit dem Suffix <code>_=</code></span> (entspricht <code>_$eq</code> in Java)
-                        }
+                        }*@
                     }
-                }*@
+                }
 
                 <!-- ################################################################################## -->
 
-                @*@headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "Get & Set") {
+                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "Get & Set") {
                     @title: @subtitle
                 } {
-                    @sidebyside((50,50)) {
-                        @sourcecode() {
-                            |import scala.reflect.BeanProperty
-                            |
-                            |class Book(@@BeanProperty val title:String)
+
+                    @sidebyside() {
+                        @sourcecode(reference = "import_reflect") {
+                            |class Book (
+                            |  @@BeanProperty val name:String)
                         }
-                        @codesub() {
+                        @*@codesub() {
                             <code>@@BeanProperty</code> erstellt eine get-Methode für <em>val</em>
-                        }
+                        }*@
                     } {
                         @outcode() {
                             |public class Book [..] {
                             |  public Book(java.lang.String);
-                            |
                             |  private final java.lang.String title;
                             |  public java.lang.String title();
                             |  public java.lang.String getTitle();
@@ -303,19 +308,17 @@
 
                     @spacer_half()
 
-                    @sidebyside((50,50)) {
-                        @sourcecode() {
-                            |import scala.reflect.BooleanBeanProperty
-                            |
+                    @sidebyside() {
+                        @sourcecode(reference = "import_reflect") {
                             |class Book {
-                            |  @@BooleanBeanProperty var available = _
+                            |  @@BooleanBeanProperty
+                            |  var available: Boolean = _
                             |}
                         }
                     } {
                         @outcode() {
                             |public class Book [..] {
                             |  public Book();
-                            |
                             |  private final boolean available;
                             |  public boolean available();
                             |  public boolean isAvailable();
@@ -325,20 +328,18 @@
 
                     @spacer_half()
 
-                    @sidebyside((50,50)) {
-                        @sourcecode() {
-                            |import scala.reflect.BeanProperty
-                            |
-                            |class Book(@@BeanProperty var price:Float)
+                    @sidebyside() {
+                        @sourcecode(reference = "import_reflect") {
+                            |class Book(
+                            |   @@BeanProperty var price:Float)
                         }
-                        @codesub() {
+                        @*@codesub() {
                             <code>@@BeanProperty</code> erstellt get- und set-Methoden für <em>var</em>
-                        }
+                        }*@
                     } {
                         @outcode() {
                             |public class Book [..] {
                             |  public Book(java.lang.String);
-                            |
                             |  private float price;
                             |  public float price();
                             |  public void price_$eq(float);
@@ -347,72 +348,43 @@
                             |}
                         }
                     }
-                }*@
+                }
 
                 <!-- ################################################################################## -->
 
-                @*@headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "Get & Set") {
+                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "Get & Set") {
                     @title: @subtitle
                 } {
-                    @sidebyside((47,53)) {
-                        @sourcecode() {
-                            |
-                            |
-                            |class Book(val title:String) {
-                            |  var price = 12.95f
-                            |  val available = true
-                            |}
-                        }
-                        @spacer_half()
-                        @outcode() {
-                            |public class Book extends [..] {
-                            |  public Book(java.lang.String);
-                            |
-                            |  private final java.lang.String title;
-                            |  public java.lang.String title();
-                            |
-                            |
-                            |  private float price;
-                            |  public float price();
-                            |  public void price_$eq(float);
-                            |
-                            |
-                            |
-                            |  private final boolean available;
-                            |  public boolean available();
-                            |}
-                        }
-                    } {
-                        @sourcecode() {
-                            |import scala.reflect._
-                            |
-                            |class Book(@@BeanProperty val title:String) {
-                            |  @@BeanProperty var price = 12.95f
-                            |  @@BooleanBeanProperty var available = true
-                            |}
-                        }
-                        @spacer_half()
-                        @outcode() {
-                            |public class Book extends [..] {
-                            |  public Book(java.lang.String);
-                            |
-                            |  private final java.lang.String title;
-                            |  public java.lang.String title();
-                            |  public java.lang.String getTitle();
-                            |
-                            |  private float price;
-                            |  public float price();
-                            |  public void price_$eq(float);
-                            |  public float getPrice();
-                            |  public void setPrice(float);
-                            |
-                            |  private final boolean available;
-                            |  public boolean available();
-                            |  public boolean isAvailable();
-                            |}
-                        }
+                    @sourcecode() {
+                        |import scala.reflect._
+                        |class Book(@@BeanProperty val title:String) {
+                        |  @@BeanProperty var price = 12.95f
+                        |  @@BooleanBeanProperty var available = true
+                        |}
                     }
-                }*@
+
+                    @spacer_half()
+
+                    @outcode() {
+                        |public class Book extends [..] {
+                        |  public Book(java.lang.String);
+                        |
+                        |  private final java.lang.String title;
+                        |  public java.lang.String title();
+                        |  public java.lang.String getTitle();
+                        |
+                        |  private float price;
+                        |  public float price();
+                        |  public void price_$eq(float);
+                        |  public float getPrice();
+                        |  public void setPrice(float);
+                        |
+                        |  private final boolean available;
+                        |  public boolean available();
+                        |  public boolean isAvailable();
+                        |}
+                    }
+                }
             }
 
             <!-- ################################################################################## -->
@@ -422,12 +394,16 @@
                 @headslide(htmlTitle = title, subtitle = subtitle) {
                     @title: @subtitle
                 } {
-                    @sidebyside((43,57)) {
+
+                    @*@codesub() {
+                        Scala ignoriert geprüfte Ausnahmen <comment>(checked exceptions)</comment>.
+                    }*@
+
+                    @sidebyside((50,50)) {
                         @sourcecode() {
                             |import java.io._
                             |
                             |class Reader(fname: String) {
-                            |
                             |  def read() = {
                             |    val fr = new FileReader(fname)
                             |    new BufferedReader(fr).read()
@@ -441,19 +417,19 @@
                             |  [..]
                             |}
                         }
-                        @codesub() {
-                            <em>Scala</em> ignoriert <var>geprüfte Ausnahmen</var> <comment>(checked exceptions)</comment>
-                        }
                     }
+
+                    @*@codesub() {
+                        Mit Hilfe der Annotation <code>@@throws</code> wird die Signatur im Bytecode hinzugefügt.
+                    }*@
 
                     @spacer()
 
-                    @sidebyside((43,57)) {
+                    @sidebyside((50,50)) {
                         @sourcecode() {
                             |import java.io._
                             |
                             |class Reader(fname: String) {
-                            |
                             |  @@throws(classOf[IOException])
                             |  def read() = {
                             |    val fr = new FileReader(fname)
@@ -462,7 +438,13 @@
                             |}
                         }
                     } {
-
+                        @outcode() {
+                            |public class Reader extends [..] {
+                            |  public int read()
+                            |       throws java.io.IOException;
+                            |  [..]
+                            |}
+                        }
                     }
                 }
             }
@@ -536,7 +518,7 @@
 
             <!-- ################################################################################## -->
 
-            @*@defining("Objekte") { subtitle =>
+            @defining("Objekte") { subtitle =>
 
                 @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "") {
                     @title: @subtitle
@@ -561,13 +543,13 @@
                             |  public static final void trim(java.lang.String);
                             |}
                         }
-                        @codesub() {
+                        @*@codesub() {
                             <em>Objekte</em> werden zu Klassen mit den entsprechenden Methoden als <var>static</var><br/>
                             <comment>(delegieren den Aufruf an das generierte Singleton (erkennbar am <code>$</code>))</comment>
-                        }
+                        }*@
                     }
 
-                    @spacer()
+                    @spacer2()
 
                     @sourcecode(reference = "trait", lang = "java") {
                         |public class Logger {
@@ -577,11 +559,8 @@
                         |  }
                         |}
                     }
-                    @codesub() {
-
-                    }
                 }
-            }*@
+            }
 
             <!-- ################################################################################## -->
 
@@ -605,37 +584,34 @@
                             |  public Hello();
                             |}
                         }
-                        @codesub() {
+                        @*@codesub() {
                             <code>f: String => String</code> entspricht <code>Function1</code>,<br/>
                             einer Funktion mit einem Parameter
-                        }
+                        }*@
                     }
 
                     @spacer()
 
-                    @sidebyside((65,35)) {
-                        @sourcecode(reference = "trait", lang = "java") {
-                            |import scala.runtime.AbstractFunction1;
-                            |
-                            |public class Main {
-                            |
-                            |  public void shoutHello() {
-                            |    Hello h = new Hello();
-                            |    h.print(new AbstractFunction1&lt;String, String&gt;() {
-                            |       public String apply(String arg) {
-                            |         return arg.toUpperCase();
-                            |       }
-                            |    });
-                            |  }
-                            |}
-                        }
-                    } {
-                        @spacer()
-                        @codenote() {
-                            <em>Closure</em> kann durch
-                            Implementierung von <code>apply</code> der Klasse <code>AbstractFunction1</code>
-                            erstellt werden
-                        }
+                    @sourcecode(reference = "trait", lang = "java") {
+                        |import scala.runtime.AbstractFunction1;
+                        |
+                        |public class Main {
+                        |
+                        |  public void shoutHello() {
+                        |    Hello h = new Hello();
+                        |    h.print(new AbstractFunction1&lt;String, String&gt;() {
+                        |       public String apply(String arg) {
+                        |         return arg.toUpperCase();
+                        |       }
+                        |    });
+                        |  }
+                        |}
+                    }
+
+                    @codenote() {
+                        <em>Closure</em> kann durch
+                        Implementierung von <code>apply</code> der Klasse <code>AbstractFunction1</code>
+                        erstellt werden
                     }
                 }
             }
@@ -672,4 +648,8 @@
         |  public abstract void log(java.lang.String);
         |}
     }
+}
+
+@sourcecode(id = "import_reflect") {
+    |import scala.reflect._
 }

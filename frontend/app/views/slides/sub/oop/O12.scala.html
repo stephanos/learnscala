@@ -12,9 +12,9 @@
 
         @slide(title = "static ?") {
 
-            @sidebyside((60,40)) {
+            @middle() {
                 @snippet() {
-                    @sourceblock(fragment = false) {
+                    @sourceblock() {
                         |class AccountFactory {
                         |
                         |  static var lastNumber = 0
@@ -30,11 +30,11 @@
                         |       static var lastNumber = 0
                     }
                 }
-            } {
+            } @*{
                 @codenote() {
                     <code>static</code> gibt es in Scala nicht ...
                 }
-            }
+            }*@
         }
 
 
@@ -50,33 +50,21 @@
 
             @slide(title = title) {
 
-                @codesplits((60,40), id="accountfactory"){
-                    @splitstart(reference = "account") {
-                        |object AccountFactory @("{")
-                    }{
-                        ... aber Objekte.
-                    }
-                    @codesplit() {
+                @middle() {
+                    @sourcecode(id="accountfactory") {
+                        |object AccountFactory {
+                        |
                         |   var lastNumber = 0
-                    } {
-                        @li{<em>globaler Zustand</em>}
-                    }
-                    @codesplit() {
+                        |
                         |   def newAccount(owner: String) = {
                         |       lastNumber += 1
                         |       new Account(owner, lastNumber)
                         |   }
-                    } {
-                        @li{<em>Factory</em>-Methoden}
+                        |}
                     }
-                    @splitend() {
-                        |@("}")
-                    }(null)
-                }
 
-                @spacer()
+                    @spacer()
 
-                @sidebyside((60,40)) {
                     @snippet() {
                         @callblock(reference = "accountfactory") {
                             |val acc = AccountFactory.newAccount("Bob")
@@ -85,7 +73,6 @@
                             |acc: Account = Account@@536502d
                         }
                     }
-                } {
                 }
 
                 <!--@infobox() {
@@ -95,9 +82,11 @@
                 }-->
             }
 
-            @slide(title = title, subtitle = "Instanz") {
+            <!-- ################################################################################## -->
 
-                @sidebyside((60,40)) {
+            @slide(title = title, subtitle = "Parameter") {
+
+                @middle() {
                     @snippet() {
                         @sourceblock() {
                             |object AccountFactory(startNumber: Int) {
@@ -109,15 +98,18 @@
                             |error: objects may not have parameters
                         }
                     }
-                } {
+                } @*{
                     @codenote() {
                         Objekte werden automatisch instanziiert, Parameter sind daher nicht erlaubt
                     }
-                }
+                }*@
+            }
 
-                @spacer2()
+            <!-- ################################################################################## -->
 
-                @sidebyside((60,40)) {
+            @slide(title = title, subtitle = "Instanz") {
+
+                @middle() {
                     @snippet() {
                         @sourceblock() {
                             |object AccountFactory {
@@ -140,16 +132,18 @@
                             |42
                         }
                     }
-                } {
+                } @*{
                     @codenote() {
                         Objekte werden beim ersten Zugriff instanziiert
                     }
-                }
+                }*@
             }
+
+            <!-- ################################################################################## -->
 
             @slide(title = title, subtitle = "Beispiele") {
 
-                @sidebyside((60,40)) {
+                @middle() {
                     @sourcecode() {
                         |object MyApplication {
                         |
@@ -158,16 +152,16 @@
                         |  }
                         |}
                     }
-                } {
-                    @codenote() {
-                        Singleton <code>MyApplication</code> definiert
-                        den <em>Einstiegspunkt</em> <code>main</code> zum Ausführen
-                    }
-                }
 
-                @spacer()
+                    @*{
+                        @codenote() {
+                            Singleton <code>MyApplication</code> definiert
+                            den <em>Einstiegspunkt</em> <code>main</code> zum Ausführen
+                        }
+                    }*@
 
-                @sidebyside((60,40)) {
+                    @spacer()
+
                     @sourcecode() {
                         |object StringUtil {
                         |
@@ -175,16 +169,16 @@
                         |    if(s == null) true else s.isEmpty()
                         |}
                     }
-                } {
-                    @codenote() {
-                        Singleton <code>StringUtil</code> definiert
-                        <em>nützliche Methoden</em> für die Arbeit mit Strings
-                    }
-                }
 
-                @spacer()
+                    @*{
+                        @codenote() {
+                            Singleton <code>StringUtil</code> definiert
+                            <em>nützliche Methoden</em> für die Arbeit mit Strings
+                        }
+                    }*@
 
-                @sidebyside((60,40)) {
+                    @spacer()
+
                     @sourcecode() {
                         |object Currency {
                         |
@@ -192,11 +186,13 @@
                         |  val dollar = "$"
                         |}
                     }
-                } {
-                    @codenote() {
-                        Singleton <code>Currency</code> definiert
-                        Währungssymbole als <em>Konstanten</em>
-                    }
+
+                    @*{
+                        @codenote() {
+                            Singleton <code>Currency</code> definiert
+                            Währungssymbole als <em>Konstanten</em>
+                        }
+                    }*@
                 }
             }
         }
@@ -207,47 +203,32 @@
 
             @slide(title = title) {
 
-                @sidebyside((60,40)) {
-                    @sourcecode(id = "account2") {
-                        |// Account.scala
-                        |class Account private (val owner: String,
-                        |                       val number: Int) {
-                        |
-                        |  def totalCount = Account.lastNumber
-                        |}
-                    }
-                } {
-                    @codenote() {
-                        Klasse <code>Account</code> hat einen @uline("privaten") Konstruktor
-                    }
-                }
-
-                @spacer()
-
-                @sidebyside((60,40)) {
-                    @sourcecode(id = "accountobj", reference = "account2") {
-                        |// Account.scala
-                        |object Account {
-                        |
-                        |  private var lastNumber = 0
-                        |
-                        |  def newAccount(owner: String) = {
-                        |    lastNumber += 1
-                        |    new Account(owner, lastNumber)
-                        |  }
-                        |}
-                    }
-                } {
-                    @codenote() {
-                        Companion Object <code>Account</code> definiert Factory-Methode
-                    }
-                }
-
-                @spacer()
-
-                @sidebyside((60,40)) {
+                @sidebyside((50,50)) {
                     @snippet() {
-                        @callblock(reference = "accountobj") {
+                        @sourceblock(id = "account_class") {
+                            |class Account private (val owner: String,
+                            |                       val number: Int) {
+                            |
+                            |  def totalCount = Account.lastNumber
+                            |}
+                        }
+                        @sourceblock(id = "account_obj", reference = "account_class") {
+                            |object Account {
+                            |
+                            |  private var lastNumber = 0
+                            |
+                            |  def newAccount(owner: String) = {
+                            |    lastNumber += 1
+                            |    new Account(owner, lastNumber)
+                            |  }
+                            |}
+                        }
+                    }
+                } {
+                    @spacer()
+
+                    @snippet() {
+                        @callblock(reference = "account_obj") {
                             |val acc = Account.newAccount("Bob")
                         }
                         @outblock() {
@@ -260,43 +241,58 @@
                             |1
                         }
                     }
-                } {
+                }
+
+                @*
+                    @codenote() {
+                        Klasse <code>Account</code> hat einen @uline("privaten") Konstruktor
+                    }
+                *@
+
+                @*
+                    @codenote() {
+                        Companion Object <code>Account</code> definiert Factory-Methode
+                    }
+                *@
+
+                @*
                     @codenote() {
                         Companion Object und Klasse haben gegenseitig privaten Zugriff
                     }
-                }
+                *@
 
-                <!--@infobox() {
+                @*
                     Das Companion Object einer Klasse muss den selben Namen tragen und in der selben Datei
                     definiert werden, dann hat es privaten Zugriff - und umgekehrt.
-                }-->
+                *@
             }
 
             <!-- ################################################################################## -->
 
             @slide(title = title, subtitle = "Beispiele") {
 
-                @sidebyside((70,30)) {
+                @middle() {
                     @callcode() {
                         |val bigNumber = BigInt("1234567890")
                     }
-                } {
-                    @codenote() {
-                        erstellt ein <code>BigInt</code> mit dem Wert 1234567890
+
+                    @spacer2()
+
+                    @middle() {
+                        @callcode() {
+                            |val countdown = Array(10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
+                        }
                     }
                 }
+                @*{@codenote() {
+                    erstellt ein <code>BigInt</code> mit dem Wert 1234567890
+                }*@
 
-                @spacer2()
-
-                @sidebyside((70,30)) {
-                    @callcode() {
-                        |val countdown = Array(10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
-                    }
-                } {
+                @*{
                     @codenote() {
                         erstellt ein <code>Array</code> aus den Zahlen von 10 bis 0
                     }
-                }
+                }*@
 
                 <!--@infobox() {
                     Für viele Datentypen und -strukturen gibt es gleichnamige Objekte
@@ -309,28 +305,19 @@
 
         @slide(title = "apply") {
 
-            @sidebyside((60,40)) {
+            @sidebyside((45,55)) {
                 @sourcecode(id = "apply", reference = "account2") {
-                        |object Account {
-                        |
-                        |  private var lastNumber = 0
-                        |
-                        |  def apply(owner: String) = {
-                        |    lastNumber += 1
-                        |    new Account(owner, lastNumber)
-                        |  }
-                        |}
+                    |object Account {
+                    |
+                    |  private var lastNumber = 0
+                    |
+                    |  def apply(owner: String) = {
+                    |    lastNumber += 1
+                    |    new Account(owner, lastNumber)
+                    |  }
+                    |}
                 }
             } {
-                @codenote() {
-                    Objekt enthält <code>apply</code>-Methode
-                    zum Erstellen einer neuen Instanz von <code>Account</code>
-                }
-            }
-
-            @spacer()
-
-            @sidebyside((60,40), fragment = true) {
                 @snippet() {
                     @callblock(reference = "apply") {
                         val acc = Account.apply("Bob")
@@ -339,15 +326,9 @@
                         |acc: Account = Account@@536502d
                     }
                 }
-            } {
-                @codenote() {
-                    Methode <code>apply</code> wird @underline("explizit") aufgerufen
-                }
-            }
 
-            @spacer()
+                @spacer()
 
-            @sidebyside((60,40), fragment = true) {
                 @snippet() {
                     @callblock(reference = "apply") {
                         val acc = Account("Bob")
@@ -356,15 +337,9 @@
                         |acc: Account = Account@@536502d
                     }
                 }
-            } {
-                @codenote() {
-                    Methode <code>apply</code> wird @underline("implizit") aufgerufen
-                }
-            }
 
-            @spacer_half()
+                @spacer()
 
-            @sidebyside((60,40), fragment = true) {
                 @snippet() {
                     @callblock() {
                         |val acc = Account()
@@ -373,8 +348,19 @@
                         |error: not enough arguments for method apply
                     }
                 }
-            } {
+
+                @*@codenote() {
+                    Objekt enthält <code>apply</code>-Methode
+                    zum Erstellen einer neuen Instanz von <code>Account</code>
+                }*@
             }
+
+            @*@codenote() {
+                Methode <code>apply</code> wird @underline("explizit") aufgerufen
+            }
+            @codenote() {
+                Methode <code>apply</code> wird @underline("implizit") aufgerufen
+            }*@
 
             <!--@infobox() {
                 Die Methode <code>apply</code> kann implizit durch
@@ -387,9 +373,9 @@
 
         @slide(title = "Predef") {
 
-            @sidebyside((66,33)) {
+            @middle() {
                 @snippet() {
-                    @callblock(fragment = false) {
+                    @callblock() {
                         |Predef.println("Account was created")
                     }
                     @outblock() {
@@ -402,22 +388,20 @@
                         |Account was created
                     }
                 }
-            } {
-                @codenote() {
-                    Methode <code>println</code> - Teil des Objekts @apilink("Predef", "Predef$") -
-                    kann ohne Objektreferenz verwendet werden
-                }
-            }
 
-            @spacer2()
+                @*{
+                    @codenote() {
+                        Methode <code>println</code> - Teil des Objekts @apilink("Predef", "Predef$") -
+                        kann ohne Objektreferenz verwendet werden
+                    }
+                }*@
 
-            @sidebyside((66,33)) {
+                @spacer2()
+
                 @snippet() {
                     @callblock() {
-                        |val accountNumber = -42
-                    }
-                    @callblock() {
-                        |require(accountNumber > 0, "Invalid account number!")
+                        |val accountNum = -42
+                        |require(accountNumb > 0, "Invalid account number!")
                     }
                     @outblock() {
                         |java.lang.IllegalArgumentException:
@@ -425,12 +409,14 @@
                         |       at scala.Predef$.require(Predef.scala:157)
                     }
                 }
-            } {
+            }
+
+            @*{
                 @codenote() {
                     Methode <code>require</code> wirft <code>IllegalArgumentException</code>
                     falls die Bedingung nicht wahr ist
                 }
-            }
+            }*@
 
             <!--@infobox() {
                 Das <code>Predef</code>-Objekt wird automatisch für jede Klasse importiert,

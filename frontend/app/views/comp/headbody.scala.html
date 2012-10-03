@@ -1,4 +1,4 @@
-@(indent: Boolean = false)(head: Html = Html.empty)(body: Html = Html.empty)(foot: Html = Html.empty)
+@(indent: Boolean = false, clazz: String = "")(head: Html = Html.empty)(body: Html = Html.empty)(foot: Html = Html.empty)
 
 <header>
     @if(head.body != "") {
@@ -6,12 +6,10 @@
     }
 </header>
 
-<article class='@{if(indent) "indent" else ""}'>
-    <div>
-        <div>
-            @body
-        </div>
-    </div>
+<article class='@{clazz} @{if(indent) "indent" else ""}'>
+    @middle(clazz = if(head.body != "") "indent20" else "") {
+        @body
+    }
 </article>
 
 <footer>

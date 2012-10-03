@@ -2,7 +2,7 @@
     <div>
         <div class="sidebyside p10_90">
             <span>(1)</span>
-            @snippet() {
+            @snippet(clazz = "slim") {
                 @sourceblock(fragment = false) {
                     |def sub(x: Float, y: Float): Int =
                     |   x - y
@@ -16,7 +16,7 @@
     <div>
         <div class="sidebyside p10_90">
             <span>(2)</span>
-            @snippet() {
+            @snippet(clazz = "slim") {
                 @sourceblock(fragment = false) {
                     |def fn(n: Int) =
                     |   if (n == 0) 1 else n * fn(n - 1)
@@ -36,7 +36,7 @@
     <div>
         <div class="sidebyside p10_90">
             <span>(3)</span>
-            @snippet() {
+            @snippet(clazz = "slim") {
                 @sourceblock(fragment = false) {
                     |def sub(x: Int, y: Int): Float =
                     |   x - y
@@ -50,7 +50,7 @@
     <div>
         <div class="sidebyside p10_90">
             <span>(4)</span>
-            @snippet() {
+            @snippet(clazz = "slim") {
                 @sourceblock(fragment = false) {
                     |def add(x, y) =
                     |   x + y
@@ -69,7 +69,7 @@
     <div>
         <div class="sidebyside p10_90">
             <span>(5)</span>
-            @snippet() {
+            @snippet(clazz = "slim") {
                 @sourceblock(fragment = false) {
                     |def mult(x: Int, y: Int) {
                     |   println(x * y)
@@ -84,7 +84,7 @@
     <div>
         <div class="sidebyside p10_90">
             <span>(6)</span>
-            @snippet() {
+            @snippet(clazz = "slim") {
                 @sourceblock(fragment = false) {
                     |def negate(n: Int): Long = {
                     |   -1 * n

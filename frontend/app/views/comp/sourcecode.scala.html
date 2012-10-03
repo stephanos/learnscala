@@ -1,7 +1,7 @@
 @(id: String = null, fragment: Boolean = true, clazz: String = null, include: String = null,
-  reference: String = null, lang: String = null, hl: String = null, linebyline: Boolean = false)(data: Html)
+  reference: String = null, lang: String = null, hl: String = null, linebyline: Boolean = false, w: Int = 0)(data: Html)
 
-@snippet(fragment = fragment) {
+@snippet(fragment = fragment, w = w) {
     @sourceblock(id, false, clazz, include, reference, lang, hl, linebyline) {
         @data
     }

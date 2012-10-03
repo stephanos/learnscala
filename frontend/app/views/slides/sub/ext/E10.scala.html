@@ -21,91 +21,89 @@ TODO:
 
         <!-- ################################################################################## -->
 
-        @slide(title = "JARs") {
-            <div class="indent">
-                @sidebyside() {
-                    <div class="fragment">
-                        <h3>
-                            <em>scala-compiler</em>.jar
-                        </h3>
-                        <div class="indent">
-                            <ul>
-                                <li class="fragment">
-                                    rund <em>13 MB</em> groß
-                                </li>
-                                <!--<li class="fragment">
-                                    benötigt zum <br/> <em>Kompilieren</em>
-                                </li>-->
-                                <li class="fragment">
-                                    <em>erstellt Java-Bytecode</em> <br/> aus Scala- und Java-Dateien
-                                </li>
-                            </ul>
-                        </div>
+        @slide(title = "JARs", clazz = "wide") {
+            @sidebyside() {
+                <div class="fragment">
+                    <h3>
+                        <em>scala-compiler</em>.jar
+                    </h3>
+                    <div class="indent">
+                        <ul>
+                            <li class="fragment">
+                                rund <em>13 MB</em> groß
+                            </li>
+                            <!--<li class="fragment">
+                                benötigt zum <br/> <em>Kompilieren</em>
+                            </li>-->
+                            <li class="fragment">
+                                <em>erstellt Java-Bytecode</em> <br/> aus Scala- und Java-Dateien
+                            </li>
+                        </ul>
                     </div>
-                } {
-                    <div class="fragment">
-                        <h3>
-                            <em>scala-library</em>.jar
-                        </h3>
-                        <div class="indent">
-                            <ul>
-                                <li class="fragment">
-                                    rund <em>7 MB</em> groß
-                                </li>
-                                <!--<li class="fragment">
-                                    benötigt zum <br/> <em>Kompilieren und Ausführen</em>
-                                </li>-->
-                                <li class="fragment">
-                                    <em>enthält Scala-Klassen</em> <br/>
-                                    <comment>(wie Collections, Annotationen etc.)</comment>
-                                </li>
-                            </ul>
-                        </div>
+                </div>
+            } {
+                <div class="fragment">
+                    <h3>
+                        <em>scala-library</em>.jar
+                    </h3>
+                    <div class="indent">
+                        <ul>
+                            <li class="fragment">
+                                rund <em>7 MB</em> groß
+                            </li>
+                            <!--<li class="fragment">
+                                benötigt zum <br/> <em>Kompilieren und Ausführen</em>
+                            </li>-->
+                            <li class="fragment">
+                                <em>enthält Scala-Klassen</em> <br/>
+                                <comment>(wie Collections, Annotationen etc.)</comment>
+                            </li>
+                        </ul>
                     </div>
-                }
+                </div>
+            }
 
-                @spacer2()
+            @spacer2()
 
-                @sidebyside() {
-                    <div class="fragment">
-                        <h3>
-                            <em>scala-reflect</em>.jar
-                        </h3>
-                        <div class="indent">
-                            <ul>
-                                <li class="fragment">
-                                    rund <em>3 MB</em> groß
-                                </li>
-                                <!--<li class="fragment">
-                                    benötigt zum <br/> <em>Kompilieren</em>
-                                </li>-->
-                                <li class="fragment">
-                                    <em>enthält Macros und Reflection</em>
-                                </li>
-                            </ul>
-                        </div>
+            @sidebyside() {
+                <div class="fragment">
+                    <h3>
+                        <em>scala-reflect</em>.jar
+                    </h3>
+                    <div class="indent">
+                        <ul>
+                            <li class="fragment">
+                                rund <em>3 MB</em> groß
+                            </li>
+                            <!--<li class="fragment">
+                                benötigt zum <br/> <em>Kompilieren</em>
+                            </li>-->
+                            <li class="fragment">
+                                <em>enthält Macros und Reflection</em>
+                            </li>
+                        </ul>
                     </div>
-                } {
-                    <div class="fragment">
-                        <h3>
-                            <em>scala-actors</em>.jar
-                        </h3>
-                        <div class="indent">
-                            <ul>
-                                <li class="fragment">
-                                    rund <em>400 KB</em> groß
-                                </li>
-                                <!--<li class="fragment">
-                                    optional zum <em>Ausführen</em> benötigt
-                                </li>-->
-                                <li class="fragment">
-                                    <em>enthält Parallelisierung</em>
-                                </li>
-                            </ul>
-                        </div>
+                </div>
+            } {
+                <div class="fragment">
+                    <h3>
+                        <em>scala-actors</em>.jar
+                    </h3>
+                    <div class="indent">
+                        <ul>
+                            <li class="fragment">
+                                rund <em>400 KB</em> groß
+                            </li>
+                            <!--<li class="fragment">
+                                optional zum <em>Ausführen</em> benötigt
+                            </li>-->
+                            <li class="fragment">
+                                <em>enthält Parallelisierung</em>
+                            </li>
+                        </ul>
                     </div>
-                }
-            </div>
+                </div>
+            }
         }
 
         <!-- ################################################################################## -->
@@ -121,17 +119,15 @@ TODO:
             @headslide(title = title, subtitle = "scalac") {
                 &gt;<em> scalac</em>
             } {
-                <div class="indent">
-                    <ul>
-                        <li><em>Skript</em>: kompiliert <em>Scala-Code</em> zu <var>Java-Bytecode</var>
-                            @spacer()
-                            @outcode(fragment = true) {
-                                |$ scalac HelloWorld.scala
-                            }
-                        </li>
-                        <li class="fragment">braucht typischerweise etwas länger als der Java-Compiler <var>javac</var></li>
-                    </ul>
-                </div>
+                <ul>
+                    <li><em>Skript</em>: kompiliert <em>Scala-Code</em> zu <var>Java-Bytecode</var>
+                        @spacer()
+                        @outcode(fragment = true) {
+                            |$ scalac HelloWorld.scala
+                        }
+                    </li>
+                    <li class="fragment">braucht typischerweise etwas länger als der Java-Compiler <var>javac</var></li>
+                </ul>
             }
 
             <!-- ################################################################################## -->
@@ -139,22 +135,22 @@ TODO:
             @headslide(title = title, subtitle = "fsc") {
                 &gt;<em> fsc</em>
             } {
-                <div class="indent">
-                    <ul>
-                        <li><var>fast scala compiler</var></li>
-                        <li><em>Skript</em>: kompiliert Scala-Code mittels Hintergrundprozess</li>
-                        <li class="fragment">
-                            kompiliert schneller als <em>scalac</em>: Startzeit fällt weg plus Caching
-                            @spacer()
-                            @outcode() {
-                                |$ fsc HelloWorld.scala   // erster Aufruf, Prozess wird gestartet und kompiliert
-                                |
-                                |$ fsc HelloWorld.scala   // zweiter Aufruf, Prozess kompiliert direkt
-                            }
-                            @spacer()
-                        </li>
-                    </ul>
-                </div>
+                <ul>
+                    <li><var>fast scala compiler</var></li>
+                    <li><em>Skript</em>: kompiliert Scala-Code mittels Hintergrundprozess</li>
+                    <li class="fragment">
+                        kompiliert schneller als <em>scalac</em>: Startzeit fällt weg plus Caching
+                        @spacer()
+                        @outcode() {
+                            |// erster Aufruf, Prozess wird gestartet und kompiliert
+                            |$ fsc HelloWorld.scala
+                            |
+                            |// zweiter Aufruf, Prozess kompiliert direkt
+                            |$ fsc HelloWorld.scala
+                        }
+                        @spacer()
+                    </li>
+                </ul>
             }
 
             <!-- ################################################################################## -->
@@ -162,47 +158,44 @@ TODO:
             @headslide(title = title, subtitle = "scala") {
                 &gt;<em> scala</em>
             } {
-                <div class="indent">
-                    <ul>
-                        <li>
-                            <em>Skript</em>: führt Scala-Programme aus
-                            @spacer()
-                            <div class="indent">
-                                <ol>
-                                    <li class="fragment">
-                                        kompilierte Programme
-                                        @spacer_half()
-                                        @outcode() {
-                                            |$ scala HelloWorld
-                                            |
-                                            |$ Hello World
-                                        }
-                                        @spacer_half()
-                                        @fragment {
-                                            alternativ kann natürlich auch <var>java</var> verwendet werden:
-                                            @spacer_half()
-                                            @outcode() {
-                                                |$ java -classpath lib/scala-library.jar HelloWorld
-                                                |
-                                                |$ Hello World
-                                            }
-                                        }
-                                    </li>
-                                    <li class="fragment">
-                                        interaktive Programme
-                                        @spacer_half()
-                                        @outcode() {
-                                            |$ scala
-                                            |
-                                            |scala> 1 + 2
-                                            |res0: Int = 3
-                                        }
-                                    </li>
-                                </ol>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                <ul>
+                    <li>
+                        <em>Skript</em>: führt Scala-Programme aus
+                        @spacer()
+
+                        <ol class="indent">
+                            <li class="fragment">
+                                kompilierte Programme
+                                @spacer_half()
+                                @outcode() {
+                                    |$ scala HelloWorld
+                                    |
+                                    |$ Hello World
+                                }
+                                @spacer_half()
+                                @fragment {
+                                    alternativ kann natürlich auch <var>java</var> verwendet werden:
+                                    @spacer_half()
+                                    @outcode() {
+                                        |$ java -classpath lib/scala-library.jar HelloWorld
+                                        |
+                                        |$ Hello World
+                                    }
+                                }
+                            </li>
+                            <li class="fragment">
+                                interaktive Programme
+                                @spacer_half()
+                                @outcode() {
+                                    |$ scala
+                                    |
+                                    |scala> 1 + 2
+                                    |res0: Int = 3
+                                }
+                            </li>
+                        </ol>
+                    </li>
+                </ul>
             }
         }
 
@@ -211,27 +204,25 @@ TODO:
         @headslide(title = "Installation") {
             <em>Scala</em> installieren
         } {
-            <div class="indent">
-                <ol>
-                    <li>
-                        Installieren von Java 6 (oder höher)
-                        @spacer()
-                    </li>
-                    <li>
-                        <code>&gt; java -version</code>
-                        @spacer()
-                    </li>
-                    <li>
-                        Installieren von Typesafe Stack via <code>www.typesafe.com/stack/download</code><br/>
-                        <comment>keine Admin-Rechte? dann bitte <code>www.scala-lang.org/downloads</code></comment>
-                        @spacer()
-                    </li>
-                    <li>
-                        <code>&gt; scala -version</code><br/>
-                        <comment>geht nicht? bitte melden!</comment>
-                    </li>
-                </ol>
-            </div>
+            <ol>
+                <li>
+                    Installieren von Java 6 (oder höher)
+                    @spacer()
+                </li>
+                <li>
+                    <code>&gt; java -version</code>
+                    @spacer()
+                </li>
+                <li>
+                    Installieren von Typesafe Stack via <code>www.typesafe.com/stack/download</code><br/>
+                    <comment>keine Admin-Rechte? dann bitte <code>www.scala-lang.org/downloads</code></comment>
+                    @spacer()
+                </li>
+                <li>
+                    <code>&gt; scala -version</code><br/>
+                    <comment>geht nicht? bitte melden!</comment>
+                </li>
+            </ol>
         }
 
         <!-- ################################################################################## -->

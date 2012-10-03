@@ -1,0 +1,13 @@
+@(fragment: Boolean = true)(head: Html)(sub: Html)
+
+<div class='@{if(fragment) "fragment"}'>
+    @head
+
+    @spacer_half()
+
+    <div class="indent">
+        @sub
+    </div>
+</div>
+
+@spacer_half()

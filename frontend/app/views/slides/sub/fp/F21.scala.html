@@ -11,7 +11,8 @@
 
         @defining("Syntax") { title =>
             @slide(title = title) {
-                @sidebyside((40,60)) {
+
+                @middle() {
                     @sourcecode() {
                         |for (sequence) expression
                     }
@@ -24,50 +25,52 @@
                         |}
                     }
 
-                    @spacer_half()
-
-                    @sourcecode() {
-                        |for {
-                        |  seq_0
-                        |  seq_1
-                        |  ..
-                        |  seq_n
-                        |} {
-                        |  expression
-                        |}
-                    }
-
                     @spacer()
 
-                    @sourcecode() {
-                        |for (sequence) {
-                        |  expr_0
-                        |  expr_1
-                        |  ..
-                        |  expr_n
-                        |}
-                    }
-                } {
-                    @codenote() {
-                        Jeder for-Ausdruck besteht aus 2 Bestandteilen:
-                        @spacer()
-                        <ol class="indent">
-                            <li class="fragment">
-                                Sequenz aus
-                                @spacer_half()
-                                <ul>
-                                    <li><em>Generatoren</em></li>
-                                    <li><em>Definitionen</em></li>
-                                    <li><em>Filtern</em></li>
-                                </ul>
-                            </li>
-                            @spacer_half()
-                            <li class="fragment">
-                                <em>Ausdruck</em>
-                            </li>
-                        </ul>
-                    }
+                    <div style="margin: 0 auto; width: 50%">
+                        @sidebyside((45,45)) {
+                            @sourcecode() {
+                                |for {
+                                |  seq_0
+                                |  seq_1
+                                |  ..
+                                |  seq_n
+                                |} {
+                                |  expression
+                                |}
+                            }
+                        } {
+                            @sourcecode() {
+                                |for (sequence) {
+                                |  expr_0
+                                |  expr_1
+                                |  ..
+                                |  expr_n
+                                |}
+                            }
+                        }
+                    </div>
                 }
+
+                @*@codenote() {
+                    Jeder for-Ausdruck besteht aus 2 Bestandteilen:
+                    @spacer()
+                    <ol class="indent">
+                        <li class="fragment">
+                            Sequenz aus
+                            @spacer_half()
+                            <ul>
+                                <li><em>Generatoren</em></li>
+                                <li><em>Definitionen</em></li>
+                                <li><em>Filtern</em></li>
+                            </ul>
+                        </li>
+                        @spacer_half()
+                        <li class="fragment">
+                            <em>Ausdruck</em>
+                        </li>
+                    </ol>
+                }*@
             }
         }
 
@@ -78,7 +81,7 @@
             @headslide(title = title) {
                 @title
             } {
-                @sidebyside((60,40)) {
+                @middle2() {
                     @sourcecode() {
                         |for (variable <- collection) {
                         |  ...
@@ -92,7 +95,7 @@
 
                 @spacer2()
 
-                @sidebyside((60,40)) {
+                @middle2() {
                     @snippet() {
                         @sourceblock() {
                             |for (i <- 1 to 10) {
@@ -111,7 +114,7 @@
 
                 @spacer()
 
-                @sidebyside((60,40)) {
+                @middle2() {
                     @snippet() {
                         @sourceblock() {
                             |for (i <- "Hello") print(i + " ")
@@ -132,21 +135,17 @@
             @headslide(title = title) {
                 @title
             } {
-                @sidebyside((60,40)) {
+                @middle() {
                     @sourcecode() {
                         |for (var1 <- collect1; var2 <- collect2) {
                         |  ...
                         |}
                     }
-                } {
-                    @codenote() {
-
-                    }
                 }
 
                 @spacer2()
 
-                @sidebyside((60,40)) {
+                @middle2() {
                     @snippet() {
                         @sourceblock() {
                             |for (i <- 1 to 3; j <- 1 to 3)
@@ -161,8 +160,6 @@
                         2. Generator entspricht einer inneren Schleife
                     }
                 }
-
-                @spacer()
             }
         }
 
@@ -173,8 +170,8 @@
             @headslide(title = title) {
                 @title
             } {
-                @sidebyside((61,39)) {
-                    @snippet() {
+                @middle2() {
+                    @snippet(w = 70) {
                         @sourceblock() {
                             |for (i <- 1 to 10; double = i * 2)
                             |  print (double + " ")
@@ -191,8 +188,8 @@
 
                 @spacer()
 
-                @sidebyside((61,39)) {
-                    @snippet() {
+                @middle2() {
+                    @snippet(w = 70) {
                         @sourceblock() {
                             |for (i <- 1 to 2; double = i * 2; j <- i to double)
                             |  print (j, double)
@@ -209,11 +206,14 @@
 
                 @spacer()
 
-                @sidebyside((61,39)) {
-                    @snippet() {
+                @middle2() {
+                    @snippet(w = 70) {
                         @sourceblock() {
-                            |for (i <- 1 to 10; prev = i - 1; next = i + 1)
-                            |  print (prev, next)
+                            |for {
+                            |  i <- 1 to 10
+                            |  prev = i - 1
+                            |  next = i + 1
+                            |} print (prev, next)
                         }
                         @outblock() {
                             |(0,2)(1,3)(2,4)(3,5)(4,6)(5,7)(6,8)(7,9)(8,10)(9,11)
@@ -234,8 +234,7 @@
             @headslide(title = title) {
                 @title
             } {
-
-                @sidebyside((60,40)) {
+                @middle2() {
                     @snippet() {
                         @sourceblock() {
                             |for (i <- 1 to 10; if i % 2 == 0)
@@ -252,15 +251,15 @@
                     }
                 }
 
-                @spacer()
+                @spacer_half()
 
-                @sidebyside((60,40)) {
+                @middle2() {
                     @snippet() {
                         @sourceblock() {
                             |for {
-                            |  i <- 1 to 10
-                            |  if i % 2 == 0
-                            |  if i % 3 == 0
+                            |  i <- 1 to 10         // Generator
+                            |  if i % 2 == 0        // Filter #1
+                            |  if i % 3 == 0        // Filter #2
                             |} print (i + " ")
                         }
                         @outblock() {
@@ -273,9 +272,9 @@
                     }
                 }
 
-                @spacer()
+                @spacer_half()
 
-                @sidebyside((60,40)) {
+                @middle2() {
                     @snippet() {
                         @sourceblock() {
                             |for {
@@ -303,8 +302,8 @@
             @headslide(title = title) {
                 @title
             } {
-                @sidebyside((75,25)) {
-                    @snippet() {
+                @middle2() {
+                    @snippet(w = 80) {
                         @sourceblock() {
                             |for {
                             |  i <- 1 to 10
@@ -322,8 +321,8 @@
 
                 @spacer()
 
-                @sidebyside((75,25)) {
-                    @snippet() {
+                @middle2() {
+                    @snippet(w = 80) {
                         @sourceblock() {
                             |for {
                             |  i <- 1 to 10
@@ -350,7 +349,7 @@
                     |val ppl = List("Anna" -> "Adams", "Adam" -> "Adams", "Barb" -> "Brown", "Bill" -> "Brown")
                 }
 
-                @spacer()
+                @spacer_half()
 
                 @fragment {
                     <div class="tcenter">
@@ -360,15 +359,15 @@
                     </div>
                 }
 
-                @spacer()
+                @spacer_half()
 
                 @sidebyside((50,50)) {
                     @snippet() {
                         @callblock(reference = "people") {
                             |for {
-                            |  p <- ppl                   // Generator
-                            |  firstname = p._1           // Definition
-                            |  if p._1.startsWith("B")    // Filter
+                            |  p <- ppl                 // Generator
+                            |  firstname = p._1         // Definition
+                            |  if p._1.startsWith("B")  // Filter
                             |} print(firstname + " ")
                         }
                         @outblock() {
@@ -402,9 +401,9 @@
                     @snippet() {
                         @callblock(reference = "people") {
                             |for {
-                            |  p <- ppl                   // Generator
-                            |  firstname = p._1           // Definition
-                            |  if p._1.startsWith("B")    // Filter
+                            |  p <- ppl                 // Generator
+                            |  firstname = p._1         // Definition
+                            |  if p._1.startsWith("B")  // Filter
                             |} yield firstname
                         }
                         @outblock() {

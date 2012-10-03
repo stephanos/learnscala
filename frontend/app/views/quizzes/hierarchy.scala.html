@@ -2,7 +2,7 @@
     <div>
         <div class="sidebyside p10_90">
             <span>(1)</span>
-            @snippet() {
+            @snippet(clazz = "slim") {
                 @callblock(fragment = false) {
                     |val r = null
                 }
@@ -15,7 +15,7 @@
     <div>
         <div class="sidebyside p10_90">
             <span>(2)</span>
-            @snippet() {
+            @snippet(clazz = "slim") {
                 @callblock(fragment = false) {
                     |val r: Int = null
                 }
@@ -34,7 +34,7 @@
     <div>
         <div class="sidebyside p10_90">
             <span>(3)</span>
-            @snippet() {
+            @snippet(clazz = "slim") {
                 @callblock(fragment = false) {
                     |var r: AnyVal = true
                     |r = 1
@@ -49,7 +49,7 @@
     <div>
         <div class="sidebyside p10_90">
             <span>(4)</span>
-            @snippet() {
+            @snippet(clazz = "slim") {
                 @callblock(fragment = false) {
                     |val r = if(true) false else ()
                 }
@@ -67,7 +67,7 @@
     <div>
         <div class="sidebyside p10_90">
             <span>(5)</span>
-            @snippet() {
+            @snippet(clazz = "slim") {
                 @callblock(fragment = false) {
                     |var r: AnyRef = 1
                     |r = true
@@ -82,7 +82,7 @@
     <div>
         <div class="sidebyside p10_90">
             <span>(6)</span>
-            @snippet() {
+            @snippet(clazz = "slim") {
                 @callblock(fragment = false) {
                     |def r =
                     |   throw new RuntimeException
@@ -101,7 +101,7 @@
     <div>
         <div class="sidebyside p10_90">
             <span>(7)</span>
-            @snippet() {
+            @snippet(clazz = "slim") {
                 @callblock(fragment = false) {
                     |val r = new Nothing
                 }
@@ -114,7 +114,7 @@
     <div>
         <div class="sidebyside p10_90">
             <span>(8)</span>
-            @snippet() {
+            @snippet(clazz = "slim") {
                 @callblock(fragment = false) {
                     |val r: BigInt = null
                 }

@@ -22,8 +22,6 @@ define [
 
       $(elem).find("pre").each(
         (idx, pre) ->
-          if(!$(pre).hasClass("output"))
-
             # add "mark"-buttons
             markBtn = $("<div class='btn-group btn-group-left'><button class='btn btn-icon btn-mini mark'>&nbsp;</button></div>").prependTo($(pre))
             $(markBtn).click (evt) ->
@@ -41,15 +39,16 @@ define [
               resetHighlights(evt)
               markBtn.trigger("click")
 
-            # add "load"-buttons
-            loadBtn = $("<div class='btn-group btn-group-right'><button class='btn btn-icon btn-mini load'>6</button></div>").appendTo($(pre))
-            $(loadBtn).click (evt) ->
-              # find block (pre)
-              pre = $(evt.target).closest("pre")
-              # read snippet content
-              blocks = self.readRawCode($(pre), true)
-              # trigger modal
-              self.initModalEditor(blocks)
+            if(!$(pre).hasClass("output"))
+              # add "load"-buttons
+              loadBtn = $("<div class='btn-group btn-group-right'><button class='btn btn-icon btn-mini load'>6</button></div>").appendTo($(pre))
+              $(loadBtn).click (evt) ->
+                # find block (pre)
+                pre = $(evt.target).closest("pre")
+                # read snippet content
+                blocks = self.readRawCode($(pre), true)
+                # trigger modal
+                self.initModalEditor(blocks)
       )
 
       #$(elem).mousedown((b) ->

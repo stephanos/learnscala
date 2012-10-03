@@ -66,7 +66,7 @@
     .indent35   { margin-left: 35px; }
     .indent40   { margin-left: 40px; }
     .indent45   { margin-left: 45px; }
-    .indent     { margin-left: 50px; }
+    .indent, .indent50  { margin-left: 50px; }
     .indent55   { margin-left: 55px; }
     .indent60   { margin-left: 60px; }
     .indent65   { margin-left: 65px; }
@@ -88,42 +88,12 @@
     .sidebyside {
         margin: 0 auto;
 
-        .partition(@left, @right) {
-            >div {
-                &:first-child {
-                    width: @left - 1.5;
-                    float: left;
-                }
-                &:last-child {
-                    width: @right - 1.5;
-                    float: right;
-                }
-            }
+        table {
+          td {
+            padding: 0;
+            vertical-align: top;
+          }
         }
-
-        .partition(50%, 50%);
-        &.p50_50 { .partition(50%, 50%); }
-        &.p49_49 { .partition(49%, 49%); }
-        &.p48_48 { .partition(48%, 48%); }
-        &.p47_47 { .partition(47%, 47%); }
-        &.p46_46 { .partition(46%, 46%); }
-        &.p45_45 { .partition(45%, 45%); }
-        &.p40_40 { .partition(40%, 40%); }
-
-        &.p55_45 { .partition(55%, 45%); }
-        &.p60_40 { .partition(60%, 40%); }
-        &.p66_33 { .partition(66%, 33%); }
-        &.p70_30 { .partition(70%, 30%); }
-        &.p75_25 { .partition(75%, 25%); }
-        &.p80_20 { .partition(80%, 20%); }
-
-        &.p10_90 { .partition(10%, 90%); }
-        &.p30_70 { .partition(30%, 70%); }
-        &.p33_66 { .partition(33%, 66%); }
-        &.p40_60 { .partition(40%, 60%); }
-        &.p45_55 { .partition(45%, 55%); }
-
-        clear: both; &:after { clear: both; }
     }
 
     .left { float: left; }
@@ -258,15 +228,24 @@
     }
 
     .shoutbox {
+        .w100p();
         margin: 0 auto;
+        display: inline-block;
 
         table {
-            td {
-                &.symbol {
-                    padding: 0 12px;
-                }
-                &.content {
-                    padding: 10px;
+            display: inline-block;
+            tbody {
+                display: inline-block;
+
+                td {
+                    vertical-align: top;
+
+                    &.symbol {
+                        padding: 10px 10px 5px 5px;
+                    }
+                    &.content {
+                        //padding: 8px 5px 5px 5px;
+                    }
                 }
             }
         }
@@ -302,18 +281,12 @@
                 margin: 0 15px;
                 max-height: 700px;
                 overflow: visible;
-                /*
-                >div {
-                    display: table;
-                    background-color: yellow;
-                    width: 100%;
 
-                    >div {
-                        display: table-cell;
-                        vertical-align: middle;
-                    }
+                &.wide {
+                  .middle > div {
+                    width: 100%;
+                  }
                 }
-                */
             }
             >footer {
                 @h: 30px;
@@ -322,9 +295,20 @@
                 height: @h; with: 100%;
                 font-size: @fs_slide * 0.75;
                 line-height: @h;
+                .opacity(60);
             }
         }
     }
+
+    .middle {
+      text-align: center;
+      >div {
+        min-width: 50%;
+        display: inline-block;
+        text-align: left;
+      }
+    }
+
 
     .fragment {
         //display: none;
