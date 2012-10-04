@@ -81,8 +81,8 @@ TODO
                         |  &lt;h1&gt; Welcome Paul! &lt;/h1&gt;
                     }
                 }
-                @codesub() {
-                    dynamische Blöcke mit Scala-Code durch Umschließen von <code>@("{")</code> und <code>@("}")</code>
+                @codesub2() {
+                    dynamische Blöcke mit Scala-Code werden von <code>@("{")</code> und <code>@("}")</code> umschlossen
                 }
 
                 @spacer()
@@ -97,8 +97,8 @@ TODO
                         |  &lt;h1&gt; My favourite numbers are {7, 42, 101} &lt;/h1&gt;
                     }
                 }
-                @codesub() {
-                    um eine geschweifte Klammer im Text zu verwenden, wird sie doppelt angegeben:
+                @codesub2() {
+                    für das Zeichen <code>@("{")</code> bzw. <code>@("}")</code> wird es doppelt angegeben:
                     <code>@("{{")</code> bzw. <code>@("}}")</code>
                 }
             }
@@ -108,13 +108,13 @@ TODO
             @slide(title = title, subtitle = "Literale", subsubtitle = "Dynamisch II") {
 
                 @snippet() {
-                    @sourceblock() {
+                    @*@sourceblock() {
                         |&lt;h1&gt; { "Welcome & Goodbye" } &lt;/h1&gt;
                     }
                     @outblock() {
                         |res0: scala.xml.Elem =
                         |  &lt;h1&gt; Welcome @("&amp;") Goodbye  &lt;/h1&gt;
-                    }
+                    }*@
                     @sourceblock() {
                         |&lt;h1&gt; { "<<< Welcome >>>" } &lt;/h1&gt;
                     }
@@ -123,9 +123,9 @@ TODO
                         |  &lt;h1&gt; @("&lt;&lt;&lt;") Welcome @("&gt;&gt;&gt;") &lt;/h1&gt;
                     }
                 }
-                @codesub() {
+                @codesub2() {
                     XML-Zeichen wie <code>&amp;</code> sowie <code>&lt;</code> und <code>&gt;</code>
-                    werden automatisch in die entsprechende Escape-Sequenz umgewandelt
+                    werden in entsprechende Escape-Sequenz konvertiert
                 }
 
                 @spacer()
@@ -140,7 +140,7 @@ TODO
                         |  &lt;ul&gt; &lt;li&gt;1&lt;/li&gt; &lt;li&gt;2&lt;/li&gt; &lt;li&gt;3&lt;/li&gt; &lt;/ul&gt;
                     }
                 }
-                @codesub() {
+                @codesub2() {
                     Blöcke können wiederum XML-Literale enthalten
                 }
 
@@ -155,7 +155,7 @@ TODO
                         |  NodeSeq(&lt;number&gt;1&lt;/number&gt;, &lt;number&gt;2&lt;/number&gt;)
                     }
                 }
-                @codesub() {
+                @codesub2() {
                     <code>++</code> verbindet zwei XML-Elemente zu einem
                 }
             }
@@ -171,18 +171,17 @@ TODO
                         |xml: scala.xml.Elem = &lt;person male="true"&gt; Paul &lt;/person&gt;
                     }
                 }
-                @codesub() {
+                @codesub2() {
                     XML-Elemente können mit Attributen versehen werden
                 }
 
-                @spacer()
+                @spacer_half()
 
                 @snippet() {
-                    @sourceblock() {
+                    @callblock() {
                         |def xml(name: String, isMale: Boolean) =
                         |  &lt;person male={isMale}&gt; { name } &lt;/person&gt;
-                    }
-                    @callblock() {
+                        |
                         |xml("Paul", true)
                     }
                     @outblock(error = true) {
@@ -190,25 +189,24 @@ TODO
                         |  UnprefixedAttribute with alternatives: ...
                     }
                 }
-                @codesub() {
+                @codesub2() {
                     Attribut-Block vom Typ <code>Boolean</code> ist @underline("nicht") erlaubt
                 }
 
-                @spacer()
+                @spacer_half()
 
                 @snippet() {
-                    @sourceblock() {
+                    @callblock() {
                         |def xml(name: String, isMale: Boolean) =
                         |  &lt;person male={isMale.toString}&gt; { name } &lt;/person&gt;
-                    }
-                    @callblock() {
+                        |
                         |xml("Paul", true)
                     }
                     @outblock() {
                         |res0: scala.xml.Elem = &lt;person male="true"&gt; Paul &lt;/person&gt;
                     }
                 }
-                @codesub() {
+                @codesub2() {
                     Attribut-Block vom Typ <code>String</code> ist erlaubt
                 }
             }
@@ -310,10 +308,10 @@ TODO
         @defining("Auslesen") { title =>
 
             @slide(title = title, subtitle = "XPath", subsubtitle = "") {
-                @sidebyside((40,60)) {
+                @sidebyside((35,60)) {
                     @parsecode("xpath")
                 } {
-                    @snippet() {
+                    @snippet(clazz = "slim") {
                         @callblock(reference = "xpath") {
                             |html \ "body"
                         }
@@ -327,13 +325,13 @@ TODO
                             |res1: scala.xml.NodeSeq = NodeSeq()
                         }
                     }
-                    @codesub() {
+                    @codesub2() {
                         Operator <code>\</code> extrahiert direkte Sub-Elemente
                     }
 
                     @spacer_half()
 
-                    @snippet() {
+                    @snippet(clazz = "slim") {
                         @callblock(reference = "xpath") {
                             |(html \\ "li").length
                         }
@@ -341,13 +339,13 @@ TODO
                             |res0: Int = 6
                         }
                     }
-                    @codesub() {
+                    @codesub2() {
                         Operator <code>\\</code> extrahiert alle Sub-Elemente
                     }
 
                     @spacer_half()
 
-                    @snippet() {
+                    @snippet(clazz = "slim") {
                         @callblock(reference = "xpath") {
                             |(html \ "body" \ "_" \ "li").length
                         }
@@ -355,13 +353,13 @@ TODO
                             |res0: Int = 6
                         }
                     }
-                    @codesub() {
+                    @codesub2() {
                          Wildcard <code>"_"</code> trifft auf alle Elemente zu
                     }
 
                     @spacer_half()
 
-                    @snippet() {
+                    @snippet(clazz = "slim") {
                         @callblock(reference = "xpath") {
                             |html \ "body" \\ "@@class"
                         }
@@ -369,7 +367,7 @@ TODO
                             |res0: scala.xml.NodeSeq = NodeSeq(clrfix, center, center)
                         }
                     }
-                    @codesub() {
+                    @codesub2() {
                         <code>@@</code> extrahiert das Attribut
                     }
                 }
@@ -381,21 +379,21 @@ TODO
                 @sidebyside((40,60)) {
                     @parsecode("")
                 } {
-                    @snippet() {
+                    @snippet(clazz = "slim") {
                         @callblock(reference = "xpath") {
                             |(html \\ "li")(1)
                         }
                         @outblock() {
-                            |res0: scala.xml.Node = <li> Scala </li>
+                            |res0: scala.xml.Node = &lt;i&gt; Scala &lt;/li&gt;
                         }
                     }
-                    @codesub() {
-                        <code>Node</code> ist eine Sequenz, hat daher auch die Operationen einer Sequenz
+                    @codesub2() {
+                        <code>Node</code> ist eine Sequenz
                     }
 
                     @spacer_half()
 
-                    @snippet() {
+                    @snippet(clazz = "slim") {
                         @callblock(reference = "xpath") {
                             |(html \\ "li") map { _.text.trim }
                         }
@@ -404,13 +402,13 @@ TODO
                             |                         "C#", "F#", "JScript")
                         }
                     }
-                    @codesub() {
+                    @codesub2() {
                         <code>text</code> liefert Inhalt des XML-Elements
                     }
 
                     @spacer_half()
 
-                    @snippet() {
+                    @snippet(clazz = "slim") {
                         @callblock(reference = "xpath") {
                             |for (e <- html \ "body" \ "_") println(e.label)
                         }
@@ -419,13 +417,13 @@ TODO
                             |ol
                         }
                     }
-                    @codesub() {
+                    @codesub2() {
                         <code>label</code> liefert den Tag-Namen des XML-Elements
                     }
 
                     @spacer_half()
 
-                    @snippet() {
+                    @snippet(clazz = "slim") {
                         @callblock(reference = "xpath") {
                             |(html \ "body" \ "_") map (_.attributes)
                         }
@@ -434,7 +432,7 @@ TODO
                             |                          class="center")
                         }
                     }
-                    @codesub() {
+                    @codesub2() {
                         <code>attributes</code> liefert die Meta-Daten des XML-Elements
                     }
                 }
@@ -646,8 +644,8 @@ TODO
                         |scala.xml.XML.save("shoppinglist.xml", xml)
                     }
                 }
-                @codesub() {
-                    Objekt <code>XML</code> bietet eine <code>save</code>-Methode zum serialisieren einer <code>Node</code>-Instanz
+                @codesub2() {
+                    Objekt <code>XML</code> bietet eine <code>save</code>-Methode zum Serialisieren einer <code>Node</code>-Instanz
                 }
 
                 @spacer()
@@ -661,7 +659,7 @@ TODO
                         |   &lt;ul&gt; &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt; &lt;/ul&gt;
                     }
                 }
-                @codesub() {
+                @codesub2() {
                     <code>loadFile</code> kann eine Datei laden und parst den Inhalt mit Hilfe von Javas <em>SAX Parser</em>
                 }
             }

@@ -37,22 +37,22 @@
                     }
                 }
 
-                @codenote() {
-                    Methode <code>asSeconds</code> erwartet ein Argument vom Typ <code>Long</code> -
+                @codesub2() {
+                    Methode <code>asSeconds</code> erwartet ein Argument vom Typ <code>Long</code> -<br/>
                     doch trotzdem ist der Aufruf mit <code>Int</code> erfolgreich
                 }
 
-                @spacer2()
+                @spacer()
 
                 @sourcecode() {
                     |// Predef.scala
                     |implicit def int2long(x: Int): Long = x.toLong
                 }
 
-                @*@codesub() {
-                    Objekt <code>Predef</code> definiert implizite Konvertierung von
+                @codesub2() {
+                    <code>Predef</code> definiert implizite Konvertierung von
                     <code>Int</code> zu <code>Long</code>
-                }*@
+                }
 
                 <!--@infobox() {
                     Wenn beim Aufruf einer Methode der Typ von Argument und Parameter nicht zusammenpassen,
@@ -71,11 +71,11 @@
                         |res0: (Int, Char) = (1,a)
                     }
                 }
-                @codesub() {
+                @codesub2() {
                     Hm, <code>Int</code> hat keine Methode <code>-></code>
                 }
 
-                @spacer()
+                @spacer_half()
 
                 @snippet() {
                     @callblock() {
@@ -85,11 +85,11 @@
                         |res0: List[Int] = List(1,2,3,4,5,6,7,8,9,10)
                     }
                 }
-                @codesub() {
+                @codesub2() {
                     Hmm, <code>Int</code> hat auch keine Methode <code>to</code>
                 }
 
-                @spacer()
+                @spacer_half()
 
                 @snippet() {
                     @callblock() {
@@ -99,7 +99,7 @@
                         |res0: Int = -1
                     }
                 }
-                @codesub() {
+                @codesub2() {
                     Hmmm, <code>Int</code> hat ebenso keine Methode <code>signum</code>
                 }
 
@@ -110,10 +110,10 @@
                     |implicit def intWrapper (x: Int) = new runtime.RichInt(x)
                 }
 
-                @*@codesub() {
+                @codesub2() {
                     Objekt <code>Predef</code> definiert implizite Konvertierung von
                     <code>Int</code> zu <code>RichInt</code>
-                }*@
+                }
 
                 <!--@infobox() {
                     Beim Aufruf einer nicht existierenden Methode sucht Scala nach einer

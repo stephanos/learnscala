@@ -91,12 +91,12 @@
                         }
                     }
 
-                    @*
-                    <code>JavaConversions</code> enthält Implicits zur Umwandlung zwischen Kollektionen
-                    aus Scala und Java @*<comment class="nobreak">(dabei wird ein Wrapper verwendet)</comment>
-                    *@
+                    @codesub2() {
+                        <code>JavaConversions</code> enthält Implicits zur Umwandlung zwischen Kollektionen
+                        @*<comment class="nobreak">(dabei wird ein Wrapper verwendet)</comment>*@
+                    }
 
-                    @spacer()
+                    @spacer_half()
 
                     @snippet() {
                         @callblock() {
@@ -114,10 +114,9 @@
                         }
                     }
 
-                    @*
+                    @codesub2() {
                         <code>JavaConverters</code> erweitert Kollektionen um die Methoden <code>asScala</code> bzw. <code>asJava</code>
-                        zur expliziten Umwandlung
-                    *@
+                    }
                 }
             }
         }
@@ -594,20 +593,22 @@
 
                     @spacer()
 
-                    @sourcecode(lang = "java") {
-                        |import scala.runtime.AbstractFunction1;
-                        |
-                        |public class Main {
-                        |
-                        |  public void shoutHello() {
-                        |    Hello h = new Hello();
-                        |    h.print(new AbstractFunction1&lt;String, String&gt;() {
-                        |       public String apply(String arg) {
-                        |         return arg.toUpperCase();
-                        |       }
-                        |    });
-                        |  }
-                        |}
+                    @middle() {
+                        @sourcecode(lang = "java") {
+                            |import scala.runtime.AbstractFunction1;
+                            |
+                            |public class Main {
+                            |
+                            |  public void shoutHello() {
+                            |    Hello h = new Hello();
+                            |    h.print(new AbstractFunction1&lt;String, String&gt;() {
+                            |       public String apply(String arg) {
+                            |         return arg.toUpperCase();
+                            |       }
+                            |    });
+                            |  }
+                            |}
+                        }
                     }
 
                     @codenote() {

@@ -29,6 +29,9 @@
                     |factorial: (n: Int)Int
                 }
             }
+            @codesub2() {
+                imperativer Algorithmus zur Berechnung der Fakultät
+            }
 
             @spacer()
 
@@ -62,14 +65,23 @@
                 }
             }
 
+            @codesub2() {
+                rekursive Methoden brauchen einen Rückgabetyp
+            }
+
             @spacer()
 
             @snippet() {
-                @sourceblock() {
+                @sourceblock(id = "factorial1") {
                     |def factorial(n: Int): BigInt =
                     |   if (n == 0) BigInt(1) else n * factorial(n - 1)
                 }
-                @outblock() {
+            }
+
+            @spacer()
+
+            @snippet() {
+                @outblock(reference = "factorial1") {
                     |factorial: (n: Int)BigInt
                 }
                 @callblock() {
@@ -84,6 +96,10 @@
                 @outblock(error = true) {
                     |java.lang.StackOverflowError
                 }
+            }
+
+            @codesub2() {
+                <var>Problem:</var> jeder rekursive Aufruf öffnet einen neuen Stack
             }
         }
 
@@ -107,16 +123,14 @@
                     }
                 }
 
-                    @codenote() {
-                        Annotation <code>@@tailrec</code> stellt sicher,
-                        dass der Compiler die rekursive Funktion intern in eine Schleife umwandelt
-                    }
-
-                    @codenote() {
+                    @codesub2() {
+                        Annotation <code>@@tailrec</code> wandelt
+                        rekursive Funktion in eine Schleife um
+                        <br/>
                         <var>Bedingung:</var> letzte Anweisung ist Rekursionsaufruf
                     }
 
-                @spacer2()
+                @spacer()
 
                 @snippet() {
                     @sourceblock() {
@@ -131,11 +145,9 @@
                     }
                 }
 
-                    @codenote() {
+                    @codesub2() {
                         Zwischenergebnis der Multiplikation wird zu Parameter
-                    }
-
-                    @codenote() {
+                        <br/>
                         <var>Nachteil:</var> Hilfsparameter ist Teil der Signatur
                     }
             }
@@ -162,7 +174,7 @@
                     }
                 }
 
-                    @codenote() {
+                    @codesub2() {
                         <em>Lösung:</em>
                         Definition einer internen Methode
                     }
@@ -183,8 +195,8 @@
                         |res1: BigInt = 2846259680917054518906..
                     }
                 }
-                    @codenote() {
-                        Kein <code>StackOverflow</code> mehr
+                    @codesub2() {
+                        <em>Ergebnis:</em> Kein <code>StackOverflow</code> mehr
                     }
             }
         }
