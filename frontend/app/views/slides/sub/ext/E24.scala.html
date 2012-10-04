@@ -144,10 +144,10 @@
                             |    public Book();
                             |}
                         }
-                    }
 
-                    @codesub() {
-                        jede Scala-Klasse erbt automatisch von <code>java.lang.Object</code>
+                        @codesub2() {
+                            jede Scala-Klasse erbt von <code>java.lang.Object</code>
+                        }
                     }
 
                     @spacer2()
@@ -219,15 +219,10 @@
                             |  public abstract void $colon$colon();
                             |}
                         }
+                        @codesub2() {
+                            Symbole werden in <var>Java</var>-kompatible Bezeichnungen übersetzt
+                        }
                     }
-
-                    @*@codesub() {
-                        Scala erlaubt Zeichen zur Bennenung von Methoden, die nicht in Java gestattet sind.
-                    }
-
-                    @text() {
-                        Symbole werden daher in <var>Java</var>-kompatible Bezeichnungen übersetzt.
-                    }*@
                 }
             }
 
@@ -251,13 +246,13 @@
                             |  public java.lang.String title();
                             |}
                         }
-                        @*@codesub() {
+                        @codesub2() {
                             <em>val</em> resultiert in einer privaten Variable<br/>
                             und einer gleichnamigen, öffentlichen Zugriffsmethode
-                        }*@
+                        }
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @sidebyside((47,53)) {
                         @sourcecode() {
@@ -273,10 +268,10 @@
                             |  public void title_$eq(java.lang.String);
                             |}
                         }
-                        @*@codesub() {
+                        @codesub2() {
                             <em>var</em> erhält zusätzlich eine schreibende Methode
                             <span class="nobreak">mit dem Suffix <code>_=</code></span> (entspricht <code>_$eq</code> in Java)
-                        }*@
+                        }
                     }
                 }
 
@@ -291,9 +286,9 @@
                             |class Book (
                             |  @@BeanProperty val name:String)
                         }
-                        @*@codesub() {
+                        @codesub2() {
                             <code>@@BeanProperty</code> erstellt eine get-Methode für <em>val</em>
-                        }*@
+                        }
                     } {
                         @outcode(lang = "java") {
                             |public class Book [..] {
@@ -332,9 +327,9 @@
                             |class Book(
                             |   @@BeanProperty var price:Float)
                         }
-                        @*@codesub() {
+                        @codesub2() {
                             <code>@@BeanProperty</code> erstellt get- und set-Methoden für <em>var</em>
-                        }*@
+                        }
                     } {
                         @outcode(lang = "java") {
                             |public class Book [..] {
@@ -394,10 +389,6 @@
                     @title: @subtitle
                 } {
 
-                    @*@codesub() {
-                        Scala ignoriert geprüfte Ausnahmen <comment>(checked exceptions)</comment>.
-                    }*@
-
                     @sidebyside((50,50)) {
                         @sourcecode() {
                             |import java.io._
@@ -416,11 +407,10 @@
                             |  [..]
                             |}
                         }
+                        @codesub2() {
+                            Scala ignoriert geprüfte Ausnahmen <comment class="nobreak">(checked exceptions)</comment>.
+                        }
                     }
-
-                    @*@codesub() {
-                        Mit Hilfe der Annotation <code>@@throws</code> wird die Signatur im Bytecode hinzugefügt.
-                    }*@
 
                     @spacer()
 
@@ -443,6 +433,9 @@
                             |       throws java.io.IOException;
                             |  [..]
                             |}
+                        }
+                        @codesub2() {
+                            <code>@@throws</code> fügt Signatur im Bytecode hinzu
                         }
                     }
                 }
@@ -467,7 +460,7 @@
                             |  public abstract void log(java.lang.String);
                             |}
                         }
-                        @codesub() {
+                        @codesub2() {
                             <em>Trait</em> ohne konkrete Methoden entspricht einem <var>Interface</var>
                         }
                     }
@@ -544,21 +537,21 @@
                             |  public static final void trim(java.lang.String);
                             |}
                         }
-                        @*@codesub() {
+                        @codesub2() {
                             <em>Objekte</em> werden zu Klassen mit den entsprechenden Methoden als <var>static</var><br/>
-                            <comment>(delegieren den Aufruf an das generierte Singleton (erkennbar am <code>$</code>))</comment>
-                        }*@
-                    }
+                            <comment>(delegieren den Aufruf an das generierte Singleton, erkennbar am <code>$</code>)</comment>
+                        }
 
-                    @spacer2()
+                        @spacer()
 
-                    @sourcecode(reference = "trait", lang = "java") {
-                        |public class Logger {
-                        |
-                        |  public void log(String msg) {
-                        |    println(StringUtil.trim(msg));
-                        |  }
-                        |}
+                        @sourcecode(reference = "trait", lang = "java") {
+                            |public class Logger {
+                            |
+                            |  public void log(String msg) {
+                            |    println(StringUtil.trim(msg));
+                            |  }
+                            |}
+                        }
                     }
                 }
             }
@@ -585,10 +578,9 @@
                             |  public Hello();
                             |}
                         }
-                        @*@codesub() {
-                            <code>f: String => String</code> entspricht <code>Function1</code>,<br/>
-                            einer Funktion mit einem Parameter
-                        }*@
+                        @codesub2() {
+                            <code>f: String => String</code> entspricht <code>Function1</code>
+                        }
                     }
 
                     @spacer()
@@ -626,7 +618,7 @@
                 @headslide(htmlTitle = title, subtitle = subtitle) {
                     @title: @subtitle
                 } {
-                    <ul class="indent">
+                    <ul>
                         <li>
                             Schnittstellen als Java-Klassen bzw. -Interface definieren
                         </li>
