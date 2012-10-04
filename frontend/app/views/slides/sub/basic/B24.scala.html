@@ -432,34 +432,32 @@
 
             @slide(title = title, subtitle = "Syntax") {
 
-                @middle() {
-                    @sourcecode(id = "factorial") {
-                        |class MyInt(val i: Int) {
-                        |   def factorial(a : Int): Int = a match {
-                        |       case 0 => 1
-                        |       case n => (n) * factorial(n-1)
-                        |   }
-                        |
-                        |   def ! = factorial(i)
-                        |
-                        |   override def toString = i.toString
-                        |}
-                    }
+                @sourcecode(id = "factorial") {
+                    |class MyInt(val i: Int) {
+                    |   def factorial(a : Int): Int = a match {
+                    |       case 0 => 1
+                    |       case n => (n) * factorial(n-1)
+                    |   }
+                    |
+                    |   def ! = factorial(i)
+                    |
+                    |   override def toString = i.toString
+                    |}
+                }
 
-                    @spacer_half()
+                @spacer_half()
 
-                    @sourcecode(id = "factorial2", reference = "factorial") {
-                        |object MyInt {
-                        |   implicit def intToMyInt(x : Int) = new MyInt(x)
-                        |}
-                    }
+                @sourcecode(id = "factorial2", reference = "factorial") {
+                    |object MyInt {
+                    |   implicit def intToMyInt(x : Int) = new MyInt(x)
+                    |}
+                }
 
-                    @spacer()
+                @spacer()
 
-                    @callcode(reference = "factorial2") {
-                        |import MyInt._
-                        |println("factorial of 5 is " + (5!))
-                    }
+                @callcode(reference = "factorial2") {
+                    |import MyInt._
+                    |println("factorial of 5 is " + (5!))
                 }
             }
 
@@ -467,36 +465,42 @@
 
             @slide(title = title, subtitle = "Integration") {
 
-                @middle() {
-                    @snippet() {
-                        @sourceblock(id = "duration_unit") {
-                            |trait DurationUnit { val v: Long }
-                            |object Seconds extends DurationUnit { val v = 1000L }
-                            |object Minutes extends DurationUnit { val v = 60000L }
-                        }
+                @snippet() {
+                    @sourceblock(id = "duration_unit") {
+                        |trait DurationUnit { val v: Long }
+                        |object Seconds extends DurationUnit { val v = 1000L }
+                        |object Minutes extends DurationUnit { val v = 60000L }
                     }
-                    @spacer_half()
-                    @snippet() {
-                        @sourceblock(id = "duration_val", reference = "duration_unit") {
-                            |class DurationVal(val v: Long) {
-                            |    def minutes = new Duration(this, Minutes)
-                            |    def seconds = new Duration(this, Seconds)
-                            |}
-                        }
+                }
+
+                @spacer_half()
+
+                @snippet() {
+                    @sourceblock(id = "duration_val", reference = "duration_unit") {
+                        |class DurationVal(val v: Long) {
+                        |    def minutes = new Duration(this, Minutes)
+                        |    def seconds = new Duration(this, Seconds)
+                        |}
                     }
-                    @spacer_half()
-                    @snippet() {
-                        @sourceblock(id = "duration", reference = "duration_val") {
-                            |class Duration(val v: DurationVal, val u: DurationUnit) {
-                            |   override def toString = (v.v * u.v) + " ms"
-                            |}
-                            |
-                            |object Duration {
-                            |    implicit def int2TimeUnit(n: Int): DurationVal = new DurationVal(n)
-                            |}
-                        }
+                }
+
+                @spacer_half()
+
+                @snippet() {
+                    @sourceblock(id = "duration", reference = "duration_val") {
+                        |class Duration(val v: DurationVal, val u: DurationUnit) {
+                        |   override def toString = (v.v * u.v) + " ms"
+                        |}
+                        |
+                        |object Duration {
+                        |    implicit def int2TimeUnit(n: Int) = new DurationVal(n)
+                        |}
                     }
-                    @spacer_half()
+                }
+
+                @spacer_half()
+
+                @sidebyside() {
                     @snippet() {
                         @callblock(reference = "duration") {
                             |import Duration._
@@ -505,7 +509,11 @@
                         @outblock() {
                             |2000 ms
                         }
-                        @callblock() {
+                    }
+                } {
+                    @snippet() {
+                        @callblock(reference = "duration") {
+                            |import Duration._
                             |println(10.minutes)
                         }
                         @outblock() {

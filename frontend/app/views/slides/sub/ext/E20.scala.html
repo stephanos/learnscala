@@ -32,21 +32,22 @@ TODO
                         |          &lt;/html&gt;
                     }
                     @outblock() {
-                        |xml: scala.xml.Elem = &lt;html&gt;
-                        |                        &lt;head&gt;
-                        |                          &lt;title&gt;Homepage&lt;/title&gt;
-                        |                        &lt;/head&gt;
-                        |                        &lt;body&gt;
-                        |                          Welcome!
-                        |                        &lt;/body&gt;
-                        |                      &lt;/html&gt;
+                        |xml: scala.xml.Elem =
+                        |          &lt;html&gt;
+                        |            &lt;head&gt;
+                        |              &lt;title&gt;Homepage&lt;/title&gt;
+                        |            &lt;/head&gt;
+                        |            &lt;body&gt;
+                        |              Welcome!
+                        |            &lt;/body&gt;
+                        |          &lt;/html&gt;
                     }
                 }
                 @codesub() {
                     <code>scala.xml.Elem</code> beschreibt ein allgemeines XML-Element
                 }
 
-                @spacer_half()
+                @spacer()
 
                 @snippet() {
                     @sourceblock() {
@@ -167,14 +168,16 @@ TODO
 
                 @snippet() {
                     @sourceblock() {
-                        |def xml(name: String, isMale: Boolean) = &lt;person male={isMale}&gt; { name } &lt;/person&gt;
+                        |def xml(name: String, isMale: Boolean) =
+                        |  &lt;person male={isMale}&gt; { name } &lt;/person&gt;
                     }
                     @callblock() {
                         |xml("Paul", true)
                     }
                     @outblock(error = true) {
-                        |error: overloaded method constructor UnprefixedAttribute with alternatives: ...
-                        | cannot be applied to (java.lang.String, Boolean, scala.xml.MetaData)
+                        |error: overloaded method constructor
+                        |  UnprefixedAttribute with alternatives: ...
+                        |    cannot be applied to (java.lang.String, Boolean, scala.xml.MetaData)
                     }
                 }
                 @codesub() {
@@ -185,7 +188,8 @@ TODO
 
                 @snippet() {
                     @sourceblock() {
-                        |def xml(name: String, isMale: Boolean) = &lt;person male={isMale.toString}&gt; { name } &lt;/person&gt;
+                        |def xml(name: String, isMale: Boolean) =
+                        |  &lt;person male={isMale.toString}&gt; { name } &lt;/person&gt;
                     }
                     @callblock() {
                         |xml("Paul", true)
@@ -209,41 +213,46 @@ TODO
             <!-- ################################################################################## -->
 
             @slide(title = title, subtitle = "Anwendungsbeispiel") {
-                @snippet(id = "books_out") {
-                    @sourceblock() {
-                        |case class Book ( title: String, pages: Int, year: Int, available: Boolean ) {
-                        |    def toXML =
-                        |       &lt;book available={available toString}&gt;
-                        |           &lt;title&gt; {title} &lt;/title&gt;
-                        |           &lt;pages&gt; {pages} &lt;/pages&gt;
-                        |           &lt;year&gt;  {year}  &lt;/year&gt;
-                        |       &lt;/book&gt;
-                        |}
+                @sidebyside() {
+                    @snippet(id = "books_out") {
+                        @sourceblock() {
+                            |case class Book ( title: String,
+                            |                  pages: Int, year: Int,
+                            |                  available: Boolean ) {
+                            |  def toXML =
+                            |    &lt;book available={available toString}&gt;
+                            |      &lt;title&gt; {title} &lt;/title&gt;
+                            |      &lt;pages&gt; {pages} &lt;/pages&gt;
+                            |      &lt;year&gt;  {year}  &lt;/year&gt;
+                            |    &lt;/book&gt;
+                            |}
+                        }
                     }
-                    @sourceblock() {
-                        |val books = List( Book("Programming in Scala", 883, 2008, true),
-                        |                  Book("Scala for the Impatient", 623, 2012, false) )
-                    }
-                }
-
-                @spacer()
-
-                @snippet() {
-                    @callblock(reference = "books_out") {
-                        |for ( book <- books )
-                        |    println(book.toXML)
-                    }
-                    @outblock() {
-                        |&lt;book available="true"&gt;
-                        |   &lt;title&gt;Programming in Scala&lt;/title&gt;
-                        |   &lt;pages&gt;883&lt;/pages&gt;
-                        |   &lt;year&gt;2008&lt;/year&gt;
-                        |&lt;/book&gt;
-                        |&lt;book available="false"&gt;
-                        |   &lt;title&gt;Scala for the Impatient&lt;/title&gt;
-                        |   &lt;pages&gt;623&lt;/pages&gt;
-                        |   &lt;year&gt;2012&lt;/year&gt;
-                        |&lt;/book&gt;
+                } {
+                    @snippet() {
+                        @callblock(reference = "books_out") {
+                            |val books = List(
+                            |  Book("Programming in Scala",
+                            |       883, 2008, true),
+                            |  Book("Scala for the Impatient",
+                            |       623, 2012, false)
+                            |)
+                            |
+                            |for ( book <- books )
+                            |    println book.toXML
+                        }
+                        @outblock() {
+                            |&lt;book available="true"&gt;
+                            | &lt;title&gt;Programming in Scala&lt;/title&gt;
+                            | &lt;pages&gt;883&lt;/pages&gt;
+                            | &lt;year&gt;2008&lt;/year&gt;
+                            |&lt;/book&gt;
+                            |&lt;book available="false"&gt;
+                            | &lt;title&gt;Scala for the Impatient&lt;/title&gt;
+                            | &lt;pages&gt;623&lt;/pages&gt;
+                            | &lt;year&gt;2012&lt;/year&gt;
+                            |&lt;/book&gt;
+                        }
                     }
                 }
             }
@@ -260,16 +269,16 @@ TODO
                     @sourceblock() {
                         |import xml._
                         |
-                        |&lt;html lang="en"&gt;             // Elem
-                        |                             // + Metadata
+                        |&lt;html lang="en"&gt;              // Elem
+                        |                              // + Metadata
                         |  &lt;head&gt;
                         |    &lt;title&gt;
-                        |      Programming in Scala   // Text
+                        |      Programming in Scala    // Text
                         |    &lt;/title&gt;
                         |  &lt;/head&gt;
                         |
                         |  &lt;body&gt;
-                        |    &lt;!-- Javascript --&gt;      // Comment
+                        |    &lt;!-- Javascript --&gt;       // Comment
                         |    &lt;script&gt; {
                         |     PCData("alert('Hello')") // PCData
                         |    } &lt;/script&gt;
@@ -347,7 +356,7 @@ TODO
                             |html \ "body" \\ "@@class"
                         }
                         @outblock() {
-                            |res0: scala.xml.NodeSeq = NodeSeq(clearfix, center, center)
+                            |res0: scala.xml.NodeSeq = NodeSeq(clrfix, center, center)
                         }
                     }
                     @codesub() {
@@ -620,7 +629,8 @@ TODO
                         |   &lt;/ul&gt;
                     }
                     @outblock() {
-                        |xml: scala.xml.Elem = &lt;ul&gt; &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt; &lt;/ul&gt;
+                        |xml: scala.xml.Elem =
+                        |   &lt;ul&gt; &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt; &lt;/ul&gt;
                     }
                     @callblock(id = "save") {
                         |scala.xml.XML.save("shoppinglist.xml", xml)
@@ -637,7 +647,8 @@ TODO
                         |scala.xml.XML.loadFile("shoppinglist.xml")
                     }
                     @outblock() {
-                        |res0: scala.xml.Elem = &lt;ul&gt; &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt; &lt;/ul&gt;
+                        |res0: scala.xml.Elem =
+                        |   &lt;ul&gt; &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt; &lt;/ul&gt;
                     }
                 }
                 @codesub() {
@@ -659,24 +670,24 @@ TODO
         |import xml._
         |
         |val html =
-        |  &lt;html&gt;
+        | &lt;html&gt;
         |
-        |    &lt;body class="clearfix"&gt;
+        |  &lt;body class="clrfix"&gt;
         |
-        |      &lt;ul class="center"&gt;
-        |        &lt;li&gt; Java &lt;/li&gt;
-        |        &lt;li&gt; Scala &lt;/li&gt;
-        |        &lt;li&gt; Groovy &lt;/li&gt;
-        |      &lt;/ul&gt;
+        |   &lt;ul class="center"&gt;
+        |     &lt;li&gt; Java &lt;/li&gt;
+        |     &lt;li&gt; Scala &lt;/li&gt;
+        |     &lt;li&gt; Groovy &lt;/li&gt;
+        |   &lt;/ul&gt;
         |
-        |      &lt;ol class="center"&gt;
-        |        &lt;li&gt; C# &lt;/li&gt;
-        |        &lt;li&gt; F# &lt;/li&gt;
-        |        &lt;li&gt; JScript &lt;/li&gt;
-        |      &lt;/ol&gt;
+        |   &lt;ol class="center"&gt;
+        |     &lt;li&gt; C# &lt;/li&gt;
+        |     &lt;li&gt; F# &lt;/li&gt;
+        |     &lt;li&gt; JScript &lt;/li&gt;
+        |   &lt;/ol&gt;
         |
-        |    &lt;/body&gt;
+        |  &lt;/body&gt;
         |
-        |  &lt;/html&gt;
+        | &lt;/html&gt;
     }
 }

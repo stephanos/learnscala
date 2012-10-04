@@ -4913,6 +4913,9 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
       _.forEach(self.readRawCode(elem), function(b) {
         return self.createCodeBlock(b, code);
       });
+      if ($(elem).find(".raw-block").data("lang") === "java") {
+        $("<div class='icon-annotation'><span>7</span></div>").appendTo($(elem));
+      }
       resetHighlights = function(evt) {
         if (!evt || evt.shiftKey || evt.ctrlKey || evt.altKey || evt.metaKey) {
           return $(elem).find("pre").removeClass("highlight");
