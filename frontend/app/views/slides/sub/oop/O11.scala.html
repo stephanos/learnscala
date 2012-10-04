@@ -9,489 +9,466 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
+        @slide(title = "extends") {
 
-            @sidebyside() {
-                @snippet() {
-                    @sourceblock(fragment = false) {
-                        |class Plane
-                        |
-                        |class CargoPlane extends Plane
-                        |class PassengerPlane extends Plane
-                    }
-                    @outblock() {
-                        |defined class Plane
-                        |
-                        |defined class CargoPlane
-                        |defined class PassengerPlane
-                    }
+            @snippet() {
+                @sourceblock() {
+                    |class Employee
+                    |
+                    |class Boss extends Employee
+                    |class Developer extends Employee
                 }
-            } {
-                @fragment {
-                    <code>PassengerPlane</code> und <code>CargoPlane</code> <br/>
-                    erben von <code>Plane</code>
+                @outblock() {
+                    |defined class Employee
+                    |
+                    |defined class Boss
+                    |defined class Developer
                 }
             }
 
-            @spacer()
+            @codesub2() {
+                <code>Boss</code> und <code>Developer</code> erben von <code>Employee</code>
+            }
 
-            @sidebyside() {
-                @snippet() {
-                    @sourceblock() {
-                        |class Plane
-                        |object Plane extends Plane
-                    }
-                    @outblock() {
-                        |defined class Plane
-                        |defined module Plane
-                    }
+            @spacer2()
+
+            @snippet() {
+                @sourceblock() {
+                    |class Employee
+                    |
+                    |object Employee extends Employee
                 }
-            } {
-                @fragment {
-                    Objekt <code>Plane</code> erbt von der Klasse <code>Plane</code>
+                @outblock() {
+                    |defined class Employee
+                    |defined module Employee
                 }
             }
 
-            @spacer()
+            @codesub2() {
+                Objekt <code>Employee</code> erbt von der Klasse <code>Employee</code>
+            }
 
-            @infobox() {
+            @*@infobox() {
                 Mittels <code>extend</code> erben Klassen und Objekte von (maximal) einer anderen Klasse.
-            }
+            }*@
         }
 
+        <!-- ################################################################################## -->
 
-        @slide() {
-            <!-- Konstruktor -->
+        @slide(title = "Konstruktor") {
 
-            @codesplits() {
-                @splitstart() {
-                    |class Plane(val model: String)
-                } {
-                    @codenote() {
-                        <code>Plane</code> erwartet den Parameter <code>model</code>
-                        @spacer()
-                    }
-                }
-                @codesplit() {
-                    |class PassengerPlane(model: String, val seats: Int)
-                    |   extends Plane(model)
-                } {
-                    @codenote() {
-                        <code>PassengerPlane</code> gibt den Parameter <code>model</code> an <code>Plane</code> weiter
-                        <!--und erwartet einen zusätzlichen Parameter <code>capacity</code>-->
-                        @spacer()
-                    }
-                }
-                @codesplit() {
-                    |class DummyPlane()
-                    |   extends Plane("Dummy")
-                } {
-                    @codenote() {
-                        <code>DummyPlane</code> ruft den primären Konstruktor von <code>Plane</code> mit einer Konstanten auf
-                    }
-                }
-                @splitend() {
-                }(null)
+            @sourcecode(id = "empl1") {
+                |class Employee (val name: String)
+            }
+            @codesub2() {
+                <code>Employee</code> erwartet den Parameter <code>name</code>
             }
 
-            @spacer()
+            @spacer2()
 
-            @infobox() {
+            @indent() {
+
+                @sourcecode(reference = "empl1") {
+                    |class Developer (name: String, val age: Int)
+                    |   extends Employee (name)
+                }
+                @codesub2() {
+                    <code>Developer</code> gibt den Parameter <code>name</code> an <code>Employee</code> weiter
+                }
+
+                @spacer()
+
+                @sourcecode(reference = "empl1") {
+                    |class Boss
+                    |   extends Employee ("Sir")
+                }
+                @codesub2() {
+                    <code>Boss</code> ruft primären Konstruktor von <code>Employee</code> mit Konstante auf
+                }
+            }
+
+            @*@infobox() {
                 Bei der Vererbung muss der primäre Konstruktor der erbende Klasse
                 den primären Konstruktor der vererbten Klasse aufrufen.
-            }
+            }*@
         }
 
+        <!-- ################################################################################## -->
 
-        @*@slide() {
-            Mehrere Konstruktoren
+        @slide(title = "sealed & final") {
 
-            @codesplits() {
-                @splitstart() {
-                    |class Plane(val model: String)
-                } {
-                    <code>Plane</code> erwartet den Parameter <code>model</code>
-                    @spacer()
+            @snippet() {
+                @sourceblock() {
+                    |final class Employee
+                    |
+                    |class Accountant extends Employee
                 }
-                @codesplit() {
-                    |class PassengerPlane(model: String, val seats: Int)
-                    |   extends Plane(model)
-                } {
-                    <code>PassengerPlane</code> gibt den Parameter <code>model</code> an <code>Plane</code> weiter
-                    und erwartet einen zusätzlichen Parameter <code>capacity</code>
-                    @spacer()
+                @outblock(error = true) {
+                    |error: illegal inheritance from final class Employee
                 }
-                @codesplit() {
-                    |class DummyPlane()
-                    |   extends Plane("Dummy")
-                } {
-                    <code>DummyPlane</code> hat keine Parameter, muss aber den primären Konstruktor von <code>Plane</code>
-                    mit einem Wert für <code>model</code> aufrufen
+            }
+
+            @codesub2() {
+                <code>final</code> verhindert weitere Vererbung
+            }
+
+            @spacer2()
+
+            @snippet() {
+                @sourceblock() {
+                    |// Employee.scala
+                    |sealed class Employee
+                    |
+                    |class Developer extends Employee
                 }
-                @splitend() {
-                }(null)
             }
 
             @spacer()
 
-            @infobox() {
-
-            }
-        }*@
-
-
-        @slide() {
-            <!-- sealed <> final -->
-
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @sourceblock(fragment = false) {
-                        |final class Plane
-                        |
-                        |class CargoPlane extends Plane
-                    }
-                    @outblock(error = true) {
-                        |error: illegal inheritance from final class Plane
-                    }
+            @snippet() {
+                @sourceblock() {
+                    |// Accountant.scala
+                    |class Accountant extends Employee
                 }
-            } {
-                @codenote() {
-                    Klasse <code>CargoPlane</code> versucht von <code>Plane</code> zu erben, doch die ist <code>final</code>
+                @outblock(error = true) {
+                    |error: illegal inheritance from sealed class Employee
                 }
             }
 
-            @spacer2()
-
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @sourceblock() {
-                        |sealed class Plane
-                        |
-                        |class CargoPlane extends Plane
-                        |class PassengerPlane extends Plane
-                    }
-                }
-            } {
-                @codenote() {
-                    Klasse <code>Plane</code> ist <code>sealed</code> und erlaubt daher die Vererbung nur innerhalb der gleichen Datei
-                }
+            @codesub2() {
+                <code>sealed</code> erlaubt die Vererbung nur innerhalb der gleichen Datei
             }
 
-            @spacer2()
-
-            @infobox() {
+            @*@infobox() {
                 <code>final</code> verhindert, dass eine Klasse vererbt werden kann;
                 <code>sealed</code> verhindert, dass eine Klasse außerhalb der Quelldatei vererbt werden kann.
-            }
+            }*@
         }
 
+        <!-- ################################################################################## -->
 
-        @slide() {
-            <!-- override -->
+        @defining("override") { title =>
 
-            @sidebyside((70,30)) {
+            @slide(title = title) {
+
+                @sourcecode(id = "empl2") {
+                    |class Employee {
+                    |  val salary = 40000
+                    |}
+                }
+
+                @spacer()
+
+                @indent() {
+
+                    @snippet() {
+                        @sourceblock(reference = "empl2") {
+                            |class Boss extends Employee {
+                            |  val salary = 100000
+                            |}
+                        }
+                        @outblock(error = true) {
+                            |error: overriding value salary
+                            |       in class Employee of type Int;
+                            |       value salary needs `override' modifier
+                        }
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @sourceblock(reference = "empl2") {
+                            |class Accountant extends Employee {
+                            |  override val salary = 4
+                            |}
+                        }
+                        @outblock() {
+                            |defined class Accountant
+                        }
+                    }
+                    @codesub2() {
+                        via <code>override</code> werden Felder und Methoden überschrieben
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title) {
+
+                @sourcecode(id = "empl3") {
+                    |class Employee {
+                    |  val salary = 40000
+                    |}
+                }
+
+                @spacer()
+
+                @indent() {
+
+                    @snippet() {
+                        @sourceblock(reference = "empl3") {
+                            |class Boss extends Employee {
+                            |   override val salry = 100000
+                            |}
+                        }
+                        @outblock(error = true) {
+                            |error: value salry overrides nothing
+                        }
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @sourceblock(reference = "empl3") {
+                            |class Boss extends Employee {
+                            |   override val salary = 100000.0
+                            |}
+                        }
+                        @outblock(error = true) {
+                            |error: overriding value salary
+                            |       in class Employee of type Int;
+                            |       value salary has incompatible type
+                        }
+                    }
+                }
+
+                @*
+                @infobox() {
+                    Durch den erforderlichen Modifier <code>override</code> wird vom Compiler erkannt,
+                    ob Name, Parameter und Rückgabetyp mit der überschriebenen Methode übereinstimmen.
+                }
+                *@
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "def <> val") {
+
                 @snippet() {
-                    @sourceblock(fragment = false) {
-                        |class Plane {
-                        |   val turbines = 2
-                        |}
-                    }
                     @sourceblock() {
-                        |class CargoPlane extends Plane {
-                        |   val turbines = 4
-                        |}
-                    }
-                    @outblock(error = true) {
-                        |error: overriding value turbines in class Plane of type Int;
-                        |       value turbines needs `override' modifier
-                    }
-                }
-            } {
-                @codenote() {
-                    <code>CargoPlane</code> versucht das vererbte Feld <code>turbines</code> zu überschreiben
-                }
-            }
-
-            @spacer()
-
-            @sidebyside((70,30)) {
-                @snippet() {
-                    @sourceblock() {
-                        |class Plane {
-                        |   val turbines = 2
-                        |}
-                    }
-                    @sourceblock() {
-                        |class CargoPlane extends Plane {
-                        |   override val turbines = 4
-                        |}
-                    }
-                    @outblock() {
-                        |defined class Plane
-                        |defined class CargoPlane
-                    }
-                }
-            } {
-                @codenote() {
-                    <code>CargoPlane</code> überschreibt das vererbte Feld <code>turbines</code>
-                }
-            }
-
-            @infobox() {
-                Zum Überschreiben von Feldern und Methoden muss <code>override</code> vorangestellt werden.
-            }
-        }
-
-
-        @slide() {
-            <!-- override 2 -->
-
-            @sidebyside((70,30)) {
-                @snippet() {
-                    @sourceblock(fragment = false) {
-                        |class Plane {
-                        |   val turbines = 2
-                        |}
-                    }
-                    @sourceblock() {
-                        |class CargoPlane extends Plane {
-                        |   override val trbines = 4
-                        |}
-                    }
-                    @outblock(error = true) {
-                        |error: value trbines overrides nothing
-                    }
-                }
-            } {
-                @codenote() {
-                    <code>CargoPlane</code> versucht das nicht existierende Feld <code>trbines</code> zu überschreiben
-                }
-            }
-
-            @spacer()
-
-            @sidebyside((70,30)) {
-                @snippet() {
-                    @sourceblock() {
-                        |class Plane {
-                        |   val turbines = 2
-                        |}
-                    }
-                    @sourceblock() {
-                        |class CargoPlane extends Plane {
-                        |   override val turbines = 4.0
-                        |}
-                    }
-                    @outblock(error = true) {
-                        |error: overriding value turbines in class Plane of type Int;
-                        |       value turbines has incompatible type
-                    }
-                }
-            } {
-                @codenote() {
-                    <code>CargoPlane</code> versucht das Feld <code>turbines</code> mit einem anderen Typ zu überschreiben
-                }
-            }
-
-            @infobox() {
-                Durch den erforderlichen Modifier <code>override</code> wird vom Compiler erkannt,
-                ob Name, Parameter und Rückgabetyp mit der überschriebenen Methode übereinstimmen.
-            }
-        }
-
-
-        @slide() {
-            <!-- override 3: val/def/var -->
-
-            @sidebyside((66,33)) {
-                @snippet() {
-                    @sourceblock(fragment = false) {
-                        |class Plane(model: String) {
+                        |class Employee (name: String) {
                         |
-                        |   override val toString =
-                        |       "Plane[model=" + model + "]"
+                        |  override val toString =
+                        |     "Employee[name=" + name + "]"
                         |}
                     }
                 }
-            } {
-                @fragment {
-                    <code>toString</code> wird als Konstante definiert
+                @codesub2() {
+                    Methode wird zu einem <code>val</code>
                 }
-            }
 
-            @spacer()
+                @spacer()
 
-            @infobox() {
-                Eine Methode ohne Parameter kann durch ein <code>val</code> überschrieben werden;
-                das erhöht den Speicherverbrauch, verbessert aber die Performance.
-            }
-        }
-
-
-        @slide() {
-            <!-- override 4: final -->
-
-            @sidebyside((66,33)) {
                 @snippet() {
-                    @sourceblock(id = "plane-final-members", fragment = false) {
-                        |class Plane {
-                        |   final val wings = 2
+                    @sourceblock() {
+                        |class Employee {
+                        |   val salary = 40000
                         |}
-                    }
-                }
-            } {
-            }
-
-            @spacer()
-
-            @sidebyside((66,33)) {
-                @snippet() {
-                    @sourceblock(reference = "plane-final-members") {
-                        |class CargoPlane extends Plane {
-                        |   override val wings = 3
+                        |
+                        |class Developer (age: Int) extends Employee {
+                        |   override def salary =
+                        |      20000 + age * 1000
                         |}
                     }
                     @outblock(error = true) {
-                        |error: overriding value wings in class Plane of type Int(2);
-                        |       value wings cannot override final member
+                        |error: method salary needs to be a stable, immutable value
                     }
                 }
-            } {
+                @codesub2() {
+                    Variable wird aber <var>nicht</var> zu einem <code>def</code>
+                }
+
+                @spacer()
+
+                @*@infobox() {
+                    Eine Methode ohne Parameter kann durch ein <code>val</code> überschrieben werden;<br/>
+                    das erhöht den Speicherverbrauch, verbessert aber die Performance.
+                }*@
             }
 
-            @spacer()
+            <!-- ################################################################################## -->
 
-            @infobox() {
-                Durch den Modifier <code>final</code> vor einem Feld oder einer Methode kann das Überschreiben
-                in einer Sub-Klasse verhindert werden.
+            @slide(title = title, subtitle = "final") {
+
+                @snippet() {
+                    @sourceblock(id = "final-members") {
+                        |class Employee {
+                        |   final val salary = 40000
+                        |}
+                    }
+                    @sourceblock(reference = "final-members") {
+                        |class Accountant extends Employee {
+                        |   override val salary = 50000
+                        |}
+                    }
+                    @outblock(error = true) {
+                        |error: value salary cannot override final member
+                    }
+                }
+                @codesub2() {
+                    <code>final</code> verhindert das Überschreiben
+                }
+
+                @*@infobox() {
+                    Durch den Modifier <code>final</code> vor einem Feld oder einer Methode kann das Überschreiben
+                    in einer Sub-Klasse verhindert werden.
+                }*@
             }
         }
 
+        <!-- ################################################################################## -->
 
-        @slide() {
-            <!-- super -->
+        @slide(title = "super") {
 
-            @sidebyside((66,33)) {
-                @snippet() {
-                    @sourceblock(id = "plane-super", fragment = false) {
-                        |class Plane(model: String) {
-                        |
-                        |   override def toString =
-                        |       super.toString + "[model=" + model + "]"
-                        |}
-                    }
+            @snippet() {
+                @sourceblock(id = "super") {
+                    |class Employee (name: String) {
+                    |
+                    |   override def toString =
+                    |       super.toString + "[name=" + name + "]"
+                    |}
                 }
-            } {
+            }
+            @codesub2() {
+                <code>super</code> ermöglicht Zugriff auf Basis-Klasse
             }
 
             @spacer()
 
-            @sidebyside((66,33)) {
-                @snippet() {
-                    @callblock(reference = "plane-super") {
-                        |val p = new Plane("Boeing 737")
-                    }
-                    @outblock() {
-                        |p: Plane = Plane@@4088e7c9[model=Boeing 737]
-                    }
+            @snippet() {
+                @callblock(reference = "super") {
+                    |val p = new Employee ("Boeing 737")
                 }
-            } {
+                @outblock() {
+                    |p: Employee = Employee@@4088e7c9[name=Boeing 737]
+                }
             }
 
             @spacer()
 
-            @infobox() {
+            @*@infobox() {
                 Mit Hilfe von <code>super</code> kann explizit auf Methoden und Felder der vererbten Klasse zugegriffen werden.
+            }*@
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "anonym") {
+
+            @snippet() {
+                @sourceblock() {
+                    |class Employee (val name: String)
+                }
+                @callblock() {
+                    |val e = new Employee ("Bob") {
+                    |   override def toString = name
+                    |}
+                }
+                @outblock() {
+                    |e: Employee = Bob
+                }
+            }
+            @codesub2() {
+                Felder überschreiben / hinzufügen kann <br/> auch erst bei Instanziierung erfolgen
             }
         }
 
+        <!-- ################################################################################## -->
 
-        @*@slide() {
+        @defining("abstract") { title =>
 
-            @sidebyside((66,33)) {
+            @slide(title = title) {
+
                 @snippet() {
-                    @sourceblock(fragment = false) {
-                        |class Plane(model: String)
-                    }
-                    @callblock() {
-                        |val p = new Plane("Boeing 737") {
-                        |   val wings = 2
-                        |   override def toString = model
+                    @sourceblock() {
+                        |class Employee {
+                        |   val salary: Int
                         |}
-                    }
-                    @outblock() {
-                        |p: Plane = Plane@@4088e7c9[model=Boeing 737]
-                    }
-                }
-            } {
-            }
-
-            @infobox() {
-                Anonyme Unterklassen
-            }
-        }*@
-
-
-        @slide() {
-            <!-- abstract -->
-
-            @sidebyside((66,33)) {
-                @snippet() {
-                    @sourceblock(id = "plane_abstract", fragment = false) {
-                        |abstract class Plane {
-                        |   val model: String
-                        |}
-                    }
-                    @outblock() {
-                        |defined class Plane
-                    }
-                }
-            } {
-            }
-
-            @spacer2()
-
-            @sidebyside((66,33)) {
-                @snippet() {
-                    @sourceblock(reference = "plane_abstract") {
-                        |class CargoPlane extends Plane
                     }
                     @outblock(error = true) {
-                        |error: class CargoPlane needs to be abstract, since value
-                        |       model in class Plane of type String is not defined
+                        |error: class Employee needs to be abstract,
+                        |       since value salary is not defined
                     }
                 }
-            } {
-            }
 
-            @spacer()
+                @spacer()
 
-            @sidebyside((66,33)) {
                 @snippet() {
-                    @sourceblock(reference = "plane_abstract") {
-                        |class CargoPlane extends Plane {
-                        |   val model = "test"
+                    @sourceblock() {
+                        |abstract class Employee {
+                        |   val salary: Int
                         |}
                     }
                     @outblock() {
-                        |defined class CargoPlane
+                        |defined class Employee
                     }
                 }
-            } {
+                @codesub2() {
+                    <code>abstract</code> markiert Klassen
+                    die ein Feld / eine Methode <br/> ohne Implementierung enthalten
+                }
             }
 
-            @spacer()
+            <!-- ################################################################################## -->
 
-            @infobox() {
-                Eine Klasse die ein Feld oder eine Methode ohne Implementierung enthält,
-                muss mit <code>abstract</code> gekennzeichnet werden.
+            @slide(title = title) {
+
+                @snippet() {
+                    @sourceblock(id = "abstract") {
+                        |abstract class Employee {
+                        |   val salary: Int
+                        |}
+                    }
+                }
+
+                @spacer()
+
+                @indent() {
+
+                    @snippet() {
+                        @sourceblock(reference = "abstract") {
+                            |class Accountant extends Employee
+                        }
+                        @outblock(error = true) {
+                            |error: class Accountant needs to be abstract,
+                            |       since value salary [...] is not defined
+                        }
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @sourceblock(reference = "abstract") {
+                            |class Accountant extends Employee {
+                            |   val salary = 60000
+                            |}
+                        }
+                        @outblock() {
+                            |defined class Accountant
+                        }
+                    }
+
+                    @spacer_half()
+
+                    @snippet() {
+                        @sourceblock(reference = "abstract") {
+                            |class Accountant extends Employee {
+                            |   override val salary = 60000
+                            |}
+                        }
+                        @outblock() {
+                            |defined class Accountant
+                        }
+                    }
+                    @codesub2() {
+                        <code>override</code> ist hier <em>optional</em>
+                    }
+                }
             }
         }
 
-        <!--
-            case classes vs Vererbung
-        -->
-
+        <!-- ################################################################################## -->
 
         @uebung("030") {
             Die Übung ist unter

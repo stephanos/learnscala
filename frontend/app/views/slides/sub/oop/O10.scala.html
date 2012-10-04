@@ -10,11 +10,11 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
+        @slide(title = "Definition") {
 
             @sidebyside() {
                 @snippet() {
-                    @callblock(fragment = false) {
+                    @callblock(id = "plane") {
                         |class Plane
                     }
                     @outblock() {
@@ -22,7 +22,7 @@
                     }
                 }
             } {
-                <ul class="indent20">
+                <ul class="indent30">
                     <li class="fragment">
                         <code>class</code> leitet eine Klasse ein
                     </li>
@@ -30,35 +30,37 @@
                         <code>Plane</code> ist der Name der Klasse
                     </li>
                     <li class="fragment">
-                        <code>{}</code> sind nicht nötig bei leerem Rumpf
+                        <code>{ }</code> sind nicht nötig bei leerem Rumpf
                     </li>
                 </ul>
             }
 
             @spacer2()
 
-                @sidebyside(fragment = true) {
-                    @spacer()
-                    @snippet() {
-                        @callblock(reference = "plane", fragment = false) {
-                            |new Plane()
-                        }
-                        @outblock() {
-                            |res0: Plane = Plane@@3ee32abc
-                        }
-                        @callblock(reference = "plane") {
-                            |new Plane
-                        }
-                        @outblock() {
-                            |res1: Plane = Plane@@50394ec
-                        }
+            @sidebyside() {
+                @snippet() {
+                    @callblock(reference = "plane") {
+                        |new Plane()
                     }
-                } {
-                    @infobox(hr = false) {
-                        <code>class</code> definiert eine Klasse, sie ist standardmäßig öffentlich.
-                        <code>new</code> erstellt eine Instanz.
+                    @outblock() {
+                        |res0: Plane = Plane@@3ee32abc
                     }
                 }
+            } {
+                @snippet() {
+                    @callblock() {
+                        |new Plane
+                    }
+                    @outblock() {
+                        |res0: Plane = Plane@@50394ec
+                    }
+                }
+            }
+
+            @*@infobox(hr = false) {
+                <code>class</code> definiert eine Klasse, sie ist standardmäßig öffentlich.
+                <code>new</code> erstellt eine Instanz.
+            }*@
         }
 
         <!-- ################################################################################## -->

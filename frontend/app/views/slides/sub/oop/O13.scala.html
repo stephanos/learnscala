@@ -20,24 +20,24 @@
             @slide(title = title) {
 
                     @sourcecode() {
-                        |package de.learnscala
+                        |package com.mycompany.staff
                         |
-                        |class Plane
+                        |class Employee
                     }
 
                     @codesub2() {
-                        Klasse <code>Plane</code> wird in dem Paket
-                        <code>de.learnscala</code> platziert
+                        Klasse <code>Employee</code> wird in dem Paket
+                        <code>com.mycompany.staff</code> platziert
                     }
 
                 @spacer()
 
 
                     @sourcecode() {
-                        |package de.learnscala
+                        |package com.mycompany.staff
                         |
-                        |class Pilot
-                        |class Stewardess
+                        |class Employee
+                        |class Developer extends Employee
                     }
 
                     @codesub2() {
@@ -49,10 +49,10 @@
 
 
                     @sourcecode() {
-                        |// file: src/main/scala/Plane.scala
-                        |package de.learnscala
+                        |// file: src/main/scala/Employee.scala
+                        |package com.mycompany.staff
                         |
-                        |class Plane
+                        |class Employee
                     }
 
                     @codesub2() {
@@ -66,31 +66,40 @@
             @slide(title = title) {
 
                 @sourcecode() {
-                    |package de.learnscala {
-                    |  class Plane
+                    |package com.mycompany
+                    |package staff
+                    |
+                    |class Employee
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title) {
+
+                @sourcecode() {
+                    |package com.mycompany.staff {
+                    |
+                    |  class Employee
                     |}
                 }
 
                 @spacer()
 
                 @sourcecode() {
-                    |package de {
-                    |   package learnscala {
-                    |      class Plane
-                    |   }
-                    |}
-                }
-
-                @spacer()
-
-                @sourcecode() {
-                    |package de.learnscala {
-                    |   class Plane
+                    |package com.mycompany.staff {
+                    |
+                    |   class Employee
                     |
                     |   package test {
-                    |       class PlaneTest
+                    |
+                    |       class EmployeeTest
+                    |           extends Employee
                     |   }
                     |}
+                }
+                @codesub2() {
+                    Paket <code>test</code> hat Zugriff auf Paket <code>com.mycompany</code>
                 }
             }
 
@@ -99,27 +108,27 @@
             @slide(title = title, subtitle = "Sichtbarkeit") {
 
                     @sourcecode() {
-                        |package de.learnscala.crew
+                        |package com.mycompany.internal
                         |
-                        |class private[learnscala] Plane
+                        |class private[internal] SalaryCalculator
                     }
 
                     @codesub2() {
                         beschränkt den Zugriff auf
-                        das Paket <code>learnscala</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
+                        das Paket <code>internal</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
                     }
 
                 @spacer2()
 
                     @sourcecode() {
-                        |package de.learnscala.crew
+                        |package com.mycompany
                         |
-                        |class private[crew] Pilot
+                        |class private[mycompany] Employee
                     }
 
                     @codesub2() {
                         beschränkt den Zugriff auf
-                        das Paket <code>crew</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
+                        das Paket <code>mycompany</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
                     }
             }
 
@@ -129,14 +138,11 @@
 
                     @sourcecode() {
                         |// file "package.scala"
-                        |package object util {
+                        |package com
                         |
-                        |  val wingsPerPlane = 2
+                        |package object mycompany {
                         |
-                        |  def sufficientFuel(f: Float) = {
-                        |    if(f == 0.0)
-                        |      throw new RuntimeException("Not enough fuel!")
-                        |  }
+                        |  val employeeCount = 42
                         |}
                     }
 
@@ -171,27 +177,27 @@
             @slide(title = title) {
 
                     @sourcecode() {
-                        |import de.learnscala.crew.Pilot
+                        |import java.util.Date
                     }
 
                     @codesub2() {
-                        importiert <em>1</em> Klasse namens <code>Pilot</code>
+                        importiert <em>1</em> Klasse namens <code>Date</code>
                     }
 
                 @spacer()
 
                     @sourcecode() {
-                        |import de.learnscala.crew.{Pilot, CoPilot}
+                        |import java.util.{Date, List}
                     }
 
                     @codesub2() {
-                        importiert die <em>2</em> Klassen <code>Pilot</code> und <code>CoPilot</code>
+                        importiert die <em>2</em> Klassen <code>Date</code> und <code>List</code>
                     }
 
                 @spacer()
 
                     @sourcecode() {
-                        |import de.learnscala.crew._
+                        |import java.util._
                     }
 
                     @codesub2() {
@@ -215,7 +221,7 @@
                     }
 
                     @codesub2() {
-                        <code>Date</code> wird in <code>SqlDate</code> umbenannt
+                        importiert <em>alles außer</em> <code>Date</code>
                     }
 
                 @*@infobox() {
@@ -225,74 +231,42 @@
 
             <!-- ################################################################################## -->
 
-            @*@slide(title = title, subtitle = "Umbenennung") {
-
-                @sidebyside((66,33)) {
-                    @sourcecode() {
-                        |import de.learnscala.cabin.{Seat => CabinSeat}
-                        |import de.learnscala.cockpit.{Seat => CockpitSeat}
-                    }
-                } {
-                    @codesub() {
-                        <code>Seat</code> ist jeweils in den Paketen <code>cabin</code> bzw. <code>cockpit</code>
-                        definiert und wird beim Import entsprechend umbenannt
-                    }
-                }
-
-                @sidebyside((66,33)) {
-
-                } {
-                    @codesub() {
-                        <code>Date</code> ist jeweils in den Paketen <code>util</code> bzw. <code>sql</code> -
-                        daher bekommt letzteres einen anderen Namen
-                    }
-                }
-
-                @spacer()
-
-                @infobox() {
-                    Klassen können beim Import umbenannt werden, um Namenskonflikte zu verhindern.
-                }
-            }*@
-
-            <!-- ################################################################################## -->
-
             @slide(title = title, subtitle = "relativ") {
 
                     @sourcecode() {
-                        |package de.learnscala
+                        |package com.mycompany
                         |
-                        |import crew.Pilot
+                        |import staff.Employee
                     }
 
                     @codesub2() {
-                        Importiert <code>Pilot</code> aus <code>de.learnscala.crew</code>
+                        importiert <code>Employee</code> aus <code>com.mycompany.staff</code>
                     }
 
 
                 @spacer()
 
                     @sourcecode() {
-                        |package de.learnscala
+                        |package com.mycompany
                         |
-                        |import de.learnscala.crew.Pilot
+                        |import com.mycompany.staff.Employee
                     }
 
                     @codesub2() {
-                        Importiert <code>Pilot</code> aus <code>de.learnscala.crew</code>
+                        importiert <code>Employee</code> aus <code>com.mycompany.staff</code>
                     }
 
 
                 @spacer()
 
                     @sourcecode() {
-                        |package de.learnscala
+                        |package com.mycompany
                         |
-                        |import _root.de.learnscala.crew.Pilot
+                        |import _root_.com.mycompany.staff.Employee
                     }
 
                     @codesub2() {
-                        Importiert <code>Pilot</code> aus <code>de.learnscala.crew</code>
+                        importiert <code>Employee</code> aus <code>com.mycompany.staff</code>
                     }
 
 
@@ -309,17 +283,17 @@
             @slide(title = title, subtitle = "in Blöcken") {
 
                 @sourcecode() {
-                    |package de.learnscala
+                    |package com.mycompany
                     |
-                    |class Plane {
+                    |class MyCompany {
                     |
-                    |   def fly() {
-                    |       import crew.Pilot
+                    |   def develop() {
+                    |       import staff.Developer
                     |       // ...
                     |   }
                     |
                     |   def clean() {
-                    |       import crew.Stewardess
+                    |       import external.Cleaner
                     |       // ...
                     |   }
                     |}
@@ -375,13 +349,13 @@
 
         @uebung("030") {
             Die Übung ist unter
-                <code>/src/main/scala/de/learnscala/uebungen/<em>U121.scala</em></code>
+                <code>/src/main/scala/de/mycompany/uebungen/<em>U121.scala</em></code>
             zu finden.
 
             @spacer()
 
             Die dazugehörige Testspezifikation unter
-                <code>/src/test/scala/de/learnscala/specs/<var>S121.scala</var></code>.
+                <code>/src/test/scala/de/mycompany/specs/<var>S121.scala</var></code>.
         }
     }
 }
