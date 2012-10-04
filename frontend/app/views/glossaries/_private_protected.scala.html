@@ -12,7 +12,7 @@
 
                 @spacer()
 
-                @codesplits((40,60)){
+                @codesplits((40,60), clazz = "slim"){
                     @splitstart() {
                         |package airline.machines
                     }()
@@ -24,15 +24,17 @@
                     @codesplit() {
                         |   private[airline]    val s1 = 1
                     } {
-                        @li { Paket <code>airline</code> inklusive Sub-Pakete (also auch <code>machines</code>) <br/>
-                              (<code>protected</code> würde Sub-Klassen von <code>Plane</code> einschließen) }
+                        @li { Paket <code>airline</code> inklusive Sub-Pakete (also auch <code>machines</code>)
+                              <comment>(<code>protected</code> würde Sub-Klassen von <code>Plane</code> einschließen)</comment>
+                        }
                         @spacer_half()
                     }
                     @codesplit() {
                         |   private[machines]   val s2 = 2
                     } {
-                        @li { Paket <code>machines</code> inklusive Sub-Pakete <br/>
-                              (<code>protected</code> würde Sub-Klassen von <code>Plane</code> einschließen) }
+                        @li { Paket <code>machines</code> inklusive Sub-Pakete
+                              <comment>(<code>protected</code> würde Sub-Klassen von <code>Plane</code> einschließen)</comment>
+                        }
                         @spacer_half()
                     }
                     @codesplit() {

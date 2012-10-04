@@ -6,21 +6,21 @@
 @layout.simpledeck("Import") {
 
     @sidebyside((47,47)) {
-        @sourcecode() {
+        @sourcecode(clazz = "slim") {
             |import java.util.Date
         }
-        @codesub() {
+        @codesub2() {
             importiert <code>Date</code>
         }
     } {
-        @sourcecode() {
+        @sourcecode(clazz = "slim") {
             |import java.util.Date, java.util.List
         }
         <hr class="third"/>
-        @sourcecode() {
+        @sourcecode(clazz = "slim") {
             |import java.util.{Date, List}
         }
-        @codesub() {
+        @codesub2() {
             importiert jeweils <code>Date</code> und <code>List</code>
         }
     }
@@ -28,17 +28,17 @@
     @spacer()
 
     @sidebyside((47,47)) {
-        @sourcecode() {
+        @sourcecode(clazz = "slim") {
             |import java.util._
         }
-        @codesub() {
+        @codesub2() {
             importiert alles aus <code>java.util</code>
         }
     } {
-        @sourcecode() {
+        @sourcecode(clazz = "slim") {
             |import java.util.{Date => _, _}
         }
-        @codesub() {
+        @codesub2() {
             importiert alles aus <code>java.util</code>
             @underline("außer") <code>Date</code>
         }
@@ -47,19 +47,19 @@
     @spacer()
 
     @sidebyside((47,47)) {
-        @sourcecode() {
+        @sourcecode(clazz = "slim") {
             |import java.util.Date
             |import java.sql.Date
         }
-        @codesub() {
+        @codesub2() {
              <code>Date</code> aus dem Paket <code>sql</code> hat Vorrang
         }
     } {
-        @sourcecode() {
+        @sourcecode(clazz = "slim") {
             |import java.util.Date
             |import java.sql.{Date => SqlDate}
         }
-        @codesub() {
+        @codesub2() {
             benennt <code>Date</code> zu <code>SqlDate</code> um
         }
     }
@@ -67,19 +67,19 @@
     @spacer()
 
     @sidebyside((47,47)) {
-        @sourcecode() {
+        @sourcecode(clazz = "slim") {
             |import java.util
             |import Date
         }
-        @codesub() {
+        @codesub2() {
             Imports sind relativ;
             erst wenn nichts gefunden wird, werden sie als absolut interpretiert
         }
     } {
-        @sourcecode() {
+        @sourcecode(clazz = "slim") {
             |import _root_.java.util.Date
         }
-        @codesub() {
+        @codesub2() {
             <code>_root_</code> definiert einen Import als absolut
         }
     }

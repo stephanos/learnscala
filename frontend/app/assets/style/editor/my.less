@@ -18,7 +18,7 @@
     position: relative;
 }
 
-.snippet div.wrapper, .CodeMirror {
+.snippet .wrapper, .CodeMirror {
 
     // font
     font-size:   @fs_code;
@@ -47,7 +47,7 @@
     }
 }
 
-.snippet div.wrapper, .CodeMirror, .ide {
+.snippet .wrapper, .CodeMirror, .ide {
     // button
     .btn-group {
         .opacity(0);
@@ -83,7 +83,7 @@ table.codesplit {
             &.code {
                 .bg(@c_code_bg);
                 .border-h(@c_code_border);
-                .snippet div.wrapper {
+                .snippet .wrapper {
                     border: none;
                     .btn { display: none; }
                 }
@@ -92,7 +92,7 @@ table.codesplit {
 
         &:first-child { td.code { .border-top(@c_code_border); } }
         &:last-child  { td.code { .border-bottom(@c_code_border);
-                                  .snippet div.wrapper .btn { display: block; } }
+                                  .snippet .wrapper .btn { display: block; } }
                       }
     }
 }
@@ -138,7 +138,7 @@ table.codesplit {
 
     text-align: left;
 
-    >div.wrapper {
+    >.wrapper {
 
       padding: 20px 0;
       &.output { padding: 8px 0; }
@@ -178,7 +178,7 @@ table.codesplit {
         }
       }
 
-      >pre.codeline {
+      pre.codeline {
         overflow: hidden;
         position: relative;
         padding: 1px 20px;
@@ -215,12 +215,17 @@ table.codesplit {
     .square(40px);
     .center-text();
   }
+}
 
-  &.slim {
-    >div.code>div.wrapper {
-      padding: 8px 0;
-    }
-  }
+.slim.wrapper,
+.snippet.slim > .code > .wrapper,
+.snippet > .code > .wrapper.slim,
+.codesplit.slim .snippet > .code > .wrapper {
+  padding: 8px 0;
+
+  /*pre.codeline {
+    padding: 1px 10px;
+  }*/
 }
 
 @font-face {

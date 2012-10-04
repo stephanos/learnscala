@@ -22,25 +22,26 @@ TODO
 
                 @snippet() {
                     @sourceblock() {
-                        |val xml = &lt;html&gt;
-                        |            &lt;head&gt;
-                        |              &lt;title&gt;Homepage&lt;/title&gt;
-                        |            &lt;/head&gt;
-                        |            &lt;body&gt;
-                        |              Welcome!
-                        |            &lt;/body&gt;
-                        |          &lt;/html&gt;
+                        |val xml =
+                        |  &lt;html&gt;
+                        |    &lt;head&gt;
+                        |      &lt;title&gt;Homepage&lt;/title&gt;
+                        |    &lt;/head&gt;
+                        |    &lt;body&gt;
+                        |      Welcome!
+                        |    &lt;/body&gt;
+                        |  &lt;/html&gt;
                     }
                     @outblock() {
                         |xml: scala.xml.Elem =
-                        |          &lt;html&gt;
-                        |            &lt;head&gt;
-                        |              &lt;title&gt;Homepage&lt;/title&gt;
-                        |            &lt;/head&gt;
-                        |            &lt;body&gt;
-                        |              Welcome!
-                        |            &lt;/body&gt;
-                        |          &lt;/html&gt;
+                        |  &lt;html&gt;
+                        |    &lt;head&gt;
+                        |      &lt;title&gt;Homepage&lt;/title&gt;
+                        |    &lt;/head&gt;
+                        |    &lt;body&gt;
+                        |      Welcome!
+                        |    &lt;/body&gt;
+                        |  &lt;/html&gt;
                     }
                 }
                 @codesub() {
@@ -51,10 +52,12 @@ TODO
 
                 @snippet() {
                     @sourceblock() {
-                        |val xml = &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt;
+                        |val xml =
+                        |   &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt;
                     }
                     @outblock() {
-                        |xml: scala.xml.NodeSeq = &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt;
+                        |xml: scala.xml.NodeSeq =
+                        |   &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt;
                     }
                 }
                 @codesub() {
@@ -67,13 +70,15 @@ TODO
             @slide(title = title, subtitle = "Literale", subsubtitle = "Dynamisch") {
                 @snippet() {
                     @sourceblock() {
-                        |def xml(name: String) = &lt;h1&gt; Welcome {name}! &lt;/h1&gt;
+                        |def xml(name: String) =
+                        |  &lt;h1&gt; Welcome {name}! &lt;/h1&gt;
                     }
                     @callblock() {
                         |xml("Paul")
                     }
                     @outblock() {
-                        |res0: scala.xml.Elem = &lt;h1&gt; Welcome Paul! &lt;/h1&gt;
+                        |res0: scala.xml.Elem =
+                        |  &lt;h1&gt; Welcome Paul! &lt;/h1&gt;
                     }
                 }
                 @codesub() {
@@ -84,10 +89,12 @@ TODO
 
                 @snippet() {
                     @callblock() {
-                        |val xml = &lt;h1&gt; My favourite numbers are {{7, 42, 101}} &lt;/h1&gt;
+                        |val xml =
+                        |  &lt;h1&gt; My favourite numbers are {{7, 42, 101}} &lt;/h1&gt;
                     }
                     @outblock() {
-                        |xml: scala.xml.Elem = &lt;h1&gt; My favourite numbers are {7, 42, 101} &lt;/h1&gt;
+                        |xml: scala.xml.Elem =
+                        |  &lt;h1&gt; My favourite numbers are {7, 42, 101} &lt;/h1&gt;
                     }
                 }
                 @codesub() {
@@ -105,13 +112,15 @@ TODO
                         |&lt;h1&gt; { "Welcome & Goodbye" } &lt;/h1&gt;
                     }
                     @outblock() {
-                        |res0: scala.xml.Elem = &lt;h1&gt; Welcome @("&amp;") Goodbye  &lt;/h1&gt;
+                        |res0: scala.xml.Elem =
+                        |  &lt;h1&gt; Welcome @("&amp;") Goodbye  &lt;/h1&gt;
                     }
                     @sourceblock() {
                         |&lt;h1&gt; { "<<< Welcome >>>" } &lt;/h1&gt;
                     }
                     @outblock() {
-                        |res1: scala.xml.Elem = &lt;h1&gt; @("&lt;&lt;&lt;") Welcome @("&gt;&gt;&gt;") &lt;/h1&gt;
+                        |res1: scala.xml.Elem =
+                        |  &lt;h1&gt; @("&lt;&lt;&lt;") Welcome @("&gt;&gt;&gt;") &lt;/h1&gt;
                     }
                 }
                 @codesub() {
@@ -127,7 +136,8 @@ TODO
                         |val xml = &lt;ul&gt; { for (i &lt;- items) yield &lt;li&gt;{i}&lt;/li&gt; } &lt;/ul &gt;
                     }
                     @outblock() {
-                        |xml: scala.xml.Elem = &lt;ul&gt; &lt;li&gt;1&lt;/li&gt; &lt;li&gt;2&lt;/li&gt; &lt;li&gt;3&lt;/li&gt; &lt;/ul&gt;
+                        |xml: scala.xml.Elem =
+                        |  &lt;ul&gt; &lt;li&gt;1&lt;/li&gt; &lt;li&gt;2&lt;/li&gt; &lt;li&gt;3&lt;/li&gt; &lt;/ul&gt;
                     }
                 }
                 @codesub() {
@@ -141,7 +151,8 @@ TODO
                         |&lt;number&gt;1&lt;/number&gt; ++ &lt;number&gt;2&lt;/number&gt;
                     }
                     @outblock() {
-                        |res0: scala.xml.NodeSeq = NodeSeq(&lt;number&gt;1&lt;/number&gt;, &lt;number&gt;2&lt;/number&gt;)
+                        |res0: scala.xml.NodeSeq =
+                        |  NodeSeq(&lt;number&gt;1&lt;/number&gt;, &lt;number&gt;2&lt;/number&gt;)
                     }
                 }
                 @codesub() {
@@ -177,7 +188,6 @@ TODO
                     @outblock(error = true) {
                         |error: overloaded method constructor
                         |  UnprefixedAttribute with alternatives: ...
-                        |    cannot be applied to (java.lang.String, Boolean, scala.xml.MetaData)
                     }
                 }
                 @codesub() {

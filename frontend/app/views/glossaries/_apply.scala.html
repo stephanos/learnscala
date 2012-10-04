@@ -27,7 +27,7 @@
             </ul>
         </div>
     } {
-        @snippet() {
+        @snippet(clazz = "slim") {
             @callblock() {
                 |List(1, 2, 3) // == List.apply(1, 2, 3)
                 |l(0)          // == l.apply(0)
@@ -36,7 +36,7 @@
 
         @spacer()
 
-        @snippet() {
+        @snippet(clazz = "slim") {
             @callblock() {
                 |Option(5)     // == Option.apply(5)
             }
@@ -44,7 +44,7 @@
 
         @spacer()
 
-        @snippet() {
+        @snippet(clazz = "slim") {
             @sourceblock() {
                 |class Phonebook(val nums: Map[String,String]) {
                 |

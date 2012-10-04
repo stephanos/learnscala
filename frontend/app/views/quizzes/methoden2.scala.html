@@ -1,96 +1,93 @@
-<div class="sidebyside">
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(1)</span>
-            @snippet(clazz = "slim") {
-                @callblock(fragment = false) {
-                    |def f1 = 42
-                    |println(f1)
-                }
-                @outblock() {
-                    |42
-                }
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(1)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |def f1 = 42
+                |println(f1)
             }
-        </div>
-    </div>
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(2)</span>
-            @snippet(clazz = "slim") {
-                @callblock(fragment = false) {
-                    |def f2 {42}
-                    |println(f2)
-                }
-                @outblock() {
-                    |()
-                }
+            @outblock() {
+                |42
             }
-        </div>
-    </div>
-</div>
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(2)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |def f2 {42}
+                |println(f2)
+            }
+            @outblock() {
+                |()
+            }
+        }
+    }
+}
 
 @spacer2()
 
-<div class="sidebyside">
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(3)</span>
-            @snippet(clazz = "slim") {
-                @callblock(fragment = false) {
-                    |def f3 = {42}
-                    |println(f3)
-                }
-                @outblock() {
-                    |42
-                }
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(3)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |def f3 = {42}
+                |println(f3)
             }
-        </div>
-    </div>
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(4)</span>
-            @snippet(clazz = "slim") {
-                @callblock(fragment = false) {
-                    |def f4 {42}
-                    |println(f4())
-                }
-                @outblock(error = true) {
-                    |error: Unit does not take parameters
-                }
+            @outblock() {
+                |42
             }
-        </div>
-    </div>
-</div>
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(4)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |def f4 {42}
+                |println(f4())
+            }
+            @outblock(error = true) {
+                |error: Unit does not take parameters
+            }
+        }
+    }
+}
 
 @spacer2()
 
-<div class="sidebyside">
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(5)</span>
-            @snippet(clazz = "slim") {
-                @callblock(fragment = false) {
-                    |def f5 = 42
-                    |println(f5())
-                }
-                @outblock(error = true) {
-                    |error: Int does not take parameters
-                }
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(5)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |def f5 = 42
+                |println(f5())
             }
-        </div>
-    </div>
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(6)</span>
-            @snippet(clazz = "slim") {
-                @callblock(fragment = false) {
-                    |def f6() {42}
-                    |println(f6)
-                }
-                @outblock() {
-                    |()
-                }
+            @outblock(error = true) {
+                |error: Int does not take parameters
             }
-        </div>
-    </div>
-</div>
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(6)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |def f6() {42}
+                |println(f6)
+            }
+            @outblock() {
+                |()
+            }
+        }
+    }
+}

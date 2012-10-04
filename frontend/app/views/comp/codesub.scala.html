@@ -1,5 +1,3 @@
 @(fragment: Boolean = true, visible: Boolean = false)(content: Html)
 
-@if(visible) {
-    @codenote(fragment, "codesub")(content)
-}
+@codenote(fragment = fragment, visible = visible, clazz = "codesub")(content)

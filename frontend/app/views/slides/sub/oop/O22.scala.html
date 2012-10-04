@@ -24,34 +24,34 @@
                     @sourcecode(id = "case_class") {
                         |case class HttpStatus (code: Int)
                     }
-                    @*@codesub() {*@
-                        @*<code>case</code> Schlüsselwort steht vor <code>class</code>*@
-                    @*}*@
-                }
-
-                @spacer2()
-
-                @sidebyside((50,50)) {
-                    @snippet() {
-                        @sourceblock(reference = "simple_class", id = "simple_class_step1") {
-                            |val s = new HttpStatus(404)
-                        }
+                    @codesub2() {
+                        <code>case</code> Schlüsselwort steht vor <code>class</code>
                     }
-                } {
-                    @snippet() {
-                        @sourceblock(reference = "case_class", id = "case_class_step1") {
-                            |val s = HttpStatus(404)
-                        }
-                    }
-                    @*@codesub() {*@
-                        @*Instanziierung via Companion Object*@
-                    @*}*@
                 }
 
                 @spacer()
 
                 @sidebyside((50,50)) {
-                    @snippet() {
+                    @snippet(clazz = "slim") {
+                        @sourceblock(reference = "simple_class", id = "simple_class_step1") {
+                            |val s = new HttpStatus(404)
+                        }
+                    }
+                } {
+                    @snippet(clazz = "slim") {
+                        @sourceblock(reference = "case_class", id = "case_class_step1") {
+                            |val s = HttpStatus(404)
+                        }
+                    }
+                    @codesub2() {
+                        Instanziierung via Companion Object
+                    }
+                }
+
+                @spacer_half()
+
+                @sidebyside((50,50)) {
+                    @snippet(clazz = "slim") {
                         @sourceblock(reference = "simple_class_step1") {
                             |s.code
                         }
@@ -60,7 +60,7 @@
                         }
                     }
                 } {
-                    @snippet() {
+                    @snippet(clazz = "slim") {
                         @sourceblock(reference = "case_class_step1") {
                             |s.code
                         }
@@ -68,15 +68,15 @@
                             |res0: Int = 404
                         }
                     }
-                    @*@codesub() {*@
-                        @*Parameter <code>code</code> ist ein Feld der Klasse*@
-                    @*}*@
+                    @codesub2() {
+                        Parameter <code>code</code> ist ein Feld der Klasse
+                    }
                 }
 
-                @spacer()
+                @spacer_half()
 
                 @sidebyside((50,50)) {
-                    @snippet() {
+                    @snippet(clazz = "slim") {
                         @sourceblock(reference = "simple_class_step1") {
                             |s.toString
                         }
@@ -85,7 +85,7 @@
                         }
                     }
                 } {
-                    @snippet() {
+                    @snippet(clazz = "slim") {
                         @sourceblock(reference = "case_class_step1") {
                             |s.toString
                         }
@@ -93,15 +93,15 @@
                             |res0: String = HttpStatus(404)
                         }
                     }
-                    @*@codesub() {*@
-                        @*<code>toString</code> liefert ein lesbares Ergebnis*@
-                    @*}*@
+                    @codesub2() {
+                        <code>toString</code> liefert ein lesbares Ergebnis
+                    }
                 }
 
-                @spacer()
+                @spacer_half()
 
                 @sidebyside((50,50)) {
-                    @snippet() {
+                    @snippet(clazz = "slim") {
                         @sourceblock(reference = "simple_class_step1", id = "simple_class_step3") {
                             |val eq = s.equals (new HttpStatus(404))
                         }
@@ -110,7 +110,7 @@
                         }
                     }
                 } {
-                    @snippet() {
+                    @snippet(clazz = "slim") {
                         @sourceblock(reference = "case_class_step1", id = "simple_class_step3") {
                             |val eq = s.equals (HttpStatus(404))
                         }
@@ -118,9 +118,9 @@
                             |eq: Boolean = true
                         }
                     }
-                    @*@codesub() {*@
-                        @*<code>equals</code> funktioniert*@
-                    @*}*@
+                    @codesub2() {
+                        <code>equals</code> funktioniert
+                    }
                 }
             }
 
@@ -160,7 +160,7 @@
 
                     @spacer()
 
-                    @codenote() {
+                    @codenote2() {
                         <code>case</code> bewirkt:
                         @spacer_half()
                         <ul class="indent">
@@ -205,6 +205,9 @@
                         |         dangerous bugs which are unlikely to be fixed.
                     }
                 }
+                @codesub2() {
+                    <var>Warnung</var> bei Vererbung einer Case Class
+                }
 
                 @spacer()
 
@@ -216,64 +219,69 @@
                         |res2: Employee = Employee(Bob)
                     }
                 }
+                @codesub2() {
+                    <var>Problem:</var> <code>copy</code> liefert Basis-Klasse
+                }
             }
 
             <!-- ################################################################################## -->
 
             @slide(title = title, subtitle = "Pattern Matching") {
-                @snippet() {
-                    @sourceblock(id = "empl") {
-                        |case class Employee (name: String, age: Int)
+
+                @sidebyside() {
+                    @snippet() {
+                        @sourceblock(id = "empl") {
+                            |case class Employee (name: String,
+                            |                     age: Int)
+                        }
                     }
-                }
+                } {
 
-                @spacer()
-
-                @snippet() {
-                    @sourceblock(reference = "empl", hl = "3") {
-                        |def shouldRetire(empl: Employee) =
-                        |  empl match {
-                        |    case Employee(n, a) if(a > 66) => true
-                        |    case _ => false
-                        |  }
+                    @snippet() {
+                        @sourceblock(reference = "empl", hl = "3") {
+                            |def shouldRetire(empl: Employee) =
+                            |  empl match {
+                            |    case Employee(n, a) if(a > 66) => true
+                            |    case _ => false
+                            |  }
+                        }
                     }
-                }
 
-                @codenote() {
-                    <em>Konstruktor Pattern</em> lässt Case Class zerlegen,
-                    jeder Parameter kann mit einem Namen belegt werden
-                }
-
-                @spacer_half()
-
-                @snippet() {
-                    @sourceblock(reference = "empl", hl = "3") {
-                        |def shouldRetire(empl: Employee) =
-                        |  empl match {
-                        |    case Employee(n, 65) => true
-                        |    case _ => false
-                        |  }
+                    @codesub2() {
+                        <em>Konstruktor Pattern</em> lässt Case Class zerlegen
                     }
-                }
 
-                @codenote() {
-                    Verwendung der Konstante <code>65</code> (<em class="nobreak">Konstante Pattern</em>)
-                }
+                    @spacer_half()
 
-                @spacer_half()
-
-                @snippet() {
-                    @sourceblock(reference = "empl", hl = "3") {
-                        |def shouldRetire(empl: Employee) =
-                        |  empl match {
-                        |    case Employee(_, a) if(a > 66) => true
-                        |    case _ => false
-                        |  }
+                    @snippet() {
+                        @sourceblock(reference = "empl", hl = "3") {
+                            |def shouldRetire(empl: Employee) =
+                            |  empl match {
+                            |    case Employee(n, 65) => true
+                            |    case _ => false
+                            |  }
+                        }
                     }
-                }
 
-                @codenote() {
-                    Parameter können mit Wildcard <code>_</code> ignoriert werden
+                    @codesub2() {
+                        Verwendung der Konstante <code>65</code> (<em class="nobreak">Konstante Pattern</em>)
+                    }
+
+                    @spacer_half()
+
+                    @snippet() {
+                        @sourceblock(reference = "empl", hl = "3") {
+                            |def shouldRetire(empl: Employee) =
+                            |  empl match {
+                            |    case Employee(_, a) if(a > 66) => true
+                            |    case _ => false
+                            |  }
+                        }
+                    }
+
+                    @codesub2() {
+                        Parameter können mit Wildcard <code>_</code> ignoriert werden
+                    }
                 }
             }
 

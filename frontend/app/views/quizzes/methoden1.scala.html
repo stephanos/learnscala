@@ -1,99 +1,96 @@
-<div class="sidebyside">
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(1)</span>
-            @snippet(clazz = "slim") {
-                @sourceblock(fragment = false) {
-                    |def sub(x: Float, y: Float): Int =
-                    |   x - y
-                }
-                @outblock(error = true) {
-                    |error: type mismatch
-                }
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(1)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |def sub(x: Float, y: Float): Int =
+                |   x - y
             }
-        </div>
-    </div>
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(2)</span>
-            @snippet(clazz = "slim") {
-                @sourceblock(fragment = false) {
-                    |def fn(n: Int) =
-                    |   if (n == 0) 1 else n * fn(n - 1)
-                }
-                @outblock(error = true) {
-                    |error: recursive method fn needs
-                    |       result type
-                }
+            @outblock(error = true) {
+                |error: type mismatch
             }
-        </div>
-    </div>
-</div>
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(2)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |def fn(n: Int) =
+                |   if (n == 0) 1 else n * fn(n - 1)
+            }
+            @outblock(error = true) {
+                |error: recursive method fn needs
+                |       result type
+            }
+        }
+    }
+}
 
 @spacer2()@spacer()
 
-<div class="sidebyside">
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(3)</span>
-            @snippet(clazz = "slim") {
-                @sourceblock(fragment = false) {
-                    |def sub(x: Int, y: Int): Float =
-                    |   x - y
-                }
-                @outblock() {
-                    |sub: (x: Int, y: Int)Float
-                }
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(3)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |def sub(x: Int, y: Int): Float =
+                |   x - y
             }
-        </div>
-    </div>
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(4)</span>
-            @snippet(clazz = "slim") {
-                @sourceblock(fragment = false) {
-                    |def add(x, y) =
-                    |   x + y
-                }
-                @outblock(error = true) {
-                    |error: ':' expected but ',' found.
-                }
+            @outblock() {
+                |sub: (x: Int, y: Int)Float
             }
-        </div>
-    </div>
-</div>
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(4)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |def add(x, y) =
+                |   x + y
+            }
+            @outblock(error = true) {
+                |error: ':' expected but ',' found.
+            }
+        }
+    }
+}
 
 @spacer2()@spacer()
 
-<div class="sidebyside">
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(5)</span>
-            @snippet(clazz = "slim") {
-                @sourceblock(fragment = false) {
-                    |def mult(x: Int, y: Int) {
-                    |   println(x * y)
-                    |}
-                }
-                @outblock() {
-                    |mult: (x: Int, y: Int)Unit
-                }
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(5)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |def mult(x: Int, y: Int) {
+                |   println(x * y)
+                |}
             }
-        </div>
-    </div>
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(6)</span>
-            @snippet(clazz = "slim") {
-                @sourceblock(fragment = false) {
-                    |def negate(n: Int): Long = {
-                    |   -1 * n
-                    |}
-                }
-                @outblock() {
-                    |negate: (n: Int)Long
-                }
+            @outblock() {
+                |mult: (x: Int, y: Int)Unit
             }
-        </div>
-    </div>
-</div>
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(6)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |def negate(n: Int): Long = {
+                |   -1 * n
+                |}
+            }
+            @outblock() {
+                |negate: (n: Int)Long
+            }
+        }
+    }
+}

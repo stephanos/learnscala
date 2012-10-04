@@ -23,7 +23,7 @@
             </ul>
         </div>
     } {
-        @snippet() {
+        @snippet(clazz = "slim") {
             @sourceblock() {
                 |// schematisch:
                 |if (p1: Boolean)
@@ -38,7 +38,7 @@
 
         @spacer()
 
-        @snippet() {
+        @snippet(clazz = "slim") {
             @sourceblock() {
                 |def r(p: Boolean) = if(p) 1 else 1.0
             }
@@ -49,7 +49,7 @@
 
         @spacer_half()
 
-        @snippet() {
+        @snippet(clazz = "slim") {
             @sourceblock() {
                 |def r(p: Boolean) = if(p) 1
             }
@@ -60,7 +60,7 @@
 
         @spacer_half()
 
-        @snippet() {
+        @snippet(clazz = "slim") {
             @sourceblock() {
                 |def r(p: Boolean) = if(p) 1 else "1"
             }
@@ -68,7 +68,7 @@
                 |r: (p: Boolean)Any
             }
         }
-        @codesub() {
+        @codesub2() {
 
         }
     }

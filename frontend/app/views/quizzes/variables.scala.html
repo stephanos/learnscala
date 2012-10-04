@@ -1,123 +1,119 @@
-<div class="sidebyside">
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(1)</span>
-            @snippet(clazz = "slim") {
-                @callblock(fragment = false) {
-                    |val r = 42f
-                }
-                @outblock() {
-                    |r: Float = 42
-                }
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(1)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val r = 42f
             }
-        </div>
-    </div>
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(2)</span>
-            @snippet(clazz = "slim") {
-                @callblock(fragment = false) {
-                    |val r = 5.*5
-                }
-                @outblock() {
-                    |r: Double = 25.0
-                }
+            @outblock() {
+                |r: Float = 42
             }
-        </div>
-    </div>
-</div>
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(2)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val r = 5.*5
+            }
+            @outblock() {
+                |r: Double = 25.0
+            }
+        }
+    }
+}
 
 @spacer2()@spacer()
 
-<div class="sidebyside">
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(3)</span>
-            @snippet(clazz = "slim") {
-                @callblock(fragment = false) {
-                    |val r = 24.==(42)
-                }
-                @outblock() {
-                    |r: Boolean = false
-                }
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(3)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val r = 24.==(42)
             }
-        </div>
-    </div>
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(4)</span>
-            @snippet(clazz = "slim") {
-                @callblock(fragment = false) {
-                    |val r = 42 isWhole
-                }
-                @outblock() {
-                    |r: Boolean = true
-                }
+            @outblock() {
+                |r: Boolean = false
             }
-        </div>
-    </div>
-</div>
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(4)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val r = 42 isWhole
+            }
+            @outblock() {
+                |r: Boolean = true
+            }
+        }
+    }
+}
 
 @spacer2()@spacer()
 
-<div class="sidebyside">
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(5)</span>
-            @snippet(clazz = "slim") {
-                @callblock(fragment = false) {
-                    |val r = (5.)*5
-                }
-                @outblock() {
-                    |r: Double = 25.0
-                }
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(5)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val r = (5.)*5
             }
-        </div>
-    </div>
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(6)</span>
-            @snippet(clazz = "slim") {
-                @callblock() {
-                    |var r = 1L
-                    |r = 25
-                }
-                @outblock(fragment = false) {
-                    |r: Long = 1
-                    |r: Long = 25
-                }
+            @outblock() {
+                |r: Double = 25.0
             }
-        </div>
-    </div>
-</div>
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(6)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock() {
+                |var r = 1L
+                |r = 25
+            }
+            @outblock(fragment = false) {
+                |r: Long = 1
+                |r: Long = 25
+            }
+        }
+    }
+}
 
 @spacer2()@spacer()
 
-<div class="sidebyside">
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(7)</span>
-            @snippet(clazz = "slim") {
-                @callblock(fragment = false) {
-                    |val r: String = 3.14
-                }
-                @outblock(error = true) {
-                    |error: type mismatch;
-                }
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(7)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val r: String = 3.14
             }
-        </div>
-    </div>
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(8)</span>
-            @snippet(clazz = "slim") {
-                @callblock(fragment = false) {
-                    |val r = (5).*(5)
-                }
-                @outblock() {
-                    |r: Int = 25
-                }
+            @outblock(error = true) {
+                |error: type mismatch;
             }
-        </div>
-    </div>
-</div>
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(8)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val r = (5).*(5)
+            }
+            @outblock() {
+                |r: Int = 25
+            }
+        }
+    }
+}

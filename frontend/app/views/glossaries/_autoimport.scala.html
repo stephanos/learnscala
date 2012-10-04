@@ -3,11 +3,11 @@
 @layout.simpledeck("Auto-Import", "Was importiert jede Scala-Quelldatei automatisch?") {
 
     @sidebyside((30,70)) {
-        @sourcecode() {
+        @sourcecode(clazz = "slim") {
             |import java.lang._
         }
     } {
-        @codenote() {
+        @codenote2() {
             <em>Klassen</em><br/>
             <div class="indent">
                 <code>String</code>, <code>Thread</code>, <code>NullPointerException</code>, <code>Math</code>, <code>System</code>,
@@ -20,11 +20,11 @@
     @spacer()
 
     @sidebyside((30,70)) {
-        @sourcecode() {
+        @sourcecode(clazz = "slim") {
             |import scala._
         }
     } {
-        @codenote() {
+        @codenote2() {
             <em>Klassen:</em><br/>
             <div class="indent">
                 <code>Array</code>, <code>Long</code>, <code>Int</code>, <code>Char</code>,
@@ -67,11 +67,11 @@
     @spacer()
 
     @sidebyside((30,70)) {
-        @sourcecode() {
+        @sourcecode(clazz = "slim") {
             import scala.Predef._
         }
     } {
-        @codenote() {
+        @codenote2() {
             Siehe Eintrag zu @glossary("Predef").
         }
     }

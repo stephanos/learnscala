@@ -28,7 +28,7 @@
             </ul>
         </div>
     } {
-        @snippet() {
+        @snippet(clazz = "slim") {
             @sourceblock() {
                 |val age = 42
             }
@@ -36,13 +36,13 @@
                 |age: Int = 42
             }
         }
-        @codesub() {
+        @codesub2() {
             Wert '42' hat den Typ Int
         }
 
         @spacer_half()
 
-        @snippet() {
+        @snippet(clazz = "slim") {
             @sourceblock() {
                 |def divide (a: Int, b: Int) = a / b
             }
@@ -50,13 +50,13 @@
                 |divide: (a: Int, b: Int)Int
             }
         }
-        @codesub() {
+        @codesub2() {
             'divide' hat den Rückgabetyp Int
         }
 
         @spacer_half()
 
-        @snippet() {
+        @snippet(clazz = "slim") {
             @sourceblock() {
                 |val list = List(1,2,3)
             }
@@ -64,13 +64,13 @@
                 |list: List[Int] = List(1, 2, 3)
             }
         }
-        @codesub() {
+        @codesub2() {
             'list' ist vom Typ List[Int]
         }
 
         @spacer_half()
 
-        @snippet() {
+        @snippet(clazz = "slim") {
             @sourceblock() {
                 |List(1,2,3).map(x => x * 2)
             }
@@ -78,7 +78,7 @@
                 |res0: List[Int] = List(2, 4, 6)
             }
         }
-        @codesub() {
+        @codesub2() {
             'x' hat den Typ Int
         }
     }

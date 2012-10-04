@@ -11,7 +11,7 @@
             </ul>
         </div>
     } {
-        @snippet() {
+        @snippet(clazz = "slim") {
             @sourceblock() {
                 |def fullname(fname: String, lname: String): String =
             }
@@ -19,13 +19,13 @@
                 |
             }
         }
-        @codesub() {
+        @codesub2() {
 
         }
 
         @spacer_half()
 
-        @snippet() {
+        @snippet(clazz = "slim") {
             @sourceblock() {
                 |def toMile(km: Float) =
                 |   return km * 1.60934
@@ -35,7 +35,7 @@
                 |       needs result type
             }
         }
-        @codesub() {
+        @codesub2() {
             <var>Achtung</var>: <code>return</code> verhindert @glossary("Typ-Inferenz")
         }
     }

@@ -27,7 +27,7 @@
             </ul>
         </div>
     } {
-        @snippet() {
+        @snippet(clazz = "slim") {
             @callblock() {
                 |val arr = Array (1, 2, 3)
                 |arr(0) = 0  // == arr.update(0, 0)
@@ -36,7 +36,7 @@
 
         @spacer()
 
-        @snippet() {
+        @snippet(clazz = "slim") {
             @sourceblock() {
                 |import collection.mutable.Map
                 |

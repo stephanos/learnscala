@@ -3,7 +3,7 @@
 @layout.simpledeck("Dynamic", showhHead = false) {
 
     @sidebyside((71,29)) {
-        @snippet() {
+        @snippet(clazz = "slim") {
             @sourceblock(id = "dynamic") {
                 |class Foo extends Dynamic {
                 |
@@ -46,7 +46,7 @@
     @spacer()
 
     @sidebyside() {
-        @snippet() {
+        @snippet(clazz = "slim") {
             @callblock(reference = "foo") {
                 |val foo = new Foo
                 |foo.bar(5)
@@ -62,7 +62,7 @@
             }
         }
     } {
-        @snippet() {
+        @snippet(clazz = "slim") {
             @callblock(reference = "foo") {
                 |val foo = new Foo
                 |foo.bar

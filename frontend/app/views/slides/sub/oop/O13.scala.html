@@ -19,99 +19,78 @@
 
             @slide(title = title) {
 
-                @sidebyside((66,33)) {
                     @sourcecode() {
                         |package de.learnscala
                         |
                         |class Plane
                     }
-                } {
-                    @codenote() {
+
+                    @codesub2() {
                         Klasse <code>Plane</code> wird in dem Paket
                         <code>de.learnscala</code> platziert
                     }
-                }
 
                 @spacer()
 
-                @sidebyside((66,33)) {
+
                     @sourcecode() {
                         |package de.learnscala
                         |
                         |class Pilot
                         |class Stewardess
                     }
-                } {
-                    @codenote() {
+
+                    @codesub2() {
                         beliebig viele Klassen können in einem Paket platziert werden
                     }
-                }
+
 
                 @spacer()
 
-                @sidebyside((66,33)) {
+
                     @sourcecode() {
                         |// file: src/main/scala/Plane.scala
                         |package de.learnscala
                         |
                         |class Plane
                     }
-                } {
-                    @codenote() {
+
+                    @codesub2() {
                         Dateipfad und Paketpfad müssen nicht übereinstimmen
-                        (sollten es aber idealerweise)
                     }
-                }
+
             }
 
             <!-- ################################################################################## -->
 
             @slide(title = title) {
 
-                @sidebyside((66,33)) {
-                    @sourcecode() {
-                        |package de.learnscala {
-                        |  class Plane
-                        |}
-                    }
-                } {
-                    @codenote() {
-
-                    }
+                @sourcecode() {
+                    |package de.learnscala {
+                    |  class Plane
+                    |}
                 }
 
                 @spacer()
 
-                @sidebyside((66,33)) {
-                    @sourcecode() {
-                        |package de {
-                        |   package learnscala {
-                        |      class Plane
-                        |   }
-                        |}
-                    }
-                } {
-                    @codenote() {
-
-                    }
+                @sourcecode() {
+                    |package de {
+                    |   package learnscala {
+                    |      class Plane
+                    |   }
+                    |}
                 }
 
                 @spacer()
 
-                @sidebyside((66,33)) {
-                    @sourcecode() {
-                        |package de.learnscala {
-                        |   class Plane
-                        |
-                        |   package test {
-                        |       class PlaneTest
-                        |   }
-                        |}
-                    }
-                } {
-                    @codenote() {
-
-                    }
+                @sourcecode() {
+                    |package de.learnscala {
+                    |   class Plane
+                    |
+                    |   package test {
+                    |       class PlaneTest
+                    |   }
+                    |}
                 }
             }
 
@@ -119,40 +98,35 @@
 
             @slide(title = title, subtitle = "Sichtbarkeit") {
 
-                @sidebyside((60,40)) {
                     @sourcecode() {
                         |package de.learnscala.crew
                         |
                         |class private[learnscala] Plane
                     }
-                } {
-                    @codenote() {
-                        <code>private[learnscala]</code> beschränkt den Zugriff auf
+
+                    @codesub2() {
+                        beschränkt den Zugriff auf
                         das Paket <code>learnscala</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
                     }
-                }
 
                 @spacer2()
 
-                @sidebyside((60,40)) {
                     @sourcecode() {
                         |package de.learnscala.crew
                         |
                         |class private[crew] Pilot
                     }
-                } {
-                    @codenote() {
-                        <code>private[crew]</code> beschränkt den Zugriff auf
+
+                    @codesub2() {
+                        beschränkt den Zugriff auf
                         das Paket <code>crew</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
                     }
-                }
             }
 
             <!-- ################################################################################## -->
 
             @slide(title = title, subtitle = "Package Object") {
 
-                @sidebyside((66,33)) {
                     @sourcecode() {
                         |// file "package.scala"
                         |package object util {
@@ -165,12 +139,13 @@
                         |  }
                         |}
                     }
-                } {
-                }
+
+                    @codesub2() {
+                        Package Object kann Methoden und Variablen enthalten
+                    }
 
                 @spacer()
 
-                @sidebyside((66,33)) {
                     @sourcecode() {
                         |package scala
                         |
@@ -182,8 +157,10 @@
                         |  // ...
                         |}
                     }
-                } {
-                }
+
+                    @codesub2() {
+                        Package Object <code>math</code> von Scala
+                    }
             }
         }
 
@@ -193,72 +170,79 @@
 
             @slide(title = title) {
 
-                @sidebyside((60,40)) {
                     @sourcecode() {
                         |import de.learnscala.crew.Pilot
                     }
-                } {
-                    @codenote() {
+
+                    @codesub2() {
                         importiert <em>1</em> Klasse namens <code>Pilot</code>
-                        aus dem Paket <code>crew</code>
                     }
-                }
 
-                @spacer2()
+                @spacer()
 
-                @sidebyside((60,40)) {
                     @sourcecode() {
                         |import de.learnscala.crew.{Pilot, CoPilot}
                     }
-                } {
-                    @codenote() {
+
+                    @codesub2() {
                         importiert die <em>2</em> Klassen <code>Pilot</code> und <code>CoPilot</code>
-                        aus dem Paket <code>crew</code>
                     }
-                }
 
-                @spacer2()
+                @spacer()
 
-                @sidebyside((60,40)) {
                     @sourcecode() {
                         |import de.learnscala.crew._
                     }
-                } {
-                    @codenote() {
-                        Wildcard <code>_</code> importiert <em>alles</em> aus dem Paket <code>crew</code>
+
+                    @codesub2() {
+                        Wildcard <code>_</code> importiert <em>alles</em>
                     }
-                }
 
-                @spacer2()
+                @spacer()
 
-                @infobox() {
+                    @sourcecode() {
+                        |import java.util.Date, java.sql.{Date => SqlDate}
+                    }
+
+                    @codesub2() {
+                        <code>Date</code> wird in <code>SqlDate</code> umbenannt
+                    }
+
+                @spacer()
+
+                    @sourcecode() {
+                        |import java.util.{Date => _, _}
+                    }
+
+                    @codesub2() {
+                        <code>Date</code> wird in <code>SqlDate</code> umbenannt
+                    }
+
+                @*@infobox() {
                     Mit Hilfe von <code>import</code> können einzelne, mehrere oder alle Klassen eines Paketes geladen werden.
-                }
+                }*@
             }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Umbenennung") {
+            @*@slide(title = title, subtitle = "Umbenennung") {
 
-                @*@sidebyside((66,33)) {
+                @sidebyside((66,33)) {
                     @sourcecode() {
                         |import de.learnscala.cabin.{Seat => CabinSeat}
                         |import de.learnscala.cockpit.{Seat => CockpitSeat}
                     }
                 } {
-                    @codenote() {
+                    @codesub() {
                         <code>Seat</code> ist jeweils in den Paketen <code>cabin</code> bzw. <code>cockpit</code>
                         definiert und wird beim Import entsprechend umbenannt
                     }
-                }*@
+                }
 
                 @sidebyside((66,33)) {
-                    @sourcecode() {
-                        |import java.util.Date
-                        |import java.sql.{Date => SqlDate}
-                    }
+
                 } {
-                    @codenote() {
+                    @codesub() {
                         <code>Date</code> ist jeweils in den Paketen <code>util</code> bzw. <code>sql</code> -
                         daher bekommt letzteres einen anderen Namen
                     }
@@ -269,95 +253,80 @@
                 @infobox() {
                     Klassen können beim Import umbenannt werden, um Namenskonflikte zu verhindern.
                 }
-            }
+            }*@
 
             <!-- ################################################################################## -->
 
             @slide(title = title, subtitle = "relativ") {
 
-                @sidebyside((60,40)) {
                     @sourcecode() {
                         |package de.learnscala
                         |
                         |import crew.Pilot
                     }
-                } {
-                    @codenote() {
+
+                    @codesub2() {
                         Importiert <code>Pilot</code> aus <code>de.learnscala.crew</code>
                     }
-                }
+
 
                 @spacer()
 
-                @sidebyside((60,40)) {
                     @sourcecode() {
                         |package de.learnscala
                         |
                         |import de.learnscala.crew.Pilot
                     }
-                } {
-                    @codenote() {
+
+                    @codesub2() {
                         Importiert <code>Pilot</code> aus <code>de.learnscala.crew</code>
                     }
-                }
+
 
                 @spacer()
 
-                @sidebyside((60,40)) {
                     @sourcecode() {
                         |package de.learnscala
                         |
                         |import _root.de.learnscala.crew.Pilot
                     }
-                } {
-                    @codenote() {
+
+                    @codesub2() {
                         Importiert <code>Pilot</code> aus <code>de.learnscala.crew</code>
                     }
-                }
+
 
                 @spacer()
 
-                @infobox() {
+                @*@infobox() {
                     Der Compiler löst Importe zunächst relativ auf (außer es steht <code>_root_</code> am Anfang)
                     - wird er nicht fündig, versucht er es als absolute Angabe.
-                }
+                }*@
             }
 
             <!-- ################################################################################## -->
 
             @slide(title = title, subtitle = "in Blöcken") {
 
-                @codesplits((60,40)){
-                    @splitstart() {
-                        |package de.learnscala
-                        |
-                        |class Plane @("{")
-                    }(null)
-                    @codesplit() {
-                        |   def fly() {
-                        |       import crew.Pilot
-                        |       // ...
-                        |   }
-                    } {
-                        nur <code>fly</code> importiert <code>Pilot</code>
-                    }
-                    @codesplit() {
-                        |   def clean() {
-                        |       import crew.Stewardess
-                        |       // ...
-                        |   }
-                    } {
-                        nur <code>clean</code> importiert <code>Stewardess</code>
-                    }
-                    @splitend() {
-                        |@("}")
-                    }(null)
+                @sourcecode() {
+                    |package de.learnscala
+                    |
+                    |class Plane {
+                    |
+                    |   def fly() {
+                    |       import crew.Pilot
+                    |       // ...
+                    |   }
+                    |
+                    |   def clean() {
+                    |       import crew.Stewardess
+                    |       // ...
+                    |   }
+                    |}
                 }
 
-                @spacer()
-
-                @infobox() {
-                    Ein Import kann überall im Code eingefügt werden, nicht nur am Dateianfang.
+                @codesub2() {
+                    Import kann überall im Code eingefügt werden
                 }
             }
 
@@ -365,7 +334,6 @@
 
             @slide(title = title, subtitle = "implizit") {
 
-                @sidebyside((66,33)) {
                     @snippet() {
                         @callblock() {
                             |val e = new RuntimeException("pilot asleep")
@@ -374,15 +342,12 @@
                             |e: java.lang.RuntimeException = RuntimeException: pilot asleep
                         }
                     }
-                } {
-                    @codenote() {
+                    @codesub2() {
                         Zugriff auf Klasse <code>RuntimeException</code> aus Paket <code>java.lang</code>
                     }
-                }
 
                 @spacer2()
 
-                @sidebyside((66,33)) {
                     @snippet() {
                         @callblock() {
                             |val p = math.Pi
@@ -391,18 +356,18 @@
                             |p: Double = 3.141592653589793
                         }
                     }
-                } {
-                    @codenote() {
+
+                    @codesub2() {
                         Zugriff auf Variable <code>Pi</code> aus Paket <code>scala.math</code>
                     }
-                }
+
 
                 @spacer2()
 
-                @infobox() {
+                @*@infobox() {
                     Neben dem <code>Predef</code>-Objekt werden für jede Datei automatisch die Pakete
                     <code>java.lang</code> und <code>scala</code> importiert.
-                }
+                }*@
             }
         }
 

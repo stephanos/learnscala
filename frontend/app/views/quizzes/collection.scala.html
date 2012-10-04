@@ -4,126 +4,122 @@
 
 @spacer2()
 
-<div class="sidebyside">
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(1)</span>
-            @snippet(clazz = "slim") {
-                @callblock(reference = "list123", fragment = false) {
-                    |val r = l map { (x: Int) => x * 2 }
-                }
-                @outblock() {
-                    |r: List[Int] = List(2, 4, 6)
-                }
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(1)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(reference = "list123", fragment = false) {
+                |val r = l map { (x: Int) => x * 2 }
             }
-        </div>
-    </div>
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(2)</span>
-            @snippet(clazz = "slim") {
-                @callblock(reference = "list123", fragment = false) {
-                    |val r = l filter ( _ / 2)
-                }
-                @outblock(error = true) {
-                    |error: type mismatch;
-                    |found: Int; required: Boolean
-                }
+            @outblock() {
+                |r: List[Int] = List(2, 4, 6)
             }
-        </div>
-    </div>
-</div>
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(2)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(reference = "list123", fragment = false) {
+                |val r = l filter ( _ / 2)
+            }
+            @outblock(error = true) {
+                |error: type mismatch;
+                |found: Int; required: Boolean
+            }
+        }
+    }
+}
 
 @spacer()
 
-<div class="sidebyside">
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(3)</span>
-            @snippet(clazz = "slim") {
-                @callblock(reference = "list123", fragment = false) {
-                    |val r = l map ( _ / 2.0)
-                }
-                @outblock() {
-                    |r: List[Double] = List(0.5, 1.0, 1.5)
-                }
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(3)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(reference = "list123", fragment = false) {
+                |val r = l map ( _ / 2.0)
             }
-        </div>
-    </div>
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(4)</span>
-            @snippet(clazz = "slim") {
-                @callblock(reference = "list123", fragment = false) {
-                    |val r = l map print
-                }
-                @outblock() {
-                    |1 2 3r: List[Unit] = List((), (), ())
-                }
+            @outblock() {
+                |r: List[Double] = List(0.5, 1.0, 1.5)
             }
-        </div>
-    </div>
-</div>
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(4)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(reference = "list123", fragment = false) {
+                |val r = l map print
+            }
+            @outblock() {
+                |1 2 3r: List[Unit] = List((), (), ())
+            }
+        }
+    }
+}
 
 @spacer()
 
-<div class="sidebyside">
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(5)</span>
-            @snippet(clazz = "slim") {
-                @callblock(reference = "list123", fragment = false) {
-                    |val r = l map ((i: Long) => _ - 1)
-                }
-                @outblock(error = true) {
-                    |error: missing parameter type
-                }
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(5)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(reference = "list123", fragment = false) {
+                |val r = l map ((i: Long) => _ - 1)
             }
-        </div>
-    </div>
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(6)</span>
-            @snippet(clazz = "slim") {
-                @callblock(reference = "list123", fragment = false) {
-                    |val r = l map ((i: Long) => i - 1)
-                }
-                @outblock(error = true) {
-                    |error: type mismatch;
-                    |found: Long => Long; required: Int => ?
-                }
+            @outblock(error = true) {
+                |error: missing parameter type
             }
-        </div>
-    </div>
-</div>
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(6)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(reference = "list123", fragment = false) {
+                |val r = l map ((i: Long) => i - 1)
+            }
+            @outblock(error = true) {
+                |error: type mismatch;
+                |found: Long => Long; required: Int => ?
+            }
+        }
+    }
+}
 
 @spacer()
 
-<div class="sidebyside">
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(7)</span>
-            @snippet(clazz = "slim") {
-                @callblock(reference = "list123", fragment = false) {
-                    |val r = l filter { _ * 2 > 2 }
-                }
-                @outblock() {
-                    |r: List[Int] = List(2, 3)
-                }
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(7)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(reference = "list123", fragment = false) {
+                |val r = l filter { _ * 2 > 2 }
             }
-        </div>
-    </div>
-    <div>
-        <div class="sidebyside p10_90">
-            <span>(8)</span>
-            @snippet(clazz = "slim") {
-                @callblock(reference = "list123", fragment = false) {
-                    |val r = l map (math.pow(_, 2))
-                }
-                @outblock() {
-                    |r: List[Double] = List(1.0, 4.0, 9.0)
-                }
+            @outblock() {
+                |r: List[Int] = List(2, 3)
             }
-        </div>
-    </div>
-</div>
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(8)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(reference = "list123", fragment = false) {
+                |val r = l map (math.pow(_, 2))
+            }
+            @outblock() {
+                |r: List[Double] = List(1.0, 4.0, 9.0)
+            }
+        }
+    }
+}

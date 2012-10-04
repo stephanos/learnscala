@@ -15,6 +15,7 @@ target
 # other
 RUNNING_PID
 *.log
+media
 .DS_Store
 exercises
 external
