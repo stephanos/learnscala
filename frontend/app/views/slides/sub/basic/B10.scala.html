@@ -36,7 +36,7 @@
         @headslide(title = "Skriptsprache") {
             Scala ist ... <span class='fragment'><em>eine Skriptsprache</em></span>
         } {
-            @sidebyside((60,40)) {
+            @sidebyside((60,40), fragment = true) {
                 @snippet() {
                     @sourceblock(fragment = false) {
                         |val i: Int = 5
@@ -59,7 +59,7 @@
 
             @spacer()
 
-            @sidebyside((60,40)) {
+            @sidebyside((60,40), fragment = true) {
                 @callcode(fragment = false) {
                     |println("Hello World")
                 }
@@ -69,7 +69,7 @@
 
             @spacer()
 
-            @sidebyside((60,40)) {
+            @sidebyside((60,40), fragment = true) {
                 @callcode(fragment = false) {
                     |val i = 1 + 2 * 3      // type of i is Int
                     |val s = "Scala rocks"  // type of s is String
@@ -131,7 +131,7 @@
         @headslide(title = "Knapp und Präzise") {
             Scala ist ... <span><em>knapp und präzise</em></span>
         } {
-            @sidebyside((60,40)) {
+            @sidebyside((60,40), fragment = true) {
                 @sourcecode(fragment = false) {
                     |class MyCar(wheels: Int = 4)
                 }
@@ -141,7 +141,7 @@
 
             @spacer()
 
-            @sidebyside((60,40)) {
+            @sidebyside((60,40), fragment = true) {
                 @sourcecode(fragment = false) {
                     |trait Logging
                 }
@@ -151,7 +151,7 @@
 
             @spacer()
 
-            @sidebyside((60,40)) {
+            @sidebyside((60,40), fragment = true) {
                 @sourcecode(fragment = false) {
                     |def getUserAttributes[T](fn: (User) => List[T])
                 }
@@ -169,7 +169,7 @@
         @headslide(title = "Funktional") {
             Scala ist ... <span><em>funktional</em></span>
         } {
-            @sidebyside((66,33)) {
+            @sidebyside((66,33), fragment = true) {
                 @callcode(fragment = false) {
                     |val names = users.map(_.username)
                     |
@@ -182,7 +182,7 @@
             @spacer()
 
             <!-- TODO: better example? composable? futures? -->
-            @sidebyside((66,33)) {
+            @sidebyside((66,33), fragment = true) {
                 @sourcecode(fragment = false) {
                     |def matchTest(arg: String, value: Any) =
                     | (arg, value) match {
@@ -205,7 +205,7 @@
         @headslide(title = "Statisch") {
             Scala ist ... <span><em>statisch typisiert</em></span>
         } {
-            @sidebyside((66,33)) {
+            @sidebyside((66,33), fragment = true) {
                 @callcode(fragment = false) {
                     |val i = 1 + 2 * 3    // the type of i is Int
                 }
@@ -215,7 +215,7 @@
 
             @spacer()
 
-            @sidebyside((66,33)) {
+            @sidebyside((66,33), fragment = true) {
                 @callcode(fragment = false) {
                     |val j: Int = "test"  // COMPILER ERROR!
                 }
@@ -225,7 +225,7 @@
 
             @spacer()
 
-            @sidebyside((66,33)) {
+            @sidebyside((66,33), fragment = true) {
                 @sourcecode(fragment = false) {
                     |def cloneAndReset(o: Cloneable with Resetable) = ..
                 }
@@ -243,7 +243,7 @@
         @headslide(title = "Java") {
             Scala ist ... <span><em>Java</em></span>
         } {
-            @sidebyside((60,40)) {
+            @sidebyside((60,40), fragment = true) {
                 @sourcecode(fragment = false) {
                     |import org.apache.http.client._
                     |import org.apache.http.client.methods._
@@ -270,7 +270,7 @@
         @headslide(title = "Erweiterbar") {
             Scala ist ... <span><em>erweiterbar</em></span>
         } {
-            @sidebyside((60,40)) {
+            @sidebyside((60,40), fragment = true) {
                 @sourcecode(fragment = false) {
                     |retry(3) {
                     |   connectToDatabase()
@@ -282,7 +282,7 @@
 
             @spacer()
 
-            @sidebyside((60,40)) {
+            @sidebyside((60,40), fragment = true) {
                 @sourcecode(fragment = false) {
                     @Html("""
                     |"The 'Hello world' string" should {
