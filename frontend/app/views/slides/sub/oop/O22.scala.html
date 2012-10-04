@@ -285,7 +285,9 @@
                     |sealed abstract class Employee { val age: Int }
                     |
                     |case class Boss(age: Int) extends Employee
-                    |case class Developer(age: Int, knowsScala: Boolean) extends Employee
+                    |
+                    |case class Developer(age: Int, knowsScala: Boolean)
+                    |   extends Employee
                 }
 
                 @spacer()
@@ -302,18 +304,25 @@
 
                 @spacer()
 
-                @snippet() {
-                    @callblock(reference = "match_salary") {
-                        |val s1 = getSalary(Boss(25))
+                @sidebyside() {
+                    @snippet() {
+                        @callblock(reference = "match_salary") {
+                            |val e = Boss(25)
+                            |val s = getSalary(e)
+                        }
+                        @outblock() {
+                            |s: Int = 105000
+                        }
                     }
-                    @outblock() {
-                        |s1: Int = 105000
-                    }
-                    @callblock() {
-                        |val s2 = getSalary(Developer(30, false))
-                    }
-                    @outblock() {
-                        |s2: Int = 40000
+                } {
+                    @snippet() {
+                        @callblock() {
+                            |val e = Developer(30, false)
+                            |val s = getSalary(e)
+                        }
+                        @outblock() {
+                            |s: Int = 40000
+                        }
                     }
                 }
             }
