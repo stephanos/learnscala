@@ -30,7 +30,7 @@
                 }
             }
 
-            @codenote() {
+            @codesub2() {
                 <code>static</code> gibt es in Scala nicht ...
             }
         }
@@ -59,6 +59,9 @@
                     |   }
                     |}
                 }
+                @codesub2() {
+                    ... aber Objekte, es existiert immer genau eine Instanz
+                }
 
                 @spacer()
 
@@ -70,13 +73,11 @@
                         |acc: Account = Account@@536502d
                     }
                 }
-            }
 
-            <!--@infobox() {
-                <code>object</code> definiert ein Singleton-Objekt:
-                Es existiert <strong>genau eine Instanz</strong>,
-                die beim ersten Zugriff instanziiert wird - Parameter gibt es nicht.
-            }-->
+                @codesub2() {
+                    ideal geeignet für Factory-Methoden
+                }
+            }
 
             <!-- ################################################################################## -->
 
@@ -94,8 +95,8 @@
                     }
                 }
 
-                @codenote() {
-                    Objekte werden automatisch instanziiert, Parameter sind daher nicht erlaubt
+                @codesub2() {
+                    Parameter sind aber nicht erlaubt
                 }
             }
 
@@ -126,11 +127,9 @@
                     }
                 }
 
-                @*{
-                    @codenote() {
-                        Objekte werden beim ersten Zugriff instanziiert
-                    }
-                }*@
+                @codesub2() {
+                    Objekte werden beim ersten Zugriff instanziiert
+                }
             }
 
             <!-- ################################################################################## -->
@@ -146,14 +145,12 @@
                     |}
                 }
 
-                @*{
-                    @codenote() {
-                        Singleton <code>MyApplication</code> definiert
+                    @codesub2() {
+                        <code>MyApplication</code> definiert
                         den <em>Einstiegspunkt</em> <code>main</code> zum Ausführen
                     }
-                }*@
 
-                @spacer()
+                @spacer_half()
 
                 @sourcecode() {
                     |object StringUtil {
@@ -163,14 +160,12 @@
                     |}
                 }
 
-                @*{
-                    @codenote() {
-                        Singleton <code>StringUtil</code> definiert
+                    @codesub2() {
+                        <code>StringUtil</code> definiert
                         <em>nützliche Methoden</em> für die Arbeit mit Strings
                     }
-                }*@
 
-                @spacer()
+                @spacer_half()
 
                 @sourcecode() {
                     |object Currency {
@@ -180,12 +175,10 @@
                     |}
                 }
 
-                @*{
-                    @codenote() {
-                        Singleton <code>Currency</code> definiert
+                    @codesub2() {
+                        <code>Currency</code> definiert
                         Währungssymbole als <em>Konstanten</em>
                     }
-                }*@
             }
         }
 
@@ -216,6 +209,10 @@
                             |}
                         }
                     }
+
+                    @codesub2() {
+                        Klasse <code>Account</code> hat ein Companion Object
+                    }
                 } {
                     @spacer()
 
@@ -233,25 +230,10 @@
                             |1
                         }
                     }
+                    @codesub2() {
+                        Companion Object und Klasse haben <span class="nobreak">gegenseitig privaten Zugriff</span>
+                    }
                 }
-
-                @*
-                    @codenote() {
-                        Klasse <code>Account</code> hat einen @uline("privaten") Konstruktor
-                    }
-                *@
-
-                @*
-                    @codenote() {
-                        Companion Object <code>Account</code> definiert Factory-Methode
-                    }
-                *@
-
-                @*
-                    @codenote() {
-                        Companion Object und Klasse haben gegenseitig privaten Zugriff
-                    }
-                *@
 
                 @*
                     Das Companion Object einer Klasse muss den selben Namen tragen und in der selben Datei
@@ -267,17 +249,17 @@
                     |val bigNumber = BigInt("1234567890")
                 }
 
+                @codesub2() {
+                    erstellt ein <code>BigInt</code> mit dem Wert 1234567890
+                }
+
                 @spacer2()
 
                 @callcode() {
                     |val countdown = Array(10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
                 }
 
-                @codenote() {
-                    erstellt ein <code>BigInt</code> mit dem Wert 1234567890
-                }
-
-                @codenote() {
+                @codesub2() {
                     erstellt ein <code>Array</code> aus den Zahlen von 10 bis 0
                 }
 
@@ -304,6 +286,10 @@
                     |  }
                     |}
                 }
+
+                @codesub2() {
+                    Objekt enthält Factory-Methode namens <code>apply</code>
+                }
             } {
                 @snippet() {
                     @callblock(reference = "apply") {
@@ -312,6 +298,9 @@
                     @outblock() {
                         |acc: Account = Account@@536502d
                     }
+                }
+                @codesub2() {
+                    Methode <code>apply</code> wird @underline("explizit") aufgerufen
                 }
 
                 @spacer()
@@ -324,6 +313,9 @@
                         |acc: Account = Account@@536502d
                     }
                 }
+                @codesub2() {
+                    Methode <code>apply</code> wird @underline("implizit") aufgerufen
+                }
 
                 @spacer()
 
@@ -335,18 +327,6 @@
                         |error: not enough arguments for method apply
                     }
                 }
-
-                @codenote() {
-                    Objekt enthält <code>apply</code>-Methode
-                    zum Erstellen einer neuen Instanz von <code>Account</code>
-                }
-            }
-
-            @codenote() {
-                Methode <code>apply</code> wird @underline("explizit") aufgerufen
-            }
-            @codenote() {
-                Methode <code>apply</code> wird @underline("implizit") aufgerufen
             }
 
             <!--@infobox() {
@@ -375,12 +355,10 @@
                 }
             }
 
-            @*{
-                @codenote() {
-                    Methode <code>println</code> - Teil des Objekts @apilink("Predef", "Predef$") -
-                    kann ohne Objektreferenz verwendet werden
-                }
-            }*@
+            @codesub2() {
+                Methode <code>println</code> - Teil des Objekts @apilink("Predef", "Predef$") -
+                wird ohne Objektreferenz verwendet
+            }
 
             @spacer2()
 
@@ -396,12 +374,10 @@
                 }
             }
 
-            @*{
-                @codenote() {
-                    Methode <code>require</code> wirft <code>IllegalArgumentException</code>
-                    falls die Bedingung nicht wahr ist
-                }
-            }*@
+            @codesub2() {
+                Methode <code>require</code> wirft <code>IllegalArgumentException</code>
+                falls die Bedingung nicht wahr ist
+            }
 
             <!--@infobox() {
                 Das <code>Predef</code>-Objekt wird automatisch für jede Klasse importiert,
