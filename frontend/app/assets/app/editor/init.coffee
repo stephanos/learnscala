@@ -16,6 +16,9 @@ define [
           self.createCodeBlock(b, code)
       )
 
+      if($(elem).find(".raw-block").data("lang") == "java")
+        $("<div class='icon-annotation'><span>7</span></div>").appendTo($(elem))
+
       resetHighlights = (evt) ->
         if(!evt || evt.shiftKey || evt.ctrlKey || evt.altKey || evt.metaKey)
           $(elem).find("pre").removeClass("highlight")

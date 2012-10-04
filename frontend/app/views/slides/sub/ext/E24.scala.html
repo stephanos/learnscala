@@ -138,7 +138,7 @@
                             |class Book
                         }
                     } {
-                        @outcode() {
+                        @outcode(lang = "java") {
                             |public class Book
                             |  extends java.lang.Object {
                             |
@@ -158,7 +158,7 @@
                             |class Book(title: String)
                         }
                     } {
-                        @outcode() {
+                        @outcode(lang = "java") {
                             |public class Book [..] {
                             |
                             |    public Book(java.lang.String);
@@ -204,7 +204,7 @@
                             |}
                         }
                     } {
-                        @outcode() {
+                        @outcode(lang = "java") {
                             |public abstract class Operators extends [..] {
                             |  public Operators();
                             |
@@ -244,7 +244,7 @@
                             |class Book(val title: String)
                         }
                     } {
-                        @outcode() {
+                        @outcode(lang = "java") {
                             |public class Book [..] {
                             |  public Book(java.lang.String);
                             |
@@ -265,7 +265,7 @@
                             |class Book(var title: String)
                         }
                     } {
-                        @outcode() {
+                        @outcode(lang = "java") {
                             |public class Book [..] {
                             |  public Book(java.lang.String);
                             |
@@ -296,7 +296,7 @@
                             <code>@@BeanProperty</code> erstellt eine get-Methode für <em>val</em>
                         }*@
                     } {
-                        @outcode() {
+                        @outcode(lang = "java") {
                             |public class Book [..] {
                             |  public Book(java.lang.String);
                             |  private final java.lang.String title;
@@ -316,7 +316,7 @@
                             |}
                         }
                     } {
-                        @outcode() {
+                        @outcode(lang = "java") {
                             |public class Book [..] {
                             |  public Book();
                             |  private final boolean available;
@@ -337,7 +337,7 @@
                             <code>@@BeanProperty</code> erstellt get- und set-Methoden für <em>var</em>
                         }*@
                     } {
-                        @outcode() {
+                        @outcode(lang = "java") {
                             |public class Book [..] {
                             |  public Book(java.lang.String);
                             |  private float price;
@@ -365,7 +365,7 @@
 
                     @spacer_half()
 
-                    @outcode() {
+                    @outcode(lang = "java") {
                         |public class Book extends [..] {
                         |  public Book(java.lang.String);
                         |
@@ -411,7 +411,7 @@
                             |}
                         }
                     } {
-                        @outcode() {
+                        @outcode(lang = "java") {
                             |public class Reader extends [..] {
                             |  public int read()
                             |  [..]
@@ -438,7 +438,7 @@
                             |}
                         }
                     } {
-                        @outcode() {
+                        @outcode(lang = "java") {
                             |public class Reader extends [..] {
                             |  public int read()
                             |       throws java.io.IOException;
@@ -451,7 +451,7 @@
 
             <!-- ################################################################################## -->
 
-            @*@defining("Traits") { subtitle =>
+            @defining("Traits") { subtitle =>
 
                 @headslide(htmlTitle = title, subtitle = subtitle) {
                     @title: @subtitle
@@ -463,7 +463,7 @@
                             |}
                         }
                     } {
-                        @outcode() {
+                        @outcode(lang = "java") {
                             |public interface Logging {
                             |  public abstract void log(java.lang.String);
                             |}
@@ -484,37 +484,39 @@
                             |}
                         }
                     } {
-                        @traitBytecode
+                        @outcode(lang = "java") {
+                            |public abstract class Logging$class extends Object {
+                            |  public static void log(Logging, java.lang.String);
+                            |  public static void $init$(Logging);
+                            |}
+                            |
+                            |public interface Logging {
+                            |  public abstract void log(java.lang.String);
+                            |}
+                        }
+
                         @codesub() {
                             <em>Trait</em> mit implementierten Methoden entspricht in einem <var>Interface</var> <br/>
                             @underline("und") einer <var>abstrakten Klasse</var> mit den Methoden als <var>statics</var>
                         }
                     }
-                }
-
-                <!-- ################################################################################## -->
-
-                @headslide(htmlTitle = title, subtitle = subtitle, subsubtitle = "Vererbung") {
-                    @title: @subtitle
-                } {
-                    @traitBytecode
 
                     @spacer()
 
-                    @sourcecode(reference = "trait", lang = "java") {
-                        |public class Service implements Logging {
-                        |
-                        |  public void log(String msg) {
-                        |    Logging$class.log(this, msg);
-                        |  }
-                        |}
-                    }
-                    @codesub() {
-                        <var>Java-Klasse</var> implementiert das <var>Interface</var>,
-                        Methoden des <em>Traits</em> können via Delegation ausgeführt werden
+                    @sidebyside((35,65)) {
+                        &nbsp;
+                    } {
+                        @sourcecode(reference = "trait", lang = "java") {
+                            |public class Service implements Logging {
+                            |
+                            |  public void log(String msg) {
+                            |    Logging$class.log(this, msg);
+                            |  }
+                            |}
+                        }
                     }
                 }
-            }*@
+            }
 
             <!-- ################################################################################## -->
 
@@ -532,7 +534,7 @@
                             |}
                         }
                     } {
-                        @outcode() {
+                        @outcode(lang = "java") {
                             |public final class StringUtil$ extends [..] {
                             |  public static final StringUtil$ MODULE$;
                             |  public void trim(java.lang.String);
@@ -578,7 +580,7 @@
                             |}
                         }
                     } {
-                        @outcode() {
+                        @outcode(lang = "java") {
                             |public class Hello extends [..] {
                             |  public void print(scala.Function1);
                             |  public Hello();
@@ -592,7 +594,7 @@
 
                     @spacer()
 
-                    @sourcecode(reference = "trait", lang = "java") {
+                    @sourcecode(lang = "java") {
                         |import scala.runtime.AbstractFunction1;
                         |
                         |public class Main {
@@ -637,18 +639,6 @@
     }
 }
 
-@traitBytecode = {
-    @outcode() {
-        |public abstract class Logging$class extends Object {
-        |  public static void log(Logging, java.lang.String);
-        |  public static void $init$(Logging);
-        |}
-        |
-        |public interface Logging {
-        |  public abstract void log(java.lang.String);
-        |}
-    }
-}
 
 @sourcecode(id = "import_reflect") {
     |import scala.reflect._
