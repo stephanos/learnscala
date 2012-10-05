@@ -9,166 +9,181 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
-            <!-- as interfaces -->
+        @slide(title = "Interface") {
 
-            @sidebyside() {
-                @snippet() {
-                    @sourceblock(id = "logger1", fragment = false) {
-                        |trait Logger {
-                        |  def log(msg: String)
-                        |}
-                    }
-                    @outblock() {
-                        |defined trait Logger
-                    }
-                    @callblock() {
-                        |new Logger
-                    }
-                    @outblock(error = true) {
-                        |error: trait Logger is abstract;
-                        |       cannot be instantiated
-                    }
+            @snippet() {
+                @sourceblock(id = "logger1") {
+                    |trait Logger {
+                    |  def log (msg: String)
+                    |}
                 }
-            } {
+                @outblock() {
+                    |defined trait Logger
+                }
+                @callblock() {
+                    |new Logger
+                }
+                @outblock(error = true) {
+                    |error: trait Logger is abstract;
+                    |       cannot be instantiated
+                }
+            }
+            @codesub2() {
+                Trait mit abstrakter Methode
             }
 
-            @spacer()
+            @spacer_half()
 
-            @sidebyside() {
-                @snippet() {
-                    @sourceblock(reference = "logger1") {
-                        |class SimpleLogger extends Logger {
-                        |  def log(msg: String) {
-                        |    println(msg)
-                        |  }
-                        |}
-                    }
-                    @outblock() {
-                        |defined class SimpleLogger
-                    }
-                    @callblock() {
-                        |new SimpleLogger().log("MAYDAY!")
-                    }
-                    @outblock() {
-                        |MAYDAY!
-                    }
+            @snippet() {
+                @sourceblock(reference = "logger1") {
+                    |class SimpleLogger extends Logger {
+                    |  def log (msg: String) {
+                    |    println (msg)
+                    |  }
+                    |}
                 }
-            } {
+                @outblock() {
+                    |defined class SimpleLogger
+                }
+                @callblock() {
+                    |new SimpleLogger().log ("MAYDAY!")
+                }
+                @outblock() {
+                    |MAYDAY
+                }
+            }
+            @codesub2() {
+                Trait wird vererbt
             }
 
-            @infobox() {
+            @*@infobox() {
                 Ein Trait kann wie ein Java <code>interface</code> mittels <code>extends</code> vererbt werden
                 und abstrakte Methoden definieren.
-            }
+            }*@
         }
 
+        <!-- ################################################################################## -->
 
-        @slide() {
-            <!-- with implementation -->
+        @slide(title = "Interface++") {
 
-            @sidebyside((60,40)) {
+            @snippet() {
+                @sourceblock(id = "logger2") {
+                    |trait Logger {
+                    |  def log (msg: String) {
+                    |     println (msg)
+                    |  }
+                    |}
+                }
+                @outblock() {
+                    |defined trait Logger
+                }
+                @callblock() {
+                    |new Logger
+                }
+                @outblock(error = true) {
+                    |error: trait Logger is abstract;
+                    |       cannot be instantiated
+                }
+            }
+            @codesub2() {
+                Trait mit konkreter Methode
+            }
+
+            @spacer()
+
+            @snippet() {
+                @sourceblock(reference = "logger2") {
+                    |class Plane extends Logger {
+                    |  log ("Ready for take-off")
+                    |}
+                }
+                @callblock() {
+                    |new Plane()
+                }
+                @outblock() {
+                    |Ready for take-off
+                }
+            }
+
+            @*@infobox() {
+                Ein Trait kann - im Unterschied zu einem Interface - implementierte Methoden enthalten.
+            }*@
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Hierarchie") {
+
+            @snippet() {
+                @sourceblock(id = "log1") {
+                    |trait Logger {
+                    |  def log (msg: String) {
+                    |    println (msg)
+                    |  }
+                    |}
+                }
+            }
+
+            @spacer()
+
+            @indent() {
+
                 @snippet() {
-                    @sourceblock(id = "logger2", fragment = false) {
-                        |trait Logger {
-                        |  def log(msg: String) {
-                        |     println(msg)
+                    @sourceblock(id = "secret-log1", reference = "log1") {
+                        |trait SecretLogger extends Logger {
+                        |  def secretLog (msg: String) {
+                        |    log (msg.reverse)
                         |  }
                         |}
                     }
-                    @outblock() {
-                        |defined trait Logger
+                }
+
+                @spacer()
+
+                @indent() {
+
+                    @snippet() {
+                        @sourceblock(reference = "secret-log1") {
+                            |class Plane extends SecretLogger {
+                            |  secretLog ("VIP is on board")
+                            |}
+                        }
                     }
-                    @callblock() {
-                        |new Logger
-                    }
-                    @outblock(error = true) {
-                        |error: trait Logger is abstract;
-                        |       cannot be instantiated
+                    @codesub2() {
+                        Trait kann von einem anderen Trait erben
                     }
                 }
-            } {
-            }
-
-            @spacer()
-
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @sourceblock(reference = "logger2") {
-                        |class Plane extends Logger {
-                        |  log("Ready for take-off")
-                        |}
-                    }
-                }
-            } {
-            }
-
-            @infobox() {
-                Ein Trait kann - im Unterschied zu einem Interface - implementierte Methoden enthalten.
             }
         }
 
+        <!-- ################################################################################## -->
 
-        @*@slide() {
-            <!-- hierarchie -->
+        @slide(title = "Rich Interface") {
 
-            @sidebyside((66,33)) {
-                @snippet() {
-                    @sourceblock(fragment = false) {
-                        |trait Logger {
-                        |  def log(msg: String) { println(msg) }
-                        |}
-                    }
-                    @sourceblock() {
-                        |trait SecretLogger with Logger {
-                        |  def secretLog(msg: String) { log(msg.reverse) }
-                        |}
-                    }
-                    @sourceblock() {
-                        |class Plane extends SecretLogger {
-                        |  secretLog("VIP is on board")
-                        |}
-                    }
+            @snippet() {
+                @sourceblock(id = "logger3") {
+                    |trait Logger {
+                    |  def log (msg: String)
+                    |
+                    |  def info(msg: String) { log ("INFO: " + msg) }
+                    |  def warn(msg: String) { log ("WARN: " + msg) }
+                    |}
                 }
-            } {
-            }
-
-            @infobox() {
-                Ein Trait kann von einem anderen Trait erben.
-            }
-        }*@
-
-
-        @slide() {
-            <!-- rich -->
-
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @sourceblock(id = "logger3", fragment = false) {
-                        |trait Logger {
-                        |  def log(msg: String)
-                        |
-                        |  def info(msg: String) { log("INFO: " + msg) }
-                        |  def warn(msg: String) { log("WARN: " + msg) }
-                        |}
-                    }
-                }
-            } {
             }
 
             @spacer()
 
-            @sidebyside((60,40)) {
+            @indent() {
+
                 @snippet() {
                     @sourceblock(reference = "logger3") {
                         |class Plane extends Logger {
                         |  info("Ready for take-off")
                         |
-                        |  override def log(msg: String) { println(msg) }
+                        |  def log (msg: String) {
+                        |    println (msg)
+                        |  }
                         |}
-                    }
-                    @outblock() {
-                        |defined class Plane
                     }
                     @callblock() {
                         |new Plane()
@@ -177,130 +192,155 @@
                         |INFO: Ready for take-off
                     }
                 }
-            } {
             }
 
-            @infobox() {
+            @*@infobox() {
                 Ein Trait kann mehrere implementierte Hilfsmethoden haben,
                 die ein paar wenige abstrakte Methoden aufrufen <comment>("rich interfaces")</comment>.
-            }
+            }*@
         }
 
+        <!-- ################################################################################## -->
 
-        @slide() {
-            <!-- bei Instanziierung -->
+        @slide(title = "Instanziierung") {
 
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @sourceblock(fragment = false) {
-                        |trait Logger {
-                        |  def log(msg: String) { }
-                        |}
-                    }
-                    @sourceblock(id = "plane_log_ready") {
-                        |class Plane extends Logger {
-                        |  log("Ready for take-off")
-                        |}
-                    }
-                    @callblock() {
-                        |new Plane()
-                    }
-                    @outblock() {
-                        |(nothing)
-                    }
-                    @sourceblock() {
-                        |trait SimpleLogger extends Logger {
-                        |  override def log(msg: String) { println(msg) }
-                        |}
-                    }
-                    @callblock() {
-                        |new Plane with SimpleLogger
-                    }
-                    @outblock() {
-                        |Ready for take-off
-                    }
+            @snippet() {
+                @sourceblock() {
+                    |trait Logger {
+                    |  def log (msg: String) { }
+                    |}
                 }
-            } {
+                @sourceblock(id = "plane_log_ready") {
+                    |class Plane extends Logger {
+                    |  log ("Ready for take-off")
+                    |}
+                }
+                @callblock() {
+                    |new Plane()
+                }
+                @outblock() {
+                    |(nothing)
+                }
+                @sourceblock() {
+                    |trait SimpleLogger extends Logger {
+                    |  override def log (msg: String) { println (msg) }
+                    |}
+                }
+                @callblock() {
+                    |new Plane with SimpleLogger
+                }
+                @outblock() {
+                    |Ready for take-off
+                }
             }
 
-            @infobox() {
+            @*@infobox() {
                 Ein Trait kann auch erst bei der Erstellung einer Instanz "dazu gemixt" werden.
-            }
+            }*@
         }
 
+        <!-- ################################################################################## -->
 
-        @slide() {
-            <!-- with -->
+        @slide(title = "with") {
 
-            @sidebyside((60,40)) {
+            @snippet(id = "logger4") {
+                @sourceblock() {
+                    |trait Logger {
+                    |  def log (msg: String) {
+                    |    println (msg)
+                    |  }
+                    |}
+                }
+            }
+
+            @spacer_half()
+
+            @snippet(id = "secret-logger2") {
+                @sourceblock(reference = "logger4") {
+                    |trait SecretLogger {
+                    |  def secretLog (msg: String) {
+                    |    println (msg.reverse)
+                    |  }
+                    |}
+                }
+            }
+
+            @spacer()
+
+            @indent() {
                 @snippet() {
-                    @sourceblock(fragment = false) {
-                        |trait Logger {
-                        |  def log(msg: String) { println(msg) }
-                        |}
-                    }
-                    @sourceblock() {
-                        |trait SecretLogger {
-                        |  def secretLog(msg: String) { println(msg.reverse) }
-                        |}
-                    }
-                    @sourceblock() {
+                    @sourceblock(reference = "secret-logger2") {
                         |class Plane extends Logger with SecretLogger {
-                        |  secretLog("VIP is on board")
+                        |
+                        |  secretLog ("VIP is on board")
                         |}
                     }
                 }
-            } {
             }
 
-            @infobox() {
+            @*@infobox() {
                 Bei Vererbung mehrere Traits steht immer zuerst das <code>extends</code> - egal ob Klasse oder Trait -
                 und alle folgenden Traits werden via <code>with</code> abgetrennt.
-            }
+            }*@
         }
 
+        <!-- ################################################################################## -->
 
-        @slide() {
-            <!-- stackable -->
+        @slide(title = "stackable") {
 
             @sidebyside() {
-                @snippet(id = "log_time_upper") {
-                    @sourceblock(fragment = false, reference = "plane_log_ready") {
+                @snippet(id = "logger5") {
+                    @sourceblock(reference = "plane_log_ready") {
                         |trait Logger {
                         |
-                        |  def log(msg: String) { println(msg) }
+                        |  def log (msg: String) { println (msg) }
                         |}
                     }
-                    @sourceblock() {
-                        |trait TimedLog extends Logger {
-                        |
-                        |  override def log(msg: String) {
-                        |    import java.util._
-                        |    super.log(new Date() + " " + msg)
-                        |  }
-                        |}
+                }
+
+                @spacer()
+
+                @indent(25) {
+
+                    @snippet(id = "timed_logger") {
+                        @sourceblock() {
+                            |trait TimedLog extends Logger {
+                            |
+                            |  override def log (msg: String) {
+                            |    import java.util._
+                            |    super.log (new Date() + " " + msg)
+                            |  }
+                            |}
+                        }
                     }
-                    @sourceblock() {
-                        |trait UpperLog extends Logger {
-                        |
-                        |  override def log(msg: String) {
-                        |    super.log(msg.toUpperCase)
-                        |  }
-                        |}
+
+                    @spacer()
+
+                    @snippet(id = "upper_logger") {
+                        @sourceblock(reference = "timed_logger") {
+                            |trait UpperLog extends Logger {
+                            |
+                            |  override def log (msg: String) {
+                            |    super.log (msg.toUpperCase)
+                            |  }
+                            |}
+                        }
                     }
                 }
             } {
                 @snippet() {
-                    @callblock(reference = "log_time_upper") {
+                    @callblock(reference = "upper_logger") {
                         |new Plane with TimedLog with UpperLog
                     }
                     @outblock() {
                         |Sun Jan 01 00:00:00 2012 READY FOR TAKE-OFF
                     }
                 }
+
                 @spacer()
+
                 @snippet() {
-                    @callblock(reference = "log_time_upper") {
+                    @callblock(reference = "upper_logger") {
                         |new Plane with UpperLog with TimedLog
                     }
                     @outblock() {
@@ -309,19 +349,19 @@
                 }
             }
 
-            @infobox() {
+            @*@infobox() {
                 Beim Aufruf einer Methode in einer Klasse mit <code>traits</code> wird
                 die Methode im rechtesten Trait zuerst, mit <code>super</code> dann die Methode im Trait links davon aufgerufen.
-            }
+            }*@
         }
 
+        <!-- ################################################################################## -->
 
-        @*@slide() {
-            <!-- linearisierung -->
+        @*@slide(title = "Linearisierung") {
 
             @sidebyside((70,30)) {
                 @snippet() {
-                    @sourceblock(fragment = false) {
+                    @sourceblock() {
                         |
                     }
                 }
@@ -337,6 +377,7 @@
             - abstract class or trait ?
         -->
 
+        <!-- ################################################################################## -->
 
         @uebung("030") {
             Die Übung ist unter

@@ -51,7 +51,7 @@ object Content extends MyController {
 
     lazy val typen1 = Slide("O20", "Typen I", oop, Seq(klassen1), status = "complete")
     lazy val traits = Slide("O21", "Traits", oop, Seq(klassen1, vererbung1))
-    lazy val klassen2 = Slide("O22", "Klassen II", oop, Seq(klassen1), status = "complete")
+    lazy val klassen2 = Slide("O22", "Klassen II", oop, Seq(vererbung1), status = "complete")
     lazy val vererbung2 = Slide("O23", "Vererbung II", oop, Seq(vererbung1))
     lazy val generics1 = Slide("O24", "Typ-Parameter I", oop, Seq())
 

@@ -184,7 +184,7 @@
                         |class Employee (val name: String,
                         |                var age: Int) {
                         |
-                        |   val salary = 40000
+                        |  val salary = 40000
                         |}
                     }
                 }
@@ -194,21 +194,21 @@
                 @outcode(lang = "java") {
                    |public class Employee extends [...] {
                    |
-                   |    private final String name;
-                   |    public String name();      // get
+                   |  private final String name;
+                   |  public String name();      // get
                    |
-                   |    private final int salary;
-                   |    public int salary();       // get
+                   |  private final int salary;
+                   |  public int salary();       // get
                    |
-                   |    private int age;
-                   |    public int age();          // get
-                   |    public void age_$eq(int);  // set
+                   |  private int age;
+                   |  public int age();          // get
+                   |  public void age_$eq(int);  // set
                    |}
                 }
 
                 @codesub2() {
                     <code>val</code> erhält eine Get-Methode,<br/>
-                    <code>var</code> erhält Get- <strong>und</strong> Set-Methoden
+                    <code>var</code> erhält Get- @uline("und") Set-Methoden
 
                     @*Scala generiert überschreibbare, öffentliche Zugriffsmethoden:<br/>*@
                 }

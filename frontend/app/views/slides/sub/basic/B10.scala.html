@@ -301,7 +301,31 @@
 
         <!-- ################################################################################## -->
 
-        @headslide(title = "In Benutzung") {
+        @headslide(title = "Skalierbar") {
+            Scala ist ... <span><em>skalierbar</em></span>
+        } {
+            @sidebyside((60,40), fragment = true) {
+                @sourcecode(fragment = false) {
+                    |class ReverseActor extends Actor {
+                    |
+                    |  override def receive = {
+                    |    case message =>
+                    |      sender ! message.toString.reverse
+                    |  }
+                    |}
+                }
+            } {
+                Aktorenmodell
+            }
+
+            @tipbox() {
+                Aktoren lassen sich leicht über mehrere Prozessoren skalieren.
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @headslide(title = "In Benutzung", clazz = "wide") {
             Scala ist ... <span><em>in Benutzung</em></span>
         } {
             <table class="fragment">
@@ -363,6 +387,7 @@
                     <ul class="fragment w40p left">
                         <li class="nobreak"><em>Java</em></li>
                         <li class="nobreak"><em>funktional</em></li>
+                        <li class="nobreak"><em>skalierbar</em></li>
                         <li class="nobreak"><em>statisch typisiert</em></li>
                         <li class="nobreak"><em>in Benutzung</em></li>
                         <li class="nobreak"><em>kurz und präzise</em></li>
@@ -371,6 +396,7 @@
                     </ul>
                 } {
                     <ul class="fragment w40p left">
+                        <li class="nobreak"><var>stabil</var></li>
                         <li class="nobreak"><var>cool</var></li>
                         <li class="nobreak"><var>eine Freude</var></li>
                         <li class="nobreak"><var>produktiv</var></li>
