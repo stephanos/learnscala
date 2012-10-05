@@ -28,7 +28,7 @@
     }
 }
 
-@spacer2()
+@spacer()
 
 @sidebyside() {
     @sidebyside((5, 90)) {
@@ -60,7 +60,7 @@
     }
 }
 
-@spacer2()
+@spacer()
 
 @sidebyside() {
     @sidebyside((5, 90)) {
@@ -68,11 +68,11 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |def f {42}
+                |def f(i: Int = 42) = {i}
                 |println (f)
             }
-            @outblock() {
-                |()
+            @outblock(error = true) {
+                |missing arguments for method f
             }
         }
     }
@@ -82,11 +82,43 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |def f (i: Int = 41) = {i + 1}
+                |def f(i) = i
                 |println (f)
             }
             @outblock(error = true) {
-                |missing arguments for method f
+                |':' expected but ')' found
+            }
+        }
+    }
+}
+
+@spacer()
+
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(7)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |def f(i: Int = 42) = i
+                |println (f())
+            }
+            @outblock() {
+                |42
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(8)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |def f(i: Int, j: Int = 42) = i + j
+                |println (f(21, j=21))
+            }
+            @outblock() {
+                |42
             }
         }
     }

@@ -388,44 +388,81 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Infix") {
+            @*@slide(title = title, subtitle = "Notationen") {
 
-                @snippet() {
-                    @callblock() {
-                        |42.compare(42)
+                @sidebyside() {
+                    @snippet() {
+                        @callblock() {
+                            |42.compare(42)
+                        }
+                        @outblock() {
+                            |res0: Int = 0
+                        }
                     }
-                    @outblock() {
-                        |res0: Int = 0
+                } {
+                    @snippet() {
+                        @callblock() {
+                            |42 + 42
+                        }
+                        @outblock() {
+                            |res0: Int = 84
+                        }
                     }
-                    @callblock() {
-                        |42 compare (42)
+                }
+
+                @sidebyside() {
+                    @snippet() {
+                        @callblock() {
+                            |42.compare(42)
+                        }
+                        @outblock() {
+                            |res0: Int = 0
+                        }
+                        @callblock() {
+                            |42 compare (42)
+                        }
+                        @outblock() {
+                            |res1: Int = 0
+                        }
+                        @callblock() {
+                            |42 compare {42}
+                        }
+                        @outblock() {
+                            |res2: Int = 0
+                        }
+                        @callblock() {
+                            |42 compare 42
+                        }
+                        @outblock() {
+                            |res3: Int = 0
+                        }
+                        @callblock() {
+                            |42 == 42
+                        }
+                        @outblock() {
+                            |res3: Int = 0
+                        }
                     }
-                    @outblock() {
-                        |res1: Int = 0
-                    }
-                    @callblock() {
-                        |42 compare {42}
-                    }
-                    @outblock() {
-                        |res2: Int = 0
-                    }
-                    @callblock() {
-                        |42 compare 42
-                    }
-                    @outblock() {
-                        |res3: Int = 0
+                } {
+                    @snippet() {
+                        @callblock() {
+                            |42.+(42)
+                        }
+                        @outblock() {
+                            |res0: Int = 84
+                        }
                     }
                 }
 
                 @codesub2() {
-                    Aufruf via <em>Infix</em>-Notation
+                    Aufruf via <em>Infix</em> / Operator-Notation
                 }
-            }
+            }*@
         }
 
         <!-- ################################################################################## -->
 
-        @slide(title = "default & named Parameter") {
+        @slide(title = "default & named") {
 
             @sourcecode(id = "method_default") {
                 |def announce (town: String,

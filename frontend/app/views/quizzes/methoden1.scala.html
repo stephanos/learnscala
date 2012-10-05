@@ -18,11 +18,12 @@
     } {
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
-                |def fn (n: Int) =
-                |   if (n == 0) 1 else n * fn(n - 1)
+                |def negate (n: Int): Long = {
+                |   -1 * n
+                |}
             }
-            @outblock(error = true) {
-                |recursive method fn needs result type
+            @outblock() {
+                |negate: (n: Int)Long
             }
         }
     }
@@ -49,8 +50,7 @@
     } {
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
-                |def add (x, y) =
-                |   x + y
+                |def add (x, y) = x + y
             }
             @outblock(error = true) {
                 |':' expected but ',' found.
@@ -82,12 +82,11 @@
     } {
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
-                |def negate (n: Int): Long = {
-                |   -1 * n
-                |}
+                |def fn (n: Int) =
+                |   if (n == 0) 1 else n * fn(n - 1)
             }
-            @outblock() {
-                |negate: (n: Int)Long
+            @outblock(error = true) {
+                |recursive method fn needs result type
             }
         }
     }

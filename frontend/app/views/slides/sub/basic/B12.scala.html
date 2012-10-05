@@ -1,4 +1,4 @@
-@defining("Variablen") { implicit topic =>
+@defining("Erste Schritte") { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -13,7 +13,7 @@
 
             @sidebyside((40,60)) {
                 @snippet() {
-                    @callblock(fragment = false) {
+                    @callblock() {
                         |42
                     }
                     @outblock() {
@@ -41,53 +41,38 @@
         <!-- ################################################################################## -->
 
         @slide() {
-            @sidebyside() {
-                @snippet() {
-                    @callblock(fragment = false) {
-                        |42.toString()
-                    }
-                    @outblock() {
-                        |res0: java.lang.String = 42
-                    }
+
+            @snippet() {
+                @callblock() {
+                    |42.toString()
                 }
-            } {
+                @outblock() {
+                    |res0: java.lang.String = 42
+                }
+            }
+            @codesub2() {
                 Methode <code>toString</code> von Objekt <code>42</code>
             }
 
             @spacer()
 
-            @sidebyside(fragment = true) {
-                @snippet() {
-                    @callblock(fragment = false) {
-                        |42.isWhole()
-                    }
-                    @outblock() {
-                        |res1: Boolean = true
-                    }
+            @snippet() {
+                @callblock() {
+                    |42.isWhole()
                 }
-            } {
-                Methode <code>isWhole</code>
+                @outblock() {
+                    |res1: Boolean = true
+                }
             }
 
-            @spacer()
-
-            @sidebyside(fragment = true) {
-                @snippet() {
-                    @callblock(fragment = false) {
-                        |42.==(42)
-                    }
-                    @outblock() {
-                        |res2: Boolean = true
-                    }
-                }
-            } {
-                Methode <code>==</code>
+            @codesub2() {
+                Methode <code>isWhole</code> von Objekt <code>42</code>
             }
 
             @spacer()
 
             @infobox() {
-                Alles ist ein Objekt und jedes Objekt kann Operatoren als Methoden haben.
+                Alles ist ein Objekt.
             }
         }
 
@@ -97,7 +82,7 @@
 
             @sidebyside((66,33)) {
                 @snippet() {
-                    @sourceblock(fragment = false) {
+                    @sourceblock() {
                         |def almostThere(x0: Int, y0: Int, x: Int, y: Int) = {
                         |   val distance = {
                         |       val dx = x - x0
@@ -130,7 +115,7 @@
 
             @sidebyside() {
                 @snippet() {
-                    @callblock(fragment = false) {
+                    @callblock() {
                         |val passengers: Int = 42
                     }
                     @outblock() {
@@ -172,7 +157,7 @@
         @slide() {
             @sidebyside() {
                 @snippet() {
-                    @callblock(fragment = false) {
+                    @callblock() {
                         |val passengers: Int = 42
                     }
                     @outblock() {
@@ -204,7 +189,7 @@
         @slide() {
             @sidebyside((60,40)) {
                 @snippet() {
-                    @callblock(fragment = false) {
+                    @callblock() {
                         |val passengers: Int = "Java"
                     }
                     @outblock(error = true) {
@@ -232,7 +217,7 @@
         @slide() {
             @sidebyside((45,55)) {
                 @snippet() {
-                    @callblock(fragment = false) {
+                    @callblock() {
                         |val passengers = 42
                     }
                     @outblock() {
@@ -248,7 +233,7 @@
 
             @sidebyside((45,55)) {
                 @snippet() {
-                    @callblock(fragment = false) {
+                    @callblock() {
                         |val fuel = 3.14f
                     }
                     @outblock() {
@@ -273,7 +258,7 @@
 
             @sidebyside() {
                 @snippet() {
-                    @callblock(fragment = false) {
+                    @callblock() {
                         |val a = 1
                         |val b = 2
                     }
@@ -316,7 +301,7 @@
 
             @sidebyside((40,60)) {
                 @snippet() {
-                    @callblock(fragment = false) {
+                    @callblock() {
                         |var fuel = 3.14f
                     }
                     @outblock() {
