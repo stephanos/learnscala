@@ -22,10 +22,10 @@ object Content extends MyController {
     lazy val kontrollstrukturen = Slide("B13", "Kontrollstrukturen", basic, Seq(werkzeuge2))
 
     // === OBJEKTE
-    lazy val klassen1 = Slide("O10", "Klassen I", oop, Seq(ersteSchritte))
+    lazy val klassen1 = Slide("O10", "Klassen I", oop, Seq(ersteSchritte), status = "complete")
     lazy val objekte = Slide("O12", "Objekte", oop, Seq(klassen1), status = "complete")
-    lazy val vererbung1 = Slide("O11", "Vererbung I", oop, Seq(objekte))
-    lazy val pakete = Slide("O13", "Pakete", oop, Seq(klassen1), status = "complete")
+    lazy val vererbung1 = Slide("O11", "Vererbung I", oop, Seq(objekte), status = "complete")
+    lazy val pakete = Slide("O13", "Pakete", oop, Seq(objekte), status = "complete")
 
     // === FUNKTIONEN
 
@@ -49,7 +49,7 @@ object Content extends MyController {
 
     // === OBJEKTE
 
-    lazy val typen1 = Slide("O20", "Typen I", oop, Seq(), status = "complete")
+    lazy val typen1 = Slide("O20", "Typen I", oop, Seq(klassen1), status = "complete")
     lazy val traits = Slide("O21", "Traits", oop, Seq(klassen1, vererbung1))
     lazy val klassen2 = Slide("O22", "Klassen II", oop, Seq(klassen1), status = "complete")
     lazy val vererbung2 = Slide("O23", "Vererbung II", oop, Seq(vererbung1))
@@ -95,7 +95,7 @@ object Content extends MyController {
 
     // === ERWEITERT
 
-    lazy val aktoren = Slide("E30", "Aktoren", ext, Seq())
+    lazy val aktoren = Slide("E30", "Aktoren", ext, Seq(forexpr))
     lazy val dbase = Slide("E31", "Datenbanken", ext, Seq())
     lazy val web = Slide("E32", "Web", ext, Seq())
     lazy val scalaz = Slide("E34", "Scalaz", ext, Seq())

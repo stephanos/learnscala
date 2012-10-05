@@ -15,10 +15,10 @@
             @sidebyside() {
                 @snippet() {
                     @callblock(id = "plane") {
-                        |class Plane
+                        |class Employee
                     }
                     @outblock() {
-                        |defined class Plane
+                        |defined class Employee
                     }
                 }
             } {
@@ -27,7 +27,7 @@
                         <code>class</code> leitet eine Klasse ein
                     </li>
                     <li class="fragment">
-                        <code>Plane</code> ist der Name der Klasse
+                        <code>Employee</code> ist der Name der Klasse
                     </li>
                     <li class="fragment">
                         <code>{ }</code> sind nicht nötig bei leerem Rumpf
@@ -40,21 +40,24 @@
             @sidebyside() {
                 @snippet() {
                     @callblock(reference = "plane") {
-                        |new Plane()
+                        |new Employee()
                     }
                     @outblock() {
-                        |res0: Plane = Plane@@3ee32abc
+                        |res0: Employee = Employee@@3ee32abc
                     }
                 }
             } {
                 @snippet() {
                     @callblock() {
-                        |new Plane
+                        |new Employee
                     }
                     @outblock() {
-                        |res0: Plane = Plane@@50394ec
+                        |res0: Employee = Employee@@50394ec
                     }
                 }
+            }
+            @codesub2() {
+                <code>new</code> erstellt eine neue Instanz
             }
 
             @*@infobox(hr = false) {
@@ -65,194 +68,223 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
-            <!-- primary constructor -->
+        @defining("Konstuktor") { title =>
 
-            @sidebyside((60,40)) {
+            @slide(title = title, subtitle = "primär") {
+
                 @snippet() {
-                    @sourceblock(fragment = false) {
-                        |class Plane(model: String)
+                    @sourceblock() {
+                        |class Employee (name: String)
+                    }
+                    @outblock() {
+                        |defined class Employee
                     }
                     @callblock() {
-                        |val p = new Plane("Boeing 737")
+                        |val e = new Employee ("Bob")
+                    }
+                    @outblock() {
+                        |e: Employee = Employee@@3ee32abc
                     }
                 }
-            } {
-                @fragment {
-                    Klassenparameter ähnlich <br/> den Methodenparametern
+                @codesub2() {
+                    Klassenparameter ähnlich den Methodenparametern
                 }
+
+                @spacer()
+
+                @snippet() {
+                    @sourceblock() {
+                        |class Employee (name: String) {
+                        |
+                        |   println ("My name is " + name)
+                        |}
+                    }
+                    @outblock() {
+                        |defined class Employee
+                    }
+                    @callblock() {
+                        |val e = new Employee ("Bob")
+                    }
+                    @outblock() {
+                        |My name is Bob
+                        |e: Employee = Employee@@3ee32abc
+                    }
+                }
+                @codesub2() {
+                    Anweisungen im Rumpf werden bei der Initialisierung ausgeführt
+                }
+
+                @*@infobox() {
+                    Der primäre Konstruktor <comment>("primary constructor")</comment>
+                    entsteht aus <br/> den Parametern einer Klasse sowie deren Anweisungen im Rumpf.
+                }*@
             }
 
-            @spacer2()
+            <!-- ################################################################################## -->
 
-            @sidebyside((60,40), fragment = true) {
+            @slide(title = title, subtitle = "sekundär") {
+
                 @snippet() {
-                    @sourceblock(fragment = false) {
-                        |class Plane(model: String, seats: Int) {
+                    @sourceblock() {
+                        |class Employee (name: String, age: Int) {
                         |
-                        |   println("I just bought a " + model +
-                        |           " plane with " + seats + " seats")
+                        |  def this =
+                        |    this ("Unknown", -1)
+                        |
+                        |  def this (firstname: String, lastname: String, age: Int) =
+                        |    this (firstname + " " + lastname, age)
                         |}
                     }
                     @callblock() {
-                        |val p = new Plane("Boeing 737", 189)
-                    }
-                    @outblock() {
-                        |I just bought a Boeing 737 plane with 189 seats
-                        |res0: Plane = Plane@@3ee32abc
+                        |val e = new Employee ("Bob", "Bobster", 35)
                     }
                 }
-            } {
-                @codenote() {
-                    Anweisungen im Rumpf werden bei der Initialisierung ausgeführt
+                @codesub2() {
+                    zusätzliche Konstruktoren tragen den Namen <code>this</code>
                 }
-            }
 
-            @spacer()
-
-            @infobox() {
-                Der primäre Konstruktor <comment>("primary constructor")</comment>
-                entsteht aus <br/> den Parametern einer Klasse sowie deren Anweisungen im Rumpf.
-            }
-        }
-
-        <!-- ################################################################################## -->
-
-        @slide() {
-            <!-- auxiliary constructor -->
-
-            @snippet() {
-                @sourceblock(fragment = false) {
-                    |class Plane(model: String, seats: Int) {
-                    |
-                    |   def this() = this("Unknown", -1)
-                    |
-                    |   def this(company: String, typeOf: String, seats: Int) =
-                    |       this(company + " " + typeOf, seats)
-                    |}
-                }
-                @callblock() {
-                    |val p = new Plane("Boeing", "737", 189)
-                }
-            }
-            @spacer2()
-
-            @infobox() {
-                <code>def this</code> leitet einen Konstruktor ein, <code>this(..)</code> ruft ihn auf.
-            }
-
-            @warnbox(hr = false) {
-                Ein zusätzlicher Konstruktor <comment>("auxiliary constructor")</comment>
-                muss stets als erste Anweisung einen vor ihm definierten Konstruktor aufrufen.
-            }
-        }
-
-        <!-- ################################################################################## -->
-
-        @slide() {
-            <!-- val -> get / var -> get/set -->
-
-            @sidebyside() {
-                @sourcecode(id = "plane6", fragment = false) {
-                    |class Plane(val model: String,
-                    |            var seats: Int) {
-                    |   val wings = 2
-                    |}
-                }
                 @spacer()
-                @outcode() {
-                    |// Plane.class dekompiliert:
-                    |public class Plane extends [...] {
-                    |
-                    |    private final String model;
-                    |    public String model();         // get
-                    |
-                    |    private final int wings;
-                    |    public int wings();            // get
-                    |
-                    |    private int seats;
-                    |    public int seats();            // get
-                    |    public void seats_$eq(int);    // set
-                    |}
-                }
-            } {
-                @snippet() {
-                    @callblock() {
-                        |val p = new Plane("Boeing 737", 189)
-                    }
-                    @outblock(reference = "plane6") {
-                        |p: Plane = Plane@@53a1d1a8
-                    }
-                    @callblock() {
-                        |println(p.model)       // get
-                    }
-                    @outblock() {
-                        |Boeing 737
-                    }
-                    @callblock() {
-                        |p.seats = p.seats - 1  // get & set
-                    }
-                    @outblock() {
-                        |p.seats: Int = 188
-                    }
-                    @callblock() {
-                        |println(p.wings)       // get
-                    }
-                    @outblock() {
-                        |2
-                    }
-                }
-            }
 
-            @infobox() {
-                Scala generiert überschreibbare, öffentliche Zugriffsmethoden:<br/>
-                <code>val</code> erhält <strong>nur</strong> eine Get-Methode,
-                <code>var</code> erhält Get- <strong>und</strong> Set-Methoden.
+                @snippet() {
+                    @sourceblock() {
+                        |class Employee (name: String, age: Int) {
+                        |
+                        |  def this =
+                        |     println ("initialized")
+                        |}
+                    }
+                    @outblock(error = true) {
+                        |error: 'this' expected but identifier found
+                    }
+                }
+                @codesub2() {
+                    erste Anweisung muss einen zuvor definierten Konstruktor aufrufen
+                }
+
+                @*
+                @infobox() {
+                    <code>def this</code> leitet einen Konstruktor ein, <code>this(..)</code> ruft ihn auf.
+                }
+
+                @warnbox(hr = false) {
+                    Ein zusätzlicher Konstruktor <comment>("auxiliary constructor")</comment>
+                    muss stets als erste Anweisung einen vor ihm definierten Konstruktor aufrufen.
+                }
+                *@
             }
         }
 
         <!-- ################################################################################## -->
 
-        @slide() {
-            <!-- Sichtbarkeit -->
+        @slide(title = "var & val") {
+
+            @sidebyside(gap = 10) {
+                @snippet(id = "empl") {
+                    @sourceblock() {
+                        |class Employee (val name: String,
+                        |                var age: Int) {
+                        |
+                        |   val salary = 40000
+                        |}
+                    }
+                }
+
+                @spacer()
+
+                @outcode(lang = "java") {
+                   |public class Employee extends [...] {
+                   |
+                   |    private final String name;
+                   |    public String name();      // get
+                   |
+                   |    private final int salary;
+                   |    public int salary();       // get
+                   |
+                   |    private int age;
+                   |    public int age();          // get
+                   |    public void age_$eq(int);  // set
+                   |}
+                }
+
+                @codesub2() {
+                    <code>val</code> erhält eine Get-Methode,<br/>
+                    <code>var</code> erhält Get- <strong>und</strong> Set-Methoden
+
+                    @*Scala generiert überschreibbare, öffentliche Zugriffsmethoden:<br/>*@
+                }
+            } {
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference = "empl") {
+                        |val e = new Employee ("Bob", 35)
+                    }
+                    @outblock() {
+                        |e: Employee = Employee@@53a1d1a8
+                    }
+                    @callblock() {
+                        |println (e.name)
+                    }
+                    @outblock() {
+                        |Bob
+                    }
+                    @callblock() {
+                        |println (e.salary)
+                    }
+                    @outblock() {
+                        |40000
+                    }
+                    @callblock(reference = "empl") {
+                        |e.age = e.age - 1
+                    }
+                    @outblock() {
+                        |e.age: Int = 34
+                    }
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Sichtbarkeit") {
 
             @codesplits((60,40)){
                 @splitstart() {
-                    |class Plane @("{")
+                    |class Employee @("{")
                 }{
                     <em>Zugriff möglich von:</em>
                 }
                 @codesplit() {
-                    |                  val wings   = 2
+                    |                 val name = "Bob"
                 } {
                     @li{überall}
                 }
                 @codesplit() {
-                    |   protected      val toilets = 6
+                    |  protected      val nickname = "Bobby"
                 } {
-                    @li{<code>Plane</code> und Sub-Klassen}
+                    @li{<code>Employee</code> und Sub-Klassen}
                 }
                 @codesplit() {
-                    |   private        val defects = 4
+                    |  private        val salary = 45000
                 } {
-                    @li{<code>Plane</code>}
+                    @li{<code>Employee</code>}
                 }
                 @codesplit() {
-                    |   private[this]  val selfDestructCode = 666
+                    |  private[this]  val password = "123456"
                 } {
-                    @li{<code>Plane</code> Instanz}
+                    @li{<code>Employee</code>-Instanz}
                 }
                 @splitend() {
                     |@("}")
                 }(null)
             }
 
-            @infobox() {
+            @*@infobox() {
                 Felder einer Klasse sind standardmäßig öffentlich - der Zugriff wird <br/>
                 &nbsp;via <code>protected</code> auf Sub-Klassen, <br/>
                 &nbsp;via <code>private</code> auf die Klasse und <br/>
                 &nbsp;via <code>private[this]</code> auf die Instanz begrenzt.
-            }
+            }*@
         }
 
         <!-- ################################################################################## -->
@@ -260,60 +292,62 @@
         @slide() {
             <!-- Methoden -->
 
-            @sidebyside() {
+            @sidebyside(gap = 5) {
                 @snippet() {
-                    @sourceblock(id = "plane8", fragment = false) {
-                        |class Plane {
+                    @sourceblock(id = "empl2") {
+                        |class Employee {
                         |
-                        |   private var isLandingGearUp = false
+                        |  private var isPresent = false
                         |
-                        |   def gearUp() {
-                        |       isLandingGearUp = true
-                        |       println("landing gear is up")
-                        |   }
+                        |  def clockIn() {
+                        |    isPresent = true
+                        |    println("Hi! I clocked in.")
+                        |  }
                         |
-                        |   def gearDown() {
-                        |       isLandingGearUp = false
-                        |       println("landing gear is down")
-                        |   }
+                        |  def clockOut() {
+                        |    isPresent = false
+                        |    println("I clocked out. Bye!")
+                        |  }
                         |
-                        |   def isInTheAir = isLandingGearUp
+                        |  def isInTheOffice = isPresent
                         |}
                     }
                 }
             } {
+                @spacer()
+
                 @snippet() {
-                    @callblock(reference = "plane8") {
-                        |val p = new Plane
+                    @callblock(reference = "empl2") {
+                        |val e = new Employee
                     }
                     @outblock() {
-                        |p: Plane = Plane@@2142115
+                        |e: Employee = Employee@@2142115
                     }
                     @callblock() {
-                        |p.gearUp()
+                        |e.clockIn()
                     }
                     @outblock() {
-                        |landing gear is up
+                        |Hi! I clocked in.
                     }
                     @callblock() {
-                        |val flying = p.isInTheAir
+                        |val atOffice = e.isInTheOffice
                     }
                     @outblock() {
-                        |flying: Boolean = true
+                        |atOffice: Boolean = true
                     }
                     @callblock() {
-                        |p.gearDown()
+                        |e.clockOut()
                     }
                     @outblock() {
-                        |landing gear is down
+                        |I clocked out. Bye!
                     }
                 }
             }
 
-            @infobox() {
+            @*@infobox() {
                 Methoden einer Klasse sind standardmäßig öffentlich, <br/>
                 bei nur lesenden Methoden sollte <code>()</code> weggelassen werden.
-            }
+            }*@
         }
 
         <!-- ################################################################################## -->
