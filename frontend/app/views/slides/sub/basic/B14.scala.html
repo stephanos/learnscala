@@ -2,8 +2,6 @@
     if-else
     while / do-while
     for
-    match
-    try-catch
 -->
 @defining("Kontrollstrukturen") { implicit topic =>
 
@@ -17,61 +15,31 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
+        @defining("if else") { title =>
 
-            @sidebyside() {
-                @snippet() {
-                    @sourceblock(fragment = false) {
-                        |def sufficientFuel(f: Float) =
-                        |   if (f >= 50.0) true else false
+            @slide(title = title) {
+
+                @sidebyside() {
+                    @snippet() {
+                        @sourceblock(fragment = false) {
+                            |def sufficientFuel(f: Float) =
+                            |   if (f >= 50.0) true else false
+                        }
+                        @outblock() {
+                            |sufficientFuel: (f: Float)Boolean
+                        }
                     }
-                    @outblock() {
-                        |sufficientFuel: (f: Float)Boolean
-                    }
-                }
-            } {
-                @fragment {
-                    Methode <code>sufficientFuel</code> hat den Rückgabetyp der Bedingung: <code>Boolean</code>
-                }
-            }
-
-            @spacer()
-
-            @infobox() {
-                Eine Bedingung hat immer einen Wert.
-            }
-        }
-
-        <!-- ################################################################################## -->
-
-        @slide() {
-
-            @sidebyside((66,33)) {
-                @snippet() {
-                    @sourceblock(fragment = false) {
-                        |def almostThere(x0: Int, y0: Int, x: Int, y: Int) = {
-                        |   val distance = {
-                        |       val dx = x - x0
-                        |       val dy = y - y0
-                        |       Math.sqrt(dx * dx + dy * dy)
-                        |   }
-                        |   distance < 20
-                        |}
-                    }
-                    @outblock() {
-                        |almostThere: (x0: Int, y0: Int, x: Int, y: Int)Boolean
+                } {
+                    @fragment {
+                        Methode <code>sufficientFuel</code> hat den Rückgabetyp der Bedingung: <code>Boolean</code>
                     }
                 }
-            } {
-                @fragment {
-                    Variable <code>distance</code> hat den Typ der <code>sqrt</code>-Methode: <code>Double</code>
+
+                @spacer()
+
+                @infobox() {
+                    Eine Bedingung hat immer einen Wert.
                 }
-            }
-
-            @spacer()
-
-            @infobox() {
-                Ein Block hat immer einen Wert - und zwar den Wert des letzten Ausdrucks
             }
         }
 
@@ -91,64 +59,65 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
-            <!-- Catch -->
+        @defining("try catch") { title =>
 
-            @sidebyside((66,33)) {
-                @snippet() {
-                    @sourceblock(fragment = false) {
-                        |def getWords(msg: String) =
-                        |   try {
-                        |       println(msg.split(' '))
-                        |   } catch {
-                        |       case ex: NullPointerException =>
-                        |           println("No message")
-                        |       case _ =>
-                        |           println("Unexpected internal error")
-                        |   } finally {
-                        |       // cleanup
-                        |   }
+            @slide(title = title) {
+
+                @sidebyside((66,33)) {
+                    @snippet() {
+                        @sourceblock(fragment = false) {
+                            |def getWords(msg: String) =
+                            |   try {
+                            |       println(msg.split(' '))
+                            |   } catch {
+                            |       case ex: NullPointerException =>
+                            |           println("No message")
+                            |       case _ =>
+                            |           println("Unexpected internal error")
+                            |   } finally {
+                            |       // cleanup
+                            |   }
+                        }
+                        @callblock() {
+                            |getWords(null)
+                        }
+                        @outblock() {
+                            |No message
+                        }
                     }
-                    @callblock() {
-                        |getWords(null)
-                    }
-                    @outblock() {
-                        |No message
-                    }
+                } {
                 }
-            } {
-            }
 
-            @infobox() {
-                In einem <code>try/catch</code>-Block kommt Pattern Matching zum Einsatz.
-            }
-        }
-
-        <!-- ################################################################################## -->
-
-        @slide() {
-            <!-- Throw -->
-
-            @sidebyside((66,33)) {
-                @snippet() {
-                    @sourceblock(id = "fuel-exception", fragment = false) {
-                        |def sufficientFuel(f: Float) =
-                        |  if(f == 0.0)
-                        |    throw new RuntimeException("Not enough fuel!")
-                    }
-                    @callblock() {
-                        |sufficientFuel(0)
-                    }
-                    @outblock() {
-                        |java.lang.RuntimeException: Not enough fuel!
-                    }
+                @infobox() {
+                    In einem <code>try/catch</code>-Block kommt Pattern Matching zum Einsatz.
                 }
-            } {
             }
 
-            @infobox() {
-                Mit <code>throw</code> wird eine Ausnahme ausgelöst,
-                eine Angabe der möglichen Ausnahmen einer Methode kann/muss nicht spezifiziert werden.
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "throw") {
+
+                @sidebyside((66,33)) {
+                    @snippet() {
+                        @sourceblock(id = "fuel-exception", fragment = false) {
+                            |def sufficientFuel(f: Float) =
+                            |  if(f == 0.0)
+                            |    throw new RuntimeException("Not enough fuel!")
+                        }
+                        @callblock() {
+                            |sufficientFuel(0)
+                        }
+                        @outblock() {
+                            |java.lang.RuntimeException: Not enough fuel!
+                        }
+                    }
+                } {
+                }
+
+                @infobox() {
+                    Mit <code>throw</code> wird eine Ausnahme ausgelöst,
+                    eine Angabe der möglichen Ausnahmen einer Methode kann/muss nicht spezifiziert werden.
+                }
             }
         }
 
@@ -166,7 +135,9 @@
                 <code>/src/test/scala/de/learnscala/specs/<var>U060.scala</var></code>.
         }
 
-        @slide(title = "Schleifen") {
+        <!-- ################################################################################## -->
+
+        @slide(title = "while") {
 
             @sidebyside() {
                 @snippet() {
@@ -258,6 +229,15 @@
 
             Die dazugehörige Testspezifikation unter
                 <code>/src/test/scala/de/learnscala/specs/<var>U040.scala</var></code>.
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("match") { title =>
+
+            @slide(title = title) {
+
+            }
         }
     }
 }

@@ -4,7 +4,7 @@
     } {
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
-                |def sub(x: Float, y: Float): Int =
+                |def sub (x: Float, y: Float): Int =
                 |   x - y
             }
             @outblock(error = true) {
@@ -18,7 +18,7 @@
     } {
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
-                |def fn(n: Int) =
+                |def fn (n: Int) =
                 |   if (n == 0) 1 else n * fn(n - 1)
             }
             @outblock(error = true) {
@@ -29,7 +29,7 @@
     }
 }
 
-@spacer2()@spacer()
+@spacer()
 
 @sidebyside() {
     @sidebyside((5, 90)) {
@@ -61,7 +61,7 @@
     }
 }
 
-@spacer2()@spacer()
+@spacer()
 
 @sidebyside() {
     @sidebyside((5, 90)) {
@@ -70,7 +70,7 @@
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
                 |def mult(x: Int, y: Int) {
-                |   println(x * y)
+                |   println (x * y)
                 |}
             }
             @outblock() {
@@ -84,7 +84,7 @@
     } {
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
-                |def negate(n: Int): Long = {
+                |def negate (n: Int): Long = {
                 |   -1 * n
                 |}
             }

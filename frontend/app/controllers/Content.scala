@@ -18,11 +18,12 @@ object Content extends MyController {
 
     lazy val einfuehrung = Slide("B10", "Einführung", basic, status = "complete")
     lazy val geschichte = Slide("B11", "Geschichte", basic, Seq(einfuehrung), status = "complete")
-    lazy val ersteSchritte = Slide("B12", "Erste Schritte", basic, Seq(werkzeuge1))
-    lazy val kontrollstrukturen = Slide("B13", "Kontrollstrukturen", basic, Seq(werkzeuge2, uebungen))
+    lazy val variablen = Slide("B12", "Variablen", basic, Seq(werkzeuge1))
+    lazy val methoden = Slide("B13", "Methoden", basic, Seq(variablen))
+    lazy val kontrollstrukturen = Slide("B14", "Kontrollstrukturen", basic, Seq(werkzeuge2, uebungen))
 
     // === OBJEKTE
-    lazy val klassen1 = Slide("O10", "Klassen I", oop, Seq(ersteSchritte, werkzeuge2, uebungen), status = "complete")
+    lazy val klassen1 = Slide("O10", "Klassen I", oop, Seq(methoden, werkzeuge2, uebungen), status = "complete")
     lazy val objekte = Slide("O12", "Objekte", oop, Seq(klassen1), status = "complete")
     lazy val vererbung1 = Slide("O11", "Vererbung I", oop, Seq(objekte), status = "complete")
     lazy val pakete = Slide("O13", "Pakete", oop, Seq(vererbung1), status = "complete")
@@ -33,7 +34,7 @@ object Content extends MyController {
     // === ERWEITERT
 
     lazy val werkzeuge1 = Slide("E10", "Werkzeuge I", ext, Seq(geschichte), status = "complete")
-    lazy val werkzeuge2 = Slide("E11", "Werkzeuge II", ext, Seq(ersteSchritte), status = "complete")
+    lazy val werkzeuge2 = Slide("E11", "Werkzeuge II", ext, Seq(methoden), status = "complete")
     lazy val uebungen = Slide("E12", "Übungen", ext, Seq(werkzeuge2), status = "complete")
 
 
@@ -50,7 +51,7 @@ object Content extends MyController {
     // === OBJEKTE
 
     lazy val typen1 = Slide("O20", "Typen I", oop, Seq(klassen1), status = "complete")
-    lazy val traits = Slide("O21", "Traits", oop, Seq(klassen1, vererbung1))
+    lazy val traits = Slide("O21", "Traits", oop, Seq(klassen1, vererbung1), status = "complete")
     lazy val klassen2 = Slide("O22", "Klassen II", oop, Seq(vererbung1), status = "complete")
     lazy val vererbung2 = Slide("O23", "Vererbung II", oop, Seq(vererbung1))
     lazy val generics1 = Slide("O24", "Typ-Parameter I", oop, Seq())

@@ -254,9 +254,7 @@
 
             @snippet() {
                 @sourceblock(id = "engine") {
-                    |trait Engine {
-                    |  println ("Engine ready")
-                    |}
+                    |trait Engine { println ("Engine ready") }
                 }
             }
 
@@ -307,6 +305,8 @@
         @slide(title = "stackable") {
 
             @sidebyside() {
+                @spacer2() @spacer()
+
                 @snippet(id = "logger5") {
                     @sourceblock(reference = "plane_log_ready") {
                         |trait Logger {
@@ -317,38 +317,37 @@
                         |}
                     }
                 }
-
-                @spacer()
-
-                @indent(25) {
-
-                    @snippet(id = "timed_logger") {
-                        @sourceblock() {
-                            |trait TimedLog extends Logger {
-                            |
-                            |  override def log (msg: String) {
-                            |    val now = java.util.Date
-                            |    super.log (now + " " + msg)
-                            |  }
-                            |}
-                        }
-                    }
-
-                    @spacer()
-
-                    @snippet(id = "upper_logger") {
-                        @sourceblock(reference = "timed_logger") {
-                            |trait UpperLog extends Logger {
-                            |
-                            |  override def log (msg: String) {
-                            |    super.log (msg.toUpperCase)
-                            |  }
-                            |}
-                        }
+            } {
+                @snippet(id = "timed_logger") {
+                    @sourceblock() {
+                        |trait TimedLog extends Logger {
+                        |
+                        |  override def log (msg: String) {
+                        |    val now = java.util.Date
+                        |    super.log (now + " " + msg)
+                        |  }
+                        |}
                     }
                 }
-            } {
-                @snippet() {
+
+                @spacer_half()
+
+                @snippet(id = "upper_logger") {
+                    @sourceblock(reference = "timed_logger") {
+                        |trait UpperLog extends Logger {
+                        |
+                        |  override def log (msg: String) {
+                        |    super.log (msg.toUpperCase)
+                        |  }
+                        |}
+                    }
+                }
+            }
+
+            @spacer2()
+
+            @sidebyside() {
+                @snippet(clazz = "slim") {
                     @callblock(reference = "upper_logger") {
                         |new Plane with TimedLog with UpperLog
                     }
@@ -356,10 +355,8 @@
                         |Sun Jan 01 00:00:00 2012 READY FOR TAKE-OFF
                     }
                 }
-
-                @spacer()
-
-                @snippet() {
+            } {
+                @snippet(clazz = "slim") {
                     @callblock(reference = "upper_logger") {
                         |new Plane with UpperLog with TimedLog
                     }
