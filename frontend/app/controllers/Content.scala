@@ -19,13 +19,13 @@ object Content extends MyController {
     lazy val einfuehrung = Slide("B10", "Einführung", basic, status = "complete")
     lazy val geschichte = Slide("B11", "Geschichte", basic, Seq(einfuehrung), status = "complete")
     lazy val ersteSchritte = Slide("B12", "Erste Schritte", basic, Seq(werkzeuge1))
-    lazy val kontrollstrukturen = Slide("B13", "Kontrollstrukturen", basic, Seq(werkzeuge2))
+    lazy val kontrollstrukturen = Slide("B13", "Kontrollstrukturen", basic, Seq(werkzeuge2, uebungen))
 
     // === OBJEKTE
-    lazy val klassen1 = Slide("O10", "Klassen I", oop, Seq(ersteSchritte), status = "complete")
+    lazy val klassen1 = Slide("O10", "Klassen I", oop, Seq(ersteSchritte, werkzeuge2, uebungen), status = "complete")
     lazy val objekte = Slide("O12", "Objekte", oop, Seq(klassen1), status = "complete")
     lazy val vererbung1 = Slide("O11", "Vererbung I", oop, Seq(objekte), status = "complete")
-    lazy val pakete = Slide("O13", "Pakete", oop, Seq(objekte), status = "complete")
+    lazy val pakete = Slide("O13", "Pakete", oop, Seq(vererbung1), status = "complete")
 
     // === FUNKTIONEN
 
@@ -43,8 +43,8 @@ object Content extends MyController {
     // === ALLGEMEIN
 
     lazy val annotationen = Slide("B21", "Annotationen", basic, Seq())
-    lazy val implicit1 = Slide("B24", "Implicits I", basic, Seq(), status = "complete")
-    lazy val recursion = Slide("B25", "Rekursion", basic, Seq(), status = "complete")
+    lazy val implicit1 = Slide("B24", "Implicits I", basic, Seq(pakete), status = "complete")
+    lazy val recursion = Slide("B25", "Rekursion", basic, Seq(kontrollstrukturen), status = "complete")
 
 
     // === OBJEKTE
