@@ -4021,7 +4021,17 @@ define('app/util/progress',["jquery", "lib/util/underscore"], function($, _) {
   var Progress, p;
   Progress = (function() {
 
-    function Progress() {}
+    function Progress() {
+      this.init();
+      $(document).tooltip({
+        delay: {
+          show: 500,
+          hide: 10
+        },
+        selector: ".with-tooltip",
+        placement: "bottom"
+      });
+    }
 
     Progress.prototype.init = function() {
       var _this = this;
@@ -4030,7 +4040,7 @@ define('app/util/progress',["jquery", "lib/util/underscore"], function($, _) {
         if ($(link).data("id")) {
           li = $(link).parent();
           input = $(li).find("input");
-          $(li).tooltip("destroy");
+          $(li).removeClass("with-tooltip");
           $(input).unbind();
           li.removeClass("req");
           deps = $(link).data("deps");
@@ -4046,14 +4056,7 @@ define('app/util/progress',["jquery", "lib/util/underscore"], function($, _) {
                 return reqs += "<li>" + _this.getItem(id).data("label") + "</li>";
               });
               li.attr("title", "Voraussetzungen: <ul>" + reqs + "</ul>");
-              $(li).tooltip({
-                html: true,
-                placement: "bottom",
-                delay: {
-                  show: 500,
-                  hide: 100
-                }
-              });
+              $(li).addClass("with-tooltip");
             }
           }
           $(input).click(_this.update);

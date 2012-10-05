@@ -4,7 +4,16 @@ define [
 
   class Progress
 
-    init: () ->
+    constructor: ->
+      @init()
+
+      $(document).tooltip
+        delay: { show: 500, hide: 10 }
+        selector: ".with-tooltip"
+        placement: "bottom"
+
+
+    init: ->
       $(".slidedecks a").each(
         (idx, link) =>
           if($(link).data("id"))
@@ -12,7 +21,7 @@ define [
             input = $(li).find("input")
 
             # reset
-            $(li).tooltip("destroy")
+            $(li).removeClass("with-tooltip")
             $(input).unbind()
             li.removeClass("req")
 
@@ -28,11 +37,7 @@ define [
                 reqs = ""
                 _.each(missing, (id) => reqs += "<li>" + @getItem(id).data("label") + "</li>")
                 li.attr("title", "Voraussetzungen: <ul>" + reqs + "</ul>")
-                $(li).tooltip(
-                  html: true,
-                  placement: "bottom",
-                  delay: { show: 500, hide: 100 }
-                )
+                $(li).addClass("with-tooltip")
 
             # bind click
             $(input).click(@update)

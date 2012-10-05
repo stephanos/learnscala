@@ -202,45 +202,6 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Instanziierung") {
-
-            @snippet() {
-                @sourceblock() {
-                    |trait Logger {
-                    |  def log (msg: String) { }
-                    |}
-                }
-                @sourceblock(id = "plane_log_ready") {
-                    |class Plane extends Logger {
-                    |  log ("Ready for take-off")
-                    |}
-                }
-                @callblock() {
-                    |new Plane()
-                }
-                @outblock() {
-                    |(nothing)
-                }
-                @sourceblock() {
-                    |trait SimpleLogger extends Logger {
-                    |  override def log (msg: String) { println (msg) }
-                    |}
-                }
-                @callblock() {
-                    |new Plane with SimpleLogger
-                }
-                @outblock() {
-                    |Ready for take-off
-                }
-            }
-
-            @*@infobox() {
-                Ein Trait kann auch erst bei der Erstellung einer Instanz "dazu gemixt" werden.
-            }*@
-        }
-
-        <!-- ################################################################################## -->
-
         @slide(title = "with") {
 
             @snippet(id = "logger4") {
@@ -276,11 +237,68 @@
                         |}
                     }
                 }
+                @codesub2() {
+                    Mehrere Traits können vererbt werden
+                }
             }
 
             @*@infobox() {
                 Bei Vererbung mehrere Traits steht immer zuerst das <code>extends</code> - egal ob Klasse oder Trait -
                 und alle folgenden Traits werden via <code>with</code> abgetrennt.
+            }*@
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Instanziierung") {
+
+            @snippet() {
+                @sourceblock(id = "engine") {
+                    |trait Engine {
+                    |  println ("Engine ready")
+                    |}
+                }
+            }
+
+            @spacer()
+
+            @sidebyside() {
+                @snippet() {
+                    @sourceblock(reference = "engine") {
+                        |class Plane extends Engine {
+                        |  println ("Ready for take-off")
+                        |}
+                    }
+                    @callblock() {
+                        |new Plane
+                    }
+                    @outblock() {
+                        |Engine ready
+                        |Ready for take-off
+                    }
+                }
+            } {
+                @snippet() {
+                    @sourceblock(reference = "engine") {
+                        |class Plane {
+                        |  println ("Ready for take-off")
+                        |}
+                    }
+                    @callblock() {
+                        |new Plane with Engine
+                    }
+                    @outblock() {
+                        |Ready for take-off
+                        |Engine ready
+                    }
+                }
+                @codesub2() {
+                    Trait wird erst bei Instanziierung hinzugefügt
+                }
+            }
+
+            @*@infobox() {
+                Ein Trait kann auch erst bei der Erstellung einer Instanz "dazu gemixt" werden.
             }*@
         }
 
@@ -293,7 +311,9 @@
                     @sourceblock(reference = "plane_log_ready") {
                         |trait Logger {
                         |
-                        |  def log (msg: String) { println (msg) }
+                        |  def log (msg: String) {
+                        |    println (msg)
+                        |  }
                         |}
                     }
                 }
@@ -307,8 +327,8 @@
                             |trait TimedLog extends Logger {
                             |
                             |  override def log (msg: String) {
-                            |    import java.util._
-                            |    super.log (new Date() + " " + msg)
+                            |    val now = java.util.Date
+                            |    super.log (now + " " + msg)
                             |  }
                             |}
                         }
