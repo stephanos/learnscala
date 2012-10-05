@@ -139,7 +139,7 @@
 
         @slide(title = "while") {
 
-            @sidebyside() {
+            @sidebyside(gap = 15) {
                 @snippet() {
                     @sourceblock(fragment = false) {
                         |def countdown() {
@@ -156,6 +156,9 @@
                     @outblock() {
                         |10 9 8 7 6 5 4 3 2 1 0
                     }
+                }
+                @codesub2() {
+                    Kopfschleife
                 }
             } {
                 @snippet() {
@@ -175,9 +178,20 @@
                         |10 9 8 7 6 5 4 3 2 1 0
                     }
                 }
+                @codesub2() {
+                    Fußschleife
+                }
             }
 
-            @spacer()
+            @*@warnbox(hr = false) {
+                Klassische Schleifen werden in Scala eher selten eingesetzt;
+                man sollte sich stets fragen ob es nicht eine funktionalere Variante gibt.
+            }*@
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "for") {
 
             @sidebyside() {
                 @snippet() {
@@ -209,11 +223,6 @@
                         |10 9 8 7 6 5 4 3 2 1 0
                     }
                 }
-            }
-
-            @warnbox(hr = false) {
-                Klassische Schleifen werden in Scala eher selten eingesetzt;
-                man sollte sich stets fragen ob es nicht eine funktionalere Variante gibt.
             }
         }
 

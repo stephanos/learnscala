@@ -4,8 +4,8 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |def f1 = 42
-                |println (f1)
+                |def f = 42
+                |println (f)
             }
             @outblock() {
                 |42
@@ -18,11 +18,11 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |def f2 {42}
-                |println (f2)
+                |def f = 42
+                |println (f())
             }
-            @outblock() {
-                |()
+            @outblock(error = true) {
+                |Int does not take parameters
             }
         }
     }
@@ -36,8 +36,8 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |def f3 = {42}
-                |println (f3)
+                |def f = {42}
+                |println (f)
             }
             @outblock() {
                 |42
@@ -50,11 +50,11 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |def f4 {42}
-                |println (f4())
+                |def f {42}
+                |println (f())
             }
             @outblock(error = true) {
-                |error: Unit does not take parameters
+                |Unit does not take parameters
             }
         }
     }
@@ -68,11 +68,11 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |def f5 = 42
-                |println (f5())
+                |def f {42}
+                |println (f)
             }
-            @outblock(error = true) {
-                |error: Int does not take parameters
+            @outblock() {
+                |()
             }
         }
     }
@@ -82,11 +82,11 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |def f6() {42}
-                |println (f6)
+                |def f (i: Int = 41) = {i + 1}
+                |println (f)
             }
-            @outblock() {
-                |()
+            @outblock(error = true) {
+                |missing arguments for method f
             }
         }
     }

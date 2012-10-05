@@ -9,17 +9,17 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
+        @slide(title = "Syntax") {
 
-            @sidebyside() {
+            @sidebyside((40,60)) {
                 @snippet() {
-                    @sourceblock(fragment = false) {
-                        |def ready(): String = {
-                        |   return "Ready for take-off"
+                    @sourceblock() {
+                        |def hello(): String = {
+                        |   return "Hello World"
                         |}
                     }
                     @outblock() {
-                        |ready: String
+                        |hello: String
                     }
                 }
             } {
@@ -29,7 +29,7 @@
                             <code>def</code> startet die Definition
                         </li>
                         <li class="fragment">
-                            <code>ready</code> ist der Name der Methode
+                            <code>hello</code> ist der Name der Methode
                         </li>
                         <li class="fragment">
                             <code>()</code> beinhaltet die Liste der Parameter
@@ -46,9 +46,9 @@
 
             @spacer()
 
-            @infobox() {
+            @*@infobox() {
                 <code>def</code> leitet eine Methode ein - diese hat immer einen Rückgabetyp.
-            }
+            }*@
 
             <details>
                 <a href="http://stackoverflow.com/questions/2529184/">
@@ -56,6 +56,8 @@
                 </a>
             </details>
         }
+
+        <!-- ################################################################################## -->
 
         @*
         <h3>Variablen <var><></var> Methoden</h3>
@@ -143,147 +145,162 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
-            <!-- Unit -->
+        <!--
+            http://stackoverflow.com/questions/1181533/
+        -->
+        @slide(title = "Optionales") {
 
             @sidebyside() {
+                @sourcecode(id = "hello") {
+                    |def hello(): String =
+                    |   return "Hello World"
+                }
+            } {
+                @codenote2() {
+                    <strong><em>ohne</em></strong> geschweifte Klammern<br/>
+                    <comment>Wann? Bei nur einer Zeile</comment>
+                }
+            }
+
+            @spacer()
+
+            @sidebyside() {
+                @sourcecode() {
+                    |def hello(): String =
+                    |   "Hello World"
+                }
+            } {
+                @codenote2() {
+                    <strong><em>ohne</em></strong> <code>return</code><br/>
+                    <comment>Wann? Immer!</comment>
+                }
+            }
+
+            @spacer()
+
+            @sidebyside() {
+                @sourcecode() {
+                    |def hello: String =
+                    |   "Hello World"
+                }
+            } {
+                @codenote2() {
+                    <strong><em>ohne</em></strong> Parameterliste<br/>
+                    <comment>Wann? Keine Parameter</comment>
+                }
+            }
+
+            @spacer()
+
+            @sidebyside() {
+                @sourcecode() {
+                    |def hello =
+                    |   "Hello World"
+                }
+            } {
+                @codenote2() {
+                    <strong><em>ohne</em></strong> Rückgabetyp<br/>
+                    <comment>Wann? Kurz und nicht rekursiv oder überladen</comment>
+                }
+            }
+
+            @spacer()
+
+            @sidebyside() {
+                @sourcecode() {
+                    |def hello = "Hello World"
+                }
+            } {
+                @codenote2() {
+                    <strong><em>ohne</em></strong> Zeilenumbruch
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Unit") {
+
+            @sidebyside(gap = 10) {
                 @snippet() {
-                    @sourceblock(fragment = false) {
-                        |def ready() = {
-                        |   println("Ready for take-off")
+                    @sourceblock() {
+                        |def hello () = {
+                        |   println ("Hello World")
                         |}
                     }
                     @outblock() {
-                        |ready: Unit
+                        |hello: Unit
                     }
                 }
             } {
                 @snippet() {
                     @sourceblock() {
-                        |def ready() {
-                        |   println("Ready for take-off")
+                        |def hello () {
+                        |   println ("Hello World")
                         |}
                     }
                     @outblock() {
-                        |ready: Unit
+                        |hello: Unit
                     }
                 }
             }
 
             @spacer()
 
-            @infobox() {
+            @*@infobox() {
                 Hat eine Methode keinen Rückgabewert, hat sie den Typ <code>Unit</code>.<br/>
                 Sie werden überlicherweise ohne <code>=</code> definiert.
-            }
+            }*@
         }
 
         <!-- ################################################################################## -->
 
-        <!--
-            http://stackoverflow.com/questions/1181533/what-are-the-precise-rules-for-when-you-can-omit-parenthesis-dots-braces-f
-        -->
-        @slide() {
-            <!-- Optionales -->
+        @slide(title = "Parameter") {
 
-            @sidebyside((40,60)) {
-                @sourcecode(id = "ready", fragment = false) {
-                    |def ready(): String =
-                    |   return "Ready for take-off"
+            @snippet() {
+                @sourceblock(id = "double") {
+                    |def double (x: Int) =
+                    |   2 * x
                 }
-            } {
-                <strong><em>ohne</em></strong> geschweifte Klammern<br/>
-                <comment>Wann? Bei nur einer Zeile</comment>
+                @outblock() {
+                    |double: (x: Int)Int
+                }
+            }
+
+            @codesub2() {
+                Methode mit <em>1</em> Parameter
             }
 
             @spacer()
 
-            @sidebyside((40,60), fragment = true) {
-                @sourcecode(fragment = false) {
-                    |def ready(): String =
-                    |   "Ready for take-off"
+            @snippet() {
+                @sourceblock(id = "add") {
+                    |def add(x: Float, y: Float) =
+                    |   x + y
                 }
-            } {
-                <strong><em>ohne</em></strong> <code>return</code><br/>
-                <comment>Wann? Immer, Rückgabe ist Ergebnis des letzten Ausdrucks</comment>
+                @outblock() {
+                    |add: (x: Float, y: Float)Float
+                }
+            }
+
+            @codesub2() {
+                Methode mit <em>2</em> Parametern
             }
 
             @spacer()
 
-            @sidebyside((40,60), fragment = true) {
-                @sourcecode(fragment = false) {
-                    |def ready: String =
-                    |   "Ready for take-off"
+            @snippet() {
+                @sourceblock(id = "print") {
+                    |def printFirst(s: String *) =
+                    |   println (s(0))
                 }
-            } {
-                <strong><em>ohne</em></strong> Parameterliste<br/>
-                <comment>Wann? Keine Parameter</comment>
+                @outblock() {
+                    |printFirst: (s: String*)Unit
+                }
             }
 
-            @spacer()
-
-            @sidebyside((40,60), fragment = true) {
-                @sourcecode(fragment = false) {
-                    |def ready =
-                    |   "Ready for take-off"
-                }
-            } {
-                <strong><em>ohne</em></strong> Rückgabetyp<br/>
-                <comment>Wann? Nicht rekursiv oder überladen</comment>
-            }
-
-            @spacer()
-
-            @sidebyside((40,60), fragment = true) {
-                @sourcecode(fragment = false) {
-                    |def ready = "Ready for take-off"
-                }
-            } {
-                <strong><em>ohne</em></strong> Zeilenumbruch
-            }
-        }
-
-        <!-- ################################################################################## -->
-
-        @slide() {
-            <!-- Parameter -->
-
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @sourceblock(id = "double", fragment = false) {
-                        |def double(x: Int) =
-                        |   2 * x
-                    }
-                    @outblock() {
-                        |double: (x: Int)Int
-                    }
-                }
-            } {
-                Methode <code>double</code> mit 1 <code>Int</code>-Parameter
-                und Rückgabetyp <code>Int</code>
-            }
-
-            @spacer2()
-
-            @sidebyside((40,60), fragment = true) {
-                @snippet() {
-                    @sourceblock(id = "add", fragment = false) {
-                        |def add(x: Float, y: Float) =
-                        |   x + y
-                    }
-                    @outblock() {
-                        |add: (x: Float, y: Float)Float
-                    }
-                }
-            } {
-                Methode <code>add</code> mit 2 <code>Float</code>-Parameter
-                und Rückgabetyp <code>Float</code>
-            }
-
-            @spacer()
-
-            @infobox() {
-                Parameter werden durch Komma getrennt und müssen einen Typ haben.
+            @codesub2() {
+                Methode mit <em>n</em> Parametern
             }
         }
 
@@ -295,76 +312,86 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
-            <!-- Parameter: Default -->
+        @slide(title = "Aufruf") {
 
-            @sourcecode(id = "method_default", fragment = false) {
-                |def announce(town: String, time: String = "shortly", weather: String = "nice") = {
-                |
-                |   println("We will be landing in " + town + " " + time + ". " +
-                |           "The weather is " + weather + ".")
-                |}
+            @snippet() {
+                @callblock(reference = "hello") {
+                    |hello()
+                }
+                @outblock() {
+                    |res0: String = Hello World
+                }
+            }
+            @codesub2() {
+                Aufruf einer <em>parameterlosen</em> Methode
             }
 
             @spacer()
 
-            @sidebyside((66,33)) {
-                @snippet() {
-                    @callblock(reference = "method_default") {
-                        |announce("Berlin")
-                    }
-                    @outblock() {
-                        |We will be landing in Berlin shortly.
-                        |The weather is nice.
-                    }
+            @snippet() {
+                @callblock(reference = "double") {
+                    |double (1)
                 }
-                @spacer()
-                @snippet() {
-                    @callblock(reference = "method_default") {
-                        |announce("London", weather = "rainy")
-                    }
-                    @outblock() {
-                        |We will be landing in London shortly.
-                        |The weather is rainy.
-                    }
+                @outblock() {
+                    |res0: Int = 2
                 }
-                @spacer()
-                @snippet() {
-                    @callblock(reference = "method_default") {
-                        |announce(time = "in 10 minutes", town = "Paris")
-                    }
-                    @outblock() {
-                        |We will be landing in Paris in 10 minutes.
-                        |The weather is nice.
-                    }
+                @callblock() {
+                    |double { 1 + 1 }
                 }
-            } {
+                @outblock() {
+                    |res1: Int = 4
+                }
+            }
+
+            @codesub2() {
+                Aufruf einer <em>1-parametrigen</em> Methode
             }
         }
 
         <!-- ################################################################################## -->
 
-        @slide() {
-            <!-- Aufruf -->
+        @defining("Aufruf") { title =>
 
-            @sidebyside((40,60)) {
+            @slide(title = title) {
+
                 @snippet() {
-                    @callblock(fragment = false) {
-                        |42.isWhole
+                    @callblock(reference = "add") {
+                        |add (1, 2)
                     }
                     @outblock() {
-                        |res0: Boolean = true
+                        |res0: Float = 3.0
+                    }
+                    @callblock() {
+                        |add (1, {
+                        |   add (2, 2)
+                        |})
+                    }
+                    @outblock() {
+                        |res1: Float = 5.0
+                    }
+                    @callblock() {
+                        |add ({
+                        |   add (1, 1)
+                        |}, {
+                        |   add (2, 2)
+                        |})
+                    }
+                    @outblock() {
+                        |res2: Float = 6.0
                     }
                 }
-            } {
-                Aufruf der <em>parameterlosen</em> Methode <code>isWhole</code>
+
+                @codesub2() {
+                    Aufruf einer <em>2-parametrigen</em> Methode
+                }
             }
 
-            @spacer()
+            <!-- ################################################################################## -->
 
-            @sidebyside((40,60), fragment = true) {
+            @slide(title = title, subtitle = "Infix") {
+
                 @snippet() {
-                    @callblock(fragment = false) {
+                    @callblock() {
                         |42.compare(42)
                     }
                     @outblock() {
@@ -389,29 +416,61 @@
                         |res3: Int = 0
                     }
                 }
-            } {
-                Aufruf der <em>1-parametrigen</em> Methode <code>compare</code>
+
+                @codesub2() {
+                    Aufruf via <em>Infix</em>-Notation
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "default & named Parameter") {
+
+            @sourcecode(id = "method_default") {
+                |def announce (town: String,
+                |              time: String = "shortly", weather: String = "nice") {
+                |
+                |   println ("We will be landing in " + town + " " + time + ". " +
+                |            "The weather is " + weather + ".")
+                |}
             }
 
             @spacer()
 
-            @sidebyside((40,60), fragment = true) {
-                @snippet() {
-                    @callblock(fragment = false) {
-                        |add (1, 2)
-                    }
-                    @outblock() {
-                        |res0: Float = 3.0
-                    }
+            @snippet() {
+                @callblock(reference = "method_default") {
+                    |announce ("Berlin")
                 }
-            } {
-                Aufruf der <em>2-parametrigen</em> Methode <code>add</code>
+                @outblock() {
+                    |We will be landing in Berlin shortly.
+                    |The weather is nice.
+                }
             }
 
-            @*@tipbox() {
-                Runde Klammern bei Methoden ohne oder mit nur 1 Parameter sind optional;
-                geschweifte Klammern können bei genau einem Parameter verwendet werden.
-            }*@
+            @spacer_half()
+
+            @snippet() {
+                @callblock(reference = "method_default") {
+                    |announce ("London", weather = "rainy")
+                }
+                @outblock() {
+                    |We will be landing in London shortly.
+                    |The weather is rainy.
+                }
+            }
+
+            @spacer_half()
+
+            @snippet() {
+                @callblock(reference = "method_default") {
+                    |announce (time = "in 10 minutes", town = "Paris")
+                }
+                @outblock() {
+                    |We will be landing in Paris in 10 minutes.
+                    |The weather is nice.
+                }
+            }
         }
 
         <!-- ################################################################################## -->
