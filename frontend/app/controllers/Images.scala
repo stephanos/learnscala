@@ -14,6 +14,9 @@ object Images extends MyController {
     def tools2(h: Int = 700) =
         gimage("1eoWjkxbFpM_9jvHgcER4S40PoJqrWGGvyg4FOCKxaJg", height = h)
 
+    def webTools(h: Int = 700) =
+        gimage("1gNRfFTYbRkbpnrH2be0k2II2AWW0Y_d9kcJOaRL4pak", height = h)
+
     def types(p: Int = 0, h: Int = 700) =
         p match {
             case 0 => gimage("1rohDVf9bLpnQOdnrA-ODUQXHt1BWXUFvvP70bkyLlsU", height = h)
