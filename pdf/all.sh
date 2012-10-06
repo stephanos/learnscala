@@ -14,6 +14,9 @@ mkdir -p out/
 # merge PDFs
 ./slides-merge.sh
 ./glossary-merge.sh
+
+# copy extras
+mkdir -p out/extra
 cp -R ext/* out/extra/
 
 # render markdown

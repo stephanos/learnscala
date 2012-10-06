@@ -4045,7 +4045,9 @@ define('app/util/progress',["jquery", "lib/util/underscore"], function($, _) {
           li.removeClass("req");
           deps = $(link).data("deps");
           if (deps) {
-            deps = deps.split(",");
+            deps = _.filter(deps.split(","), function(id) {
+              return _this.getItem(id)[0];
+            });
             missing = _.reject(deps, function(id) {
               return localStorage[_this.getKey(_this.getItem(id).parent().find("input"))];
             });
