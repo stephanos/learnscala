@@ -24,7 +24,7 @@ object Content extends MyController {
 
     // === OBJEKTE
 
-    lazy val klassen1 = Slide("O10", "Klassen I", oop, Seq(methoden, werkzeuge2, uebungen), status = "complete")
+    lazy val klassen1 = Slide("O10", "Klassen", oop, Seq(methoden, werkzeuge2, uebungen), status = "complete")
     lazy val objekte = Slide("O12", "Objekte", oop, Seq(klassen1), status = "complete")
     lazy val vererbung1 = Slide("O11", "Vererbung", oop, Seq(objekte), status = "complete")
     lazy val pakete = Slide("O13", "Pakete", oop, Seq(vererbung1), status = "complete")
@@ -54,7 +54,7 @@ object Content extends MyController {
 
     lazy val typen1 = Slide("O20", "Typen", oop, Seq(klassen1), status = "complete")
     lazy val traits = Slide("O21", "Traits", oop, Seq(klassen1, vererbung1), status = "complete")
-    lazy val klassen2 = Slide("O22", "Klassen II", oop, Seq(vererbung1), status = "complete")
+    lazy val klassen2 = Slide("O22", "Case Class", oop, Seq(vererbung1), status = "complete")
     lazy val generics1 = Slide("O24", "Typ-Parameter", oop, Seq())
 
 
@@ -78,7 +78,7 @@ object Content extends MyController {
 
     // === ALLGEMEIN
 
-    lazy val implicit1 = Slide("B33", "Implicits I", basic, Seq(pakete), status = "complete")
+    lazy val implicit1 = Slide("B23", "Implicits", basic, Seq(pakete), status = "complete")
     lazy val dynamic = Slide("B30", "Dynamic", basic)
     lazy val reflection = Slide("B31", "Reflection", basic)
     lazy val macros = Slide("B32", "Makros", basic)
@@ -104,4 +104,7 @@ object Content extends MyController {
     lazy val web = Slide("E32", "Web-Entwicklung", ext, Seq())
     lazy val tests = Slide("E33", "Testen", ext, Seq())
     lazy val scalaz = Slide("E34", "Scalaz", ext, Seq())
+
+
+    lazy val ausblick = Slide("ausblick", "Ausblick", "", Seq(), status = "complete")
 }

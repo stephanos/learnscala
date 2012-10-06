@@ -16,9 +16,13 @@
 
         @defining("Unfiltered") { title =>
 
-            @headslide(title = title) {
-            @title
-            } {
+            @titleslide(title) {
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title) {
+                @demo()
             }
         }
 
@@ -30,7 +34,7 @@
 
         @defining("Spray") { title =>
 
-            @titleslide(title = title) {
+            @titleslide(title) {
                 <div class="indent">
                     <ul>
                         <li>
@@ -55,7 +59,13 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title, subtitle = "Beispiel") {
+            @titleslide(title) {
+                @demo()
+            }
+
+            <!-- ################################################################################## -->
+
+            @*@titleslide(title, subtitle = "Beispiel") {
                 @sourcecode(fragment = false) {
                     |trait CalculatorService @("extends") Directives with CustomMarshallers {
                     |
@@ -80,7 +90,7 @@
                     |       if (n == 0) 1 else n * factorial(n - 1)
                     |}
                 }
-            }
+            }*@
         }
 
         <!-- ################################################################################## -->
@@ -91,10 +101,14 @@
 
         @defining("Scalatra") { title =>
 
-            @headslide(title = title) {
-                @title
-            } {
+            @titleslide(title) {
 
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title) {
+                @demo()
             }
         }
 
@@ -106,7 +120,7 @@
 
         @defining("Play2") { title =>
 
-            @titleslide(title = title) {
+            @titleslide(title) {
                 <div class="indent">
                     <ul class="fragments">
                         <li>
@@ -136,7 +150,11 @@
 
             <!-- ################################################################################## -->
 
-            @headslide() {
+            @titleslide(title) {
+                @demo()
+            }
+
+            @*@headslide() {
                 @title
             } {
                 @sidebyside() {
@@ -178,7 +196,7 @@
                     }
                     <sub>Routing</sub>
                 }
-            }
+            }*@
         }
 
         <!-- ################################################################################## -->
@@ -189,8 +207,14 @@
 
         @defining("Lift") { title =>
 
-            @titleslide(title = title) {
+            @titleslide(title) {
 
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title) {
+                @demo()
             }
         }
 
@@ -202,8 +226,14 @@
 
         @defining("Dispatch") { title =>
 
-            @titleslide(title = title) {
+            @titleslide(title) {
 
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title) {
+                @demo()
             }
         }
     }
