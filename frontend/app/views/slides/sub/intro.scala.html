@@ -10,111 +10,212 @@
 
         <!-- ################################################################################## -->
 
-        @headslide() {
+        @headslide(title = "Tutego") {
             Tute<em>go</em>
         } {
-            <div class="indent">
-                <ul>
-                    <li>Inhouse-Schulungen mit individualisierten Inhalten und individueller Terminauswahl</li>
-                    <li><em>Über 230 Seminare</em></li>
-                    <li>Kernkompetenz <em>Java</em> (70 Themen)
-                        @spacer_half()
-                        <ul>
-                            <li>Europaweit führende Position im Bereich Java-Schulungen</li>
-                        </ul>
-                    </li>
-                    <li>Hochqualifizierte und zertifizierte Referenten</li>
-                    <li>Firmengründung 1997 von <em>Christian Ullenboom</em>, den Sun als Java Champion auszeichnete</li>
-                </ul>
-            </div>
+            <ul>
+                <li>Inhouse-Schulungen mit individualisierten Inhalten und individueller Terminauswahl</li>
+                <li><em>Über 230 Seminare</em></li>
+                <li>Kernkompetenz <em>Java</em> (70 Themen)
+                    @spacer_half()
+                    <ul>
+                        <li>Europaweit führende Position im Bereich Java-Schulungen</li>
+                    </ul>
+                </li>
+                <li>Hochqualifizierte und zertifizierte Referenten</li>
+                <li>Firmengründung 1997 von <em>Christian Ullenboom</em>, den Sun als Java Champion auszeichnete</li>
+            </ul>
         }
 
         <!-- ################################################################################## -->
 
-        @headslide() {
+        @headslide(title = "Vorstellung") {
             <em>Vor</em>stellung
         } {
-            <div class="indent">
-                <ul>
-                    <li>Name ?</li>
-                    <li>Erster Java-Kontakt ?</li>
-                    <li>Woran arbeiten Sie so ?</li>
-                    <li>Vorkenntnisse in Scala ?</li>
-                    <li>Erwartungen und Wünsche ?</li>
-                </ul>
-            </div>
+
+            <ul>
+                <li>Name ?</li>
+                <li>Erster Java-Kontakt ?</li>
+                <li>Woran arbeiten Sie so ?</li>
+                <li>Vorkenntnisse in Scala ?</li>
+                <li>Erwartungen und Wünsche ?</li>
+            </ul>
         }
 
         <!-- ################################################################################## -->
 
-        @headslide() {
+        @headslide(title = "Ablauf", clazz = "wide") {
             <em>Ablauf</em>
         } {
-            <div style="width: 60%;" class="dcenter">
-                <div class="dcenter">
-                    <div>
-                        <h4>Donnerstag</h4>
-                        @spacer()
-                        <table>
-                            <tr>
-                                <td>
-                                    <em>10:00 - 11:30</em>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="smaller">
-                                    15m Pause
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <em>11:45 - 13:15</em>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="smaller">
-                                    45m Mittagspause
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <em>14:00 - 15:30</em>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="smaller">
-                                    15m Pause
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <em>15:45 - 17:15</em>
-                                </td>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="smaller">
-                                    15m Pause
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <em>17:30 - 18:??</em>
-                                </td>
-                                <td></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
+            <div class="dcenter" >
+                <table id="timetable">
+                    <tr>
+                        <td>
+                            <h4>Montag</h4>
+
+                            @spacer()
+
+                            <table>
+                                <tr>
+                                    <td>
+                                        <em>9:00 - 10:30</em>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="smaller">
+                                        Pause
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <em>11:45 - 12:15</em>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="smaller">
+                                        Mittagspause
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <em>13:00 - 14:30</em>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="smaller">
+                                        Pause
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <em>14:45 - 16:15</em>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="smaller">
+                                        Pause
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <em>16:30 - 17:15</em>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <h4>Dienstag</h4>
+
+                            @spacer()
+
+                            <table>
+                                <tr>
+                                    <td>
+                                        <em>9:00 - 10:30</em>
+                                    </td>
+                                   
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="smaller">
+                                        Pause
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <em>11:45 - 12:15</em>
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="smaller">
+                                        Mittagspause
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <em>13:00 - 14:30</em>
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="smaller">
+                                        Pause
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <em>14:45 - 16:15</em>
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="smaller">
+                                        Pause
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <em>16:30 - 17:15</em>
+                                    </td>
+                                    
+                                </tr>
+                            </table>
+                        </td>
+                        <td>
+                            <h4>Mittwoch</h4>
+
+                            @spacer()
+
+                            <table>
+                                <tr>
+                                    <td>
+                                        <em>9:00 - 10:30</em>
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="smaller">
+                                        Pause
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <em>11:45 - 12:15</em>
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="smaller">
+                                        Mittagspause
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <em>13:00 - 14:30</em>
+                                    </td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="smaller">
+                                        Pause
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <em>14:45 - 16:15</em>
+                                    </td>
+                                    
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
             </div>
         }
 
         <!-- ################################################################################## -->
 
-        @*@headslide() {
+        @*@headslide(title = "Inhalt") {
             <em>Inhalt</em>
         } {
             <div class="indent">

@@ -22,7 +22,6 @@
                             <th></th>
                             <th><h4>Allgemein</h4></th>
                             <th><h4>Objekte</h4></th>
-                            <!--<th>Typen</th>-->
                             <th><h4>Funktional</h4></th>
                             <th><h4>Erweitert</h4></th>
                         </tr>
@@ -49,11 +48,6 @@
                                     @topic2(pakete)
                                 }
                             </td>
-                            <!--<td>
-                                @topics {
-
-                                }
-                            </td>-->
                             <td>
                                 @topics {
                                     @topic2(funktionen1)
@@ -77,9 +71,10 @@
                             <td>
                                 @topics {
                                     @topic2(operatoren)
-                                    @*@topic2(annotationen)*@
-                                    <!--@topic("Reguläre Ausdrücke")-->
                                     @topic2(recursion)
+
+                                    @*@topic2(annotationen)*@
+                                    @*@topic("Reguläre Ausdrücke")*@
                                 }
                             </td>
                             <td>
@@ -90,16 +85,10 @@
                                     @topic2(generics1)
                                 }
                             </td>
-                            <!--<td>
-                                @topics {
-
-                                }
-                            </td>-->
                             <td>
                                 @topics {
+                                    @topic("Option und Tuple")
                                     @topic2(funktionen2)
-                                    <!--@topic("Option")-->
-                                    <!--@topic("Tuple")-->
                                     @topic2(kollektionen1)
                                     @topic2(forexpr)
                                 }
@@ -107,10 +96,10 @@
                             <td>
                                 @topics {
                                     @topic2(xml)
-                                    <!--@topic2(jsond)-->
-                                    @topic2(tests)
-                                    @topic2(swing)
                                     @topic2(interop)
+
+                                    @*@topic2(swing)*@
+                                    @*@topic2(jsond)*@
                                 }
                             </td>
                         </tr>
@@ -124,10 +113,12 @@
                             <td>
                                 @topics {
                                     @topic2(implicit1)
+
                                     @*@topic2(implicit2)*@
                                     @*@topic2(reflection)*@
                                     @*@topic2(macros)*@
                                     @*@topic2(dynamic)*@
+
                                     @*@topic("Parsen")*@
                                     @*@topic("Lazy")*@
                                     @*@topic("Extraktoren")*@
@@ -136,17 +127,13 @@
                             </td>
                             <td>
                                 @topics {
-                                    @*@topic("Early Definitions")*@
                                     @topic2(generics2)
-                                    @topic2(typen2)
+
+                                    @*@topic2(typen2)*@
                                     @*@topic("DSL")*@
+                                    @*@topic("Early Definitions")*@
                                 }
                             </td>
-                            <!--<td>
-                                @topics {
-
-                                }
-                            </td>-->
                             <td>
                                 @topics {
                                     @topic2(funktionen3)
@@ -157,10 +144,23 @@
                             <td>
                                 @topics {
                                     @topic2(aktoren)
-                                    @*@topic("Utilities")*@
                                     @topic2(dbase)
+                                    @topic2(tests)
                                     @topic2(web)
+
                                     @*@topic2(scalaz)*@
+                                    @*@topic("Utilities")*@
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                &nbsp;
+                            </td>
+                            <td>
+                                @topics {
+                                    @topic("Ausblick", "ausblick")
+                                    @topic("Ende", "end")
                                 }
                             </td>
                         </tr>
