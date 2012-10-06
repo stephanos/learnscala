@@ -107,6 +107,20 @@
         }
     }
 
+    ul.filedir {
+      padding: 10px;
+      .round(3px);
+      .bg(fadeout(#ccc, 70%));
+
+      li {
+        list-style: none;
+
+        &:before {
+          content: "+";
+        }
+      }
+    }
+
     .left { float: left; }
     .right { float: right; }
 

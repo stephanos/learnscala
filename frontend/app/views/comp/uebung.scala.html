@@ -3,14 +3,80 @@
 @headslide(title = "Übung") {
     @heading@append
 } {
-    @content
-
     @spacer()
 
-    <div class="uebung-meta">
-        @countdown()
-        @testprogress(id)
-    </div>
+    @sidebyside() {
+        <ul class="filedir">
+            <li>
+                src
+                <ul>
+                    <li>
+                        main
+                        <ul>
+                            <li>
+                                scala
+                                <ul>
+                                    <li>
+                                        de
+                                        <ul>
+                                            <li>
+                                                learnscala
+                                                <ul>
+                                                    <li>
+                                                        uebungen
+                                                        <ul>
+                                                            <li>
+                                                                <em>@{id}.scala</em>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li>
+                        test
+                        <ul>
+                            <li>
+                                scala
+                                <ul>
+                                    <li>
+                                        de
+                                        <ul>
+                                            <li>
+                                                learnscala
+                                                <ul>
+                                                    <li>
+                                                        uebungen
+                                                        <ul>
+                                                            <li>
+                                                                <em>@{id}.scala</em>
+                                                            </li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    } {
+        <div class="uebung-meta">
+            @countdown()
+            @testprogress(id)
+        </div>
+    }
 
     <script type="text/javascript">
         require(["jquery", "app/util/chart"], function($, Chart) {
