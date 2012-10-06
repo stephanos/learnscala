@@ -6,21 +6,21 @@
             src="https://docs.google.com/drawings/pub?id=1kRUpQWsq_eIhXBq3vk18o094FoN4ERSA8kZv-iG6Jb4&amp;w=450">
     } {
         @spacer2()@spacer()
-        <ul>
-            <li class="fragment">
+        <ul class="fragments">
+            <li>
                 <code>scala.collection.immutable</code> enthält <br/>
                 <em>unveränderliche</em>, sequenzielle Collections
             </li>
-            <li class="fragment">
+            <li>
                 <code>scala.collection.mutable</code> enthält <br/>
                 <var>veränderliche</var>, sequenzielle Collections
                 @spacer2()@spacer()
             </li>
-            <li class="fragment">
+            <li>
                 <code>scala.collection.parallel.immutable</code> enthält <br/>
                 <em>unveränderliche</em>, parallele Collections
             </li>
-            <li class="fragment">
+            <li>
                 <code>scala.collection.parallel.mutable</code> enthält <br/>
                 <var>veränderliche</var>, parallele Collections
             </li>
@@ -40,16 +40,16 @@
             <h4>Traversable</h4>
             @spacer()
             <div class="indent">
-                <ul>
+                <ul class="fragments">
                     <li>Super-Klasse von allen Collections</li>
-                    <li class="fragment">
+                    <li>
                         abstrakte Methode <code>foreach</code>: wendet eine Funktion auf alle Elemente an
                         @spacer()
                         @sourcecode(fragment = false) {
                             |def foreach[U](f: Elem => U): Unit
                         }
                     </li>
-                    <li class="fragment">
+                    <li>
                         Basis-Methoden zum Hinzufügen, Abfragen, Mappen, Konvertieren, Kopieren, Teilen etc.
                     </li>
                 </ul>
@@ -192,9 +192,9 @@
             <h4>Iterable</h4>
             @spacer()
             <div class="indent">
-                <ul>
+                <ul class="fragments">
                     <li>erbt von <code>Traversable</code></li>
-                    <li class="fragment">
+                    <li>
                         implementiert <code>foreach</code>
                         @spacer()
                         @sourcecode(fragment = false) {
@@ -204,7 +204,7 @@
                             |}
                         }
                     </li>
-                    <li class="fragment">
+                    <li>
                         abstrakte Methode <code>iterator</code>
                         @spacer()
                         @sourcecode(fragment = false) {
@@ -235,21 +235,21 @@
             <h4>Set</h4>
             @spacer()
             <div class="indent">
-                <ul>
+                <ul class="fragments">
                     <li><code>Iterable</code> ohne gleiche Elemente</li>
-                    <li class="fragment">
+                    <li>
                         <code>HashSet</code>
                         @spacer()
                         <ul>
                             <li>Standardimplementierung</li>
-                            <li class="fragment">
+                            <li>
                                 sortiert nach <code>hashCode</code>;
                                 beschleunigt Zugriff auf beliebige Elemente
                             </li>
 
                         </ul>
                     </li>
-                    <li class="fragment">
+                    <li>
                         <code>SortedSet</code>
                         @spacer()
                         <ul>
@@ -399,7 +399,7 @@
             <h4>Map</h4>
             @spacer()
             <div class="indent">
-                <ul>
+                <ul class="fragments">
                     <li><code>Iterable</code> aus Schlüssel-Wert-Paaren</li>
 
                     <li class="fragment">

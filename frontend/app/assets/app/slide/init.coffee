@@ -29,6 +29,13 @@ define [
         new Countdown()
         new Timer()
 
+        $(".fragments").each((idx, elem) ->
+          $(elem).children().each((idx2, elem2) ->
+            if(!$(elem2).is('hr'))
+              $(elem2).addClass("fragment")
+          )
+        )
+
       else
         $(".fragment").removeClass("fragment")
         $(".slide-end").remove()

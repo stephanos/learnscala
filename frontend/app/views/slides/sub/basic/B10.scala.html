@@ -38,7 +38,7 @@
         } {
             @sidebyside((60,40)) {
                 @snippet() {
-                    @sourceblock(fragment = false) {
+                    @sourceblock() {
                         |val i: Int = 5
                     }
                     @outblock() {
@@ -52,30 +52,34 @@
                     }
                 }
             } {
-                <div>
+                @fragment {
                     interaktive Konsole: <br/> Read-Eval-Print-Loop (REPL)
-                </div>
+                }
             }
 
             @spacer()
 
             @sidebyside((60,40)) {
-                @callcode(fragment = false) {
+                @callcode() {
                     |println("Hello World")
                 }
             } {
-               keine Semikolons
+                @fragment {
+                    keine Semikolons
+                }
             }
 
             @spacer()
 
             @sidebyside((60,40)) {
-                @callcode(fragment = false) {
+                @callcode() {
                     |val i = 1 + 2 * 3      // type of i is Int
                     |val s = "Scala rocks"  // type of s is String
                 }
             } {
-                Typinferenz
+                @fragment {
+                    Typinferenz
+                }
             }
 
             @spacer()
@@ -91,34 +95,38 @@
             Scala ist ... <span><em>objektorientiert</em></span>
         } {
             @sidebyside(fragment = true) {
-                @callcode(fragment = false) {
+                @callcode() {
                     |42.toFloat
                     |(3.14f).floor
                 }
             } {
-                jeder Wert ist ein Objekt
+                @fragment {
+                    jeder Wert ist ein Objekt
+                }
             }
 
             @spacer()
 
             @sidebyside(fragment = true) {
-                @sourcecode(fragment = false) {
+                @sourcecode() {
                     |class MonsterTruck extends Car
                 }
             } {
-                Klassen und Vererbung
+                @fragment {
+                    Klassen und Vererbung
+                }
             }
 
             @spacer()
 
             @sidebyside(fragment = true) {
-                @sourcecode(fragment = false) {
+                @sourcecode() {
                     |class FlyingCar extends Car with Wings
                 }
             } {
-                <div>
+                @fragment {
                     Mixin-Mechanismus
-                </div>
+                }
             }
 
             @tipbox() {
@@ -132,31 +140,37 @@
             Scala ist ... <span><em>knapp und präzise</em></span>
         } {
             @sidebyside((60,40)) {
-                @sourcecode(fragment = false) {
+                @sourcecode() {
                     |class MyCar(wheels: Int = 4)
                 }
             } {
-                weniger Boilerplate-Code
+                @fragment {
+                    weniger Boilerplate-Code
+                }
             }
 
             @spacer()
 
             @sidebyside((60,40)) {
-                @sourcecode(fragment = false) {
+                @sourcecode() {
                     |trait Logging
                 }
             } {
-                Traits zur Wiederverwendung
+                @fragment {
+                    Traits zur Wiederverwendung
+                }
             }
 
             @spacer()
 
             @sidebyside((60,40)) {
-                @sourcecode(fragment = false) {
+                @sourcecode() {
                     |def getUserAttributes[T](fn: (User) => List[T])
                 }
             } {
-                Closures
+                @fragment {
+                    Closures
+                }
             }
 
             @tipbox() {
@@ -170,29 +184,34 @@
             Scala ist ... <span><em>funktional</em></span>
         } {
             @sidebyside((66,33)) {
-                @callcode(fragment = false) {
-                    |val names = users.map(_.username)
+                @callcode() {
+                    |val names =
+                    |   users.map(_.username)
                     |
-                    |val minors = users.map(_.age()).filter(_ < 18)
+                    |val minors =
+                    |   users.map(_.age()).filter(_ < 18)
                 }
             } {
-                wiederverwendbare Code-Blöcke ohne Seiteneffekte
+                @fragment {
+                    wiederverwendbare Code-Blöcke ohne Seiteneffekte
+                }
             }
 
             @spacer()
 
-            <!-- TODO: better example? composable? futures? -->
             @sidebyside((66,33)) {
-                @sourcecode(fragment = false) {
-                    |def matchTest(arg: String, value: Any) =
-                    | (arg, value) match {
-                    |   case ("-h"|"--help", _) => showHelp()
-                    |   case ("-v"|"--version", _) => showVersion()
-                    |   case (a,v) => sys.error("unknown arg:" + a)
+                @sourcecode() {
+                    |for {
+                    |  name <- futureName
+                    |  friends <- futureFriends
+                    |} yield {
+                    |  Profile(name, friends)
                     |}
                 }
             } {
-                Pattern Matching
+                @fragment {
+                    Komposition
+                }
             }
 
             @tipbox() {
@@ -206,31 +225,37 @@
             Scala ist ... <span><em>statisch typisiert</em></span>
         } {
             @sidebyside((66,33)) {
-                @callcode(fragment = false) {
+                @callcode() {
                     |val i = 1 + 2 * 3    // the type of i is Int
                 }
             } {
-                Typinferenz
+                @fragment {
+                    Typinferenz
+                }
             }
 
             @spacer()
 
             @sidebyside((66,33)) {
-                @callcode(fragment = false) {
+                @callcode() {
                     |val j: Int = "test"  // COMPILER ERROR!
                 }
             } {
-                Typensicherheit
+                @fragment {
+                    Typensicherheit
+                }
             }
 
             @spacer()
 
             @sidebyside((66,33)) {
-                @sourcecode(fragment = false) {
+                @sourcecode() {
                     |def cloneAndReset(o: Cloneable with Resetable) = ..
                 }
             } {
-                Compound Types
+                @fragment {
+                    Compound Types
+                }
             }
 
             @tipbox() {
@@ -244,7 +269,7 @@
             Scala ist ... <span><em>Java</em></span>
         } {
             @sidebyside((60,40)) {
-                @sourcecode(fragment = false) {
+                @sourcecode() {
                     |import org.apache.http.client._
                     |import org.apache.http.client.methods._
                     |
@@ -271,19 +296,21 @@
             Scala ist ... <span><em>erweiterbar</em></span>
         } {
             @sidebyside((60,40)) {
-                @sourcecode(fragment = false) {
+                @sourcecode() {
                     |retry(3) {
                     |   connectToDatabase()
                     |}
                 }
             } {
-                eigene Kontrollstrukturen
+                @fragment {
+                    eigene Kontrollstrukturen
+                }
             }
 
             @spacer()
 
             @sidebyside((60,40)) {
-                @sourcecode(fragment = false) {
+                @sourcecode() {
                     @Html("""
                     |"The 'Hello world' string" should {
                     |    "contain 11 characters" in {
@@ -291,7 +318,9 @@
                     """)
                 }
             } {
-                eigene Sprachen: <br/>Domain Specific Language
+                @fragment {
+                    eigene Sprachen: <br/>Domain Specific Language
+                }
             }
 
             @tipbox() {
@@ -305,7 +334,7 @@
             Scala ist ... <span><em>skalierbar</em></span>
         } {
             @sidebyside((60,40)) {
-                @sourcecode(fragment = false) {
+                @sourcecode() {
                     |class ReverseActor extends Actor {
                     |
                     |  override def receive = {
@@ -315,7 +344,9 @@
                     |}
                 }
             } {
-                Aktorenmodell
+                @fragment {
+                    Aktorenmodell
+                }
             }
 
             @tipbox() {

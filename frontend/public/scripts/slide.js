@@ -8354,6 +8354,13 @@ define('app/slide/init',["jquery", "lib/util/underscore", "lib/reveal", "app/edi
         li.find(".divider").remove();
         new Countdown();
         new Timer();
+        $(".fragments").each(function(idx, elem) {
+          return $(elem).children().each(function(idx2, elem2) {
+            if (!$(elem2).is('hr')) {
+              return $(elem2).addClass("fragment");
+            }
+          });
+        });
       } else {
         $(".fragment").removeClass("fragment");
         $(".slide-end").remove();
