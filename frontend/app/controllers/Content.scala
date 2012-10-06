@@ -31,7 +31,7 @@ object Content extends MyController {
 
     // === FUNKTIONEN
 
-    lazy val funktionen1 = Slide("F10", "Funktionen I", oop, Seq(objekte))
+    lazy val funktionen1 = Slide("F10", "Funktionen I", fp, Seq(objekte))
 
     // === ERWEITERT
 
@@ -55,15 +55,14 @@ object Content extends MyController {
     lazy val typen1 = Slide("O20", "Typen I", oop, Seq(klassen1), status = "complete")
     lazy val traits = Slide("O21", "Traits", oop, Seq(klassen1, vererbung1), status = "complete")
     lazy val klassen2 = Slide("O22", "Klassen II", oop, Seq(vererbung1), status = "complete")
-    lazy val vererbung2 = Slide("O23", "Vererbung II", oop, Seq(vererbung1))
     lazy val generics1 = Slide("O24", "Typ-Parameter I", oop, Seq())
 
 
     // === FUNKTIONEN
 
-    lazy val funktionen2 = Slide("F20", "Funktionen II", oop, Seq(funktionen1))
-    lazy val kollektionen1 = Slide("F21", "Kollektionen I", fp, Seq(generics1))
+    lazy val funktionen2 = Slide("F20", "Funktionen II", fp, Seq(funktionen1))
     lazy val forexpr = Slide("F21", "for-Ausdruck", fp, Seq(kollektionen1), status = "complete")
+    lazy val kollektionen1 = Slide("F24", "Kollektionen I", fp, Seq(generics1))
 
 
     // === ERWEITERT
@@ -94,7 +93,7 @@ object Content extends MyController {
 
     // === FUNKTIONEN
 
-    lazy val funktionen3 = Slide("F30", "Funktionen III", oop, Seq(funktionen2))
+    lazy val funktionen3 = Slide("F30", "Funktionen III", fp, Seq(funktionen2))
     lazy val kollektionen2 = Slide("F31", "Kollektionen II", fp, Seq(kollektionen1))
     lazy val kontrollabstraktion = Slide("F32", "Kontrollabstraktion", fp, Seq())
 
