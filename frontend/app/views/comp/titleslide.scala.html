@@ -1,0 +1,8 @@
+@(id: String = null, subsubtitle: String = null, subtitle: String = null, title: String = null, chapter: String = null,
+  hideFooter: Boolean = false, clazz: String = "")(body: Html = Html.empty)(implicit topic: String = null)
+
+@headslide(id = id, subsubtitle = subsubtitle, subtitle = subtitle, title = title, chapter = chapter, hideFooter = hideFooter, clazz = clazz) {
+    @title
+} {
+    @body
+}

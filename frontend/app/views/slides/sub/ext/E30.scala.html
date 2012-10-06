@@ -10,47 +10,106 @@
 
         <!-- ################################################################################## -->
 
-        @headslide(title = "Einleitung") {
-            Das <em>Aktor</em>enmodell
-        } {
+        @titleslide(title = "Status Quo") {
             <ul class="fragments">
                 <li>
-                    höhrere Abstraktionsebene als Threads: <em>Aktoren</em>
+                    <var>früher:</var> Leistung von CPUs verdoppelt sich alle 1-2 Jahre (Mooresche Gesetz)
                 </li>
                 <li>
-                    Senden und Empfangen von Nachrichten
+                    <em>jetzt:</em> Prozessoren mit mehreren Kernen
+                </li>
+                <li>
+                    Parallele bzw. nebenläufige Programmierung wird immer wichtiger
+                </li>
+                @spacer()
+                <li>
+                    Wie löst Java das Problem?
+                    @spacer_half()
+                    <ul class="fragments">
+                        <li>
+                            <var>Threads</var> und <var>Locks</var>
+                        </li>
+                        <li>
+                            <var>Synchronisation</var> von Zuständen
+                        </li>
+                        <li>
+                            @uline("Fazit"): komplex und fehleranfällig
+                        </li>
+                    </ul>
                 </li>
             </ul>
         }
 
         <!-- ################################################################################## -->
 
-        @defining("Akka Framework") { title =>
+        @defining("Aktorenmodell") { title =>
 
-            @headslide(title = title) {
-                @title
-            } {
+            @titleslide(title = title) {
+
                 <ul class="fragments">
                     <li>
-                        eventbasiertes Middleware-Framework
+                        höhere <em>Abstraktion</em>sebene als Threads
                     </li>
                     <li>
-                        mittlerweile Teil vom <var>Typesafe Stack</var>
+                        Prinzipien
+                        @spacer_half()
+                        <ul class="fragments">
+                            <li>isoliert</li>
+                            <li>asychron</li>
+                            <li>leichtgewichtig</li>
+                            <li>eventbasiert</li>
+                        </ul>
                     </li>
                     <li>
-                        <em>Ziel:</em> hohe Performanz und Zuverlässigkeit
+                        Kommunikation durch Senden und Empfangen von <em>Nachrichten</em>
                     </li>
                     <li>
-                        Schnittstellen für Scala und Java
+                        Fokus auf Ablauf des Nachrichtenstroms
                     </li>
                 </ul>
             }
 
             <!-- ################################################################################## -->
 
-            @headslide(title = title) {
-                @title
-            } {
+            @titleslide(title = title) {
+                @Images.actorModel()
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("Akka Framework") { title =>
+
+            @titleslide(title = title) {
+                <ul class="fragments">
+                    <li>
+                        eventbasiertes Middleware-Framework
+                    </li>
+                    <li>
+                        mittlerweile Teil vom offiziellen <var>Typesafe Stack</var>
+                    </li>
+                    <li>
+                        <em>Ziele:</em>
+                        @spacer_half()
+                        <ul class="fragments">
+                            <li>@uline("hohe") Zuverlässigkeit</li>
+                            <li>@uline("hohe") Performanz</li>
+                            <li>@uline("hohe") Skalierung</li>
+                            <li>@uline("einfache") Programmierung</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Schnittstellen für <em>Scala</em> und <var>Java</var>
+                    </li>
+                    <li>
+                        eingesetzt bei Klout, Autodesk, Blizzard, UBS, Amazon, VMWare, CreditSuisse etc.
+                    </li>
+                </ul>
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title) {
                 @snippet() {
                     @sourceblock(fragment = false) {
                         |// define message

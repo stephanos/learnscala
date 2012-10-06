@@ -30,9 +30,7 @@
 
         @defining("Spray") { title =>
 
-            @headslide(title = title) {
-                @title
-            } {
+            @titleslide(title = title) {
                 <div class="indent">
                     <ul>
                         <li>
@@ -57,9 +55,7 @@
 
             <!-- ################################################################################## -->
 
-            @headslide(title = title, subtitle = "Beispiel") {
-                @title
-            } {
+            @titleslide(title = title, subtitle = "Beispiel") {
                 @sourcecode(fragment = false) {
                     |trait CalculatorService @("extends") Directives with CustomMarshallers {
                     |

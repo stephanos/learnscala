@@ -2,10 +2,9 @@
 
     @layout.slidedeck(topic) {
 
-        @slidehead() {
-            @topic
-        } {
-           Scala, die unbekannte Sprache?
+        @slide() {
+            @spacer2()
+            <img src="/assets/img/scala-logo.png" class="naked">
         }
 
         <!-- ################################################################################## -->
@@ -411,10 +410,10 @@
         <!-- ################################################################################## -->
 
         @headslide(title = "Zusammenfassung") {
-            Scala ist ...
+            Scala
         } {
-            <h4>
-                @sidebyside((40,40)) {
+            <h4 class="indent90">
+                @sidebyside(gap = 30) {
                     <ul class="fragment w40p left">
                         <li class="nobreak"><em>Java</em></li>
                         <li class="nobreak"><em>funktional</em></li>
