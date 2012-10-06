@@ -86,6 +86,9 @@
                         eventbasiertes Middleware-Framework
                     </li>
                     <li>
+                        entwickelt seit 2009, v1.0 in 2011, v2.0 in 2012
+                    </li>
+                    <li>
                         mittlerweile Teil vom offiziellen <var>Typesafe Stack</var>
                     </li>
                     <li>
@@ -102,7 +105,8 @@
                         Schnittstellen für <em>Scala</em> und <var>Java</var>
                     </li>
                     <li>
-                        eingesetzt bei Klout, Autodesk, Blizzard, UBS, Amazon, VMWare, CreditSuisse etc.
+                        eingesetzt bei Klout, Autodesk, Blizzard, <br/>
+                        UBS, Amazon, VMWare, CreditSuisse etc.
                     </li>
                 </ul>
             }
@@ -112,13 +116,15 @@
             @titleslide(title = title) {
                 @snippet() {
                     @sourceblock(fragment = false) {
+                        |import akka.actor._
+                        |
                         |// define message
-                        |case class Greeting(who: String)
+                        |case class Greeting (who: String)
                         |
                         |// define actor
-                        |class GreetingActor extends Actor with ActorLogging {
+                        |class GreetingActor extends Actor {
                         |  def receive = {
-                        |    case Greeting(who) => log.info("Hello " + who)
+                        |    case Greeting(who) => println("Hello " + who)
                         |  }
                         |}
                         |
@@ -126,7 +132,7 @@
                         |val system = ActorSystem("MySystem")
                         |
                         |// get an actor of type 'GreetingActor'
-                        |val greeter = system.actorOf(Props[GreetingActor], name = "greeter")
+                        |val greeter = system.actorOf(Props[GreetingActor], "greeter")
                         |
                         |// send message to actor
                         |greeter ! Greeting("John")

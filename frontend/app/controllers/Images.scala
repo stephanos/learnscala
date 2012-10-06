@@ -17,7 +17,7 @@ object Images extends MyController {
     def webTools(h: Int = 700) =
         gimage("1gNRfFTYbRkbpnrH2be0k2II2AWW0Y_d9kcJOaRL4pak", height = h)
 
-    def actorModel(h: Int = 600) =
+    def actorModel(h: Int = 650) =
         gimage("1A9ZZjzFCkYDzQtq39jlO3w-pMbNCziwVVZZ5k7yMqG4", height = h)
 
     def dbTools(h: Int = 700) =
