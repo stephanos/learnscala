@@ -7,15 +7,21 @@ object Quiz extends MyController {
     def hierarchy() =
         views.html.quizzes.hierarchy()
 
-    def variables() =
-        views.html.quizzes.variables()
+    def variable() =
+        views.html.quizzes.variable()
+
+    def operator() =
+        views.html.quizzes.operator()
+
+    def expression() =
+        views.html.quizzes.expression()
 
     def collection() =
         views.html.quizzes.collection()
 
-    def methoden1() =
-        views.html.quizzes.methoden1()
+    def method1() =
+        views.html.quizzes.method1()
 
-    def methoden2() =
-        views.html.quizzes.methoden2()
+    def method2() =
+        views.html.quizzes.method2()
 }

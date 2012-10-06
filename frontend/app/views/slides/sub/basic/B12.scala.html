@@ -9,7 +9,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
+        @slide(title = "REPL") {
 
             @sidebyside((40,60)) {
                 @snippet() {
@@ -40,7 +40,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
+        @slide(title = "Objekt") {
 
             @snippet() {
                 @callblock() {
@@ -71,277 +71,329 @@
 
             @spacer()
 
-            @infobox() {
-                Alles ist ein Objekt.
+            @snippet() {
+                @callblock() {
+                    |42 == 42
+                }
+                @outblock() {
+                    |res2: Boolean = true
+                }
             }
-        }
 
-        <!-- ################################################################################## -->
-
-        @slide() {
-
-            @sidebyside((66,33)) {
-                @snippet() {
-                    @sourceblock() {
-                        |def almostThere(x0: Int, y0: Int, x: Int, y: Int) = {
-                        |   val distance = {
-                        |       val dx = x - x0
-                        |       val dy = y - y0
-                        |       Math.sqrt(dx * dx + dy * dy)
-                        |   }
-                        |   distance < 20
-                        |}
-                    }
-                    @outblock() {
-                        |almostThere: (x0: Int, y0: Int, x: Int, y: Int)Boolean
-                    }
-                }
-            } {
-                @fragment {
-                    Variable <code>distance</code> hat den Typ der <code>sqrt</code>-Methode: <code>Double</code>
-                }
+            @codesub2() {
+                Methode <code>==</code> von Objekt <code>42</code>
             }
 
             @spacer()
 
             @infobox() {
-                Ein Block hat immer einen Wert - und zwar den Wert des letzten Ausdrucks
+                Alles ist ein Objekt. Jedes Objekt hat Methoden.
             }
         }
 
         <!-- ################################################################################## -->
 
-        @slide() {
+        @slide(title = "Blöcke") {
 
-            @sidebyside() {
-                @snippet() {
-                    @callblock() {
-                        |val passengers: Int = 42
-                    }
-                    @outblock() {
-                        |passengers: Int = 42
-                    }
+            @snippet() {
+                @sourceblock() {
+                    |{
+                    |   1 + 1
+                    |   2 + 2
+                    |   3 + 3
+                    |}
                 }
-            } {
-                <ul class="indent">
-                    <li class="fragment">
-                        <code>val</code> beginnt Variable
-                    </li>
-                    <li class="fragment">
-                        <code>passengers</code> ist der Name
-                    </li>
-                    <li class="fragment">
-                        <code>:</code> trennt Name und Typ
-                    </li>
-                    <li class="fragment">
-                        <code>Int</code> ist der Typ
-                    </li>
-                    <li class="fragment">
-                        <code>=</code> weist Wert zu
-                    </li>
-                    <li class="fragment">
-                        <code>42</code> ist der Wert
-                    </li>
-                </ul>
+                @outblock() {
+                    |res0: Int = 6
+                }
+            }
+
+            @codesub2() {
+                Blöcke bündeln mehrere Anweisungen
+            }
+
+            @spacer()
+
+            @snippet() {
+                @sourceblock() {
+                    |{
+                    |   { 1 + 1 }
+                    |   2
+                    |}
+                }
+                @outblock() {
+                    |res0: Int = 2
+                }
+            }
+
+            @codesub2() {
+                letzte Ausdruck bestimmt den Wert des Blocks
             }
 
             @spacer()
 
             @infobox() {
-                <code>val</code> leitet eine Variable ein, der Typ folgt <strong>hinter</strong> dem Namen.
+                Jeder Ausdruck hat einen Wert und Typ.
             }
         }
 
         <!-- ################################################################################## -->
 
-        @slide() {
-            @sidebyside() {
-                @snippet() {
-                    @callblock() {
-                        |val passengers: Int = 42
-                    }
-                    @outblock() {
-                        |passengers: Int = 42
-                    }
-                    @callblock() {
-                        |passengers = 101
-                    }
-                    @outblock(error = true) {
-                        |error: reassignment to val
-                        |       passengers = 101
-                        |                    ^
-                    }
+        @slide(title = "Semikolons") {
+
+            @snippet() {
+                @callblock() {
+                    |{
+                    |   1 + 1
+                    |   2 + 2
+                    |}
                 }
-            } {
-                <code>passengers</code> wird mit <code>val</code>
-                definiert und versucht zu überschreiben.
+                @outblock() {
+                    |res0: Int = 4
+                }
             }
 
             @spacer()
 
-            @infobox() {
-                <code>val</code> kann nicht überschrieben werden, sie ist unveränderlich (immutable).
-            }
-        }
-
-        <!-- ################################################################################## -->
-
-        @slide() {
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @callblock() {
-                        |val passengers: Int = "Java"
-                    }
-                    @outblock(error = true) {
-                        |error   : type mismatch;
-                        |found   : java.lang.String("Java")
-                        |required: Int
-                        |          val passengers: Int = "Java"
-                        |                                ^
-                    }
+            @snippet() {
+                @callblock() {
+                    |1 + 1; 2 + 2
                 }
-            } {
-                <code>passengers</code> wird als <code>Int</code> definiert
-                aber mit dem String <code>Java</code> initialisiert
-            }
-
-            @spacer()
-
-            @infobox() {
-                Der Compiler stellt sicher, dass Variablentyp und -wert zusammenpassen.
-            }
-        }
-
-        <!-- ################################################################################## -->
-
-        @slide() {
-            @sidebyside((45,55)) {
-                @snippet() {
-                    @callblock() {
-                        |val passengers = 42
-                    }
-                    @outblock() {
-                        |passengers: Int = 42
-                    }
+                @outblock() {
+                    |res0: Int = 4
                 }
-            } {
-                <code>passengers</code> wird mit dem Wert <code>42</code> initialisiert,
-                der Typ <code>Int</code> wird zugewiesen
             }
 
             @spacer2()
-
-            @sidebyside((45,55)) {
-                @snippet() {
-                    @callblock() {
-                        |val fuel = 3.14f
-                    }
-                    @outblock() {
-                        |fuel: Float = 3.14
-                    }
-                }
-            } {
-                <code>fuel</code> wird mit dem Wert <code>3.14f</code> initialisiert,
-                der Compiler erkennt den Typ <code>Float</code>
-            }
-
-            @spacer2()
-
-            @infobox() {
-                Der Variablentyp kann weggelassen werden, der Compiler leitet ihn ab.
-            }
-        }
-
-        <!-- ################################################################################## -->
-
-        @slide() {
-
-            @sidebyside() {
-                @snippet() {
-                    @callblock() {
-                        |val a = 1
-                        |val b = 2
-                    }
-                    @outblock() {
-                        |a: Int = 1
-                        |b: Int = 2
-                    }
-                }
-            } {
-                @snippet() {
-                    @callblock() {
-                        |val a = 1; val b = 2
-                        |
-                    }
-                    @outblock() {
-                        |a: Int = 1
-                        |b: Int = 2
-                    }
-                }
-            }
-
-            @spacer()
 
             @tipbox() {
-                Semikolons weglassen, außer mehrere Anweisungen stehen in einer Zeile.
+                Semikolons weglassen, <br/> außer mehrere Anweisungen stehen in einer Zeile.
             }
-        }
-
-        <!-- ################################################################################## -->
-
-        @*<section>
-            @summary(){
-                @summaries.variablen()
-            }
-        </section>*@
-
-        <!-- ################################################################################## -->
-
-        @slide() {
-
-            @sidebyside((40,60)) {
-                @snippet() {
-                    @callblock() {
-                        |var fuel = 3.14f
-                    }
-                    @outblock() {
-                        |fuel: Float = 3.14f
-                    }
-                    @callblock() {
-                        |fuel = 3.0
-                    }
-                    @outblock() {
-                        |fuel: Float = 3.0
-                    }
-                }
-            } {
-                @fragment {
-                    Variable <code>fuel</code> wird initialisiert
-                    @spacer()
-                    Der Wert wird mit einer weiteren Anweisung überschrieben
-                }
-            }
-
-            @spacer()
-
-            @infobox() {
-                <code>var</code> kann überschrieben werden, sie ist veränderlich (mutable).
-            }
-            @warnbox() {
-                <code>var</code> sollte vermieden und nur sehr bedacht eingesetzt werden.
-            }
-
-            <details>
-                <a href="http://stackoverflow.com/questions/1791408/">
-                    What is the difference between a var and val definition in Scala?
-                </a>
-            </details>
         }
 
         <!-- ################################################################################## -->
 
         @quiz() {
-            @Quiz.variables()
+            @Quiz.expression()
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("Variablen") { title =>
+
+            @slide(title = title) {
+
+                @sidebyside() {
+                    @snippet() {
+                        @callblock() {
+                            |val answer: Int = 42
+                        }
+                        @outblock() {
+                            |answer: Int = 42
+                        }
+                    }
+                } {
+                    <ul class="indent">
+                        <li class="fragment">
+                            <code>val</code> beginnt Variable
+                        </li>
+                        <li class="fragment">
+                            <code>answer</code> ist der Name
+                        </li>
+                        <li class="fragment">
+                            <code>:</code> trennt Name und Typ
+                        </li>
+                        <li class="fragment">
+                            <code>Int</code> ist der Typ
+                        </li>
+                        <li class="fragment">
+                            <code>=</code> weist Wert zu
+                        </li>
+                        <li class="fragment">
+                            <code>42</code> ist der Wert
+                        </li>
+                    </ul>
+                }
+
+                @spacer()
+
+                @infobox() {
+                    <code>val</code> leitet eine Variable ein, der Typ folgt <strong>hinter</strong> dem Namen.
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "unveränderlich") {
+
+                @snippet() {
+                    @callblock() {
+                        |val answer: Int = 42
+                    }
+                    @outblock() {
+                        |answer: Int = 42
+                    }
+                    @callblock() {
+                        |answer = 101
+                    }
+                    @outblock(error = true) {
+                        |error: reassignment to val
+                        |       answer = 101
+                        |                    ^
+                    }
+                }
+
+                @codesub2() {
+                    <code>val</code> ist <em>unveränderlich</em> (immutable)
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Typensicherheit") {
+
+                @snippet() {
+                    @callblock() {
+                        |val answer: Int = "Java"
+                    }
+                    @outblock(error = true) {
+                        |error   : type mismatch;
+                        |found   : java.lang.String("Java")
+                        |required: Int
+                        |          val answer: Int = "Java"
+                        |                                ^
+                    }
+                }
+
+                @codesub2() {
+                    Variablenwert und -typ müssen zusammenpassen
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Typinferenz") {
+
+                @sidebyside(gap = 10) {
+                    @snippet() {
+                        @callblock() {
+                            |val i = 42
+                        }
+                        @outblock() {
+                            |i: Int = 42
+                        }
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock() {
+                            |val l = 42L
+                        }
+                        @outblock() {
+                            |l: Long = 42
+                        }
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock() {
+                            |val b = true
+                        }
+                        @outblock() {
+                            |b: Boolean = true
+                        }
+                    }
+                } {
+                    @snippet() {
+                        @callblock() {
+                            |val f = 3.14f
+                        }
+                        @outblock() {
+                            |f: Float = 3.14
+                        }
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock() {
+                            |val d = 1.0
+                        }
+                        @outblock() {
+                            |d: Double = 1.0
+                        }
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock() {
+                            |val c = 'x'
+                        }
+                        @outblock() {
+                            |c: Char = x
+                        }
+                    }
+                }
+
+                @spacer()
+
+                @infobox() {
+                    Der Variablentyp kann weggelassen werden, <br/> der Compiler leitet ihn ab.
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @*<section>
+                @summary(){
+                    @summaries.variablen()
+                }
+            </section>*@
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "") {
+
+                @snippet() {
+                    @callblock() {
+                        |var pi = 3.14f
+                    }
+                    @outblock() {
+                        |pi: Float = 3.14f
+                    }
+                    @callblock() {
+                        |pi = 3.0
+                    }
+                    @outblock() {
+                        |pi: Float = 3.0
+                    }
+                }
+
+                @codesub2() {
+                    <code>var</code> ist <var>veränderlich</var> (mutable)
+                }
+
+                @spacer()
+
+                @warnbox() {
+                    <code>var</code> sollte vermieden und nur sehr bedacht <br/> eingesetzt werden.
+                }
+
+                <details>
+                    <a href="http://stackoverflow.com/questions/1791408/">
+                        What is the difference between a var and val definition in Scala?
+                    </a>
+                </details>
+            }
+
+            <!-- ################################################################################## -->
+
+            @quiz() {
+                @Quiz.variable()
+            }
         }
     }
 }
