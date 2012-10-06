@@ -4,10 +4,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val r = 42f
+                |val int r = 42
             }
-            @outblock() {
-                |r: Float = 42
+            @outblock(error = true) {
+                |illegal start of simple pattern
             }
         }
     }
@@ -17,10 +17,12 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val r: Int = 5.0 * 5
+                |val r = {
+                |   1 + { 1 + 1 }
+                |}
             }
             @outblock() {
-                |r: Double = 25.0
+                |r: Int = 3
             }
         }
     }
@@ -34,7 +36,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val r = 24.==(42)
+                |val r = 24 == 42
             }
             @outblock() {
                 |r: Boolean = false
@@ -47,10 +49,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val r = 42 isWhole
+                |val r = 'S'
             }
             @outblock() {
-                |r: Boolean = true
+                |r: Char = S
             }
         }
     }
@@ -64,10 +66,13 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val r = (5.)*5
+                |val r = {
+                |   1
+                |   2; 3
+                |}
             }
             @outblock() {
-                |r: Double = 25.0
+                |r: Int = 3
             }
         }
     }
@@ -109,10 +114,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val r = (5).*(5)
+                |val r = 5; r = 10
             }
-            @outblock() {
-                |r: Int = 25
+            @outblock(error = true) {
+                |reassignment to val
             }
         }
     }
