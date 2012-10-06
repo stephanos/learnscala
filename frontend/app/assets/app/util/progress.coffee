@@ -28,7 +28,7 @@ define [
             # calc status
             deps = $(link).data("deps")
             if(deps)
-              deps = deps.split(",")
+              deps = _.filter(deps.split(","), (id) => @getItem(id)[0])
               missing = _.reject(deps, (id) =>
                 localStorage[@getKey(@getItem(id).parent().find("input"))]
               )
