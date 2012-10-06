@@ -19,75 +19,99 @@ TODO
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Überblick der Bibliotheken") {
-            @Images.testTools()
-        }
+        @overview
 
         <!-- ################################################################################## -->
 
-        @defining("ScalaTest") { title =>
+        @defining("Unit Testing") { title =>
 
-            @slide(title = title) {
+            @defining("ScalaTest") { title =>
 
-            }
-        }
+                @slide(title = title) {
 
-        <!-- ################################################################################## -->
-
-        @defining("Specs") { title =>
-
-            @slide(title = title) {
-                @sourcecode() {
-                    |import org.specs2.mutable._
-                    |
-                    |class HelloWorldSpec extends Specification {
-                    |
-                    |   "The 'Hello world' string" should {
-                    |
-                    |       "contain 11 characters" in {
-                    |           "Hello world" must have size(11)
-                    |       }
-                    |
-                    |       "start with 'Hello'" in {
-                    |           "Hello world" must startWith("Hello")
-                    |       }
-                    |
-                    |       "end with 'world'" in {
-                    |           "Hello world" must endWith("world")
-                    |       }
-                    |   }
-                    |}
                 }
             }
         }
 
         <!-- ################################################################################## -->
 
-        @defining("Mockito") { title =>
+        @overview
 
-            @slide(title = title) {
+        <!-- ################################################################################## -->
+
+        @defining("Specificiation Testing") { title =>
+
+            @defining("Specs") { subtitle =>
+
+                @slide(title = title, subtitle = subtitle) {
+                    @sourcecode() {
+                        |import org.specs2.mutable._
+                        |
+                        |class HelloWorldSpec extends Specification {
+                        |
+                        |   "The 'Hello world' string" should {
+                        |
+                        |       "contain 11 characters" in {
+                        |           "Hello world" must have size(11)
+                        |       }
+                        |
+                        |       "start with 'Hello'" in {
+                        |           "Hello world" must startWith("Hello")
+                        |       }
+                        |
+                        |       "end with 'world'" in {
+                        |           "Hello world" must endWith("world")
+                        |       }
+                        |   }
+                        |}
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @defining("ScalaCheck") { subtitle =>
+
+                @slide(title = title, subtitle = subtitle) {
 
 
+                }
             }
         }
 
         <!-- ################################################################################## -->
 
-        @defining("ScalaCheck") { title =>
+        @overview
 
-            @slide(title = title) {
+        <!-- ################################################################################## -->
 
+        @defining("Mocking") { title =>
 
+            @defining("ScalaMock") { title =>
+
+                @slide(title = title) {
+
+                }
             }
         }
 
         <!-- ################################################################################## -->
 
-        @defining("SBT") { title =>
+        @overview
+
+        <!-- ################################################################################## -->
+
+        @defining("SBT-Integration") { title =>
 
             @slide(title = title) {
 
             }
         }
+    }
+}
+
+@overview(implicit topic: String) = {
+    @slide(title = "Überblick der Bibliotheken") {
+        @Images.testTools()
     }
 }

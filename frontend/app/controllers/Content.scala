@@ -47,7 +47,7 @@ object Content extends MyController {
 
     lazy val annotationen = Slide("B21", "Annotationen", basic, Seq())
     lazy val operatoren = Slide("B22", "Operatoren", basic, Seq(methoden))
-    lazy val recursion = Slide("B25", "Rekursion", basic, Seq(kontrollstrukturen), status = "complete")
+    lazy val recursion = Slide("B25", "Rekursion", basic, Seq(kontrollstrukturen, annotationen), status = "complete")
 
 
     // === OBJEKTE
@@ -71,7 +71,7 @@ object Content extends MyController {
     lazy val jsond = Slide("E21", "JSON", ext, Seq())
     lazy val tests = Slide("E22", "Testen", ext, Seq())
     lazy val swing = Slide("E23", "Swing", ext, Seq())
-    lazy val interop = Slide("E24", "Interoperabilität", ext, Seq(implicit1, kollektionen1, traits), status = "complete")
+    lazy val interop = Slide("E24", "Interoperabilität", ext, Seq(implicit1, annotationen, kollektionen1, traits), status = "complete")
 
 
     // ================================================================================================================

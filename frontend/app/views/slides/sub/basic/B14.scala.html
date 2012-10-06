@@ -19,20 +19,18 @@
 
             @slide(title = title) {
 
-                @sidebyside() {
-                    @snippet() {
-                        @sourceblock(fragment = false) {
-                            |def sufficientFuel(f: Float) =
-                            |   if (f >= 50.0) true else false
-                        }
-                        @outblock() {
-                            |sufficientFuel: (f: Float)Boolean
-                        }
+                @snippet() {
+                    @sourceblock(fragment = false) {
+                        |def sufficientFuel(f: Float) =
+                        |   if (f >= 50.0) true else false
                     }
-                } {
-                    @fragment {
-                        Methode <code>sufficientFuel</code> hat den Rückgabetyp der Bedingung: <code>Boolean</code>
+                    @outblock() {
+                        |sufficientFuel: (f: Float)Boolean
                     }
+                }
+
+                @fragment {
+                    Methode <code>sufficientFuel</code> hat den Rückgabetyp der Bedingung: <code>Boolean</code>
                 }
 
                 @spacer()
