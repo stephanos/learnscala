@@ -10,8 +10,381 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
+        @defining("Bezeichner") { title =>
+
+            @slide(title = title) {
+
+                @sidebyside(gap = 15) {
+
+                    <em>erlaubt</em>
+
+                    @indent() {
+                        @spacer_half()
+
+                        @sourcecode() {
+                            |def x = ()
+                        }
+
+                        @spacer_half()
+
+                        @sourcecode() {
+                            |def _x2 = ()
+                        }
+
+                        @spacer_half()
+
+                        @sourcecode() {
+                            |def %/ = ()
+                        }
+
+                        @spacer_half()
+
+                        @sourcecode() {
+                            |def one_+ = ()
+                        }
+
+                        @spacer_half()
+
+                        @sourcecode() {
+                            |def √ = ()
+                        }
+                    }
+                } {
+                    <var>verboten</var>
+
+                    @indent() {
+                        @spacer_half()
+
+                        @sourcecode() {
+                            |def 123 = ()
+                        }
+
+                        @spacer_half()
+
+                        @sourcecode() {
+                            |def 2x = ()
+                        }
+
+                        @spacer_half()
+
+                        @sourcecode() {
+                            |def () = ()
+                        }
+
+                        @spacer_half()
+
+                        @sourcecode() {
+                            |def 2+ = ()
+                        }
+
+                        @spacer_half()
+
+                        @sourcecode() {
+                            |def √3 = ()
+                        }
+                    }
+                }
+
+                @infobox() {
+                    Ein Bezeichner kann
+                    <ul class="indent">
+                        <li>alphanumerisch (beginnend mit einem Buchstaben, gefolgt von Ziffern oder Buchstaben)</li>
+                        <li style="margin-top: 0;">oder symbolisch (Sequenz aus Operator-Symbolen)</li>
+                    </ul>
+                    sein. <code>_</code> zählt als Buchstabe und erlaubt die Kombination der beiden Typen.
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Backticks") {
+
+                @sourcecode() {
+                    |val `val` = ()
+                }
+                @codesub2() {
+                    <code>`</code> erlaubt Verwendung von Keywords
+                }
+
+                @spacer2()
+
+                @sourcecode() {
+                    Thread.`yield`().
+                }
+                @codesub2() {
+                    u.a. hilfreich für Java-Integration
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Notationen", clazz = "wide") {
+
+            @sidebyside((66,33), gap = 6) {
+                @sidebyside(gap = 8) {
+                    <h4 class="tcenter">prefix</h4>
+
+                    @spacer()
+
+                    @sourcecode() {
+                        |-1
+                    }
+                    @iseq()
+                    @sourcecode() {
+                        |1.unary_-()
+                    }
+
+                    @spacer2()
+
+                    @sourcecode() {
+                        |!true
+                    }
+                    @iseq()
+                    @sourcecode() {
+                        |true.unary_!
+                    }
+
+                    @spacer()
+
+                    @infobox() {
+                        Anwendbar für die Operatoren
+                        <code>!</code>, <code>~</code>, <code>+</code> und <code>-</code>.
+                    }
+                } {
+                    <h4 class="tcenter">infix</h4>
+
+                    @spacer()
+
+                    @sourcecode() {
+                        |1 + 1
+                    }
+                    @iseq()
+                    @sourcecode() {
+                        |1.+(1)
+                    }
+
+                    @spacer2()
+
+                    @sourcecode() {
+                        |"abc" contains 'a'
+                    }
+                    @iseq()
+                    @sourcecode() {
+                        |"abc".contains('a')
+                    }
+
+                    @spacer()
+
+                    @infobox() {
+                        Anwendbar für Methoden und Operatoren mit genau @uline("einem") Parameter.
+                    }
+                }
+            } {
+                <h4 class="tcenter">postfix</h4>
+
+                @spacer()
+
+                @sourcecode() {
+                    |1 toString
+                }
+                @iseq()
+                @sourcecode() {
+                    |1.toString()
+                }
+
+                @spacer2()
+
+                @sourcecode() {
+                    |1 toLong
+                }
+                @iseq()
+                @sourcecode() {
+                    |1.toLong()
+                }
+
+                @spacer()
+
+                @infobox() {
+                    Anwendbar für Methoden und Operatoren @uline("ohne") Parameter.
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "unär") {
+
+            @sidebyside(gap = 8) {
+                @callcode(id = "r", reference = "rational") {
+                    |val r1 = new Rational(1, 2)
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference = "r") {
+                        |val r2 = -r1
+                    }
+                    @outblock() {
+                        |r2: Rational = -1/2
+                    }
+                    @callblock() {
+                        |val r3 = +r2
+                    }
+                    @outblock() {
+                        |r3: Rational = 1/2
+                    }
+                    @callblock() {
+                        |val r4 = ~r3
+                    }
+                    @outblock() {
+                        |r4: Rational = 2/1
+                    }
+                    @callblock() {
+                        |val r5 = r3.unary_~
+                    }
+                    @outblock() {
+                        |r5: Rational = 2/1
+                    }
+                }
+            } {
+                @sourcecode(id = "rational", linebyline = true) {
+                    |class Rational(n: Int, d: Int) {
+                    |
+                    |  def unary_+ : Rational = {
+                    |    import math._
+                    |    new Rational(abs(n), abs(d))
+                    |  }
+                    |
+                    |  def unary_- =
+                    |    new Rational(-n, d)
+                    |
+                    |  def unary_~ =
+                    |    new Rational(d, n)
+                    |
+                    |  override def toString =
+                    |    n + "/" + d
+                    |}
+                }
+            }
+
+            @infobox() {
+                Der Präfix <code>unary_</code> lässt <code>!</code>,
+                <code>~</code>, <code>+</code> und <code>-</code> als unäre Operatoren verwenden.
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Zuweisung") {
 
         }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Vorrang") {
+
+            @sidebyside(gap = 10) {
+                @sourcecode() {
+                    |5 + 5 * 2
+                }
+                @sourcecode() {
+                    |(5).+((5).*(2))
+                }
+                @codesub2() {
+                    <code>*</code> hat Vorrang vor <code>+</code>
+                }
+
+                @spacer()
+
+                @sourcecode() {
+                    |5 + 5 toString
+                }
+                @sourcecode() {
+                    |((5).+(5)).toString()
+                }
+                @codesub2() {
+                    Infix <code>+</code> hat Vorrang vor Postfix <code>toString</code>
+                }
+
+                @spacer()
+
+                @sourcecode() {
+                    |-5 + 5
+                }
+                @sourcecode() {
+                    |((5).unary_-).+(5)
+                }
+                @codesub2() {
+                    Prefix <code>-</code> hat Vorrang vor Infix <code>+</code>
+                }
+            } {
+                @infobox() {
+                    <div>
+                        Ein Prefix- wird vor einem Infix-Operator und
+                        Infix- vor einem Postfix-Operator ausgeführt.
+                    </div>
+                    @spacer()
+                    <div>
+                        Ansonsten bestimmt das erste Zeichen des Operators die Reihenfolge:
+                        @spacer_half()
+                        <div class="indent">
+                        <table>
+                            <tr>
+                                <td>alle anderen Sonderzeichen</td>
+                            </tr>
+                            <tr>
+                                <td><code>*</code> <code>/</code> <code>%</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>+</code> <code>-</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>:</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>=</code> <code>!</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>&lt;</code> <code>&gt;</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>&amp;</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>^</code></td>
+                            </tr>
+                            <tr>
+                                <td><code>|</code></td>
+                            </tr>
+                            <tr>
+                                <td>alle Buchstaben</td>
+                            </tr>
+                            <tr>
+                                <td>Zuweisungsoperatoren</td>
+                            </tr>
+                        </table>
+                        </div>
+                    </div>
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Assoziativität") {
+
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "apply & update") {
+
+        }
+
+        <!-- ################################################################################## -->
+
+        @uebung("B22")
     }
 }

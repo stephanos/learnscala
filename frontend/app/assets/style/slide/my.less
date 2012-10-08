@@ -253,24 +253,29 @@
     }
 
     .shoutbox {
+        @p: 10px;
         .w100p();
         margin: 0 auto;
+        padding: @p @p 0 @p;
         display: inline-block;
 
         table {
             display: inline-block;
+
             tbody {
                 display: inline-block;
 
-                td {
-                    vertical-align: top;
+                >tr {
+                  >td {
+                      vertical-align: top;
 
-                    &.symbol {
-                        padding: 10px 10px 5px 5px;
-                    }
-                    &.content {
-                        //padding: 8px 5px 5px 5px;
-                    }
+                      &.symbol {
+                          padding: 0 @p 0 0;
+                      }
+                      &.content {
+                          padding: 0;
+                      }
+                  }
                 }
             }
         }
@@ -280,6 +285,9 @@
             border: 2px solid @c;
             background-color: fade(@c, 10%);
             comment { color: fadeout(@c, @f_comment); }
+            .underline {
+              border-bottom-color: @c;
+            }
         }
 
         &.warning {
