@@ -21,31 +21,31 @@
                     @indent() {
                         @spacer_half()
 
-                        @sourcecode() {
+                        @callcode() {
                             |def x = ()
                         }
 
                         @spacer_half()
 
-                        @sourcecode() {
+                        @callcode() {
                             |def _x2 = ()
                         }
 
                         @spacer_half()
 
-                        @sourcecode() {
+                        @callcode() {
                             |def %/ = ()
                         }
 
                         @spacer_half()
 
-                        @sourcecode() {
+                        @callcode() {
                             |def one_+ = ()
                         }
 
                         @spacer_half()
 
-                        @sourcecode() {
+                        @callcode() {
                             |def √ = ()
                         }
                     }
@@ -55,31 +55,31 @@
                     @indent() {
                         @spacer_half()
 
-                        @sourcecode() {
+                        @callcode() {
                             |def 123 = ()
                         }
 
                         @spacer_half()
 
-                        @sourcecode() {
+                        @callcode() {
                             |def 2x = ()
                         }
 
                         @spacer_half()
 
-                        @sourcecode() {
+                        @callcode() {
                             |def () = ()
                         }
 
                         @spacer_half()
 
-                        @sourcecode() {
+                        @callcode() {
                             |def 2+ = ()
                         }
 
                         @spacer_half()
 
-                        @sourcecode() {
+                        @callcode() {
                             |def √3 = ()
                         }
                     }
@@ -99,7 +99,7 @@
 
             @slide(title = title, subtitle = "Backticks") {
 
-                @sourcecode() {
+                @callcode() {
                     |val `val` = ()
                 }
                 @codesub2() {
@@ -108,7 +108,7 @@
 
                 @spacer2()
 
-                @sourcecode() {
+                @callcode() {
                     Thread.`yield`().
                 }
                 @codesub2() {
@@ -127,21 +127,21 @@
 
                     @spacer()
 
-                    @sourcecode() {
+                    @callcode() {
                         |-1
                     }
                     @iseq()
-                    @sourcecode() {
+                    @callcode() {
                         |1.unary_-()
                     }
 
                     @spacer2()
 
-                    @sourcecode() {
+                    @callcode() {
                         |!true
                     }
                     @iseq()
-                    @sourcecode() {
+                    @callcode() {
                         |true.unary_!
                     }
 
@@ -156,21 +156,21 @@
 
                     @spacer()
 
-                    @sourcecode() {
+                    @callcode() {
                         |1 + 1
                     }
                     @iseq()
-                    @sourcecode() {
+                    @callcode() {
                         |1.+(1)
                     }
 
                     @spacer2()
 
-                    @sourcecode() {
+                    @callcode() {
                         |"abc" contains 'a'
                     }
                     @iseq()
-                    @sourcecode() {
+                    @callcode() {
                         |"abc".contains('a')
                     }
 
@@ -185,21 +185,21 @@
 
                 @spacer()
 
-                @sourcecode() {
+                @callcode() {
                     |1 toString
                 }
                 @iseq()
-                @sourcecode() {
+                @callcode() {
                     |1.toString()
                 }
 
                 @spacer2()
 
-                @sourcecode() {
+                @callcode() {
                     |1 toLong
                 }
                 @iseq()
-                @sourcecode() {
+                @callcode() {
                     |1.toLong()
                 }
 
@@ -277,19 +277,13 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Zuweisung") {
-
-        }
-
-        <!-- ################################################################################## -->
-
         @slide(title = "Vorrang") {
 
             @sidebyside(gap = 10) {
-                @sourcecode() {
+                @callcode() {
                     |5 + 5 * 2
                 }
-                @sourcecode() {
+                @callcode() {
                     |(5).+((5).*(2))
                 }
                 @codesub2() {
@@ -298,10 +292,10 @@
 
                 @spacer()
 
-                @sourcecode() {
+                @callcode() {
                     |5 + 5 toString
                 }
-                @sourcecode() {
+                @callcode() {
                     |((5).+(5)).toString()
                 }
                 @codesub2() {
@@ -310,10 +304,10 @@
 
                 @spacer()
 
-                @sourcecode() {
+                @callcode() {
                     |-5 + 5
                 }
-                @sourcecode() {
+                @callcode() {
                     |((5).unary_-).+(5)
                 }
                 @codesub2() {
@@ -373,14 +367,71 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Assoziativität") {
+        @slide(title = "Zuweisung") {
+            @callcode() {
+                |x *= y + 1
+            }
+            @iseq()
+            @callcode() {
+                |x = x.*((y).(1))
+            }
+            @codesub2() {
+                Zuweisungen <code>=</code> haben die höchste Priorität
+            }
 
+            @spacer2()
+
+            @callcode() {
+                |1 == 1 + 1
+            }
+            @iseq()
+            @callcode() {
+                |1.==((1).+(1))
+            }
+            @codesub2() {
+                Vergleichsoperatoren wie <code>&lt;=</code> usw. sind keine Zuweisungen
+            }
         }
 
         <!-- ################################################################################## -->
 
-        @slide(title = "apply & update") {
+        @slide(title = "Assoziativität") {
+            @callcode() {
+                |15 - 3 + 6
+            }
+            @iseq()
+            @callcode() {
+                |(15 - 3) + 6
+            }
+            @codesub2() {
+                @uline("fast") alle Operatoren sind <em>links-assoziativ</em>
+            }
 
+            @spacer()
+
+            @callcode() {
+                |val i = 1 + 1
+            }
+            @codesub2() {
+                <var>außer</var>: Zuweisungen
+            }
+
+            @spacer()
+
+            @callcode() {
+                |1 :: 2 :: Nil
+            }
+            @iseq()
+            @callcode() {
+                |1 :: (2 :: Nil)
+            }
+            @iseq()
+            @callcode() {
+                |(Nil.::(2)).::(1)
+            }
+            @codesub2() {
+                <var>außer</var>: Operatoren die mit <code>:</code> enden
+            }
         }
 
         <!-- ################################################################################## -->
