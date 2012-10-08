@@ -253,31 +253,34 @@
     }
 
     .shoutbox {
-        @p: 10px;
         .w100p();
         margin: 0 auto;
-        padding: @p @p 0 @p;
         display: inline-block;
 
-        table {
-            display: inline-block;
+        >.inner {
+          @p: 10px;
+          padding: @p @p 0 @p;
 
-            tbody {
-                display: inline-block;
+          >table {
+              display: inline-block;
 
-                >tr {
-                  >td {
-                      vertical-align: top;
+              tbody {
+                  display: inline-block;
 
-                      &.symbol {
-                          padding: 0 @p 0 0;
-                      }
-                      &.content {
-                          padding: 0;
-                      }
+                  >tr {
+                    >td {
+                        vertical-align: top;
+
+                        &.symbol {
+                            padding: 0 @p 0 0;
+                        }
+                        &.content {
+                            padding: 0;
+                        }
+                    }
                   }
-                }
-            }
+              }
+          }
         }
 
         .box(@c) {
