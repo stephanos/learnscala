@@ -4,30 +4,30 @@
 
         @slide() {
             @spacer2()
-            <img src="/assets/img/scala-logo.png" class="naked">
+            @image("scala-logo.png", clazz = "naked")
         }
 
         <!-- ################################################################################## -->
 
         @slide(title = "Name") {
-            <div class="left w40p">
-                <img src="/assets/img/odersky.jpg" width="100%" alt="Martin Odersky">
-            </div>
-
-            <div class="fragment left w60p">
-                <blockquote>
-                    <p>
-                        Der Name Scala steht für <br/><em>scal</em>able <em>la</em>nguage.
-                    </p>
-                    <p>
-                        Die Sprache ist so konzipiert, dass sie mit den Anforderungen des Nutzers wächst.
-                        Man kann sie auf eine Vielzahl von Aufgaben anwenden, von kleinen Skripten bis hin zu großen Systemen.
-                    </p>
-                    <var class="who">
-                        Martin Odersky, <br/>Erfinder von Scala
-                    </var>
-                </blockquote>
-            </div>
+            @sidebyside((40,60)) {
+                @image("odersky.jpg")
+            } {
+                <div class="fragment left w60p">
+                    <blockquote>
+                        <p>
+                            Der Name Scala steht für <br/><em>scal</em>able <em>la</em>nguage.
+                        </p>
+                        <p>
+                            Die Sprache ist so konzipiert, dass sie mit den Anforderungen des Nutzers wächst.
+                            Man kann sie auf eine Vielzahl von Aufgaben anwenden, von kleinen Skripten bis hin zu großen Systemen.
+                        </p>
+                        <var class="who">
+                            Martin Odersky, <br/>Erfinder von Scala
+                        </var>
+                    </blockquote>
+                </div>
+            }
         }
 
         <!-- ################################################################################## -->
