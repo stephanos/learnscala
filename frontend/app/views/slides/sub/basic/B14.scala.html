@@ -10,45 +10,111 @@
 
         <!-- ################################################################################## -->
 
-        @defining("if else") { title =>
+        @headslide() {
+            @topic
+        } {
+            @spacer_half()
 
-            @slide(title = title) {
+            <div style="width: 40%" class="dcenter">
+                <ul class="fragments">
+                    <li>if-else</li>
+                    <li>while</li>
+                    <li>do-while</li>
+                </ul>
+                @spacer()
+                <ul class="fragments">
+                    <li>for</li>
+                    <li>match</li>
+                </ul>
+            </div>
+
+            @spacer()
+
+            @infobox() {
+                Jede Kontrollstruktur ist ein Ausdruck;<br/>
+                besitzt also Rückgabewert und -typ.
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("if-else") { title =>
+
+            @titleslide(title = title) {
+
+                @sourcecode() {
+                    |def max (x: Int, y: Int): Int = {
+                    |  if (x > y) {
+                    |    x
+                    |  } else {
+                    |    y
+                    |  }
+                    |}
+                }
+
+                @iseq()
+
+                @sourcecode() {
+                    |def max (x: Int, y: Int) =
+                    |  if (x > y)
+                    |    x
+                    |  else
+                    |    y
+                }
+
+                @iseq()
+
+                @sourcecode() {
+                    |def max (x: Int, y: Int) =
+                    |  if (x > y) x else y
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title) {
 
                 @snippet() {
-                    @sourceblock(fragment = false) {
-                        |def sufficientFuel(f: Float) =
-                        |   if (f >= 50.0) true else false
+                    @sourceblock() {
+                        |def check (x: Int) =
+                        |  if (x > 0) "positive"
                     }
                     @outblock() {
-                        |sufficientFuel: (f: Float)Boolean
+                        |check: (x: Int)Any
                     }
                 }
-
-                @fragment {
-                    Methode <code>sufficientFuel</code> hat den Rückgabetyp der Bedingung: <code>Boolean</code>
+                @codesub2() {
+                    fehlt <code>else</code> hat der Zweig den Typ <code>Unit</code>
                 }
 
-                @spacer()
+                @spacer2()
 
-                @infobox() {
-                    Eine Bedingung hat immer einen Wert.
+                @snippet() {
+                    @sourceblock() {
+                        |def check (x: Int) =
+                        |  if (x == 0) 0
+                        |  else if (x > 0) 'p'
+                        |  else 'n'
+                    }
+                    @outblock() {
+                        |check: (x: Int)Int
+                    }
+                }
+                @codesub2() {
+                    <code>Int</code> ist die Basisklasse von Typ <code>Char</code>
                 }
             }
         }
 
         <!-- ################################################################################## -->
 
-        @uebung("B14-1")
+        @defining("try-catch-finally") { title =>
 
-        <!-- ################################################################################## -->
-
-        @defining("try catch") { title =>
-
-            @slide(title = title) {
+            @titleslide(title = title) {
 
                 @sidebyside((66,33)) {
                     @snippet() {
-                        @sourceblock(fragment = false) {
+                        @sourceblock() {
                             |def getWords(msg: String) =
                             |   try {
                             |       println(msg.split(' '))
@@ -78,11 +144,11 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "throw") {
+            @titleslide(title = title, subtitle = "throw") {
 
                 @sidebyside((66,33)) {
                     @snippet() {
-                        @sourceblock(id = "fuel-exception", fragment = false) {
+                        @sourceblock(id = "fuel-exception") {
                             |def sufficientFuel(f: Float) =
                             |  if(f == 0.0)
                             |    throw new RuntimeException("Not enough fuel!")
@@ -106,15 +172,11 @@
 
         <!-- ################################################################################## -->
 
-        @uebung("B14-2")
-
-        <!-- ################################################################################## -->
-
-        @slide(title = "while") {
+        @titleslide(title = "while") {
 
             @sidebyside(gap = 15) {
                 @snippet() {
-                    @sourceblock(fragment = false) {
+                    @sourceblock() {
                         |def countdown() {
                         |  var i = 10
                         |  while (i >= 0) {
@@ -164,7 +226,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "for") {
+        @titleslide(title = "for") {
 
             @sidebyside() {
                 @snippet() {
@@ -201,147 +263,125 @@
 
         <!-- ################################################################################## -->
 
-        @uebung("B14-3")
+        @defining("match") { title =>
+
+            @titleslide(title = title, subtitle = "Konstante-Pattern") {
+
+                @sourcecode() {
+                    |def days (month: Int): Int =
+                    |  month match {
+                    |    case 1   => 31
+                    |    case 2   => 28
+                    |    case 3   => 31
+                    |    case 4   => 30
+                    |    case 5   => 31
+                    |    case 6   => 30
+                    |    case 7   => 31
+                    |    case 8   => 31
+                    |    case 9   => 30
+                    |    case 10  => 31
+                    |    case 11  => 30
+                    |    case 12  => 31
+                    |  }
+                }
+                @codesub2() {
+                    Konstante-Pattern
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "Alternativ-Pattern") {
+
+                @sourcecode(id = "days2") {
+                    |def days (month: Int): Int =
+                    |  month match {
+                    |    case 2                           => 28
+                    |    case 4 | 6 | 9 | 11              => 30
+                    |    case 1 | 3 | 5 | 7 | 8 | 10 | 12 => 31
+                    |  }
+                }
+                @codesub2() {
+                    Alternativ-Pattern <code>|</code>
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference = "days2") {
+                        |val febDays = days(2)
+                    }
+                    @outblock() {
+                        |febDays: Int = 28
+                    }
+                    @callblock() {
+                        |days(13)
+                    }
+                    @outblock(error = true) {
+                        |scala.MatchError: 13 (of class java.lang.Integer)
+                        |   at .days(&lt;console&gt;:8)
+                    }
+                }
+                @codesub2() {
+                    <code>MatchError</code> bei fehlendem match
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "Wildcard- und Guarded-Pattern") {
+
+                @sourcecode() {
+                    |def days (month: Int): Int =
+                    |  month match {
+                    |    case 2              => 28
+                    |    case 4 | 6 | 9 | 11 => 30
+                    |    case _              => 31
+                    |  }
+                }
+                @codesub2() {
+                    Wildcard-Pattern <code>_</code>
+                }
+
+                @spacer()
+
+                @sourcecode() {
+                    |def days (month: Int, leap: Boolean): Int =
+                    |  month match {
+                    |    case 2 if leap       => 29
+                    |    case 2               => 28
+                    |    case 4 | 6 | 9 | 11  => 30
+                    |    case _               => 31
+                    |  }
+                }
+                @codesub2() {
+                    Guarded-Pattern <code>if</code>
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "Variable-Pattern") {
+
+                @sourcecode() {
+                    |def days (month: Int, leap: Boolean): Int =
+                    |  month match {
+                    |    case 2 if leap       => 29
+                    |    case 2               => 28
+                    |    case 4 | 6 | 9 | 11  => 30
+                    |    case m               =>
+                    |       val msg = "Unknown month " + m
+                    |       throw new IllegalArgumentException(msg)
+                    |  }
+                }
+                @codesub2() {
+                    Variable-Pattern <comment>(muss mit Kleinbuchstaben beginnen)</comment>
+                }
+            }
+        }
 
         <!-- ################################################################################## -->
 
-        @defining("match") { title =>
-
-            @slide() {
-                <!-- Syntax -->
-
-                @sidebyside((60,40)) {
-                    @snippet() {
-                        @sourceblock(fragment = false) {
-                            |def interpret(msg: String) {
-                            |  msg match {
-                            |    case "OUT"    => println("The end")
-                            |    case "OVER"   => println("Your turn")
-                            |    case "MAYDAY" => println("We need help!")
-                            |  }
-                            |}
-                        }
-                        @callblock() {
-                            |interpret("MAYDAY")
-                        }
-                        @outblock() {
-                            |We need help!
-                        }
-                    }
-                } {
-                }
-
-                @spacer()
-
-                @infobox() {
-                    Ein Ausdruck kann mittels <code>match</code> gegen verschiedene Alternativen -
-                    eingeleitet durch <code>case</code> - "gematched" werden.
-                }
-            }
-
-            <!-- ################################################################################## -->
-
-            @slide() {
-                <!-- MatchError / Wildcard -->
-
-                @sidebyside() {
-                    @snippet() {
-                        @sourceblock(fragment = false) {
-                            |def interpret(msg: String) =
-                            |  msg match {
-                            |    case "OUT"    => "The end"
-                            |    case "OVER"   => "Your turn"
-                            |    case "MAYDAY" => "We need help!"
-                            |  }
-                        }
-                        @callblock() {
-                            |println(interpret("Ready for take-off"))
-                        }
-                        @outblock(error = true) {
-                            |scala.MatchError: Ready for take-off
-                        }
-                    }
-                } {
-                    @snippet() {
-                        @sourceblock() {
-                            |def interpret(msg: String) =
-                            |  msg match {
-                            |    case "OUT"    => "The end"
-                            |    case "OVER"   => "Your turn"
-                            |    case "MAYDAY" => "We need help!"
-                            |    case _        => msg
-                            |  }
-                        }
-                        @callblock() {
-                            |println(interpret("Ready for take-off"))
-                        }
-                        @outblock() {
-                            |Ready for take-off
-                        }
-                    }
-                }
-
-                @spacer()
-
-                @infobox() {
-                    Trifft kein Pattern zu wird eine <code>MatchError</code>-Exception geworfen;
-                    mit dem <span class="nobreak">Wildcard-Pattern <code>_</code></span>
-                    kann jedoch ein Standardverhalten für diesen Fall definiert werden.
-                }
-            }
-
-            <!-- ################################################################################## -->
-
-            @slide() {
-                <!-- Names -->
-
-                @sidebyside() {
-                    @snippet() {
-                        @sourceblock(fragment = false) {
-                            |def interpret(msg: String) =
-                            |  msg match {
-                            |    case "OUT"    => "The end"
-                            |    case "OVER"   => "Your turn"
-                            |    case "MAYDAY" => "We need help!"
-                            |    case m        => m.toUpperCase
-                            |  }
-                        }
-                        @callblock() {
-                            |println(interpret("Ready for take-off"))
-                        }
-                        @outblock() {
-                            |READY FOR TAKE-OFF
-                        }
-                    }
-                } {
-                }
-
-                @spacer()
-
-                @infobox() {
-                    Folgt auf <code>case</code> ein Variablenname <comment>(muss mit einem Kleinbuchstaben anfangen)</comment>
-                    kann dieser im Ergebnis-Ausdruck (rechts von <code>=></code>) verwendet werden.
-                }
-            }
-
-        }
+        @uebung("B14-3")
     }
 }
-
-
-<!--
-e match {
-  case pat1 => e1: T1
-  case pat2a | ... | pat2n => e2: T2
-  ...
-  case patn => en: Tn
-}
-
-        def days(month: Int, leap: Boolean): Int =
-          month match {
-            case 2 if leap       => 29 // guarded pattern
-            case 2               => 28 // note: order is important here!
-            case 4 | 6 | 9 | 11  => 30 // alternative pattern
-            case _               => 31 // wildcard pattern
-          }
--->
