@@ -249,8 +249,11 @@
                     }
                 }
             } {
-                @sourcecode(id = "rational", linebyline = true) {
+                @sourcecode(id = "rational") {
                     |class Rational(n: Int, d: Int) {
+                    |
+                    |  override def toString =
+                    |    n + "/" + d
                     |
                     |  def unary_+ : Rational = {
                     |    import math._
@@ -262,9 +265,6 @@
                     |
                     |  def unary_~ =
                     |    new Rational(d, n)
-                    |
-                    |  override def toString =
-                    |    n + "/" + d
                     |}
                 }
             }
@@ -419,15 +419,15 @@
             @spacer()
 
             @callcode() {
-                |1 :: 2 :: Nil
+                |1 :: 2 :: List()
             }
             @iseq()
             @callcode() {
-                |1 :: (2 :: Nil)
+                |1 :: (2 :: List())
             }
             @iseq()
             @callcode() {
-                |(Nil.::(2)).::(1)
+                |(List().::(2)).::(1)
             }
             @codesub2() {
                 <var>außer</var>: Operatoren die mit <code>:</code> enden

@@ -46,7 +46,7 @@ object Content extends MyController {
     // === ALLGEMEIN
 
     lazy val annotationen = Slide("B21", "Annotationen", basic, Seq())
-    lazy val operatoren = Slide("B22", "Operatoren", basic, Seq(methoden, klassen1))
+    lazy val operatoren = Slide("B22", "Operatoren", basic, Seq(methoden, klassen1), status = "complete")
     lazy val recursion = Slide("B25", "Rekursion", basic, Seq(kontrollstrukturen, annotationen), status = "complete")
 
 

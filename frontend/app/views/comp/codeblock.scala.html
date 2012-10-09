@@ -4,11 +4,11 @@
 <div class="raw-block"
      data-type='@typeOf @clazz'
      data-fragment='@{if(fragment) "true" else "false"}'
-     @{if(id == null) "" else "id=snippet-" + id}
-     @{if(hl == null) "" else "data-hlight=" + hl}
-     @{if(lang == null) "" else "data-lang=" + lang}
-     @{if(include == null) "" else "data-include=snippet-" + include}
-     @{if(reference == null) "" else "data-reference=snippet-" + reference}
-     @{if(linebyline == true) "" else "data-linebyline=" + linebyline}>
+     @{if(id == null) "" else "id='snippet-" + id + "'"}
+     @{if(hl == null) "" else "data-hlight='" + hl + "'"}
+     @{if(lang == null) "" else "data-lang='" + lang + "'"}
+     @{if(include == null) "" else "data-include='snippet-" + include + "'"}
+     @{if(reference == null) "" else "data-reference='snippet-" + reference + "'"}
+     @{if(linebyline == false) "" else "data-linebyline='" + linebyline + "'"}>
         @data
 </div>

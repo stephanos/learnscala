@@ -1,13 +1,284 @@
-@defining("Typ-Parameter I") { implicit topic =>
+@defining(Content.generics1.label) { implicit topic =>
     
     @layout.slidedeck(topic) {
         
         @slidehead() {
             @topic
         } {
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide() {
+
+            @sidebyside(gap = 10) {
+                @sourcecode() {
+                    |class myClass[T] {
+                    |   // ...
+                    |}
+                }
+                @codesub2() {
+                    <em>Klasse</em> mit 1 Typ-Parameter
+                }
+
+                @spacer2()
+
+                @sourcecode() {
+                    |trait myTrait[T, S] {
+                    |   // ...
+                    |}
+                }
+                @codesub2() {
+                    <em>Trait</em> mit 2 Typ-Parametern
+                }
+            } {
+                @sourcecode() {
+                    |def myMethod[A, B, C] {
+                    |   // ...
+                    |}
+                }
+                @codesub2() {
+                    <em>Methode</em> mit 3 Typ-Parametern
+                }
+
+                @spacer2()
+
+                @snippet() {
+                    @sourceblock() {
+                        |object myObject[T] {
+                        |   // ...
+                        |}
+                    }
+                    @outblock(error = true) {
+                        |error: ';' expected but '[' found
+                    }
+                }
+                @codesub2() {
+                    <var>Objekte</var> unterstützen keine Typ-Parameter
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @*
+        @slide(title = "Beispiel") {
+
+            @sourcecode(linebyline = true) {
+                |class Config[T] (key: String, value: T) {
+                |
+                |  def get: T = value
+                |
+                |  def isEqualTo (k: String, v: T) =
+                |    key == k && value == v
+                |
+                |  override def toString =
+                |    key + "=" + value
+                |}
+            }
+            @codesub2() {
+                <code>T</code> als Parameter- und Rückgabetyp
+            }
+        }
+        *@
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Modell") {
+
+            @snippet() {
+                @sourceblock(id = "crew") {
+                    |trait Crew
+                    |
+                    |case class Pilot() extends Crew
+                    |case class CoPilot() extends Pilot
+                    |
+                    |case class Stewardess() extends Crew
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Inferenz") {
+
+            @sourcecode(id = "box2") {
+                |case class Box[T, S](left: T, right: S)
+            }
+
+            @spacer2()
+
+            @snippet() {
+                @sourceblock(reference = "box2") {
+                    |val p: Box[Int, Int] = new Box[Int, Int](1, 2)
+                }
+                @outblock() {
+                    |p: Box[Int,Int] = Box(1,2)
+                }
+            }
+
+            @iseq()
+
+            @snippet() {
+                @sourceblock(reference = "box2") {
+                    |val p = new Box[Int, Int](1, 2)
+                }
+                @outblock() {
+                    |p: Box[Int,Int] = Box(1,2)
+                }
+            }
+
+            @iseq()
+
+            @snippet() {
+                @sourceblock(reference = "box2") {
+                    |val p = new Box (1, 2)
+                }
+                @outblock() {
+                    |p: Box[Int,Int] = Box(1,2)
+                }
+            }
+            @codesub2() {
+                Typ-Parameter werden abgeleitet
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Upper Bound") {
+
+            @spacer_half()
+
+            @sourcecode(id = "box-upper", reference = "fruits") {
+                |case class Box[T &lt;: Fruit](item: T)
+            }
+            @codesub2() {
+                <code>T</code> muss mindestens vom Typ <code>Fruit</code> sein
+            }
+
+            @spacer()
+
+            @indent() {
+
+                @snippet() {
+                    @callblock(reference = "box-upper") {
+                        |val b = new Box(new Apple)
+                    }
+                    @outblock() {
+                        |b: Box[Apple] = Box(Apple@@24115abf)
+                    }
+                }
+                @codesub2() {
+                    <code>Apple</code> <em>ist erlaubt</em>
+                }
+
+                @spacer_half()
+
+                @snippet() {
+                    @callblock(reference = "box-upper") {
+                        |val b = new Box("No Fruit")
+                    }
+                    @outblock(error = true) {
+                        |error: inferred type arguments [String]
+                        |       do not conform to class Box's
+                        |       type parameter bounds [T &lt;: Fruit]
+                    }
+                }
+                @codesub2() {
+                    <code>String</code> ist <var>nicht erlaubt</var>
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Lower Bound") {
+
+            @spacer_half()
+
+            @sourcecode(id = "box-lower", reference = "fruits") {
+                |case class Box[T](left: T, right: T) {
+                |
+                |  def replaceLeft[R >: T](newLeft: R) =
+                |    new Box(newLeft, right)
+                |}
+            }
+            @codesub2() {
+                <code>R</code> muss
+            }
+
+            @spacer()
+
+            @indent() {
+
+                @snippet() {
+                    @callblock(reference = "box-lower") {
+                        |val b = new Box(new CandyApple, new CandyApple)
+                    }
+                    @outblock() {
+                        |b: Box[CandyApple] = Box(CandyApple,CandyApple)
+                    }
+                    @callblock() {
+                        |val b2 = b.replaceLeft(new Apple)
+                    }
+                    @outblock() {
+                        |b2: Box[Apple] = Box(Apple,CandyApple)
+                    }
+                }
+                @codesub2() {
+
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("Varianz") { title =>
+
+            @slide(title = title, subtitle = "Invarianz") {
+
+                @spacer_half()
+
+                @sourcecode(id = "box-invariant", reference = "fruits") {
+                    |case class Box[T](item: T) {
+                    |
+                    |  def swap(newItem: T) =
+                    |    new Box(newItem)
+                    |}
+                }
+
+                @spacer()
+
+                @sidebyside() {
+                    @sourcecode(reference = "box-invariant") {
+                        |val b1 = new Box(Apple())
+                    }
+                } {
+                    @sourcecode(reference = "box-invariant") {
+                        |val b2: Box[Fruit] = new Box(Apple())
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Kovarianz") {
+
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Kontravarianz") {
+
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Type Erasure") {
 
         }
-        
+
         <!-- ################################################################################## -->
 
         @*
@@ -29,25 +300,25 @@
                 @spacer()
                 @snippet() {
                     @sourceblock(id = "pair1", reference = "crew-traits") {
-                        |case class Pair[T, S](one: T, two: S)
+                        |case class Box[T, S](one: T, two: S)
                     }
                 }
                 @spacer()
                 @snippet() {
                     @callblock(reference = "pair1") {
-                        |val cockpit = Pair(Pilot(), CoPilot())
+                        |val cockpit = Box(Pilot(), CoPilot())
                     }
                     @outblock() {
-                        |cockpit: Pair[Pilot,CoPilot] = Pair(Pilot(),CoPilot())
+                        |cockpit: Box[Pilot,CoPilot] = Box(Pilot(),CoPilot())
                     }
                 }
                 @spacer()
                 @snippet() {
                     @callblock(reference = "pair1") {
-                        |val couple = Pair[Crew, Crew](Pilot(), Stewardess())
+                        |val couple = Box[Crew, Crew](Pilot(), Stewardess())
                     }
                     @outblock() {
-                        |couple: Pair[Crew,Crew] = Pair(Pilot(),Stewardess())
+                        |couple: Box[Crew,Crew] = Box(Pilot(),Stewardess())
                     }
                 }
             } {
@@ -67,7 +338,7 @@
             @sidebyside((66,33)) {
                 @snippet() {
                     @sourceblock(id = "pair2", reference = "crew-traits", fragment = false) {
-                        |case class Pair[T](one: T, two: T) {
+                        |case class Box[T](one: T, two: T) {
                         |
                         |  def canFlyPlane =
                         |    one.isInstanceOf[CockpitCrew] ||
@@ -78,7 +349,7 @@
                 @spacer2()
                 @snippet() {
                     @callblock(reference = "pair2") {
-                        |Pair(Pilot(), CoPilot()).canFlyPlane
+                        |Box(Pilot(), CoPilot()).canFlyPlane
                     }
                     @outblock() {
                         |true
@@ -87,7 +358,7 @@
                 @spacer2()
                 @snippet() {
                     @callblock(reference = "pair2") {
-                        |Pair(Pilot(), Stewardess()).canFlyPlane
+                        |Box(Pilot(), Stewardess()).canFlyPlane
                     }
                     @outblock() {
                         |false
@@ -110,12 +381,12 @@
             @sidebyside((75,25)) {
                 @snippet() {
                     @sourceblock(id = "pair3", include = "crew-traits", fragment = false) {
-                        |case class CockpitPair[T <: CockpitCrew](one: T, two: T)
+                        |case class CockpitBox[T <: CockpitCrew](one: T, two: T)
                     }
                 }
             } {
                 @codenote() {
-                    <code>CockpitPair</code> erwartet 2 Parameter vom Typ <code>T</code> - dieser ist "mindestens" vom Typ
+                    <code>CockpitBox</code> erwartet 2 Parameter vom Typ <code>T</code> - dieser ist "mindestens" vom Typ
                     <code>CockpitCrew</code>
                 }
             }
@@ -125,7 +396,7 @@
             @sidebyside((75,25)) {
                 @snippet() {
                     @callblock(reference = "pair3") {
-                        |CockpitPair(Pilot(), Stewardess())
+                        |CockpitBox(Pilot(), Stewardess())
                     }
                     @outblock(error = true) {
                         |error: inferred type arguments [Crew] do not conform to
@@ -143,10 +414,10 @@
             @sidebyside((75,25)) {
                 @snippet() {
                     @callblock(reference = "pair3") {
-                        |val cp = CockpitPair(Pilot(), CoPilot())
+                        |val cp = CockpitBox(Pilot(), CoPilot())
                     }
                     @outblock() {
-                        |cp: CockpitPair[CockpitCrew] = ...
+                        |cp: CockpitBox[CockpitCrew] = ...
                     }
                 }
             } {

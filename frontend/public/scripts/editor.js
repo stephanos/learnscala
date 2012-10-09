@@ -4840,7 +4840,7 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
         else
             content = arr.join("");
         var cls = "codeline " + options.class + " " + (clazz || "");
-        if(options.linebyline && row > 1)
+        if(options.linebyline && row > 1 && !arr.length == 0)
             cls += " fragment";
         return "<pre class='" + cls +
                     "' data-num='" + options.num +
