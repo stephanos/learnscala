@@ -1,0 +1,34 @@
+@implicitSlide = @{ Content.option }
+
+@defining(implicitSlide.label) { implicit topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slidehead() {
+            @topic
+        } {
+
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "") {
+
+            <blockquote class="w50p fragment">
+                <p>
+                    I call it my billion-dollar mistake. It was the invention of the null reference in 1965.
+                </p>
+                <p>
+                    This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years.
+                </p>
+                <var class="who">
+                    Tony Hoare
+                </var>
+            </blockquote>
+        }
+
+        <!-- ################################################################################## -->
+
+        @uebung(implicitSlide.id)
+    }
+}
