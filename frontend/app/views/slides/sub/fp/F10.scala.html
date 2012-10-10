@@ -19,40 +19,32 @@
 
             <div class="w50p bigger dcenter">
                 <blockquote class="fragment">
-                    Funtionale Programmierung ist als beschreibe man das Problem einem Mathematiker.
-                    <br/><br/>
-                    Imperative Programmierung ist als gibt man Instruktionen an einen Idioten.
+                    <p>
+                        Funtionale Programmierung ist als beschreibe man das Problem einem Mathematiker.
+                    </p>
+                    <p>
+                        Imperative Programmierung ist als gibt man Instruktionen an einen Idioten.
+                    </p>
+                    <var class="who">
+                        (informelle Definition)
+                    </var>
                 </blockquote>
-                @codesub2() {
-                    <em>(informelle Definition)</em>
-                }
 
                 @spacer()
 
                 <blockquote class="fragment">
-                    Eine funktionale Programmiersprache ist eine Programmiersprache,
-                    die Sprachelemente zur Kombination und Transformation von Funktionen anbietet.
-                    <br/><br/>
-                    Dadurch werden die aus der imperativen Programmierung bekannten Nebenwirkungen vermieden.
+                    <p>
+                        Eine funktionale Programmiersprache ist eine Programmiersprache,
+                        die Sprachelemente zur Kombination und Transformation von Funktionen anbietet.
+                    </p>
+                    <p>
+                        Dadurch werden die aus der imperativen Programmierung bekannten Nebenwirkungen vermieden.
+                    </p>
+                    <var class="who">
+                        (formelle Definition)
+                    </var>
                 </blockquote>
-                @codesub2() {
-                    <em>(formelle Definition)</em>
-                }
-            </div>
-        }
 
-        <!-- ################################################################################## -->
-
-        @titleslide(title = "OO vs FP") {
-
-            <div class="w50p bigger dcenter">
-                <blockquote class="fragment">
-                    Objektorientierte Programmierung sorgt für verständlichen Code
-                    durch <em>Kapselung</em> von Zuständen.
-                    <br/><br/>
-                    Funktionale Programmierung sorgt für verständlichen Code
-                    durch <em>Minimierung</em> von Zuständen.
-                </blockquote>
             </div>
         }
 
@@ -83,9 +75,63 @@
 
         <!-- ################################################################################## -->
 
+        @slide(title = "Unveränderliche Daten") {
+
+            <div class="w50p bigger dcenter">
+                @image("effective-java.jpeg", width = 300,
+                       clazz = "naked", source = "http://www.informit.com/store/product.aspx?isbn=0321356683")
+
+                <blockquote class="fragment">
+                    <p>
+                        #15: Minimiere Veränderlichkeit
+                    </p>
+                    <var class="who">
+                        Effective Java, Joshua Bloch
+                    </var>
+                </blockquote>
+            </div>
+
+            @spacer2()
+
+            <div class="w50p bigger dcenter">
+                <blockquote class="fragment">
+                    <p>
+                        Es ist angebracht Low-Level-Datenstrukturen zu verwenden,
+                        wenn bessere Performance oder effizientere Speichernutzung erforderlich sind.
+                    </p>
+                    <var class="who">
+                        Effective Scala, Twitter
+                    </var>
+                </blockquote>
+            </div>
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide(title = "OO vs FP") {
+
+            <div class="w50p bigger dcenter">
+                <blockquote class="fragment">
+                    <p>
+                        Objektorientierte Programmierung sorgt für verständlichen Code
+                        durch <em>Kapselung</em> von Zuständen.
+                    </p>
+                    <p>
+                        Funktionale Programmierung sorgt für verständlichen Code
+                        durch <em>Minimierung</em> von Zuständen.
+                    </p>
+                    <var class="who">
+                        Michael Feathers
+                    </var>
+                </blockquote>
+            </div>
+        }
+
+        <!-- ################################################################################## -->
+
         @slide(title = "Vor- und Nachteile") {
 
-            @sidebyside(gap = 10) {
+            @sidebyside() {
                 <h3><em>Vorteile</em></h3>
 
                 <ul class="indent fragments">
@@ -116,7 +162,10 @@
                         höhere Abstraktion
                     </li>
                     <li>
-                        mehr Arbeit für Garbage Collector
+                        höherer Speicherbedarf
+                    </li>
+                    <li>
+                        Vereinbarung von Theorie und Hardware
                     </li>
                 </ul>
             }
