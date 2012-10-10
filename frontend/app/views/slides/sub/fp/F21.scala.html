@@ -1,0 +1,17 @@
+@implicitSlide = @{ Content.funktionen2 }
+
+@defining(implicitSlide.label) { implicit topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slidehead() {
+            @topic
+        } {
+
+        }
+
+        <!-- ################################################################################## -->
+
+        @uebung(implicitSlide.id)
+    }
+}

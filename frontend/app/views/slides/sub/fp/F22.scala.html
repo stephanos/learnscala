@@ -1,4 +1,6 @@
-@defining(Content.forexpr.label) { implicit topic =>
+@implicitSlide = @{ Content.forexpr }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -475,6 +477,6 @@
 
         <!-- ################################################################################## -->
 
-        @uebung("F21")
+        @uebung(implicitSlide.id)
     }
 }
