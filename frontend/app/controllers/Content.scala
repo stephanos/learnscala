@@ -60,9 +60,10 @@ object Content extends MyController {
 
     // === FUNKTIONEN
 
-    lazy val kollektionen1 = Slide("F20", "Kollektionen", fp, Seq(generics1), status = "complete")
-    lazy val funktionen2 = Slide("F21", "Funktionen II", fp, Seq(kollektionen1, funktionen1))
-    lazy val forexpr = Slide("F22", "for-Ausdruck", fp, Seq(kollektionen1), status = "complete")
+    lazy val option = Slide("F20", "Option und Tuple", fp, Seq(funktionen1), status = "complete")
+    lazy val kollektionen1 = Slide("F21", "Kollektionen", fp, Seq(generics1), status = "complete")
+    lazy val funktionen2 = Slide("F22", "Funktionen II", fp, Seq(kollektionen1, funktionen1))
+    lazy val forexpr = Slide("F23", "for-Ausdruck", fp, Seq(kollektionen1), status = "complete")
 
     // === ERWEITERT
 
