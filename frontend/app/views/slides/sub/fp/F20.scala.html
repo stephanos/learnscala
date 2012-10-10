@@ -1,4 +1,4 @@
-@implicitSlide = @{ Content.option }
+@implicitSlide = @{ Content.datatypes1 }
 
 @defining(implicitSlide.label) { implicit topic =>
 
@@ -12,14 +12,42 @@
 
         <!-- ################################################################################## -->
 
+        @defining("Unveränderliche Daten") { title =>
+
+            @titleslide(title = title) {
+
+                <div class="w50p bigger dcenter">
+                    @*@image("effective-java.jpeg", width = 300,
+                           clazz = "naked", source = "http://www.informit.com/store/product.aspx?isbn=0321356683")*@
+
+                    <blockquote class="fragment">
+                        <p>
+                            #15: Minimiere Veränderlichkeit
+                        </p>
+                        <var class="who">
+                            Effective Java, Joshua Bloch
+                        </var>
+                    </blockquote>
+                </div>
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "Garbage Collector") {
+            }
+        }
+
+        <!-- ################################################################################## -->
+
         @slide(title = "") {
 
             <blockquote class="w50p fragment">
                 <p>
-                    I call it my billion-dollar mistake. It was the invention of the null reference in 1965.
+                    Ich nenne es gern meinen Milliarden-Dollar-Fehler: Die Erfindung der <var>null-Referenz</var> 1965.
                 </p>
                 <p>
-                    This has led to innumerable errors, vulnerabilities, and system crashes, which have probably caused a billion dollars of pain and damage in the last forty years.
+                    Sie hat zu unzähligen Fehlern, Schwachstellen und Systemabstürzen geführt,
+                    die in den letzten 40 Jahren einen Schaden von bestimmt einer Milliarde Dollar angerichtet haben.
                 </p>
                 <var class="who">
                     Tony Hoare

@@ -1,0 +1,31 @@
+<!--
+    - higher order functions
+    - map
+    - fold
+    - filter
+    - pattern match
+-->
+@implicitSlide = @{ Content.funktionen2 }
+
+@defining(implicitSlide.label) { implicit topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slidehead() {
+            @topic
+        } {
+
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide() {
+
+            @image("functions.png", clazz = "naked", source = "http://en.wikipedia.org/wiki/Function_(mathematics)")
+        }
+
+        <!-- ################################################################################## -->
+
+        @uebung(implicitSlide.id)
+    }
+}

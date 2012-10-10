@@ -1,7 +1,7 @@
 @(id: String = null, title: String = null, chapter: String = null, htmlTitle: xml.Elem = null)(name: Html)(sub: Html = Html.empty)(implicit topic: String = null)
 
 @slide(id = id, title = title, chapter = chapter, htmlTitle = htmlTitle) {
-    <h2>
+    <h2 class="nobreak">
         <em style="font-size: 130%">@name</em>
     </h2>
 

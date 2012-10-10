@@ -17,21 +17,22 @@
 
         @titleslide(title = "Definition") {
 
-            <div class="w50p bigger dcenter">
+            @spacer()
+
+            @sidebyside(gap = 20) {
+                @spacer_half()
                 <blockquote class="fragment">
                     <p>
-                        Funtionale Programmierung ist als beschreibe man das Problem einem Mathematiker.
+                        Funktionale Programmierung ist, als beschreibt man sein Problem einem Mathematiker.
                     </p>
                     <p>
-                        Imperative Programmierung ist als gibt man Instruktionen an einen Idioten.
+                        Imperative Programmierung ist, als gibt man Anweisungen an einen Idioten.
                     </p>
                     <var class="who">
-                        (informelle Definition)
+                        jemand auf Twitter
                     </var>
                 </blockquote>
-
-                @spacer()
-
+            } {
                 <blockquote class="fragment">
                     <p>
                         Eine funktionale Programmiersprache ist eine Programmiersprache,
@@ -41,11 +42,10 @@
                         Dadurch werden die aus der imperativen Programmierung bekannten Nebenwirkungen vermieden.
                     </p>
                     <var class="who">
-                        (formelle Definition)
+                        Wikipedia
                     </var>
                 </blockquote>
-
-            </div>
+            }
         }
 
         <!-- ################################################################################## -->
@@ -71,39 +71,6 @@
                     <li><em>was</em> anstatt <var>wie</var></li>
                 </ul>
             }
-        }
-
-        <!-- ################################################################################## -->
-
-        @slide(title = "Unveränderliche Daten") {
-
-            <div class="w50p bigger dcenter">
-                @image("effective-java.jpeg", width = 300,
-                       clazz = "naked", source = "http://www.informit.com/store/product.aspx?isbn=0321356683")
-
-                <blockquote class="fragment">
-                    <p>
-                        #15: Minimiere Veränderlichkeit
-                    </p>
-                    <var class="who">
-                        Effective Java, Joshua Bloch
-                    </var>
-                </blockquote>
-            </div>
-
-            @spacer2()
-
-            <div class="w50p bigger dcenter">
-                <blockquote class="fragment">
-                    <p>
-                        Es ist angebracht Low-Level-Datenstrukturen zu verwenden,
-                        wenn bessere Performance oder effizientere Speichernutzung erforderlich sind.
-                    </p>
-                    <var class="who">
-                        Effective Scala, Twitter
-                    </var>
-                </blockquote>
-            </div>
         }
 
         <!-- ################################################################################## -->
@@ -168,6 +135,19 @@
                         Vereinbarung von Theorie und Hardware
                     </li>
                 </ul>
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide() {
+            @snippet() {
+                @callblock() {
+                    |(x: Int) => x + 1
+                }
+                @outblock() {
+                    |(Int) => Int = &lt;function1&gt;
+                }
             }
         }
 

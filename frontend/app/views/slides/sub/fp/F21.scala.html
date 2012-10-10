@@ -1,4 +1,4 @@
-@implicitSlide = @{ Content.kollektionen1 }
+@implicitSlide = @{ Content.datatypes2 }
 
 @defining(implicitSlide.label) { implicit topic =>
 
@@ -39,6 +39,23 @@
                     </li>
                 </ul>
             }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide(title = "Unveränderliche Daten") {
+
+            <div class="w50p bigger dcenter">
+                <blockquote class="fragment">
+                    <p>
+                        Es ist angebracht Low-Level-Datenstrukturen zu verwenden,
+                        wenn bessere Performance oder effizientere Speichernutzung erforderlich sind.
+                    </p>
+                    <var class="who">
+                        Effective Scala, Twitter
+                    </var>
+                </blockquote>
+            </div>
         }
 
         <!-- ################################################################################## -->
@@ -491,20 +508,6 @@
                     @codesub2() {
                         Maps verknüpfen
                     }
-
-                    @spacer2()
-
-                    @snippet() {
-                        @callblock() {
-                            |Map('a'->1, 'b'->2) values
-                        }
-                        @outblock() {
-                            |res2: Iterable[Int] = MapLike(1, 2)
-                        }
-                    }
-                    @codesub2() {
-                        Werte extrahieren
-                    }
                 } {
                     @snippet() {
                         @callblock() {
@@ -519,6 +522,20 @@
                     }
 
                     @spacer2()
+
+                    @snippet() {
+                        @callblock() {
+                            |Map('a'->1, 'b'->2) values
+                        }
+                        @outblock() {
+                            |res2: Iterable[Int] = MapLike(1, 2)
+                        }
+                    }
+                    @codesub2() {
+                        Werte extrahieren
+                    }
+
+                    @*@spacer2()
 
                     @snippet() {
                         @callblock() {
@@ -545,6 +562,7 @@
                     @codesub2() {
                         Schlüssel herausfiltern
                     }
+                    *@
                 }
 
                 @*
@@ -753,7 +771,7 @@
                         automatisch Sortieren
                     }
 
-                    @spacer2()
+                    @*@spacer2()
 
                     @snippet() {
                         @callblock() {
@@ -765,7 +783,7 @@
                     }
                     @codesub2() {
                         manuell sortieren
-                    }
+                    }*@
                 }
             }
         }
