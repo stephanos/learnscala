@@ -1,0 +1,12 @@
+@implicitSlide = @{ Content.utilities }
+
+@defining(implicitSlide.label) { implicit topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slidehead() {
+            @topic
+        } {
+        }
+    }
+}

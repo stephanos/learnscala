@@ -1,8 +1,5 @@
 <!--
     http://scalatutorial.wordpress.com/2012/01/25/teil-16-funktionen/
-
-    Functional programming is like describing your problem to a mathematician.
-    Imperative programming is like giving instructions to an idiot.
 -->
 @implicitSlide = @{ Content.funktionen1 }
 
@@ -13,12 +10,45 @@
         @slidehead() {
             @topic
         } {
-
         }
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Funktionen") {
+        @slide(title = "Definition") {
+
+            <div class="w50p bigger dcenter">
+                <blockquote class="fragment">
+                    Funtionale Programmierung ist, als beschreibe man das Problem einem Mathematiker.
+                    <br/><br/>
+                    Imperative Programmierung ist, als gibt man Instruktionen an einen Idioten.
+                </blockquote>
+                @codesub2() {
+                    <em>(informelle Definition)</em>
+                }
+
+                @spacer2()
+
+                <blockquote class="fragment">
+                    Eine funktionale Programmiersprache ist eine Programmiersprache,
+                    die Sprachelemente zur Kombination und Transformation von Funktionen anbietet.
+                    <br/><br/>
+                    Dadurch werden die aus der imperativen Programmierung bekannten Nebenwirkungen vermieden.
+                </blockquote>
+                @codesub2() {
+                    <em>(formelle Definition)</em>
+                }
+            </div>
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide() {
+            
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide() {
             <!-- Funktionen sind Objekte -->
 
             @sidebyside((66,33)) {
