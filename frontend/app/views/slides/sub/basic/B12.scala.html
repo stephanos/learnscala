@@ -353,29 +353,43 @@
 
             @slide(title = title, subtitle = "") {
 
-                @snippet() {
-                    @callblock() {
-                        |var pi = 3.14f
+                @sidebyside(gap = 10) {
+                    @snippet() {
+                        @callblock() {
+                            |var pi = 3.14f
+                        }
+                        @outblock() {
+                            |pi: Float = 3.14f
+                        }
+                        @callblock() {
+                            |pi = 3.0
+                        }
+                        @outblock() {
+                            |pi: Float = 3.0
+                        }
                     }
-                    @outblock() {
-                        |pi: Float = 3.14f
+                    @codesub2() {
+                        <code>var</code> ist <var>veränderlich</var> (mutable)
                     }
-                    @callblock() {
-                        |pi = 3.0
-                    }
-                    @outblock() {
-                        |pi: Float = 3.0
-                    }
-                }
+                } {
+                    @spacer()
 
-                @codesub2() {
-                    <code>var</code> ist <var>veränderlich</var> (mutable)
+                    <div class="fragment bigger dcenter">
+                        <blockquote>
+                            <p>
+                                #15: Minimiere Veränderlichkeit
+                            </p>
+                            <var class="who">
+                                Effective Java, Joshua Bloch
+                            </var>
+                        </blockquote>
+                    </div>
                 }
 
                 @spacer()
 
                 @warnbox() {
-                    <code>var</code> sollte vermieden und nur sehr bedacht <br/> eingesetzt werden.
+                    <code>var</code> sollte vermieden und nur sehr bedacht eingesetzt werden.
                 }
 
                 <details>

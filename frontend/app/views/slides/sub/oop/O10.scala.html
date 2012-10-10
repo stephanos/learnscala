@@ -178,69 +178,154 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "var & val") {
+        @defining("Felder") { title =>
 
-            @sidebyside(gap = 10) {
-                @snippet(id = "empl") {
-                    @sourceblock() {
-                        |class Employee (val name: String,
-                        |                var age: Int) {
+            @slide(title = title, subtitle = "val vs var") {
+
+                @sidebyside(gap = 10) {
+                    @sourcecode(id = "empl-mutable") {
+                        |class Employee (_name: String) {
                         |
-                        |  val salary = 40000
+                        |   var name = _name
                         |}
                     }
+                    @codesub2() {
+                        <var>veränderliches</var> Feld
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock(reference = "empl-mutable") {
+                            |val e = new Employee ("Bob")
+                        }
+                        @outblock() {
+                            |e: Employee = Employee@@404b50ed
+                        }
+                        @callblock() {
+                            |e.name = "Betty"
+                        }
+                        @outblock() {
+                            |e.name: String = Betty
+                        }
+                    }
+                } {
+                    @sourcecode(id = "empl-immutable") {
+                        |class Employee (_name: String) {
+                        |
+                        |   val name = _name
+                        |}
+                    }
+                    @codesub2() {
+                        <em>unveränderliches</em> Feld
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock(reference = "empl-immutable") {
+                            |val e = new Employee ("Bob")
+                        }
+                        @outblock() {
+                            |e: Employee = Employee@@1cc17783
+                        }
+                        @callblock() {
+                            |e.name = "Betty"
+                        }
+                        @outblock(error = true) {
+                            |error: reassignment to val
+                        }
+                    }
                 }
+            }
 
-                @spacer()
+            <!-- ################################################################################## -->
 
-                @outcode(lang = "java") {
-                   |public class Employee extends [...] {
-                   |
-                   |  private final String name;
-                   |  public String name();      // get
-                   |
-                   |  private final int salary;
-                   |  public int salary();       // get
-                   |
-                   |  private int age;
-                   |  public int age();          // get
-                   |  public void age_$eq(int);  // set
-                   |}
+            @slide(title = title, subtitle = "Parameter als Felder") {
+
+                @sourcecode() {
+                    |class Employee (val name: String)
                 }
-
                 @codesub2() {
-                    <code>val</code> erhält eine Get-Methode,<br/>
-                    <code>var</code> erhält Get- @uline("und") Set-Methoden
-
-                    @*Scala generiert überschreibbare, öffentliche Zugriffsmethoden:<br/>*@
+                    Feld <code>name</code> mit Lesezugriff
                 }
-            } {
-                @spacer()
 
-                @snippet() {
-                    @callblock(reference = "empl") {
-                        |val e = new Employee ("Bob", 35)
+                @spacer2()
+
+                @sourcecode() {
+                    |class Employee (var name: String)
+                }
+                @codesub2() {
+                    Feld <code>name</code> mit Lese- und Schreibuzugriff
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Uniform Access Principle") {
+
+                @sidebyside(gap = 10) {
+                    @snippet(id = "empl") {
+                        @sourceblock() {
+                            |class Employee (val name: String,
+                            |                var age: Int) {
+                            |
+                            |  val salary = 40000
+                            |}
+                        }
                     }
-                    @outblock() {
-                        |e: Employee = Employee@@53a1d1a8
+
+                    @spacer()
+
+                    @outcode(lang = "java") {
+                       |public class Employee extends [...] {
+                       |
+                       |  private final String name;
+                       |  public String name();      // get
+                       |
+                       |  private final int salary;
+                       |  public int salary();       // get
+                       |
+                       |  private int age;
+                       |  public int age();          // get
+                       |  public void age_$eq(int);  // set
+                       |}
                     }
-                    @callblock() {
-                        |println (e.name)
+
+                    @codesub2() {
+                        <code>val</code> erhält eine Get-Methode,<br/>
+                        <code>var</code> erhält Get- @uline("und") Set-Methoden
+
+                        @*Scala generiert überschreibbare, öffentliche Zugriffsmethoden:<br/>*@
                     }
-                    @outblock() {
-                        |Bob
-                    }
-                    @callblock() {
-                        |println (e.salary)
-                    }
-                    @outblock() {
-                        |40000
-                    }
-                    @callblock(reference = "empl") {
-                        |e.age = e.age - 1
-                    }
-                    @outblock() {
-                        |e.age: Int = 34
+                } {
+                    @spacer()
+
+                    @snippet() {
+                        @callblock(reference = "empl") {
+                            |val e = new Employee ("Bob", 35)
+                        }
+                        @outblock() {
+                            |e: Employee = Employee@@53a1d1a8
+                        }
+                        @callblock() {
+                            |println (e.name)
+                        }
+                        @outblock() {
+                            |Bob
+                        }
+                        @callblock() {
+                            |println (e.salary)
+                        }
+                        @outblock() {
+                            |40000
+                        }
+                        @callblock() {
+                            |e.age = e.age - 1
+                        }
+                        @outblock() {
+                            |e.age: Int = 34
+                        }
                     }
                 }
             }
@@ -291,8 +376,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
-            <!-- Methoden -->
+        @slide(title = "Methoden") {
 
             @sidebyside(gap = 5) {
                 @snippet() {

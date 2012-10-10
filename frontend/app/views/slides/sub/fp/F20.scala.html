@@ -12,47 +12,264 @@
 
         <!-- ################################################################################## -->
 
-        @defining("Unveränderliche Daten") { title =>
+        @defining("Option") { title =>
 
-            @titleslide(title = title) {
+            @slide(title = title) {
 
-                <div class="w50p bigger dcenter">
-                    @*@image("effective-java.jpeg", width = 300,
-                           clazz = "naked", source = "http://www.informit.com/store/product.aspx?isbn=0321356683")*@
-
-                    <blockquote class="fragment">
-                        <p>
-                            #15: Minimiere Veränderlichkeit
-                        </p>
-                        <var class="who">
-                            Effective Java, Joshua Bloch
-                        </var>
-                    </blockquote>
-                </div>
+                <blockquote class="w50p fragment">
+                    <p>
+                        Ich nenne es gern meinen Milliarden-Dollar-Fehler: Die Erfindung der <var>null</var>-Referenz 1965.
+                    </p>
+                    <p>
+                        Sie hat zu unzähligen Fehlern, Schwachstellen und Systemabstürzen geführt,
+                        die in den letzten 40 Jahren einen Schaden von bestimmt einer Milliarde Dollar angerichtet haben.
+                    </p>
+                    <var class="who">
+                        Tony Hoare
+                    </var>
+                </blockquote>
             }
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title, subtitle = "Garbage Collector") {
+            @slide(title = title) {
+
+                @sidebyside((70,30)) {
+                    @sourcecode(fragment = false) {
+                        |def findPassenger(row: Int, col: String): Passenger
+                    }
+                } {
+                }
+
+                @spacer2()
+
+                @sidebyside((70,30)) {
+                    @sourcecode(id = "find_opt") {
+                        |case class Passenger(name: String)
+                        |
+                        |def findPassenger(row: Int, col: String): Option[Passenger] =
+                        |   if(row < 1) None else Some(Passenger("Bob"))
+                    }
+                } {
+                }
+
+                @spacer()
+
+                @sidebyside((70,30)) {
+                    @snippet() {
+                        @callblock(reference = "find_opt") {
+                            |val p = findPassenger(2, "A")
+                        }
+                        @outblock() {
+                            |p: Option[Passenger] = Passenger("Bob")
+                        }
+                        @callblock() {
+                            |p.get
+                        }
+                        @outblock() {
+                            |res0: Passenger = Passenger("Bob")
+                        }
+                    }
+                } {
+                }
+
+                @spacer()
+
+                @sidebyside((70,30)) {
+                    @snippet() {
+                        @callblock(reference = "find_opt") {
+                            |val p = findPassenger(0, "B")
+                        }
+                        @outblock() {
+                            |res1: Option[Passenger] = None
+                        }
+                        @callblock() {
+                            |p.get
+                        }
+                        @outblock(error = true) {
+                            |java.util.NoSuchElementException: None.get
+                        }
+                    }
+                } {
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Pattern Matching") {
+
+                @sidebyside((70,30)) {
+                    @snippet() {
+                        @sourceblock(id = "opt_match", reference = "find_opt", fragment = false) {
+                            |def getName(p: Option[Passenger]) =
+                            |  p match {
+                            |    case Some(p) => p.name
+                            |    case _ => "No Name"
+                            |  }
+                        }
+                    }
+                } {
+                }
+
+                @spacer()
+
+                @sidebyside((70,30)) {
+                    @snippet() {
+                        @callblock(reference = "opt_match") {
+                            |getName(findPassenger(1, "A"))
+                        }
+                        @outblock() {
+                            |res0: String = Bob
+                        }
+                        @callblock() {
+                            |getName(findPassenger(0, "B"))
+                        }
+                        @outblock(error = true) {
+                            |res1: String = No Name
+                        }
+                    }
+                } {
+                }
+
+                @spacer2()
+
+                @sidebyside((70,30)) {
+                    @snippet() {
+                        @callblock(reference = "opt_match") {
+                            |findPassenger(1, "A").map(_.name).getOrElse("No Name")
+                        }
+                        @outblock() {
+                            |res0: String = Bob
+                        }
+                    }
+                } {
+                }
             }
         }
 
         <!-- ################################################################################## -->
 
-        @slide(title = "") {
+        @defining("Tuple") { title =>
 
-            <blockquote class="w50p fragment">
-                <p>
-                    Ich nenne es gern meinen Milliarden-Dollar-Fehler: Die Erfindung der <var>null-Referenz</var> 1965.
-                </p>
-                <p>
-                    Sie hat zu unzähligen Fehlern, Schwachstellen und Systemabstürzen geführt,
-                    die in den letzten 40 Jahren einen Schaden von bestimmt einer Milliarde Dollar angerichtet haben.
-                </p>
-                <var class="who">
-                    Tony Hoare
-                </var>
-            </blockquote>
+            @slide(title = title) {
+
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @callblock(reference = "crew-traits", fragment = false) {
+                            |val t1 = Tuple2(Pilot(), CoPilot())
+                        }
+                        @outblock() {
+                            |t1: (Pilot, CoPilot) = (Pilot(),CoPilot())
+                        }
+                    }
+                } {
+                    @codenote() {
+                        <code>Tuple</code> erstellt mit Hilfe der Case Class <code>Tuple2</code>
+                    }
+                }
+
+                @spacer2()
+
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @callblock(reference = "crew-traits") {
+                            |val t2 = Tuple(Pilot(), CoPilot())
+                        }
+                        @outblock() {
+                            |t2: (Pilot, CoPilot) = (Pilot(),CoPilot())
+                        }
+                    }
+                } {
+                    @codenote() {
+                        <code>Tuple</code> erstellt via gleichnamiger Methode aus Paket <code>scala</code>
+                    }
+                }
+
+                @spacer2()
+
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @callblock(reference = "crew-traits") {
+                            |val t3 = (Pilot(), CoPilot())
+                        }
+                        @outblock() {
+                            |t3: (Pilot, CoPilot) = (Pilot(),CoPilot())
+                        }
+                        @callblock() {
+                            |val pilot = t3._1
+                        }
+                        @outblock() {
+                            |pilot: Pilot = Pilot()
+                        }
+                        @callblock() {
+                            |val copilot = t3._2
+                        }
+                        @outblock() {
+                            |copilot: CoPilot = CoPilot()
+                        }
+                    }
+                } {
+                    @codenote() {
+                        <code>Tuple</code> erstellt mit Implicits
+                    }
+                    @spacer2()
+                    @codenote() {
+                        Zugriff auf Elemente via Felder <code>_1</code>, <code>_2</code>, <code>_3</code> usw.
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Pattern Matching") {
+
+                @sidebyside((66,33)) {
+                    @snippet() {
+                        @sourceblock(id = "tuple-match", reference = "crew-traits", fragment = false) {
+                            |def allowToCockpit(t: (Crew, Crew)) = t match {
+                            |  case (Pilot(), CoPilot()) => true
+                            |  case (CoPilot(), Pilot()) => true
+                            |  case _ => false
+                            |}
+                        }
+                    }
+                } {
+                }
+
+                @spacer2()
+
+                @sidebyside((66,33)) {
+                    @snippet() {
+                        @callblock(reference = "tuple-match") {
+                            |allowToCockpit((Pilot(), Stewardess()))
+                        }
+                        @outblock() {
+                            |res0: Boolean = false
+                        }
+                        @callblock() {
+                            |allowToCockpit((Pilot(), CoPilot()))
+                        }
+                        @outblock() {
+                            |res1: Boolean = true
+                        }
+                    }
+                } {
+                }
+
+                @spacer2()
+
+                @sidebyside((66,33)) {
+                    @snippet() {
+                        @sourceblock(reference = "crew-traits") {
+                            |def allowToCockpit(t: (Crew, Crew)) = t match {
+                            |  case (Pilot(), CoPilot()) | (CoPilot(), Pilot()) => true
+                            |  case _ => false
+                            |}
+                        }
+                    }
+                } {
+                }
+            }
         }
 
         <!-- ################################################################################## -->
