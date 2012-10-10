@@ -3,7 +3,9 @@
     - Sub-Packages ?
     - Super-Packages ?
 -->
-@defining(Content.pakete.label) { implicit topic =>
+@implicitSlide = @{ Content.pakete }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -347,6 +349,6 @@
 
         <!-- ################################################################################## -->
 
-        @uebung("O13")
+        @uebung(implicitSlide.id)
     }
 }

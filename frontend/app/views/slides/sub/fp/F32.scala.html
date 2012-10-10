@@ -1,75 +1,135 @@
-@defining(Content.kontrollabstraktion.label) { implicit topic =>
+@implicitSlide = @{ Content.byname }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 
         @slidehead() {
             @topic
         } {
-
         }
 
         <!-- ################################################################################## -->
 
-    }
-}
+        @titleslide(title = "") {
 
-<!--
-file:///Volumes/HOTSTUFF/LearnScala/slides/uni%20muenchen/06-kontrollabstraktion-syska-wilhelmi/praesentation.pdf
+            @spacer()
 
-object BreakLoop {
-
-    object Break extends RuntimeException
-
-    object Continue extends Exception
-
-    def break {
-        throw Break
-    }
-
-    def continue {
-        throw Continue
-    }
-
-    def whileTrue(block: => Unit) {
-        try {
-            try {
-                while (true) try {
-                    block
+            @sidebyside(gap = 10) {
+                @sourcecode(id = "logger1") {
+                    |object Logger {
+                    |  var enabled = true
+                    |
+                    |  def log (message: String) {
+                    |    if (enabled) println (message)
+                    |  }
+                    |}
                 }
-                catch {
-                    case Continue =>
+            } {
+                @snippet() {
+                    @callblock(reference = "logger1") {
+                        |val now = new java.util.Date
+                        |Logger.log("Startup at %s".format(now))
+                    }
+                    @outblock() {
+                        |Startup at Sun Jan 01 00:00:00 CEST 2012
+                    }
                 }
             }
-            catch {
-                case Break =>
+
+            @spacer()
+
+            @codenote2(clazz = "tcenter") {
+                <var>Problem:</var> Nachricht wird aufwendig formatiert - egal ob Logger aktiv ist
             }
         }
-    }
 
-    def whileTrue(condition: => Boolean)(block: => Unit) {
-        try {
-            while (condition)
-                try {
-                    block
+        <!-- ################################################################################## -->
+
+        @titleslide(title = "") {
+
+            @spacer()
+
+            @sidebyside(gap = 10) {
+                @sourcecode(id = "logger2") {
+                    |object Logger {
+                    |  var enabled = true
+                    |
+                    |  def log(message: () => String) {
+                    |    if (enabled) println (message())
+                    |  }
+                    |}
                 }
-                catch {
-                    case Continue =>
+            } {
+                @snippet() {
+                    @callblock(reference = "logger2") {
+                        |val now = new java.util.Date
+                        |Logger.log(() => "Startup at %s".format(now))
+                    }
+                    @outblock() {
+                        |Startup at Sun Jan 01 00:00:00 CEST 2012
+                    }
+                    @callblock() {
+                        |Logger.enabled = false
+                        |Logger.log(() => "Startup at %s".format(now))
+                    }
+                    @outblock() {
+                        |(nothing)
+                    }
                 }
+            }
+
+            @spacer()
+
+            @codenote2(clazz = "tcenter") {
+                <var>Problem:</var> Syntax ist doch sehr gewöhnungsbedürftig
+            }
         }
-        catch {
-            case Break =>
+
+        <!-- ################################################################################## -->
+
+        @titleslide(title = "") {
+
+            @sidebyside(gap = 10) {
+                @sourcecode(id = "logger3") {
+                    |object Logger {
+                    |  var enabled = true
+                    |
+                    |  def log(message: => String): Unit =
+                    |    if(enabled) println(message)
+                    |}
+                }
+            } {
+                @snippet() {
+                    @callblock(reference = "logger3") {
+                        |val now = new java.util.Date
+                        |Logger.log("Startup at %s".format(now))
+                    }
+                    @outblock() {
+                        |Startup at Sun Jan 01 00:00:00 CEST 2012
+                    }
+                    @callblock() {
+                        |Logger.enabled = false
+                        |Logger.log("Startup at %s".format(now))
+                    }
+                    @outblock() {
+                        |(nothing)
+                    }
+                }
+            }
+
+            @spacer()
+
+            <div class="w70p dcenter">
+                @infobox() {
+                    <code>=></code> wandelt einen Parameter von call-by-value in <em>call-by-name</em> um;
+                    der Ausdruck wird damit nur bei Zugriff ausgewertet.
+                }
+            </div>
         }
+
+        <!-- ################################################################################## -->
+
+        @uebung(implicitSlide.id)
     }
 }
-
-import BreakLoop._
-object TestBreak extends App {
-    var i = 0
-    whileTrue {
-        i += 1
-        if (i < 3) continue
-        if (i >= 5) break
-        if (i >= 5) break
-    }
-}
--->

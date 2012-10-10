@@ -32,6 +32,18 @@ object Images extends MyController {
             case 4 => gimage("1TTuoy1DRDc5o7DcBu8zuK4vXQUXawnaAzLfP29kMR-E", height = h)
         }
 
+    def collectpckg(h: Int = 600) =
+        gimage("1kRUpQWsq_eIhXBq3vk18o094FoN4ERSA8kZv-iG6Jb4", height = h)
+
+    def collection(name: String, h: Int = 600) =
+        gimage(name.toLowerCase match {
+            case "traversable" => "1_LSD_bFqReAiIJ_Xj-Mf54MwfrjqFqvTFUcjDCIJHUA"
+            case "iterable" => "18hUCwlgzHjlqSjhoZucpRy6-JNRGCfssi_ruOcsToM0"
+            case "seq" => "1fuA53lFmZ9Swblb5Fk-O7X3ar0C2lt7ipPnw_t3PNDU"
+            case "map" => "1Nb4FMBcvdszJTMGpGgLS0oJrcyBzcXyD0FNBPPUH70k"
+            case "set" => "1MFPRX-Oim6jP3IWB4M3nHzMQrPq2kjDHj1GKm6kJRqE"
+        }, height = h)
+
     def testTools(h: Int = 700) =
         gimage("1Mk7YZ3L1zkpevoWf5MPe6GKMdeFaRJ78nbtElhQQMVc", height = h)
 }

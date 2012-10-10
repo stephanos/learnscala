@@ -2,8 +2,9 @@
 TODO
     http://www.stackmob.com/2011/11/why-stackmob-uses-scalaz-with-scala/
 -->
+@implicitSlide = @{ Content.scalaz }
 
-@defining(Content.scalaz.label) { implicit topic =>
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 

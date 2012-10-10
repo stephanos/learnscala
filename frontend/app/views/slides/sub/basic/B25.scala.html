@@ -1,7 +1,9 @@
 <!--
     - Trampolines
 -->
-@defining(Content.recursion.label) { implicit topic =>
+@implicitSlide = @{ Content.recursion }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -203,6 +205,6 @@
 
         <!-- ################################################################################## -->
 
-        @uebung("B25")
+        @uebung(implicitSlide.id)
     }
 }

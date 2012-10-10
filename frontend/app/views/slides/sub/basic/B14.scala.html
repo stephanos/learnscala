@@ -1,4 +1,6 @@
-@defining(Content.kontrollstrukturen.label) { implicit topic =>
+@implicitSlide = @{ Content.kontrollstrukturen }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -15,7 +17,7 @@
         } {
             @spacer_half()
 
-            <div style="width: 40%" class="dcenter">
+            <div class="dcenter w40p">
                 <ul class="fragments">
                     <li>if-else</li>
                     <li>while</li>
@@ -203,7 +205,7 @@
 
         <!-- ################################################################################## -->
 
-        @uebung("B14-1")
+        @uebung(implicitSlide.id + "-1")
 
         <!-- ################################################################################## -->
 
@@ -359,6 +361,6 @@
 
         <!-- ################################################################################## -->
 
-        @uebung("B14-2")
+        @uebung(implicitSlide.id + "-2")
     }
 }

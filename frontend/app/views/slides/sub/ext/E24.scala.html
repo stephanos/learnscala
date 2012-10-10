@@ -11,7 +11,9 @@
         - Annotations: native, varargs
 -->
 
-@defining(Content.interop.label) { implicit topic =>
+@implicitSlide = @{ Content.interop }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 

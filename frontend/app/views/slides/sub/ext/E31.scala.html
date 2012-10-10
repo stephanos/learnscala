@@ -1,4 +1,6 @@
-@defining(Content.dbase.label) { implicit topic =>
+@implicitSlide = @{ Content.dbase }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 

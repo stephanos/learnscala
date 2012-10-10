@@ -1,0 +1,318 @@
+@implicitSlide = @{ Content.byname }
+
+@defining(implicitSlide.label) { implicit topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slidehead() {
+            @topic
+        } {
+            Die Werkzeugkiste erweitern
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Problemstellung") {
+
+            <div class="w40p dcenter">
+
+                <h3 class="tcenter">Problem</h3>
+
+                <blockquote>
+                    Die Verbindung zu externen Systemen wie der Datenbank klappt manchmal erst beim 2. Mal;
+                    es müsste einen Mechanismus zum erneuten versuchen geben.
+                </blockquote>
+
+                @spacer()
+
+                @fragment {
+                    <h3 class="tcenter">Lösung</h3>
+
+                    @callcode(fragment = true) {
+                        |retry (2) {
+                        |   connectToDatabase()
+                        |}
+                    }
+                }
+
+                @spacer()
+
+                @fragment {
+                    <h3 class="tcenter">Hilfsmittel</h3>
+
+                    <h4 class="tcenter">
+                        <em>By-Name Parameter</em> und <em>Currying</em>
+                    </h4>
+                }
+            </div>
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Resultat") {
+
+            @sidebyside(gap = 10) {
+                @snippet() {
+                    @sourceblock(id = "retry") {
+                        |def retry[T](n: Int)(fn: => T): T = {
+                        |  try {
+                        |    fn
+                        |  } catch {
+                        |    case e if n > 1 =>
+                        |      retry(n - 1)(fn)
+                        |  }
+                        |}
+                    }
+                    @outblock() {
+                        |retry: [T](n: Int)(fn: => T)T
+                    }
+                }
+            } {
+                @callcode(reference = "connect2db") {
+                    |val r = retry(2) {
+                    |   connectToDatabase()
+                    |}
+                }
+
+                @spacer()
+
+                @outcode() {
+                    |connecting
+                    |connecting
+                    |r: Boolean = true
+                }
+
+                @codesub2() {
+                    <em>Erfolg:</em> 1. Ausnahme wird ignoriert
+                }
+
+                @spacer_half()
+
+                @outcode() {
+                    |connecting
+                    |connecting
+                    |RuntimeException: connection failed
+                }
+                @codesub2() {
+                    <var>Fehler:</var> Ausnahme erscheint nach 2 Versuchen
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("Weitere Beispiele") { title =>
+
+            @slide(title = title, subtitle = "Thread") {
+
+                @sourcecode(id = "ctrl-thread") {
+                    |def runInThread(block: => Unit) {
+                    |   new Thread {
+                    |       override def run() {
+                    |           block
+                    |       }
+                    |   }.start()
+                    |}
+                }
+                @codesub2() {
+                    <code>runInThread</code> führt Code in eigenem Threads aus
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference = "ctrl-thread") {
+                        |println(Thread.currentThread.getName)
+                    }
+                    @outblock() {
+                        |Thread-767
+                    }
+                    @callblock() {
+                        |runInThread {
+                        |   println(Thread.currentThread.getName)
+                        |}
+                    }
+                    @outblock() {
+                        |Thread-1144
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Resource") {
+
+                @sourcecode(id = "ctrl-resource") {
+                    |import java.io._
+                    |
+                    |def withResource[R &lt;: Closeable](res: => R)(f: (R) => Unit) = {
+                    |   val r = res
+                    |   try {
+                    |       f(r)
+                    |   } finally {
+                    |       r.close()
+                    |   }
+                    |}
+                }
+
+                @codesub2() {
+                    <code>withResource</code> schließt verwendete Resource
+                }
+
+                @spacer()
+
+                @callcode(reference = "ctrl-resource") {
+                    |val f = new File("file.txt")
+                    |withResource (new FileInputStream (f)) {
+                    |   stream =>
+                    |       // read 'stream' ...
+                    |}
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Unless") {
+
+                @sourcecode(id = "ctrl-unless") {
+                    |def unless (condition: => Boolean) (body: => Unit) {
+                    |   if (!condition)
+                    |      body
+                    |}
+                }
+
+                @codesub2() {
+                    <code>unless</code> ist das Gegenstück zu <code>if</code>
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference = "ctrl-unless") {
+                        |unless (1 == 42) {
+                        |   print ("unless!")
+                        |}
+                    }
+                    @outblock() {
+                        |unless!
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Timed") {
+
+                @sourcecode(id = "ctrl-time") {
+                    |def timed[T](f: => T) = {
+                    |   val start = System.nanoTime
+                    |   val r = f
+                    |   val t = (System.nanoTime - start) / 1e9
+                    |   (r, t)
+                    |}
+                }
+                @codesub2() {
+                    <code>timed</code> errechnet die Ausführungszeit
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference = "factorial") {
+                        |val (f, t) = timed { factorial(1000) }
+                    }
+                    @outblock() {
+                        |f: BigInt = 4023872600770937735437...
+                    }
+                    @callblock() {
+                        |println (t + "seconds")
+                    }
+                    @outblock() {
+                        |0.00150658 seconds
+                    }
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @uebung(implicitSlide.id)
+    }
+}
+
+<div class="hide">
+    @sourcecode(id = "factorial", reference = "ctrl-time") {
+        |def factorial (n: Int): BigInt =
+        |   if (n == 0) BigInt (1) else n * factorial (n - 1)
+    }
+
+    @sourcecode(id = "connect2db", reference = "retry") {
+        |def connectToDatabase = {
+        |   println("connecting")
+        |   if (util.Random.nextInt(2) == 1)
+        |      sys.error ("connection failed")
+        |   true
+        |}
+    }
+</div>
+
+<!--
+file:///Volumes/HOTSTUFF/LearnScala/slides/uni%20muenchen/06-kontrollabstraktion-syska-wilhelmi/praesentation.pdf
+
+object BreakLoop {
+
+    object Break extends RuntimeException
+
+    object Continue extends Exception
+
+    def break {
+        throw Break
+    }
+
+    def continue {
+        throw Continue
+    }
+
+    def whileTrue(block: => Unit) {
+        try {
+            try {
+                while (true) try {
+                    block
+                }
+                catch {
+                    case Continue =>
+                }
+            }
+            catch {
+                case Break =>
+            }
+        }
+    }
+
+    def whileTrue(condition: => Boolean)(block: => Unit) {
+        try {
+            while (condition)
+                try {
+                    block
+                }
+                catch {
+                    case Continue =>
+                }
+        }
+        catch {
+            case Break =>
+        }
+    }
+}
+
+import BreakLoop._
+object TestBreak extends App {
+    var i = 0
+    whileTrue {
+        i += 1
+        if (i < 3) continue
+        if (i >= 5) break
+        if (i >= 5) break
+    }
+}
+-->

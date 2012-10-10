@@ -7,7 +7,9 @@ TODO
     - http://twitter.github.com/scala_school/specs.html
 -->
 
-@defining(Content.tests.label) { implicit topic =>
+@implicitSlide = @{ Content.tests }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 

@@ -5,7 +5,9 @@
    http://www.scala-lang.org/node/129
    http://www.naildrivin5.com/scalatour/wiki_pages/TypeVariance
 -->
-@defining(Content.generics1.label) { implicit topic =>
+@implicitSlide = @{ Content.generics1 }
+
+@defining(implicitSlide.label) { implicit topic =>
     
     @layout.slidedeck(topic) {
         
@@ -345,6 +347,6 @@
 
         <!-- ################################################################################## -->
         
-        @uebung("O24")
+        @uebung(implicitSlide.id)
     }   
 }

@@ -1,4 +1,6 @@
-@defining(Content.uebungen.label) { implicit topic =>
+@implicitSlide = @{ Content.uebungen }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 

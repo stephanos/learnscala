@@ -2,7 +2,9 @@
     TODO:
         - nested classes ?
 *@
-@defining(Content.klassen2.label) { implicit topic =>
+@implicitSlide = @{ Content.klassen2 }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -338,6 +340,6 @@
 
         <!-- ################################################################################## -->
 
-        @uebung("O22")
+        @uebung(implicitSlide.id)
     }
 }

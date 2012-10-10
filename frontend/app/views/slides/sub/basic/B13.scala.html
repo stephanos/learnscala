@@ -1,7 +1,9 @@
 <!--
     nesting methods
 -->
-@defining(Content.methoden.label) { implicit topic =>
+@implicitSlide = @{ Content.methoden }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 

@@ -1,4 +1,6 @@
-@defining(Content.geschichte.label) { implicit topic =>
+@implicitSlide = @{ Content.geschichte }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 

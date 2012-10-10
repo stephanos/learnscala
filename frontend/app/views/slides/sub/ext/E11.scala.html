@@ -1,7 +1,9 @@
 <!--
     - Demo of SBT ?
 -->
-@defining(Content.werkzeuge2.label) { implicit topic =>
+@implicitSlide = @{ Content.werkzeuge2 }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 

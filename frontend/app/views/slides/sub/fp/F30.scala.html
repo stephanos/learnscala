@@ -1,4 +1,11 @@
-@defining(Content.funktionen3.label) { implicit topic =>
+<!--
+    - Collection Views
+    - Parallel Collections
+    - Lazy Collections
+-->
+@implicitSlide = @{ Content.kollektionen2 }
+
+@defining(implicitSlide.label) { topic =>
 
     @layout.slidedeck(topic) {
 
@@ -10,5 +17,6 @@
 
         <!-- ################################################################################## -->
 
+        @uebung(implicitSlide.id)
     }
 }

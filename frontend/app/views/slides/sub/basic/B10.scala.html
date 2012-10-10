@@ -1,4 +1,6 @@
-@defining(Content.einfuehrung.label) { implicit topic =>
+@implicitSlide = @{ Content.einfuehrung }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -13,20 +15,18 @@
             @sidebyside((40,60)) {
                 @image("odersky.jpg")
             } {
-                <div class="fragment left w60p">
-                    <blockquote>
-                        <p>
-                            Der Name Scala steht für <br/><em>scal</em>able <em>la</em>nguage.
-                        </p>
-                        <p>
-                            Die Sprache ist so konzipiert, dass sie mit den Anforderungen des Nutzers wächst.
-                            Man kann sie auf eine Vielzahl von Aufgaben anwenden, von kleinen Skripten bis hin zu großen Systemen.
-                        </p>
-                        <var class="who">
-                            Martin Odersky, <br/>Erfinder von Scala
-                        </var>
-                    </blockquote>
-                </div>
+                <blockquote class="fragment">
+                    <p>
+                        Der Name Scala steht für <br/><em>scal</em>able <em>la</em>nguage.
+                    </p>
+                    <p>
+                        Die Sprache ist so konzipiert, dass sie mit den Anforderungen des Nutzers wächst.
+                        Man kann sie auf eine Vielzahl von Aufgaben anwenden, von kleinen Skripten bis hin zu großen Systemen.
+                    </p>
+                    <var class="who">
+                        Martin Odersky, <br/>Erfinder von Scala
+                    </var>
+                </blockquote>
             }
         }
 

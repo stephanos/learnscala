@@ -6,7 +6,9 @@ TODO
     - Übung
 -->
 
-@defining(Content.xml.label) { implicit topic =>
+@implicitSlide = @{ Content.xml }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -668,7 +670,7 @@ TODO
 
         <!-- ################################################################################## -->
 
-        @uebung("E20")
+        @uebung(implicitSlide.id)
     }
 }
 

@@ -1,4 +1,6 @@
-@defining(Content.operatoren.label) { implicit topic =>
+@implicitSlide = @{ Content.operatoren }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -436,6 +438,6 @@
 
         <!-- ################################################################################## -->
 
-        @uebung("B22")
+        @uebung(implicitSlide.id)
     }
 }

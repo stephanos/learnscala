@@ -1,4 +1,6 @@
-@defining(Content.klassen1.label) { implicit topic =>
+@implicitSlide = @{ Content.klassen1 }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -352,6 +354,6 @@
 
         <!-- ################################################################################## -->
 
-        @uebung("O10")
+        @uebung(implicitSlide.id)
     }
 }

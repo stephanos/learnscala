@@ -1,4 +1,4 @@
-@(typeOf: String, hr: Boolean = true, fragment: Boolean = true)(body: Html)
+@(typeOf: String, hr: Boolean = true, fragment: Boolean = true, clazz: String = "")(body: Html)
 
 @if(hr) {
     @spacer()
@@ -6,7 +6,7 @@
     @spacer_half()
 }
 
-<div class='@{if(fragment)"fragment" else ""} shoutbox @typeOf clearfix'>
+<div class='@{if(fragment)"fragment" else ""} @clazz shoutbox @typeOf clearfix'>
     <div class="inner">
         <table>
             <colgroup>

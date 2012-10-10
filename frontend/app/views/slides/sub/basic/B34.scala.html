@@ -6,7 +6,9 @@
     - implicitly[T]
     - CanBuildFrom
 -->
-@defining(Content.implicit2.label) { implicit topic =>
+@implicitSlide = @{ Content.implicit2 }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 

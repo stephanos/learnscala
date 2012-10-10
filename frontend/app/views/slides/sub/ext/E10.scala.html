@@ -2,8 +2,9 @@
 TODO:
     - DEMO of scala/scalac ?
 -->
+@implicitSlide = @{ Content.werkzeuge1 }
 
-@defining(Content.werkzeuge1.label) { implicit topic =>
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 

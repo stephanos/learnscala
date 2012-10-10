@@ -1,9 +1,6 @@
-<!--
-    - Collection Views
-    - Parallel Collections
-    - Lazy Collections
--->
-@defining(Content.kollektionen2.label) { implicit topic =>
+@implicitSlide = @{ Content.currying }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -15,5 +12,23 @@
 
         <!-- ################################################################################## -->
 
+        @defining("Currying") { title =>
+
+            @titleslide(title = title, subtitle = "") {
+
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "") {
+
+            }
+        }
+
+        <!-- TODO: simple example - like mult(a)(b), double = mult(2) -->
+
+        <!-- ################################################################################## -->
+
+        @uebung(implicitSlide.id)
     }
 }

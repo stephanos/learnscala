@@ -1,4 +1,6 @@
-@defining(Content.traits.label) { implicit topic =>
+@implicitSlide = @{ Content.traits }
+
+@defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
 
@@ -396,6 +398,6 @@
 
         <!-- ################################################################################## -->
 
-        @uebung("O21")
+        @uebung(implicitSlide.id)
     }
 }
