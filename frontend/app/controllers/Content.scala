@@ -32,7 +32,8 @@ object Content extends MyController {
 
     // === FUNKTIONEN
 
-    lazy val funktionen1 = Slide("F10", "Funktionen I", fp, Seq(objekte))
+    lazy val funcproc = Slide("F10", "FP", fp, Seq(objekte))
+    lazy val funktionen1 = Slide("F11", "Funktionen I", fp, Seq(funcproc))
 
     // === ERWEITERT
 

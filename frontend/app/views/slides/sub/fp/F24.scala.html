@@ -1,3 +1,6 @@
+<!--
+    - 2nd example (e.g. with Options)
+-->
 @implicitSlide = @{ Content.forexpr }
 
 @defining(implicitSlide.label) { implicit topic =>
@@ -322,157 +325,174 @@
 
         @defining("Beispiel") { title =>
 
-            @slide(title = title) {
-                @sourcecode(id = "people") {
-                    |val ppl = List("Anna" -> "Adams", "Adam" -> "Adams", "Barb" -> "Brown", "Bill" -> "Brown")
+            @defining("") { subtitle =>
+
+                @slide(title = title, subtitle = subtitle) {
+                    @sourcecode(id = "people") {
+                        |val ppl = List("Anna" -> "Adams", "Adam" -> "Adams", "Barb" -> "Brown", "Bill" -> "Brown")
+                    }
+
+                    @spacer()
+
+                    @fragment {
+                        <div class="tcenter">
+                            <span class="big underline">
+                                Vornamen die mit "B" beginnen ?
+                            </span>
+                        </div>
+                    }
+
+                    @spacer2()
+
+                    @sidebyside(gap = 10) {
+                        @snippet() {
+                            @callblock(reference = "people") {
+                                |for {
+                                |  p <- ppl                 // Generator
+                                |  firstname = p._1         // Definition
+                                |  if p._1.startsWith("B")  // Filter
+                                |} print(firstname + " ")
+                            }
+                            @outblock() {
+                                |Barb Bill
+                            }
+                        }
+                        @codesub2() {
+                            via for-Ausdruck
+                        }
+                    } {
+                        @snippet() {
+                            @callblock(reference = "people") {
+                                |ppl filter {
+                                |  p =>
+                                |    val firstname = p._1
+                                |    firstname.startsWith("B")
+                                |} foreach {p => print(p._1 + " ")}
+                            }
+                            @outblock() {
+                                |Barb Bill
+                            }
+                        }
+                        @codesub2() {
+                            via Funktionen
+                        }
+                    }
+
+                    @*
+                    @spacer()
+
+                    @sidebyside() {
+                        @snippet() {
+                            @callblock(reference = "people") {
+                                |for {
+                                |  p <- ppl                 // Generator
+                                |  firstname = p._1         // Definition
+                                |  if p._1.startsWith("B")  // Filter
+                                |} yield firstname
+                            }
+                            @outblock() {
+                                |res0: List[String] = List(Barb, Bill)
+                            }
+                        }
+                        @codesub() {
+                            Rückgabe via for-Ausdruck
+                        }
+                    } {
+                        @snippet() {
+                            @callblock(reference = "people") {
+                                |ppl filter {
+                                |  p =>
+                                |    val firstname = p._1
+                                |    firstname.startsWith("B")
+                                |} map (_._1)
+                            }
+                            @outblock() {
+                                |res0: List[String] = List(Barb, Bill)
+                            }
+                        }
+                        @codesub() {
+                            Rückgabe via Funktionen höherer Ordnung
+                        }
+                    }
+                    *@
                 }
 
-                @spacer_half()
+                <!-- ################################################################################## -->
 
-                @fragment {
-                    <div class="tcenter">
-                        <span class="big underline">
-                            Vornamen die mit "B" beginnen ?
-                        </span>
-                    </div>
-                }
+                @slide(title = title, subtitle = subtitle) {
 
-                @spacer_half()
+                    @sourcecode() {
+                        |val ppl = List("Anna" -> "Adams", "Adam" -> "Adams", "Barb" -> "Brown", "Bill" -> "Brown")
+                    }
 
-                @sidebyside((50,50)) {
-                    @snippet() {
-                        @callblock(reference = "people") {
-                            |for {
-                            |  p <- ppl                 // Generator
-                            |  firstname = p._1         // Definition
-                            |  if p._1.startsWith("B")  // Filter
-                            |} print(firstname + " ")
-                        }
-                        @outblock() {
-                            |Barb Bill
-                        }
-                    }
-                    @codesub() {
-                        Ausgabe via for-Ausdruck
-                    }
-                } {
-                    @snippet() {
-                        @callblock(reference = "people") {
-                            |ppl filter {
-                            |  p =>
-                            |    val firstname = p._1
-                            |    firstname.startsWith("B")
-                            |} foreach {p => print(p._1 + " ")}
-                        }
-                        @outblock() {
-                            |Barb Bill
-                        }
-                    }
-                    @codesub() {
-                        Ausgabe via Funktionen höherer Ordnung
-                    }
-                }
+                    @spacer()
 
-                @spacer()
+                    @fragment {
+                        <div class="tcenter">
+                            <span class="big underline">
+                                Welche Personen haben den gleichen Nachnamen ?
+                            </span>
+                        </div>
+                    }
 
-                @sidebyside((50,50)) {
-                    @snippet() {
-                        @callblock(reference = "people") {
-                            |for {
-                            |  p <- ppl                 // Generator
-                            |  firstname = p._1         // Definition
-                            |  if p._1.startsWith("B")  // Filter
-                            |} yield firstname
+                    @spacer2()
+
+                    @sidebyside(gap = 10) {
+                        @snippet() {
+                            @callblock(reference = "people") {
+                                |for {
+                                |  p1 <- ppl                 // Gener. #1
+                                |  p2 <- ppl filter(_ != p1) // Gener. #2
+                                |  if p1._2 == p2._2         // Filter
+                                |} yield (p1, p2)
+                            }
+                            @outblock() {
+                                |List(((Anna,Adams),(Adam,Adams))
+                                |     ((Adam,Adams),(Anna,Adams))
+                                |     ((Barb,Brown),(Bill,Brown))
+                                |     ((Bill,Adams),(Barb,Brown)))
+                            }
                         }
-                        @outblock() {
-                            |res0: List[String] = List(Barb, Bill)
+                        @codesub2() {
+                            via for-Ausdruck
                         }
-                    }
-                    @codesub() {
-                        Rückgabe via for-Ausdruck
-                    }
-                } {
-                    @snippet() {
-                        @callblock(reference = "people") {
-                            |ppl filter {
-                            |  p =>
-                            |    val firstname = p._1
-                            |    firstname.startsWith("B")
-                            |} map (_._1)
+                    } {
+                        @snippet() {
+                            @callblock(reference = "people") {
+                                |ppl.flatMap { p1 =>
+                                |  ppl.filter {
+                                |    p2 => p1 != p2
+                                |  } filter {
+                                |    p2 => p1._2 == p2._2
+                                |  } map {
+                                |    p2 => (p1, p2)
+                                |  }
+                                |}
+                            }
+                            @outblock() {
+                                |List(((Anna,Adams),(Adam,Adams))
+                                |     ((Adam,Adams),(Anna,Adams))
+                                |     ((Barb,Brown),(Bill,Brown))
+                                |     ((Bill,Adams),(Barb,Brown)))
+                            }
                         }
-                        @outblock() {
-                            |res0: List[String] = List(Barb, Bill)
+                        @codesub2() {
+                            via Funktionen
                         }
-                    }
-                    @codesub() {
-                        Rückgabe via Funktionen höherer Ordnung
                     }
                 }
             }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title) {
-                @sourcecode() {
-                    |val ppl = List("Anna" -> "Adams", "Adam" -> "Adams", "Barb" -> "Brown", "Bill" -> "Brown")
-                }
+            @*
+            @defining("B") { subtitle =>
 
-                @spacer()
+                @slide(title = title, subtitle = subtitle) {
 
-                @fragment {
-                    <div class="tcenter">
-                        <span class="big underline">
-                            Welche Personen haben den gleichen Nachnamen ?
-                        </span>
-                    </div>
-                }
-
-                @spacer2()
-
-                @sidebyside((50,50)) {
-                    @snippet() {
-                        @callblock(reference = "people") {
-                            |for {
-                            |  p1 <- ppl                 // Gener. #1
-                            |  p2 <- ppl filter(_ != p1) // Gener. #2
-                            |  if p1._2 == p2._2         // Filter
-                            |} yield (p1, p2)
-                        }
-                        @outblock() {
-                            |List(((Anna,Adams),(Adam,Adams))
-                            |     ((Adam,Adams),(Anna,Adams))
-                            |     ((Barb,Brown),(Bill,Brown))
-                            |     ((Bill,Adams),(Barb,Brown)))
-                        }
-                    }
-                    @codesub() {
-                        via for-Ausdruck
-                    }
-                } {
-                    @snippet() {
-                        @callblock(reference = "people") {
-                            |ppl.flatMap { p1 =>
-                            |  ppl.filter {
-                            |    p2 => p1 != p2
-                            |  } filter {
-                            |    p2 => p1._2 == p2._2
-                            |  } map {
-                            |    p2 => (p1, p2)
-                            |  }
-                            |}
-                        }
-                        @outblock() {
-                            |List(((Anna,Adams),(Adam,Adams))
-                            |     ((Adam,Adams),(Anna,Adams))
-                            |     ((Barb,Brown),(Bill,Brown))
-                            |     ((Bill,Adams),(Barb,Brown)))
-                        }
-                    }
-                    @codesub() {
-                        via Funktionen höherer Ordnung
-                    }
                 }
             }
+            *@
         }
 
         <!-- ################################################################################## -->

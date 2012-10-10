@@ -1,0 +1,161 @@
+<!--
+    http://scalatutorial.wordpress.com/2012/01/25/teil-16-funktionen/
+    https://speakerdeck.com/u/dimituri/p/the-imminent-threat-of-functional-programming
+-->
+@implicitSlide = @{ Content.funktionen1 }
+
+@defining(implicitSlide.label) { implicit topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slidehead() {
+            Funktionale Programmierung
+        } {
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide(title = "Definition") {
+
+            @spacer()
+
+            @sidebyside(gap = 20) {
+                @spacer_half()
+                <blockquote class="fragment">
+                    <p>
+                        Funktionale Programmierung ist, als beschreibt man sein Problem einem Mathematiker.
+                    </p>
+                    <p>
+                        Imperative Programmierung ist, als gibt man Anweisungen an einen Idioten.
+                    </p>
+                    <var class="who">
+                        jemand auf Twitter
+                    </var>
+                </blockquote>
+            } {
+                <blockquote class="fragment">
+                    <p>
+                        Eine funktionale Programmiersprache ist eine Programmiersprache,
+                        die Sprachelemente zur Kombination und Transformation von Funktionen anbietet.
+                    </p>
+                    <p>
+                        Dadurch werden die aus der imperativen Programmierung bekannten Nebenwirkungen vermieden.
+                    </p>
+                    <var class="who">
+                        Wikipedia
+                    </var>
+                </blockquote>
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide(title = "Charakteristik") {
+
+            @spacer()
+
+            @sidebyside() {
+                @fragment {
+                    @image("function.png", width = 300,
+                           clazz = "naked", source = "http://en.wikipedia.org/wiki/Function_(mathematics)")
+                }
+            } {
+                @spacer_half()
+                <ul class="fragments">
+                    <li>Auswertung mathematischer Funktionen</li>
+                    <li>globalen Zustand vermeiden</li>
+                    <li>Eingabe bestimmt Ausgabe</li>
+                    <li>deterministisch</li>
+                    <li>keine Seiteneffekte</li>
+                    <li>unveränderliche Daten</li>
+                    <li><em>was</em> anstatt <var>wie</var></li>
+                </ul>
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("Unveränderliche Daten") { subtitle =>
+
+            @titleslide(title = subtitle) {
+                <!-- TODO -->
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = subtitle, subsubtitle = "Garbage Collector") {
+                <!--
+                    http://www.ibm.com/developerworks/java/library/j-jtp01274/index.html
+                    http://c2.com/cgi/wiki?ImmutableObjectsAndGarbageCollection
+                    "generational garbage collector immutability"
+                    "scala immutable efficiency"
+                -->
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide(title = "OO vs FP") {
+
+            <div class="w50p bigger dcenter">
+                <blockquote class="fragment">
+                    <p>
+                        Objektorientierte Programmierung sorgt für verständlichen Code
+                        durch <em>Kapselung</em> von Zuständen.
+                    </p>
+                    <p>
+                        Funktionale Programmierung sorgt für verständlichen Code
+                        durch <em>Minimierung</em> von Zuständen.
+                    </p>
+                    <var class="who">
+                        Michael Feathers
+                    </var>
+                </blockquote>
+            </div>
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Vor- und Nachteile") {
+
+            @sidebyside() {
+                <h3><em>Vorteile</em></h3>
+
+                <ul class="indent fragments">
+                    <li>
+                        höhere Abstraktion
+                    </li>
+                    <li>
+                        weniger Programmzeilen
+                    </li>
+                    <li>
+                        ausdruckstärkerer Code
+                    </li>
+                    <li>
+                        besser zu debuggen
+                    </li>
+                    <li>
+                        einfacher zu testen
+                    </li>
+                    <li>
+                        Parallelisierung
+                    </li>
+                </ul>
+            } {
+                <h3><var>Nachteile</var></h3>
+
+                <ul class="indent fragments">
+                    <li>
+                        höhere Abstraktion
+                    </li>
+                    <li>
+                        höherer Speicherbedarf
+                    </li>
+                    <li>
+                        Vereinbarung von Theorie und Hardware
+                    </li>
+                </ul>
+            }
+        }
+    }
+}

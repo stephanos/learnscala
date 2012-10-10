@@ -18,7 +18,7 @@
         @defining("Case Class") { title =>
 
             @slide(title = title) {
-                @sidebyside((50,50)) {
+                @sidebyside() {
                     @sourcecode(id = "simple_class") {
                         |class HttpStatus (val code: Int)
                     }
@@ -33,7 +33,7 @@
 
                 @spacer()
 
-                @sidebyside((50,50)) {
+                @sidebyside() {
                     @snippet(clazz = "slim") {
                         @sourceblock(reference = "simple_class", id = "simple_class_step1") {
                             |val s = new HttpStatus(404)
@@ -52,7 +52,7 @@
 
                 @spacer_half()
 
-                @sidebyside((50,50)) {
+                @sidebyside() {
                     @snippet(clazz = "slim") {
                         @sourceblock(reference = "simple_class_step1") {
                             |s.code
@@ -77,7 +77,7 @@
 
                 @spacer_half()
 
-                @sidebyside((50,50)) {
+                @sidebyside() {
                     @snippet(clazz = "slim") {
                         @sourceblock(reference = "simple_class_step1") {
                             |s.toString
@@ -102,7 +102,7 @@
 
                 @spacer_half()
 
-                @sidebyside((50,50)) {
+                @sidebyside() {
                     @snippet(clazz = "slim") {
                         @sourceblock(reference = "simple_class_step1", id = "simple_class_step3") {
                             |val eq = s.equals (new HttpStatus(404))
