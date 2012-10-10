@@ -1,0 +1,244 @@
+<!--
+    http://scalatutorial.wordpress.com/2012/01/25/teil-16-funktionen/
+    https://speakerdeck.com/u/dimituri/p/the-imminent-threat-of-functional-programming
+-->
+@implicitSlide = @{ Content.funktionen1 }
+
+@defining(implicitSlide.label) { implicit topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slidehead() {
+            @topic
+        } {
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("Funktionale Programmierung") { title =>
+
+            @subtitleslide(title = title, subtitle = "Definition") {
+
+                @spacer()
+
+                @sidebyside(gap = 20) {
+                    @spacer_half()
+                    <blockquote class="fragment">
+                        <p>
+                            Funktionale Programmierung ist, als beschreibt man sein Problem einem Mathematiker.
+                        </p>
+                        <p>
+                            Imperative Programmierung ist, als gibt man Anweisungen an einen Idioten.
+                        </p>
+                        <var class="who">
+                            jemand auf Twitter
+                        </var>
+                    </blockquote>
+                } {
+                    <blockquote class="fragment">
+                        <p>
+                            Eine funktionale Programmiersprache ist eine Programmiersprache,
+                            die Sprachelemente zur Kombination und Transformation von Funktionen anbietet.
+                        </p>
+                        <p>
+                            Dadurch werden die aus der imperativen Programmierung bekannten Nebenwirkungen vermieden.
+                        </p>
+                        <var class="who">
+                            Wikipedia
+                        </var>
+                    </blockquote>
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @subtitleslide(title = title, subtitle = "Charakteristik") {
+
+                @spacer()
+
+                @sidebyside() {
+                    @fragment {
+                        @image("function.png", width = 300,
+                               clazz = "naked", source = "http://en.wikipedia.org/wiki/Function_(mathematics)")
+                    }
+                } {
+                    @spacer_half()
+                    <ul class="fragments">
+                        <li>Auswertung mathematischer Funktionen</li>
+                        <li>globalen Zustand vermeiden</li>
+                        <li>Eingabe bestimmt Ausgabe</li>
+                        <li>deterministisch</li>
+                        <li>keine Seiteneffekte</li>
+                        <li>unveränderliche Daten</li>
+                        <li><em>was</em> anstatt <var>wie</var></li>
+                    </ul>
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @defining("Unveränderliche Daten") { subtitle =>
+
+                @subtitleslide(title = title, subtitle = subtitle) {
+
+                }
+
+                <!-- ################################################################################## -->
+
+                @subtitleslide(title = title, subtitle = subtitle, subsubtitle = "Garbage Collector") {
+
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @subtitleslide(title = title, subtitle = "OO vs FP") {
+
+                <div class="w50p bigger dcenter">
+                    <blockquote class="fragment">
+                        <p>
+                            Objektorientierte Programmierung sorgt für verständlichen Code
+                            durch <em>Kapselung</em> von Zuständen.
+                        </p>
+                        <p>
+                            Funktionale Programmierung sorgt für verständlichen Code
+                            durch <em>Minimierung</em> von Zuständen.
+                        </p>
+                        <var class="who">
+                            Michael Feathers
+                        </var>
+                    </blockquote>
+                </div>
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Vor- und Nachteile") {
+
+                @sidebyside() {
+                    <h3><em>Vorteile</em></h3>
+
+                    <ul class="indent fragments">
+                        <li>
+                            höhere Abstraktion
+                        </li>
+                        <li>
+                            weniger Programmzeilen
+                        </li>
+                        <li>
+                            ausdruckstärkerer Code
+                        </li>
+                        <li>
+                            besser zu debuggen
+                        </li>
+                        <li>
+                            einfacher zu testen
+                        </li>
+                        <li>
+                            Parallelisierung
+                        </li>
+                    </ul>
+                } {
+                    <h3><var>Nachteile</var></h3>
+
+                    <ul class="indent fragments">
+                        <li>
+                            höhere Abstraktion
+                        </li>
+                        <li>
+                            höherer Speicherbedarf
+                        </li>
+                        <li>
+                            Vereinbarung von Theorie und Hardware
+                        </li>
+                    </ul>
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Syntax") {
+            @snippet() {
+                @callblock() {
+                    |(x: Int) => x + 1
+                }
+                @outblock() {
+                    |(Int) => Int = &lt;function1&gt;
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide() {
+            @sidebyside((66,33)) {
+                @snippet() {
+                    @callblock() {
+                        |val f = (x: Int) => x + 1
+                    }
+                    @outblock() {
+                        |f: (Int) => Int = &lt;function1&gt;
+                    }
+                }
+            } {
+                @codenote() {
+                    Wert von <code>f</code> ist nun eine Funktion: <em>Funktionen sind Objekte!</em>
+                }
+            }
+
+            @spacer2()
+
+            @sidebyside((66,33)) {
+                @snippet(id = "f1") {
+                    @callblock() {
+                        |val f1: Function1[Int, Int] = x => x + 1
+                    }
+                    @outblock(clazz = "middle") {
+                        |f1: (Int) => Int = &lt;function1&gt;
+                    }
+                }
+            } {
+                @codenote() {
+                    Funktionen mit 1 Parameter sind vom Typ <code>Function1</code>
+                }
+            }
+
+            @sidebyside((66,33)) {
+                @snippet() {
+                    @callblock(reference = "f1", clazz = "end") {
+                        |f1(9)  // f1.apply(9)
+                    }
+                    @outblock() {
+                        |res0: Int = 10
+                    }
+                }
+            } {
+                @codenote() {
+                    Funktionen besitzten <code>apply</code>-Methode zum Aufruf
+                }
+            }
+
+            @spacer2()
+
+            @sidebyside((66,33)) {
+                @snippet() {
+                    @callblock() {
+                        |val f2: Function2[Int, Int, Boolean] = (x, y) => x > y
+                    }
+                    @outblock() {
+                        |f2: (Int, Int) => Boolean = &lt;function2&gt;
+                    }
+                }
+            } {
+                @codenote() {
+                    Funktionen mit 2 Parametern sind vom Typ <code>Function2</code> usw.
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @uebung(implicitSlide.id)
+    }
+}
