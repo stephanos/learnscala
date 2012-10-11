@@ -155,7 +155,7 @@
 
             @spacer()
 
-            @sidebyside(gap = 10) {
+            @sidebyside((30,70), gap = 3) {
                 @snippet() {
                     @callblock() {
                         |List (1, 2, 3).head
@@ -165,60 +165,65 @@
                     }
                 }
             } {
+                @sidebyside(gap = 10) {
+                    @snippet() {
+                        @callblock() {
+                            |List (1, 2, 3).tail
+                        }
+                        @outblock() {
+                            |res0: List[Int] = List(1,2)
+                        }
+                    }
+                } {
+                    @snippet() {
+                        @callblock() {
+                            |List (1).tail
+                        }
+                        @outblock() {
+                            |res0: List[Int] = List()
+                        }
+                    }
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide(title = "Verarbeitung") {
+
+            @spacer()
+
+            @sidebyside(gap = 10) {
+                <h4 class="fragment tcenter">Rekursion</h4>
+
+                @spacer()
+
                 @snippet() {
-                    @callblock() {
-                        |List (1, 2, 3).tail
+                    @sourceblock(id = "sum-rec") {
+                        |def sum(lst: List[Int]): Int =
+                        |  if  (lst == Nil) 0
+                        |  else lst.head + sum (lst.tail)
                     }
-                    @outblock() {
-                        |res1: List[Int] = List(1,2)
+                }
+                @codesub2() {
+                    via Methoden <code>head</code> und <code>tail</code>
+                }
+            } {
+                <h4 class="fragment tcenter">Pattern Matching</h4>
+
+                @spacer()
+
+                @snippet() {
+                    @sourceblock(id = "sum-pm") {
+                        |def sum(lst: List[Int]): Int =
+                        |  lst match {
+                        |    case Nil => 0
+                        |    case head :: t => head + sum(t)
+                        |  }
                     }
                 }
-            }
-        }
-
-        <!-- ################################################################################## -->
-
-        @slide(title = "Aufbau") {
-
-            @Images.list()
-
-            @snippet() {
-                @callblock() {
-                    |val nums = List (1, 2, 3)
-                }
-                @outblock() {
-                    |res0: List[Int] = List(1, 2, 3)
-                }
-            }
-        }
-
-        <!-- ################################################################################## -->
-
-        @slide(title = "Rekursion") {
-        }
-
-        <!-- ################################################################################## -->
-
-        @slide(title = "Pattern Matching") {
-
-            @snippet() {
-                @sourceblock(reference = "list_stewards", fragment = false) {
-                    |def printList(ls: List[String]) {
-                    |  ls match {
-                    |    case List() =>
-                    |    case h :: tail =>
-                    |      println(h)
-                    |      printList(tail)
-                    |  }
-                    |}
-                }
-                @callblock() {
-                    |printList(stewards)
-                }
-                @outblock() {
-                    |Jen
-                    |Jo
-                    |Jim
+                @codesub2() {
+                    via Dekomposition in <code>head</code> und <code>tail</code>
                 }
             }
         }

@@ -10,11 +10,21 @@
 
     http://stackoverflow.com/questions/2173373/scala-foreach-strange-behaviour
 -->
-@implicitSlide = @{ Content.funktionen3 }
+@implicitSlide = @{ Content.funktionen4 }
 
 @defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
+        @slidehead() {
+            @topic
+        } {
 
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide() {
+
+        }
     }
 }
