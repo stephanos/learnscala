@@ -1,0 +1,78 @@
+@implicitSlide = @{ Content.funktionen2 }
+
+@defining(implicitSlide.label) { implicit topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slidehead() {
+            @topic
+        } {
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("Beispiel") { title =>
+
+            @slide(title = title) {
+
+                @sidebyside(gap = 10) {
+                    @sourcecode(linebyline = true) {
+                        |object DirectoryPrinter {
+                        |  import java.io._
+                        |  def files = new File(".").listFiles
+                        |
+                        |  def filesEnding(query: String) =
+                        |    for (i <- 0 until files.size) {
+                        |      val f = files(i)
+                        |      if (f.getName.endsWith(query))
+                        |        println(f)
+                        |    }
+                        |
+                        |  def filesContaining(query: String) =
+                        |    for (i <- 0 until files.size) {
+                        |      val f = files(i)
+                        |      if (f.getName.contains(query))
+                        |        println(f)
+                        |    }
+                        |
+                        |  def filesRegex(query: String) =
+                        |    for (i <- 0 until files.size) {
+                        |      val f = files(i)
+                        |      if (f.getName.matches(query))
+                        |        println(f)
+                        |    }
+                        |}
+                    }
+                } {
+                    @sourcecode(linebyline = true) {
+                        |object DirectoryPrinter {
+                        |  import java.io._
+                        |  def files = new File(".").listFiles
+                        |
+                        |  def printf(matcher: String => Boolean) {
+                        |    for (i <- 0 until files.size) {
+                        |      val f = files(i)
+                        |      if (matcher(f.getName))
+                        |        println(f)
+                        |    }
+                        |  }
+                        |
+                        |  def filesEnding(query: String) =
+                        |    printf(_.endsWith(query))
+                        |
+                        |  def filesContaining(query: String) =
+                        |    printf(_.contains(query))
+                        |
+                        |  def filesRegex(query: String) =
+                        |    printf(_.matches(query))
+                        |}
+                    }
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @uebung(implicitSlide.id)
+    }
+}

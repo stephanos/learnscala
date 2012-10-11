@@ -13,8 +13,11 @@ object Quiz extends MyController {
     def operator() =
         views.html.quizzes.operator()
 
-    def collection() =
-        views.html.quizzes.collection()
+    def functions1() =
+        views.html.quizzes.functions1()
+
+    def functions3() =
+        views.html.quizzes.functions3()
 
     def method1() =
         views.html.quizzes.method1()

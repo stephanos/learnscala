@@ -32,8 +32,9 @@ object Content extends MyController {
 
     // === FUNKTIONEN
 
-    lazy val funcproc = Slide("F10", "FP", fp, Seq(objekte))
+    lazy val funcproc = Slide("F10", "FP", fp, Seq(geschichte))
     lazy val funktionen1 = Slide("F11", "Funktionen I", fp, Seq(funcproc))
+    lazy val funktionen2 = Slide("F12", "Funktionen II", fp, Seq(funktionen1))
 
     // === ERWEITERT
 
@@ -65,8 +66,8 @@ object Content extends MyController {
     lazy val datatypes1 = Slide("F20", "Datenstrukturen I", fp, Seq(generics1))
     lazy val datatypes2 = Slide("F21", "Datenstrukturen II", fp, Seq(datatypes1), status = "complete")
     lazy val listen = Slide("F22", "Listenverarbeitung", fp, Seq(datatypes2))
-    lazy val funktionen2 = Slide("F23", "Funktionen II", fp, Seq(datatypes2, funktionen1))
-    lazy val forexpr = Slide("F24", "for-Ausdruck", fp, Seq(funktionen2), status = "complete")
+    lazy val funktionen3 = Slide("F23", "Funktionen III", fp, Seq(datatypes2, funktionen2))
+    lazy val forexpr = Slide("F24", "for-Ausdruck", fp, Seq(funktionen3), status = "complete")
 
     // === ERWEITERT
 
@@ -99,9 +100,9 @@ object Content extends MyController {
     // === FUNKTIONEN
 
     lazy val datatypes3 = Slide("F30", "Datenstrukturen III", fp, Seq(datatypes2))
-    lazy val currying = Slide("F31", "Currying", fp, Seq(funktionen1))
-    lazy val byname = Slide("F32", "By-Name Parameter", fp, Seq(funktionen1), status = "complete")
-    lazy val funktionen3 = Slide("F33", "Funktionen III", fp, Seq(currying, funktionen2))
+    lazy val currying = Slide("F31", "Currying", fp, Seq(funktionen2))
+    lazy val byname = Slide("F32", "By-Name Parameter", fp, Seq(funktionen2), status = "complete")
+    lazy val funktionen4 = Slide("F33", "Funktionen IV", fp, Seq(currying, funktionen3))
     lazy val kontrollabstraktion = Slide("F34", "Kontrollabstraktion", fp, Seq(currying, byname), status = "complete")
 
     // === ERWEITERT
