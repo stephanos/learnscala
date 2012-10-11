@@ -57,7 +57,7 @@
                             <li>
                                 Funktionsliteral / anonyme Funktion
                                 @spacer_half()
-                                <ul class="indent">
+                                <ul class="indent fragments">
                                     <li>
                                         Parameterliste mit <code>x</code> vom Typ <code>Int</code>
                                     </li>
@@ -116,42 +116,164 @@
             @codesub2() {
                 Funktionen mit 1 Parameter sind vom Typ <code>@apilink("Function1")</code>
             }
+        }
 
+        <!-- ################################################################################## -->
 
-            @*
-            @snippet() {
-                @callblock(reference = "f1") {
-                    |f1(9)  // f1.apply(9)
+        @slide(title = "Aufruf") {
+
+            @snippet(id = "call") {
+                @sourceblock() {
+                    |val f1 = (x: Int) => x + 1
                 }
                 @outblock() {
-                    |res0: Int = 10
+                    |f1: (Int) => Int = &lt;function1&gt;
                 }
             }
-
             @codesub2() {
-                Funktionen besitzten <code>apply</code>-Methode zum Aufruf
+                <code>apply</code> ruft die Funktion auf
             }
 
             @spacer2()
 
-            @snippet() {
-                @callblock() {
-                    |val f2: Function2[Int, Int, Boolean] = (x, y) => x > y
+            @indent() {
+                @snippet() {
+                    @callblock(reference = "call") {
+                        |f1(5)
+                    }
+                    @outblock() {
+                        |res0: Int = 6
+                    }
                 }
-                @outblock() {
-                    |f2: (Int, Int) => Boolean = &lt;function2&gt;
+                @codesub2() {
+                    impliziter Aufruf
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference = "call") {
+                        |f1.apply(5)
+                    }
+                    @outblock() {
+                        |res1: Int = 6
+                    }
+                }
+                @codesub2() {
+                    expliziter Aufruf
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Terminologie") {
+
+            <h3 class="tcenter">Arten von Funktionen</h3>
+
+            @sidebyside(gap = 5) {
+                @sourcecode() {
+                    |object Calc {
+                    |  def plusOne =
+                    |    x + 1
+                    |}
+                }
+            } {
+                @codenote2() {
+                    <em>Methode</em><br/>
+                    Funktion eines Objekts
                 }
             }
 
-            @codesub2() {
-                Funktionen mit 2 Parametern sind vom Typ <code>Function2</code> usw.
+            @spacer()
+
+            @sidebyside(gap = 5) {
+                @sourcecode() {
+                    |object Calc {
+                    |  def plusOne (x: Int) {
+                    |    println (x + 1)
+                    |  }
+                    |}
+                }
+            } {
+                @codenote2() {
+                    <em>Prozedur</em><br/>
+                    Methode vom Typ <code>Unit</code>
+                }
             }
-            *@
+
+            @spacer()
+
+            @sidebyside(gap = 5) {
+                @sourcecode() {
+                    |(x: Int) => x + 1
+                }
+            } {
+                @codenote2() {
+                    <em>anonyme Funktion</em><br/>
+                    Funktion ohne Namen
+                }
+            }
+
+            @spacer()
+
+            @sidebyside(gap = 5) {
+                @sourcecode() {
+                    |val i = 0
+                    |(x: Int) => x + i
+                }
+            } {
+                @codenote2() {
+                    <em>Closure</em><br/>
+                    anonyme Funktion mit freier Variable
+                }
+            }
         }
 
         <!-- ################################################################################## -->
 
         @slide(title = "Closure") {
+
+            @snippet() {
+                @sourceblock(id = "adult") {
+                    |var minAge = 18
+                    |val isAdult = (age: Int) => age >= minAge
+                }
+                @outblock() {
+                    |res0: Int = 6
+                }
+            }
+            @codesub2() {
+                Closure hat Zugriff auf Variablen außerhalb der Funktion
+            }
+
+            @spacer2()
+
+            @indent() {
+                @snippet() {
+                    @callblock(reference = "adult") {
+                        |val isAdultInGermany = isAdult (20)
+                    }
+                    @outblock() {
+                        |isAdultInGermany: Boolean = true
+                    }
+                }
+
+                @spacer2()
+
+                @snippet() {
+                    @callblock(reference = "adult") {
+                        |minAge = 21
+                        |val isAdultInUSA = isAdult (20)
+                    }
+                    @outblock() {
+                        |isAdultInUSA: Boolean = false
+                    }
+                }
+                @codesub2() {
+                    <var>Vorsicht:</var> Closure greift dynamisch auf Variable zu
+                }
+            }
 
             <!--
                 http://www.ibm.com/developerworks/java/library/j-scala01228/index.html
@@ -160,8 +282,64 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Komposition") {
+        @defining("Beispiel") { title =>
 
+            @slide(title = title) {
+
+                @sidebyside(gap = 10) {
+                    @sourcecode(linebyline = true) {
+                        |object DirectoryPrinter {
+                        |  import java.io._
+                        |  def files = new File(".").listFiles
+                        |
+                        |  def filesEnding(query: String) =
+                        |    for (i <- 0 until files.size) {
+                        |      val f = files(i)
+                        |      if (f.getName.endsWith(query))
+                        |        println(f)
+                        |    }
+                        |
+                        |  def filesContaining(query: String) =
+                        |    for (i <- 0 until files.size) {
+                        |      val f = files(i)
+                        |      if (f.getName.contains(query))
+                        |        println(f)
+                        |    }
+                        |
+                        |  def filesRegex(query: String) =
+                        |    for (i <- 0 until files.size) {
+                        |      val f = files(i)
+                        |      if (f.getName.matches(query))
+                        |        println(f)
+                        |    }
+                        |}
+                    }
+                } {
+                    @sourcecode(linebyline = true) {
+                        |object DirectoryPrinter {
+                        |  import java.io._
+                        |  def files = new File(".").listFiles
+                        |
+                        |  def printf(matcher: String => Boolean) {
+                        |    for (i <- 0 until files.size) {
+                        |      val f = files(i)
+                        |      if (matcher(f.getName))
+                        |        println(f)
+                        |    }
+                        |  }
+                        |
+                        |  def filesEnding(query: String) =
+                        |    printf(_.endsWith(query))
+                        |
+                        |  def filesContaining(query: String) =
+                        |    printf(_.contains(query))
+                        |
+                        |  def filesRegex(query: String) =
+                        |    printf(_.matches(query))
+                        |}
+                    }
+                }
+            }
         }
 
         <!-- ################################################################################## -->
