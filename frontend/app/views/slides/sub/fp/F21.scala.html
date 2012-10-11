@@ -121,7 +121,12 @@
                             |res0: List[Int] = List(1, 2, 3, 4)
                         }
                     }
-                    @spacer_half()
+                    @codesub2() {
+                        Traversable verknüpfen
+                    }
+
+                    @spacer2()
+
                     @snippet() {
                         @callblock() {
                             |List(1,2,3) head
@@ -130,7 +135,12 @@
                             |res1: Int = 1
                         }
                     }
-                    @spacer_half()
+                    @codesub2() {
+                        Kopf vom Traversable
+                    }
+
+                    @spacer2()
+
                     @snippet() {
                         @callblock() {
                             |List(1,2,3) tail
@@ -139,7 +149,12 @@
                             |res2: List[Int] = List(2, 3)
                         }
                     }
-                    @*@spacer_half()
+                    @codesub2() {
+                        Schwanz vom Traversable
+                    }
+
+                    @*
+                    @spacer_half()
                     @snippet() {
                         @callblock() {
                             |List(1,2,3) last
@@ -148,7 +163,10 @@
                             |res3: Int = 3
                         }
                     }*@
-                    @spacer_half()
+
+                    @spacer2()
+
+                    @*
                     @snippet() {
                         @callblock() {
                             |List(1,2,3) mkString ","
@@ -157,7 +175,9 @@
                             |res4: String = 1,2,3
                         }
                     }
+
                     @spacer_half()
+
                     @snippet() {
                         @callblock() {
                             |List(1,2,3) sum
@@ -166,6 +186,7 @@
                             |res5: Int = 6
                         }
                     }
+                    *@
                 } {
                     @snippet() {
                         @callblock() {
@@ -175,7 +196,12 @@
                             |res6: List[Int] = List(1, 2)
                         }
                     }
-                    @spacer_half()
+                    @codesub2() {
+                        Elemente extrahieren
+                    }
+
+                    @spacer2()
+
                     @snippet() {
                         @callblock() {
                             |List(1,2,3) drop 2
@@ -184,7 +210,11 @@
                             |res7: List[Int] = List(3)
                         }
                     }
-                    @spacer_half()
+                    @codesub2() {
+                        Elemente entfernen
+                    }
+
+                    @*
                     @snippet() {
                         @callblock() {
                             |List(1,2,3) toArray
@@ -193,7 +223,10 @@
                             |res8: Array[Int) = Array(1,2,3)
                         }
                     }
-                    @*@spacer_half()
+                    *@
+
+                    @*
+                    @spacer_half()
                     @snippet() {
                         @callblock() {
                             |List(1,2,3) size
@@ -202,6 +235,8 @@
                             |res9: Int = 3
                         }
                     }*@
+
+                    @*
                     @spacer_half()
                     @snippet() {
                         @callblock() {
@@ -220,6 +255,7 @@
                             |res11: List[Int] = List(2)
                         }
                     }
+                    *@
                 }
             }
         }

@@ -94,8 +94,11 @@ captureLinks = (links, cb) ->
           outpath = "glossary/" + link.split("/")[3]
         else
           url = page.evaluate(-> document.location.href).replace(/\/#\//g, "")
+          main = link.split("/")[2]
+          category = link.split("/")[3]
           code = url.substr(url.lastIndexOf("/") + 1)
-          outpath = link.split("/")[2] + "/" + link.split("/")[3] + "/" + code + "_" + title
+          level = code.charAt(1)
+          outpath = main + "/" + level + "/" + code + "_" + title
 
         # capture each slide
         captureSlides(page, slides, slides, outpath, () ->

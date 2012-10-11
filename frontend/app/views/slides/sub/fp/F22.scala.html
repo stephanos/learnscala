@@ -12,9 +12,24 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
-
+        @slide(title = "Konstruktion") {
+            @snippet() {
+                @callblock() {
+                    |val nums = List (1, 2, 3, 4)
+                }
+                @outblock() {
+                    |nums: List[Int] = List(1,2,3,4)
+                }
+                @callblock() {
+                    |List apply ("Jen", "Jo", "Jim")
+                }
+                @outblock() {
+                    |res0: List[String] = List(Jen, Jo, Jim)
+                }
+            }
         }
+
+        <!-- ################################################################################## -->
 
         @slide(title = "List") {
 
