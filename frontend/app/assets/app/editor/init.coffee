@@ -257,6 +257,7 @@ define [
   
         success: (data, status) ->
           window.spinner?.stop()
+          $(".spinner").remove()
           text = if(_.str.isBlank(data)) then "compiled and executed successfully" else data
           self.createCodeBlock(text, output, "success", true)
           console.log(data)

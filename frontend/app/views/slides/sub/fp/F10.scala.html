@@ -75,14 +75,32 @@
 
         <!-- ################################################################################## -->
 
-        @defining("Unveränderliche Daten") { subtitle =>
+        @defining("Unveränderlichkeit") { subtitle =>
 
             @titleslide(title = subtitle) {
+
+                <div class="w50p bigger dcenter">
+
+                    <blockquote class="fragment">
+                        <p>
+                            Bevorzuge vals, unveränderliche Objekte und Methoden ohne Nebeneffekte.
+                        </p>
+                        <p>
+                            Verwende vars, veränderliche Objekte und Methoden mit Nebeneffekten
+                            nur wenn du einen guten Grund dafür hast.
+                        </p>
+                        <var class="who">
+                            Martin Odersky
+                        </var>
+                    </blockquote>
+                </div>
+
                 <!-- TODO -->
             }
 
             <!-- ################################################################################## -->
 
+            @*
             @titleslide(title = subtitle, subsubtitle = "Garbage Collector") {
                 <!--
                     http://www.ibm.com/developerworks/java/library/j-jtp01274/index.html
@@ -91,6 +109,7 @@
                     "scala immutable efficiency"
                 -->
             }
+            *@
         }
 
         <!-- ################################################################################## -->

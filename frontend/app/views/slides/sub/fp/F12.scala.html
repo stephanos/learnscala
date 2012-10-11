@@ -7,6 +7,166 @@
         @slidehead() {
             @topic
         } {
+            Funktionen höherer Ordnung
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Problemstellung") {
+
+            @sourcecode() {
+                |def sumInts(a: Int, b: Int): Int =
+                |   if (a > b) 0 else (a) + sumInts(a + 1, b)
+            }
+            @codesub2() {
+                Summe natürlicher Zahlen
+            }
+
+            @spacer()
+
+            @sourcecode() {
+                |def sumQuads(a: Int, b: Int): Int =
+                |   if (a > b) 0 else (a * a) + sumQuads(a + 1, b)
+            }
+            @codesub2() {
+                Summe Quadratzahlen
+            }
+
+            @spacer()
+
+            @sourcecode() {
+                |def sumCubes(a: Int, b: Int): Int =
+                |   if (a > b) 0 else (a * a * a) + sumCubes(a + 1, b)
+            }
+            @codesub2() {
+                Summe Kubikzahlen
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Funktionsparameter") {
+
+            @sourcecode(id = "sum1") {
+                | def sum(f: Int => Int, a: Int, b: Int): Int =
+                |   if (a > b) 0
+                |   else f(a) + sum(f, a + 1, b)
+            }
+            @codesub2() {
+                allgemeine Summenfunktion - Funktionsparameter definiert Verfahren
+            }
+
+            @spacer()
+
+            @indent() {
+
+                @callcode(reference = "sum1") {
+                    |def id (x: Int) = x
+                    |def sumInts (a: Int, b: Int) = sum (id, a, b)
+                }
+
+                @spacer()
+
+                @callcode(reference = "sum1") {
+                    |def quad (x: Int) = x * x
+                    |def sumQuads (a: Int, b: Int) = sum (quad, a, b)
+                }
+
+                @spacer()
+
+                @callcode(reference = "sum1") {
+                    |def cube (x: Int) = x * x * x
+                    |def sumCubes (a: Int, b: Int) = sum (cube, a, b)
+                }
+            }
+
+            @infobox() {
+                Methoden werden automatisch als Funktion interpretiert.
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Anonyme Funktion als Parameter") {
+
+            @sourcecode(id = "sum2") {
+                | def sum(f: Int => Int, a: Int, b: Int): Int =
+                |   if (a > b) 0
+                |   else f(a) + sum(f, a + 1, b)
+            }
+
+            @spacer()
+
+            @indent() {
+
+                @callcode(reference = "sum1") {
+                    |def sumInts (a: Int, b: Int) =
+                    |   sum ((x: Int) => x, a, b)
+                }
+
+                @spacer()
+
+                @callcode(reference = "sum1") {
+                    |def sumQuads (a: Int, b: Int) =
+                    |   sum ((x: Int) => x * x, a, b)
+                }
+
+                @spacer()
+
+                @callcode(reference = "sum1") {
+                    |def sumCubes (a: Int, b: Int) =
+                    |   sum ((x: Int) => x * x * x, a, b)
+                }
+            }
+
+            @infobox() {
+                Anonyme Funktionen eignen sich gut als Parameter.
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Typinferenz") {
+
+            @sourcecode(id = "sum2") {
+                | def sum(f: Int => Int, a: Int, b: Int): Int =
+                |   if (a > b) 0
+                |   else f(a) + sum(f, a + 1, b)
+            }
+
+            @spacer()
+
+            @indent() {
+
+                @callcode(reference = "sum1") {
+                    |def sumInts (a: Int, b: Int) =
+                    |   sum (x => x, a, b)
+                }
+
+                @spacer()
+
+                @callcode(reference = "sum1") {
+                    |def sumQuads (a: Int, b: Int) =
+                    |   sum (x => x * x, a, b)
+                }
+
+                @spacer()
+
+                @callcode(reference = "sum1") {
+                    |def sumCubes (a: Int, b: Int) =
+                    |   sum (x => x * x * x, a, b)
+                }
+            }
+
+            @infobox() {
+                Parametertypen übergebener Funktionen werden erkannt.
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @quiz() {
+            @Quiz.functions2()
         }
 
         <!-- ################################################################################## -->
@@ -16,55 +176,55 @@
             @slide(title = title) {
 
                 @sidebyside(gap = 10) {
-                    @sourcecode(linebyline = true) {
+                    @sourcecode(linebyline = true, clazz = "slim") {
                         |object DirectoryPrinter {
                         |  import java.io._
                         |  def files = new File(".").listFiles
                         |
-                        |  def filesEnding(query: String) =
+                        |  def filesEnding (query: String) =
                         |    for (i <- 0 until files.size) {
                         |      val f = files(i)
                         |      if (f.getName.endsWith(query))
-                        |        println(f)
+                        |        println (f)
                         |    }
                         |
-                        |  def filesContaining(query: String) =
+                        |  def filesContaining (query: String) =
                         |    for (i <- 0 until files.size) {
                         |      val f = files(i)
                         |      if (f.getName.contains(query))
-                        |        println(f)
+                        |        println (f)
                         |    }
                         |
-                        |  def filesRegex(query: String) =
+                        |  def filesRegex (query: String) =
                         |    for (i <- 0 until files.size) {
                         |      val f = files(i)
                         |      if (f.getName.matches(query))
-                        |        println(f)
+                        |        println (f)
                         |    }
                         |}
                     }
                 } {
-                    @sourcecode(linebyline = true) {
+                    @sourcecode(linebyline = true, clazz = "slim") {
                         |object DirectoryPrinter {
                         |  import java.io._
                         |  def files = new File(".").listFiles
                         |
-                        |  def printf(matcher: String => Boolean) {
+                        |  def printf (matcher: String => Boolean) {
                         |    for (i <- 0 until files.size) {
                         |      val f = files(i)
                         |      if (matcher(f.getName))
-                        |        println(f)
+                        |        println (f)
                         |    }
                         |  }
                         |
-                        |  def filesEnding(query: String) =
-                        |    printf(_.endsWith(query))
+                        |  def filesEnding (query: String) =
+                        |    printf (_.endsWith(query))
                         |
-                        |  def filesContaining(query: String) =
-                        |    printf(_.contains(query))
+                        |  def filesContaining (query: String) =
+                        |    printf (_.contains(query))
                         |
-                        |  def filesRegex(query: String) =
-                        |    printf(_.matches(query))
+                        |  def filesRegex (query: String) =
+                        |    printf (_.matches(query))
                         |}
                     }
                 }

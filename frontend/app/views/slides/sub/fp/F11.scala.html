@@ -92,11 +92,11 @@
 
             @snippet() {
                 @callblock() {
-                    |val f1: Function1[Int, Int] =
+                    |val f2: (Int) => Int =
                     |   (x: Int) => x + 1
                 }
                 @outblock() {
-                    |f1: (Int) => Int = &lt;function1&gt;
+                    |f2: (Int) => Int = &lt;function1&gt;
                 }
             }
 
@@ -104,12 +104,24 @@
 
             @snippet() {
                 @callblock() {
-                    |val f1 = new Function1[Int, Int] {
+                    |val f3: Function1[Int, Int] =
+                    |   (x: Int) => x + 1
+                }
+                @outblock() {
+                    |f3: (Int) => Int = &lt;function1&gt;
+                }
+            }
+
+            @iseq()
+
+            @snippet() {
+                @callblock() {
+                    |val f4 = new Function1[Int, Int] {
                     |   def apply (x: Int): Int = x + 1
                     |}
                 }
                 @outblock() {
-                    |f1: (Int) => Int = &lt;function1&gt;
+                    |f4: (Int) => Int = &lt;function1&gt;
                 }
             }
 
@@ -124,10 +136,10 @@
 
             @snippet(id = "call") {
                 @sourceblock() {
-                    |val f1 = (x: Int) => x + 1
+                    |val plusOne = (x: Int) => x + 1
                 }
                 @outblock() {
-                    |f1: (Int) => Int = &lt;function1&gt;
+                    |plusOne: (Int) => Int = &lt;function1&gt;
                 }
             }
             @codesub2() {
@@ -139,7 +151,7 @@
             @indent() {
                 @snippet() {
                     @callblock(reference = "call") {
-                        |f1(5)
+                        |plusOne(5)
                     }
                     @outblock() {
                         |res0: Int = 6
@@ -153,7 +165,7 @@
 
                 @snippet() {
                     @callblock(reference = "call") {
-                        |f1.apply(5)
+                        |plusOne.apply(5)
                     }
                     @outblock() {
                         |res1: Int = 6

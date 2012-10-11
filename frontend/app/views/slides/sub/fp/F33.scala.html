@@ -2,6 +2,11 @@
     - Composition
     - Partial application
     - partially applied functions
+
+    // These all have the same effect
+    val b = f _
+    val b: () => Int = f
+    val b: Function0[Int] = f
 -->
 @implicitSlide = @{ Content.funktionen3 }
 
