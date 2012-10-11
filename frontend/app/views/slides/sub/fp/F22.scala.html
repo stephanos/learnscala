@@ -12,125 +12,216 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Konstruktion") {
-            @snippet() {
-                @callblock() {
-                    |val nums = List (1, 2, 3, 4)
+        @defining("Konstruktion") { title =>
+
+            @titleslide(title = title) {
+
+                @sidebyside(gap = 10) {
+
+                    <h4 class="fragment tcenter">(A)</h4>
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock() {
+                            |List (1, 2, 3, 4)
+                        }
+                        @outblock() {
+                            |res0: List[Int] = List(1, 2, 3, 4
+                        }
+                        @callblock() {
+                            |List apply (1,2,3,4)
+                        }
+                        @outblock() {
+                            |res1: List[Int] = List(1, 2, 3, 4
+                        }
+                    }
+                    @codesub2() {
+                        Konstruktion über <code>List</code>-Objekt
+                    }
+                } {
+                    <h4 class="fragment tcenter">(B)</h4>
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock() {
+                            |1 :: 2 :: 3 :: Nil
+                        }
+                        @outblock() {
+                            |res0: List[Int] = List(1, 2, 3)
+                        }
+                        @callblock() {
+                            |1 :: (2 :: (3 :: Nil))
+                        }
+                        @outblock() {
+                            |res1: List[Int] = List(1, 2, 3)
+                        }
+                        @callblock() {
+                            |Nil.::(3).::(2).::(1)
+                        }
+                        @outblock() {
+                            |res2: List[Int] = List(1, 2, 3)
+                        }
+                    }
+                    @codesub2() {
+                        Konstruktion über Konstante <code>Nil</code> und <br/>
+                        rechtsassoziativen Operator <code>::</code>
+                    }
                 }
-                @outblock() {
-                    |nums: List[Int] = List(1,2,3,4)
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title) {
+                <h4 class="fragment tcenter">(C)</h4>
+
+                @spacer()
+
+                @snippet() {
+                    @callblock() {
+                        |import scala.collection.mutable.ListBuffer
+                        |val buf = new ListBuffer[Int]
+                    }
+                    @outblock() {
+                        |buf: ListBuffer[Int] = ListBuffer()
+                    }
+                    @callblock() {
+                        |buf += 1
+                        |buf += 2
+                        |buf += 3
+                        |buf.toList
+                    }
+                    @outblock() {
+                        |res3: List[Int] = List(1, 2, 3)
+                    }
                 }
-                @callblock() {
-                    |List apply ("Jen", "Jo", "Jim")
-                }
-                @outblock() {
-                    |res0: List[String] = List(Jen, Jo, Jim)
+                @codesub2() {
+                    <code>ListBuffer</code> konstruiert sehr effizient
                 }
             }
         }
 
         <!-- ################################################################################## -->
 
-        @slide(title = "List") {
+        @titleslide(title = "Typ") {
 
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @callblock(id = "list_stewards", fragment = false) {
-                        |val stewards = List("Jen", "Jo", "Jim")
-                    }
-                    @outblock() {
-                        |stewards: List[String] = List(Jen, Jo, Jim)
-                    }
-                    @callblock() {
-                        |List apply ("Jen", "Jo", "Jim")
-                    }
-                    @outblock() {
-                        |res0: List[String] = List(Jen, Jo, Jim)
-                    }
+            @snippet() {
+                @callblock() {
+                    |List()
                 }
-            } {
+                @outblock() {
+                    |res0: List[Nothing] = List ()
+                }
+            }
+            @codesub2() {
+                leere Liste
             }
 
-            @spacer2()
+            @spacer()
 
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @callblock() {
-                        |List(1, "a", true)
-                    }
-                    @outblock() {
-                        |res0: List[Any] = List(1, a, true)
-                    }
+            @snippet() {
+                @callblock() {
+                    |List(1, true)
                 }
-            } {
+                @outblock() {
+                    |res0: List[AnyVal] = List (1, true)
+                }
+            }
+            @codesub2() {
+                Liste mit <code>Int</code> und <code>Boolean</code>
             }
 
-            @spacer2()
+            @spacer()
 
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @callblock() {
-                        |List()
-                    }
-                    @outblock() {
-                        |res0: List[Nothing] = List()
-                    }
+            @snippet() {
+                @callblock() {
+                    |List(1, "a")
                 }
-            } {
+                @outblock() {
+                    |res0: List[Any] = List (1, a)
+                }
             }
-
-            @spacer2()
-
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @callblock() {
-                        |"Jen" :: "Jo" :: "Jim" :: Nil
-                    }
-                    @outblock() {
-                        |res0: List[String] = List(Jen, Jo, Jim)
-                    }
-                    @callblock() {
-                        |List("Jen", "Jo") ::: List("Jim")
-                    }
-                    @outblock() {
-                        |res1: List[String] = List(Jen, Jo, Jim)
-                    }
-                }
-            } {
+            @codesub2() {
+                Liste mit <code>Int</code> und <code>String</code>
             }
         }
 
+        <!-- ################################################################################## -->
 
-        @slide() {
-            <!-- List: Pattern match -->
+        @titleslide(title = "Aufbau", clazz = "wide") {
 
-            @sidebyside((60,40)) {
+            @Images.list()
+
+            @spacer()
+
+            @sidebyside(gap = 10) {
                 @snippet() {
-                    @sourceblock(reference = "list_stewards", fragment = false) {
-                        |def printList(ls: List[String]) {
-                        |  ls match {
-                        |    case List() =>
-                        |    case h :: tail =>
-                        |      println(h)
-                        |      printList(tail)
-                        |  }
-                        |}
-                    }
                     @callblock() {
-                        |printList(stewards)
+                        |List (1, 2, 3).head
                     }
                     @outblock() {
-                        |Jen
-                        |Jo
-                        |Jim
+                        |res0: List[Int] = 1
                     }
                 }
             } {
+                @snippet() {
+                    @callblock() {
+                        |List (1, 2, 3).tail
+                    }
+                    @outblock() {
+                        |res1: List[Int] = List(1,2)
+                    }
+                }
             }
         }
 
+        <!-- ################################################################################## -->
 
-        @uebung("030")
+        @slide(title = "Aufbau") {
+
+            @Images.list()
+
+            @snippet() {
+                @callblock() {
+                    |val nums = List (1, 2, 3)
+                }
+                @outblock() {
+                    |res0: List[Int] = List(1, 2, 3)
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Rekursion") {
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Pattern Matching") {
+
+            @snippet() {
+                @sourceblock(reference = "list_stewards", fragment = false) {
+                    |def printList(ls: List[String]) {
+                    |  ls match {
+                    |    case List() =>
+                    |    case h :: tail =>
+                    |      println(h)
+                    |      printList(tail)
+                    |  }
+                    |}
+                }
+                @callblock() {
+                    |printList(stewards)
+                }
+                @outblock() {
+                    |Jen
+                    |Jo
+                    |Jim
+                }
+            }
+        }
 
         <!-- ################################################################################## -->
 

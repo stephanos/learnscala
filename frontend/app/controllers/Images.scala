@@ -23,6 +23,9 @@ object Images extends MyController {
     def dbTools(h: Int = 700) =
         gimage("1rCk7wFprPGcJTwahZtWR70HQMdYl7km2Z8AuVfjSjcI", height = h)
 
+    def list(h: Int = 400) =
+        gimage("1ZVCCd_-oEDMptkgmVZPvCJwFPHZol-PGo7sHKkFwNfQ", height = h)
+
     def types(p: Int = 0, h: Int = 700) =
         p match {
             case 0 => gimage("1rohDVf9bLpnQOdnrA-ODUQXHt1BWXUFvvP70bkyLlsU", height = h)
