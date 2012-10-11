@@ -34,7 +34,7 @@ object Content extends MyController {
 
     lazy val funcproc = Slide("F10", "FP", fp, Seq(geschichte), status = "complete")
     lazy val funktionen1 = Slide("F11", "Funktionen I", fp, Seq(funcproc), status = "complete")
-    lazy val funktionen2 = Slide("F12", "Funktionen II", fp, Seq(funktionen1))
+    lazy val funktionen2 = Slide("F12", "Funktionen II", fp, Seq(funktionen1), status = "complete")
 
     // === ERWEITERT
 

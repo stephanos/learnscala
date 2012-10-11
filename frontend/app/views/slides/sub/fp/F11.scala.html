@@ -179,6 +179,55 @@
 
         <!-- ################################################################################## -->
 
+        @slide(title = "Beispiele") {
+
+            @snippet() {
+                @sourceblock() {
+                    |val max =
+                    |  (x: Int, y: Int) => if (x > y) x else y
+                }
+                @outblock() {
+                    |max: (Int, Int) => Int = &lt;function2&gt;
+                }
+            }
+            @codesub2() {
+                Funktion mit <em>2</em> Parametern
+            }
+
+            @spacer()
+
+            @snippet() {
+                @sourceblock() {
+                    |val isEven = { (x: Int) =>
+                    |   x + 1
+                    |}
+                }
+                @outblock() {
+                    |isEven: Int => Int = &lt;function1&gt;
+                }
+            }
+            @codesub2() {
+                Funktion mit <em>1</em> Parameter
+            }
+
+            @spacer()
+
+            @snippet() {
+                @sourceblock() {
+                    |val getUserDir =
+                    |   () => { System.getProperty("user.dir") }
+                }
+                @outblock() {
+                    |getUserDir: () => java.lang.String = &lt;function0&gt;
+                }
+            }
+            @codesub2() {
+                Funktion <em>ohne</em> Parameter
+            }
+        }
+
+        <!-- ################################################################################## -->
+
         @quiz() {
             @Quiz.functions1()
         }

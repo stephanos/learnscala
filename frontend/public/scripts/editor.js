@@ -5181,6 +5181,7 @@ define('app/editor/init',["jquery", "lib/util/underscore", "lib/editor/codemirro
           if ((_ref = window.spinner) != null) {
             _ref.stop();
           }
+          $(".spinner").remove();
           text = _.str.isBlank(data) ? "compiled and executed successfully" : data;
           self.createCodeBlock(text, output, "success", true);
           return console.log(data);
