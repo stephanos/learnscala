@@ -200,7 +200,7 @@
 
                 @snippet() {
                     @sourceblock(id = "sum-rec") {
-                        |def sum(lst: List[Int]): Int =
+                        |def sum (lst: List[Int]): Int =
                         |  if  (lst == Nil) 0
                         |  else lst.head + sum (lst.tail)
                     }
@@ -215,7 +215,7 @@
 
                 @snippet() {
                     @sourceblock(id = "sum-pm") {
-                        |def sum(lst: List[Int]): Int =
+                        |def sum (lst: List[Int]): Int =
                         |  lst match {
                         |    case Nil => 0
                         |    case head :: t => head + sum(t)

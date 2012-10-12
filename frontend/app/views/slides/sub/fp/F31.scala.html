@@ -1,9 +1,20 @@
-@implicitSlide = @{ Content.currying }
+<!--
+    - Composition
+    - Partial application
+    - partially applied functions
+
+    // These all have the same effect
+    val b = f _
+    val b: () => Int = f
+    val b: Function0[Int] = f
+
+    http://stackoverflow.com/questions/2173373/scala-foreach-strange-behaviour
+-->
+@implicitSlide = @{ Content.funktionen4 }
 
 @defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
-
         @slidehead() {
             @topic
         } {
@@ -12,20 +23,8 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "") {
-            @*Haskell Brooks Curry (1900 – 1982) was an American mathematician and logician.*@
-        }
-
-        <!-- ################################################################################## -->
-
-        @slide(title = "") {
+        @slide() {
 
         }
-
-        <!-- TODO: simple example - like mult(a)(b), double = mult(2) -->
-
-        <!-- ################################################################################## -->
-
-        @uebung(implicitSlide.id)
     }
 }

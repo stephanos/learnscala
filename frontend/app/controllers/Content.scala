@@ -59,7 +59,7 @@ object Content extends MyController {
     lazy val typen1 = Slide("O20", "Typen", oop, Seq(klassen1), status = "complete")
     lazy val traits = Slide("O21", "Traits", oop, Seq(klassen1, vererbung1), status = "complete")
     lazy val klassen2 = Slide("O22", "Klassen II", oop, Seq(vererbung1), status = "complete")
-    lazy val generics1 = Slide("O24", "Typ-Parameter I", oop, Seq(traits, klassen2), status = "complete")
+    lazy val generics1 = Slide("O24", "Typ-Parameter", oop, Seq(traits, klassen2), status = "complete")
 
     // === FUNKTIONEN
 
@@ -99,10 +99,8 @@ object Content extends MyController {
     // === FUNKTIONEN
 
     lazy val datatypes3 = Slide("F30", "Datenstrukturen III", fp, Seq(datatypes2))
-    lazy val currying = Slide("F31", "Currying", fp, Seq(funktionen2))
-    lazy val byname = Slide("F32", "By-Name Parameter", fp, Seq(funktionen2), status = "complete")
-    lazy val funktionen4 = Slide("F33", "Funktionen IV", fp, Seq(currying, funktionen3))
-    lazy val kontrollabstraktion = Slide("F34", "Kontrollabstraktion", fp, Seq(currying, byname), status = "complete")
+    lazy val funktionen4 = Slide("F31", "Funktionen IV", fp, Seq(funktionen3))
+    lazy val kontrollabstraktion = Slide("F32", "Kontrollabstraktion", fp, Seq(funktionen3))
 
     // === ERWEITERT
 
