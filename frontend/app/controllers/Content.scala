@@ -63,7 +63,7 @@ object Content extends MyController {
 
     // === FUNKTIONEN
 
-    lazy val datatypes1 = Slide("F20", "Datenstrukturen I", fp, Seq(klassen2, generics1))
+    lazy val datatypes1 = Slide("F20", "Datenstrukturen I", fp, Seq(klassen2, generics1), status = "complete")
     lazy val datatypes2 = Slide("F21", "Datenstrukturen II", fp, Seq(datatypes1), status = "complete")
     lazy val listen = Slide("F22", "Listenverarbeitung", fp, Seq(datatypes2), status = "complete")
     lazy val funktionen3 = Slide("F23", "Funktionen III", fp, Seq(datatypes2, funktionen2))

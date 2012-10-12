@@ -206,12 +206,155 @@
 
             @titleslide(title = title) {
 
+                @sourcecode() {
+                    |def getUser (id: Long): User
+                }
+                @codesub2() {
+                    <var>null</var> als Rückgabetyp ?
+                }
+
+                @spacer2()
+
+                @sourcecode() {
+                    |def getUser (id: Long): Option[User]
+                }
+                @codesub2() {
+                    Rückgabetyp <code>Option</code> !
+                }
             }
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title) {
+            @defining("None vs Some") { subtitle =>
 
+                @titleslide(title = title, subtitle = subtitle) {
+
+                    @spacer()
+
+                    <div>
+                        @sidebyside() {
+                            <h4 class="tcenter fragment">
+                                Some
+                            </h4>
+                        } {
+                            <h4 class="tcenter fragment">
+                                None
+                            </h4>
+                        }
+
+                        @spacer_half()
+
+                        @Images.option()
+                    </div>
+                }
+
+                <!-- ################################################################################## -->
+
+                @titleslide(title = title, subtitle = subtitle, subsubtitle = "Beispiel") {
+
+                    <div class="w70p dcenter">
+                        @sourcecode(id = "toInt") {
+                            |def toInt(s: String): Option[Int] =
+                            |  try {
+                            |    Some(s.toInt)
+                            |  } catch {
+                            |    case e: Throwable => None
+                            |  }
+                        }
+                    </div>
+
+                    @spacer()
+
+                    @sidebyside(gap = 10) {
+                        @snippet(id = "toInt-some") {
+                            @callblock(reference = "toInt") {
+                                |val i = toInt ("42")
+                            }
+                        }
+
+                        @spacer_half()
+
+                        @snippet() {
+                            @callblock(reference = "toInt-some") {
+                                |i.get
+                            }
+                            @outblock() {
+                                |res0: Int = 42
+                            }
+                        }
+
+                        @spacer_half()
+
+                        @snippet() {
+                            @callblock(reference = "toInt-some") {
+                                |i.getOrElse (0)
+                            }
+                            @outblock() {
+                                |res1: Int = 42
+                            }
+                        }
+                        @codesub2() {
+                            <code>@apilink("Some")</code>
+                        }
+                    } {
+                        @snippet(id = "toInt-none") {
+                            @callblock(reference = "toInt") {
+                                |val i = toInt ("abc")
+                            }
+                        }
+
+                        @spacer_half()
+
+                        @snippet() {
+                            @callblock(reference = "toInt-none") {
+                                |i.get
+                            }
+                            @outblock(error = true) {
+                                |NoSuchElementException
+                            }
+                        }
+
+                        @spacer_half()
+
+                        @snippet() {
+                            @callblock(reference = "toInt-none") {
+                                |i.getOrElse (0)
+                            }
+                            @outblock() {
+                                |res1: Int = 0
+                            }
+                        }
+                        @codesub2() {
+                            <code>@apilink("None", isObject = true)</code>
+                        }
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "Pattern Matching") {
+
+                @sourcecode(id = "getuser") {
+                    |def getUser (id: Long) =
+                    |  if (id < 0)
+                    |    null
+                    |  else
+                    |    (id, "Bob", 42)
+                }
+
+                @spacer()
+
+                @sourcecode(reference = "getuser") {
+                    |def getUserName (id: Long) = {
+                    |  val usr = Option(getUser (id))
+                    |
+                    |  usr match {
+                    |    case Some (u) => u._2
+                    |    case _        => "Unknown"
+                    |  }
+                    |}
+                }
             }
         }
 

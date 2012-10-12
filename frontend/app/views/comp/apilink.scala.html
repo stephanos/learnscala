@@ -1,5 +1,5 @@
-@(label: String, uri: String = null)
+@(label: String, uri: String = null, isObject: Boolean = false)
 
-<a class="api-link" href="#" data-uri="scala.@{Option(uri).getOrElse(label)}">
+<a class="api-link" href="#" data-uri='scala.@{Option(uri).getOrElse(label)}@{if(isObject) "$" else ""}'>
     @label
 </a>

@@ -12,7 +12,6 @@ object Test {
       case None => println("No result")
     }
 
-
     def getUser(id: Long) =
         if (id < 0) null
         else (id, "Bob", 42)

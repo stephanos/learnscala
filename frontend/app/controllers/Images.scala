@@ -26,6 +26,9 @@ object Images extends MyController {
     def list(h: Int = 400) =
         gimage("1ZVCCd_-oEDMptkgmVZPvCJwFPHZol-PGo7sHKkFwNfQ", height = h)
 
+    def option(h: Int = 400) =
+        gimage("1aBpqhm7Vud4C2rlNNyj6jpeFJOR1hce4YpyOFf9YH-o", height = h)
+
     def types(p: Int = 0, h: Int = 700) =
         p match {
             case 0 => gimage("1rohDVf9bLpnQOdnrA-ODUQXHt1BWXUFvvP70bkyLlsU", height = h)
