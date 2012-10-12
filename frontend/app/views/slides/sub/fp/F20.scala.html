@@ -14,25 +14,31 @@
 
         @defining("Option") { title =>
 
-            @titleslide(title = title) {
+            @titleslide(title = title, subtitle = "null") {
+
+                @spacer()
+
+                <div class="w50p dcenter fragment">
+
+                    <blockquote class="">
+                        <p>
+                            Ich nenne es gern meinen Milliarden-Dollar-Fehler: Die Erfindung der <var>null</var>-Referenz 1965.
+                        </p>
+                        <p>
+                            Sie hat zu unzähligen Fehlern, Schwachstellen und Systemabstürzen geführt,
+                            die in den letzten 40 Jahren einen Schaden von bestimmt einer Milliarde Dollar angerichtet haben.
+                        </p>
+                        <var class="who">
+                            Tony Hoare
+                        </var>
+                    </blockquote>
+                </div>
             }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "null") {
+            @titleslide(title = title, subtitle = "null") {
 
-                <blockquote class="w50p fragment">
-                    <p>
-                        Ich nenne es gern meinen Milliarden-Dollar-Fehler: Die Erfindung der <var>null</var>-Referenz 1965.
-                    </p>
-                    <p>
-                        Sie hat zu unzähligen Fehlern, Schwachstellen und Systemabstürzen geführt,
-                        die in den letzten 40 Jahren einen Schaden von bestimmt einer Milliarde Dollar angerichtet haben.
-                    </p>
-                    <var class="who">
-                        Tony Hoare
-                    </var>
-                </blockquote>
             }
 
             <!-- ################################################################################## -->
