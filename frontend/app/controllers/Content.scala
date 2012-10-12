@@ -73,7 +73,6 @@ object Content extends MyController {
 
     lazy val xml = Slide("E20", "XML", ext, Seq(forexpr), status = "complete")
     lazy val jsond = Slide("E21", "JSON", ext, Seq())
-    lazy val tests = Slide("E22", "Testen", ext, Seq(traits))
     lazy val swing = Slide("E23", "Swing", ext, Seq())
     lazy val interop = Slide("E24", "Interoperabilität", ext, Seq(implicit1, annotationen, datatypes2, traits), status = "complete")
 
@@ -107,11 +106,12 @@ object Content extends MyController {
 
     // === ERWEITERT
 
-    lazy val aktoren = Slide("E30", "Aktoren", ext, Seq(funktionen3, forexpr))
-    lazy val dbase = Slide("E31", "Datenbanken", ext, Seq(funktionen2))
-    lazy val web = Slide("E32", "Web-Entwicklung", ext, Seq(funktionen2))
-    lazy val utilities = Slide("E33", "Utilities", ext, Seq())
-    lazy val scalaz = Slide("E34", "Scalaz", ext, Seq(typeclass))
+    lazy val tests = Slide("E30", "Testen", ext, Seq(traits))
+    lazy val aktoren = Slide("E31", "Aktoren", ext, Seq(funktionen3, forexpr))
+    lazy val dbase = Slide("E32", "Datenbanken", ext, Seq(funktionen2))
+    lazy val web = Slide("E33", "Web-Entwicklung", ext, Seq(funktionen2))
+    lazy val utilities = Slide("E34", "Utilities", ext, Seq())
+    lazy val scalaz = Slide("E35", "Scalaz", ext, Seq(typeclass))
 
 
     // ================================================================================================================
