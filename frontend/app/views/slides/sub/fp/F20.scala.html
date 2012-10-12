@@ -12,154 +12,6 @@
 
         <!-- ################################################################################## -->
 
-        @defining("Option") { title =>
-
-            @titleslide(title = title, subtitle = "null") {
-
-                @spacer()
-
-                <div class="w50p dcenter fragment">
-
-                    <blockquote class="">
-                        <p>
-                            Ich nenne es gern meinen Milliarden-Dollar-Fehler: Die Erfindung der <var>null</var>-Referenz 1965.
-                        </p>
-                        <p>
-                            Sie hat zu unzähligen Fehlern, Schwachstellen und Systemabstürzen geführt,
-                            die in den letzten 40 Jahren einen Schaden von bestimmt einer Milliarde Dollar angerichtet haben.
-                        </p>
-                        <var class="who">
-                            Tony Hoare
-                        </var>
-                    </blockquote>
-                </div>
-            }
-
-            <!-- ################################################################################## -->
-
-            @titleslide(title = title, subtitle = "null") {
-
-            }
-
-            <!-- ################################################################################## -->
-
-            @slide(title = title) {
-
-                @sidebyside((70,30)) {
-                    @sourcecode(fragment = false) {
-                        |def findPassenger(row: Int, col: String): Passenger
-                    }
-                } {
-                }
-
-                @spacer2()
-
-                @sidebyside((70,30)) {
-                    @sourcecode(id = "find_opt") {
-                        |case class Passenger(name: String)
-                        |
-                        |def findPassenger(row: Int, col: String): Option[Passenger] =
-                        |   if(row < 1) None else Some(Passenger("Bob"))
-                    }
-                } {
-                }
-
-                @spacer()
-
-                @sidebyside((70,30)) {
-                    @snippet() {
-                        @callblock(reference = "find_opt") {
-                            |val p = findPassenger(2, "A")
-                        }
-                        @outblock() {
-                            |p: Option[Passenger] = Passenger("Bob")
-                        }
-                        @callblock() {
-                            |p.get
-                        }
-                        @outblock() {
-                            |res0: Passenger = Passenger("Bob")
-                        }
-                    }
-                } {
-                }
-
-                @spacer()
-
-                @sidebyside((70,30)) {
-                    @snippet() {
-                        @callblock(reference = "find_opt") {
-                            |val p = findPassenger(0, "B")
-                        }
-                        @outblock() {
-                            |res1: Option[Passenger] = None
-                        }
-                        @callblock() {
-                            |p.get
-                        }
-                        @outblock(error = true) {
-                            |java.util.NoSuchElementException: None.get
-                        }
-                    }
-                } {
-                }
-            }
-
-            <!-- ################################################################################## -->
-
-            @slide(title = title, subtitle = "Pattern Matching") {
-
-                @sidebyside((70,30)) {
-                    @snippet() {
-                        @sourceblock(id = "opt_match", reference = "find_opt", fragment = false) {
-                            |def getName(p: Option[Passenger]) =
-                            |  p match {
-                            |    case Some(p) => p.name
-                            |    case _ => "No Name"
-                            |  }
-                        }
-                    }
-                } {
-                }
-
-                @spacer()
-
-                @sidebyside((70,30)) {
-                    @snippet() {
-                        @callblock(reference = "opt_match") {
-                            |getName(findPassenger(1, "A"))
-                        }
-                        @outblock() {
-                            |res0: String = Bob
-                        }
-                        @callblock() {
-                            |getName(findPassenger(0, "B"))
-                        }
-                        @outblock(error = true) {
-                            |res1: String = No Name
-                        }
-                    }
-                } {
-                }
-
-                @spacer2()
-
-                @sidebyside((70,30)) {
-                    @snippet() {
-                        @callblock(reference = "opt_match") {
-                            |findPassenger(1, "A").map(_.name).getOrElse("No Name")
-                        }
-                        @outblock() {
-                            |res0: String = Bob
-                        }
-                    }
-                } {
-                }
-            }
-        }
-
-        <!-- ################################################################################## -->
-
         @defining("Tuple") { title =>
 
             @titleslide(title = title, subtitle = "Erstellen") {
@@ -251,10 +103,10 @@
                 @snippet() {
                     @sourceblock(id = "virgin") {
                         |def doSacrifice (t: (Int, Boolean, Boolean)) = t match {
-                        |    case (_, false, _) =>             println ("not female")
-                        |    case (_, _, false) =>             println ("not a virgin")
-                        |    case (age, _, _) if (age > 24) => println ("too old")
-                        |    case (_) =>                       println ("sacrifice her!")
+                        |  case (_, false, _) =>             println ("not female")
+                        |  case (_, _, false) =>             println ("not a virgin")
+                        |  case (age, _, _) if (age > 24) => println ("too old")
+                        |  case (_) =>                       println ("sacrifice her!")
                         |}
                     }
                 }
@@ -319,6 +171,47 @@
                 @codesub2() {
                     xy-Koordinaten gebündelt
                 }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("Option") { title =>
+
+            @titleslide(title = title, subtitle = "null") {
+
+                @spacer()
+
+                @*@image("npe.jpeg", clazz = "naked",
+                       source = "http://blog.orbeon.com/2011/04/scalas-optionsomenone.html")*@
+
+                <div class="w50p dcenter fragment">
+
+                    <blockquote class="">
+                        <p>
+                            Ich nenne es gern meinen Milliarden-Dollar-Fehler: Die Erfindung der <var>null</var>-Referenz 1965.
+                        </p>
+                        <p>
+                            Sie hat zu unzähligen Fehlern, Schwachstellen und Systemabstürzen geführt,
+                            die in den letzten 40 Jahren einen Schaden von bestimmt einer Milliarde Dollar angerichtet haben.
+                        </p>
+                        <var class="who">
+                            Tony Hoare
+                        </var>
+                    </blockquote>
+                </div>
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title) {
+
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title) {
+
             }
         }
 
