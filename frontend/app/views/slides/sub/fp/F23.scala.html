@@ -3,7 +3,6 @@
     - map
     - fold
     - filter
-    - pattern match
 -->
 @implicitSlide = @{ Content.funktionen3 }
 
@@ -19,441 +18,191 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
+        @defining("HOF") { title =>
 
-            @image("functions.png", clazz = "naked", source = "http://en.wikipedia.org/wiki/Function_(mathematics)")
-        }
+            @defining("foreach") { subtitle =>
 
-        @slide(title = "Collections") {
+                @headslide(title = title, subtitle = subtitle) {
+                    @subtitle
+                } {
 
-            @sidebyside() {
-                @snippet() {
-                    @callblock(fragment = false, id = "nums") {
-                        |val nums = List(1, 2, 3)
-                    }
-                    @outblock() {
-                        |nums: List[Int] = List(1, 2, 3)
-                    }
-                    @callblock() {
-                        |nums map { (x: Int) => x + 1 }
-                    }
-                    @outblock() {
-                        |res0: List[Int] = List(2, 3, 4)
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @defining("map") { subtitle =>
+
+                @headslide(title = title, subtitle = subtitle) {
+                    @subtitle
+                } {
+
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @defining("filter") { subtitle =>
+
+                @headslide(title = title, subtitle = subtitle) {
+                    @subtitle
+                } {
+                    <div class="w60p dcenter">
+                        @sourcecode() {
+                            |trait Traversable[A] {
+                            |  def filter (f: A => Boolean): Traversable[A]
+                            |}
+                        }
+                        @*@codesub2() {
+                            Methode vom Typ <code>A</code> wendet Funktion <code>f</code>
+                            auf alle Elemente an und liefert neue Kollektion mit Elemente
+                        }*@
+                    </div>
+
+                    @spacer2()
+
+                    @sidebyside(gap = 10) {
+                        @snippet() {
+                            @callblock() {
+                                |val numbers = List (1, 2, 3, 4)
+                                |
+                                |numbers filter ((n: Int) => n % 2 == 0)
+                            }
+                            @outblock() {
+                                |res0: List[Int] = List(2, 4)
+                            }
+                        }
+                        @codesub2() {
+                            Liste der geraden Zahlen
+                        }
+                    } {
+                        @snippet() {
+                            @callblock() {
+                                |val numbers = List (1, 2, 3, 4)
+                                |
+                                |numbers filter {(n: Int) =>
+                                |   val isEven = (n % 2 == 0)
+                                |   println (n + "? " + isEven)
+                                |   isEven
+                                |}
+                            }
+                            @outblock() {
+                                |1? false
+                                |2? true
+                                |3? false
+                                |4? true
+                                |res0: List[Int] = List(1, 2)
+                            }
+                        }
+                        @codesub2() {
+                            mit Zwischenschritten
+                        }
                     }
                 }
-            } {
-                <div class="indent">
-                    <ul>
-                        <li class="fragment">
-                            Funktion "erhöhe Wert um 1" wird auf jedes Element angewendet; Resultat ist eine neue Liste
-                        </li>
-                        <li class="fragment">
-                            Aufruf der Methode <code>map</code> mit einem <em>Funktionsliteral</em> (anonyme Funktion) als Argument
-                        </li>
-                        <li class="fragment">
-                            Syntax des Funktionsliterals ähnlich der einer Methode:
-                            Parameterliste <code>(x: Int)</code> und Körper <code>x + 1</code> getrennt durch <code>=></code>
-                        </li>
-                        <li class="fragment">
-                            übliche Schreibweise: ohne Punkt und mit geschweiften Klammern
-                        </li>
-                    </ul>
-                </div>
+            }
+
+            <!-- ################################################################################## -->
+
+            @defining("foldLeft") { subtitle =>
+
+                @headslide(title = title, subtitle = subtitle) {
+                    @subtitle
+                } {
+
+                    @*
+                    println((1 to 1000000) reduceLeft(_ + _))  // tail rec
+                    println((1 to 1000000) reduceRight(_ + _)) // overflow
+                    *@
+
+                    <div class="w60p dcenter">
+                        @sourcecode() {
+                            |trait Traversable[A] {
+                            |  def foldLeft[B] (z: B) (f: (B, A) => B): B
+                            |}
+                        }
+                        @*@codesub2() {
+                            Methode vom Typ <code>B</code>, mit Startwert <code>z</code> vom Typ <code>B</code>,
+                            wendet Funktion <code>f</code> auf jedes Element an und liefert Ergebnis vom Typ <code>B</code>
+                        }*@
+                    </div>
+
+                    @spacer2()
+
+                    @sidebyside(gap = 10) {
+
+                        @snippet() {
+                            @callblock() {
+                                |val numbers = List (1, 2, 3, 4)
+                                |
+                                |numbers.foldLeft (0) (
+                                |   (res, num) => res + num
+                                |)
+                            }
+                            @outblock() {
+                                |res0: Int = 10
+                            }
+                        }
+                        @codesub2() {
+                            Summe der Elemente
+                        }
+                    } {
+                        @snippet() {
+                            @callblock() {
+                                |val numbers = List (1, 2, 3, 4)
+                                |
+                                |numbers.foldLeft (0) {
+                                |  (res, num) =>
+                                |    println ("= " + res + " + " + num)
+                                |    res + num
+                                |}
+                            }
+                            @outblock() {
+                                |= 0 + 1
+                                |= 1 + 2
+                                |= 3 + 3
+                                |= 6 + 4
+                                |res1: Int = 10
+                            }
+                        }
+                        @codesub2() {
+                            mit Zwischenergebnissen
+                        }
+                    }
+                }
             }
         }
 
-
-        @slide() {
-
-            @sidebyside() {
-                @snippet() {
-                    @callblock(reference = "nums", fragment = false) {
-                        |nums filter { (x: Int) => x < 3 }
-                    }
-                    @outblock() {
-                        |res0: List[Int] = List(1, 2)
-                    }
-                }
-            } {
-                <div class="indent">
-                    <ul>
-                        <li class="fragment">
-                            Funktion "ist x kleiner als 3" wird auf jedes Element angewendet;
-                            ist das Ergebnis <code>true</code> wird es ins Resultat übernommen
-                        </li>
-                        <li class="fragment">
-                            <code>map</code> und <code>filter</code> sind <em>Funktionen höherer Ordnung</em>
-                            ("higher-order functions"): Argument oder Rückgabewert sind wiederum Funktion
-                        </li>
-                        <li class="fragment">
-                            Eigenschaften einer Funktion:
-                            @spacer()
-                            <ul>
-                                <li class="fragment">
-                                    frei von Seiteneffekten
-                                </li>
-                                <li class="fragment">
-                                    hat ein Ergebnis (nicht <code>Unit</code>)
-                                </li>
-                                <li class="fragment">
-                                    gleiches Ergebnis für gleiche Argumente
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            }
-        }
-
-
-        @slide() {
-            <!-- Funktionsliteral: ohne Typ -->
-
-            @sidebyside() {
-                @snippet() {
-                    @callblock(reference = "nums", fragment = false) {
-                        |nums map { x => x + 1 }
-                    }
-                    @outblock() {
-                        |res0: List[Int] = List(2, 3, 4)
-                    }
-                }
-            } {
-                <div class="indent">
-                    <ul>
-                        <li class="fragment">
-                            Typ von <code>x</code> kann weggelassen werden
-                        </li>
-                        <li class="fragment">
-                            abgeleitet vom Typ-Parameter der Liste (<code>Int</code>)
-                            und der Signatur der Methode <code>map</code>
-                        </li>
-                    </ul>
-                </div>
-            }
-
-            @spacer2()
-
-            @sidebyside() {
-                @sourcecode() {
-                    |trait Traversable[A] {
-                    |  def map[B](f: (A) => B): Traversable[B]
-                    |}
-                }
-            } {
-                <div class="indent">
-                    <ul>
-                        <li class="fragment">
-                            <code>map</code> transformiert die Elemente mit Typ <code>A</code>
-                            in eine neue Instanz von <code>Traversable</code> mit Typ <code>B</code>
-                        </li>
-                    </ul>
-                </div>
-            }
-        }
-
-
-        @slide() {
-            <!-- Funktionsliteral: ohne Parameterliste -->
-
-            @sidebyside() {
-                @snippet() {
-                    @callblock(reference = "nums", fragment = false) {
-                        |nums filter { _ < 3 }
-                    }
-                    @outblock() {
-                        |res0: List[Int] = List(1, 2)
-                    }
-                    @callblock() {
-                        |nums filter { _ > 0 && _ < 3 }
-                    }
-                    @outblock(error = true) {
-                        |error: wrong number of parameters;
-                        |       expected = 1
-                    }
-                }
-            } {
-                <div class="indent">
-                    <ul>
-                        <li class="fragment">
-                            Parameterliste kann weggelassen werden;
-                            mit <code>_</code> kann jeder Parameter einmal referenziert werden
-                        </li>
-                    </ul>
-                </div>
-            }
-
-            @spacer2()
-
-            @sidebyside() {
-                @snippet() {
-                    @callblock(reference = "nums") {
-                        |nums sortWith { (x, y) => x > y }
-                    }
-                    @outblock() {
-                        |res0: List[Int] = List(3, 2, 1)
-                    }
-                    @callblock() {
-                        |numbers sortWith { _ > _ }
-                    }
-                    @outblock() {
-                        |res1: List[Int] = List(3, 2, 1)
-                    }
-                }
-            } {
-                <div class="indent">
-                    <ul>
-                        <li class="fragment">
-                            Funktion "ist x größer als y" wird auf jedes Element angewendet
-                        </li>
-                        <li class="fragment">
-                            der erste <code>_</code> repäsentiert den ersten Parameter (x),
-                            der zweite <code>_</code> den zweiten Parameter (y)
-                        </li>
-                    </ul>
-                </div>
-            }
-        }
-
+        <!-- ################################################################################## -->
 
         @quiz() {
             @Quiz.functions3()
         }
 
-        @slide(title = "map") {
-            <!--map-->
-
-            @sidebyside((66,33)) {
-                @sourcecode(fragment = false) {
-                    |trait Traversable[A] {
-                    |  def map[B](f: (A) => B): Traversable[B]
-                    |}
-                }
-            } {
-            }
-
-            @spacer2()
-
-            @snippet(id = "map_passengers") {
-                @sourceblock() {
-                    |val passengers = List("Bob Bobster", "Cal Calster", "Dan Danster")
-                }
-                @outblock() {
-                    |passengers: List[String] = List(Bob Bobster, Cal Calster, Dan Danster)
-                }
-            }
-            @spacer()
-            @snippet() {
-                @callblock(reference = "map_passengers") {
-                    |passengers map { _.toUpperCase }
-                }
-                @outblock() {
-                    |res0: List[String] = List(BOB BOBSTER, CAL CALSTER, DAN DANSTER)
-                }
-            }
-            @spacer()
-            @snippet() {
-                @callblock(reference = "map_passengers") {
-                    |passengers map { _.size }
-                }
-                @outblock() {
-                    |res1: List[Int] = List(11, 15, 11)
-                }
-            }
-        }
-
+        <!-- ################################################################################## -->
 
         @slide(title = "flatMap") {
-            <!--flatMap-->
+            @*
+            def getConfig(s: String) =
+                Option(System.getProperty(s))
 
-            @sidebyside((66,33)) {
-                @sourcecode(fragment = false) {
-                    |trait Traversable[A] {
-                    |  def flatMap[B](f: A => Traversable[B]): Traversable[B]
-                    |}
+            def toNum(s: String) =
+                try {
+                    Some(s.toDouble)
+                } catch {
+                    case e: Throwable => None
                 }
-            } {
-            }
 
-            @spacer2()
+            val r = getConfig("os.version") map (s => toNum(s))
 
-            @snippet(id = "flatmap_passengers") {
-                @sourceblock() {
-                    |val passengers = List(List("Bob Bobster", "Cal Calster"),
-                    |                      List("Dan Danster", "Ed Edster"))
-                }
-                @outblock() {
-                    |passengers: List[List[String]] = List(List(Bob Bobster, Cal Calster),
-                    |                                      List(Dan Danster, Ed Edster))
-                }
-            }
-            @spacer()
-            @snippet() {
-                @callblock(reference = "flatmap_passengers") {
-                    |passengers map { _ map { _.toUpperCase } }
-                }
-                @outblock() {
-                    |res0: List[String] = List(List(BOB BOBSTER, CAL CALSTER), List(DAN DANSTER, ED EDSTER))
-                }
-            }
-            @spacer()
-            @snippet() {
-                @callblock(reference = "flatmap_passengers") {
-                    |passengers flatMap { _ map { _.size } }
-                }
-                @outblock() {
-                    |res1: List[Int] = List(11, 15, 11, 9)
-                }
-            }
-            @spacer()
-            @snippet() {
-                @callblock(reference = "flatmap_passengers") {
-                    |passengers flatMap { _ map { _.toUpperCase } }
-                }
-                @outblock() {
-                    |res0: List[String] = List(BOB BOBSTER, CAL CALSTER, DAN DANSTER, ED EDSTER)
-                }
-            }
-            @spacer()
-            @snippet() {
-                @callblock(reference = "flatmap_passengers") {
-                    |passengers flatMap { _ map { _.size } }
-                }
-                @outblock() {
-                    |res1: List[Int] = List(11, 15, 11, 9)
-                }
-            }
+            val r2 = getConfig("os.version") flatMap (s => toNum(s))
+            *@
         }
 
+        <!-- ################################################################################## -->
 
-        @slide(title = "filter") {
-            <!--filter-->
+        @slide(title = "Beispiel") {
 
-            @sidebyside((66,33)) {
-                @sourcecode(fragment = false) {
-                    |trait Traversable[A] {
-                    |  def filter(f: A => Boolean): Traversable[A]
-                    |}
-                }
-            } {
-            }
-
-            @spacer2()
-
-            @snippet() {
-                @sourceblock(id = "filter_passengers") {
-                    |val passengers = List("Bob Bobster", "Cal Calster", "Dan Bobster")
-                }
-                @outblock() {
-                    |passengers: List[String] = List(Bob Bobster, Cal Calster, Dan Bobster)
-                }
-            }
-            @spacer()
-            @snippet() {
-                @callblock(reference = "filter_passengers") {
-                    |passengers filter { _ endsWith "Bobster" }
-                }
-                @outblock() {
-                    |res0: List[String] = List(Bob Bobster, Dan Bobster)
-                }
-            }
-            @spacer()
-            @snippet() {
-                @callblock(reference = "filter_passengers") {
-                    |passengers filter { s => (s endsWith "Bobster") && (s startsWith "B") }
-                }
-                @outblock() {
-                    |res1: List[String] = List(Bob Bobster)
-                }
-            }
         }
-
-
-        @slide(title = "foldLeft") {
-            <!--foldLeft-->
-
-            @sidebyside((66,33)) {
-                @sourcecode(fragment = false) {
-                    |trait Traversable[A] {
-                    |  def foldLeft[B](z: B)(f: (B, A) => B): B
-                    |}
-                }
-            } {
-            }
-
-            @spacer2()
-
-            @snippet() {
-                @sourceblock(id = "foldLeft_nums") {
-                    |val nums = List(1, 2, 3, 4, 5)
-                }
-                @outblock() {
-                    |nums: List[Int] = List(1,2,3,4,5)
-                }
-            }
-            @spacer()
-            @snippet() {
-                @callblock(reference = "foldLeft_nums") {
-                    |nums.foldLeft(0) { (total, n) =>
-                    |   total + n
-                    |}
-                }
-                @outblock() {
-                    |res0: Int = 15
-                }
-            }
-            @spacer()
-            @snippet() {
-                @callblock(reference = "foldLeft_nums") {
-                    |nums.foldLeft(0)(_ + _)
-                }
-                @outblock() {
-                    |res1: Int = 15
-                }
-            }
-        }
-
-
-        @slide() {
-
-            @snippet() {
-                @sourceblock(id = "numbers5", fragment = false) {
-                    |val numbers = List(1, 2, 3, 4, 5)
-                }
-            }
-
-            @spacer2()
-
-            @snippet() {
-                @callblock(reference = "numbers5") {
-                    |numbers.foldLeft(0)((r, n) => r + n)
-                }
-                @outblock() {
-                    |res0: Int = 15
-                }
-            }
-
-            @spacer2()
-
-            @snippet() {
-                @callblock(reference = "numbers5") {
-                    |numbers.foldLeft(0) {
-                    |   (r, n) =>
-                    |      println("r: " + r + " n: " + n)
-                    |      r + n
-                    |}
-                }
-                @outblock() {
-                    |r: 0 n: 1
-                    |r: 1 n: 2
-                    |r: 3 n: 3
-                    |r: 6 n: 4
-                    |r: 10 n: 5
-                    |res1: Int = 15
-                }
-            }
-        }
-
 
         <!-- ################################################################################## -->
 

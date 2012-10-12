@@ -77,7 +77,7 @@ define [
         frag = block["frag"]
         hlights = block["hlight"]
         linebyline = block["linebyline"]
-  
+
       noText = _.str.isBlank(text)
   
       if(clear == true || noText)

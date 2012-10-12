@@ -29,6 +29,12 @@ object Images extends MyController {
     def option(h: Int = 400) =
         gimage("1aBpqhm7Vud4C2rlNNyj6jpeFJOR1hce4YpyOFf9YH-o", height = h)
 
+    def blocking1(h: Int = 400) =
+        gimage("1T7wyV-jrqE_I3172EQMiZUm-ALwhkPSkFtXmrbdxJ4w", height = h)
+
+    def blocking2(h: Int = 400) =
+        gimage("1GOsKL-eqdxVWuYZa_05wDMSdf2UfCuhkcnRnsqbIkdM", height = h)
+
     def types(p: Int = 0, h: Int = 700) =
         p match {
             case 0 => gimage("1rohDVf9bLpnQOdnrA-ODUQXHt1BWXUFvvP70bkyLlsU", height = h)
