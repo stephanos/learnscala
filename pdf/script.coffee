@@ -45,6 +45,9 @@ getPage = (path, cb) ->
       # remove animations
       page.evaluate(-> $(".fragment").removeClass("fragment"))
 
+      # remove quiz pages
+      # ?
+
       # return page (after short timeout)
       setTimeout(
         () -> cb(page),

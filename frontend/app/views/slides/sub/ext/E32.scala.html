@@ -16,8 +16,15 @@
         <!-- ################################################################################## -->
 
         @defining("SQueryl") { title =>
+
             @titleslide(title) {
 
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title, subtitle = "Demo") {
+                @demo()
             }
         }
 
@@ -29,10 +36,14 @@
 
         @defining("Anorm") { title =>
 
-            @headslide(title = title) {
-                @title
-            } {
+            @titleslide(title) {
 
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title, subtitle = "Demo") {
+                @demo()
             }
         }
 
@@ -43,10 +54,15 @@
         <!-- ################################################################################## -->
 
         @defining("Slick") { title =>
-            @headslide(title = title) {
-                @title
-            } {
 
+            @titleslide(title) {
+
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title, subtitle = "Demo") {
+                @demo()
             }
         }
 
@@ -59,6 +75,7 @@
         @defining("Rogue") { title =>
 
             @titleslide(title) {
+
                 <div class="indent">
                     <ul class="fragments">
                         <li>
@@ -82,9 +99,8 @@
 
             <!-- ################################################################################## -->
 
-            @headslide(title = title) {
-                @title
-            } {
+            @titleslide(title = title) {
+
                 @sourcecode(fragment = false) {
                     |BlogPosts where (_.id eqs 1)
                     |          get

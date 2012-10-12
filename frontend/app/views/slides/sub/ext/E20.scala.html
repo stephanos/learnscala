@@ -603,7 +603,7 @@
                             |import scala.xml.transform._
                             |
                             |val trfrm = new RewriteRule {
-                            |  override def transform(n: Node) =
+                            |  override def transform (n: Node) =
                             |    n match {
                             |      case e: Elem if(e.label == "ul") =>
                             |        e.copy(label = "ol")
@@ -614,7 +614,8 @@
                             |}
                         }
                         @callblock() {
-                            |new RuleTransformer(trfrm).transform(html)
+                            |val rt = new RuleTransformer (trfrm)
+                            |rt.transform (html)
                         }
                     }
                     @codesub() {

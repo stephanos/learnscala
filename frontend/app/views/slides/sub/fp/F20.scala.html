@@ -56,13 +56,13 @@
 
             @titleslide(title = title, subtitle = "Zugreifen", clazz = "wide") {
 
-                <div class="w30p dcenter">
+                @autocenter {
                     @snippet() {
                         @sourceblock(id = "tuple2") {
                             |val t2 = ("Bob", 42)
                         }
                     }
-                </div>
+                }
 
                 @spacer2()
 

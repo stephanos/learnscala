@@ -22,6 +22,9 @@ object Quiz extends MyController {
     def functions3() =
         views.html.quizzes.functions3()
 
+    def functions4() =
+        views.html.quizzes.functions4()
+
     def method1() =
         views.html.quizzes.method1()
 
