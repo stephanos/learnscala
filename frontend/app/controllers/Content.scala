@@ -107,9 +107,9 @@ object Content extends MyController {
     // === ERWEITERT
 
     lazy val tests = Slide("E30", "Testen", ext, Seq(traits))
-    lazy val aktoren = Slide("E31", "Aktoren", ext, Seq(funktionen3, forexpr))
-    lazy val dbase = Slide("E32", "Datenbanken", ext, Seq(funktionen2))
-    lazy val web = Slide("E33", "Web-Entwicklung", ext, Seq(funktionen2))
+    lazy val aktoren = Slide("E31", "Aktoren", ext, Seq(funktionen4, forexpr))
+    lazy val dbase = Slide("E32", "Datenbanken", ext, Seq(funktionen4))
+    lazy val web = Slide("E33", "Web-Entwicklung", ext, Seq(funktionen4))
     lazy val utilities = Slide("E34", "Utilities", ext, Seq())
     lazy val scalaz = Slide("E35", "Scalaz", ext, Seq(typeclass))
 
