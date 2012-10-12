@@ -25,18 +25,33 @@
                 @headslide(title = title, subtitle = subtitle) {
                     @subtitle
                 } {
+                    @sourcecode() {
+                        |trait Traversable[A] {
+                        |  def foreach[A] (f: Elem => A): Unit
+                        |}
+                    }
+                    @codesub2() {
+                        führt Funktion auf jedes Element aus
+                    }
 
-                }
-            }
+                    @spacer2()
 
-            <!-- ################################################################################## -->
-
-            @defining("map") { subtitle =>
-
-                @headslide(title = title, subtitle = subtitle) {
-                    @subtitle
-                } {
-
+                    @snippet() {
+                        @callblock() {
+                            |val numbers = List (1, 2, 3, 4)
+                            |
+                            |numbers foreach (n => println (n))
+                        }
+                        @outblock() {
+                            |1
+                            |2
+                            |3
+                            |4
+                        }
+                    }
+                    @codesub2() {
+                        Ausgabe aller Elemente
+                    }
                 }
             }
 
@@ -53,20 +68,19 @@
                             |  def filter (f: A => Boolean): Traversable[A]
                             |}
                         }
-                        @*@codesub2() {
-                            Methode vom Typ <code>A</code> wendet Funktion <code>f</code>
-                            auf alle Elemente an und liefert neue Kollektion mit Elemente
-                        }*@
+                        @codesub2() {
+                            überführt Elemente, für die <code>f</code> wahr ist, in eine neue Liste
+                        }
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @sidebyside(gap = 10) {
                         @snippet() {
                             @callblock() {
                                 |val numbers = List (1, 2, 3, 4)
                                 |
-                                |numbers filter ((n: Int) => n % 2 == 0)
+                                |numbers filter (n => n % 2 == 0)
                             }
                             @outblock() {
                                 |res0: List[Int] = List(2, 4)
@@ -80,7 +94,7 @@
                             @callblock() {
                                 |val numbers = List (1, 2, 3, 4)
                                 |
-                                |numbers filter {(n: Int) =>
+                                |numbers filter { n =>
                                 |   val isEven = (n % 2 == 0)
                                 |   println (n + "? " + isEven)
                                 |   isEven
@@ -92,6 +106,66 @@
                                 |3? false
                                 |4? true
                                 |res0: List[Int] = List(1, 2)
+                            }
+                        }
+                        @codesub2() {
+                            mit Zwischenschritten
+                        }
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @defining("map") { subtitle =>
+
+                @headslide(title = title, subtitle = subtitle) {
+                    @subtitle
+                } {
+                    @autocenter {
+                        @sourcecode() {
+                            |trait Traversable[A] {
+                            |  def map[B] (f: (A) => B): Traversable[B]
+                            |}
+                        }
+                        @codesub2() {
+                            wendet Funktion auf jedes Element an und liefert Ergebnisliste
+                        }
+                    }
+
+                    @spacer()
+
+                    @sidebyside(gap = 10) {
+                        @snippet() {
+                            @callblock() {
+                                |val numbers = List (1, 2, 3, 4)
+                                |
+                                |numbers map (n => n * 2)
+                            }
+                            @outblock() {
+                                |res0: List[Int] = List(2, 4, 6, 8)
+                            }
+                        }
+                        @codesub2() {
+                            Liste mit verdoppelten Werten
+                        }
+                    } {
+                        @snippet() {
+                            @callblock() {
+                                |val numbers = List (1, 2, 3, 4)
+                                |
+                                |numbers map {n =>
+                                |   val res = (n * 2)
+                                |   println (n + " => " + res)
+                                |   res
+                                |}
+                            }
+                            @outblock() {
+                                |1 => 2
+                                |2 => 4
+                                |3 => 6
+                                |4 => 8
+                                |res0: List[Int] = List(2, 4, 6, 8)
                             }
                         }
                         @codesub2() {
@@ -125,13 +199,12 @@
                         |  def foldLeft[B] (z: B) (f: (B, A) => B): B
                         |}
                     }
-                    @*@codesub2() {
-                        Methode vom Typ <code>B</code>, mit Startwert <code>z</code> vom Typ <code>B</code>,
-                        wendet Funktion <code>f</code> auf jedes Element an und liefert Ergebnis vom Typ <code>B</code>
-                    }*@
+                    @codesub2() {
+                        transformiert Elemente vom Typ <code>A</code> in Ergebnis vom Typ <code>B</code>
+                    }
                 }
 
-                @spacer2()
+                @spacer()
 
                 @sidebyside(gap = 10) {
 
@@ -178,22 +251,126 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "flatMap") {
-            @*
-            def getConfig(s: String) =
-                Option(System.getProperty(s))
+        @defining("flatMap") { title =>
 
-            def toNum(s: String) =
-                try {
-                    Some(s.toDouble)
-                } catch {
-                    case e: Throwable => None
+            @slide(title = title) {
+
+                @sidebyside(gap = 10) {
+                    @snippet() {
+                        @sourceblock(id = "config") {
+                            |def getConf (s: String) =
+                            |  Option (System getProperty s)
+                        }
+                        @outblock() {
+                            |getConf: (s: String)Option[String]
+                        }
+                    }
+                    @codesub2() {
+                        <em>(A)</em> Systemparameter auslesen
+                    }
+                } {
+                    @snippet() {
+                        @sourceblock(id = "tonum", reference = "config") {
+                            |def toNum (s: String) =
+                            |  try {
+                            |    Some (s toDouble)
+                            |  } catch {
+                            |    case e: Throwable => None
+                            |  }
+                        }
+                        @outblock() {
+                            |toNum: (s: String)Option[Double]
+                        }
+                    }
+                    @codesub2() {
+                        <em>(B)</em> String in Fließkommazahl umwandeln
+                    }
                 }
 
-            val r = getConfig("os.version") map (s => toNum(s))
+                @spacer2()
 
-            val r2 = getConfig("os.version") flatMap (s => toNum(s))
-            *@
+                @sidebyside(gap = 10) {
+                    @fragment {
+                        <h4 class="tcenter">map</h4>
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock(reference = "tonum") {
+                            |val n = "java.specification.version"
+                            |val r = getConf(n) map (s => toNum s)
+                        }
+                        @outblock() {
+                            |r: Option[Option[Double]] = Some(Some(1.6))
+                        }
+                    }
+                } {
+                    @fragment {
+                        <h4 class="tcenter">flatMap</h4>
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock(reference = "tonum") {
+                            |val n = "java.specification.version"
+                            |val r = getConf(n) flatMap (s => toNum s)
+                        }
+                        @outblock() {
+                            |r: Option[Double] = Some(10.6)
+                        }
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title) {
+
+                @autocenter {
+                    @sourcecode() {
+                        |trait Traversable[A] {
+                        |  def flatMap[B] (f: A => Traversable[B]): Traversable[B]
+                        |}
+                    }
+                }
+
+                @spacer2()
+
+                @autocenter {
+                    @snippet() {
+                        @callblock() {
+                            |val empl = Map (
+                            |   1 -> "Adam",
+                            |   5 -> "Bob",
+                            |   9 -> "Carl" )
+                            |
+                            |(1 to 4) flatMap (n => empl get n)
+                        }
+                        @outblock() {
+                            |res0: IndexedSeq[String] = Vector(Adam)
+                        }
+                    }
+                    @codesub2() {
+                        Mitarbeiter mit ID zwischen 1 und 4
+                    }
+                }
+
+                @*
+                @snippet() {
+                    @callblock() {
+                        |TODO
+                    }
+                    @outblock() {
+                        |res0:
+                    }
+                }
+                @codesub2() {
+                    TODO
+                }
+                *@
+            }
         }
 
         <!-- ################################################################################## -->

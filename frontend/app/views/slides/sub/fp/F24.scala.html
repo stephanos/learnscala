@@ -1,6 +1,6 @@
 <!--
     TODO
-        - example (e.g. with Options)
+        - example with Options
 -->
 @implicitSlide = @{ Content.forexpr }
 
@@ -460,8 +460,8 @@
                     } {
                         @snippet() {
                             @callblock(reference = "people") {
-                                |ppl.flatMap { p1 =>
-                                |  ppl.filter {
+                                |ppl flatMap { p1 =>
+                                |  ppl filter {
                                 |    p2 => p1 != p2
                                 |  } filter {
                                 |    p2 => p1._2 == p2._2
