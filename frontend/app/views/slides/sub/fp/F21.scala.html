@@ -567,7 +567,7 @@
                             |Map('a'->1, 'b'->2) keySet
                         }
                         @outblock() {
-                            |res3: Set[Char] = Set(a, b)
+                            |res2: Set[Char] = Set(a, b)
                         }
                     }
                     @codesub2() {
@@ -581,14 +581,29 @@
                             |Map('a'->1, 'b'->2) values
                         }
                         @outblock() {
-                            |res2: Iterable[Int] = MapLike(1, 2)
+                            |res3: Iterable[Int] = MapLike(1, 2)
                         }
                     }
                     @codesub2() {
-                        Werte extrahieren
+                        alle Werte extrahieren
                     }
 
-                    @*@spacer2()
+                    @spacer2()
+
+                    @snippet() {
+                        @callblock() {
+                            |Map('a'->1, 'b'->2) get ('c')
+                        }
+                        @outblock() {
+                            |res4: Option[Int] = None
+                        }
+                    }
+                    @codesub2() {
+                        einzelnen Wert extrahieren
+                    }
+
+                    @*
+                    @spacer2()
 
                     @snippet() {
                         @callblock() {

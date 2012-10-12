@@ -100,7 +100,7 @@ object Content extends MyController {
 
     lazy val datatypes3 = Slide("F30", "Datenstrukturen III", fp, Seq(datatypes2))
     lazy val funktionen4 = Slide("F31", "Funktionen IV", fp, Seq(funktionen3))
-    lazy val kontrollabstraktion = Slide("F32", "Kontrollabstraktion", fp, Seq(funktionen3), status = "complete")
+    lazy val kontrollabstraktion = Slide("F32", "Kontrollabstraktion", fp, Seq(funktionen4), status = "complete")
 
     // === ERWEITERT
 
