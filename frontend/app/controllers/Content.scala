@@ -21,11 +21,11 @@ object Content extends MyController {
     lazy val geschichte = Slide("B11", "Geschichte", basic, Seq(einfuehrung), status = "complete")
     lazy val ersteSchritte = Slide("B12", "Erste Schritte", basic, Seq(werkzeuge1), status = "complete")
     lazy val methoden = Slide("B13", "Methoden", basic, Seq(ersteSchritte), status = "complete")
-    lazy val kontrollstrukturen = Slide("B14", "Kontrollstrukturen", basic, Seq(werkzeuge2, uebungen), status = "complete")
+    lazy val kontrollstrukturen = Slide("B14", "Kontrollstrukturen", basic, Seq(uebungen), status = "complete")
 
     // === OBJEKTE
 
-    lazy val klassen1 = Slide("O10", "Klassen I", oop, Seq(methoden, werkzeuge2, uebungen), status = "complete")
+    lazy val klassen1 = Slide("O10", "Klassen I", oop, Seq(methoden, uebungen), status = "complete")
     lazy val objekte = Slide("O12", "Objekte", oop, Seq(klassen1), status = "complete")
     lazy val vererbung1 = Slide("O11", "Vererbung", oop, Seq(objekte), status = "complete")
     lazy val pakete = Slide("O13", "Pakete", oop, Seq(vererbung1), status = "complete")
@@ -33,7 +33,7 @@ object Content extends MyController {
     // === FUNKTIONEN
 
     lazy val funcproc = Slide("F10", "FP", fp, Seq(geschichte), status = "complete")
-    lazy val funktionen1 = Slide("F11", "Funktionen I", fp, Seq(funcproc), status = "complete")
+    lazy val funktionen1 = Slide("F11", "Funktionen I", fp, Seq(funcproc, uebungen), status = "complete")
     lazy val funktionen2 = Slide("F12", "Funktionen II", fp, Seq(funktionen1), status = "complete")
 
     // === ERWEITERT
@@ -63,7 +63,7 @@ object Content extends MyController {
 
     // === FUNKTIONEN
 
-    lazy val datatypes1 = Slide("F20", "Datenstrukturen I", fp, Seq(generics1))
+    lazy val datatypes1 = Slide("F20", "Datenstrukturen I", fp, Seq(klassen2, generics1))
     lazy val datatypes2 = Slide("F21", "Datenstrukturen II", fp, Seq(datatypes1), status = "complete")
     lazy val listen = Slide("F22", "Listenverarbeitung", fp, Seq(datatypes2), status = "complete")
     lazy val funktionen3 = Slide("F23", "Funktionen III", fp, Seq(datatypes2, funktionen2))
