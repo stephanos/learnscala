@@ -1,8 +1,6 @@
 <!--
-    - higher order functions
-    - map
-    - fold
-    - filter
+    TODO
+        - good flatMap & Option example
 -->
 @implicitSlide = @{ Content.funktionen3 }
 
@@ -174,6 +172,77 @@
                     }
                 }
             }
+
+            <!-- ################################################################################## -->
+
+            @headslide(title = title, subtitle = "Weitere") {
+                usw.
+            } {
+                @autocenter {
+                    @sourcecode(id = "list1234") {
+                        |val nums = List(1, 2, 3, 4)
+                    }
+                }
+
+                @spacer2()
+
+                @sidebyside(gap = 10) {
+                    @snippet() {
+                        @callblock(reference = "list1234") {
+                            |nums partition (n => n % 2 == 0)
+                        }
+                        @outblock() {
+                            |res0: (List[Int], List[Int]) =
+                            |   (List(2, 4),List(1, 3))
+                        }
+                    }
+                    @codesub2() {
+                        Teilt Liste abgängig vom Wahrheitswert der Funktion
+                    }
+
+                    @spacer2()
+
+                    @snippet() {
+                        @callblock(reference = "list1234") {
+                            |nums exists (n => n % 4 == 0)
+                        }
+                        @outblock() {
+                            |res0: Boolean = true
+                        }
+                    }
+                    @codesub2() {
+                        Überprüft ob ein Element die Bedingung erfüllt
+                    }
+
+                } {
+                    @snippet() {
+                        @callblock(reference = "list1234") {
+                            |nums groupBy (n => n % 2)
+                        }
+                        @outblock() {
+                            |res0: Map[Int,List[Int]] =
+                            |  Map(1 -> List(1, 3), 0 -> List(2, 4))
+                        }
+                    }
+                    @codesub2() {
+                        Gruppiert Elemente
+                    }
+
+                    @spacer2()
+
+                    @snippet() {
+                        @callblock(reference = "list1234") {
+                            |nums takeWhile (n => n <= 2)
+                        }
+                        @outblock() {
+                            |res0: List[Int] = List(1, 2)
+                        }
+                    }
+                    @codesub2() {
+                        Extrahiert Teilliste für die die Funktion wahr ist
+                    }
+                }
+            }
         }
 
         <!-- ################################################################################## -->
@@ -338,13 +407,11 @@
 
                 @spacer2()
 
-                @autocenter {
+                @sidebyside() {
                     @snippet() {
                         @callblock() {
-                            |val empl = Map (
-                            |   1 -> "Adam",
-                            |   5 -> "Bob",
-                            |   9 -> "Carl" )
+                            |val empl =
+                            |  Map (1->"Adam", 5->"Bob", 9->"Carl")
                             |
                             |(1 to 4) flatMap (n => empl get n)
                         }
@@ -353,7 +420,30 @@
                         }
                     }
                     @codesub2() {
-                        Mitarbeiter mit ID zwischen 1 und 4
+                        Mitarbeiter mit ID von 1 bis 4
+                    }
+                } {
+                    @snippet() {
+                        @callblock() {
+                            |val empl =
+                            |  Map (1->"Adam", 5->"Bob", 9->"Carl")
+                            |
+                            |(1 to 4) flatMap {n =>
+                            |  val e = empl get n
+                            |  println (e)
+                            |  e
+                            |}
+                        }
+                        @outblock() {
+                            |Some(Adam)
+                            |None
+                            |None
+                            |None
+                            |res0: IndexedSeq[String] = Vector(Adam)
+                        }
+                    }
+                    @codesub2() {
+                        mit Zwischenergebnissen
                     }
                 }
 
@@ -375,9 +465,76 @@
 
         <!-- ################################################################################## -->
 
+        @*
         @slide(title = "Beispiel") {
 
+            @sidebyside(gap = 10) {
+                @sourcecode(id = "empl") {
+                    |case class Empl (
+                    |   name: String,
+                    |   age: Int,
+                    |   started: Int,
+                    |   nickname: Option[String] = None
+                    |)
+                    |
+                    |val empl = List (
+                    |    Empl ("Adam", 42, 20),
+                    |    Empl ("Bob",  32, 10, Some("Mr B")),
+                    |    Empl ("Carl", 46,  6),
+                    |    Empl ("Dan",  22,  3),
+                    |    Empl ("Ed",   51, 27),
+                    |    Empl ("Fred", 24, 10),
+                    |    Empl ("Gus",  31,  9, Some("Kingpin")),
+                    |    Empl ("Han",  39,  6),
+                    |    Empl ("Ian",  23, 15),
+                    |    Empl ("Jim",  59, 19, Some("J")),
+                    |    Empl ("Kurt", 41,  8, Some("K")),
+                    |    Empl ("Liam", 60, 40),
+                    |    Empl ("Mel",  65, 10),
+                    |    Empl ("Nina", 47,  4, Some("El Nino")),
+                    |    Empl ("Otis", 34,  8),
+                    |    Empl ("Pia",  31, 12)
+                    |)
+                }
+            } {
+                @snippet() {
+                    @callblock(reference = "empl") {
+                        |empl filter { e =>
+                        |    e.started > 20
+                        |  } map { e =>
+                        |    (e, e.age - e.started)
+                        |  } foreach { t =>
+                        |    println (t._1.name +
+                        |      " started at age " + t._2)
+                        |  }
+                    }
+                    @outblock() {
+                        |Ed started at age 24
+                        |Liam started at age 20
+                    }
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference = "empl") {
+                        |empl filter { e =>
+                        |    e.started > 20
+                        |  } map { e =>
+                        |    (e, e.age - e.started)
+                        |  } foreach { t =>
+                        |    println (t._1.name +
+                        |      " started at age " + t._2)
+                        |  }
+                    }
+                    @outblock() {
+                        |Ed started at age 24
+                        |Liam started at age 20
+                    }
+                }
+            }
         }
+        *@
 
         <!-- ################################################################################## -->
 
