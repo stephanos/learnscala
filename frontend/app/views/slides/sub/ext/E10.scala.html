@@ -120,14 +120,14 @@
             @headslide(title = title, subtitle = "scalac") {
                 &gt;<em> scalac</em>
             } {
-                <ul>
+                <ul class="fragments">
                     <li><em>Skript</em>: kompiliert <em>Scala-Code</em> zu <var>Java-Bytecode</var>
                         @spacer()
                         @outcode(fragment = true) {
                             |$ scalac HelloWorld.scala
                         }
                     </li>
-                    <li class="fragment">braucht typischerweise etwas länger als der Java-Compiler <var>javac</var></li>
+                    <li>braucht typischerweise etwas länger als der Java-Compiler <var>javac</var></li>
                 </ul>
             }
 
@@ -136,10 +136,10 @@
             @headslide(title = title, subtitle = "fsc") {
                 &gt;<em> fsc</em>
             } {
-                <ul>
+                <ul class="fragments">
                     <li><var>fast scala compiler</var></li>
                     <li><em>Skript</em>: kompiliert Scala-Code mittels Hintergrundprozess</li>
-                    <li class="fragment">
+                    <li>
                         kompiliert schneller als <em>scalac</em>: Startzeit fällt weg & Caching
                         @spacer()
                         @outcode() {
@@ -159,13 +159,13 @@
             @headslide(title = title, subtitle = "scala") {
                 &gt;<em> scala</em>
             } {
-                <ul>
+                <ul class="fragments">
                     <li>
                         <em>Skript</em>: führt Scala-Programme aus
                         @spacer()
 
-                        <ol class="indent">
-                            <li class="fragment">
+                        <ol class="fragments indent">
+                            <li>
                                 kompilierte Programme
                                 @spacer_half()
                                 @outcode() {
@@ -184,7 +184,7 @@
                                     }
                                 }
                             </li>
-                            <li class="fragment">
+                            <li>
                                 interaktive Programme
                                 @spacer_half()
                                 @outcode() {
