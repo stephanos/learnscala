@@ -54,10 +54,10 @@ object Exercise extends MyController {
 
             val exercise = (xml \ "@id").text
             val user = (xml \ "@user").text
-            //val addr = req.remoteAddress
+            val addr = req.remoteAddress
 
             val status = StatusDoc.create
-            status.user.set(user)
+            status.user.set(if(user == null || user.isEmpty) addr else user)
             status.exercise.set(exercise)
             status.results.set((xml \\ "task").map(_.text.trim.toInt).toList)
 
