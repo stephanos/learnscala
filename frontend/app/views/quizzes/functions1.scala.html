@@ -1,1 +1,119 @@
-<!-- TODO -->
+<!-- DONE -->
+
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(1)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val m1 = (x: Int) => x - 1
+            }
+            @outblock() {
+                |m1: (Int) => Int = &lt;function1&gt;
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(2)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val m1 = (x: Int) = x - 1
+            }
+            @outblock(error = true) {
+                |error: ';' expected but '=' found
+            }
+        }
+    }
+}
+
+@spacer2()
+
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(3)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val t2 = (x: Long) => x * 2
+            }
+            @outblock() {
+                |t2: (Long) => Long = &lt;function1&gt;
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(4)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val t2 = (x: Long) => x * 2.0
+            }
+            @outblock() {
+                |t2: (Long) => Double = &lt;function1&gt;
+            }
+        }
+    }
+}
+
+@spacer2()
+
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(5)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |((x: Long) => x * 2).apply (5)
+            }
+            @outblock() {
+                |res0: Long = 10
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(6)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |((x: Int) => x % 2)(5)
+            }
+            @outblock() {
+                |res0: Int = 1
+            }
+        }
+    }
+}
+
+@spacer2()
+
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(7)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |(() => println ("Hello"))()
+            }
+            @outblock() {
+                |Hello
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(8)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val f = () => println ("Hello")
+            }
+            @outblock() {
+                |f = () => Unit = &lt;function0&gt;
+            }
+        }
+    }
+}

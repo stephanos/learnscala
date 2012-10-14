@@ -1,13 +1,16 @@
+<!-- DONE -->
+
 @sidebyside() {
     @sidebyside((5, 90)) {
         <span>(1)</span>
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val r = 42f
+                |val r = 1 toString toLong
             }
-            @outblock() {
-                |r: Float = 42
+            @outblock(error = true) {
+                |error: too many arguments
+                |       for method toString
             }
         }
     }
@@ -34,10 +37,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val r = 24.==(42)
+                |val r = "ABC" charAt 0
             }
             @outblock() {
-                |r: Boolean = false
+                |r: Char = A
             }
         }
     }
@@ -77,12 +80,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock() {
-                |var r = 1L
-                |r = 25
+                |val r = (1 toString) toLong
             }
             @outblock(fragment = false) {
                 |r: Long = 1
-                |r: Long = 25
             }
         }
     }
@@ -96,10 +97,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val r: String = 3.14
+                |val r = !(true.unary_!)
             }
-            @outblock(error = true) {
-                |type mismatch;
+            @outblock() {
+                |r: Boolean = true
             }
         }
     }

@@ -41,16 +41,18 @@
                         }
                     }
 
+                    @*
                     @iseq()
 
                     @snippet() {
                         @sourceblock() {
-                            |x: Int => x + 1
+                            |{x: Int => x + 1}
                         }
                         @outblock() {
                             |res0: (Int) => Int = &lt;function1&gt;
                         }
                     }
+                    *@
                 } {
                     @indent() {
                         @spacer()

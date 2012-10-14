@@ -1,1 +1,83 @@
-<!-- TODO -->
+<!-- DONE -->
+
+@spacer()
+
+@autocenter {
+    @sourcecode(id = "matcher", clazz = "slim", fragment = false) {
+        |def matches (qry: String, m: (String) => Boolean) = m(qry)
+    }
+}
+
+@spacer()
+
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(1)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(reference = "matcher", fragment = false) {
+                |matches ("www", {
+                |   s => s.startsWith("w") } )
+            }
+            @outblock() {
+                |res0: Boolean = true
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(2)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(reference = "matcher", fragment = false) {
+                |matches ("123", s => s.charAt(0))
+            }
+            @outblock(error = true) {
+                |error: type mismatch;
+                |found: Char  required: Boolean
+            }
+        }
+    }
+}
+
+@spacer2()
+@spacer()
+
+@autocenter {
+    @sourcecode(id = "encrypt", clazz = "slim", fragment = false) {
+        |def encrypt (s: String, f: (String) => (String), it: Int = 1): String =
+        |  if (it == 0) s
+        |  else encrypt(f(s), f, it - 1)
+    }
+}
+
+@spacer()
+
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(3)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(reference = "encrypt", fragment = false) {
+                |encrypt ("ABC", s => s.reverse, 3)
+            }
+            @outblock() {
+                |res0: String = CBA
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(4)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(reference = "encrypt") {
+                |encrypt ("123", s =>
+                |  (s.toLong * 2).toString )
+            }
+            @outblock(fragment = false) {
+                |res0: String = "246"
+            }
+        }
+    }
+}

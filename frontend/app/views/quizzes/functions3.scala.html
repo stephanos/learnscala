@@ -1,4 +1,4 @@
-<!-- TODO -->
+<!-- DONE -->
 
 @autocenter {
     @sourcecode(id = "list123", clazz = "slim", fragment = false) {
@@ -6,7 +6,7 @@
     }
 }
 
-@spacer()
+@spacer2()
 
 @sidebyside() {
     @sidebyside((5, 90)) {
@@ -14,7 +14,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "list123", fragment = false) {
-                |val r = l map { (x: Int) => x * 2 }
+                |val r = l map {(i: Int) => i * 2}
             }
             @outblock() {
                 |r: List[Int] = List(2, 4, 6)
@@ -27,7 +27,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "list123", fragment = false) {
-                |val r = l filter ( _ / 2)
+                |val r = l filter {(i: Int) => i/2}
             }
             @outblock(error = true) {
                 |error: type mismatch;
@@ -37,7 +37,7 @@
     }
 }
 
-@spacer()
+@spacer2()
 
 @sidebyside() {
     @sidebyside((5, 90)) {
@@ -45,7 +45,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "list123", fragment = false) {
-                |val r = l map ( _ / 2.0)
+                |val r = l map {i => i / 2.0}
             }
             @outblock() {
                 |r: List[Double] = List(0.5, 1.0, 1.5)
@@ -58,16 +58,16 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "list123", fragment = false) {
-                |val r = l map print
+                |l foreach { i => }
             }
             @outblock() {
-                |1 2 3r: List[Unit] = List((), (), ())
+                |(nothing)
             }
         }
     }
 }
 
-@spacer()
+@spacer2()
 
 @sidebyside() {
     @sidebyside((5, 90)) {
@@ -75,10 +75,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "list123", fragment = false) {
-                |val r = l map ((i: Long) => _ - 1)
+                |l foreach { i => println (i) }
             }
-            @outblock(error = true) {
-                |error: missing parameter type
+            @outblock() {
+                |1 2 3
             }
         }
     }
@@ -91,38 +91,9 @@
                 |val r = l map ((i: Long) => i - 1)
             }
             @outblock(error = true) {
-                |error: type mismatch;
-                |found: Long => Long; required: Int => ?
-            }
-        }
-    }
-}
-
-@spacer()
-
-@sidebyside() {
-    @sidebyside((5, 90)) {
-        <span>(7)</span>
-    } {
-        @snippet(clazz = "slim") {
-            @callblock(reference = "list123", fragment = false) {
-                |val r = l filter { _ * 2 > 2 }
-            }
-            @outblock() {
-                |r: List[Int] = List(2, 3)
-            }
-        }
-    }
-} {
-    @sidebyside((5, 90)) {
-        <span>(8)</span>
-    } {
-        @snippet(clazz = "slim") {
-            @callblock(reference = "list123", fragment = false) {
-                |val r = l map (math.pow(_, 2))
-            }
-            @outblock() {
-                |r: List[Double] = List(1.0, 4.0, 9.0)
+                |error:    type mismatch;
+                |found:    Long => Long;
+                |required: Int => ?
             }
         }
     }

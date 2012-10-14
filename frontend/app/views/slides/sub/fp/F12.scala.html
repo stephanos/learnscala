@@ -21,8 +21,8 @@
         @slide(title = "Problemstellung") {
 
             @sourcecode() {
-                |def sumInts(a: Int, b: Int): Int =
-                |   if (a > b) 0 else (a) + sumInts(a + 1, b)
+                |def sumInts (a: Int, b: Int): Int =
+                |   if (a > b) 0 else (a) + sumInts (a + 1, b)
             }
             @codesub2() {
                 Summe natürlicher Zahlen
@@ -31,8 +31,8 @@
             @spacer()
 
             @sourcecode() {
-                |def sumQuads(a: Int, b: Int): Int =
-                |   if (a > b) 0 else (a * a) + sumQuads(a + 1, b)
+                |def sumQuads (a: Int, b: Int): Int =
+                |   if (a > b) 0 else (a * a) + sumQuads (a + 1, b)
             }
             @codesub2() {
                 Summe Quadratzahlen
@@ -41,8 +41,8 @@
             @spacer()
 
             @sourcecode() {
-                |def sumCubes(a: Int, b: Int): Int =
-                |   if (a > b) 0 else (a * a * a) + sumCubes(a + 1, b)
+                |def sumCubes (a: Int, b: Int): Int =
+                |   if (a > b) 0 else (a * a * a) + sumCubes (a + 1, b)
             }
             @codesub2() {
                 Summe Kubikzahlen
@@ -135,7 +135,7 @@
         @slide(title = "Typinferenz") {
 
             @sourcecode(id = "sum2") {
-                | def sum(f: Int => Int, a: Int, b: Int): Int =
+                | def sum (f: Int => Int, a: Int, b: Int): Int =
                 |   if (a > b) 0
                 |   else f(a) + sum(f, a + 1, b)
             }
