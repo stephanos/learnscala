@@ -1,4 +1,4 @@
-@(id: String, heading: Html = Html("Übung"), append: Html = Html.empty)(implicit topic: String = null)
+@(id: String, heading: Html = Html("Übung"), append: Html = Html.empty, hasTests: Boolean = true)(implicit topic: String = null)
 
 @headslide(title = "Übung") {
     @heading@append
@@ -39,7 +39,7 @@
                         </ul>
                     </li>
                 </ul>
-                <ul>
+                <ul @{if(!hasTests) "style='opacity: 0'"}>
                     <li>
                         test
                         <ul>
