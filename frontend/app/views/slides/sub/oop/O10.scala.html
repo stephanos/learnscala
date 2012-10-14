@@ -376,64 +376,122 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Methoden") {
+        @defining("Methoden") { title =>
 
-            @sidebyside(gap = 5) {
-                @snippet() {
-                    @sourceblock(id = "empl2") {
-                        |class Employee {
-                        |
-                        |  private var isPresent = false
-                        |
-                        |  def clockIn() {
-                        |    isPresent = true
-                        |    println("Hi! I clocked in.")
-                        |  }
-                        |
-                        |  def clockOut() {
-                        |    isPresent = false
-                        |    println("I clocked out. Bye!")
-                        |  }
-                        |
-                        |  def isInTheOffice = isPresent
-                        |}
+            @slide(title = title) {
+
+                @sidebyside(gap = 5) {
+                    @snippet() {
+                        @sourceblock(id = "empl2") {
+                            |class Employee {
+                            |
+                            |  private var isPresent = false
+                            |
+                            |  def clockIn() {
+                            |    isPresent = true
+                            |    println("Hi! I clocked in.")
+                            |  }
+                            |
+                            |  def clockOut() {
+                            |    isPresent = false
+                            |    println("I clocked out. Bye!")
+                            |  }
+                            |
+                            |  def isInTheOffice = isPresent
+                            |}
+                        }
+                    }
+                } {
+                    @spacer()
+
+                    @snippet() {
+                        @callblock(reference = "empl2") {
+                            |val e = new Employee
+                        }
+                        @outblock() {
+                            |e: Employee = Employee@@2142115
+                        }
+                        @callblock() {
+                            |e.clockIn()
+                        }
+                        @outblock() {
+                            |Hi! I clocked in.
+                        }
+                        @callblock() {
+                            |val atOffice = e.isInTheOffice
+                        }
+                        @outblock() {
+                            |atOffice: Boolean = true
+                        }
+                        @callblock() {
+                            |e.clockOut()
+                        }
+                        @outblock() {
+                            |I clocked out. Bye!
+                        }
                     }
                 }
-            } {
-                @spacer()
 
-                @snippet() {
-                    @callblock(reference = "empl2") {
-                        |val e = new Employee
+                @*@infobox() {
+                    Methoden einer Klasse sind standardmäßig öffentlich, <br/>
+                    bei nur lesenden Methoden sollte <code>()</code> weggelassen werden.
+                }*@
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "") {
+
+                @autocenter {
+                    @snippet() {
+                        @sourceblock() {
+                            |class Employee (val name: String) {
+                            |
+                            |  def fire = {
+                            |    println (name + ", you are fired!")
+                            |  }
+                            |}
+                        }
                     }
-                    @outblock() {
-                        |e: Employee = Employee@@2142115
+                }
+
+                @spacer2()
+
+                @sidebyside() {
+                    @snippet() {
+                        @sourceblock() {
+                            |class Employee (val name: String) {
+                            |
+                            |  def fire (nickname: String) =
+                            |    name + ", you are fired!"
+                            |
+                            |  def fire () =
+                            |    fire (name)
+                            |}
+                        }
+                        @outblock(error = true) {
+                            |error: overloaded method fire
+                            |       needs result type
+                        }
                     }
-                    @callblock() {
-                        |e.clockIn()
-                    }
-                    @outblock() {
-                        |Hi! I clocked in.
-                    }
-                    @callblock() {
-                        |val atOffice = e.isInTheOffice
-                    }
-                    @outblock() {
-                        |atOffice: Boolean = true
-                    }
-                    @callblock() {
-                        |e.clockOut()
-                    }
-                    @outblock() {
-                        |I clocked out. Bye!
+                } {
+                    @snippet() {
+                        @sourceblock() {
+                            |class Employee (val name: String) {
+                            |
+                            |  def fire (nickname: String): String =
+                            |    name + ", you are fired!"
+                            |
+                            |  def fire (): String =
+                            |    fire (name)
+                            |}
+                        }
+                        @outblock() {
+                            |defined class Employee
+                        }
                     }
                 }
             }
-
-            @*@infobox() {
-                Methoden einer Klasse sind standardmäßig öffentlich, <br/>
-                bei nur lesenden Methoden sollte <code>()</code> weggelassen werden.
-            }*@
         }
 
         <!-- ################################################################################## -->
