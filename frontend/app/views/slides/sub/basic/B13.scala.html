@@ -1,7 +1,3 @@
-<!--
-    TODO
-        - nesting methods
--->
 @implicitSlide = @{ Content.methoden }
 
 @defining(implicitSlide.label) { implicit topic =>
@@ -312,51 +308,77 @@
 
         <!-- ################################################################################## -->
 
+        @slide(title = "Verschachtelung") {
+            @snippet() {
+                @sourceblock(id = "print") {
+                    |def doubleAndPlusOne (x: Int) = {
+                    |   def double (x: Int) = {
+                    |       x * 2
+                    |   }
+                    |
+                    |   def plusOne (x: Int) = {
+                    |       x + 1
+                    |   }
+                    |
+                    |   plusOne (double (x))
+                    |}
+                }
+                @outblock() {
+                    |doubleAndPlusOne: (x: Int)Int
+                }
+            }
+            @codesub2() {
+                Methoden können interne Hilfsmethoden definieren
+            }
+        }
+
+        <!-- ################################################################################## -->
+
         @quiz() {
             @Quiz.method1()
         }
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Aufruf") {
-
-            @snippet() {
-                @callblock(reference = "hello") {
-                    |hello()
-                }
-                @outblock() {
-                    |res0: String = Hello World
-                }
-            }
-            @codesub2() {
-                Aufruf einer <em>parameterlosen</em> Methode
-            }
-
-            @spacer()
-
-            @snippet() {
-                @callblock(reference = "double") {
-                    |double (1)
-                }
-                @outblock() {
-                    |res0: Int = 2
-                }
-                @callblock() {
-                    |double { 1 + 1 }
-                }
-                @outblock() {
-                    |res1: Int = 4
-                }
-            }
-
-            @codesub2() {
-                Aufruf einer <em>1-parametrigen</em> Methode
-            }
-        }
-
-        <!-- ################################################################################## -->
-
         @defining("Aufruf") { title =>
+
+            @slide(title = title) {
+
+                @snippet() {
+                    @callblock(reference = "hello") {
+                        |hello()
+                    }
+                    @outblock() {
+                        |res0: String = Hello World
+                    }
+                }
+                @codesub2() {
+                    Aufruf einer <em>parameterlosen</em> Methode
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference = "double") {
+                        |double (1)
+                    }
+                    @outblock() {
+                        |res0: Int = 2
+                    }
+                    @callblock() {
+                        |double { 1 + 1 }
+                    }
+                    @outblock() {
+                        |res1: Int = 4
+                    }
+                }
+
+                @codesub2() {
+                    Aufruf einer <em>1-parametrigen</em> Methode
+                }
+            }
+
+            <!-- ################################################################################## -->
 
             @slide(title = title) {
 
@@ -391,79 +413,6 @@
                     Aufruf einer <em>2-parametrigen</em> Methode
                 }
             }
-
-            <!-- ################################################################################## -->
-
-            @*@slide(title = title, subtitle = "Notationen") {
-
-                @sidebyside() {
-                    @snippet() {
-                        @callblock() {
-                            |42.compare(42)
-                        }
-                        @outblock() {
-                            |res0: Int = 0
-                        }
-                    }
-                } {
-                    @snippet() {
-                        @callblock() {
-                            |42 + 42
-                        }
-                        @outblock() {
-                            |res0: Int = 84
-                        }
-                    }
-                }
-
-                @sidebyside() {
-                    @snippet() {
-                        @callblock() {
-                            |42.compare(42)
-                        }
-                        @outblock() {
-                            |res0: Int = 0
-                        }
-                        @callblock() {
-                            |42 compare (42)
-                        }
-                        @outblock() {
-                            |res1: Int = 0
-                        }
-                        @callblock() {
-                            |42 compare {42}
-                        }
-                        @outblock() {
-                            |res2: Int = 0
-                        }
-                        @callblock() {
-                            |42 compare 42
-                        }
-                        @outblock() {
-                            |res3: Int = 0
-                        }
-                        @callblock() {
-                            |42 == 42
-                        }
-                        @outblock() {
-                            |res3: Int = 0
-                        }
-                    }
-                } {
-                    @snippet() {
-                        @callblock() {
-                            |42.+(42)
-                        }
-                        @outblock() {
-                            |res0: Int = 84
-                        }
-                    }
-                }
-
-                @codesub2() {
-                    Aufruf via <em>Infix</em> / Operator-Notation
-                }
-            }*@
         }
 
         <!-- ################################################################################## -->

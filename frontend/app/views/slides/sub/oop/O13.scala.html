@@ -66,23 +66,7 @@
 
             <!-- ################################################################################## -->
 
-            <!-- TODO -->
-
-            @*
-            @slide(title = title) {
-
-                @sourcecode() {
-                    |package com.mycompany
-                    |package staff
-                    |
-                    |class Employee
-                }
-            }
-            *@
-
-            <!-- ################################################################################## -->
-
-            @slide(title = title) {
+            @slide(title = title, subtitle = "Verschachtelung") {
 
                 @sourcecode() {
                     |package com.mycompany.staff {
@@ -90,8 +74,11 @@
                     |  class Employee
                     |}
                 }
+                @codesub2() {
+                    nur der Blockinhalt gehört zum Paket
+                }
 
-                @spacer()
+                @spacer2()
 
                 @sourcecode() {
                     |package com.mycompany.staff {
@@ -106,7 +93,53 @@
                     |}
                 }
                 @codesub2() {
-                    Paket <code>test</code> hat Zugriff auf Paket <code>com.mycompany</code>
+                    Paket <code>test</code> hat Zugriff auf Paket <code>com.mycompany.staff</code>
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Öffnung von Paketen") {
+
+                @autocenter {
+                    @sourcecode() {
+                        |package com.mycompany {
+                        |
+                        |  class Homepage
+                        |
+                        |  package staff {
+                        |    class Employee
+                        |  }
+                        |}
+                    }
+                }
+
+                @spacer2()
+
+                @sidebyside(gap = 10) {
+                    @sourcecode() {
+                        |package com.mycompany
+                        |package external
+                        |
+                        |class Customer {
+                        |  val hp = new Homepage
+                        |}
+                    }
+                    @codesub2() {
+                        <code>Customer</code> hat Zugriff auf Inhalte von <code>com.mycompany</code>
+                    }
+                } {
+                    @sourcecode() {
+                        |package com.mycompany.staff
+                        |package management
+                        |
+                        |class Boss {
+                        |  val e = new Employee
+                        |}
+                    }
+                    @codesub2() {
+                        <code>Boss</code> hat Zugriff auf Inhalte von <code>com.mycompany.staff</code>
+                    }
                 }
             }
 

@@ -26,8 +26,8 @@ object Content extends MyController {
     // === OBJEKTE
 
     lazy val klassen1 = Slide("O10", "Klassen I", oop, Seq(methoden, uebungen), status = "complete")
+    lazy val vererbung1 = Slide("O11", "Vererbung", oop, Seq(klassen1), status = "complete")
     lazy val objekte = Slide("O12", "Objekte", oop, Seq(klassen1), status = "complete")
-    lazy val vererbung1 = Slide("O11", "Vererbung", oop, Seq(objekte), status = "complete")
     lazy val pakete = Slide("O13", "Pakete", oop, Seq(vererbung1), status = "complete")
 
     // === FUNKTIONEN
@@ -66,7 +66,7 @@ object Content extends MyController {
     lazy val datatypes1 = Slide("F20", "Datenstrukturen I", fp, Seq(klassen2, generics1), status = "complete")
     lazy val datatypes2 = Slide("F21", "Datenstrukturen II", fp, Seq(datatypes1), status = "complete")
     lazy val listen = Slide("F22", "Listenverarbeitung", fp, Seq(datatypes2), status = "complete")
-    lazy val funktionen3 = Slide("F23", "Funktionen III", fp, Seq(datatypes2, funktionen2))
+    lazy val funktionen3 = Slide("F23", "Funktionen III", fp, Seq(datatypes2, funktionen2), status = "complete")
     lazy val forexpr = Slide("F24", "for-Ausdruck", fp, Seq(funktionen3), status = "complete")
 
     // === ERWEITERT
