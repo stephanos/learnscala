@@ -1,6 +1,6 @@
 @(id: String, heading: Html = Html("Übung"), append: Html = Html.empty, hasTests: Boolean = true)(implicit topic: String = null)
 
-@headslide(title = "Übung") {
+@headslide(title = "Übung", clazz = "uebung") {
     @heading@append
 } {
     @spacer()
