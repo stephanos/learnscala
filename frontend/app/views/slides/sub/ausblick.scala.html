@@ -13,6 +13,7 @@
 
         <!-- ################################################################################## -->
 
+        @*
         @titleslide("Testen") {
             @snippet() {
                 @sourceblock() {
@@ -36,6 +37,7 @@
                 }
             }
         }
+        *@
 
         <!-- ################################################################################## -->
 
@@ -61,6 +63,42 @@
                 }
             }
         }
+
+        <!-- ################################################################################## -->
+
+        @*
+        @titleslide("Swing") {
+            @sourcecode() {
+                |object SwingApp extends SimpleSwingApplication {
+                |
+                |  def top = new MainFrame {
+                |    title = "SwingApp"
+                |    var numclicks = 0
+                |
+                |        object label extends Label {
+                |            val prefix = "Number of button clicks: "
+                |            text = prefix + "0  "
+                |            listenTo(button)
+                |            reactions += {
+                |                case ButtonClicked(button) =>
+                |                    numclicks = numclicks + 1
+                |                    text = prefix + numclicks
+                |            }
+                |        }
+                |
+                |        object button extends Button {
+                |           text = "I am a button"
+                |       }
+                |
+                |       contents = new FlowPanel {
+                |          contents.append(button, label)
+                |          border = Swing.EmptyBorder(5, 5, 5, 5)
+                |        }
+                |    }
+                |}
+            }
+        }
+        *@
 
         <!-- ################################################################################## -->
 
@@ -93,33 +131,83 @@
 
         <!-- ################################################################################## -->
 
-        @titleslide("Cake Pattern") {
+        @titleslide("Either") {
             @sourcecode() {
-                |trait DatabaseContext { val dataSource: Datasource }
-                |
-                |trait OrderRepoComp {
-                |    this: DatabaseContext =>
-                |
-                |    trait OrderRepoImpl {
-                |        // ...
-                |    }
-                |    val orderRepo: OrderRepoImpl
-                |}
-                |
-                |trait ProductRepoComp {
-                |    this: DatabaseContext =>
-                |
-                |    trait ProductRepoImpl {
-                |        // ...
-                |    }
-                |    val productRepo: ProductRepoImpl
-                |}
-                |
-                |object Registry extends OrderRepoComp with ProductRepoComp with DatabaseContext {
-                |    val dataSource = new DatasourceImpl
-                |    val orderRepo = new OrderRepoImpl
-                |    val productRepo = new ProductRepoImpl
-                |}
+                 |def toInt (s: String): Either[String,Int] = {
+                 |  try {
+                 |     Right (s.toInt)
+                 |  }
+                 |  catch {
+                 |    case e: Throwable =>
+                 |      Left ("Error: " + e.getMessage)
+                 |  }
+                 |}
+            }
+
+            @spacer()
+
+            @indent() {
+                @snippet() {
+                    @callblock() {
+                        |toInt ("1")
+                    }
+                    @outblock() {
+                        |res0: Either[String,Int] = Right(1)
+                    }
+                    @callblock() {
+                        |toInt ("a")
+                    }
+                    @outblock() {
+                        |res1: Either[String,Int] = Left(Error: For input string: "a")
+                    }
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide("Cake Pattern") {
+            @sidebyside() {
+                @sourcecode() {
+                    |trait DatabaseContext {
+                    |  val dataSource: Datasource
+                    |}
+                }
+                @spacer_half()
+                @sourcecode() {
+                    |trait OrderRepoComp {
+                    |  this: DatabaseContext =>
+                    |
+                    |  trait OrderRepoImpl {
+                    |    // ...
+                    |  }
+                    |  val orderRepo: OrderRepoImpl
+                    |}
+                }
+                @spacer_half()
+                @sourcecode() {
+                    |trait ProductRepoComp {
+                    |  this: DatabaseContext =>
+                    |
+                    |  trait ProductRepoImpl {
+                    |    // ...
+                    |  }
+                    |  val productRepo: ProductRepoImpl
+                    |}
+                }
+            } {
+                @spacer()
+
+                @sourcecode() {
+                    |object Registry extends OrderRepoComp
+                    |                with ProductRepoComp
+                    |                with DatabaseContext {
+                    |
+                    |  val orderRepo = new OrderRepoImpl
+                    |  val dataSource = new DatasourceImpl
+                    |  val productRepo = new ProductRepoImpl
+                    |}
+                }
             }
         }
 

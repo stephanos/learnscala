@@ -84,36 +84,9 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "") {
-
-            @spacer2()
-
-            @*
-                http://engineering.linkedin.com/34/play-framework-and-async-io
-            *@
-
-            @sidebyside(gap = 10) {
-                @fragment {
-                    <h3>blocking</h3>
-
-                        @Images.blocking1()
-
-                }
-            } {
-                @fragment {
-                    <h3>non-blocking</h3>
-
-                        @Images.blocking2()
-
-                }
-            }
-        }
-
-        <!-- ################################################################################## -->
-
         @defining("Akka Framework") { title =>
 
-            @titleslide(title) {
+            @titleslide(title = title) {
                 <ul class="fragments">
                     <li>
                         eventbasiertes Middleware-Framework
@@ -149,7 +122,7 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title) {
+            @titleslide(title = title, subtitle = "example") {
                 @snippet() {
                     @sourceblock(fragment = false) {
                         |import akka.actor._
@@ -178,8 +151,146 @@
 
             <!-- ################################################################################## -->
 
+            @titleslide(title = title, subtitle = "Flow") {
+                <img src="https://raw.github.com/RayRoestenburg/summerofblog/master/images/event-flow-actorsystems.png" />
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "Pattern") {
+                @sidebyside() {
+                    <img src="http://media.tumblr.com/tumblr_m8h9p0T5zX1r4vwx1.png" />
+                } {
+                    @fragment {
+                        <img src="http://media.tumblr.com/tumblr_m8h9qhVMxa1r4vwx1.png"/>
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Future") {
+
+                @spacer2()
+
+                @*
+                    http://engineering.linkedin.com/34/play-framework-and-async-io
+                *@
+
+                @sidebyside(gap = 10) {
+                    @fragment {
+                        <h3>blocking</h3>
+
+                        @Images.blocking1()
+                    }
+                } {
+                    @fragment {
+                        <h3>non-blocking</h3>
+
+                        @Images.blocking2()
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Future", subsubtitle = "Beispiel") {
+
+                @sidebyside() {
+                    @sourcecode() {
+                        |def name(): Future[String] =
+                        |  Future { "david" }
+                        |def score(): Future[Double] =
+                        |  Future { 50.0 }
+                        |def friends(): Future[List[Int]] =
+                        |  Future { List(1, 2, 3) }
+                    }
+                } {
+                    @sourcecode() {
+                        |case class Profile (name: String,
+                        |                    score: Double,
+                        |                    friends: List[Int])
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside() {
+                    @sourcecode() {
+                        |def blocking: Profile = {
+                        |  val futureName = name()
+                        |  val futureScore = score()
+                        |  val futureFriends = friends()
+                        |
+                        |  val t = 10 seconds
+                        |  val name =
+                        |    Await.result(futureName, t)
+                        |  val score =
+                        |    Await.result(futureScore, t)
+                        |  val friends =
+                        |     Await.result(futureFriends, t)
+                        |
+                        |  Profile(name, score, friends)
+                        |}
+                    }
+                } {
+                    @sourcecode() {
+                        |def nonBlocking: Future[Profile] = {
+                        |  val futureName = name()
+                        |  val futureScore = score()
+                        |  val futureFriends = friends()
+                        |
+                        |  for {
+                        |    name <- futureName
+                        |    score <- futureScore
+                        |    friends <- futureFriends
+                        |  } yield {
+                        |    Profile(name, score, friends)
+                        |  }
+                        |}
+                    }
+                }
+
+                @* <code>http://corp.klout.com/blog/2012/10/scaling-the-klout-api-with-scala-akka-and-play/</code> *@
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title) {
+                @sidebyside(gap = 10) {
+                    <ul class="fragments indent50">
+                        <li>Actors</li>
+                        <li>Typed Actors</li>
+                        <li>Logging</li>
+                        <li>Event Bus</li>
+                        <li>Scheduler</li>
+                        <li>Futures</li>
+                        <li>Dataflow Concurrency</li>
+                        <li>Fault Tolerance</li>
+                        <li>Dispatchers</li>
+                        <li>Routing</li>
+                        <li>ZeroMQ</li>
+                    </ul>
+                } {
+                    <ul class="fragments">
+                        <li>Remoting</li>
+                        <li>Serialization</li>
+                        <li>FSM</li>
+                        <li>Software Transactional Memory</li>
+                        <li>Agents</li>
+                        <li>Transactors</li>
+                        <li>IO</li>
+                        <li>Testing Actor Systems</li>
+                        <li>Akka Extensions</li>
+                        <li>Microkernel</li>
+                    </ul>
+                }
+            }
+
+            <!-- ################################################################################## -->
+
             @slide() {
-                @image("tutego-akka.png")
+                @image("tutego-akka.png", clazz = "naked")
             }
         }
     }

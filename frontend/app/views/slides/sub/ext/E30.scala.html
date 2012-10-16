@@ -18,6 +18,30 @@
 
         @defining("Unit Testing") { title =>
 
+            @headslide(title = title) {
+                TestNG & JUnit
+            } {
+                @spacer()
+
+                @sidebyside(gap = 10) {
+                    @sourcecode(lang = "java", fragment = false) {
+                        |assertEquals(boolean expected,
+                        |             boolean actual)
+                    }
+                    @fragment {
+                        JUnit
+                    }
+                } {
+                    @sourcecode(lang = "java", fragment = false) {
+                        |assertEquals(boolean actual,
+                        |             boolean expected)
+                    }
+                    @fragment {
+                        TestNG
+                    }
+                }
+            }
+
             @defining("ScalaTest") { subtitle =>
 
                 @*
@@ -27,11 +51,35 @@
                 @headslide(title = title, subtitle = subtitle) {
                     @subtitle
                 } {
-                    <ul class="fragments">
-                        <li>
-                            <!-- TODO -->
-                        </li>
-                    </ul>
+                }
+
+                @slide(title = title, subtitle = subtitle) {
+                    @sourcecode() {
+                        |class StackBDDSuite extends FunSpec with BeforeAndAfter {
+                        |
+                        |  var stack: Stack[Int] = _
+                        |
+                        |  before {
+                        |    stack = new Stack[Int]
+                        |  }
+                        |
+                        |  describe("A Stack") {
+                        |
+                        |    it("should pop values in last-in-first-out order") {
+                        |      stack.push (1)
+                        |      stack.push (2)
+                        |      assert (stack.pop() === 2)
+                        |      assert (stack.pop() === 1)
+                        |    }
+                        |
+                        |    it("should throw NoSuchElementException if empty stack is popped") {
+                        |      intercept[NoSuchElementException] {
+                        |        stack.pop()
+                        |      }
+                        |    }
+                        |  }
+                        |}
+                    }
                 }
             }
         }
@@ -49,12 +97,6 @@
                 @*
                     - http://twitter.github.com/scala_school/specs.html
                 *@
-
-                @headslide(title = title, subtitle = subtitle) {
-                    @subtitle
-                } {
-                        <!-- TODO -->
-                }
 
                 <!-- ################################################################################## -->
 
@@ -80,6 +122,39 @@
                         |      "Hello world" must endWith ("world")
                         |    }
                         |  }
+                        |}
+                    }
+                }
+
+                @headslide(title = title, subtitle = subtitle, subsubtitle = "Beispiel") {
+                    @subtitle
+                } {
+                    @sourcecode() {
+                        |"must have list elements" in {
+                        |   val numbers = List(1, 2, 3)
+                        |   numbers must contain(1)
+                        |   numbers must not contain(4)
+                        |   numbers must containAll(List(1, 2, 3))
+                        |   numbers must contain(1, 2, 3)
+                        |   numbers must containInOrder(List(1, 2, 3))
+                        |   numbers must contain(1, 2, 3).only.inOrder
+                        |}
+                    }
+
+                    @spacer_half()
+
+                    @sourcecode() {
+                        |"must throw Exception" should {
+                        |  exec() must throwA[Exception]
+                        |}
+                    }
+
+                    @spacer_half()
+
+                    @sourcecode() {
+                        |"numbers" should {
+                        |  a must beGreaterThan(1)
+                        |  a must beLessThanOrEqualToo(2)
                         |}
                     }
                 }
@@ -131,6 +206,7 @@
 
                 <!-- ################################################################################## -->
 
+                @*
                 @headslide(title = title, subtitle = subtitle) {
                     @subtitle
                 } {
@@ -140,11 +216,13 @@
                         </li>
                     </ul>
                 }
+                *@
 
                 <!-- ################################################################################## -->
 
-                @slide(title = title, subtitle = subtitle, subsubtitle = "Beispiel") {
-
+                @headslide(title = title, subtitle = subtitle) {
+                    @subtitle
+                } {
                     @sourcecode() {
                         |import org.specs2._
                         |import org.scalacheck._
@@ -191,6 +269,7 @@
 
         <!-- ################################################################################## -->
 
+        @*
         @defining("Integration") { title =>
 
             @defining("Maven") { subtitle =>
@@ -224,6 +303,7 @@
                 }
             }
         }
+        *@
     }
 }
 

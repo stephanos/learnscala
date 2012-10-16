@@ -16,6 +16,7 @@
 
         <!-- ################################################################################## -->
 
+        @*
         @defining("Unfiltered") { title =>
 
             @titleslide(title) {
@@ -31,6 +32,7 @@
         <!-- ################################################################################## -->
 
         @overview
+        *@
 
         <!-- ################################################################################## -->
 
@@ -61,38 +63,32 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title, subtitle = "Demo") {
-                @demo()
-            }
-
-            <!-- ################################################################################## -->
-
-            @*@titleslide(title, subtitle = "Beispiel") {
+            @titleslide(title, subtitle = "Beispiel") {
                 @sourcecode(fragment = false) {
                     |trait CalculatorService @("extends") Directives with CustomMarshallers {
                     |
-                    |    val calculatorService = {
-                    |        path("add" / DoubleNumber / DoubleNumber) {    // z.B. '/add/40/2'
-                    |            (a, b) =>
-                    |                get {                                  // HTTP GET
-                    |                    completeWith(a + b)
-                    |                }
-                    |        } ~
-                    |        path("factorial" / IntNumber) {                // z.B. '/factorial/4'
-                    |            (n) =>
-                    |                detach {                               // calculate asynchronously
-                    |                    get {                              // HTTP GET
-                    |                        completeWith(factorial(n))
-                    |                    }
-                    |                }
+                    |  val calculatorService = {
+                    |    path("add" / DoubleNumber / DoubleNumber) {  // z.B. '/add/40/2'
+                    |      (a, b) =>
+                    |        get {                                    // HTTP GET
+                    |          completeWith(a + b)
                     |        }
+                    |      } ~
+                    |    path("factorial" / IntNumber) {              // z.B. '/factorial/4'
+                    |      (n) =>
+                    |        detach {                                 // calculate asynchronously
+                    |          get {                                  // HTTP GET
+                    |            completeWith(factorial(n))
+                    |          }
+                    |        }
+                    |      }
                     |    }
                     |
-                    |    private def factorial(n: Int): Int =
-                    |       if (n == 0) 1 else n * factorial(n - 1)
+                    |  private def factorial(n: Int): Int =
+                    |    if (n == 0) 1 else n * factorial(n - 1)
                     |}
                 }
-            }*@
+            }
         }
 
         <!-- ################################################################################## -->
@@ -101,6 +97,7 @@
 
         <!-- ################################################################################## -->
 
+        @*
         @defining("Scalatra") { title =>
 
             @titleslide(title) {
@@ -117,6 +114,7 @@
         <!-- ################################################################################## -->
 
         @overview
+        *@
 
         <!-- ################################################################################## -->
 
@@ -144,7 +142,19 @@
                             inspiriert von <var>Ruby on Rails</var> und <var>Django</var>
                         </li>
                         <li>
-                            Besonderheiten: <em>zustandslos</em>, <em>eventbasiert</em> und <em>produktiv</em>
+                            Besonderheiten:
+                            @spacer_half()
+                            <ul class ="fragments">
+                                <li>
+                                    <em>zustandslos</em>
+                                </li>
+                                <li>
+                                    <em>eventbasiert</em>
+                                </li>
+                                <li>
+                                    <em>on-the-fly recompile</em>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -152,11 +162,7 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title) {
-                @demo()
-            }
-
-            @*@headslide() {
+            @headslide() {
                 @title
             } {
                 @sidebyside() {
@@ -198,9 +204,67 @@
                     }
                     <sub>Routing</sub>
                 }
-            }*@
+            }
+
+            @headslide() {
+                @title
+            } {
+                @sourcecode() {
+                    |val userForm = Form (
+                    |  mapping (
+                    |    "user" -> nonEmptyText,
+                    |    "password" -> nonEmptyText,
+                    |    "age" -> number(min=0, max=100)
+                    |  )
+                    |)
+                    |
+                    |val (user, password, age) = userForm.bindFromRequest.get
+                }
+
+                @spacer()
+
+                @sourcecode() {
+                    |val ok = Ok("Hello world!")
+                    |val notFound = NotFound
+                    |val pageNotFound = NotFound(&lt;h1&gt;Page not found&lt;/h1&gt;)
+                    |val badRequest = BadRequest(views.html.form(formWithErrors))
+                    |val oops = InternalServerError("Oops")
+                    |val anyStatus = Status(488)("Strange response type")
+                }
+            }
+
+            @headslide() {
+                @title
+            } {
+                @sourcecode() {
+                    |def feedTitle(feedUrl: String) = Action {
+                    |  Async {
+                    |    WS.url(feedUrl).get().map { response =>
+                    |      Ok("Feed title: " + (response.json \ "title").as[String])
+                    |    }
+                    |  }
+                    |}
+                }
+
+                @spacer()
+
+                @sourcecode() {
+                    |def index = Action {
+                    |  val promiseOfInt = Akka.future { intensiveComputation() }
+                    |  Async {
+                    |    promiseOfInt.orTimeout("Oops", 1000).map { eitherIntOrTimeout =>
+                    |      eitherIntOrTimeout fold (
+                    |        i => Ok ("Got result: " + i),
+                    |        timeout => InternalServerError ("timeout")
+                    |      )
+                    |    }
+                    |  }
+                    |}
+                }
+            }
         }
 
+        @*
         <!-- ################################################################################## -->
 
         @overview
@@ -212,32 +276,35 @@
             @titleslide(title) {
 
             }
-
-            <!-- ################################################################################## -->
-
-            @titleslide(title, subtitle = "Demo") {
-                @demo()
-            }
         }
+        *@
 
         <!-- ################################################################################## -->
 
         @overview
 
+        @*
         <!-- ################################################################################## -->
 
         @defining("Dispatch") { title =>
 
             @titleslide(title) {
 
-            }
-
-            <!-- ################################################################################## -->
-
-            @titleslide(title, subtitle = "Demo") {
-                @demo()
+                @sourcecode() {
+                    |http(:/("dispatch.databinder.net") >:+ {
+                    |  (headers, req) =>
+                    |    headers("content-type") filter {
+                    |      _.contains("text/html")
+                    |    }.headOption map { _ =>
+                    |      req &lt;/&gt; { nodes => (nodes \\ "h1").text }
+                    |    } getOrElse {
+                    |      req >> { _ => "unknown content type" }
+                    |    }
+                    |})
+                }
             }
         }
+        *@
     }
 }
 
