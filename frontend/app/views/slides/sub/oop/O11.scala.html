@@ -159,7 +159,7 @@
                     |}
                 }
 
-                @spacer()
+                @spacer()<
 
                 @indent() {
 
@@ -181,7 +181,7 @@
                     @snippet() {
                         @sourceblock(reference = "empl2") {
                             |class Accountant extends Employee {
-                            |  override val salary = 4
+                            |  override val salary = 60000
                             |}
                         }
                         @outblock() {
@@ -340,10 +340,10 @@
 
             @snippet() {
                 @callblock(reference = "super") {
-                    |val p = new Employee ("Boeing 737")
+                    |val p = new Employee ("Bob")
                 }
                 @outblock() {
-                    |p: Employee = Employee@@4088e7c9[name=Boeing 737]
+                    |p: Employee = Employee@@4088e7c9[name=Bob]
                 }
             }
 

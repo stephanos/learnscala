@@ -45,8 +45,11 @@ getPage = (path, cb) ->
       # remove animations
       page.evaluate(-> $(".fragment").removeClass("fragment"))
 
+      # remove exercise pages
+      page.evaluate(-> $("article.uebung").parent().remove())
+
       # remove quiz pages
-      # ?
+      page.evaluate(-> $("article.quiz").parent().remove())
 
       # return page (after short timeout)
       setTimeout(

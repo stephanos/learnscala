@@ -9,11 +9,11 @@ mkdir -p out/
 
 # generate PDFs
 ./slides.sh
-./glossary.sh
+#./glossary.sh
 
 # merge PDFs
 ./slides-merge.sh
-./glossary-merge.sh
+#./glossary-merge.sh
 
 # copy extras
 mkdir -p out/extra

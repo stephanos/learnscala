@@ -1,3 +1,3 @@
 #!/bin/sh
 rm frontend/RUNNING_PID
-sudo sbt debug
+./mysbt.sh debug
