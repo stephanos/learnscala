@@ -59,7 +59,11 @@
                     |}
                 }
                 @callblock() {
-                    |println(new XML("Hello World").page.toString())
+                    |val xml = new XML("Hello World").page
+                    |println(xml.toString())
+                }
+                @callblock(reference = "xpath") {
+                    |(xml \\ "p")
                 }
             }
         }
@@ -132,7 +136,7 @@
         <!-- ################################################################################## -->
 
         @titleslide("Either") {
-            @sourcecode() {
+            @sourcecode(id = "either") {
                  |def toInt (s: String): Either[String,Int] = {
                  |  try {
                  |     Right (s.toInt)
@@ -148,17 +152,138 @@
 
             @indent() {
                 @snippet() {
-                    @callblock() {
-                        |toInt ("1")
+                    @callblock(reference ="either") {
+                        |toInt("1") fold (
+                        |   l => println("Oops")
+                        |,
+                        |   r => println(r)
+                        |)
+                    }
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide("Funktionen IV") {
+
+            @sourcecode() {
+                |mymap ("key").foreach (println)
+            }
+
+            @spacer()
+
+            @sourcecode() {
+                |val f = (i: Int) => i.toString
+                |val g = (s: String) => s+s+s
+                |val h: Int => String = g compose f
+            }
+
+            @spacer()
+
+            @sourcecode() {
+                |val u: Option[User] = getUser(id)
+                |u flatMap (_.username).
+                |  flatMap (_.toUpperCase).
+                |  map (_.charAt(0))
+            }
+
+            @spacer()
+
+            @sourcecode() {
+                |def getUser(id: Int): Future[User]
+                |def authenticate(user: User): Future[Boolean]
+                |
+                |def isIdAuthed(id: Int): Future[Boolean] =
+                |  getUser(id) flatMap { user => authenticate(user) }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide("lazy") {
+
+            @snippet(clazz = "slim") {
+                @sourceblock() {
+                    |lazy val random = {
+                    |   println("generating random number")
+                    |   util.Random.nextInt
+                    |}
+                }
+                @outblock() {
+                    |random: Int = &lt;lazy>&gt;
+                }
+                @callblock() {
+                    |println (random)
+                }
+                @outblock() {
+                    |generating random number
+                    |1271069754
+                }
+                @callblock() {
+                    |println (random)
+                }
+                @outblock() {
+                    |1271069754
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide("Dynamic") {
+
+            @snippet(clazz = "slim") {
+                @sourceblock(id = "dynamic") {
+                    |class Foo extends Dynamic {
+                    |
+                    |  def selectDynamic(name: String) =
+                    |    println("select " + name)
+                    |
+                    |  def updateDynamic(name: String)(arg: Any) =
+                    |    println("update " + name + " with " + arg)
+                    |
+                    |  def applyDynamic(name: String)(args: Any*) =
+                    |    println("apply " + args.mkString(",") + " to " + name)
+                    |
+                    |  def applyDynamicNamed(name: String)(args: (String, Any)*) =
+                    |    println("apply " + args.mkString(",") + " to " + name)
+                    |}
+                }
+            }
+
+            @spacer()
+
+            @sidebyside() {
+                @snippet(clazz = "slim") {
+                    @callblock(reference = "foo") {
+                        |val foo = new Foo
+                        |foo.bar(5)
                     }
                     @outblock() {
-                        |res0: Either[String,Int] = Right(1)
+                        |apply 5 to bar
                     }
                     @callblock() {
-                        |toInt ("a")
+                        |foo.bar(x = 5)
                     }
                     @outblock() {
-                        |res1: Either[String,Int] = Left(Error: For input string: "a")
+                        |apply (x,5) to bar
+                    }
+                }
+            } {
+                @snippet(clazz = "slim") {
+                    @callblock(reference = "foo") {
+                        |val foo = new Foo
+                        |foo.bar
+                    }
+                    @outblock() {
+                        |select bar
+                    }
+                    @callblock() {
+                        |foo.bar = 5
+                    }
+                    @outblock() {
+                        |update bar with 5
                     }
                 }
             }
@@ -212,10 +337,6 @@
         }
 
         <!-- ################################################################################## -->
-
-        <!--
-            TODO: add tutego courses
-        -->
 
         @slide() {
             @spacer2()@spacer()
