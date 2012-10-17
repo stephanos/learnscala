@@ -253,6 +253,61 @@
 
         <!-- ################################################################################## -->
 
+        @titleslide(title = "Beispiel") {
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Beispiel") {
+
+            @sourcecode() {
+                |def separateTheMenFromTheBoys(persons: List[Person]) = {
+                |  var boys = new ListBuffer[Person]()
+                |  var men = new ListBuffer[Person]()
+                |  var validBoyNames = new ListBuffer[String]()
+                |  var validMenNames = new ListBuffer[String]()
+                |
+                |  for (person <- persons) {
+                |    if (person.age < 18) {
+                |      boys += person
+                |    } else {
+                |      men += person
+                |    }
+                |  }
+                |
+                |  var sortedBoys = boys.toList.sortBy(_.age)
+                |  var sortedMen = men.toList.sortBy(_.age)
+                |
+                |  for (boy <- sortedBoys) {
+                |    validBoyNames += boy.firstName
+                |  }
+                |  for (man <- sortedMen) {
+                |    validMenNames += man.firstName
+                |  }
+                |
+                |  (validBoyNames.toList, validMenNames.toList)
+                |}
+            }
+        }
+
+        @slide(title = "Beispiel") {
+            @spacer()
+            @sourcecode() {
+                |def separateTheMenFromTheBoys(persons: List[Person]) = {
+                |
+                |  def sortByAgeAndMapToName(persons: List[Person]) =
+                |    persons.sortBy(_.age).map(_.firstName)
+                |
+                |  val (minors, adults) =
+                |    persons.partition(_.age < 18)
+                |
+                |  (sortByAgeAndMapToName(minors), sortByAgeAndMapToName(adults))
+                |}
+            }
+        }
+
+        <!-- ################################################################################## -->
+
         @uebung(implicitSlide.id + "_1")
 
         <!-- ################################################################################## -->
