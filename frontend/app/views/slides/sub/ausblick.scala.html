@@ -181,12 +181,14 @@
 
             @spacer()
 
+            @*
             @sourcecode() {
                 |val u: Option[User] = getUser(id)
                 |u flatMap (_.username).
                 |  flatMap (_.toUpperCase).
                 |  map (_.charAt(0))
             }
+            *@
 
             @spacer()
 

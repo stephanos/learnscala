@@ -4,6 +4,7 @@
 
     @layout.public(title, subtitle = Html(title)) {
 
+        @Blog.load(2012, 10, 19)
         @Blog.load(2012, 10, 1)
         @Blog.load(2012, 9, 30)
         @*@Blog.load(2012, 9, 26)*@

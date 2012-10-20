@@ -161,7 +161,7 @@
                         |List (1, 2, 3).head
                     }
                     @outblock() {
-                        |res0: List[Int] = 1
+                        |res0: Int = 1
                     }
                 }
             } {
@@ -171,7 +171,7 @@
                             |List (1, 2, 3).tail
                         }
                         @outblock() {
-                            |res0: List[Int] = List(1,2)
+                            |res0: List[Int] = List(2,3)
                         }
                     }
                 } {
@@ -194,7 +194,7 @@
             @spacer()
 
             @sidebyside(gap = 10) {
-                <h4 class="fragment tcenter">Rekursion</h4>
+                <h4 class="fragment tcenter">Methoden</h4>
 
                 @spacer()
 
