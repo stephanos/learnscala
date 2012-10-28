@@ -2,7 +2,6 @@ package controllers
 
 import play.api.mvc._
 import controllers.base.MyController
-import play.api.templates.Html
 
 object Training extends MyController {
 
@@ -38,6 +37,11 @@ object Training extends MyController {
     def scalaWhy = Action {
         implicit req =>
             Ok(views.html.training.scala.why())
+    }
+
+    def scalaJava = Action {
+        implicit req =>
+            Ok(views.html.training.scala.java())
     }
 
     def scalaTrainings(place: String) = Action {

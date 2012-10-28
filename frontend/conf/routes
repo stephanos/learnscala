@@ -6,6 +6,7 @@ GET     /schulungen/                                controllers.Training.redirec
 GET     /schulungen/scala-training                  controllers.Training.scalaIndex
 GET     /schulungen/scala-training/folien           controllers.Training.scalaFolien
 GET     /schulungen/scala-training/vorteile         controllers.Training.scalaWhy
+GET     /schulungen/scala-training/vergleich-mit-java controllers.Training.scalaJava
 GET     /schulungen/scala-training/oeffentlich/:id  controllers.Training.scalaTrainings(id)
 
 GET     /schulungen/akka-training                   controllers.Training.akkaIndex

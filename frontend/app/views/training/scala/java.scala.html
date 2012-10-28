@@ -1,0 +1,134 @@
+@()(implicit req: RequestHeader)
+
+@* https://github.com/GrahamLea/JavaProgramsEnvyScala *@
+
+@template("Java vs Scala", meta = "Was unterschiedet Scala von Java?' Die Schulung " + Training.scala + "' zeigt es Ihnen!") {
+
+    <div style="margin-left: 0;">
+        <p>
+            <strong>Ist Scala das neue Java?</strong>
+        </p>
+    </div>
+
+    <div style="margin-left: 0;">
+        <p>
+            Ein paar kurze Code-Schnipsel sollen den Unterschied von Java und Scala verdeutlichen.
+        </p>
+    </div>
+
+    <div>
+        <h3>Typinferenz</h3>
+
+        <div style="margin: 20px 0 0 20px">
+            <h4>Java</h4>
+            <script src="https://gist.github.com/3968056.js?file=scala-vs-java-01.java"></script>
+
+            <br/>
+
+            <h4>Scala</h4>
+            <script src="https://gist.github.com/3968057.js?file=scala-vs-java-01.scala"></script>
+
+            <p>
+                In Scala müssen redundante Typinformationen nicht angegeben werden. Das macht den Code lesbarer und kürzer.
+            </p>
+        </div>
+    </div>
+
+    <div>
+        <h3>Kompaktheit</h3>
+
+        <div style="margin: 20px 0 0 20px">
+            <h4>Java</h4>
+            <script src="https://gist.github.com/3968069.js?file=scala-vs-java-02.java"></script>
+
+            <br/>
+
+            <h4>Scala</h4>
+            <script src="https://gist.github.com/3968071.js?file=scala-vs-java-02.scala"></script>
+
+            <p>
+                Wo vorher die IDE Code generiert hat lässt Scala viele Dinge deutlich kompakter und einfacher schreiben.
+            </p>
+        </div>
+    </div>
+
+    <div>
+        <h3>Kollektionen</h3>
+
+        <div style="margin: 20px 0 0 20px">
+            <h4>Java</h4>
+            <script src="https://gist.github.com/3968077.js?file=scala-vs-java-03.java"></script>
+
+            <br/>
+
+            <h4>Scala</h4>
+            <script src="https://gist.github.com/3968078.js?file=scala-vs-java-03.scala"></script>
+
+            <p>
+                Datenstrukturen in Scala lassen sich mit Hilfe der funktionalen Programmierung spielend bearbeiten.
+            </p>
+        </div>
+    </div>
+
+    @*
+    <br/>
+
+    <div>
+        <h3>Traits</h3>
+
+        <div style="margin: 20px 0 0 20px">
+            <h4>Java</h4>
+
+            <br/>
+
+            <h4>Scala</h4>
+
+            <p>
+
+            </p>
+        </div>
+    </div>
+
+    <br/>
+
+    <div>
+        <h3>Kollektionen</h3>
+
+        <div style="margin: 20px 0 0 20px">
+            <h4>Java</h4>
+
+            <br/>
+
+            <h4>Scala</h4>
+
+            <p>
+
+            </p>
+        </div>
+    </div>
+
+    <br/>
+
+    <div>
+        <h3>Kollektionen</h3>
+
+        <div style="margin: 20px 0 0 20px">
+            <h4>Java</h4>
+
+            <br/>
+
+            <h4>Scala</h4>
+
+            <p>
+
+            </p>
+        </div>
+    </div>
+    *@
+
+    <br/>
+
+    <p class="center">
+        <a href="@routes.Training.scalaIndex">&gt; Kursbeschreibung &lt;</a>
+    </p>
+}
