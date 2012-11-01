@@ -107,7 +107,7 @@ class MongoQueryLogger
                 val n = compact(render(explain \ "n"))
                 val cursor = compact(render(explain \ "cursor"))
                 val nscannedObjs = compact(render(explain \ "nscannedObjects"))
-                val scanAndOrder = (explain \ "scanAndOrder") != JNothing
+                val scanAndOrder = (explain \ "scanAndOrder") != JBool(false)
 
                 val stats = n + " (" + nscannedObjs + ") items in " + timeMillis + "ms"
                 if ((cursor contains "BasicCursor") || scanAndOrder) {
@@ -119,7 +119,7 @@ class MongoQueryLogger
                         debug("{} for {}[{}]", stats, comment, descr)
                 }
             } catch {
-                case e => error("unable to print query", e)
+                case e: Throwable => error("unable to print query", e)
             }
     }
 
