@@ -1,0 +1,157 @@
+<script src='@MyAssets.urlOf("/js/util.js", true)'></script>
+<script src='@MyAssets.urlOf("/js/d3.js", true)'></script>
+<script src='@MyAssets.urlOf("/js/xkcd.js", true)'></script>
+<script src='@MyAssets.urlOf("/js/shows.js", true)'></script>
+<!--<script src='@MyAssets.urlOf("/js/rickshaw.js", true)'></script>-->
+
+<link rel="stylesheet" type="text/css" href='@MyAssets.urlOf("/css/xkcd.css", true)'/>
+<!--<link rel="stylesheet" type="text/css" href='@MyAssets.urlOf("/css/rickshaw.css", true)'/>-->
+
+<style>
+    .halfer >div {
+        float: right;
+        width: 45%;
+    }
+    .halfer >div:first-child {
+        float: left;
+    }
+</style>
+
+<div title="Breaking Bad" class="xkcd"></div>
+<div title="Mad Men" class="xkcd"></div>
+<div title="Dexter" class="xkcd"></div>
+<div title="How I Met Your Mother" class="xkcd"></div>
+<div title="The XFiles" class="xkcd"></div>
+<div title="The Simpsons" class="xkcd"></div>
+<div title="ER" class="xkcd"></div>
+<div title="Dead Like Me" class="xkcd"></div>
+<div title="Friends" class="xkcd"></div>
+<div title="The Wire" class="xkcd"></div>
+<!--<div title="24" class="xkcd"></div>-->
+<div title="Seinfeld" class="xkcd"></div>
+<div title="Scrubs" class="xkcd"></div>
+<div title="Lost" class="xkcd"></div>
+<div title="Doctor Who" class="xkcd"></div>
+<div title="Futurama" class="xkcd"></div>
+
+<!--
+"Breaking Bad",
+  "Seinfeld",
+  "Dexter",
+  "Friends",
+  "House",
+  "The Simpsons",
+  "Scrubs",
+  "Monk",
+  "Futurama",
+  "Lost",
+  "24",
+  "South Park",
+  "The XFiles",
+  "How I Met Your Mother",
+  "Arrested Development",
+  "Doctor Who",
+  "The Wire",
+  "ER",
+  "Fringe",
+  "The Sopranos",
+  "Boston Legal",
+  "Dead Like Me",
+  "Grey's Anatomy",
+  "Bones",
+  "Mad Men"
+-->
+
+<!--
+<div id="chart"></div>
+
+<script>
+
+    var palette = new Rickshaw.Color.Palette( { scheme: 'spectrum2001' } );
+
+    var series =
+        _.map(shows_json, function(show, id) {
+            return {
+                    name: id,
+                    color: palette.color(),
+                    data: _.map(_.filter(_.sortBy(show,
+                            function (e) { return e.episode; } ),
+                            function (e) { return e.rating > 0; } ),
+                            function (e, idx) { return { x: idx, y: e.rating}; } )
+                };
+        });
+
+    console.log(series);
+
+    var graph = new Rickshaw.Graph( {
+            element: document.querySelector("#chart"),
+            width: 580,
+            height: 250,
+            series: series,
+            renderer: 'line'
+    } );
+
+    var legend = new Rickshaw.Graph.Legend({
+        graph: graph,
+        element: document.querySelector('#chart')
+    });
+
+    var highlighter = new Rickshaw.Graph.Behavior.Series.Highlight({
+        graph: graph,
+        legend: legend
+    });
+
+    graph.render();
+
+</script>
+-->
+
+<script>
+    function plot(id, opt) {
+
+        var xmin = -1.0,
+            xmax = 7,
+            N = 100,
+            data = _.map(_.filter(shows_json[id],
+                        function (e) { return e.rating > 0; } ),
+                        function (e) { return {x: e.no, y: e.rating, no: e.episode }; } );
+            /*
+            data = d3.range(xmin, xmax, (xmax - xmin) / N).map(function (d) {
+                return {x: d, y: f1(d)};
+            });
+            data2 = d3.range(xmin, xmax, (xmax - xmin) / N).map(function (d) {
+                return {x: d, y: f2(d)};
+            });
+            */
+
+        if(_.isEmpty(data)) {
+            console.error("no data for '" + id + "'")
+        } else {
+            console.log(id, data);
+
+            // Build the plot.
+            var plot = xkcdplot(opt);
+            plot("#" + id);
+
+            // Add the lines.
+            plot.plot(data, {stroke: "red", "stroke-width": 2});
+            //plot.plot(data2, {stroke: "red"});
+
+            // Render the image.
+            plot.draw();
+        }
+    }
+
+    $(".xkcd").each(function(idx, elem) {
+        var name = $(elem).attr("title");
+        var id = name.split(' ').join('-').toLowerCase();
+        $(elem).attr("id", id);
+        plot(id, {
+            title: name,
+            xlabel: "episodes",
+            ylabel: "rating",
+            width: 700,
+            height: 200
+        });
+    });
+</script>

@@ -66,8 +66,8 @@ trait MailUtil extends Logging {
             log.info("sent email '{}' from '{}' to '{}'",  subject, from, to)
             true
         } catch {
-            case e =>
-                log.error(e, "error sending email '{}' from '{}' to '{}'",  subject, from, to)
+            case e: Throwable =>
+                log.error(e, "error sending email '" + subject + "' from '" + from + "' to '" + to + "'")
                 false
         }
     }

@@ -5,6 +5,8 @@ import org.slf4j.helpers.MessageFormatter
 
 /**
  * Scala front-end to a SLF4J logger.
+ *
+ * See https://github.com/bmc/grizzled-slf4j/blob/master/src/main/scala/grizzled/slf4j/slf4j.scala
  */
 class Logger(val logger: SLF4JLogger) {
 
@@ -23,8 +25,8 @@ class Logger(val logger: SLF4JLogger) {
     /**
      * Issue a trace logging message.
      */
-    @inline final def trace(t: => Throwable, msg: String, args: AnyRef*) {
-        if (isTraceEnabled) logger.trace(msg, args.toArray, t)
+    @inline final def trace(t: Throwable, msg: String) {
+        if (isTraceEnabled) logger.trace(msg, t)
     }
 
     @inline final def trace(msg: String, args: AnyRef*) {
@@ -39,8 +41,8 @@ class Logger(val logger: SLF4JLogger) {
     /**
      * Issue a debug logging message.
      */
-    @inline final def debug(t: => Throwable, msg: String, args: AnyRef*) {
-        if (isDebugEnabled) logger.debug(msg, args.toArray, t)
+    @inline final def debug(t: Throwable, msg: String) {
+        if (isDebugEnabled) logger.debug(msg, t)
     }
 
     @inline final def debug(msg: String, args: AnyRef*) {
@@ -55,8 +57,8 @@ class Logger(val logger: SLF4JLogger) {
     /**
      * Issue a trace logging message.
      */
-    @inline final def error(t: => Throwable, msg: String, args: AnyRef*) {
-        if (isErrorEnabled) logger.error(msg, args.toArray, t)
+    @inline final def error(t: Throwable, msg: String) {
+        if (isErrorEnabled) logger.error(msg, t)
     }
 
     @inline final def error(msg: String, args: AnyRef*) {
@@ -71,8 +73,8 @@ class Logger(val logger: SLF4JLogger) {
     /**
      * Issue a trace logging message.
      */
-    @inline final def info(t: => Throwable, msg: String, args: AnyRef*) {
-        if (isInfoEnabled) logger.info(msg, args.toArray, t)
+    @inline final def info(t: Throwable, msg: String) {
+        if (isInfoEnabled) logger.info(msg, t)
     }
 
     @inline final def info(msg: String, args: AnyRef*) {
@@ -87,8 +89,8 @@ class Logger(val logger: SLF4JLogger) {
     /**
      * Issue a trace logging message.
     */
-    @inline final def warn(t: => Throwable, msg: String, args: AnyRef*) {
-        if (isWarnEnabled) logger.warn(msg, args.toArray, t)
+    @inline final def warn(t: Throwable, msg: String) {
+        if (isWarnEnabled) logger.warn(msg, t)
     }
 
     @inline final def warn(msg: String, args: AnyRef*) {
@@ -154,11 +156,11 @@ trait Logging {
     /**
      * Issue a trace logging message.
      */
-    protected def trace(t: => Throwable, msg: String, args: AnyRef*) {
-        logger.trace(t, msg, args)
+    protected def trace(t: Throwable, msg: String) {
+        logger.trace(t, msg)
     }
 
-    protected def trace(msg: String, args: AnyRef*) {
+    protected def trace(msg: => String, args: AnyRef*) {
         logger.trace(msg, args: _*)
     }
 
@@ -171,11 +173,11 @@ trait Logging {
     /**
      * Issue a debug logging message.
      */
-    protected def debug(t: => Throwable, msg: String, args: AnyRef*) {
-        logger.debug(t, msg, args)
+    protected def debug(t: Throwable, msg: String) {
+        logger.debug(t, msg)
     }
 
-    protected def debug(msg: String, args: AnyRef*) {
+    protected def debug(msg: => String, args: AnyRef*) {
         logger.debug(msg, args: _*)
     }
 
@@ -192,8 +194,8 @@ trait Logging {
         logger.error(msg, args: _*)
     }
 
-    protected def error(t: => Throwable, msg: String, args: AnyRef*) {
-        logger.error(t, msg, args)
+    protected def error(t: Throwable, msg: String) {
+        logger.error(t, msg)
     }
 
     /**
@@ -205,11 +207,11 @@ trait Logging {
     /**
      * Issue a trace logging message.
      */
-    protected def info(t: => Throwable, msg: String, args: AnyRef*) {
-        logger.info(t, msg, args)
+    protected def info(t: Throwable, msg: String) {
+        logger.info(t, msg)
     }
 
-    protected def info(msg: String, args: AnyRef*) {
+    protected def info(msg: => String, args: AnyRef*) {
         logger.info(msg, args: _*)
     }
 
@@ -222,8 +224,8 @@ trait Logging {
     /**
      * Issue a trace logging message.
      */
-    protected def warn(t: => Throwable, msg: String, args: AnyRef*) {
-        logger.warn(t, msg, args)
+    protected def warn(t: Throwable, msg: String) {
+        logger.warn(t, msg)
     }
 
     protected def warn(msg: String, args: AnyRef*) {

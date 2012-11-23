@@ -45,16 +45,23 @@ trait BaseBoot
         }
     }
 
-    def onShutdown() {
-        if (booted) {
+    final def onShutdown(force: Boolean = false) {
+        if (force || booted) {
             booted = false
             log.info(highlight("SHUTTING DOWN '{}'"), NAME)
 
+            // call custom shutdown logic
+            customShutdown()
+
             // kill sub modules
-            subRuns.foreach(_.onShutdown())
+            subRuns.foreach(_.onShutdown(force))
             subBoot = List()
             subRuns = List()
         }
+    }
+
+    def customShutdown() {
+        // do nothing
     }
 
     //~ SHARED ====================================================================================

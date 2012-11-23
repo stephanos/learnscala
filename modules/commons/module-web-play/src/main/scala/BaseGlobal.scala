@@ -89,7 +89,7 @@ trait BaseGlobal
         false
 
     protected def isEncryptedWhenLoggedOut(p: String): Boolean =
-        false
+        false // NO HTTPS by default
 
     protected def isAdminPath(path: String) =
         path.startsWith("/mysecretadmin")

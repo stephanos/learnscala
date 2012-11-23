@@ -239,7 +239,7 @@ trait Deps {
         val JodaConvert = "1.2"
         val JodaTime = "2.1"
         val JSON = "20090211"
-        val Lift = "2.4"
+        val Lift = "2.5-M2"
         val Logback = "1.0.3"
         val XMemcached = "1.3.6"
         val Metrics = "2.1.2"
@@ -250,10 +250,10 @@ trait Deps {
         val Rogue = "1.1.8"
         val Selenium = "2.20.0"
         val SJSON = "0.15"
-        val Slf4j = "1.6.4"
+        val Slf4j = "1.7.2"
         val Snappy = "1.0.4.1"
-        val Specs2 = "1.11"
-        val Spray = "1.0-M2"
+        val Specs2 = "1.12.1"
+        val Spray = "1.0-M2.2"
         val Squeryl = "0.9.5"
         val Unfiltered = "0.6.3"
     }
@@ -286,6 +286,7 @@ trait Deps {
         ExclusionRule(organization = "org.mongodb"))
     val liftJson = "net.liftweb" %% "lift-json" % V.Lift
     val logback = "ch.qos.logback" % "logback-classic" % V.Logback
+    val librato = "com.librato.metrics" % "metrics-librato" % "2.1.2.4"
     val metrics = "com.yammer.metrics" %% "metrics-scala" % V.Metrics
     val metricsGraphite = "com.yammer.metrics" % "metrics-graphite" % V.Metrics
     val memcache = "com.googlecode.xmemcached" % "xmemcached" % V.XMemcached
