@@ -76,7 +76,7 @@
                                 |name: String = Bob
                             }
                             @sourceblock() {
-                                |val age = t2._2
+                                |val age = t2
                             }
                             @outblock() {
                                 |age: Int = 42
@@ -164,7 +164,7 @@
                         |    (x, y)
                         |
                         |  def move (t: (Int, Int)) =
-                        |    copy (x + t._1, y + t._2)
+                        |    copy (x + t._1, y + t)
                         |}
                     }
                 }
@@ -350,7 +350,7 @@
                     |  val usr = Option(getUser (id))
                     |
                     |  usr match {
-                    |    case Some (u) => u._2
+                    |    case Some (u) => u
                     |    case _        => "Unknown"
                     |  }
                     |}

@@ -409,3 +409,9 @@
     ::selection { .bg(@bg); }
     ::-moz-selection { .bg(@bg); }
 }
+
+.unlink() {
+    .col(@tc);
+    display: block;
+    &:hover { .no-underline(); }
+}

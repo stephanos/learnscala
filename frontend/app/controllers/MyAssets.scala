@@ -1,6 +1,7 @@
 package controllers
 
 import base.MyController
+import com.loops101.web.controllers.impl.BaseAssets
 
 object MyAssets
     extends MyController with BaseAssets {

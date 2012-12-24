@@ -5,6 +5,11 @@ import org.sbtidea._
 trait MyBuild
     extends Build with Settings with Modules with Deps
 
+
+// ================================================================================================
+// SETTINGS
+// ================================================================================================
+
 trait Settings extends TaskStage with Env {
 
     val v: String
@@ -12,8 +17,8 @@ trait Settings extends TaskStage with Env {
 
     lazy val buildSettings =
         ideaSettings ++ Seq(
-            organization := org,
             scalaVersion := "2.9.1",
+            organization := org,
             version := v
         )
 
@@ -35,19 +40,21 @@ trait Settings extends TaskStage with Env {
     lazy val baseSettings =
         Defaults.defaultSettings ++ Seq(
 
-            // repositories
             resolvers += DefaultMavenRepository,
             resolvers += "spray" at "http://repo.spray.cc",
             resolvers += "codahale" at "http://repo.codahale.com",
             resolvers += "typesafe" at "http://repo.typesafe.com/typesafe/releases/",
 
-            // compile options
             scalacOptions ++=
                 Seq("-encoding", "UTF-8", "-deprecation", "-unchecked") ++ (
-                    if (isCloud) Seq("-optimize")
-                    else Seq("-g:vars") // -Xcheckinit ? (crashes with lift)
-                    ),
-            javacOptions ++= Seq("-Xlint:unchecked", "-Xlint:deprecation")
+                    if (isCloud) Seq("-optimize") else Seq("-g:vars")), // -Xcheckinit ? (crashes with lift)
+
+            javacOptions ++=
+                Seq("-source", "1.6", "-target", "1.6",
+                    "-Xlint:unchecked", "-Xlint:deprecation", "-encoding", "utf8"),
+            //javacOptions := Seq("-g"),
+
+            maxErrors := 20
 
             // disable parallel tests
             // parallelExecution in Test := false
@@ -62,6 +69,9 @@ trait Settings extends TaskStage with Env {
     lazy val moduleSettings =
         appSettings ++ Seq(stage := Unit) // skip "stage"
 
+    lazy val playModuleSettings =
+        myPlaySettings ++ Seq(stage := Unit) // skip "stage"
+
     lazy val testModuleSettings =
         moduleSettings ++ Seq(testOptions in Test := Seq(Tests.Filter(s => false)))
 
@@ -70,23 +80,46 @@ trait Settings extends TaskStage with Env {
 
     import PlayProject._
 
-    val ueberEntryPoints = SettingKey[PathFinder]("play-ueber-entry-points")
-    val ueberComp =
-        AssetsCompiler("ueber", _ / "assets" ** "*" , ueberEntryPoints,
+    val assetoEntryPoints = SettingKey[PathFinder]("play-asseto-entry-points")
+    val assetoComp =
+        AssetsCompiler("asseto", _ / "assets" / "source" ** "*" , assetoEntryPoints,
         {
-            (name, min) => if (min) name.replace(".js", ".min.js") else name
+            (name, min) => name
         }, {
             (file, options) => {
                 if(!isCloud) {
                     val folder = file.getParentFile
-                    println(" - compiling " + folder.getName)
+                    println("[compiling " + folder.getName + "]")
                     val input = folder.getAbsolutePath
                     NodeJs.call("/usr/local/share/npm/lib/node_modules/asseto/bin/asseto",
-                        input, input.replaceAllLiterally("app/assets", "public"))
+                        "compile",
+                        input,
+                        input.replaceAllLiterally("app/assets/source", "public")
+                    )
                 }
                 ("", None, Seq(file))
             }
         }, coffeescriptOptions)
+
+    /*
+    val minifyEntryPoints = SettingKey[PathFinder]("play-minify-entry-points")
+    val minifyComp =
+        AssetsCompiler("minify", _ ** "*.js", minifyEntryPoints,
+        {
+            (name, min) => "scripts/" + name.replace(".js", ".min.js").replace("build", "")
+        }, {
+            (file, options) => {
+                if(isCloud) {
+                    val fname = file.getName
+                    println("[minifying " + fname + "]")
+                    val src = IO.read(file)
+                    (src, Some(play.core.jscompile.JavascriptCompiler.minify(src, Some(fname))), Seq(file))
+                }
+                else
+                    ("", None, Seq(file))
+            }
+        }, coffeescriptOptions)
+    */
 
     lazy val myPlaySettings =
         buildSettings ++ defaultSettings ++ defaultScalaSettings ++ stageSettings ++ Seq(
@@ -95,10 +128,15 @@ trait Settings extends TaskStage with Env {
             //scalacOptions ++= Seq("-Yresolve-term-conflict:object"),
 
             // define asset locations
-            ueberEntryPoints <<= baseDirectory(_ / "app" / "assets" ** "build.json"),
+            assetoEntryPoints <<= baseDirectory(_ / "app" / "assets" / "source" ** "build.json"),
+
+            /*minifyEntryPoints <<= (sourceDirectory in Compile)(base =>
+                base / "assets" / "build" * "*.js"
+            ),*/
 
             // customize assets compilation
-            resourceGenerators in Compile <<= ueberComp(Seq(_)),
+            resourceGenerators in Compile <<= assetoComp(Seq(_)),
+            //resourceGenerators in Compile <+= minifyComp,
 
             // exclude old/repo resources
             excludeFilter in managedSources := excludes,
@@ -114,7 +152,10 @@ trait Settings extends TaskStage with Env {
 
             // experimental feature: only compile changed files
             //incrementalAssetsCompilation := true,
+
+
         )
+
 
     object MyProject {
 
@@ -128,8 +169,8 @@ trait Settings extends TaskStage with Env {
             Project(name, file("dummy"))
                 .settings(dummySettings: _*)
     }
-
 }
+
 
 // ================================================================================================
 // MODULES
@@ -174,7 +215,7 @@ trait Modules {
 
     lazy val mod_data_cache =
         MyProject("module-data-cache", file(modBase + "module-data-cache"))
-            .settings(libraryDependencies ++= Seq(memcache))
+            .settings(libraryDependencies ++= Seq(jta, ehCache, memcache))
             .settings(moduleSettings: _*)
             .dependsOn(mod_util, mod_test_unit % "test->test")
 
@@ -205,6 +246,7 @@ trait Modules {
             .settings(testModuleSettings: _*)
 }
 
+
 // ================================================================================================
 // DEPENDENCIES
 // ================================================================================================
@@ -225,8 +267,8 @@ trait Deps {
         val CommonsCodec = "1.6"
         val CommonsLang = "2.6"
         val CommonsMath = "2.2"
-        val EhCache = "2.5.2"
-        val H2 = "1.3.166"
+        val EhCache = "2.6.0"
+        val H2 = "1.3.170"
         val HTTP = "4.2"
         val Janino = "2.5.10"
         val Jasypt = "1.9.0"
@@ -239,9 +281,10 @@ trait Deps {
         val JodaConvert = "1.2"
         val JodaTime = "2.1"
         val JSON = "20090211"
+        val JTA = "1.1"
         val Lift = "2.5-M2"
         val Logback = "1.0.3"
-        val XMemcached = "1.3.6"
+        val XMemcached = "1.3.8"
         val Metrics = "2.1.2"
         val Mockito = "1.9.0"
         val MongoDB = "2.7.3"
@@ -282,6 +325,7 @@ trait Deps {
     val jodaConvert = "org.joda" % "joda-convert" % V.JodaConvert
     val jodaTime = "joda-time" % "joda-time" % V.JodaTime
     val json = "org.json" % "json" % V.JSON
+    val jta = "javax.transaction" % "jta" % V.JTA
     val liftMongo = "net.liftweb" %% "lift-mongodb-record" % V.Lift excludeAll (
         ExclusionRule(organization = "org.mongodb"))
     val liftJson = "net.liftweb" %% "lift-json" % V.Lift
@@ -317,7 +361,6 @@ trait Deps {
     }
 
     // ==== Provided
-
     object Provided {
     }
 
@@ -345,6 +388,7 @@ trait Deps {
     }
 
 }
+
 
 // ================================================================================================
 // TASK: Stage
@@ -409,6 +453,11 @@ trait TaskStage extends Env {
     }
 }
 
+
+// ================================================================================================
+// ENVIRONMENT
+// ================================================================================================
+
 trait Env {
 
     lazy val isCloud =
@@ -431,6 +480,11 @@ trait Env {
     }
 }
 
+
+// ================================================================================================
+// NODE INTEGRATION
+// ================================================================================================
+
 object NodeJs {
 
     import scala.sys.process._
@@ -444,11 +498,11 @@ object NodeJs {
         val stdout = new StringBuffer()
         val logger = ProcessLogger(
             (out: String) => {
-                //println(out)
-                stdout append (out + "\n")
+                println(out)
+                stdout append (" " + out + "\n")
             },
             (err: String) => {
-                stderr append (err + "\n")
+                stderr append (" " + err + "\n")
             })
 
         // exec

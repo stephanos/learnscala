@@ -1,3 +1,4 @@
+import com.loops101.web.BaseGlobal
 import services.data._
 import services.data.dao.UserRepo
 import com.loops101.util.EnvUtil
@@ -10,6 +11,7 @@ object Global
     extends MyController with BaseGlobal with Errors {
 
     def NAME = "WEB"
+
 
     //~ INTERFACE =================================================================================
 
@@ -25,9 +27,6 @@ object Global
 
         // init custom stdout
         //setStdOut(MyPrintStream.stdout)
-
-        // start up
-        onStartup()
     }
 
     override def onStop(app: Application) {
@@ -38,29 +37,10 @@ object Global
 
         // stop database
         if(isProduction) MyDocDB.stopDB()
-
-        // shut down
-        onShutdown()
     }
+
 
     //~ SHARED ====================================================================================
-
-    protected def configBoot() {
-
-        // === boot sub-module
-        if (!isCloud) {
-            addBoot("com.crashnote.api.Boot")
-            addBoot("com.crashnote.worker.Boot")
-            addBoot("com.crashnote.simulator.Boot")
-        }
-    }
-
-    override protected def afterBoot() {
-
-        // === initialize debug sequence
-        if (!EnvUtil.isProduction)
-            DebugData.reset()
-    }
 
     override protected def getAppPath =
         "/app"
@@ -79,20 +59,10 @@ object Global
 
     override protected def onInternalRoute(req: RequestHeader, action: Action[_]): Action[_] = {
         val path = req.path
-        val localuser = req.host contains "localhost"
-        (localuser || UserRepo.findUser(currentUserId(req).getOrElse("")).map(_.confirmed.value.getOrElse(false)).getOrElse(false)) match {
+        val isLocal = req.host contains "localhost"
+        (isLocal || UserRepo.findUser(currentUserId(req).getOrElse("")).map(_.confirmed.value.getOrElse(false)).getOrElse(false)) match {
             case false if(isRestrictedPath(path) && !path.endsWith("/logout") && !path.endsWith("/wait")) => Action(Redirect("/app/wait"))
             case _ => super.onInternalRoute(req, action)
         }
     }
-
-
-    //~ INTERNALS ====================================================================================
-
-    /*
-    private def setStdOut(out: PrintStream) {
-        //System.setOut(out)
-        Console.setOut(out)
-    }
-    */
 }

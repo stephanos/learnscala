@@ -1,11 +1,6 @@
 package com.loops101.util
 
-class EnvUtil extends EnvUtilBase
-
-object EnvUtil extends EnvUtilBase
-
-
-trait EnvUtilBase {
+trait EnvUtil {
 
     import SystemUtil._
 
@@ -49,3 +44,5 @@ trait EnvUtilBase {
         else None
     }
 }
+
+object EnvUtil extends EnvUtil

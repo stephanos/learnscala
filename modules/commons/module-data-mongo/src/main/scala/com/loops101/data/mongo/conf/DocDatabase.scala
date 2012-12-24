@@ -94,7 +94,7 @@ trait DocDatabase {
 }
 
 class MongoQueryLogger
-    extends QueryLogger with Logging {
+    extends QueryLogger with LogUtil {
 
     import net.liftweb.json._
 

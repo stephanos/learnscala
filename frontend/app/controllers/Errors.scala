@@ -2,6 +2,7 @@ package controllers
 
 import play.api.mvc._
 import controllers.base.MyController
+import com.loops101.web.controllers.impl.BaseErrors
 
 object Errors
     extends MyController

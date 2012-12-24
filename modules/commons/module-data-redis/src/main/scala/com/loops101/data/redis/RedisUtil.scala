@@ -1,6 +1,6 @@
 package com.loops101.data.redis
 
-import com.loops101.util.Logging
+import com.loops101.util.LogUtil
 import com.loops101.data.redis.conf.RedisConnection
 
 trait RedisUtil {
@@ -15,7 +15,7 @@ trait RedisUtil {
     val redis: Redis
 }
 
-object RedisUtil extends Logging {
+object RedisUtil extends LogUtil {
 
     def isOnline =
         RedisConnection.isOnline

@@ -5,7 +5,7 @@ import net.liftweb.mongodb._
 import com.mongodb._
 
 object DocConnection
-    extends Logging {
+    extends LogUtil {
 
     private lazy val mongoURI =
         SystemUtil.getEnvProperty("MONGO_URL").map(new MongoURI(_))

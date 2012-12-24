@@ -444,7 +444,7 @@
                                 |for {
                                 |  p1 <- ppl                 // Gener. #1
                                 |  p2 <- ppl filter(_ != p1) // Gener. #2
-                                |  if p1._2 == p2._2         // Filter
+                                |  if p1 == p2         // Filter
                                 |} yield (p1, p2)
                             }
                             @outblock() {
@@ -464,7 +464,7 @@
                                 |  ppl filter {
                                 |    p2 => p1 != p2
                                 |  } filter {
-                                |    p2 => p1._2 == p2._2
+                                |    p2 => p1 == p2
                                 |  } map {
                                 |    p2 => (p1, p2)
                                 |  }

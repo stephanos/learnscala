@@ -3,6 +3,7 @@ package controllers.base
 import controllers._
 import play.api.mvc.RequestHeader
 import play.api.templates.Html
+import com.loops101.web.controllers.BaseController
 
 class MyController
     extends BaseController with Errors {

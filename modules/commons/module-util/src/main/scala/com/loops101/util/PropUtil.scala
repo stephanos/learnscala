@@ -7,7 +7,7 @@ import java.util.Properties
  * map of name->value.  Note that there is a default value of "", so
  * using a non-existent name will not cause an exception.
  */
-class PropUtil extends Logging {
+class PropUtil extends LogUtil {
 
     def loadFile(fname: String): Option[Map[String, String]] = {
         try {

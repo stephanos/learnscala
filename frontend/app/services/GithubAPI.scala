@@ -2,10 +2,10 @@ package services
 
 import play.api.libs.ws.WS
 import net.liftweb.json._
-import com.loops101.util.Logging
+import com.loops101.util.LogUtil
 import services.data.model.UserDoc
 
-object GithubAPI extends Logging {
+object GithubAPI extends LogUtil {
 
     private val base = "https://api.github.com"
 

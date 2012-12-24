@@ -2,7 +2,7 @@ package com.loops101.util
 
 import java.util.UUID
 
-class SystemUtil {
+trait SystemUtil {
 
     lazy val tempDir =
         getProperty("java.io.tmpdir").get

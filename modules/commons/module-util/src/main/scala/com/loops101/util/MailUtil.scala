@@ -4,7 +4,7 @@ import javax.mail._
 import internet._
 import java.util.Properties
 
-trait MailUtil extends Logging {
+trait MailUtil extends LogUtil {
 
     //~ SETUP ======================================================================================
 
@@ -12,6 +12,7 @@ trait MailUtil extends Logging {
     var user: String = _
     var host: String = _
     var pass: String = _
+
 
     //~ INTERFACE ==================================================================================
 

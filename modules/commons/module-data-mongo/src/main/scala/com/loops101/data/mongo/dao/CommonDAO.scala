@@ -5,7 +5,7 @@ import net.liftweb.mongodb.record.MongoRecord
 import com.mongodb.BasicDBList
 
 trait CommonDAO
-    extends Logging {
+    extends LogUtil {
 
     protected def listHead[T](list: List[T]): Option[T] =
         list match {

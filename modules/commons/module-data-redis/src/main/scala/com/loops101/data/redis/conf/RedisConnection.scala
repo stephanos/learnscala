@@ -1,11 +1,11 @@
 package com.loops101.data.redis.conf
 
-import com.loops101.util.Logging
+import com.loops101.util.LogUtil
 import com.loops101.util.SystemUtil
 import redis.clients.jedis._
 
 // see https://github.com/xetorthio/jedis/wiki/Getting-started
-object RedisConnection extends Logging {
+object RedisConnection extends LogUtil {
 
     private var pool: JedisPool =
         null
