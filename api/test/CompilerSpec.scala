@@ -1,4 +1,4 @@
-import com.loops101.UnitSpec
+import com.loops101.test.spec.UnitSpec
 import de.learnscala.api.impl._
 import scala.tools.nsc.interpreter.IR
 
