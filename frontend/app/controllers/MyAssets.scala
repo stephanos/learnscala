@@ -22,10 +22,10 @@ object MyAssets
             jsUrl("lib/dom/vanadium")
         )
 
-    lazy val js_base = jsUrl("base")
-    lazy val js_util = jsUrl("util")
-    lazy val js_slide = jsUrl("slide")
-    lazy val js_editor = jsUrl("editor")
+    lazy val js_base = jsUrl("base", false)
+    lazy val js_util = jsUrl("util", false)
+    lazy val js_slide = jsUrl("slide", false)
+    lazy val js_editor = jsUrl("editor", false)
 
 
     // ==== CSS

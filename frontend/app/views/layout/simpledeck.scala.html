@@ -29,8 +29,10 @@
     }
 
     <script type="text/javascript">
-        $(document).ready(function() {
-            $("li.glossar").addClass("active");
+        require(["jquery"], function($) {
+            $(document).ready(function() {
+                $("li.glossar").addClass("active");
+            });
         });
     </script>
 }
