@@ -38,7 +38,9 @@
         <link href='@css_pub' type="text/css" rel="stylesheet">
 
         @* SCRIPT *@
-        @comp.jsloader(List(js_base))
+        @for(lib <- js_libs_pub) {
+            <script type="text/javascript" src="@lib"></script>
+        }
     </head>
 
     <body class="@classes">

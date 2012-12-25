@@ -11,18 +11,21 @@ object MyAssets
     // ==== JS
 
     lazy val js_libs_init =
-       if(isDevelopment)
-           List(
-               jsUrl("lib/init/require"),
-               jsUrl("main.dev")
-           )
-       else
-           List(jsUrl("main.prod"))
+       List(
+           jsUrl("lib/init/require"),
+           jsUrl("main.dev")
+       )
 
-    lazy val js_base = jsUrl("base", false)
-    lazy val js_util = jsUrl("util", false)
-    lazy val js_slide = jsUrl("slide", false)
-    lazy val js_editor = jsUrl("editor", false)
+    lazy val js_libs_pub =
+        List(
+            jsUrl("lib/dom/jquery"),
+            jsUrl("lib/dom/vanadium")
+        )
+
+    lazy val js_base = jsUrl("base")
+    lazy val js_util = jsUrl("util")
+    lazy val js_slide = jsUrl("slide")
+    lazy val js_editor = jsUrl("editor")
 
 
     // ==== CSS

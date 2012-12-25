@@ -18,7 +18,13 @@
         @head
 
         @* SCRIPT *@
-        @comp.jsloader(List(js_base, js_util, js_editor))
+        @for(lib <- js_libs_init) {
+            <script type="text/javascript" src="@lib"></script>
+        }
+
+        <script type="text/javascript">
+            Loader("@{assetBase}/js", ['modernizr',@embed(List(js_base, js_util, js_editor): _*)], function() {});
+        </script>
     </head>
 
     <body class="@clazz">

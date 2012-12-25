@@ -48,7 +48,6 @@
         {
             "name":"base",
             "include":[
-                "lib/init/almond",
                 "lib/dom/vanadium"
             ]
         },
