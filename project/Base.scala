@@ -17,7 +17,7 @@ trait Settings extends TaskStage with Env {
     val scalaV: String = "2.9.1"
 
     lazy val buildSettings =
-        ideaSettings ++ Seq(
+        Seq(
             scalaVersion := scalaV,
             organization := org,
             version := v
@@ -29,6 +29,7 @@ trait Settings extends TaskStage with Env {
                 f.getName == "_repo" && f.getName == "_old"
         }
 
+    /*
     lazy val ideaSettings =
         SbtIdeaPlugin.ideaSettings ++
             Seq(
@@ -37,6 +38,7 @@ trait Settings extends TaskStage with Env {
                 SbtIdeaPlugin.addGeneratedClasses := true,
                 SbtIdeaPlugin.defaultClassifierPolicy := false
             )
+    */
 
     lazy val baseSettings =
         Defaults.defaultSettings ++ Seq(

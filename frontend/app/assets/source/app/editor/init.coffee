@@ -224,11 +224,11 @@ define [
           lineNumberFormatter: (n) -> ">"
           onCursorActivity: () ->
             editor.setLineClass(window.hlLine, null, null)
-            window.hlLine = editor.addLineClass(editor.getCursor().line, null, "activeLine")
+            window.hlLine = editor.setLineClass(editor.getCursor().line, null, "activeLine")
           matchBrackets: true,
           autoClearEmptyLines: true
         })
-      window.hlLine = editor.addLineClass(0, "activeLine")
+      window.hlLine = editor.setLineClass(0, "activeLine")
   
       editor
   

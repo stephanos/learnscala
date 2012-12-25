@@ -47,8 +47,6 @@ POST    /users/do_login                             controllers.Auth.doLogin
 
 GET     /app                                        controllers.App.index
 GET     /app/                                       controllers.App.index2
-
-GET     /app/browser                                controllers.App.index2
 GET     /app/wait                                   controllers.App.waitingRoom
 
 GET     /app/editor                                 controllers.Editor.index

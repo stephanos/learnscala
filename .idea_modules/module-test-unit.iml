@@ -4,14 +4,17 @@
     <facet type="scala" name="Scala">
       <configuration>
         <option name="compilerLibraryLevel" value="Project" />
-        <option name="compilerLibraryName" value="scala-2.10.0-RC1" />
+        <option name="compilerLibraryName" value="SBT: scala:2.10.0-RC1" />
+        <option name="compilerOptions" value="-encoding UTF-8 -deprecation -unchecked -g:vars" />
+        <option name="deprecationWarnings" value="true" />
         <option name="fsc" value="true" />
+        <option name="uncheckedWarnings" value="true" />
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/../modules/commons/module-test-unit/target/scala-2.10.0-RC1/classes" />
-    <output-test url="file://$MODULE_DIR$/../modules/commons/module-test-unit/target/scala-2.10.0-RC1/test-classes" />
+    <output url="file://$MODULE_DIR$/../modules/commons/module-test-unit/target/scala-2.10/classes" />
+    <output-test url="file://$MODULE_DIR$/../modules/commons/module-test-unit/target/scala-2.10/test-classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../modules/commons/module-test-unit">
       <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-test-unit/src/main/scala" isTestSource="false" />
@@ -24,19 +27,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="org.scala-lang_scala-library_2.10.0-RC1" level="project" />
-    <orderEntry type="library" scope="TEST" name="org.specs2_specs2_2.10.0-RC1_1.12.2_test" level="project" />
-    <orderEntry type="library" scope="TEST" name="org.specs2_specs2-scalaz-core_2.10.0-RC1_6.0.1_test" level="project" />
-    <orderEntry type="library" scope="TEST" name="org.mockito_mockito-all_1.9.0_test" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/../target/scala-2.9.1/classes_managed" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
+    <orderEntry type="library" name="SBT: org.scala-lang:scala-library:2.10.0-RC1" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.specs2:specs2_2.10:1.12.3:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.specs2:specs2-scalaz-core_2.10.0-RC3:6.0.1:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.mockito:mockito-all:1.9.0:test" level="project" />
   </component>
 </module>
 

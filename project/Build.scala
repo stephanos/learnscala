@@ -8,7 +8,7 @@ object ProjectBuild extends MyBuild {
     val v = "0.2"
     val org = "de.learnscala"
     val modBase = "modules/commons/"
-    override val scalaV = "2.10.0-RC5"
+    override val scalaV = "2.10.0-RC1"
 
 
     lazy val root =
@@ -31,7 +31,7 @@ object ProjectBuild extends MyBuild {
 
     lazy val mod_api =
         MyProject("module-api", file("modules/module-api"))
-            .settings(libraryDependencies ++= Seq(playWeb, scalap, sun_tools))
+            .settings(libraryDependencies ++= Seq(playWeb, scalaP, scalaR, scalaC, sun_tools))
             .dependsOn(mod_web_play)
 
     /*
@@ -48,7 +48,7 @@ object ProjectBuild extends MyBuild {
     // ==== SETTINGS
 
     override lazy val settings =
-        super.settings ++ SbtIdeaPlugin.ideaSettings ++ buildSettings ++ Seq(
+        super.settings ++ buildSettings ++ Seq(
             javaHome := Some(file(jdk6Home))
         )
 
@@ -63,9 +63,12 @@ object ProjectBuild extends MyBuild {
 
     println("TOOLS.jar: " + sun_tools_file)
 
-    val scalap = "org.scala-lang" % "scalap" % scalaV
+    val scalaP = "org.scala-lang" % "scalap" % scalaV
+    val scalaR = "org.scala-lang" % "scala-reflect" % scalaV
+    val scalaC = "org.scala-lang" % "scala-compiler" % scalaV
 
-    // modify dependencies
+
+    // modify inherited dependencies
     V.Specs2 = "1.12.3"
     playWeb = ("play" % "play_2.10" % "2.1-RC1")
     squeryl = playWeb

@@ -176,5 +176,33 @@
                 </ul>
             }
         }
+
+        <!-- ################################################################################## -->
+
+        @titleslide(title = "Beispiel") {
+
+            @sourcecode(lang = "java") {
+                |boolean nameHasUpperCase = false;
+                |for (int i = 0; i < name.length(); ++i) {
+                |  if (Character.isUpperCase(name.charAt(i))) {
+                |    nameHasUpperCase = true;
+                |    break;
+                |  }
+                |}
+            }
+            @codesub2() {
+                imperativ
+            }
+
+            @spacer2()
+
+            @sourcecode() {
+                |val nameHasUpperCase =
+                |   name.exists(s => s.isUpperCase)
+            }
+            @codesub2() {
+                funktional
+            }
+        }
     }
 }

@@ -1,14 +1,11 @@
 package de.learnscala.api.impl
 
 import java.io._
-import scala.tools.util._
 import scala.tools.nsc._
-import scala.tools.nsc.io.{PlainFile, AbstractFile}
-import scala.tools.nsc.util._
-import scala.tools.nsc.interpreter.{IMain => Encoder}
+import scala.tools.nsc.io.AbstractFile
+import interpreter.{IMain => Encoder}
 import scala.tools.nsc.reporters.Reporter
 import scala.tools.scalap._
-import com.loops101.util.EnvUtil
 import sun.tools.javap._
 
 object CodeUtil {
@@ -23,19 +20,20 @@ object CodeUtil {
         s.verbose.value = verbose
         s.optimise.value = false
         s.Yreplsync.value = true
-        //s.bootclasspath.value = scalaCP.map(_.toString).mkString(File.pathSeparator)
+        s.bootclasspath.value = scalaCP.map(_.toString).mkString(File.pathSeparator)
         s.deprecation.value = deprecation
         s.unchecked.value = unchecked
+        s.usejavacp.value = true
 
-        (new Encoder(s, new PrintWriter(new OutputStreamWriter(out), true)), out)
+        (new Encoder(s, new PrintWriter(new OutputStreamWriter(out), true)) {
             // customize compiler initialization: remove SBT from classpath
-            /*
             override protected def newCompiler(settings: Settings, reporter: Reporter) = {
+                /*
                 if (EnvUtil.isLocal) {
                     settings.outputDirs setSingleOutput virtualDirectory
                     settings.exposeEmptyPackage.value = true
-                    new Global(settings, reporter) {
-                        override lazy val classPath: ClassPath[_] = {
+                    new Global(settings, reporter) with ReplGlobal {
+                        override lazy val classPath: PlatformClassPath = {
                             val paths = new PathResolver(settings) {
                                 override def containers =
                                     super.containers.filterNot(_.asClasspathString contains "sbt")
@@ -46,10 +44,10 @@ object CodeUtil {
                         }
                     }
                 } else
-                    super.newCompiler(settings, reporter)
+                */
+                super.newCompiler(settings, reporter)
             }
         }, out)
-        */
     }
 
     def asString(out: ByteArrayOutputStream) = {
