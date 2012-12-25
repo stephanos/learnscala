@@ -2,7 +2,7 @@ define [
   "jquery", "lib/util/underscore.str",
   "lib/editor/codemirror", "lib/util/mousetrap",
   "lib/util/spin", "lib/dom/splitter",
-  "lib/editor/clike","lib/editor/runmode"
+  "lib/editor/clike", "lib/editor/runmode", "lib/editor/matchbrackets"
 ], ($, _, CodeMirror) ->
 
   class Editor
@@ -224,11 +224,11 @@ define [
           lineNumberFormatter: (n) -> ">"
           onCursorActivity: () ->
             editor.setLineClass(window.hlLine, null, null)
-            window.hlLine = editor.setLineClass(editor.getCursor().line, null, "activeLine")
+            window.hlLine = editor.addLineClass(editor.getCursor().line, null, "activeLine")
           matchBrackets: true,
           autoClearEmptyLines: true
         })
-      window.hlLine = editor.setLineClass(0, "activeLine")
+      window.hlLine = editor.addLineClass(0, "activeLine")
   
       editor
   

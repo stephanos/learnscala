@@ -1,5 +1,5 @@
 
-define(["jquery", "lib/util/underscore", "lib/editor/codemirror", "lib/util/mousetrap", "lib/util/spin", "lib/dom/splitter", "lib/editor/clike", "lib/editor/runmode"], function($, _, CodeMirror) {
+define(["jquery", "lib/util/underscore.str", "lib/editor/codemirror", "lib/util/mousetrap", "lib/util/spin", "lib/dom/splitter", "lib/editor/clike", "lib/editor/runmode", "lib/editor/matchbrackets"], function($, _, CodeMirror) {
   var Editor;
   Editor = (function() {
 
@@ -254,12 +254,12 @@ define(["jquery", "lib/util/underscore", "lib/editor/codemirror", "lib/util/mous
         },
         onCursorActivity: function() {
           editor.setLineClass(window.hlLine, null, null);
-          return window.hlLine = editor.setLineClass(editor.getCursor().line, null, "activeLine");
+          return window.hlLine = editor.addLineClass(editor.getCursor().line, null, "activeLine");
         },
         matchBrackets: true,
         autoClearEmptyLines: true
       });
-      window.hlLine = editor.setLineClass(0, "activeLine");
+      window.hlLine = editor.addLineClass(0, "activeLine");
       return editor;
     };
 

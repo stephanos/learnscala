@@ -10,7 +10,8 @@
           "exports":"d3"
         },
         "lib/util/underscore.str":{
-            "exports":"_.str"
+            "deps":["lib/util/underscore"],
+            "exports":"_"
         },
         "lib/init/modernizr":{
             "exports":"Modernizr"
@@ -30,6 +31,10 @@
             "exports":"CodeMirror"
         },
         "lib/editor/runmode":{
+            "deps":["lib/editor/codemirror"],
+            "exports":"CodeMirror"
+        },
+        "lib/editor/matchbrackets":{
             "deps":["lib/editor/codemirror"],
             "exports":"CodeMirror"
         },
@@ -81,4 +86,3 @@
         }
     ]
 }
-

@@ -1,5 +1,5 @@
 define [
-  "jquery", "lib/util/underscore", "lib/reveal", "app/editor/init",
+  "jquery", "lib/util/underscore.str", "lib/reveal", "app/editor/init",
   "app/util/timer", "app/util/countdown", "app/util/overlay", "app/util/chart"
 ], ($, _, Reveal, Editor, Timer, Countdown, Overlay) ->
 

@@ -1,5 +1,10 @@
 // HACK: wrap every line in <pre>
 CodeMirror.runMode = function(string, modespec, callback, options) {
+
+  function esc(str) {
+    return str.replace(/[<&]/g, function(ch) { return ch == "<" ? "&lt;" : "&amp;"; });
+  }
+
   var row = 1;
   var mode = CodeMirror.getMode(CodeMirror.defaults, modespec);
   var isNode = callback.nodeType == 1;
@@ -32,12 +37,12 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
       for (var pos = 0;;) {
         var idx = text.indexOf("\t", pos);
         if (idx == -1) {
-          escaped += CodeMirror.htmlEscape(text.slice(pos));
+          escaped += esc(text.slice(pos));
           col += text.length - pos;
           break;
         } else {
           col += idx - pos;
-          escaped += CodeMirror.htmlEscape(text.slice(pos, idx));
+          escaped += esc(text.slice(pos, idx));
           var size = tabSize - col % tabSize;
           col += size;
           for (var i = 0; i < size; ++i) escaped += " ";
@@ -46,7 +51,7 @@ CodeMirror.runMode = function(string, modespec, callback, options) {
       }
 
       if (style)
-        tmp.push("<span class=\"cm-" + CodeMirror.htmlEscape(style) + "\">" + escaped + "</span>");
+        tmp.push("<span class=\"cm-" + esc(style) + "\">" + escaped + "</span>");
       else
         tmp.push(escaped);
     }

@@ -1,5 +1,5 @@
 
-define(["jquery", "lib/util/underscore"], function($, _) {
+define(["jquery", "lib/util/underscore", "lib/dom/bootstrap"], function($, _) {
   var Progress, p;
   Progress = (function() {
 
