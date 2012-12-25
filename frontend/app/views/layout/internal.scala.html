@@ -1,4 +1,7 @@
 @(title: String, open: Boolean = false, clazz: String = "", head: Html = Html(""))(content: Html)
+
+@import controllers.MyAssets._
+
 <!DOCTYPE html>
 
 <html>
@@ -10,14 +13,12 @@
         <title>@title</title>
 
         @* STYLE *@
-        <link href='@MyAssets.css_app' type="text/css" rel="stylesheet">
+        <link href='@{css_app}' type="text/css" rel="stylesheet">
 
         @head
 
         @* SCRIPT *@
-        <script type="text/javascript" src="@MyAssets.js_base"></script>
-        <script type="text/javascript" src="@MyAssets.js_util"></script>
-        <script type="text/javascript" src="@MyAssets.js_editor"></script>
+        @comp.jsloader(List(js_base, js_util, js_editor))
     </head>
 
     <body class="@clazz">

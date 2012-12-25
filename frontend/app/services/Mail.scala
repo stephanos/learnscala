@@ -68,7 +68,7 @@ object Mail {
             println("sent email '" + subject + "' from '" + from + "' to '" + to + "'")
             true
         } catch {
-            case e =>
+            case e: Throwable =>
                 e.printStackTrace()
                 println(e, "error sending email '" + subject + "' from '" + from + "' to '" + to + "'")
                 false

@@ -4,14 +4,14 @@
     <facet type="scala" name="Scala">
       <configuration>
         <option name="compilerLibraryLevel" value="Project" />
-        <option name="compilerLibraryName" value="scala-2.9.1" />
+        <option name="compilerLibraryName" value="scala-2.10.0-RC1" />
         <option name="fsc" value="true" />
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/../modules/commons/module-test-unit/target/scala-2.9.1/classes" />
-    <output-test url="file://$MODULE_DIR$/../modules/commons/module-test-unit/target/scala-2.9.1/test-classes" />
+    <output url="file://$MODULE_DIR$/../modules/commons/module-test-unit/target/scala-2.10.0-RC1/classes" />
+    <output-test url="file://$MODULE_DIR$/../modules/commons/module-test-unit/target/scala-2.10.0-RC1/test-classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../modules/commons/module-test-unit">
       <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-test-unit/src/main/scala" isTestSource="false" />
@@ -24,9 +24,9 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="org.scala-lang_scala-library_2.9.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="org.specs2_specs2_2.9.1_1.12.1_test" level="project" />
-    <orderEntry type="library" scope="TEST" name="org.specs2_specs2-scalaz-core_2.9.1_6.0.1_test" level="project" />
+    <orderEntry type="library" name="org.scala-lang_scala-library_2.10.0-RC1" level="project" />
+    <orderEntry type="library" scope="TEST" name="org.specs2_specs2_2.10.0-RC1_1.12.2_test" level="project" />
+    <orderEntry type="library" scope="TEST" name="org.specs2_specs2-scalaz-core_2.10.0-RC1_6.0.1_test" level="project" />
     <orderEntry type="library" scope="TEST" name="org.mockito_mockito-all_1.9.0_test" level="project" />
     <orderEntry type="module-library">
       <library>

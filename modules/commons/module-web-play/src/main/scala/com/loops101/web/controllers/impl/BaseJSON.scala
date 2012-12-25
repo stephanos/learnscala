@@ -1,12 +1,8 @@
 package com.loops101.web.controllers.impl
 
-import play.api.Play
 import play.api.mvc._
-import play.api.libs.iteratee._
-import play.api.libs.iteratee.Input._
-
-import net.liftweb.json._
-import net.liftweb.json.JsonDSL._
+import play.api.libs.json._
+import Json._
 
 trait BaseJSON {
 
@@ -16,27 +12,28 @@ trait BaseJSON {
 
     protected lazy val jOk: Result = jOk()
 
-    protected def jOk(data: JValue = JObject(List())): Result = // Backbone requires OK to return a JSON type
+    protected def jOk(data: JsValue = toJson(Map[String, JsValue]())): Result =
         jOk(stringify(data))
 
     protected def jOk(data: String): Result =
         Ok(data).as("application/json")
 
     protected def jBadRequest(msg: String) =
-        BadRequest(stringify(("errors" -> msg))).as("application/json")
+        BadRequest(stringify(toJson(Map("errors" -> toJson(msg))))).as("application/json")
 
     protected def jNotFound(msg: String) =
-        NotFound(stringify(("msg" -> msg))).as("application/json")
+        NotFound(stringify(toJson(Map("msg" -> toJson(msg))))).as("application/json")
 
 
     // PRODUCE
 
-    protected def stringify(js: JValue) =
-        compact(render(js))
+    protected def stringify(js: JsValue): String =
+        Json.stringify(js)
 
 
     // PARSE
 
+    /*
     protected def json: BodyParser[JValue] =
         json(parse.DEFAULT_MAX_TEXT_LENGTH)
 
@@ -68,4 +65,5 @@ trait BaseJSON {
                     }
                 }
         }
+        */
 }

@@ -41,7 +41,7 @@ trait BaseAssets {
     lazy val assetBase =
         httpsDomain + "/assets/" + build
 
-    def urlOf(file: String, folder: String, full: Boolean = false) =
+    def urlOf(file: String, folder: String, full: Boolean = true) =
         if (isDevelopment && !full)
             file
         else
@@ -56,7 +56,7 @@ trait BaseAssets {
     protected def cssUrl(file: String) =
         urlOf(file, "css", true)
 
-    protected def jsUrl(file: String, full: Boolean = false) =
+    protected def jsUrl(file: String, full: Boolean = true) =
         urlOf(file + jsExt, "js", full)
 
 

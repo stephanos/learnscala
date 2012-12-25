@@ -39,8 +39,8 @@ POST    /mail.do                                    controllers.Contact.doMail
 GET     /users/login                                controllers.Auth.login
 POST    /users/do_login                             controllers.Auth.doLogin
 
-GET     /users/oauth                                controllers.Auth.oauth
-GET     /users/do_oauth                             controllers.Auth.doOAuth
+#GET     /users/oauth                                controllers.Auth.oauth
+#GET     /users/do_oauth                             controllers.Auth.doOAuth
 
 
 # === APP
@@ -59,7 +59,7 @@ GET     /app/glossary/                              controllers.Glossary.indexR
 GET     /app/glossary/:id                           controllers.Glossary.page(id)
 GET     /app/glossary/:id/                          controllers.Glossary.pageR(id)
 
-GET     /app/exercises/:id                          controllers.Exercise.read(id)
+#GET     /app/exercises/:id                          controllers.Exercise.read(id)
 
 GET     /app/slides                                 controllers.Slide.index
 GET     /app/slides/                                controllers.Slide.indexR
@@ -79,7 +79,7 @@ POST    /api/execute                                controllers.API.execute
 POST    /api/decompile/java                         controllers.API.decompileAsJava
 POST    /api/decompile/scala                        controllers.API.decompileAsScala
 
-POST    /api/exercises/:id                          controllers.Exercise.write(id)
+#POST    /api/exercises/:id                          controllers.Exercise.write(id)
 
 
 # === ASSETS

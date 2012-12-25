@@ -1,4 +1,7 @@
 @(title: String = "", crawl: Boolean = true, hideNav: Boolean = false, subtitle: Html = null,  meta: String = "", classes: String = "")(content: Html)
+
+@import controllers.MyAssets._
+
 <!DOCTYPE html>
 
 <html>
@@ -18,24 +21,24 @@
 
         @* FAVICON *@
         @* For retina-display iPads *@
-        <link href='@MyAssets.urlOf("apple-touch-icon-xlarge.png", "img")' rel="apple-touch-icon-precomposed" sizes="144x144" type="image/png"/>
+        <link href='@urlOf("apple-touch-icon-xlarge.png", "img")' rel="apple-touch-icon-precomposed" sizes="144x144" type="image/png"/>
         @* For retina-display iPhones *@
-        <link href='@MyAssets.urlOf("apple-touch-icon-large.png", "img")' rel="apple-touch-icon-precomposed" sizes="114x114" type="image/png"/>
+        <link href='@urlOf("apple-touch-icon-large.png", "img")' rel="apple-touch-icon-precomposed" sizes="114x114" type="image/png"/>
         @* For iPad 1 *@
-        <link href='@MyAssets.urlOf("apple-touch-icon-medium.png", "img")' rel="apple-touch-icon-precomposed" sizes="72x72" type="image/png"/>
+        <link href='@urlOf("apple-touch-icon-medium.png", "img")' rel="apple-touch-icon-precomposed" sizes="72x72" type="image/png"/>
         @* For iPhone 3G, iPod Touch and Android *@
-        <link href='@MyAssets.urlOf("apple-touch-icon-small.png", "img")' rel="apple-touch-icon-precomposed" type="image/png"/>
+        <link href='@urlOf("apple-touch-icon-small.png", "img")' rel="apple-touch-icon-precomposed" type="image/png"/>
         @* For Nokia *@
-        <link href='@MyAssets.urlOf("apple-touch-icon-small.png", "img")' rel="shortcut icon"/>
+        <link href='@urlOf("apple-touch-icon-small.png", "img")' rel="shortcut icon"/>
         @* For everything else *@
-        <link href='@MyAssets.urlOf("favicon.png", "img")' rel="shortcut icon" type="image/png"/>
-        <link href='@MyAssets.urlOf("favicon.ico", "img")' rel="shortcut icon" type="image/x-icon"/>
+        <link href='@urlOf("favicon.png", "img")' rel="shortcut icon" type="image/png"/>
+        <link href='@urlOf("favicon.ico", "img")' rel="shortcut icon" type="image/x-icon"/>
 
         @* STYLE *@
-        <link href='@MyAssets.css_pub' type="text/css" rel="stylesheet">
+        <link href='@css_pub' type="text/css" rel="stylesheet">
 
         @* SCRIPT *@
-        <script type="text/javascript" src="@MyAssets.js_base"></script>
+        @comp.jsloader(List(js_base))
     </head>
 
     <body class="@classes">

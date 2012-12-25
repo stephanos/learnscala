@@ -8,6 +8,8 @@ object ProjectBuild extends MyBuild {
     val v = "0.2"
     val org = "de.learnscala"
     val modBase = "modules/commons/"
+    override val scalaV = "2.10.0-RC5"
+
 
     lazy val root =
         Project("learnscala", file("."))
@@ -20,7 +22,7 @@ object ProjectBuild extends MyBuild {
         MyProject("app-frontend", file("frontend"))
             .settings(myPlaySettings: _*)
             .settings(templatesImport += "views.html.comp._")
-            .dependsOn(mod_api, mod_data_mongo, mod_test_unit % "test->test")
+            .dependsOn(mod_api, mod_test_unit % "test->test")
 
     lazy val app_api =
         MyProject("app-api", file("api"))
@@ -29,7 +31,7 @@ object ProjectBuild extends MyBuild {
 
     lazy val mod_api =
         MyProject("module-api", file("modules/module-api"))
-            .settings(libraryDependencies ++= Seq(ehCache, playWeb, sun_tools))
+            .settings(libraryDependencies ++= Seq(playWeb, scalap, sun_tools))
             .dependsOn(mod_web_play)
 
     /*
@@ -60,6 +62,15 @@ object ProjectBuild extends MyBuild {
     lazy val sun_tools = "com.sun" % "tools" % "1.6.0" from ("file:///" + sun_tools_file)
 
     println("TOOLS.jar: " + sun_tools_file)
+
+    val scalap = "org.scala-lang" % "scalap" % scalaV
+
+    // modify dependencies
+    V.Specs2 = "1.12.3"
+    playWeb = ("play" % "play_2.10" % "2.1-RC1")
+    squeryl = playWeb
+    liftMongo = playWeb
+    rogue = playWeb
 
 
     // ==== OTHER

@@ -4,14 +4,14 @@
     <facet type="scala" name="Scala">
       <configuration>
         <option name="compilerLibraryLevel" value="Project" />
-        <option name="compilerLibraryName" value="scala-2.9.1" />
+        <option name="compilerLibraryName" value="scala-2.10.0-RC1" />
         <option name="fsc" value="true" />
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/../modules/commons/module-data-mongo/target/scala-2.9.1/classes" />
-    <output-test url="file://$MODULE_DIR$/../modules/commons/module-data-mongo/target/scala-2.9.1/test-classes" />
+    <output url="file://$MODULE_DIR$/../modules/commons/module-data-mongo/target/scala-2.10.0-RC1/classes" />
+    <output-test url="file://$MODULE_DIR$/../modules/commons/module-data-mongo/target/scala-2.10.0-RC1/test-classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../modules/commons/module-data-mongo">
       <sourceFolder url="file://$MODULE_DIR$/../modules/commons/module-data-mongo/src/main/scala" isTestSource="false" />
@@ -24,41 +24,53 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="org.scala-lang_scala-library_2.9.1" level="project" />
+    <orderEntry type="library" name="org.scala-lang_scala-library_2.10.0-RC1" level="project" />
     <orderEntry type="library" name="commons-lang_commons-lang_2.6" level="project" />
     <orderEntry type="library" name="commons-codec_commons-codec_1.6" level="project" />
     <orderEntry type="library" name="org.apache.commons_commons-math_2.2" level="project" />
     <orderEntry type="library" name="commons-io_commons-io_2.3" level="project" />
     <orderEntry type="library" name="joda-time_joda-time_2.1" level="project" />
     <orderEntry type="library" name="org.joda_joda-convert_1.2" level="project" />
-    <orderEntry type="library" name="ch.qos.logback_logback-classic_1.0.3" level="project" />
-    <orderEntry type="library" name="ch.qos.logback_logback-core_1.0.3" level="project" />
     <orderEntry type="library" name="org.slf4j_jcl-over-slf4j_1.7.2" level="project" />
     <orderEntry type="library" name="org.slf4j_slf4j-api_1.7.2" level="project" />
     <orderEntry type="library" name="janino_janino_2.5.10" level="project" />
-    <orderEntry type="library" name="net.liftweb_lift-json_2.9.1_2.5-M2" level="project" />
-    <orderEntry type="library" name="org.scala-lang_scalap_2.9.1" level="project" />
-    <orderEntry type="library" name="org.scala-lang_scala-compiler_2.9.1" level="project" />
-    <orderEntry type="library" name="com.thoughtworks.paranamer_paranamer_2.4.1" level="project" />
     <orderEntry type="library" name="javax.mail_mail_1.4.4" level="project" />
     <orderEntry type="library" name="javax.activation_activation_1.1" level="project" />
     <orderEntry type="library" name="org.mindrot_jbcrypt_0.3m" level="project" />
     <orderEntry type="library" name="org.xerial.snappy_snappy-java_1.0.4.1" level="project" />
-    <orderEntry type="library" name="com.foursquare_rogue_2.9.1_1.1.8" level="project" />
+    <orderEntry type="library" name="play_play_2.10_2.1-RC1" level="project" />
+    <orderEntry type="library" name="play_sbt-link_2.1-RC1" level="project" />
+    <orderEntry type="library" name="org.javassist_javassist_3.16.1-GA" level="project" />
+    <orderEntry type="library" name="play_play-exceptions_2.1-RC1" level="project" />
+    <orderEntry type="library" name="play_templates_2.10_2.1-RC1" level="project" />
+    <orderEntry type="library" name="com.github.scala-incubator.io_scala-io-file_2.10.0-RC1_0.4.1" level="project" />
+    <orderEntry type="library" name="com.github.scala-incubator.io_scala-io-core_2.10.0-RC1_0.4.1" level="project" />
+    <orderEntry type="library" name="com.jsuereth_scala-arm_2.10.0-RC1_1.2" level="project" />
+    <orderEntry type="library" name="play_play-iteratees_2.10_2.1-RC1" level="project" />
+    <orderEntry type="library" name="org.scala-stm_scala-stm_2.10.0-RC1_0.6" level="project" />
+    <orderEntry type="library" name="io.netty_netty_3.5.9.Final" level="project" />
+    <orderEntry type="library" name="org.slf4j_jul-to-slf4j_1.6.6" level="project" />
+    <orderEntry type="library" name="ch.qos.logback_logback-core_1.0.7" level="project" />
+    <orderEntry type="library" name="ch.qos.logback_logback-classic_1.0.7" level="project" />
+    <orderEntry type="library" name="com.typesafe.akka_akka-actor_2.10.0-RC1_2.1.0-RC1" level="project" />
+    <orderEntry type="library" name="com.typesafe_config_1.0.0" level="project" />
+    <orderEntry type="library" name="com.typesafe.akka_akka-slf4j_2.10.0-RC1_2.1.0-RC1" level="project" />
+    <orderEntry type="library" name="org.apache.commons_commons-lang3_3.1" level="project" />
+    <orderEntry type="library" name="com.ning_async-http-client_1.7.6" level="project" />
+    <orderEntry type="library" name="oauth.signpost_signpost-core_1.2.1.2" level="project" />
+    <orderEntry type="library" name="oauth.signpost_signpost-commonshttp4_1.2.1.2" level="project" />
+    <orderEntry type="library" name="org.apache.httpcomponents_httpcore_4.0.1" level="project" />
+    <orderEntry type="library" name="org.apache.httpcomponents_httpclient_4.0.1" level="project" />
+    <orderEntry type="library" name="commons-logging_commons-logging_1.1.1" level="project" />
+    <orderEntry type="library" name="org.codehaus.jackson_jackson-core-asl_1.9.10" level="project" />
+    <orderEntry type="library" name="org.codehaus.jackson_jackson-mapper-asl_1.9.10" level="project" />
+    <orderEntry type="library" name="net.sf.ehcache_ehcache-core_2.6.0" level="project" />
+    <orderEntry type="library" name="javax.transaction_jta_1.1" level="project" />
+    <orderEntry type="library" name="org.scala-lang_scala-compiler_2.10.0-RC1" level="project" />
+    <orderEntry type="library" name="org.scala-lang_scala-reflect_2.10.0-RC1" level="project" />
     <orderEntry type="library" name="org.mongodb_mongo-java-driver_2.7.3" level="project" />
-    <orderEntry type="library" name="net.liftweb_lift-mongodb-record_2.9.1_2.5-M2" level="project" />
-    <orderEntry type="library" name="net.liftweb_lift-record_2.9.1_2.5-M2" level="project" />
-    <orderEntry type="library" name="net.liftweb_lift-proto_2.9.1_2.5-M2" level="project" />
-    <orderEntry type="library" name="net.liftweb_lift-webkit_2.9.1_2.5-M2" level="project" />
-    <orderEntry type="library" name="net.liftweb_lift-util_2.9.1_2.5-M2" level="project" />
-    <orderEntry type="library" name="net.liftweb_lift-actor_2.9.1_2.5-M2" level="project" />
-    <orderEntry type="library" name="net.liftweb_lift-common_2.9.1_2.5-M2" level="project" />
-    <orderEntry type="library" name="nu.validator.htmlparser_htmlparser_1.4" level="project" />
-    <orderEntry type="library" name="commons-fileupload_commons-fileupload_1.2.2" level="project" />
-    <orderEntry type="library" name="net.liftweb_lift-mongodb_2.9.1_2.5-M2" level="project" />
-    <orderEntry type="library" name="net.liftweb_lift-json-ext_2.9.1_2.5-M2" level="project" />
-    <orderEntry type="library" scope="TEST" name="org.specs2_specs2_2.9.1_1.12.1_test" level="project" />
-    <orderEntry type="library" scope="TEST" name="org.specs2_specs2-scalaz-core_2.9.1_6.0.1_test" level="project" />
+    <orderEntry type="library" scope="TEST" name="org.specs2_specs2_2.10.0-RC1_1.12.2_test" level="project" />
+    <orderEntry type="library" scope="TEST" name="org.specs2_specs2-scalaz-core_2.10.0-RC1_6.0.1_test" level="project" />
     <orderEntry type="library" scope="TEST" name="org.mockito_mockito-all_1.9.0_test" level="project" />
     <orderEntry type="module" module-name="module-util" exported="" />
     <orderEntry type="module" module-name="module-test-unit" exported="" />
@@ -74,7 +86,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../modules/commons/module-util/target/scala-2.9.1/classes" />
+          <root url="file://$MODULE_DIR$/../modules/commons/module-util/target/scala-2.10.0-RC1/classes" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
@@ -86,7 +98,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../modules/commons/module-test-unit/target/scala-2.9.1/classes" />
+          <root url="file://$MODULE_DIR$/../modules/commons/module-test-unit/target/scala-2.10.0-RC1/classes" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>

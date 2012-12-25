@@ -49,30 +49,34 @@ trait BaseGlobal
         }
 
     /**
-     * General routing behaviour
+     * General routing behaviour (TODO: use filters from 2.1 ?)
      */
-    override final def onRouteRequest(req: RequestHeader): Option[Action[_]] =
+    override final def onRouteRequest(req: RequestHeader) =
         super.onRouteRequest(req).map {
-            case action: Action[_] =>
-                req.domain.startsWith("static.") match {
-                    case true => onAssetRoute(req, action)
-                    case _ =>
-                        currentUserId(req) match {
-                            case None => onPublicRoute(req, action)
-                            case _ => onInternalRoute(req, action)
+            handler =>
+                handler match {
+                    case action: Action[_] =>
+                        req.domain.startsWith("static.") match {
+                            case true => onAssetRoute(req, action)
+                            case _ =>
+                                currentUserId(req) match {
+                                    case None => onPublicRoute(req, action)
+                                    case _ => onInternalRoute(req, action)
+                                }
                         }
+                    case other => other
                 }
         }
 
     protected def onInternalRoute(req: RequestHeader, action: Action[_]): Action[_] =
-       req.path match {
-           case p if isAdminPath(p) => // admin? -> require HTTPS and ADMIN
-               Encrypted(Admin(action))
-           case p if isHiddenForLoggedInUsers(p) =>
-               Action(redirectToHttps(req, getAppPath, reason = Some("hidden")))
-           case _ =>
-               Encrypted(action)
-       }
+        req.path match {
+            case p if isAdminPath(p) => // admin? -> require HTTPS and ADMIN
+                Encrypted(Admin(action))
+            case p if isHiddenForLoggedInUsers(p) =>
+                Action(redirectToHttps(req, getAppPath, reason = Some("hidden")))
+            case _ =>
+                Encrypted(action)
+        }
 
 
     //~ INTERNAL ==================================================================================

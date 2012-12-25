@@ -14,10 +14,11 @@ trait Settings extends TaskStage with Env {
 
     val v: String
     val org: String
+    val scalaV: String = "2.9.1"
 
     lazy val buildSettings =
         ideaSettings ++ Seq(
-            scalaVersion := "2.9.1",
+            scalaVersion := scalaV,
             organization := org,
             version := v
         )
@@ -224,7 +225,7 @@ trait Modules {
     lazy val mod_util =
         MyProject("module-util", file(modBase + "module-util"))
             .settings(libraryDependencies ++= Seq(commonsLang, commonsCodec, commonsMath, commonsIO,
-            jodaTime, jodaConvert, logback, slf4jJCL, janino, liftJson, javaMail, jBcrypt, snappy)) // ehCache
+            jodaTime, jodaConvert, logback, slf4jJCL, janino, javaMail, jBcrypt, snappy))
             .settings(moduleSettings: _*)
             .dependsOn(mod_test_unit % "test->test")
 
@@ -259,83 +260,83 @@ trait Deps {
 
     object V {
 
-        val Akka2 = "2.0.2"
-        val AWS = "1.3.10"
-        val BoneCP = "0.7.1.RELEASE"
-        val Casbah = "3.0.0-M2"
-        val CommonsIO = "2.3"
-        val CommonsCodec = "1.6"
-        val CommonsLang = "2.6"
-        val CommonsMath = "2.2"
-        val EhCache = "2.6.0"
-        val H2 = "1.3.170"
-        val HTTP = "4.2"
-        val Janino = "2.5.10"
-        val Jasypt = "1.9.0"
-        val JavaMail = "1.4.4"
-        val jBcrypt = "0.3m"
-        val Jerkson = "0.5.0"
-        val Jetty = "7.5.4.v20111024"
-        val Jedis = "2.1.0"
-        val JDBCP = "1.0.8.5"
-        val JodaConvert = "1.2"
-        val JodaTime = "2.1"
-        val JSON = "20090211"
-        val JTA = "1.1"
-        val Lift = "2.5-M2"
-        val Logback = "1.0.3"
-        val XMemcached = "1.3.8"
-        val Metrics = "2.1.2"
-        val Mockito = "1.9.0"
-        val MongoDB = "2.7.3"
-        val Play = play.core.PlayVersion.current
-        val Postgres = "9.1-901.jdbc4"
-        val Rogue = "1.1.8"
-        val Selenium = "2.20.0"
-        val SJSON = "0.15"
-        val Slf4j = "1.7.2"
-        val Snappy = "1.0.4.1"
-        val Specs2 = "1.12.1"
-        val Spray = "1.0-M2.2"
-        val Squeryl = "0.9.5"
-        val Unfiltered = "0.6.3"
+        var Akka2 = "2.0.2"
+        var AWS = "1.3.10"
+        var BoneCP = "0.7.1.RELEASE"
+        var Casbah = "3.0.0-M2"
+        var CommonsIO = "2.3"
+        var CommonsCodec = "1.6"
+        var CommonsLang = "2.6"
+        var CommonsMath = "2.2"
+        var EhCache = "2.6.0"
+        var H2 = "1.3.170"
+        var HTTP = "4.2"
+        var Janino = "2.5.10"
+        var Jasypt = "1.9.0"
+        var JavaMail = "1.4.4"
+        var jBcrypt = "0.3m"
+        var Jerkson = "0.5.0"
+        var Jetty = "7.5.4.v20111024"
+        var Jedis = "2.1.0"
+        var JDBCP = "1.0.8.5"
+        var JodaConvert = "1.2"
+        var JodaTime = "2.1"
+        var JSON = "20090211"
+        var JTA = "1.1"
+        var Lift = "2.5-M2"
+        var Logback = "1.0.3"
+        var XMemcached = "1.3.8"
+        var Metrics = "2.1.2"
+        var Mockito = "1.9.0"
+        var MongoDB = "2.7.3"
+        var Play = play.core.PlayVersion.current
+        var Postgres = "9.1-901.jdbc4"
+        var Rogue = "1.1.8"
+        var Selenium = "2.20.0"
+        var SJSON = "0.15"
+        var Slf4j = "1.7.2"
+        var Snappy = "1.0.4.1"
+        var Specs2 = "1.12.1"
+        var Spray = "1.0-M2.2"
+        var Squeryl = "0.9.5"
+        var Unfiltered = "0.6.3"
     }
 
     // ==== Compile
 
-    val akka2 = "com.typesafe.akka" % "akka-actor" % V.Akka2
-    val akka2Slfj4 = "com.typesafe.akka" % "akka-slf4j" % V.Akka2
-    val aws = "com.amazonaws" % "aws-java-sdk" % V.AWS
-    val boneCP = "com.jolbox" % "bonecp" % V.BoneCP
-    val casbah = "org.mongodb" % "casbah_2.9.1" % V.Casbah
-    val commonsCodec = "commons-codec" % "commons-codec" % V.CommonsCodec
-    val commonsLang = "commons-lang" % "commons-lang" % V.CommonsLang
-    val commonsMath = "org.apache.commons" % "commons-math" % V.CommonsMath
-    val commonsIO = "commons-io" % "commons-io" % V.CommonsIO
-    val ehCache = "net.sf.ehcache" % "ehcache-core" % V.EhCache
-    val http = "org.apache.httpcomponents" % "httpclient" % V.HTTP
-    val janino = "janino" % "janino" % V.Janino
-    val jasypt = "org.jasypt" % "jasypt" % V.Jasypt
-    val javaMail = "javax.mail" % "mail" % V.JavaMail
-    val jBcrypt = "org.mindrot" % "jbcrypt" % V.jBcrypt
-    val jerkson = "com.codahale" %% "jerkson" % V.Jerkson
-    val jetty = "org.eclipse.jetty" % "jetty-servlet" % V.Jetty
-    val jedis = "redis.clients" % "jedis" % V.Jedis
-    val jdbcPool = "org.apache.tomcat" % "jdbc-pool" % V.JDBCP
-    val jodaConvert = "org.joda" % "joda-convert" % V.JodaConvert
-    val jodaTime = "joda-time" % "joda-time" % V.JodaTime
-    val json = "org.json" % "json" % V.JSON
-    val jta = "javax.transaction" % "jta" % V.JTA
-    val liftMongo = "net.liftweb" %% "lift-mongodb-record" % V.Lift excludeAll (
+    var akka2 = "com.typesafe.akka" % "akka-actor" % V.Akka2
+    var akka2Slfj4 = "com.typesafe.akka" % "akka-slf4j" % V.Akka2
+    var aws = "com.amazonaws" % "aws-java-sdk" % V.AWS
+    var boneCP = "com.jolbox" % "bonecp" % V.BoneCP
+    var casbah = "org.mongodb" % "casbah_2.9.1" % V.Casbah
+    var commonsCodec = "commons-codec" % "commons-codec" % V.CommonsCodec
+    var commonsLang = "commons-lang" % "commons-lang" % V.CommonsLang
+    var commonsMath = "org.apache.commons" % "commons-math" % V.CommonsMath
+    var commonsIO = "commons-io" % "commons-io" % V.CommonsIO
+    var ehCache = "net.sf.ehcache" % "ehcache-core" % V.EhCache
+    var http = "org.apache.httpcomponents" % "httpclient" % V.HTTP
+    var janino = "janino" % "janino" % V.Janino
+    var jasypt = "org.jasypt" % "jasypt" % V.Jasypt
+    var javaMail = "javax.mail" % "mail" % V.JavaMail
+    var jBcrypt = "org.mindrot" % "jbcrypt" % V.jBcrypt
+    var jerkson = "com.codahale" %% "jerkson" % V.Jerkson
+    var jetty = "org.eclipse.jetty" % "jetty-servlet" % V.Jetty
+    var jedis = "redis.clients" % "jedis" % V.Jedis
+    var jdbcPool = "org.apache.tomcat" % "jdbc-pool" % V.JDBCP
+    var jodaConvert = "org.joda" % "joda-convert" % V.JodaConvert
+    var jodaTime = "joda-time" % "joda-time" % V.JodaTime
+    var json = "org.json" % "json" % V.JSON
+    var jta = "javax.transaction" % "jta" % V.JTA
+    var liftMongo = "net.liftweb" %% "lift-mongodb-record" % V.Lift excludeAll (
         ExclusionRule(organization = "org.mongodb"))
-    val liftJson = "net.liftweb" %% "lift-json" % V.Lift
-    val logback = "ch.qos.logback" % "logback-classic" % V.Logback
-    val librato = "com.librato.metrics" % "metrics-librato" % "2.1.2.4"
-    val metrics = "com.yammer.metrics" %% "metrics-scala" % V.Metrics
-    val metricsGraphite = "com.yammer.metrics" % "metrics-graphite" % V.Metrics
-    val memcache = "com.googlecode.xmemcached" % "xmemcached" % V.XMemcached
-    val mongoDb = "org.mongodb" % "mongo-java-driver" % V.MongoDB
-    val playWeb = ("play" %% "play" % V.Play) excludeAll(
+    var liftJson = "net.liftweb" %% "lift-json" % V.Lift
+    var logback = "ch.qos.logback" % "logback-classic" % V.Logback
+    var librato = "com.librato.metrics" % "metrics-librato" % "2.1.2.4"
+    var metrics = "com.yammer.metrics" %% "metrics-scala" % V.Metrics
+    var metricsGraphite = "com.yammer.metrics" % "metrics-graphite" % V.Metrics
+    var memcache = "com.googlecode.xmemcached" % "xmemcached" % V.XMemcached
+    var mongoDb = "org.mongodb" % "mongo-java-driver" % V.MongoDB
+    var playWeb = ("play" %% "play" % V.Play) excludeAll(
         ExclusionRule(organization = "org.springframework"),
         ExclusionRule(organization = "net.sf.ehcache"),
         ExclusionRule(organization = "com.codahale"),
@@ -344,16 +345,16 @@ trait Deps {
         ExclusionRule(name = "ebean"),
         ExclusionRule(name = "anorm"),
         ExclusionRule(name = "h2"))
-    val rogue = "com.foursquare" %% "rogue" % V.Rogue intransitive()
-    val servlet30 = "org.glassfish" % "javax.servlet" % "3.0"
-    val slf4jApi = "org.slf4j" % "slf4j-api" % V.Slf4j
-    val slf4jJCL = "org.slf4j" % "jcl-over-slf4j" % V.Slf4j
-    val sjson = "net.debasishg" %% "sjson" % V.SJSON
-    val snappy = "org.xerial.snappy" % "snappy-java" % V.Snappy
-    val spray = "cc.spray" % "spray-server" % V.Spray
-    val sprayIo = "cc.spray" % "spray-io" % V.Spray
-    val sprayCan = "cc.spray" % "spray-can" % V.Spray
-    val squeryl = "org.squeryl" %% "squeryl" % V.Squeryl
+    var rogue = "com.foursquare" %% "rogue" % V.Rogue intransitive()
+    var servlet30 = "org.glassfish" % "javax.servlet" % "3.0"
+    var slf4jApi = "org.slf4j" % "slf4j-api" % V.Slf4j
+    var slf4jJCL = "org.slf4j" % "jcl-over-slf4j" % V.Slf4j
+    var sjson = "net.debasishg" %% "sjson" % V.SJSON
+    var snappy = "org.xerial.snappy" % "snappy-java" % V.Snappy
+    var spray = "cc.spray" % "spray-server" % V.Spray
+    var sprayIo = "cc.spray" % "spray-io" % V.Spray
+    var sprayCan = "cc.spray" % "spray-can" % V.Spray
+    var squeryl = "org.squeryl" %% "squeryl" % V.Squeryl
 
     object unfiltered {
 

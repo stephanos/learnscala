@@ -1,6 +1,4 @@
 import com.loops101.web.BaseGlobal
-import services.data._
-import services.data.dao.UserRepo
 import com.loops101.util.EnvUtil
 import controllers.base.MyController
 import controllers._
@@ -19,7 +17,7 @@ object Global
         println("Application starting ... ")
 
         // init database
-        MyDocDB.initDB()
+        //MyDocDB.initDB()
     }
 
     override def onStart(app: Application) {
@@ -36,7 +34,7 @@ object Global
         //setStdOut(MyPrintStream.stdout.orig)
 
         // stop database
-        if(isProduction) MyDocDB.stopDB()
+        //if(isProduction) MyDocDB.stopDB()
     }
 
 
@@ -57,6 +55,7 @@ object Global
     override protected def isEncryptedWhenLoggedOut(p: String): Boolean =
         !p.contains("/oeffentlich/") // encrypt everything except iframe pages
 
+    /*
     override protected def onInternalRoute(req: RequestHeader, action: Action[_]): Action[_] = {
         val path = req.path
         val isLocal = req.host contains "localhost"
@@ -65,4 +64,5 @@ object Global
             case _ => super.onInternalRoute(req, action)
         }
     }
+    */
 }

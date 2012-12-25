@@ -1,10 +1,16 @@
 package de.learnscala.api.impl
 
 import java.io.PrintStream
-import scala.actors.Futures._
 import scala.annotation.tailrec
 import scala.tools.nsc.interpreter.IR
 import scala.tools.nsc.interpreter.Results._
+
+import scala.concurrent._
+import Future._
+import duration._
+import Duration._
+import Await._
+import ExecutionContext.Implicits.global
 
 // see https://github.com/vydra/gae-scala/tree/master/src
 class Scala {
@@ -66,12 +72,14 @@ class Scala {
         tline.isEmpty || tline.startsWith("//") || tline.startsWith("/*")
     }
 
-    private def runWithTimeout[T](timeoutMs: Long)(f: => T): Option[T] = {
-        awaitAll(timeoutMs, future(f)).head.asInstanceOf[Option[T]]
+    private def runWithTimeout[T](timeoutMs: Long)(f: => T): T = {
+        val fut = Future[T](f)
+        val tout: Duration = timeoutMs.seconds
+        Await.result[T](fut, tout)
     }
 
     private def runWithTimeout[T](timeoutMs: Long, default: T)(f: => T): T = {
-        runWithTimeout(timeoutMs)(f).getOrElse(default)
+        runWithTimeout(timeoutMs)(f)
     }
 }
 

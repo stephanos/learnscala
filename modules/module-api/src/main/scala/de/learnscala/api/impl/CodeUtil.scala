@@ -23,12 +23,13 @@ object CodeUtil {
         s.verbose.value = verbose
         s.optimise.value = false
         s.Yreplsync.value = true
-        s.bootclasspath.value = scalaCP.map(_.toString).mkString(File.pathSeparator)
+        //s.bootclasspath.value = scalaCP.map(_.toString).mkString(File.pathSeparator)
         s.deprecation.value = deprecation
         s.unchecked.value = unchecked
 
-        (new Encoder(s, new PrintWriter(new OutputStreamWriter(out), true)) {
+        (new Encoder(s, new PrintWriter(new OutputStreamWriter(out), true)), out)
             // customize compiler initialization: remove SBT from classpath
+            /*
             override protected def newCompiler(settings: Settings, reporter: Reporter) = {
                 if (EnvUtil.isLocal) {
                     settings.outputDirs setSingleOutput virtualDirectory
@@ -48,6 +49,7 @@ object CodeUtil {
                     super.newCompiler(settings, reporter)
             }
         }, out)
+        */
     }
 
     def asString(out: ByteArrayOutputStream) = {
@@ -116,6 +118,6 @@ object CodeUtil {
         def printFile(file: Array[Byte], out: OutputStream)
     }
 
-    lazy val scalaCP =
-        List(ClassPath.info[Global], ClassPath.info[Dynamic]).map(_.locationFile)
+    private lazy val scalaCP =
+        List() // List(ClassPath.info[Global], ClassPath.info[Dynamic]).map(_.locationFile)
 }

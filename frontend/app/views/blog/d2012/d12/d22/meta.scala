@@ -1,5 +1,5 @@
 package views.html.blog
-package d2012.d11.d22
+package d2012.d12.d22
 
 import views.html.blog.BlogEntry
 
