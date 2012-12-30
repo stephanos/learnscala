@@ -12,22 +12,84 @@
         <!-- ################################################################################## -->
 
         @slide(title = "Name") {
-            @sidebyside((40,60)) {
-                @image("odersky.jpg")
-            } {
-                <blockquote class="fragment">
-                    <p>
-                        Der Name Scala steht für <br/><em>scal</em>able <em>la</em>nguage.
-                    </p>
-                    <p>
-                        Die Sprache ist so konzipiert, dass sie mit den Anforderungen des Nutzers wächst.
-                        Man kann sie auf eine Vielzahl von Aufgaben anwenden, von kleinen Skripten bis hin zu großen Systemen.
-                    </p>
-                    <var class="who">
-                        Martin Odersky, <br/>Erfinder von Scala
-                    </var>
-                </blockquote>
+
+            @middle(80) {
+                @sidebyside(gap = 10) {
+                    @image("odersky.jpg")
+                } {
+                    @spacer()
+                    <blockquote class="fragment">
+                        <p>
+                            Der Name Scala steht für <br/><em>scal</em>able <em>la</em>nguage.
+                        </p>
+                        <p>
+                            Die Sprache ist so konzipiert, dass sie mit den Anforderungen des Nutzers wächst.
+                            Man kann sie auf eine Vielzahl von Aufgaben anwenden, von kleinen Skripten bis hin zu großen Systemen.
+                        </p>
+                        <var class="who">
+                            Martin Odersky, <br/>Erfinder von Scala
+                        </var>
+                    </blockquote>
+                }
             }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Scala im Vergleich") {
+
+            <table style="border-collapse: separate; border-spacing: 25px;">
+                <thead>
+                <tr style="border-bottom: 5px">
+                    <th>
+                    </th>
+                    <th>
+                        @image("java.png", height = 120, clazz = "naked")
+                    </th>
+                    <th style="vertical-align: middle">
+                        @image("groovy.png", height = 90, clazz = "naked")
+                    </th>
+                    <th>
+                        @image("clojure.png", height = 120, clazz = "naked")
+                    </th>
+                    <th>
+                        @image("scala.png", height = 120, clazz = "naked")
+                    </th>
+                </tr>
+                </thead>
+                <tbody style="text-align: center">
+                    <tr class="fragment">
+                        <td><h3>Statisch</h3></td>
+                        <td>@check()</td>
+                        <td></td>
+                        <td></td>
+                        <td>@check()</td>
+                    </tr>
+                    <tr class="fragment">
+                        <td><h3>OOP</h3></td>
+                        <td>@check()</td>
+                        <td>@check()</td>
+                        <td></td>
+                        <td>@check()</td>
+                    </tr>
+                    <tr class="fragment">
+                        <td><h3>Funktional</h3></td>
+                        <td></td>
+                        <td></td>
+                        <td>@check()</td>
+                        <td>@check()</td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+
+        <!-- ################################################################################## -->
+
+        @headslide(title = "Flexibel") {
+            Scala ist ... <span class='fragment'><em>flexibel</em></span>
+        } {
+
+
         }
 
         <!-- ################################################################################## -->
@@ -267,6 +329,14 @@
         @headslide(title = "Java") {
             Scala ist ... <span><em>Java</em></span>
         } {
+
+            @fragment {
+                @autocenter {
+                    @image("duke.png", height = 600, clazz = "naked")
+                }
+            }
+
+            @*
             @sidebyside((60,40)) {
                 @sourcecode() {
                     |import org.apache.http.client._
@@ -283,10 +353,11 @@
                     <li><em>Scala</em> aus <var>Java</var> aufrufen: <br/> &nbsp; geht <comment>(mit Ausnahmen)</comment></li>
                 </ul>
             }
+            *@
 
-            @tipbox() {
+            @*@tipbox() {
                 Leicht zu integrieren mit bestehendem Code und bekannten Bibliotheken.
-            }
+            }*@
         }
 
         <!-- ################################################################################## -->
@@ -409,34 +480,38 @@
 
         <!-- ################################################################################## -->
 
-        @headslide(title = "Zusammenfassung") {
-            Scala
-        } {
-            <h4 class="indent90">
-                @sidebyside(gap = 30) {
-                    <ul class="fragment w40p left">
-                        <li class="nobreak"><em>Java</em></li>
-                        <li class="nobreak"><em>funktional</em></li>
-                        <li class="nobreak"><em>skalierbar</em></li>
-                        <li class="nobreak"><em>statisch typisiert</em></li>
-                        <li class="nobreak"><em>in Benutzung</em></li>
-                        <li class="nobreak"><em>kurz und präzise</em></li>
-                        <li class="nobreak"><em>erweiterbar</em></li>
-                        <li class="nobreak"><em>objektorientiert</em></li>
-                    </ul>
-                } {
-                    <ul class="fragment w40p left">
-                        <li class="nobreak"><var>stabil</var></li>
-                        <li class="nobreak"><var>cool</var></li>
-                        <li class="nobreak"><var>eine Freude</var></li>
-                        <li class="nobreak"><var>produktiv</var></li>
-                        <li class="nobreak"><var>anspruchsvoll</var></li>
-                        <li class="nobreak"><var>eine neue Denkweise</var></li>
-                        <li class="nobreak"><var>flexibel</var></li>
-                        <li class="nobreak"><var>modern</var></li>
-                    </ul>
-                }
-            </h4>
+        @slide(title = "Zusammenfassung") {
+            @autocenter {
+                @image("scala-logo.png", clazz = "naked", height = 100)
+
+                @spacer2()
+
+                <h4 class="indent90">
+                    @sidebyside(gap = 30) {
+                        <ul class="fragment w40p left">
+                            <li class="nobreak"><em>Java</em></li>
+                            <li class="nobreak"><em>funktional</em></li>
+                            <li class="nobreak"><em>skalierbar</em></li>
+                            <li class="nobreak"><em>statisch typisiert</em></li>
+                            <li class="nobreak"><em>in Benutzung</em></li>
+                            <li class="nobreak"><em>kurz und präzise</em></li>
+                            <li class="nobreak"><em>erweiterbar</em></li>
+                            <li class="nobreak"><em>objektorientiert</em></li>
+                        </ul>
+                    } {
+                        <ul class="fragment w40p left">
+                            <li class="nobreak"><var>stabil</var></li>
+                            <li class="nobreak"><var>cool</var></li>
+                            <li class="nobreak"><var>eine Freude</var></li>
+                            <li class="nobreak"><var>produktiv</var></li>
+                            <li class="nobreak"><var>anspruchsvoll</var></li>
+                            <li class="nobreak"><var>eine neue Denkweise</var></li>
+                            <li class="nobreak"><var>flexibel</var></li>
+                            <li class="nobreak"><var>modern</var></li>
+                        </ul>
+                    }
+                </h4>
+            }
         }
     }
 }

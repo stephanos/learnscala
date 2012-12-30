@@ -7,7 +7,7 @@
         @slidehead() {
             @topic
         } {
-
+            @image("package.png", clazz = "naked", height = 350)
         }
 
         <!-- ################################################################################## -->
@@ -267,44 +267,53 @@
 
             @slide(title = title, subtitle = "relativ") {
 
-                    @sourcecode() {
-                        |package com.mycompany
-                        |
-                        |import staff.Employee
-                    }
-
-                    @codesub2() {
-                        importiert <code>Employee</code> aus <code>com.mycompany.staff</code>
-                    }
-
-
                 @spacer()
 
-                    @sourcecode() {
-                        |package com.mycompany
-                        |
-                        |import com.mycompany.staff.Employee
+                @middle(75) {
+                    @sidebyside((70,30)) {
+                        @sourcecode(clazz = "green thick") {
+                            |package com.mycompany
+                            |
+                            |import com.mycompany.staff.Employee
+                        }
+
+                        @iseq(true)
+                    } {
+                        @codenote2() {
+                            Importieren wie in Java
+                        }
                     }
 
-                    @codesub2() {
-                        importiert <code>Employee</code> aus <code>com.mycompany.staff</code>
+                    @sidebyside((70,30)) {
+                        @sourcecode() {
+                            |package com.mycompany
+                            |
+                            |import staff.Employee
+                        }
+
+                        @iseq(true)
+                    } {
+                        @codenote2() {
+                            @uline("aber") zuerst sucht Scala relativ, dann erst absolut!
+                        }
                     }
 
-
-                @spacer()
-
-                    @sourcecode() {
-                        |package com.mycompany
-                        |
-                        |import _root_.com.mycompany.staff.Employee
+                    @sidebyside((70,30)) {
+                        @sourcecode() {
+                            |package com.mycompany
+                            |
+                            |import _root_.com.mycompany.staff.Employee
+                        }
+                    } {
+                        @codenote2() {
+                            <code>_root_</code> erzwingt absolute Auflösung
+                        }
                     }
+                }
 
-                    @codesub2() {
-                        importiert <code>Employee</code> aus <code>com.mycompany.staff</code>
-                    }
-
-
-                @spacer()
+                @*@codesub2() {
+                    importiert <code>Employee</code> aus <code>com.mycompany.staff</code>
+                }*@
 
                 @*@infobox() {
                     Der Compiler löst Importe zunächst relativ auf (außer es steht <code>_root_</code> am Anfang)

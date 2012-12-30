@@ -6,6 +6,7 @@ define(["jquery", "lib/util/underscore", "lib/dom/bootstrap"], function($, _) {
     function Progress() {
       this.init();
       $(document).tooltip({
+        html: true,
         delay: {
           show: 500,
           hide: 10

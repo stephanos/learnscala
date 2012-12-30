@@ -1,4 +1,4 @@
-@(id: String = null, subsubtitle: String = null, subtitle: String = null, title: String = null, chapter: String = null,
+@(id: String = null, subsubtitle: String = null, subtitle: String = null, title: String = null, chapter: String = null, state: String = null,
   htmlTitle: xml.Elem = null, hideFooter: Boolean = false, clazz: String = "")(body: Html = Html.empty)(implicit topic: String = null)
 
-@headslide(id, subsubtitle, subtitle, title, chapter, hideFooter, htmlTitle, clazz)(Html(""))(body)(topic)
+@headslide(id, subsubtitle, subtitle, title, chapter, state, hideFooter, htmlTitle, clazz)(Html(""))(body)(topic)

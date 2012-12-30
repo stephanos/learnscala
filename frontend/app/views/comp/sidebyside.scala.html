@@ -1,6 +1,6 @@
-@(w: (Int, Int) = (50, 50), clazz: (String, String) = ("",""), fragment: Boolean = false, gap: Double = 3.0)(cl: Html = empty())(cr: Html = empty())
+@(w: (Int, Int) = (50, 50), classes: (String, String) = ("",""), clazz: String = "", fragment: Boolean = false, gap: Double = 3.0)(cl: Html = empty())(cr: Html = empty())
 
-<div class='sidebyside @{if(fragment) "fragment"}'>
+<div class='sidebyside @{if(fragment) "fragment"} @{clazz}'>
 
     <table>
         <colgroup>
@@ -10,11 +10,11 @@
         </colgroup>
         <tbody>
             <tr>
-                <td class="@clazz._1">
+                <td class="@classes._1">
                     @cl
                 </td>
                 <td>&nbsp;</td>
-                <td class="@clazz._2">
+                <td class="@classes._2">
                     @cr
                 </td>
             </tr>

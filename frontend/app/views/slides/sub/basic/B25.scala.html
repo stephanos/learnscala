@@ -11,12 +11,63 @@
         @slidehead() {
             @topic
         } {
-
+            @image("recursion.jpeg", height = 350)
         }
 
         <!-- ################################################################################## -->
 
-        @slide(title = "imperativ") {
+        @titleslide(title = "Fakultät") {
+
+            <div class="w50p bigger dcenter">
+                <blockquote class="fragment">
+                    <p>
+                        Die Fakultät ist eine Funktion, die einer natürlichen Zahl
+                        das Produkt aller natürlichen Zahlen kleiner und gleich dieser Zahl zuordnet:
+                    </p>
+                    <table class="w50p fragment" style="margin-left: 50px">
+                        <tr>
+                            <td>0</td>
+                            <td>=></td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>=></td>
+                            <td>1</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>=></td>
+                            <td>2</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>=></td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>=></td>
+                            <td>24</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>=></td>
+                            <td>120</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>=></td>
+                            <td>3.628.800</td>
+                        </tr>
+                    </table>
+                </blockquote>
+            </div>
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide(title = "(A) imperativ") {
 
             @snippet() {
                 @sourceblock(fragment = false) {
@@ -56,12 +107,15 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Overflow") {
+        @titleslide(title = "(B) rekursiv", subtitle = "Rückgabetyp") {
+
+            @spacer()
 
             @snippet() {
                 @sourceblock(fragment = false) {
                     |def factorial(n: Int) =
-                    |   if (n == 0) BigInt(1) else n * factorial(n - 1)
+                    |   if (n == 0) BigInt(1)
+                    |   else        n * factorial(n - 1)
                 }
                 @outblock(error = true) {
                     |error: recursive method factorial needs result type
@@ -72,12 +126,19 @@
                 rekursive Methoden brauchen einen Rückgabetyp
             }
 
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide(title = "(B) rekursiv", subtitle = "Overflow") {
+
             @spacer()
 
             @snippet() {
                 @sourceblock(id = "factorial1") {
                     |def factorial(n: Int): BigInt =
-                    |   if (n == 0) BigInt(1) else n * factorial(n - 1)
+                    |   if (n == 0) BigInt(1)
+                    |   else        n * factorial(n - 1)
                 }
             }
 
@@ -108,23 +169,36 @@
 
         <!-- ################################################################################## -->
 
-        @defining("tailrec") { title =>
+        @defining("(C) endrekursiv") { title =>
 
-            @slide(title = title, subtitle = "A") {
+            @titleslide(title = title) {
 
-                @snippet() {
-                    @sourceblock(fragment = false) {
-                        |import scala.annotation.tailrec
-                        |
-                        |@@tailrec
-                        |def factorial(n: Int): BigInt =
-                        |   if (n == 0) BigInt(1) else n * factorial(n - 1)
+                <div class="w50p bigger dcenter">
+                    <blockquote class="fragment">
+                        <p>
+                            Eine rekursive Funktion <em>f</em> ist endrekursiv (englisch: tail recursive),
+                            wenn der rekursive Funktionsaufruf die @uline("letzte") Aktion zur Berechnung von <em>f</em> ist.
+                        </p>
+                    </blockquote>
+                </div>
+
+                @spacer()
+
+                @middle() {
+                    @snippet() {
+                        @sourceblock() {
+                            |import scala.annotation.tailrec
+                            |
+                            |@@tailrec
+                            |def factorial(n: Int): BigInt =
+                            |   if (n == 0) BigInt(1)
+                            |   else        n * factorial(n - 1)
+                        }
+                        @outblock(error = true) {
+                            |error: could not optimize @@tailrec annotated method:
+                            |       contains recursive call not in tail position
+                        }
                     }
-                    @outblock(error = true) {
-                        |error: could not optimize @@tailrec annotated method:
-                        |       contains recursive call not in tail position
-                    }
-                }
 
                     @codesub2() {
                         Annotation <code>@@tailrec</code> wandelt
@@ -132,8 +206,12 @@
                         <br/>
                         <var>Bedingung:</var> letzte Anweisung ist Rekursionsaufruf
                     }
+                }
+            }
 
-                @spacer()
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "Hilfsparameter") {
 
                 @snippet() {
                     @sourceblock() {
@@ -141,23 +219,26 @@
                         |
                         |@@tailrec
                         |def factorial(n: Int, acc: BigInt): BigInt =
-                        |   if (n == 0) acc else factorial(n - 1, acc * n)
+                        |   if (n == 0) acc
+                        |   else        factorial(n - 1, acc * n)
                     }
                     @outblock() {
                         |factorial: (n: Int, acc: BigInt)BigInt
                     }
                 }
 
-                    @codesub2() {
-                        Zwischenergebnis der Multiplikation wird zu Parameter
-                        <br/>
-                        <var>Nachteil:</var> Hilfsparameter ist Teil der Signatur
-                    }
+                @codesub2() {
+                    <em>Lösung:</em>
+                    Zwischenergebnis der Multiplikation wird zu Parameter
+                    <br/>
+                    <var>Nachteil:</var>
+                    Hilfsparameter ist Teil der Signatur
+                }
             }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "B") {
+            @titleslide(title = title, subtitle = "interne Methode") {
 
                 @snippet() {
                     @sourceblock(id = "tailrec", fragment = false) {
@@ -167,7 +248,8 @@
                         |
                         |  @@tailrec
                         |  def factorial(n: Int, acc: BigInt): Int =
-                        |    if (n == 0) acc else factorial(n - 1, acc * n)
+                        |    if (n == 0) acc
+                        |    else        factorial(n - 1, acc * n)
                         |
                         |  factorial(n, 1)
                         |}
@@ -177,30 +259,25 @@
                     }
                 }
 
-                    @codesub2() {
-                        <em>Lösung:</em>
-                        Definition einer internen Methode
-                    }
+                @codesub2() {
+                    <em>Lösung:</em>
+                    Definition einer internen Methode
+                }
 
                 @spacer()
 
                 @snippet() {
                     @callblock(reference = "tailrec") {
-                        |factorial(4)
-                    }
-                    @outblock() {
-                        |res0: BitInt = 24
-                    }
-                    @callblock() {
                         |factorial(10000)
                     }
                     @outblock() {
                         |res1: BigInt = 2846259680917054518906..
                     }
                 }
-                    @codesub2() {
-                        <em>Ergebnis:</em> Kein <code>StackOverflow</code> mehr
-                    }
+
+                @codesub2() {
+                    kein <code>StackOverflow</code> mehr
+                }
             }
         }
 

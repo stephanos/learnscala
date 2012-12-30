@@ -1,0 +1,21 @@
+@defining(Content.ausblick.label) { implicit topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slide() {
+            @spacer2()@spacer()
+
+            <div class="dcenter tcenter">
+                <h1>
+                    The End <em class="fragment">?</em>
+                </h1>
+
+                @spacer()
+
+                <h3>
+                    teilnehmer.foreach(t => println("Bye " + t))
+                </h3>
+            </div>
+        }
+    }
+}

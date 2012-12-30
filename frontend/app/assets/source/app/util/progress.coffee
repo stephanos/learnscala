@@ -8,6 +8,7 @@ define [
       @init()
 
       $(document).tooltip
+        html: true
         delay: { show: 500, hide: 10 }
         selector: ".with-tooltip"
         placement: "bottom"

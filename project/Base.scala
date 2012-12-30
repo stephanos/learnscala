@@ -341,7 +341,6 @@ trait Deps {
     var playWeb = ("play" %% "play" % V.Play) excludeAll(
         ExclusionRule(organization = "org.springframework"),
         ExclusionRule(organization = "net.sf.ehcache"),
-        ExclusionRule(organization = "com.codahale"),
         ExclusionRule(name = "closure-compiler"),
         ExclusionRule(name = "bonecp"),
         ExclusionRule(name = "ebean"),

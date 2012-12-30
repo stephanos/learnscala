@@ -17,30 +17,30 @@ object Content extends MyController {
 
     // === ALLGEMEIN
 
-    lazy val einfuehrung = Slide("B10", "Einführung", basic, status = "complete")
+    lazy val einfuehrung = Slide("B10", "Einführung", basic)
     lazy val geschichte = Slide("B11", "Geschichte", basic, Seq(einfuehrung), status = "complete")
-    lazy val ersteSchritte = Slide("B12", "Erste Schritte", basic, Seq(werkzeuge1), status = "complete")
-    lazy val methoden = Slide("B13", "Methoden", basic, Seq(ersteSchritte), status = "complete")
-    lazy val kontrollstrukturen = Slide("B14", "Kontrollstrukturen", basic, Seq(uebungen), status = "complete")
+    lazy val ersteSchritte = Slide("B12", "Erste Schritte", basic, Seq(werkzeuge1))
+    lazy val methoden = Slide("B13", "Methoden", basic, Seq(ersteSchritte))
+    lazy val kontrollstrukturen = Slide("B14", "Kontrollstrukturen", basic, Seq(uebungen))
 
     // === OBJEKTE
 
-    lazy val klassen1 = Slide("O10", "Klassen I", oop, Seq(methoden, uebungen), status = "complete")
-    lazy val objekte = Slide("O12", "Objekte", oop, Seq(klassen1), status = "complete")
-    lazy val vererbung1 = Slide("O11", "Vererbung", oop, Seq(objekte), status = "complete")
-    lazy val pakete = Slide("O13", "Pakete", oop, Seq(vererbung1), status = "complete")
+    lazy val klassen1 = Slide("O10", "Klassen I", oop, Seq(methoden, uebungen))
+    lazy val objekte = Slide("O12", "Objekte", oop, Seq(klassen1))
+    lazy val vererbung1 = Slide("O11", "Vererbung", oop, Seq(objekte))
+    lazy val pakete = Slide("O13", "Pakete", oop, Seq(vererbung1))
 
     // === FUNKTIONEN
 
-    lazy val funcproc = Slide("F10", "FP", fp, Seq(geschichte), status = "complete")
-    lazy val funktionen1 = Slide("F11", "Funktionen I", fp, Seq(funcproc, uebungen), status = "complete")
-    lazy val funktionen2 = Slide("F12", "Funktionen II", fp, Seq(funktionen1), status = "complete")
+    lazy val funcproc = Slide("F10", "FP", fp, Seq(geschichte))
+    lazy val funktionen1 = Slide("F11", "Funktionen I", fp, Seq(funcproc, uebungen))
+    lazy val funktionen2 = Slide("F12", "Funktionen II", fp, Seq(funktionen1))
 
     // === ERWEITERT
 
     lazy val werkzeuge1 = Slide("E10", "Werkzeuge I", ext, Seq(geschichte), status = "complete")
-    lazy val werkzeuge2 = Slide("E11", "Werkzeuge II", ext, Seq(methoden), status = "complete")
-    lazy val uebungen = Slide("E12", "Übungen", ext, Seq(werkzeuge2), status = "complete")
+    lazy val werkzeuge2 = Slide("E11", "Werkzeuge II", ext, Seq(methoden))
+    lazy val uebungen = Slide("E12", "Übungen", ext, Seq(werkzeuge2))
 
 
     // ================================================================================================================
@@ -49,32 +49,32 @@ object Content extends MyController {
     // === ALLGEMEIN
 
     lazy val annotationen = Slide("B21", "Annotationen", basic, Seq())
-    lazy val operatoren = Slide("B22", "Operatoren", basic, Seq(methoden, klassen1), status = "complete")
+    lazy val operatoren = Slide("B22", "Operatoren", basic, Seq(methoden, klassen1))
     lazy val regexp = Slide("B23", "Reguläre Ausdrücke", basic, Seq())
-    lazy val recursion = Slide("B25", "Rekursion", basic, Seq(kontrollstrukturen, annotationen), status = "complete")
-    lazy val implicit1 = Slide("B23", "Implicits", basic, Seq(pakete), status = "complete")
+    lazy val recursion = Slide("B25", "Rekursion", basic, Seq(kontrollstrukturen, annotationen))
+    lazy val implicit1 = Slide("B23", "Implicits", basic, Seq(pakete))
 
     // === OBJEKTE
 
-    lazy val typen1 = Slide("O20", "Typen", oop, Seq(klassen1), status = "complete")
-    lazy val traits = Slide("O21", "Traits", oop, Seq(klassen1, vererbung1), status = "complete")
-    lazy val klassen2 = Slide("O22", "Klassen II", oop, Seq(vererbung1), status = "complete")
-    lazy val generics1 = Slide("O24", "Typ-Parameter", oop, Seq(traits, klassen2), status = "complete")
+    lazy val typen1 = Slide("O20", "Typen", oop, Seq(klassen1))
+    lazy val traits = Slide("O21", "Traits", oop, Seq(klassen1, vererbung1))
+    lazy val klassen2 = Slide("O22", "Klassen II", oop, Seq(vererbung1))
+    lazy val generics1 = Slide("O24", "Typ-Parameter", oop, Seq(traits, klassen2))
 
     // === FUNKTIONEN
 
-    lazy val datatypes1 = Slide("F20", "Datenstrukturen I", fp, Seq(klassen2, generics1), status = "complete")
-    lazy val datatypes2 = Slide("F21", "Datenstrukturen II", fp, Seq(datatypes1), status = "complete")
-    lazy val listen = Slide("F22", "Listenverarbeitung", fp, Seq(datatypes2), status = "complete")
-    lazy val funktionen3 = Slide("F23", "Funktionen III", fp, Seq(datatypes2, funktionen2), status = "complete")
-    lazy val forexpr = Slide("F24", "for-Ausdruck", fp, Seq(funktionen3), status = "complete")
+    lazy val datatypes1 = Slide("F20", "Datenstrukturen I", fp, Seq(klassen2, generics1))
+    lazy val datatypes2 = Slide("F21", "Datenstrukturen II", fp, Seq(datatypes1))
+    lazy val listen = Slide("F22", "Listenverarbeitung", fp, Seq(datatypes2))
+    lazy val funktionen3 = Slide("F23", "Funktionen III", fp, Seq(datatypes2, funktionen2))
+    lazy val forexpr = Slide("F24", "for-Ausdruck", fp, Seq(funktionen3))
 
     // === ERWEITERT
 
-    lazy val xml = Slide("E20", "XML", ext, Seq(forexpr), status = "complete")
+    lazy val xml = Slide("E20", "XML", ext, Seq(forexpr))
     lazy val jsond = Slide("E21", "JSON", ext, Seq())
     lazy val swing = Slide("E23", "Swing", ext, Seq())
-    lazy val interop = Slide("E24", "Interoperabilität", ext, Seq(implicit1, annotationen, datatypes2, traits), status = "complete")
+    lazy val interop = Slide("E24", "Interoperabilität", ext, Seq(implicit1, annotationen, datatypes2, traits))
 
 
     // ================================================================================================================
@@ -99,15 +99,15 @@ object Content extends MyController {
     // === FUNKTIONEN
 
     lazy val datatypes3 = Slide("F30", "Datenstrukturen III", fp, Seq(datatypes2))
-    lazy val funktionen4 = Slide("F31", "Funktionen IV", fp, Seq(funktionen3), status = "complete")
-    lazy val kontrollabstraktion = Slide("F32", "Kontrollabstraktion", fp, Seq(funktionen4), status = "complete")
+    lazy val funktionen4 = Slide("F31", "Funktionen IV", fp, Seq(funktionen3))
+    lazy val kontrollabstraktion = Slide("F32", "Kontrollabstraktion", fp, Seq(funktionen4))
 
     // === ERWEITERT
 
-    lazy val tests = Slide("E30", "Testen", ext, Seq(traits), status = "complete")
-    lazy val aktoren = Slide("E31", "Aktoren", ext, Seq(funktionen4, forexpr), status = "complete")
-    lazy val dbase = Slide("E32", "Datenbanken", ext, Seq(funktionen4), status = "complete")
-    lazy val web = Slide("E33", "Web-Entwicklung", ext, Seq(funktionen4), status = "complete")
+    lazy val tests = Slide("E30", "Testen", ext, Seq(traits))
+    lazy val aktoren = Slide("E31", "Aktoren", ext, Seq(funktionen4, forexpr))
+    lazy val dbase = Slide("E32", "Datenbanken", ext, Seq(funktionen4))
+    lazy val web = Slide("E33", "Web-Entwicklung", ext, Seq(funktionen4))
     lazy val utilities = Slide("E34", "Utilities", ext, Seq())
     lazy val scalaz = Slide("E35", "Scalaz", ext, Seq(typeclass))
 
@@ -115,5 +115,6 @@ object Content extends MyController {
     // ================================================================================================================
     // SONSTIGE =======================================================================================================
 
-    lazy val ausblick = Slide("ausblick", "Ausblick", "", Seq(), status = "complete")
+    lazy val ausblick = Slide("ausblick", "Ausblick", "", Seq())
+    lazy val end = Slide("ende", "Ende", "", Seq())
 }

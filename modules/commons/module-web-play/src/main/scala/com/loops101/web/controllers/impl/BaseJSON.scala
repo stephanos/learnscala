@@ -10,9 +10,11 @@ trait BaseJSON {
 
     // REPLY
 
+    val emptyJsObject = toJson(Map[String, JsValue]())
+
     protected lazy val jOk: Result = jOk()
 
-    protected def jOk(data: JsValue = toJson(Map[String, JsValue]())): Result =
+    protected def jOk(data: JsValue = emptyJsObject): Result =
         jOk(stringify(data))
 
     protected def jOk(data: String): Result =

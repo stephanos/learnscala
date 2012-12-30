@@ -158,7 +158,7 @@
             @sidebyside((30,70), gap = 3) {
                 @snippet() {
                     @callblock() {
-                        |List (1, 2, 3).head
+                        |List(1, 2, 3).head
                     }
                     @outblock() {
                         |res0: Int = 1
@@ -168,7 +168,7 @@
                 @sidebyside(gap = 10) {
                     @snippet() {
                         @callblock() {
-                            |List (1, 2, 3).tail
+                            |List(1, 2, 3).tail
                         }
                         @outblock() {
                             |res0: List[Int] = List(2,3)
@@ -177,7 +177,7 @@
                 } {
                     @snippet() {
                         @callblock() {
-                            |List (1).tail
+                            |List(1).tail
                         }
                         @outblock() {
                             |res0: List[Int] = List()
@@ -194,22 +194,24 @@
             @spacer()
 
             @sidebyside(gap = 10) {
-                <h4 class="fragment tcenter">Methoden</h4>
+                <h4 class="fragment tcenter">(A) Methoden</h4>
 
                 @spacer()
 
                 @snippet() {
                     @sourceblock(id = "sum-rec") {
                         |def sum (lst: List[Int]): Int =
-                        |  if  (lst == Nil) 0
-                        |  else lst.head + sum (lst.tail)
+                        |  if (lst == Nil)
+                        |    0
+                        |  else
+                        |    lst.head + sum (lst.tail)
                     }
                 }
                 @codesub2() {
                     via Methoden <code>head</code> und <code>tail</code>
                 }
             } {
-                <h4 class="fragment tcenter">Pattern Matching</h4>
+                <h4 class="fragment tcenter">(B) Pattern Matching</h4>
 
                 @spacer()
 

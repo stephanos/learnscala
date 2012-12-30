@@ -20,6 +20,9 @@
             "deps":["app/util/log"],
             "exports":"Reveal"
         },
+        "lib/chart/piechart": {
+            "deps":["jquery"]
+        },
         "lib/editor/codemirror":{
             "exports":"CodeMirror"
         },

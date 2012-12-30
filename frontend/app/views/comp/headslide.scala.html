@@ -1,9 +1,10 @@
-@(id: String = null, subsubtitle: String = null, subtitle: String = null, title: String = null, chapter: String = null,
+@(id: String = null, subsubtitle: String = null, subtitle: String = null, title: String = null, chapter: String = null, state: String = null,
   hideFooter: Boolean = false, htmlTitle: xml.Elem = null, clazz: String = "")(head: Html = Html.empty)(body: Html = Html.empty)(implicit topic: String = null)
 
 @defining(Option(title).getOrElse(htmlTitle)) { theTitle =>
 
     <section @{if(id == null) "" else "data-id=slide-" + id}
+             @{if(state == null) "" else "data-state='" + state + "'"}
              @{if(theTitle == null) "" else "data-title='" + theTitle + "'"}
              @{if(topic == null) "" else "data-topic='" + topic + "'"}
              @{if(subtitle == null) "" else "data-subtitle='" + subtitle + "'"}

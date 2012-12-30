@@ -49,38 +49,38 @@
                     >div {
                         padding: 5px 4px;
 
-                        ul {
+                        >ul {
                             padding: 0;
                             margin: 0;
-                        }
 
-                        li {
-                            .round(3px);
-                            margin-bottom: 7px;
-                            list-style: none;
+                            >li {
+                                .round(3px);
+                                margin-bottom: 7px;
+                                list-style: none;
 
-                            border: 1px solid #ccc;
+                                border: 1px solid #ccc;
 
-                            @bg: darken(#fff, 1%);
-                            background-color: @bg;
-                            //&:hover { background-color: darken(@bg, 2%); }
+                                @bg: darken(#fff, 1%);
+                                background-color: @bg;
+                                //&:hover { background-color: darken(@bg, 2%); }
 
-                            @f: 10%;
-                            &.req { .bg(fade(@gray, @f)); } // must be first
-                            &.incomplete { .bg(fade(@yellow, @f)); }
-                            &.todo { .bg(fade(@red, @f)); }
-                            &.done { .bg(fade(@green, @f)); }
+                                @f: 10%;
+                                &.req { .bg(fade(@gray, @f)); } // must be first
+                                &.incomplete { .bg(fade(@yellow, @f)); }
+                                &.todo { .bg(fade(@red, @f)); }
+                                &.done { .bg(fade(@green, @f)); }
 
-                            @p: 7px;
-                            >span {
-                                display: block;
-                                padding: @p;
-                            }
-                            >a, >input {
-                                text-decoration: none;
-                                display: inline-block;
-                                margin: 0 0 0 @p;
-                                padding: @p 0;
+                                @p: 7px;
+                                >span {
+                                    display: block;
+                                    padding: @p;
+                                }
+                                >a, >input {
+                                    text-decoration: none;
+                                    display: inline-block;
+                                    margin: 0 0 0 @p;
+                                    padding: @p 0;
+                                }
                             }
                         }
                     }
@@ -137,7 +137,7 @@
 
 .tooltip {
     .bold();
-    font-size: 115%;
+    font-size: 80%;
     ul {
         margin: 10px 20px;
         padding-left: 5px;
