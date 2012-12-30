@@ -88,7 +88,7 @@
                         </p>
                         <p>
                             Verwende vars, veränderliche Objekte und Methoden mit Nebeneffekten
-                            nur, wenn du einen guten Grund dafür hast.
+                            nur, wenn du einen @uline("guten") Grund dafür hast.
                         </p>
                         <var class="who">
                             Martin Odersky
@@ -96,6 +96,63 @@
                     </blockquote>
                 </div>
             }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = subtitle, subtitle = "Beispiel", connector = ":") {
+
+                @sidebyside(gap = 10) {
+
+                    @subhead() {
+                        Date
+                    }
+
+                    @snippet() {
+                        @sourceblock() {
+                            |val d = new java.util.Date
+                            |println(d)
+                        }
+                        @outblock() {
+                            |Sun Jan 01 00:00:00 CET 2013
+                        }
+                        @sourceblock() {
+                            |d.setTime(d.setYear(2050))
+                            |println(d)
+                        }
+                        @outblock() {
+                            |Sun Jan 01 00:00:00 CET 2050
+                        }
+                    }
+                    @codesub2() {
+                        <code>Date</code> ist <var>veränderlich</var>
+                    }
+                } {
+                    @subhead() {
+                        String
+                    }
+
+                    @snippet() {
+                        @sourceblock() {
+                            |val s = "old String"
+                            |println(s)
+                        }
+                        @outblock() {
+                            |old String
+                        }
+                        @sourceblock() {
+                            |s.replaceAll("old", "new")
+                            |println(s)
+                        }
+                        @outblock() {
+                            |old String
+                        }
+                    }
+                    @codesub2() {
+                        <code>String</code> ist <em>unveränderlich</em>
+                    }
+                }
+            }
+
 
             <!-- ################################################################################## -->
 
@@ -123,6 +180,7 @@
                         Objektorientierte Programmierung sorgt für verständlichen Code
                         durch <em>Kapselung</em> von Zuständen.
                     </p>
+                    @spacer_half()
                     <p>
                         Funktionale Programmierung sorgt für verständlichen Code
                         durch <em>Minimierung</em> von Zuständen.

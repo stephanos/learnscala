@@ -12,196 +12,200 @@
 
         <!-- ################################################################################## -->
 
-        @defining("Anlegen") { title =>
+        @titleslide(title = "Definition") {
 
-            @slide(title = title) {
-
+            @middle(80) {
+                @sidebyside() {
                     @sourcecode() {
                         |package com.mycompany.staff
                         |
                         |class Employee
                     }
-
-                    @codesub2() {
-                        Klasse <code>Employee</code> wird in dem Paket
+                } {
+                    @codenote2() {
+                        <code>Employee</code> wird im Paket
                         <code>com.mycompany.staff</code> platziert
                     }
+                }
 
                 @spacer()
 
-
+                @sidebyside() {
                     @sourcecode() {
                         |package com.mycompany.staff
                         |
                         |class Employee
                         |class Developer extends Employee
                     }
-
-                    @codesub2() {
+                } {
+                    @codenote2() {
                         beliebig viele Klassen können in einem Paket platziert werden
                     }
-
+                }
 
                 @spacer()
 
-
+                @sidebyside() {
                     @sourcecode() {
-                        |// file: src/main/scala/Employee.scala
+                        |// src/main/scala/Employee.scala
                         |package com.mycompany.staff
                         |
                         |class Employee
                     }
-
-                    @codesub2() {
+                } {
+                    @codenote2() {
+                        <var>optional</var>:
                         Dateipfad und Paketpfad müssen nicht übereinstimmen
                     }
+                }
+            }
+        }
 
+        <!-- ################################################################################## -->
+
+        @titleslide(title = "Verschachtelung") {
+
+            @sourcecode() {
+                |package com.mycompany.staff {
+                |
+                |  class Employee
+                |}
+            }
+            @codesub2() {
+                nur der Blockinhalt gehört zum Paket
             }
 
-            <!-- ################################################################################## -->
+            @spacer()
 
-            @slide(title = title, subtitle = "Verschachtelung") {
+            @sourcecode() {
+                |package com.mycompany.staff {
+                |
+                |  class Employee
+                |
+                |  package test {
+                |
+                |    class EmployeeTest
+                |       extends Employee
+                |  }
+                |}
+            }
+            @codesub2() {
+                Paket <code>test</code> hat Zugriff auf Paket <code>com.mycompany.staff</code>
+            }
+        }
 
+        <!-- ################################################################################## -->
+
+        @slide(title = "Öffnung von Paketen") {
+
+            @autocenter {
                 @sourcecode() {
-                    |package com.mycompany.staff {
+                    |package com.mycompany {
                     |
-                    |  class Employee
+                    |  class Homepage
+                    |
+                    |  package staff {
+                    |    class Employee
+                    |  }
+                    |}
+                }
+            }
+
+            @spacer2()
+
+            @sidebyside(gap = 10) {
+                @sourcecode() {
+                    |package com.mycompany
+                    |package external
+                    |
+                    |class Customer {
+                    |  val hp = new Homepage
                     |}
                 }
                 @codesub2() {
-                    nur der Blockinhalt gehört zum Paket
+                    <code>Customer</code> hat Zugriff auf Inhalte von <code>com.mycompany</code>
                 }
-
-                @spacer2()
-
+            } {
                 @sourcecode() {
-                    |package com.mycompany.staff {
+                    |package com.mycompany.staff
+                    |package management
                     |
-                    |   class Employee
-                    |
-                    |   package test {
-                    |
-                    |       class EmployeeTest
-                    |           extends Employee
-                    |   }
+                    |class Boss {
+                    |  val e = new Employee
                     |}
                 }
                 @codesub2() {
-                    Paket <code>test</code> hat Zugriff auf Paket <code>com.mycompany.staff</code>
+                    <code>Boss</code> hat Zugriff auf Inhalte von <code>com.mycompany.staff</code>
                 }
             }
+        }
 
-            <!-- ################################################################################## -->
+        <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Öffnung von Paketen") {
+        @titleslide(title = "Sichtbarkeit") {
 
-                @autocenter {
-                    @sourcecode() {
-                        |package com.mycompany {
-                        |
-                        |  class Homepage
-                        |
-                        |  package staff {
-                        |    class Employee
-                        |  }
-                        |}
-                    }
+                @sourcecode() {
+                    |package com.mycompany.internal
+                    |
+                    |class private[internal] SalaryCalculator
                 }
 
-                @spacer2()
-
-                @sidebyside(gap = 10) {
-                    @sourcecode() {
-                        |package com.mycompany
-                        |package external
-                        |
-                        |class Customer {
-                        |  val hp = new Homepage
-                        |}
-                    }
-                    @codesub2() {
-                        <code>Customer</code> hat Zugriff auf Inhalte von <code>com.mycompany</code>
-                    }
-                } {
-                    @sourcecode() {
-                        |package com.mycompany.staff
-                        |package management
-                        |
-                        |class Boss {
-                        |  val e = new Employee
-                        |}
-                    }
-                    @codesub2() {
-                        <code>Boss</code> hat Zugriff auf Inhalte von <code>com.mycompany.staff</code>
-                    }
+                @codesub2() {
+                    beschränkt den Zugriff auf
+                    das Paket <code>internal</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
                 }
-            }
 
-            <!-- ################################################################################## -->
+            @spacer2()
 
-            @titleslide(title = title, subtitle = "Sichtbarkeit") {
+                @sourcecode() {
+                    |package com.mycompany
+                    |
+                    |class private[mycompany] Employee
+                }
 
-                    @sourcecode() {
-                        |package com.mycompany.internal
-                        |
-                        |class private[internal] SalaryCalculator
-                    }
+                @codesub2() {
+                    beschränkt den Zugriff auf
+                    das Paket <code>mycompany</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
+                }
+        }
 
-                    @codesub2() {
-                        beschränkt den Zugriff auf
-                        das Paket <code>internal</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
-                    }
+        <!-- ################################################################################## -->
 
-                @spacer2()
+        @titleslide(title = "Package Object") {
 
-                    @sourcecode() {
-                        |package com.mycompany
-                        |
-                        |class private[mycompany] Employee
-                    }
+                @sourcecode() {
+                    |// file "package.scala"
+                    |package com
+                    |
+                    |package object mycompany {
+                    |
+                    |  val employeeCount = 42
+                    |}
+                }
 
-                    @codesub2() {
-                        beschränkt den Zugriff auf
-                        das Paket <code>mycompany</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
-                    }
-            }
+                @codesub2() {
+                    <em>Package Object</em> kann Methoden und Variablen enthalten
+                }
 
-            <!-- ################################################################################## -->
+            @spacer()
 
-            @titleslide(title = title, subtitle = "Package Object") {
+            @*
+                @sourcecode() {
+                    |package scala
+                    |
+                    |package object math extends MathCommon {
+                    |
+                    |  def sinh(x: Double): Double = java.lang.Math.sinh(x)
+                    |  def cosh(x: Double): Double = java.lang.Math.cosh(x)
+                    |  def tanh(x: Double): Double = java.lang.Math.tanh(x)
+                    |  // ...
+                    |}
+                }
 
-                    @sourcecode() {
-                        |// file "package.scala"
-                        |package com
-                        |
-                        |package object mycompany {
-                        |
-                        |  val employeeCount = 42
-                        |}
-                    }
-
-                    @codesub2() {
-                        Package Object kann Methoden und Variablen enthalten
-                    }
-
-                @spacer()
-
-                    @sourcecode() {
-                        |package scala
-                        |
-                        |package object math extends MathCommon {
-                        |
-                        |  def sinh(x: Double): Double = java.lang.Math.sinh(x)
-                        |  def cosh(x: Double): Double = java.lang.Math.cosh(x)
-                        |  def tanh(x: Double): Double = java.lang.Math.tanh(x)
-                        |  // ...
-                        |}
-                    }
-
-                    @codesub2() {
-                        Package Object <code>math</code> von Scala
-                    }
-            }
+                @codesub2() {
+                    Package Object <code>math</code> von Scala
+                }
+            *@
         }
 
         <!-- ################################################################################## -->
@@ -269,7 +273,7 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title, subtitle = "Pfad", withFollowing = true) {
+            @titleslide(title = title, subtitle = "Pfad", connector = ":") {
 
                 @middle(75) {
                     @sidebyside((70,30)) {

@@ -36,51 +36,14 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Scala im Vergleich") {
-
-            <table style="border-collapse: separate; border-spacing: 25px;">
-                <thead>
-                <tr style="border-bottom: 5px">
-                    <th>
-                    </th>
-                    <th>
-                        @image("java.png", height = 120, clazz = "naked")
-                    </th>
-                    <th style="vertical-align: middle">
-                        @image("groovy.png", height = 90, clazz = "naked")
-                    </th>
-                    <th>
-                        @image("clojure.png", height = 120, clazz = "naked")
-                    </th>
-                    <th>
-                        @image("scala.png", height = 120, clazz = "naked")
-                    </th>
-                </tr>
-                </thead>
-                <tbody style="text-align: center">
-                    <tr class="fragment">
-                        <td><h3>Statisch</h3></td>
-                        <td>@check()</td>
-                        <td></td>
-                        <td></td>
-                        <td>@check()</td>
-                    </tr>
-                    <tr class="fragment">
-                        <td><h3>OOP</h3></td>
-                        <td>@check()</td>
-                        <td>@check()</td>
-                        <td></td>
-                        <td>@check()</td>
-                    </tr>
-                    <tr class="fragment">
-                        <td><h3>Funktional</h3></td>
-                        <td></td>
-                        <td></td>
-                        <td>@check()</td>
-                        <td>@check()</td>
-                    </tr>
-                </tbody>
-            </table>
+        @headslide(title = "Mix") {
+            Scala ist ... <span class='fragment'><em>ein Mix</em></span>
+        } {
+            @fragment {
+                @autocenter {
+                    @image("blender.png", width = 550, clazz = "naked")
+                }
+            }
         }
 
         <!-- ################################################################################## -->
@@ -88,7 +51,6 @@
         @headslide(title = "Flexibel") {
             Scala ist ... <span class='fragment'><em>flexibel</em></span>
         } {
-
 
         }
 
@@ -285,6 +247,15 @@
         @headslide(title = "Statisch") {
             Scala ist ... <span><em>statisch typisiert</em></span>
         } {
+            @spacer()
+
+            @fragment {
+                @autocenter {
+                    @image("static.jpeg", width = 650)
+                }
+            }
+
+            @*
             @sidebyside((66,33)) {
                 @callcode() {
                     |val i = 1 + 2 * 3    // the type of i is Int
@@ -322,6 +293,7 @@
             @tipbox() {
                 Sicheres Refactoring, weniger Flüchtigkeitsfehler & Testaufwand
             }
+            *@
         }
 
         <!-- ################################################################################## -->
@@ -329,10 +301,9 @@
         @headslide(title = "Java") {
             Scala ist ... <span><em>Java</em></span>
         } {
-
             @fragment {
                 @autocenter {
-                    @image("duke.png", height = 600, clazz = "naked")
+                    @image("duke.png", width = 300, clazz = "naked")
                 }
             }
 
@@ -365,6 +336,15 @@
         @headslide(title = "Erweiterbar") {
             Scala ist ... <span><em>erweiterbar</em></span>
         } {
+            @spacer2()
+
+            @fragment {
+                @autocenter {
+                    @image("forging.png", clazz = "naked", width = 500)
+                }
+            }
+
+            @*
             @sidebyside((60,40)) {
                 @sourcecode() {
                     |retry(3) {
@@ -396,10 +376,12 @@
             @tipbox() {
                 Scala lässt sich flexibel an ein Problem anpassen.
             }
+            *@
         }
 
         <!-- ################################################################################## -->
 
+        @*
         @headslide(title = "Skalierbar") {
             Scala ist ... <span><em>skalierbar</em></span>
         } {
@@ -423,6 +405,7 @@
                 Aktoren lassen sich leicht über mehrere Prozessoren skalieren.
             }
         }
+        *@
 
         <!-- ################################################################################## -->
 
@@ -480,38 +463,90 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Zusammenfassung") {
-            @autocenter {
-                @image("scala-logo.png", clazz = "naked", height = 100)
+        @*
+        @slide(title = "Scala im Vergleich") {
 
-                @spacer2()
+            <table style="border-collapse: separate; border-spacing: 25px;">
+                <thead>
+                <tr style="border-bottom: 5px">
+                    <th>
+                    </th>
+                    <th>
+                        @image("java.png", height = 120, clazz = "naked")
+                    </th>
+                    <th style="vertical-align: middle">
+                        @image("groovy.png", height = 90, clazz = "naked")
+                    </th>
+                    <th>
+                        @image("clojure.png", height = 120, clazz = "naked")
+                    </th>
+                    <th>
+                        @image("scala.png", height = 120, clazz = "naked")
+                    </th>
+                </tr>
+                </thead>
+                <tbody style="text-align: center">
+                    <tr class="fragment">
+                        <td><h3>Statisch</h3></td>
+                        <td>@check()</td>
+                        <td></td>
+                        <td></td>
+                        <td>@check()</td>
+                    </tr>
+                    <tr class="fragment">
+                        <td><h3>OOP</h3></td>
+                        <td>@check()</td>
+                        <td>@check()</td>
+                        <td></td>
+                        <td>@check()</td>
+                    </tr>
+                    <tr class="fragment">
+                        <td><h3>Funktional</h3></td>
+                        <td></td>
+                        <td></td>
+                        <td>@check()</td>
+                        <td>@check()</td>
+                    </tr>
+                </tbody>
+            </table>
+        }
+        *@
 
-                <h4 class="indent90">
-                    @sidebyside(gap = 30) {
-                        <ul class="fragment w40p left">
-                            <li class="nobreak"><em>Java</em></li>
-                            <li class="nobreak"><em>funktional</em></li>
-                            <li class="nobreak"><em>skalierbar</em></li>
-                            <li class="nobreak"><em>statisch typisiert</em></li>
-                            <li class="nobreak"><em>in Benutzung</em></li>
-                            <li class="nobreak"><em>kurz und präzise</em></li>
-                            <li class="nobreak"><em>erweiterbar</em></li>
-                            <li class="nobreak"><em>objektorientiert</em></li>
-                        </ul>
-                    } {
-                        <ul class="fragment w40p left">
-                            <li class="nobreak"><var>stabil</var></li>
-                            <li class="nobreak"><var>cool</var></li>
-                            <li class="nobreak"><var>eine Freude</var></li>
-                            <li class="nobreak"><var>produktiv</var></li>
-                            <li class="nobreak"><var>anspruchsvoll</var></li>
-                            <li class="nobreak"><var>eine neue Denkweise</var></li>
-                            <li class="nobreak"><var>flexibel</var></li>
-                            <li class="nobreak"><var>modern</var></li>
-                        </ul>
-                    }
-                </h4>
-            }
+        <!-- ################################################################################## -->
+
+        @slide() {
+            @spacer2()
+            @image("scala-logo.png", clazz = "naked")
+
+            @*
+            @spacer2()
+
+            <h4 class="indent90">
+                @sidebyside(gap = 30) {
+                    <ul class="fragment w40p left">
+                        <li class="nobreak"><em>Java</em></li>
+                        <li class="nobreak"><em>funktional</em></li>
+                        <li class="nobreak"><em>skalierbar</em></li>
+                        <li class="nobreak"><em>statisch typisiert</em></li>
+                        <li class="nobreak"><em>in Benutzung</em></li>
+                        <li class="nobreak"><em>kurz und präzise</em></li>
+                        <li class="nobreak"><em>erweiterbar</em></li>
+                        <li class="nobreak"><em>objektorientiert</em></li>
+                    </ul>
+                } {
+                    <ul class="fragment w40p left">
+                        <li class="nobreak"><var>stabil</var></li>
+                        <li class="nobreak"><var>cool</var></li>
+                        <li class="nobreak"><var>eine Freude</var></li>
+                        <li class="nobreak"><var>produktiv</var></li>
+                        <li class="nobreak"><var>anspruchsvoll</var></li>
+                        <li class="nobreak"><var>eine neue Denkweise</var></li>
+                        <li class="nobreak"><var>flexibel</var></li>
+                        <li class="nobreak"><var>modern</var></li>
+                    </ul>
+                }
+            </h4>
+            *@
         }
     }
 }

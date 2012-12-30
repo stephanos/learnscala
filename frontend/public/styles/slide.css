@@ -114,7 +114,7 @@ div.modal.fullscreen{top:10px;bottom:10px;left:10px;right:10px;padding:0;margin:
 .reveal big.p180{font-size:180%;}
 .reveal big.p190{font-size:190%;}
 .reveal big.p200{font-size:200%;}
-.reveal .iseq{font-size:200%;}
+.reveal .iseq{font-size:200%;margin-bottom:5px;}
 .reveal .indent10{margin-left:10px;}
 .reveal .indent15{margin-left:15px;}
 .reveal .indent20{margin-left:20px;}

@@ -168,7 +168,7 @@
 
             @spacer()
 
-            @sidebyside() {
+            @sidebyside(gap = 10) {
                 @snippet() {
                     @sourceblock() {
                         |def countOut() {
@@ -211,7 +211,7 @@
 
         @defining("match") { title =>
 
-            @titleslide(title = title, subtitle = "Konstante-Pattern") {
+            @titleslide(title = title, subtitle = "Konstante-Pattern", head = true) {
 
                 @sourcecode() {
                     |def days (month: Int): Int =
@@ -237,7 +237,7 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title, subtitle = "Alternativ-Pattern") {
+            @titleslide(title = title, subtitle = "Alternativ-Pattern", head = true) {
 
                 @sourcecode(id = "days2") {
                     |def days (month: Int): Int =
@@ -253,29 +253,30 @@
 
                 @spacer()
 
-                @snippet() {
-                    @callblock(reference = "days2") {
-                        |val febDays = days (2)
+                @indent() {
+                    @snippet() {
+                        @callblock(reference = "days2") {
+                            |val febDays = days (2)
+                        }
+                        @outblock() {
+                            |febDays: Int = 28
+                        }
+                        @callblock() {
+                            |days (13)
+                        }
+                        @outblock(error = true) {
+                            |scala.MatchError: 13
+                        }
                     }
-                    @outblock() {
-                        |febDays: Int = 28
+                    @codesub2() {
+                        <code>MatchError</code> bei fehlendem case
                     }
-                    @callblock() {
-                        |days (13)
-                    }
-                    @outblock(error = true) {
-                        |scala.MatchError: 13 (of class java.lang.Integer)
-                        |   at .days(&lt;console&gt;:8)
-                    }
-                }
-                @codesub2() {
-                    <code>MatchError</code> bei fehlendem match
                 }
             }
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title, subtitle = "Wildcard- und Guarded-Pattern") {
+            @titleslide(title = title, subtitle = "Wildcard-Pattern", head = true) {
 
                 @sourcecode() {
                     |def days (month: Int): Int =
@@ -286,10 +287,13 @@
                     |  }
                 }
                 @codesub2() {
-                    Wildcard-Pattern <code>_</code>
+                    Wildcard-Pattern via <code>_</code>
                 }
+            }
 
-                @spacer()
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "Guarded-Pattern", head = true) {
 
                 @sourcecode() {
                     |def days (month: Int, leap: Boolean): Int =
@@ -301,13 +305,13 @@
                     |  }
                 }
                 @codesub2() {
-                    Guarded-Pattern <code>if</code>
+                    Guarded-Pattern via <code>if</code>
                 }
             }
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title, subtitle = "Variable-Pattern") {
+            @titleslide(title = title, subtitle = "Variable-Pattern", head = true) {
 
                 @sourcecode() {
                     |def days (month: Int, leap: Boolean): Int =
@@ -333,7 +337,7 @@
             @titleslide(title = title) {
 
                 @snippet() {
-                    @sourceblock() {
+                    @sourceblock(id="try") {
                         |def getWords (msg: String) =
                         |   try {
                         |       println (msg.split(' '))
@@ -345,12 +349,6 @@
                         |   } finally {
                         |       // cleanup
                         |   }
-                    }
-                    @callblock() {
-                        |getWords (null)
-                    }
-                    @outblock() {
-                        |No message
                     }
                 }
                 @codesub2() {

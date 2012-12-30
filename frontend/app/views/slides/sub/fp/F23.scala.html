@@ -260,51 +260,66 @@
 
         @slide(title = "Beispiel") {
 
-            @sourcecode() {
-                |def separateTheMenFromTheBoys(persons: List[Person]) = {
-                |  var boys = new ListBuffer[Person]()
-                |  var men = new ListBuffer[Person]()
-                |  var validBoyNames = new ListBuffer[String]()
-                |  var validMenNames = new ListBuffer[String]()
-                |
-                |  for (person <- persons) {
-                |    if (person.age < 18) {
-                |      boys += person
-                |    } else {
-                |      men += person
-                |    }
-                |  }
-                |
-                |  var sortedBoys = boys.toList.sortBy(_.age)
-                |  var sortedMen = men.toList.sortBy(_.age)
-                |
-                |  for (boy <- sortedBoys) {
-                |    validBoyNames += boy.firstName
-                |  }
-                |  for (man <- sortedMen) {
-                |    validMenNames += man.firstName
-                |  }
-                |
-                |  (validBoyNames.toList, validMenNames.toList)
-                |}
+            @sidebyside() {
+                @sourcecode() {
+                    |def separate(persons: List[Person]) = {
+                    |  var boys = new ListBuffer[Person]()
+                    |  var men = new ListBuffer[Person]()
+                    |  var boyNames = new ListBuffer[String]()
+                    |  var menNames = new ListBuffer[String]()
+                    |
+                    |  for (person <- persons) {
+                    |    if (person.age < 18) {
+                    |      boys += person
+                    |    } else {
+                    |      men += person
+                    |    }
+                    |  }
+                    |
+                    |  var sortedBoys = boys.toList.sortBy(_.age)
+                    |  var sortedMen = men.toList.sortBy(_.age)
+                    |
+                    |  for (boy <- sortedBoys) {
+                    |    boyNames += boy.firstName
+                    |  }
+                    |  for (man <- sortedMen) {
+                    |    menNames += man.firstName
+                    |  }
+                    |
+                    |  (boyNames.toList, menNames.toList)
+                    |}
+                }
+            } {
+                @sourcecode() {
+                    |def separate(persons: List[Person]) = {
+                    |
+                    |  def sortAndMap(ppl: List[Person]) =
+                    |    ppl.sortBy(p => a.age)
+                    |       .map(p => p.firstName)
+                    |
+                    |  val (minors, adults) =
+                    |    persons.partition(p => p.age < 18)
+                    |
+                    |  (sortByAgeAndMapToName(minors),
+                    |    sortByAgeAndMapToName(adults))
+                    |}
+                }
             }
         }
 
-        @slide(title = "Beispiel") {
-            @spacer()
-            @sourcecode() {
-                |def separateTheMenFromTheBoys(persons: List[Person]) = {
-                |
-                |  def sortByAgeAndMapToName(persons: List[Person]) =
-                |    persons.sortBy(_.age).map(_.firstName)
-                |
-                |  val (minors, adults) =
-                |    persons.partition(_.age < 18)
-                |
-                |  (sortByAgeAndMapToName(minors), sortByAgeAndMapToName(adults))
-                |}
-            }
+        @*
+        @slide() {
+            def getTemporaryDirectory(tmpArg: Option[String]): java.io.File = {
+           ￼￼
+           tmpArg.map(name => new java.io.File(name)).
+               filter(_.isDirectory).
+               getOrElse(new java.io.File(
+                 System.getProperty("java.io.tmpdir")))
+           Create if defined Only directories
+           Specify default
+           ￼￼￼￼￼￼}
         }
+        *@
 
         <!-- ################################################################################## -->
 

@@ -15,7 +15,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "REPL") {
+        @titleslide(title = "REPL") {
 
             @sidebyside((40,60)) {
                 @snippet() {
@@ -46,7 +46,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Objekt") {
+        @titleslide(title = "Objekte") {
 
             @snippet() {
                 @callblock() {
@@ -90,62 +90,65 @@
                 Methode <code>==</code> von Objekt <code>42</code>
             }
 
-            @spacer()
-
+            @*
             @infobox() {
                 Alles ist ein Objekt. Jedes Objekt hat Methoden.
             }
+            *@
         }
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Blöcke") {
+        @titleslide(title = "Ausdruck") {
 
-            @snippet() {
-                @sourceblock() {
-                    |{
-                    |   1 + 1
-                    |   2 + 2
-                    |   3 + 3
-                    |}
+            @middle(80) {
+                @sidebyside() {
+                    @snippet() {
+                        @sourceblock() {
+                            |1 + 1
+                        }
+                        @outblock() {
+                            |res0: Int = 2
+                        }
+                    }
+                } {
+                    @codenote2() {
+                        ein Ausdruck
+                    }
                 }
-                @outblock() {
-                    |res0: Int = 6
+
+                @spacer_half()
+
+                @sidebyside() {
+                    @snippet() {
+                        @sourceblock() {
+                            |{
+                            |   1
+                            |   { 1 + 1 }
+                            |}
+                        }
+                        @outblock() {
+                            |res0: Int = 2
+                        }
+                    }
+                } {
+                    @codenote2() {
+                        Blöcke bündeln mehrere Ausdrücke
+                    }
                 }
-            }
 
-            @codesub2() {
-                Blöcke bündeln mehrere Anweisungen
-            }
+                @spacer()
 
-            @spacer()
-
-            @snippet() {
-                @sourceblock() {
-                    |{
-                    |   { 1 + 1 }
-                    |   2
-                    |}
+                @infobox() {
+                    Jeder Ausdruck hat einen Wert und Typ.
+                    Der letzte Ausdruck eines Blocks bestimmt seinen Wert.
                 }
-                @outblock() {
-                    |res0: Int = 2
-                }
-            }
-
-            @codesub2() {
-                letzter Ausdruck bestimmt den Wert des Blocks
-            }
-
-            @spacer()
-
-            @infobox() {
-                Jeder Ausdruck hat einen Wert und Typ.
             }
         }
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Semikolons") {
+        @titleslide(title = "Semikolons") {
 
             @snippet() {
                 @callblock() {
@@ -159,7 +162,7 @@
                 }
             }
 
-            @spacer()
+            @iseq(true)
 
             @snippet() {
                 @callblock() {
@@ -170,7 +173,7 @@
                 }
             }
 
-            @spacer2()
+            @spacer()
 
             @tipbox() {
                 Semikolons weglassen, <br/> außer mehrere Anweisungen stehen in einer Zeile.
@@ -181,7 +184,7 @@
 
         @defining("Variablen") { title =>
 
-            @slide(title = title) {
+            @titleslide(title = title) {
 
                 @sidebyside() {
                     @snippet() {
@@ -224,7 +227,7 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "unveränderlich") {
+            @titleslide(title = title, subtitle = "Unveränderlichkeit") {
 
                 @snippet() {
                     @callblock() {
@@ -250,7 +253,7 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Typensicherheit") {
+            @titleslide(title = title, subtitle = "Typensicherheit") {
 
                 @snippet() {
                     @callblock() {
@@ -272,7 +275,7 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Typinferenz") {
+            @titleslide(title = title, subtitle = "Typinferenz") {
 
                 @sidebyside(gap = 10) {
                     @snippet() {
@@ -355,7 +358,7 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "") {
+            @titleslide(title = title, subtitle = "Veränderlichkeit") {
 
                 @sidebyside(gap = 10) {
                     @snippet() {

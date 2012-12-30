@@ -1,4 +1,4 @@
-@(w: (Int, Int) = (50, 50), classes: (String, String) = ("",""), clazz: String = "", fragment: Boolean = false, gap: Double = 3.0)(cl: Html = empty())(cr: Html = empty())
+@(w: (Int, Int) = (50, 50), classes: (String, String) = ("",""), clazz: String = "", fragment: Boolean = false, gap: Double = 3.0, gapText: String = "")(cl: Html = empty())(cr: Html = empty())
 
 <div class='sidebyside @{if(fragment) "fragment"} @{clazz}'>
 
@@ -13,7 +13,9 @@
                 <td class="@classes._1">
                     @cl
                 </td>
-                <td>&nbsp;</td>
+                <td style="vertical-align:middle">
+                    &nbsp;@gapText
+                </td>
                 <td class="@classes._2">
                     @cr
                 </td>

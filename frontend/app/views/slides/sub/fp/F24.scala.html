@@ -12,7 +12,7 @@
             @topic
         } {
             @image("swissarmyknife2.png", clazz = "naked", height = 300)
-
+            @spacer_half()
             Swiss army knife of iteration
         }
 
@@ -487,6 +487,17 @@
             }
 
             <!-- ################################################################################## -->
+
+            @*
+            def createConnection(conn_url: Option[String],
+                                conn_user: Option[String],
+                                conn_pw: Option[String]) : Option[Connection] =
+              for {
+                url <- conn_url
+                user <- conn_user
+                pw <- conn_pw
+              } yield DriverManager.getConnection(url, user, pw)
+            *@
 
             @*
             @defining("B") { subtitle =>

@@ -136,8 +136,8 @@
                 } {
                     @snippet() {
                         @sourceblock(id = "euro_dollar") {
-                            |class EUR(val v: Float)
-                            |class USD(val v: Float)
+                            |case class EUR(v: Float)
+                            |case class USD(v: Float)
                         }
                     }
 
@@ -147,7 +147,7 @@
 
                         @snippet() {
                             @callblock(id = "euro_dollar_implicit", reference = "euro_dollar") {
-                                |implicit def USD2EUR(x: USD) = new EUR(x.v * 0.8f)
+                                |implicit def USD2EUR(x: USD) = EUR(x.v * 0.8f)
                             }
                             @outblock() {
                                 |USD2EUR: (x: USD)EUR
@@ -169,7 +169,7 @@
                                |}
                            }
                            @callblock() {
-                               |Cashier.pay(new USD(5))
+                               |Cashier.pay(USD(5))
                            }
                            @outblock() {
                                |payed 5.00$
@@ -192,8 +192,8 @@
                 } {
                     @snippet() {
                         @sourceblock() {
-                            |class EUR(val v: Float)
-                            |class USD(val v: Float)
+                            |case class EUR(v: Float)
+                            |case class USD(v: Float)
                         }
                     }
 
@@ -203,8 +203,8 @@
 
                         @snippet() {
                             @callblock(reference = "euro_dollar") {
-                                |def USD2EUR(x: USD) = new EUR(x.v * 0.8f)
-                                |val eur: EUR = new USD(5)
+                                |def USD2EUR(x: USD) = EUR(x.v * 0.8f)
+                                |val eur: EUR = USD(5)
                             }
                             @outblock(error = true) {
                                 |error   : type mismatch
@@ -223,10 +223,10 @@
                         @snippet() {
                             @callblock(reference = "euro_dollar") {
                                 |implicit def USD2EUR(x: USD) = EUR(x.v * 0.8f)
-                                |val eur: EUR = new USD(5)
+                                |val eur: EUR = USD(5)
                             }
                             @outblock() {
-                                |eur: EUR = EUR@@39db0ef7
+                                |eur: EUR = EUR(4.0)
                             }
                         }
                     }
@@ -251,7 +251,7 @@
                     @title: <em>@regel</em>
                 } {
                     @sourcecode(id = "euro_dollar", fragment = false) {
-                        |class EUR(val v: Float); class USD(val v: Float)
+                        |case class EUR(v: Float); case class USD(v: Float)
                     }
 
                     @spacer()
@@ -263,8 +263,8 @@
                     } {
                         @snippet(clazz = "slim") {
                             @sourceblock(reference = "euro_dollar") {
-                                |implicit def USD2EUR(x: USD) = new EUR(x.v * 0.8f)
-                                |val eur: EUR = new USD(5)
+                                |implicit def USD2EUR(x: USD) = EUR(x.v * 0.8f)
+                                |val eur: EUR = USD(5)
                             }
                         }
                     }
@@ -283,12 +283,12 @@
                         @snippet(clazz = "slim") {
                             @sourceblock(reference = "euro_dollar") {
                                 |object Convert {
-                                |  implicit def USD2EUR(x: USD) = new EUR(x.v * 0.8f)
+                                |  implicit def USD2EUR(x: USD) = EUR(x.v * 0.8f)
                                 |}
                             }
                             @callblock() {
                                 |import Convert.USD2EUR
-                                |val eur: EUR = new USD(5)
+                                |val eur: EUR = USD(5)
                             }
                         }
                     }
@@ -307,11 +307,11 @@
                         @snippet(clazz = "slim") {
                             @sourceblock(reference = "euro_dollar") {
                                 |object USD {
-                                |  implicit def USD2EUR(x: USD) = new EUR(x.v * 0.8f)
+                                |  implicit def USD2EUR(x: USD) = EUR(x.v * 0.8f)
                                 |}
                             }
                             @callblock() {
-                                |val eur: EUR = new USD(5)
+                                |val eur: EUR = USD(5)
                             }
                         }
                     }
@@ -335,10 +335,10 @@
                 } {
                     @sourcecode(id = "euro_dollar_implicits2", reference = "euro_dollar") {
                         |object Bank {
-                        |   implicit def USD2EUR_bank(x: USD) = new EUR(x.v * 0.8f) }
+                        |   implicit def USD2EUR_bank(x: USD) = EUR(x.v * 0.8f) }
                         |
                         |object ExchangeOffice {
-                        |   implicit def USD2EUR_xchg(x: USD) = new EUR(x.v * 0.7f) }
+                        |   implicit def USD2EUR_xchg(x: USD) = EUR(x.v * 0.7f) }
                     }
 
                     @spacer_half()
@@ -347,7 +347,7 @@
                         @snippet() {
                             @callblock(reference = "euro_dollar_implicits2") {
                                 |import Bank._, ExchangeOffice._
-                                |val eur: EUR = new USD(5)
+                                |val eur: EUR = USD(5)
                             }
                             @outblock(error = true) {
                                 |error   : type mismatch;
@@ -382,9 +382,9 @@
                     @title: <em>@regel</em>
                 } {
                     @sourcecode(id = "euro_dollar_pound") {
-                        |class USD(val v: Float)  // A
-                        |class EUR(val v: Float)  // B
-                        |class GBP(val v: Float)  // C
+                        |case class USD(v: Float)  // A
+                        |case class EUR(v: Float)  // B
+                        |case class GBP(v: Float)  // C
                     }
 
                     @spacer()
@@ -392,15 +392,15 @@
                     @indent() {
 
                         @sourcecode(id = "euro_dollar_pound_implicit", reference = "euro_dollar_pound") {
-                            |implicit def USD2EUR(x: USD) = new EUR(x.v * 0.8f) // A -> B
-                            |implicit def EUR2GBP(x: EUR) = new GBP(x.v * 0.8f) // B -> C
+                            |implicit def USD2EUR(x: USD) = EUR(x.v * 0.8f) // A -> B
+                            |implicit def EUR2GBP(x: EUR) = GBP(x.v * 0.8f) // B -> C
                         }
 
                         @spacer()
 
                         @snippet() {
                             @callblock(reference = "euro_dollar_pound_implicit") {
-                                |val eur: GBP = new USD(5)  // A -> C ?
+                                |val eur: GBP = USD(5)  // A -> C ?
                             }
                             @outblock(error = true) {
                                 |error   : type mismatch;
@@ -426,18 +426,18 @@
 
         <!-- ################################################################################## -->
 
-        @defining("Anwendungsbeispiel") { title =>
+        @defining("Beispiele") { title =>
 
             <!--
                 - https://gist.github.com/1162307
                 - http://www.derekwyatt.org/2012/03/12/adding-squared-to-scala-numbers-with-implicts-and-type-classes/
             -->
 
-            @slide(title = title, subtitle = "Syntax") {
+            @titleslide(title = title) {
 
-                @sourcecode(id = "factorial") {
+                @sourcecode(id = "factorial2") {
                     |class MyInt(val i: Int) {
-                    |   def factorial(a : Int): Int = a match {
+                    |   def ! = (a : Int): Int = a match {
                     |       case 0 => 1
                     |       case n => (n) * factorial(n-1)
                     |   }
@@ -446,11 +446,7 @@
                     |
                     |   override def toString = i.toString
                     |}
-                }
-
-                @spacer_half()
-
-                @sourcecode(id = "factorial2", reference = "factorial") {
+                    |
                     |object MyInt {
                     |   implicit def intToMyInt(x : Int) = new MyInt(x)
                     |}
@@ -458,15 +454,17 @@
 
                 @spacer()
 
-                @callcode(reference = "factorial2") {
-                    |import MyInt._
-                    |println("factorial of 5 is " + (5!))
+                @indent() {
+                    @callcode(reference = "factorial2") {
+                        |import MyInt._
+                        |println("factorial of 5 is " + (5!))
+                    }
                 }
             }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Integration") {
+            @slide(title = title) {
 
                 @snippet() {
                     @sourceblock(id = "duration_unit") {
@@ -491,7 +489,7 @@
 
                 @snippet() {
                     @sourceblock(id = "duration", reference = "duration_val") {
-                        |class Duration(val v: DurationVal, val u: DurationUnit) {
+                        |case class Duration(v: DurationVal, u: DurationUnit) {
                         |   override def toString = (v.v * u.v) + " ms"
                         |}
                         |

@@ -14,7 +14,7 @@
 
         @defining("Tuple") { title =>
 
-            @titleslide(title = title, subtitle = "Erstellen") {
+            @titleslide(title = title, subtitle = "Erstellen", head = true) {
 
                 @snippet() {
                     @sourceblock() {
@@ -25,7 +25,7 @@
                     }
                 }
 
-                @spacer2()
+                @iseq(true)
 
                 @snippet() {
                     @sourceblock() {
@@ -36,11 +36,11 @@
                     }
                 }
 
-                @spacer2()
+                @iseq(true)
 
                 @snippet() {
                     @sourceblock() {
-                        |val t2 = Tuple2 ("Bob", 42)
+                        |val t2 = Tuple2("Bob", 42)
                     }
                     @outblock() {
                         |t2: (String, Int) = (Bob,42)
@@ -54,7 +54,52 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title, subtitle = "Zugreifen", clazz = "wide") {
+            @titleslide(title = title, subtitle = "Erstellen", head = true) {
+
+                @snippet() {
+                    @sourceblock() {
+                        |val t2 = ("Bob", 42)
+                    }
+                    @outblock() {
+                        |t2: (String, Int) = (Bob,42)
+                    }
+                }
+                @codesub2() {
+                    Tuple mit <em>2</em> Elementen
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @sourceblock() {
+                        |val t3 = Tuple2 ("Bob", 42, true)
+                    }
+                    @outblock() {
+                        |t3: (String, Int, Boolean) = (Bob,42,true)
+                    }
+                }
+                @codesub2() {
+                    Tuple mit <em>3</em> Elementen
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @sourceblock() {
+                        |val t4 = Tuple2 ("Bob", 42, true, 1.79)
+                    }
+                    @outblock() {
+                        |t4: (String, Int, Boolean, Float) = (Bob,42,true,1.79)
+                    }
+                }
+                @codesub2() {
+                    Tuple mit <em>4</em> Elementen usw.
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "Zugreifen", clazz = "wide", head = true) {
 
                 @autocenter {
                     @snippet() {
@@ -76,7 +121,7 @@
                                 |name: String = Bob
                             }
                             @sourceblock() {
-                                |val age = t2
+                                |val age = t2._2
                             }
                             @outblock() {
                                 |age: Int = 42
@@ -98,7 +143,7 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title, subtitle = "Pattern Matching") {
+            @titleslide(title = title, subtitle = "Pattern Matching", connector = ":") {
 
                 @snippet() {
                     @sourceblock(id = "virgin") {
@@ -139,7 +184,7 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title, subtitle = "Beispiele") {
+            @titleslide(title = title, subtitle = "Beispiele", connector = ":") {
 
                 @snippet() {
                     @sourceblock() {
@@ -178,7 +223,7 @@
 
         @defining("Option") { title =>
 
-            @titleslide(title = title, subtitle = "null") {
+            @titleslide(title = title, subtitle = "null", head = true) {
 
                 @spacer()
 
@@ -191,6 +236,7 @@
                         <p>
                             Ich nenne es gern meinen Milliarden-Dollar-Fehler: Die Erfindung der <var>null</var>-Referenz 1965.
                         </p>
+                        @spacer_half()
                         <p>
                             Sie hat zu unzähligen Fehlern, Schwachstellen und Systemabstürzen geführt,
                             die in den letzten 40 Jahren einen Schaden von bestimmt einer Milliarde Dollar angerichtet haben.
@@ -206,30 +252,47 @@
 
             @titleslide(title = title) {
 
-                @sourcecode() {
-                    |def getUser (id: Long): User
-                }
-                @codesub2() {
-                    <var>null</var> als Rückgabetyp ?
+                @sidebyside(gap = 10) {
+
+                    @subhead() {
+                        Java-Stil
+                    }
+
+                    @sourcecode() {
+                        |def getUser(id: Long): User
+                    }
+                    @codesub2() {
+                        <var>null</var> als Rückgabewert? Unklar!
+                    }
+                } {
+                    @subhead() {
+                        Scala-Stil
+                    }
+
+                    @sourcecode() {
+                        |def getUser(id: Long): Option[User]
+                    }
+                    @codesub2() {
+                        Rückgabetyp: <code>Option</code> !
+                    }
                 }
 
-                @spacer2()
+                @spacer()
 
-                @sourcecode() {
-                    |def getUser (id: Long): Option[User]
-                }
-                @codesub2() {
-                    Rückgabetyp <code>Option</code> !
+                @autocenter {
+                    @tipbox() {
+                        <code>null</code> vermeiden und auf das typensichere <code>Option</code> setzen!
+                    }
                 }
             }
 
             <!-- ################################################################################## -->
 
-            @defining("None vs Some") { subtitle =>
+            @defining("None & Some") { subtitle =>
 
-                @titleslide(title = title, subtitle = subtitle) {
+                @slide(title = title, subtitle = subtitle) {
 
-                    @spacer()
+                    @spacer2()
 
                     <div>
                         @sidebyside() {
@@ -250,7 +313,7 @@
 
                 <!-- ################################################################################## -->
 
-                @titleslide(title = title, subtitle = subtitle, subsubtitle = "Beispiel") {
+                @titleslide(title = title, subtitle = "Beispiel", connector = ":") {
 
                     <div class="w70p dcenter">
                         @sourcecode(id = "toInt") {
@@ -268,7 +331,7 @@
                     @sidebyside(gap = 10) {
                         @snippet(id = "toInt-some") {
                             @callblock(reference = "toInt") {
-                                |val i = toInt ("42")
+                                |val i = toInt("42")
                             }
                         }
 
@@ -287,7 +350,7 @@
 
                         @snippet() {
                             @callblock(reference = "toInt-some") {
-                                |i.getOrElse (0)
+                                |i.getOrElse(0)
                             }
                             @outblock() {
                                 |res1: Int = 42
@@ -299,7 +362,7 @@
                     } {
                         @snippet(id = "toInt-none") {
                             @callblock(reference = "toInt") {
-                                |val i = toInt ("abc")
+                                |val i = toInt("abc")
                             }
                         }
 
@@ -318,7 +381,7 @@
 
                         @snippet() {
                             @callblock(reference = "toInt-none") {
-                                |i.getOrElse (0)
+                                |i.getOrElse(0)
                             }
                             @outblock() {
                                 |res1: Int = 0
@@ -333,27 +396,29 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title, subtitle = "Pattern Matching") {
+            @titleslide(title = title, subtitle = "Pattern Matching", connector = ":") {
 
                 @sourcecode(id = "getuser") {
-                    |def getUser (id: Long) =
-                    |  if (id < 0)
-                    |    null
-                    |  else
-                    |    (id, "Bob", 42)
+                    |def getUser(id: Long) =
+                    |  if (id < 0) null else ("Bob", 42)
+                }
+                @codesub2() {
+                    eine "unsaubere" Methode (z.B. Java-Code)
                 }
 
                 @spacer()
 
-                @sourcecode(reference = "getuser") {
-                    |def getUserName (id: Long) = {
-                    |  val usr = Option(getUser (id))
-                    |
-                    |  usr match {
-                    |    case Some (u) => u
-                    |    case _        => "Unknown"
-                    |  }
-                    |}
+                @indent() {
+                    @sourcecode(reference = "getuser") {
+                        |def getUserName(id: Long) =
+                        |  Option(getUser(id)) match {
+                        |    case Some(u)  => u._1
+                        |    case _        => "Unknown"
+                        |  }
+                    }
+                    @codesub2() {
+                        <code>Option</code> führt einen null-Test durch <br/> und liefert entsprechend None oder Some
+                    }
                 }
             }
         }
