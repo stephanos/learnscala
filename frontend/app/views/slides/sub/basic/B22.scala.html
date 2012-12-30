@@ -99,10 +99,13 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Backticks") {
+            @headslide(title = title, subtitle = "Backticks") {
+                Backticks
+            } {
+                @spacer()
 
                 @callcode() {
-                    |val `val` = ()
+                    |val `val` = 42
                 }
                 @codesub2() {
                     <code>`</code> erlaubt Verwendung von Keywords
@@ -111,7 +114,7 @@
                 @spacer2()
 
                 @callcode() {
-                    Thread.`yield`().
+                    Thread.`yield`()
                 }
                 @codesub2() {
                     u.a. hilfreich für Java-Integration
@@ -125,7 +128,9 @@
 
             @sidebyside((66,33), gap = 6) {
                 @sidebyside(gap = 8) {
-                    <h4 class="tcenter">prefix</h4>
+                    @subhead(false) {
+                        prefix
+                    }
 
                     @spacer()
 
@@ -154,7 +159,9 @@
                         <code>!</code>, <code>~</code>, <code>+</code> und <code>-</code>.
                     }
                 } {
-                    <h4 class="tcenter">infix</h4>
+                    @subhead(false) {
+                        infix
+                    }
 
                     @spacer()
 
@@ -183,7 +190,9 @@
                     }
                 }
             } {
-                <h4 class="tcenter">postfix</h4>
+                @subhead(false) {
+                    postfix
+                }
 
                 @spacer()
 
@@ -291,6 +300,7 @@
                 @callcode() {
                     |5 + 5 * 2
                 }
+                @iseq()
                 @callcode() {
                     |(5).+((5).*(2))
                 }
@@ -303,6 +313,7 @@
                 @callcode() {
                     |5 + 5 toString
                 }
+                @iseq()
                 @callcode() {
                     |((5).+(5)).toString()
                 }
@@ -315,6 +326,7 @@
                 @callcode() {
                     |-5 + 5
                 }
+                @iseq()
                 @callcode() {
                     |((5).unary_-).+(5)
                 }
@@ -375,7 +387,10 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Zuweisung") {
+        @titleslide(title = "Zuweisungsoperator") {
+
+            @spacer()
+
             @callcode() {
                 |x *= y + 1
             }
@@ -403,42 +418,51 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Assoziativität") {
-            @callcode() {
-                |15 - 3 + 6
-            }
-            @iseq()
-            @callcode() {
-                |(15 - 3) + 6
-            }
-            @codesub2() {
-                @uline("fast") alle Operatoren sind <em>links-assoziativ</em>
+        @titleslide(title = "Assoziativität") {
+
+            @autocenter {
+                @callcode() {
+                    |15 - 3 + 6
+                }
+                @iseq()
+                @callcode() {
+                    |(15 - 3) + 6
+                }
+                @codesub2() {
+                    @uline("fast") alle Operatoren sind <em>links-assoziativ</em>
+                }
             }
 
             @spacer()
 
-            @callcode() {
-                |val i = 1 + 1
-            }
-            @codesub2() {
-                <var>außer</var>: Zuweisungen
-            }
+            <h4 class="tcenter fragment">Ausnahmen:</h4>
 
-            @spacer()
+            @spacer_half()
 
-            @callcode() {
-                |1 :: 2 :: List()
-            }
-            @iseq()
-            @callcode() {
-                |1 :: (2 :: List())
-            }
-            @iseq()
-            @callcode() {
-                |(List().::(2)).::(1)
-            }
-            @codesub2() {
-                <var>außer</var>: Operatoren die mit <code>:</code> enden
+            @sidebyside(gap = 15) {
+
+                @callcode() {
+                    |val i = 1 + 1
+                }
+                @codesub2() {
+                    Zuweisungen
+                }
+
+            } {
+                @callcode() {
+                    |1 :: 2 :: List()
+                }
+                @iseq()
+                @callcode() {
+                    |1 :: (2 :: List())
+                }
+                @iseq()
+                @callcode() {
+                    |(List().::(2)).::(1)
+                }
+                @codesub2() {
+                    Operatoren die mit <code>:</code> enden
+                }
             }
         }
 

@@ -1,0 +1,7 @@
+@(fragment: Boolean = true)(content: Html)
+
+<h4 class='tcenter @{if(fragment) "fragment" else ""}'>
+    @content
+</h4>
+
+@spacer_half()

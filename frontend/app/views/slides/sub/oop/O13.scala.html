@@ -139,7 +139,7 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Sichtbarkeit") {
+            @titleslide(title = title, subtitle = "Sichtbarkeit") {
 
                     @sourcecode() {
                         |package com.mycompany.internal
@@ -168,7 +168,7 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Package Object") {
+            @titleslide(title = title, subtitle = "Package Object") {
 
                     @sourcecode() {
                         |// file "package.scala"
@@ -208,7 +208,7 @@
 
         @defining("Importieren") { title =>
 
-            @slide(title = title) {
+            @titleslide(title = title, append = "I") {
 
                     @sourcecode() {
                         |import java.util.Date
@@ -218,7 +218,7 @@
                         importiert <em>1</em> Klasse namens <code>Date</code>
                     }
 
-                @spacer()
+                @spacer2()
 
                     @sourcecode() {
                         |import java.util.{Date, List}
@@ -228,7 +228,7 @@
                         importiert die <em>2</em> Klassen <code>Date</code> und <code>List</code>
                     }
 
-                @spacer()
+                @spacer2()
 
                     @sourcecode() {
                         |import java.util._
@@ -238,7 +238,11 @@
                         Wildcard <code>_</code> importiert <em>alles</em>
                     }
 
-                @spacer()
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, append = "II") {
 
                     @sourcecode() {
                         |import java.util.Date, java.sql.{Date => SqlDate}
@@ -248,7 +252,7 @@
                         <code>Date</code> wird in <code>SqlDate</code> umbenannt
                     }
 
-                @spacer()
+                @spacer2()
 
                     @sourcecode() {
                         |import java.util.{Date => _, _}
@@ -265,9 +269,7 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "relativ") {
-
-                @spacer()
+            @titleslide(title = title, subtitle = "Pfad", withFollowing = true) {
 
                 @middle(75) {
                     @sidebyside((70,30)) {
@@ -299,6 +301,7 @@
                     }
 
                     @sidebyside((70,30)) {
+
                         @sourcecode() {
                             |package com.mycompany
                             |
@@ -389,6 +392,7 @@
 
             <!-- ################################################################################## -->
 
+            @*
             @slide(title = title, subtitle = "deep") {
 
                 @sidebyside(gap = 10) {
@@ -433,6 +437,7 @@
                     }
                 }
             }
+            *@
         }
 
         <!-- ################################################################################## -->

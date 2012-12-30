@@ -11,43 +11,48 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "extends") {
+        @titleslide(title = "extends") {
 
-            @snippet() {
-                @sourceblock() {
-                    |class Employee
-                    |
-                    |class Boss extends Employee
-                    |class Developer extends Employee
+            @sidebyside(gap = 10) {
+                @subhead() {
+                    (A) Klassen
                 }
-                @outblock() {
-                    |defined class Employee
-                    |
-                    |defined class Boss
-                    |defined class Developer
+
+                @snippet() {
+                    @sourceblock() {
+                        |class Employee
+                        |
+                        |class Boss extends Employee
+                    }
+                    @outblock() {
+                        |defined class Employee
+                        |defined class Boss
+                    }
                 }
-            }
 
-            @codesub2() {
-                <code>Boss</code> und <code>Developer</code> erben von <code>Employee</code>
-            }
-
-            @spacer2()
-
-            @snippet() {
-                @sourceblock() {
-                    |class Employee
-                    |
-                    |object Employee extends Employee
+                @codesub2() {
+                    Klasse <code>Boss</code> erbt von <code>Employee</code>
                 }
-                @outblock() {
-                    |defined class Employee
-                    |defined module Employee
+            } {
+                @subhead() {
+                    (B) Objekte
                 }
-            }
 
-            @codesub2() {
-                Objekt <code>Employee</code> erbt von der Klasse <code>Employee</code>
+                @snippet() {
+                    @sourceblock() {
+                        |class Employee
+                        |
+                        |object Employee extends Employee
+                    }
+                    @outblock() {
+                        |defined class Employee
+                        |defined module Employee
+                    }
+                }
+
+                @codesub2() {
+                    Objekt <code>Employee</code> erbt von <code>Employee</code>
+                }
             }
 
             @*@infobox() {
@@ -57,18 +62,20 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Konstruktor") {
+        @titleslide(title = "Konstruktor") {
 
-            @sourcecode(id = "empl1") {
-                |class Employee (val name: String)
-            }
-            @codesub2() {
-                <code>Employee</code> erwartet den Parameter <code>name</code>
+            @autocenter {
+                @sourcecode(id = "empl1") {
+                    |class Employee (val name: String)
+                }
+                @codesub2() {
+                    <code>Employee</code> erwartet den Parameter <code>name</code>
+                }
             }
 
             @spacer2()
 
-            @indent() {
+            @sidebyside(gap = 10) {
 
                 @sourcecode(reference = "empl1") {
                     |class Developer (name: String, val age: Int)
@@ -78,8 +85,7 @@
                     <code>Developer</code> gibt den Parameter <code>name</code> an <code>Employee</code> weiter
                 }
 
-                @spacer()
-
+            } {
                 @sourcecode(reference = "empl1") {
                     |class Boss
                     |   extends Employee ("Sir")
@@ -99,46 +105,59 @@
 
         @slide(title = "sealed & final") {
 
-            @snippet() {
-                @sourceblock() {
-                    |final class Employee
-                    |
-                    |class Accountant extends Employee
-                }
-                @outblock(error = true) {
-                    |error: illegal inheritance from final class Employee
-                }
-            }
-
-            @codesub2() {
-                <code>final</code> verhindert weitere Vererbung
-            }
-
-            @spacer2()
-
-            @snippet() {
-                @sourceblock() {
-                    |// Employee.scala
-                    |sealed class Employee
-                    |
-                    |class Developer extends Employee
-                }
-            }
-
             @spacer()
 
-            @snippet() {
-                @sourceblock() {
-                    |// Accountant.scala
-                    |class Accountant extends Employee
+            @sidebyside(gap = 10) {
+                @subhead() {
+                    final
                 }
-                @outblock(error = true) {
-                    |error: illegal inheritance from sealed class Employee
-                }
-            }
 
-            @codesub2() {
-                <code>sealed</code> erlaubt die Vererbung nur innerhalb der gleichen Datei
+                @snippet() {
+                    @sourceblock() {
+                        |final class Employee
+                        |
+                        |class Accountant extends Employee
+                    }
+                    @outblock(error = true) {
+                        |error: illegal inheritance
+                        |       from final class Employee
+                    }
+                }
+
+                @codesub2() {
+                    <code>final</code> verhindert jede weitere Vererbung
+                }
+
+            } {
+                @subhead() {
+                    sealed
+                }
+
+                @snippet() {
+                    @sourceblock() {
+                        |// Employee.scala
+                        |sealed class Employee
+                        |
+                        |class Developer extends Employee
+                    }
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @sourceblock() {
+                        |// Accountant.scala
+                        |class Accountant extends Employee
+                    }
+                    @outblock(error = true) {
+                        |error: illegal inheritance
+                        |       from sealed class Employee
+                    }
+                }
+
+                @codesub2() {
+                    <code>sealed</code> verhindert Vererbung außerhalb der Datei
+                }
             }
 
             @*@infobox() {
@@ -151,18 +170,21 @@
 
         @defining("override") { title =>
 
+            @spacer()
+
             @slide(title = title) {
 
-                @sourcecode(id = "empl2") {
-                    |class Employee {
-                    |  val salary = 40000
-                    |}
-                }
+                <div class="w40p dcenter">
+                    @sourcecode(id = "empl2") {
+                        |class Employee {
+                        |  val salary = 40000
+                        |}
+                    }
+                </div>
 
-                @spacer()<
+                @spacer2()
 
-                @indent() {
-
+                @sidebyside(gap = 10) {
                     @snippet() {
                         @sourceblock(reference = "empl2") {
                             |class Boss extends Employee {
@@ -170,26 +192,23 @@
                             |}
                         }
                         @outblock(error = true) {
-                            |error: overriding value salary
-                            |       in class Employee of type Int;
-                            |       value salary needs `override' modifier
+                            |error: value salary needs
+                            |       `override' modifier
                         }
                     }
-
-                    @spacer()
-
+                } {
                     @snippet() {
                         @sourceblock(reference = "empl2") {
-                            |class Accountant extends Employee {
-                            |  override val salary = 60000
+                            |class Boss extends Employee {
+                            |  override val salary = 100000
                             |}
                         }
                         @outblock() {
-                            |defined class Accountant
+                            |defined class Boss
                         }
                     }
                     @codesub2() {
-                        via <code>override</code> werden Felder und Methoden überschrieben
+                        via <code>override</code> werden Felder & Methoden überschrieben
                     }
                 }
             }
@@ -198,15 +217,17 @@
 
             @slide(title = title) {
 
-                @sourcecode(id = "empl3") {
-                    |class Employee {
-                    |  val salary = 40000
-                    |}
-                }
+                <div class="w40p dcenter">
+                    @sourcecode(id = "empl3") {
+                        |class Employee {
+                        |  val salary = 40000
+                        |}
+                    }
+                </div>
 
-                @spacer()
+                @spacer2()
 
-                @indent() {
+                @sidebyside(gap = 10) {
 
                     @snippet() {
                         @sourceblock(reference = "empl3") {
@@ -218,9 +239,10 @@
                             |error: value salry overrides nothing
                         }
                     }
-
-                    @spacer()
-
+                    @codesub2() {
+                        überprüft Namen
+                    }
+                } {
                     @snippet() {
                         @sourceblock(reference = "empl3") {
                             |class Boss extends Employee {
@@ -228,10 +250,12 @@
                             |}
                         }
                         @outblock(error = true) {
-                            |error: overriding value salary
-                            |       in class Employee of type Int;
+                            |error: overriding value salary;
                             |       value salary has incompatible type
                         }
+                    }
+                    @codesub2() {
+                        überprüft Typen
                     }
                 }
 
@@ -245,43 +269,56 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "def <> val") {
-
-                @snippet() {
-                    @sourceblock() {
-                        |class Employee (name: String) {
-                        |
-                        |  override val toString =
-                        |     "Employee[name=" + name + "]"
-                        |}
-                    }
-                }
-                @codesub2() {
-                    Methode wird zu einem <code>val</code>
-                }
-
+            @headslide(title = title, subtitle = "def <> val") {
+                def &lt;&gt; val
+            } {
                 @spacer()
 
-                @snippet() {
-                    @sourceblock() {
-                        |class Employee {
-                        |   val salary = 40000
-                        |}
-                        |
-                        |class Developer (age: Int) extends Employee {
-                        |   override def salary =
-                        |      20000 + age * 1000
-                        |}
+                @sidebyside(gap = 10) {
+                    @subhead() {
+                        def -> val
                     }
-                    @outblock(error = true) {
-                        |error: method salary needs to be a stable, immutable value
-                    }
-                }
-                @codesub2() {
-                    Variable wird aber <var>nicht</var> zu einem <code>def</code>
-                }
 
-                @spacer()
+                    @snippet() {
+                        @sourceblock() {
+                            |class Employee (name: String) {
+                            |
+                            |  override val toString =
+                            |     "Employee[name=" + name + "]"
+                            |}
+                        }
+                    }
+                    @codesub2() {
+                        Methode ohne Parameter wird zu einem <code>val</code>
+                    }
+
+                } {
+                    @subhead() {
+                        val -> def
+                    }
+
+                    @snippet() {
+                        @sourceblock() {
+                            |class Employee {
+                            |   val salary = 40000
+                            |}
+                            |
+                            |class Developer (age: Int)
+                            |   extends Employee {
+                            |
+                            |   override def salary =
+                            |      20000 + age * 1000
+                            |}
+                        }
+                        @outblock(error = true) {
+                            |error: method salary needs to
+                            |       be a stable, immutable value
+                        }
+                    }
+                    @codesub2() {
+                        <code>val</code> aber <var>nicht</var> zu einer Methode
+                    }
+                }
 
                 @*@infobox() {
                     Eine Methode ohne Parameter kann durch ein <code>val</code> überschrieben werden;<br/>
@@ -291,7 +328,10 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "final") {
+            @headslide(title = title, subtitle = "final") {
+                final
+            } {
+                @spacer()
 
                 @snippet() {
                     @sourceblock(id = "final-members") {
@@ -299,17 +339,25 @@
                         |   final val salary = 40000
                         |}
                     }
-                    @sourceblock(reference = "final-members") {
-                        |class Accountant extends Employee {
-                        |   override val salary = 50000
-                        |}
-                    }
-                    @outblock(error = true) {
-                        |error: value salary cannot override final member
-                    }
                 }
-                @codesub2() {
-                    <code>final</code> verhindert das Überschreiben
+
+                @spacer()
+
+                @indent() {
+                    @snippet() {
+                        @sourceblock(reference = "final-members") {
+                            |class Accountant extends Employee {
+                            |   override val salary = 50000
+                            |}
+                        }
+                        @outblock(error = true) {
+                            |error: value salary cannot
+                            |       override final member
+                        }
+                    }
+                    @codesub2() {
+                        <code>final</code> verhindert das Überschreiben
+                    }
                 }
 
                 @*@infobox() {
@@ -321,7 +369,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "super") {
+        @titleslide(title = "super") {
 
             @snippet() {
                 @sourceblock(id = "super") {
@@ -356,7 +404,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "anonym") {
+        @titleslide(title = "anonym") {
 
             @snippet() {
                 @sourceblock() {
@@ -380,7 +428,7 @@
 
         @defining("abstract") { title =>
 
-            @slide(title = title) {
+            @titleslide(title = title) {
 
                 @snippet() {
                     @sourceblock() {
@@ -408,38 +456,40 @@
                 }
                 @codesub2() {
                     <code>abstract</code> markiert Klassen
-                    die ein Feld / eine Methode <br/> ohne Implementierung enthalten
+                    die mind. ein Feld oder eine Methode <br/> ohne Implementierung enthalten
                 }
             }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title) {
+            @titleslide(title = title) {
 
-                @snippet() {
-                    @sourceblock(id = "abstract") {
-                        |abstract class Employee {
-                        |   val salary: Int
-                        |}
+                @autocenter {
+                    @snippet() {
+                        @sourceblock(id = "abstract") {
+                            |abstract class Employee {
+                            |   val salary: Int
+                            |}
+                        }
                     }
                 }
 
                 @spacer()
 
-                @indent() {
+                @sidebyside(gap = 10) {
 
                     @snippet() {
                         @sourceblock(reference = "abstract") {
                             |class Accountant extends Employee
                         }
                         @outblock(error = true) {
-                            |error: class Accountant needs to be abstract,
-                            |       since value salary [...] is not defined
+                            |error: class Accountant needs to
+                            |       be abstract, since value
+                            |       salary is not defined
                         }
                     }
 
-                    @spacer()
-
+                } {
                     @snippet() {
                         @sourceblock(reference = "abstract") {
                             |class Accountant extends Employee {
@@ -451,7 +501,7 @@
                         }
                     }
 
-                    @spacer_half()
+                    @iseq()
 
                     @snippet() {
                         @sourceblock(reference = "abstract") {
