@@ -116,5 +116,5 @@ object Content extends MyController {
     // SONSTIGE =======================================================================================================
 
     lazy val ausblick = Slide("ausblick", "Ausblick", "", Seq())
-    lazy val end = Slide("ende", "Ende", "", Seq())
+    lazy val end = Slide("ende", "Ende", "", Seq(), status = "complete")
 }

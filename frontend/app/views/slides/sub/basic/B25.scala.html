@@ -107,9 +107,7 @@
 
         <!-- ################################################################################## -->
 
-        @titleslide(title = "(B) rekursiv", subtitle = "Rückgabetyp") {
-
-            @spacer()
+        @titleslide(title = "(B) rekursiv", subtitle = "Rückgabetyp", head = true) {
 
             @snippet() {
                 @sourceblock(fragment = false) {
@@ -123,16 +121,15 @@
             }
 
             @codesub2() {
-                rekursive Methoden brauchen einen Rückgabetyp
+                rekursive Methoden brauchen einen Rückgabetyp <br/>
+                und müssen <code>private</code> oder <code>final</code> sein
             }
 
         }
 
         <!-- ################################################################################## -->
 
-        @titleslide(title = "(B) rekursiv", subtitle = "Overflow") {
-
-            @spacer()
+        @titleslide(title = "(B) rekursiv", subtitle = "Overflow", head = true) {
 
             @snippet() {
                 @sourceblock(id = "factorial1") {
@@ -140,15 +137,15 @@
                     |   if (n == 0) BigInt(1)
                     |   else        n * factorial(n - 1)
                 }
+                @outblock() {
+                    |factorial: (n: Int)BigInt
+                }
             }
 
             @spacer()
 
             @snippet() {
-                @outblock(reference = "factorial1") {
-                    |factorial: (n: Int)BigInt
-                }
-                @callblock() {
+                @callblock(reference = "factorial1") {
                     |factorial(4)
                 }
                 @outblock() {
@@ -211,7 +208,7 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title, subtitle = "Hilfsparameter") {
+            @titleslide(title = title, subtitle = "Hilfsparameter", head = true) {
 
                 @snippet() {
                     @sourceblock() {
@@ -238,7 +235,7 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title, subtitle = "interne Methode") {
+            @titleslide(title = title, subtitle = "interne Methode", head = true) {
 
                 @snippet() {
                     @sourceblock(id = "tailrec", fragment = false) {

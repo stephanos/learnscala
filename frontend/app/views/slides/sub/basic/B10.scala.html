@@ -51,11 +51,18 @@
         @headslide(title = "Flexibel") {
             Scala ist ... <span class='fragment'><em>flexibel</em></span>
         } {
+            @spacer()
 
+            @fragment {
+                @autocenter {
+                    @image("swissarmyknife2.png", width = 550, clazz = "naked")
+                }
+            }
         }
 
         <!-- ################################################################################## -->
 
+        @*
         @headslide(title = "Skriptsprache") {
             Scala ist ... <span class='fragment'><em>eine Skriptsprache</em></span>
         } {
@@ -111,12 +118,22 @@
                 Das Beste von beiden Welten: Sieht dynamisch aus, ist aber statisch.
             }
         }
+        *@
 
         <!-- ################################################################################## -->
 
         @headslide(title = "Objektorientiert") {
             Scala ist ... <span><em>objektorientiert</em></span>
         } {
+            @spacer()
+
+            @fragment {
+                @autocenter {
+                    @image("blocks.png", width = 550, clazz = "naked")
+                }
+            }
+
+            @*
             @sidebyside(fragment = true) {
                 @callcode() {
                     |42.toFloat
@@ -155,6 +172,7 @@
             @tipbox() {
                 Alles ist ein Objekt: Bekannte Objektorientierung mit Mehrfachvererbung.
             }
+            *@
         }
 
         <!-- ################################################################################## -->
@@ -162,6 +180,15 @@
         @headslide(title = "Knapp und Präzise") {
             Scala ist ... <span><em>knapp und präzise</em></span>
         } {
+            @spacer()
+
+            @fragment {
+                @autocenter {
+                    @image("dart.png", width = 450, clazz = "naked")
+                }
+            }
+
+            @*
             @sidebyside((60,40)) {
                 @sourcecode() {
                     |class MyCar(wheels: Int = 4)
@@ -199,6 +226,7 @@
             @tipbox() {
                 50% weniger Code: Schneller zu schreiben und leichter zu lesen.
             }
+            *@
         }
 
         <!-- ################################################################################## -->
@@ -206,6 +234,15 @@
         @headslide(title = "Funktional") {
             Scala ist ... <span><em>funktional</em></span>
         } {
+            @spacer()
+
+            @fragment {
+                @autocenter {
+                    @image("fx.png", clazz = "naked", height = 300)
+                }
+            }
+
+            @*
             @sidebyside((66,33)) {
                 @callcode() {
                     |val names =
@@ -239,6 +276,21 @@
 
             @tipbox() {
                 Leichtgewichtige aber mächtige Funktionen für besseren Code und mehr Wiederverwendung.
+            }
+            *@
+        }
+
+        <!-- ################################################################################## -->
+
+        @headslide(title = "Leichtgewichtig") {
+            Scala ist ... <span><em>leichtgewichtig</em></span>
+        } {
+            @spacer()
+
+            @fragment {
+                @autocenter {
+                    @image("feather.png", width = 650, clazz = "naked")
+                }
             }
         }
 
@@ -294,6 +346,18 @@
                 Sicheres Refactoring, weniger Flüchtigkeitsfehler & Testaufwand
             }
             *@
+        }
+
+        <!-- ################################################################################## -->
+
+        @headslide(title = "schnell") {
+            Scala ist ... <span><em>schnell</em></span>
+        } {
+            @fragment {
+                @autocenter {
+                    @image("rocket.png", width = 500, clazz = "naked")
+                }
+            }
         }
 
         <!-- ################################################################################## -->
@@ -412,6 +476,9 @@
         @headslide(title = "In Benutzung", clazz = "wide") {
             Scala ist ... <span><em>in Benutzung</em></span>
         } {
+            @Images.users()
+
+            @*
             <table class="fragment">
                 <colgroup>
                     <col width="25%">
@@ -459,6 +526,7 @@
             <!--<h3 class="center fragment">
                 <var>Startups</var> <big>&nbsp;&&nbsp;</big> <em>Konzerne</em>
             </h3>-->
+            *@
         }
 
         <!-- ################################################################################## -->

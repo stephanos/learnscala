@@ -20,6 +20,9 @@ object Images extends MyController {
     def actorModel(h: Int = 650) =
         gimage("1A9ZZjzFCkYDzQtq39jlO3w-pMbNCziwVVZZ5k7yMqG4", height = h)
 
+    def users(h: Int = 600) =
+        gimage("1ZHbV8KNtKConB-jYx-Wk4KJBBb074MP_BZcp-zoxmJQ", height = h)
+
     def dbTools(h: Int = 700) =
         gimage("1rCk7wFprPGcJTwahZtWR70HQMdYl7km2Z8AuVfjSjcI", height = h)
 
