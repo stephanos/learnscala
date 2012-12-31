@@ -17,7 +17,7 @@ object Content extends MyController {
 
     // === ALLGEMEIN
 
-    lazy val einfuehrung = Slide("B10", "Einführung", basic)
+    lazy val einfuehrung = Slide("B10", "Einführung", basic, status = "complete")
     lazy val geschichte = Slide("B11", "Geschichte", basic, Seq(einfuehrung), status = "complete")
     lazy val ersteSchritte = Slide("B12", "Erste Schritte", basic, Seq(werkzeuge1))
     lazy val methoden = Slide("B13", "Methoden", basic, Seq(ersteSchritte))
@@ -25,7 +25,7 @@ object Content extends MyController {
 
     // === OBJEKTE
 
-    lazy val klassen1 = Slide("O10", "Klassen I", oop, Seq(methoden, uebungen))
+    lazy val klassen1 = Slide("O10", "Klassen", oop, Seq(methoden, uebungen))
     lazy val objekte = Slide("O12", "Objekte", oop, Seq(klassen1))
     lazy val vererbung1 = Slide("O11", "Vererbung", oop, Seq(objekte))
     lazy val pakete = Slide("O13", "Pakete", oop, Seq(vererbung1))
@@ -58,7 +58,7 @@ object Content extends MyController {
 
     lazy val typen1 = Slide("O20", "Typen", oop, Seq(klassen1))
     lazy val traits = Slide("O21", "Traits", oop, Seq(klassen1, vererbung1))
-    lazy val klassen2 = Slide("O22", "Klassen II", oop, Seq(vererbung1))
+    lazy val klassen2 = Slide("O22", "Case Class", oop, Seq(vererbung1))
     lazy val generics1 = Slide("O24", "Typ-Parameter", oop, Seq(traits, klassen2))
 
     // === FUNKTIONEN
@@ -83,6 +83,7 @@ object Content extends MyController {
     // === ALLGEMEIN
 
     lazy val dynamic = Slide("B30", "Dynamic", basic)
+    lazy val interpolation = Slide("B31", "String Interpolation", basic, Seq(implicit1))
     lazy val reflection = Slide("B31", "Reflection", basic)
     lazy val macros = Slide("B32", "Makros", basic)
     lazy val implicit2 = Slide("B34", "Implicits II", basic, Seq())
@@ -94,7 +95,8 @@ object Content extends MyController {
     lazy val vererbung2 = Slide("O30", "Vererbung II", oop, Seq(vererbung1))
     lazy val typen2 = Slide("O31", "Typen II", oop, Seq(typen1, implicit1))
     lazy val generics2 = Slide("O32", "Typ-Parameter II", oop, Seq(generics1))
-    lazy val typeclass = Slide("O33", "Type Classes", oop, Seq())
+    lazy val valueclass = Slide("O33", "Value Class", oop, Seq())
+    lazy val typeclass = Slide("O34", "Type Class", oop, Seq())
 
     // === FUNKTIONEN
 
