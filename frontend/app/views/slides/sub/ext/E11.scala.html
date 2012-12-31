@@ -23,7 +23,7 @@
         @headslide(title = "Maven") {
             <em>Maven</em>
         } {
-            @sidebyside((33,66)) {
+            @sidebyside((40,60)) {
                 <div class="indent">
                     <ul class=""fragments>
                         <li>
@@ -33,114 +33,105 @@
                             kompiliert <code>src/main/scala</code> und <code>src/test/scala</code>
                         </li>
                         <li class="fragment">
-                            nur leider <var>zu langsam</var>, <br/>lieber <em>SBT</em> verwenden
+                            integriert mit <em>Zinc</em>, einem inkrementellen Scala-Compiler
                         </li>
                     </ul>
                 </div>
             } {
                 @outcode() {
                     |&lt;plugin&gt;
-                    |    &lt;groupId&gt;org.scala-tools&lt;/groupId&gt;
-                    |    &lt;artifactId&gt;maven-scala-plugin&lt;/artifactId&gt;
+                    |  &lt;groupId&gt;org.scala-tools&lt;/groupId&gt;
+                    |  &lt;artifactId&gt;maven-scala-plugin&lt;/artifactId&gt;
                     |
-                    |    &lt;executions&gt;
-                    |        &lt;execution&gt;
-                    |            &lt;goals&gt;
-                    |                &lt;goal&gt;compile&lt;/goal&gt;
-                    |                &lt;goal&gt;testCompile&lt;/goal&gt;
-                    |            &lt;/goals&gt;
-                    |        &lt;/execution&gt;
-                    |    &lt;/executions&gt;
+                    |  &lt;executions&gt;
+                    |    &lt;execution&gt;
+                    |      &lt;goals&gt;
+                    |        &lt;goal&gt;compile&lt;/goal&gt;
+                    |        &lt;goal&gt;testCompile&lt;/goal&gt;
+                    |      &lt;/goals&gt;
+                    |    &lt;/execution&gt;
+                    |  &lt;/executions&gt;
                     |
-                    |    &lt;configuration&gt;
-                    |        &lt;scalaVersion&gt;${scala.version}&lt;/scalaVersion&gt;
-                    |    &lt;/configuration&gt;
+                    |  &lt;configuration&gt;
+                    |    &lt;scalaVersion&gt;${scala.version}&lt;/scalaVersion&gt;
+                    |    &lt;recompileMode&gt;incremental&lt;/recompileMode&gt;
+                    |  &lt;/configuration&gt;
                     |&lt;/plugin&gt;
+                }
+                @codesub2() {
+                    pom.xml
                 }
             }
         }
 
         <!-- ################################################################################## -->
 
-        @defining("SBT") { title =>
-
-            @headslide(title = title) {
-                <em>@title</em>
+        @headslide(title = "Gradle") {
+            <em>Gradle</em>
+        } {
+            @sidebyside((40,60)) {
+                <div class="indent">
+                    <ul class="fragments">
+                        <li>
+                            Projektbeschreibung mit Hilfe von Groovy-basierter DSL
+                        </li>
+                        <li>
+                            integriert mit <em>Zinc</em> für inkrementelle Builds
+                        </li>
+                    </ul>
+                </div>
             } {
+                @outcode() {
+                    |apply plugin: 'scala'
+                    |
+                    |dependencies {
+                    |  ...
+                    |}
+                    |
+                    |tasks.withType(ScalaCompile) {
+                    |  scalaCompileOptions.useAnt = false
+                    |}
+                }
+                @codesub2() {
+                    build.gradle
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @headslide(title = "SBT") {
+            <em>SBT</em>
+        } {
+            @sidebyside((40,60)) {
                 <div class="indent">
                     <ul class="fragments">
                         <li>
                             <var>Simple Build Tool</var>, aktuelle stabile Version <code>0.12.1</code>
                             <comment>(nicht abschrecken lassen!)</comment>
                         </li>
-                        <li>ist <em>in Scala</em> geschrieben</li>
-                        <li><em>kompatibel mit Maven</em>-Repositories</li>
                         <li><em>Projektdefinition in Scala</em>, mit Hilfe einer speziellen DSL</li>
                         <li>läuft permanent als Prozess im Hintergrund: <em>schnelles Kompilieren</em></li>
                         <li>viele Scala-Bibliotheken, Scala selbst und <var>Typesafe</var> setzen darauf</li>
+                        <li>im Vergleich zu Maven/Gradle sehr flexibel und mächtig, aber leider auch etwas <var>komplizierter</var></li>
                     </ul>
                 </div>
-            }
-
-            <!-- ################################################################################## -->
-
-            @headslide(title = title, subtitle = "Beispiel") {
-                <em>@title</em>: Beispiel
             } {
-                @sidebyside((40,60)) {
-                    @outcode(fragment = false) {
-                        |myproject
-                        |   |
-                        |   +project
-                        |   |   |Build.scala
-                        |   |   |plugins.sbt
-                        |   |   |build.properties
-                        |   |
-                        |   +src
-                        |   |   +main
-                        |   |   |   +resources
-                        |   |   |   +scala
-                        |   |   |       |Hello.scala
-                        |   |   |
-                        |   |   +test
-                        |   |       +resources
-                        |   |       +scala
-                        |   |
-                        |   +target
-                    }
-                    @codesub2() {
-                        Verzeichnisstruktur
-                    }
-                } {
-                    <div class="fragment">
-                        @sourcecode(fragment = false) {
-                            |// Build.scala
-                            |import sbt._
-                            |import Keys._
-                            |
-                            |object Build {
-                            |
-                            |  lazy val myproject =
-                            |    Project ("myproject", file ("."))
-                            |      .settings(libraryDependencies ++= Seq(joda))
-                            |
-                            |  val joda = "joda-time" % "joda-time" % "2.1"
-                            |}
-                        }
-                        @codesub2() {
-                            Projektdefinition
-                        }
-                    </div>
-
-                    @spacer()
-
-                    @outcode() {
-                        |$ sbt
-                        |> compile
-                    }
-                    @codesub2() {
-                        Ausführung
-                    }
+                @outcode() {
+                    |import sbt._
+                    |import Keys._
+                    |
+                    |object Build {
+                    |
+                    |  lazy val myproject =
+                    |    Project ("myproject", file ("."))
+                    |      .settings(libraryDependencies ++= Seq(joda))
+                    |
+                    |  val joda = "joda-time" % "joda-time" % "2.1"
+                    |}
+                }
+                @codesub2() {
+                    Build.scala
                 }
             }
         }
@@ -199,11 +190,13 @@
                     </div>
                 }
 
+                @*
                 @tipbox() {
                     Das IDE-Projekt wird stets aus SBT heraus via Plugin erstellt
                     <comment class="nobreak">(via <code>eclipse</code> bzw. <code>gen-idea</code>)</comment>
                     - damit bleibt es immer synchron.
                 }
+                *@
 
                 <details>
                     <a href="http://scala-ide.org">Eclipse-Plugin</a>
@@ -270,7 +263,7 @@
                             @spacer()
                         </li>
                         <li>
-                            Repository von <code>bit.ly/scala-ide-42</code> übernehmen
+                            Repository von <code>http://scala-ide.org</code> übernehmen
                             @spacer()
                         </li>
                         <li>
