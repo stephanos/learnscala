@@ -1,7 +1,6 @@
 import sbt._
 import Keys._
-import org.sbtidea._
-import PlayProject._
+import play.Project._
 
 object ProjectBuild extends MyBuild {
 
@@ -58,10 +57,15 @@ object ProjectBuild extends MyBuild {
 
     // ==== DEPENDENCIES
 
-    val sun_tools_file = file(jdk6Home + fileSep + "lib" + fileSep + "tools.jar").getCanonicalPath
-    lazy val sun_tools = "com.sun" % "tools" % "1.6.0" from ("file:///" + sun_tools_file)
+    val sun_tools_file =
+        if(System.getProperty("os.name").contains("Mac"))
+            "Classes" + fileSep + "classes.jar"
+        else
+            "lib" + fileSep + "tools.jar"
+    val sun_tools_path = file(jdk6Home + fileSep + ".." + fileSep + sun_tools_file).getCanonicalPath
+    lazy val sun_tools = "com.sun" % "tools" % "1.6.0" from ("file:///" + sun_tools_path)
 
-    println("TOOLS.jar: " + sun_tools_file)
+    println("TOOLS.jar: " + sun_tools_path)
 
     val scalaP = "org.scala-lang" % "scalap" % scalaV
     val scalaR = "org.scala-lang" % "scala-reflect" % scalaV

@@ -12,6 +12,8 @@
             @topic
         } {
             @image("fx.png", clazz = "naked", height = 200)
+            @spacer_half()
+            Funktionen und Kollektionen
         }
 
         <!-- ################################################################################## -->
@@ -261,7 +263,7 @@
         @slide(title = "Beispiel") {
 
             @sidebyside() {
-                @sourcecode() {
+                @sourcecode(reference = "person") {
                     |def separate(persons: List[Person]) = {
                     |  var boys = new ListBuffer[Person]()
                     |  var men = new ListBuffer[Person]()
@@ -280,22 +282,22 @@
                     |  var sortedMen = men.toList.sortBy(_.age)
                     |
                     |  for (boy <- sortedBoys) {
-                    |    boyNames += boy.firstName
+                    |    boyNames += boy.name
                     |  }
                     |  for (man <- sortedMen) {
-                    |    menNames += man.firstName
+                    |    menNames += man.name
                     |  }
                     |
                     |  (boyNames.toList, menNames.toList)
                     |}
                 }
             } {
-                @sourcecode() {
+                @sourcecode(reference = "person") {
                     |def separate(persons: List[Person]) = {
                     |
                     |  def sortAndMap(ppl: List[Person]) =
                     |    ppl.sortBy(p => a.age)
-                    |       .map(p => p.firstName)
+                    |       .map(p => p.name)
                     |
                     |  val (minors, adults) =
                     |    persons.partition(p => p.age < 18)
@@ -614,4 +616,10 @@
         }
         *@
     }
+}
+
+@sourcecode(id = "person") {
+    |class Person(val name: String, val age: Int) {
+    |   override def toString = name
+    |}
 }
