@@ -94,4 +94,6 @@ GET     /crossdomain.xml                            controllers.Assets.at(path="
 
 # === BLOG
 
+GET     /:y/:m/:d/:l/:p/:t                          controllers.Blog.entry3(y:Int,m:Int,d:Int,l,p,t)
+GET     /:y/:m/:d/:l/:t                             controllers.Blog.entry2(y:Int,m:Int,d:Int,l,t)
 GET     /:y/:m/:d/:t                                controllers.Blog.entry(y:Int,m:Int,d:Int,t)

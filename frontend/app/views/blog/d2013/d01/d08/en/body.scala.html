@@ -1,0 +1,123 @@
+<p class="c3">
+<span class="bold">
+    Hello, Martin. So what does your company do ?
+</span>
+</p> <p class="c3">
+
+    The company I work for,
+ <span class="c1 c4">
+    <a href="http://www.commercetools.de/">
+        commercetools
+    </a>
+ , creates customized eCommerce solutions in the cloud.
+     The headquarter in Munich is building shops for customers based on an in-house Java platform, but right now the Berlin branch is building a new eCommerce platform completely from scratch. It's a bit like a startup, working on a separate project.
+ </span>
+</p> <p class="c0"></p> <p class="c3">
+<span class="bold">
+    Could you describe the project from a technical viewpoint ?
+</span>
+</p> <p class="c3">
+
+    We mainly use Scala, a bit of Java as well, Ruby for scripting and Coffeescript on the client. The right tool for the right job, you know.
+
+</p>
+<p class="c3">
+
+    Scala is used in the backend, at the core of the platform logic, basically. We use
+    <a href="http://unfiltered.databinder.net/">
+        Unfiltered
+    </a>
+ for request handling. 
+    We also looked at Finagle; but chose Unfiltered because it's really simple. It doesn't do too much, it's more like a toolkit than a framework and that was all we needed.
+
+</p> <p class="c3">
+
+    The frontend is a single page app, a thick client. It made sense to use Scala for the frontend as well, so it was a straightforward task to integrate it with the backend. It's based on the quite new Play2 framework that was rewritten since the 1.x releases. Since it's a rich client, most of the code is Coffeescript, and the Scala Play layer is very small.
+
+</p> <p class="c0"></p> <p class="c3">
+<span class="bold">
+    How did you get to know Scala ?
+</span>
+</p> <p class="c3">
+
+    I first used Scala in 2008. I just had a look, liked what I saw but wasn't able to apply use professionally. I went through a few tutorials - for instance I found the
+    <a href="http://aperiodic.net/phil/scala/s-99/">99-Scala-Problems</a>,
+    picked the last one and started programming. At first, I used a lot of mutable state because I didn't know best practices yet.
+
+</p> <p class="c3">
+
+    Scala is a bit like a chameleon; until someone tells you "do it this way". But you can easily see from the
+ 
+    <a href="https://www.coursera.org/courses">
+        course
+    </a>
+ 
+    Martin Odersky gave on Coursera that he prefers functional programming and immutable data structures. I just got that later, but that's how we program here as well. I also knew functional programming from university where we had a Haskell course. So functional programming wasn't too surprising for me.
+
+</p> <p class="c3">
+
+    Professionally, I was developing in C# quite a bit, until I found a Scala job here in Berlin one year ago. When I started, I learned a lot about more "advanced Scala" on the job, for instance concepts like implicits and type classes. I would look at the code of my co-workers, talk about it and improve my own skills.
+
+</p> <p class="c0"></p> <p class="c3">
+<span class="bold">
+    How does Scala help you work better than Java ?
+</span>
+</p> <p class="c3">
+
+    Well, you're supposed to be more productive in Scala, right? And I feel like we are. I personally like Scala as a language, there are syntax advantages you don't have in Java. You can express concepts clearer. If the tooling wasn't so slow it would be a real killer.
+
+</p> <p class="c3">
+
+    Especially immutability just makes your code safer since it is harder to introduce bugs. If you can make something immutable, it's harder to make mistakes. It also helps with concurrency, you don't run into deadlocks or race conditions that easily.
+
+</p> <p class="c0"></p> <p class="c3">
+<span class="bold">
+    What level of Scala experience does the team your work with have ?
+</span>
+</p> <p class="c3">
+
+    Everybody who is writing Scala here already knew it from before they were hired. But I mean it's not a big deal to learn Scala; if you have good people that know it you can just learn it from them. If you are open minded you can simply pick it up. Even our frontend engineer is learning Scala now.
+
+</p> <p class="c0"></p> <p class="c3">
+<span class="bold">
+    How do you make sure that all team members use the same "Scala style" ?
+</span>
+</p> <p class="c3">
+
+    We look at each others code, have code reviews, monitor commits. The team is already very experienced in Scala and we all share the same ideas about the "right style". Even if I would have joined a new project, I would just look at the codebase and see what kind of style they use and just do it the same way.
+
+</p> <p class="c3">
+
+    If you have a new co-worker you would naturally look at the commits to check whether you are on the same page. So in the beginning there is a bit of an effort to make sure everybody has the same idea of how the code is supposed to look, but that becomes less and less the more you get on in the project.
+
+</p> <p class="c0"></p> <p class="c3">
+<span class="bold">
+    What build tools do you use ?
+</span>
+</p> <p class="c3">
+
+    For building Scala and managing the dependencies we use SBT. You could also use Maven. Well, I like SBT and all of the team members already had experience with it. So it was a natural choice.
+
+</p> <p class="c3">
+
+    I just think the Scala compiler could be faster, but that's not SBT's problem, as far as I can tell. If you compare it to compiling Java projects it's much, much slower. I feel like it influences my productivity. I started with SBT 0.7, now we are at 0.12. It's definitely designed better but it just feels like building Scala has always been slow, unfortunately.
+
+</p> <p class="c0"></p> <p class="c3">
+<span class="bold">
+    What's your development environment ?
+</span>
+</p> <p class="c3">
+I work on a Macbook Pro and 
+    use IntelliJ. IntelliJ is such an awesome IDE but the Scala plugin definitely could perform better. They don't use the Scala presentation compiler (reportedly because it came out too late) and have their own implementation of type system, symbol resolution etc. I trust the IntelliJ guys on making it faster though.
+
+</p> <p class="c3">
+
+    I'm using the SBT plugin for IntelliJ to do incremental compilation and testing. Some of my colleagues don't use any IDE at all, however.
+
+</p> <p class="c0"></p>
+
+<a style="font-size: 105%; float: right; margin-bottom: 30px;" href="/2013/01/08/en/part2/real-world-scala">
+    Learn about Scala's strengths and pain points in <strong>Part 2</strong>
+</a>
+
+<div class="clrfix"></div>

@@ -1,0 +1,113 @@
+<h4>Value Classes</h4>
+
+<p>
+    Manchmal hat mein eine sehr einfache Klasse, wie beispielsweise die folgende Klasse <code>Meter</code>:
+</p>
+
+<p>
+    <script src="https://gist.github.com/3922784.js"> </script>
+</p>
+
+<p>
+    In 2.10 ist es nun erlaubt in diesem Spezialfall, nämlich wenn es nur einen Parameter vom Type <code>val</code> gibt,
+    von <code>AnyVal</code> zu erben. Das bringt den Vorteil, dass es eine gute Semantik aufweißt aber
+    zur Laufzeit häufig die Klasse für bessere Performance einfach "wegoptimiert" wird.
+</p>
+
+
+<h4>Reflection</h4>
+
+<p>
+    Java hat ja bereits seit langer Zeit eine Reflection API - nur hat Scala seine eigene. Das ist notwendig, weil
+    die API von Java natürlich arge Probleme hatte, die Typen und Strukturen von Scala richtig auszulesen.
+</p>
+
+<p>
+    <script src="https://gist.github.com/3922840.js"> </script>
+</p>
+
+<p>
+    Im oberen Beispiel werden die Methoden eines Objekts ausgelesen und die impliziten herausgefiltert.
+</p>
+
+
+<h4>Makros</h4>
+
+<p>
+    Eine der wichtigsten Neuerungen in 2.10 sind sicherlich die Makros. Noch ist gar nicht komplett abzusehen, welche
+    Vorteile sie bieten werden. Prinzipiell erlauben Sie es Code zur Compile-Zeit auszuführen und damit Transformationen
+    vorzunehmen.
+</p>
+
+<p>
+    <script src="https://gist.github.com/3922811.js"> </script>
+</p>
+
+<p>
+    Im oberen Beispiel wird eine Methode <code>compileTime</code> erstellt, die zur Laufzeit einen String mit
+    dem Datum der Compile-Zeit zurückgibt.
+</p>
+
+
+<h4>Akka</h4>
+
+<p>
+    Lange Zeit hatte Scala eine eigene Standardimplementierung für das Aktorenmodell. Seit Jahren wird parallel
+    an Akka gebaut, dass sich auf eine bessere und schnellere Implementierung konzentriert. Nun wirft Scala seine
+    eigene heraus und macht Akka zum Standard. Sehr gut!
+</p>
+
+
+<h4>Dynamic</h4>
+
+<p>
+    Mit dem Trait <code>Dynamic</code> - das bereits seit 2.9 als experimentelles Feature dabei war -
+    ist es möglich dynamisch auf Methodenaufrufe zu reagieren. Man gibt dabei natürlich die Typensicherheit auf,
+    erkauft sich dafür aber Flexibilität. Gerade für Intergration mit dynamischen Systemen wie Datenbanken oder
+    Skriptsprachen wie Groovy kann das nützlich sein.
+</p>
+
+<p>
+    <script src="https://gist.github.com/3922829.js"> </script>
+</p>
+
+
+<h4>Future</h4>
+
+<p>
+    Als Teil der Akka-Bibliothek bekommen wir eine einheitliches <code>Future</code>! Bisher
+    hatte jede Bibliothek ihr eigenes <code>Future</code> geschrieben.
+</p>
+
+<p>
+    <script src="https://gist.github.com/3922775.js"> </script>
+</p>
+
+<p>
+    <code>Future</code> lässt sich natürlich mit Funktionen höherer Ordnung bzw. for-Ausdrücken verarbeiten. Cool!
+</p>
+
+
+<h4>Modularisierung der Sprachfeatures</h4>
+
+<p>
+    Ein Problem in Scala ist es, dass manche Funktionen etwas schwer zu verstehen sind - gerade für größere Teams
+    mit unterschiedlichen Fähigkeiten ist das eine Herausforderung. Mit der Modularisierung ist es nun möglich
+    bestimmte Features - wie z.B. Implicits oder Dynamic - mit einer Compiler-Warnung zu quittieren.
+</p>
+
+
+<h4>String Interpolation</h4>
+
+<p>
+    String Interpolation gibt uns eine bessere Schreibweise für das Verknüpfen von Strings.
+</p>
+
+<p>
+    <script src="https://gist.github.com/3922741.js"> </script>
+</p>
+
+<p>
+    Die Syntax ist einerseits kürzer - ähnlich wie wenn wir die <code>format</code>-Methode verwenden würden -
+    doch es hat die gleiche Performance wie über <code>+</code>.
+</p>

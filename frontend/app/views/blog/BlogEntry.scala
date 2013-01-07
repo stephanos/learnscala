@@ -2,6 +2,7 @@ package views.html.blog
 
 abstract class BlogEntry {
 
+    val langs = List("de")
     val title: String
 
     lazy val url = encode(title)

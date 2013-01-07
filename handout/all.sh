@@ -1,11 +1,7 @@
 #!/bin/sh
 
 # cleanup
-rm -Rf tmp/
-mkdir -p tmp/
-
-rm -Rf out/
-mkdir -p out/
+./clean.sh
 
 # generate PDFs
 ./slides.sh
@@ -21,6 +17,9 @@ cp -R ext/* out/extra/
 
 # render markdown
 ./md.rb
+
+# prepare exercises
+./exercises.sh
 
 # bundle to ZIP
 ./bundle.sh

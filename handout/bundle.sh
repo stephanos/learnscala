@@ -24,5 +24,6 @@ cd ../3
 zip ../../bundle/slides-C.zip *.pdf
 
 # BUNDLE exercise
-cd ../../../../exercises
-git archive --format zip --output ../pdf/out/bundle/exercises.zip master
+cd ../out
+zip -R exercises.zip exercises/
+rm -Rf exercises/

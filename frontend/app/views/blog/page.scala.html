@@ -1,15 +1,31 @@
-@(title: String, date: String, withComments: Boolean = true)(content: Html)
+@(title: String, date: String, url: String, withComments: Boolean = true, langs: List[String])(head: Html)(body: Html)
 
 @layout.public(title) {
 
     <div class="blog unit">
         <h2>
+            @if(langs.size > 1) {
+                <div class="langchg">
+                    <a style="display: inline-block" href='@{url.replace("/de/", "/en/")}'>
+                        <img width="40" src="@MyAssets.urlOf("britain.jpeg", "img")">
+                        </img>
+                    </a>
+                    <a href='@{url.replace("/en/", "/de/")}'>
+                        <img width="40" src="@MyAssets.urlOf("german.png", "img")">
+                        </img>
+                    </a>
+                </div>
+            }
             @title
             <span class="date">@date</span>
+            <div class="clrfix"></div>
         </h2>
 
         <article>
-            @content
+            <p class="bloghead">
+                @head
+            </p>
+            @body
         </article>
 
         @social()
