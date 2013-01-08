@@ -9,8 +9,9 @@
     </span> <span>
     <a href="http://www.scalatest.org/">
         ScalaTest</a>
-</span> <span>entschieden. Es ist &uuml;berschaubar und schr&auml;nkt den Stil, in dem man die Tests schreiben will, nicht ein. Wir benutzen es auch um unser Java SDK zu testen, das mit dem Backend-API kommuniziert. Ich denke, ScalaTest bietet eine ganze Reihe von M&ouml;glichkeiten, selbst f&uuml;r reine Java-Projekte. Zus&auml;tzlich unterst&uuml;tzt uns noch</span>
-    <a href="https://github.com/paulbutcher/ScalaMock">
+</span> <span>entschieden. Es ist &uuml;berschaubar und schr&auml;nkt den Stil, in dem man die Tests schreiben will, nicht ein. Wir benutzen es auch um unser Java SDK zu testen, das mit dem Backend-API kommuniziert. Ich denke, ScalaTest bietet eine ganze Reihe von M&ouml;glichkeiten, selbst f&uuml;r reine Java-Projekte.
+        Wir verwenden ebenfalls <a href="https://github.com/rickynils/scalacheck">ScalaCheck</a> zur Automatisierung von einigen Tests; zus&auml;tzlich unterst&uuml;tzt uns noch</span>
+<a href="https://github.com/paulbutcher/ScalaMock">
         ScalaMock</a>.
 </p> <p>
     <span>
@@ -56,9 +57,7 @@
     <a href="http://dispatch.databinder.net/">
         Dispatch HTTP</a></span> <span>-Bibliothek
 </span> <span>gesagt, er k&ouml;nne sich nicht auf</span> <span>
-    <a href="https://github.com/scalaz/scalaz">
-        Scalaz</a>
-</span> <span>verlassen, da er &auml;ltere Scala-Versionen mit neuen Dispatch-Releases unterst&uuml;tzen will, was neue Releases von Scalaz aber nicht tun.</span>
+    Scalaz verlassen, da er &auml;ltere Scala-Versionen mit neuen Dispatch-Releases unterst&uuml;tzen will, was neue Releases von Scalaz aber nicht tun.</span>
 </p> <p>
     <span>
         Das n&auml;chste Problem ist die sogenannte JAR-H&ouml;lle, die jedoch mit der JVM, nicht Scala selbst zusammenh&auml;ngt. Klar, SBT kann die richtigen Versionen der Abh&auml;ngigkeiten f&uuml;r dich verwalten (abgesehen von widerspr&uuml;chlichen transitiven Abh&auml;ngigkeiten, wenn eine Version einfach ausgew&auml;hlt wird, was &uuml;brigens ein weiteres Problem ist). W&auml;hrend der Laufzeit hat man jedoch keine Ahnung von Klassen-Versionen. Wenn die JVM eine Klasse laden muss, sucht sie einfach nach dem Namen und wenn sich dann eine falsche Version der Klasse auf dem Klassenpfad befindet, geht das Programm meist sowieso krachen. Um das zu vermeiden, bauen wir einen vollst&auml;ndigen Klassenpfad f&uuml;r die Start-Skripte unseres Webservices (z.B <span class="italic">-cp service_2.9.1-0.1.jar unfiltered_2.9.1-0.6.4.jar</span>) unter Verwendung einer modifizierten Version des

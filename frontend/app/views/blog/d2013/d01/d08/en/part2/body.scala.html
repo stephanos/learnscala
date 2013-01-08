@@ -3,7 +3,7 @@
 </span>
 <p>
 
-    We looked at a few testing frameworks and picked ScalaTest because it's straightforward and doesn't constrain the style in which you want to write your tests. We also use it to test our Java SDK that talks to our backend APIs. So I think ScalaTest offers a lot of possibilities even for pure Java projects. For mocking we use ScalaMock.
+    We looked at a few testing frameworks and picked ScalaTest because it's straightforward and doesn't constrain the style in which you want to write your tests. We also use it to test our Java SDK that talks to our backend APIs. So I think ScalaTest offers a lot of possibilities even for pure Java projects. We also use <a href="https://github.com/rickynils/scalacheck">ScalaCheck</a> for some tests, for mocking we use <a href="https://github.com/paulbutcher/ScalaMock">ScalaMock</a>.
 
 </p> <p>
 
@@ -40,8 +40,8 @@ I like Scala's expressiveness: one interesting library that was built in-house i
 </p> <p>
 
     I already mentioned compilation time but besides that I think the biggest pain points are two things related to versioning: binary compatibility and the JAR hell. These are two separate problems. The binary (in)compatibility between Scala versions is a well known problem is the Scala community. It's probably the main reason of libraries being released for a specific Scala version which leads to various versioning issues. For example, the author of the <a href="http://dispatch.databinder.net/">
-            Dispatch HTTP</a> client library said that he can't depend on <a href="https://github.com/scalaz/scalaz">
-                Scalaz</a> because he wants to support older Scala versions with new releases of Dispatch while new releases of Scalaz won't do the same.
+            Dispatch HTTP</a> client library said that he can't depend on
+                Scalaz because he wants to support older Scala versions with new releases of Dispatch while new releases of Scalaz won't do the same.
 
 </p> <p>
 

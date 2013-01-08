@@ -25,11 +25,13 @@
 
 </p> <p>
 
-<span>
     Scala wird im Backend verwendet, im Kern der Plattformlogik, wenn man so will. Wir benutzen
     <a href="http://unfiltered.databinder.net/">
         Unfiltered
-    </a> f&uuml;r das Bearbeiten von requests.</span> <span>Urspr&uuml;nglich hatten wir daf&uuml;r auch Finagle in Betracht gezogen, uns dann aber doch f&uuml;r Unfiltered entschieden, weil es angenehm einfach ist. Es tut nicht zu viel, sondern ist eher ein Toolkit als ein Framework und das ist genau das, was wir brauchten. Das Frontend ist eine Single Page App. Es hat Sinn ergeben, Scala auch im Frontend einzusetzen, daher war es dann auch unkompliziert es ins Backend zu integrieren. Das Ganze basiert auf dem recht neuen Play2 Framework, das seit der 1.x komplett umgeschrieben wurde. Da es sich bei uns um einen Rich Client handelt, ist der Code haupts&auml;chlich in Coffeescript, und der Teil in Play sehr klein.</span>
+    </a> f&uuml;r das Bearbeiten von requests. Urspr&uuml;nglich hatten wir daf&uuml;r auch Finagle in Betracht gezogen, uns dann aber doch f&uuml;r Unfiltered entschieden, weil es angenehm einfach ist. Es tut nicht zu viel, sondern ist eher ein Toolkit als ein Framework und das ist genau das, was wir brauchten.
+    Außerdem verwenden wir <a href="https://github.com/scalaz/scalaz">Scalaz</a> recht häufig.
+</p>
+    <p>Das Frontend ist eine Single Page App. Es hat Sinn ergeben, Scala auch im Frontend einzusetzen, daher war es dann auch unkompliziert es ins Backend zu integrieren. Das Ganze basiert auf dem recht neuen Play2 Framework, das seit der 1.x komplett umgeschrieben wurde. Da es sich bei uns um einen Rich Client handelt, ist der Code haupts&auml;chlich in Coffeescript, und der Teil in Play sehr klein.
 
 </p> <p>
 
