@@ -6,11 +6,11 @@
         <h2>
             @if(langs.size > 1) {
                 <div class="langchg">
-                    <a style="display: inline-block" href='@{url.replace("/de/", "/en/")}'>
+                    <a style="display: inline-block" href='@{url.replace("/de/", "/en/").replace("/teil", "/part")}'>
                         <img width="40" src="@MyAssets.urlOf("britain.jpeg", "img")">
                         </img>
                     </a>
-                    <a href='@{url.replace("/en/", "/de/")}'>
+                    <a href='@{url.replace("/en/", "/de/").replace("/part", "/teil")}'>
                         <img width="40" src="@MyAssets.urlOf("german.png", "img")">
                         </img>
                     </a>

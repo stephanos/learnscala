@@ -1,11 +1,11 @@
 <span class="bold">
     How do you test your Scala code ?
 </span>
-<p class="c3">
+<p>
 
-    We looked at a few testing frameworks and picked ScalaTest because it's straightforward and doesn't constraint the style in which you want to write your tests. We also use it to test our Java SDK that talks to our backend APIs. So I think ScalaTest offers a lot of possibilities even for pure Java projects. For mocking we use ScalaMock.
+    We looked at a few testing frameworks and picked ScalaTest because it's straightforward and doesn't constrain the style in which you want to write your tests. We also use it to test our Java SDK that talks to our backend APIs. So I think ScalaTest offers a lot of possibilities even for pure Java projects. For mocking we use ScalaMock.
 
-</p> <p class="c3">
+</p> <p>
 
     We also use Jenkins as a continuous integration server to test our code base after every git push. It simply invokes SBT
  <span class="c4">
@@ -13,37 +13,39 @@
  
     and the test reports are then exported to XML, so that Jenkins can parse and display them. All in all a very smooth integration.
  </span>
-</p> <p class="c0"></p> <p class="c3">
+</p>  <p>
 <span class="bold">
     What do you like about Scala ?
 </span>
-</p> <p class="c3">
+</p> <p>
 I like Scala's expressiveness: o 
     ne interesting library that was built in-house is a type-safe query API for MongoDB. We first looked at
- <a href="https://github.com/foursquare/rogue">Rogue</a> 
-    , but found it too intrusive because it makes assumptions about your domain model. So we created a query DSL ourselves. It's a bit like LINQ from .NET. It didn't take long to implement. You get all the operations of MongoDB and can compose them using the DSL. The best thing is that everything is type safe, so when a query uses a wrong field or operation the compiler can give you an error at compile time. That's a good example of how Scala can adapt to the problem domain.
+ <a href="https://github.com/foursquare/rogue">Rogue</a>,
+    but found it too intrusive because it makes assumptions about your domain model. So we created a query DSL ourselves. It's a bit like LINQ from .NET. It didn't take long to implement. You get all the operations of MongoDB and can compose them using the DSL. The best thing is that everything is type safe, so when a query uses a wrong field or operation the compiler can give you an error at compile time. That's a good example of how Scala can adapt to the problem domain.
     For Example:
 </p>
 <p>
     <script src="https://gist.github.com/4474462.js"> </script>
 </p>
-</p> <p class="c0"></p> <p class="c3">
+<p>
 
     I like that you need little code express commons concepts. Java and C# IDEs have code generation features like "Generate constructor" or "Generate getters". In Scala, you don't need that. The ratio of useful code to boilerplate is very good.
 
-</p> <p class="c3">
+</p> <p>
 
     Apart from the language itself, I like the Scala community; it's quite active and I like what's been done for the 2.10 release, I think it's going in a right direction.
 
-</p> <p class="c0"></p> <p class="c3">
+</p>  <p>
 <span class="bold">
     What are your pain points?
 </span>
-</p> <p class="c3">
+</p> <p>
 
-    I already mentioned compilation time but besides that I think the biggest pain points are two things related to versioning: binary compatibility and the JAR hell. These are two separate problems. The binary (in)compatibility between Scala versions is a well known problem is the Scala community. It's probably the main reason of libraries being released for a specific Scala version which leads to various versioning issues. For example, the author of the Dispatch HTTP client library said that he can't depend on Scalaz because he wants to support older Scala versions with new releases of Dispatch while new releases of Scalaz won't do the same.
+    I already mentioned compilation time but besides that I think the biggest pain points are two things related to versioning: binary compatibility and the JAR hell. These are two separate problems. The binary (in)compatibility between Scala versions is a well known problem is the Scala community. It's probably the main reason of libraries being released for a specific Scala version which leads to various versioning issues. For example, the author of the <a href="http://dispatch.databinder.net/">
+            Dispatch HTTP</a> client library said that he can't depend on <a href="https://github.com/scalaz/scalaz">
+                Scalaz</a> because he wants to support older Scala versions with new releases of Dispatch while new releases of Scalaz won't do the same.
 
-</p> <p class="c3">
+</p> <p>
 
     The second problem is the so called JAR hell and it's related to the JVM, not Scala itself. Yes, SBT can manage correct versions of dependencies for you (apart from conflicting transitive dependencies when one version is simply chosen, which is a problem as well). At runtime, however, there is no notion of class versions. If the JVM needs to load a class, it looks it up simply by its fully qualified name and if a wrong version of that class happens to be on the classpath, your program often blows up. To get around this problem, we build a full classpath for the start scripts of our backend web services (e.g "-cp service_2.9.1-0.1.jar unfiltered_2.9.1-0.6.4.jar") using a modified version of the
  
@@ -51,11 +53,11 @@ I like Scala's expressiveness: o
         SBT packaging plugin
     </a>
  .
-</p> <p class="c0"></p> <p class="c3">
+</p>  <p>
 <span class="bold">
     What do you think of the new macros feature of Scala 2.10 ?
 </span>
-</p> <p class="c3">
+</p> <p>
 
     Well, macros generate code so they can help with tasks where you would traditionally use code generation, like when dealing with models, serialization, etc. I didn't look at the new feature closely yet but it could help with our query DSL because you wouldn't have to specify a Mongo view for the domain model manually. I think Typesafe's
  
@@ -63,11 +65,11 @@ I like Scala's expressiveness: o
         Slick
     </a>
  implements this already.
-</p> <p class="c0"></p> <p class="c3">
+</p>  <p>
 <span class="bold">
     Do you use the support offered by Typesafe ?
 </span>
-</p> <p class="c3">
+</p> <p>
 
     No, we didn't need it so far. If you are in production and run into some issues you will probably happily pay. But if you are not in production yet, I didn't feel it would be necessary. We didn't run into things we couldn't figure out ourselves.
 
