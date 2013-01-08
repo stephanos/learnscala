@@ -7,10 +7,9 @@
 
 </p> <p>
 
-    We also use Jenkins as a continuous integration server to test our code base after every git push. It simply invokes SBT
+    We also use Jenkins as a continuous integration server to test our code base after every <span class="italic">git push</span>. It simply invokes SBT
  <span class="c4">
-    clean test
- 
+    <span class="italic">clean test</span>
     and the test reports are then exported to XML, so that Jenkins can parse and display them. All in all a very smooth integration.
  </span>
 </p>  <p>
@@ -18,8 +17,7 @@
     What do you like about Scala ?
 </span>
 </p> <p>
-I like Scala's expressiveness: o 
-    ne interesting library that was built in-house is a type-safe query API for MongoDB. We first looked at
+I like Scala's expressiveness: one interesting library that was built in-house is a type-safe query API for MongoDB. We first looked at
  <a href="https://github.com/foursquare/rogue">Rogue</a>,
     but found it too intrusive because it makes assumptions about your domain model. So we created a query DSL ourselves. It's a bit like LINQ from .NET. It didn't take long to implement. You get all the operations of MongoDB and can compose them using the DSL. The best thing is that everything is type safe, so when a query uses a wrong field or operation the compiler can give you an error at compile time. That's a good example of how Scala can adapt to the problem domain.
     For Example:
@@ -29,7 +27,7 @@ I like Scala's expressiveness: o
 </p>
 <p>
 
-    I like that you need little code express commons concepts. Java and C# IDEs have code generation features like "Generate constructor" or "Generate getters". In Scala, you don't need that. The ratio of useful code to boilerplate is very good.
+    Java and C# IDEs have code generation features like "Generate constructor" or "Generate getters". In Scala, you don't need that. The ratio of useful code to boilerplate is very good.
 
 </p> <p>
 
@@ -47,32 +45,24 @@ I like Scala's expressiveness: o
 
 </p> <p>
 
-    The second problem is the so called JAR hell and it's related to the JVM, not Scala itself. Yes, SBT can manage correct versions of dependencies for you (apart from conflicting transitive dependencies when one version is simply chosen, which is a problem as well). At runtime, however, there is no notion of class versions. If the JVM needs to load a class, it looks it up simply by its fully qualified name and if a wrong version of that class happens to be on the classpath, your program often blows up. To get around this problem, we build a full classpath for the start scripts of our backend web services (e.g "-cp service_2.9.1-0.1.jar unfiltered_2.9.1-0.6.4.jar") using a modified version of the
- 
+    The second problem is the so called JAR hell and it's related to the JVM, not Scala itself. Yes, SBT can manage correct versions of dependencies for you (apart from conflicting transitive dependencies when one version is simply chosen, which is a problem as well). At runtime, however, there is no notion of class versions. If the JVM needs to load a class, it looks it up simply by its fully qualified name and if a wrong version of that class happens to be on the classpath, your program often blows up. To get around this problem, we build a full classpath for the start scripts of our backend web services (e.g. <span class="italic">-cp service_2.9.1-0.1.jar unfiltered_2.9.1-0.6.4.jar</span>) using a modified version of the
     <a href="https://github.com/sbt/sbt-native-packager">
-        SBT packaging plugin
-    </a>
- .
+        SBT packaging plugin</a>.
 </p>  <p>
 <span class="bold">
     What do you think of the new macros feature of Scala 2.10 ?
 </span>
 </p> <p>
-
     Well, macros generate code so they can help with tasks where you would traditionally use code generation, like when dealing with models, serialization, etc. I didn't look at the new feature closely yet but it could help with our query DSL because you wouldn't have to specify a Mongo view for the domain model manually. I think Typesafe's
- 
     <a href="http://slick.typesafe.com/">
-        Slick
-    </a>
+        Slick</a>
  implements this already.
 </p>  <p>
 <span class="bold">
     Do you use the support offered by Typesafe ?
 </span>
 </p> <p>
-
     No, we didn't need it so far. If you are in production and run into some issues you will probably happily pay. But if you are not in production yet, I didn't feel it would be necessary. We didn't run into things we couldn't figure out ourselves.
-
 </p>
 
 <p class="bold">
