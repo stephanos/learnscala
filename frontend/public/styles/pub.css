@@ -421,6 +421,7 @@ body .bold{font-weight:bold;}
 body .box{text-align:justify;}
 body .bloghead{font-size:125%;font-weight:bold;margin-bottom:40px;}body .bloghead a :hover{text-decoration:none;}
 body .langchg{float:right;}body .langchg img{border:1px solid #444;}
+body .langchg .label{margin-top:5px;}
 body div.container{width:700px;min-width:700px;max-width:700px;}
 body.event>div.container{width:975px;max-width:975px;}
 body.training h2{margin-bottom:30px;}
