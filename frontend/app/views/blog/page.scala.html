@@ -26,19 +26,35 @@
 @layout.public(shareTitle, meta = meta) {
 
     <div class="blog unit">
+        @if(langs.size > 1) {
+            <div class="langchg" style="margin-right: 22px">
+                @if(url.contains("/de/")) {
+                    <div style="text-align: center">
+                        <a style="display: block" href='@{url.replace("/de/", "/en/").replace("/teil", "/part")}'>
+                            <div>
+                                <img width="50" src="@MyAssets.urlOf("britain.jpeg", "img")"></img>
+                                <div class="label">
+                                    in English
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+                @if(url.contains("/en/")) {
+                    <div style="text-align: center">
+                        <a style="display: block" href='@{url.replace("/en/", "/de/").replace("/part", "/teil")}'>
+                            <div>
+                                <img width="50" src="@MyAssets.urlOf("german.png", "img")"></img>
+                                <div class="label">
+                                    in German
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        }
         <h2>
-            @if(langs.size > 1) {
-                <div class="langchg" style="margin-right: 22px">
-                    <a style="display: inline-block" href='@{url.replace("/de/", "/en/").replace("/teil", "/part")}'>
-                        <img width="50" src="@MyAssets.urlOf("britain.jpeg", "img")">
-                        </img>
-                    </a>
-                    <a href='@{url.replace("/en/", "/de/").replace("/part", "/teil")}'>
-                        <img width="50" src="@MyAssets.urlOf("german.png", "img")">
-                        </img>
-                    </a>
-                </div>
-            }
             @title
             <span class="date">@date</span>
             <div class="clrfix"></div>
