@@ -4,8 +4,14 @@
 <p>
 
     We looked at a few testing frameworks and picked ScalaTest because it's straightforward and doesn't constrain the style in which you want to write your tests. We also use it to test our Java SDK that talks to our backend APIs. So I think ScalaTest offers a lot of possibilities even for pure Java projects. We also use <a href="https://github.com/rickynils/scalacheck">ScalaCheck</a> for some tests, for mocking we use <a href="https://github.com/paulbutcher/ScalaMock">ScalaMock</a>.
+    An Example of using ScalaTest:
+</p>
 
-</p> <p>
+<p>
+    <script src="https://gist.github.com/e347b2499ec1f36406f1.js"></script>
+</p>
+
+<p>
 
     We also use <a href="http://jenkins-ci.org/">Jenkins</a> as a continuous integration server to test our code base after every <span class="italic">git push</span>. It simply invokes SBT
  <span class="c4">
@@ -27,7 +33,7 @@ I like Scala's expressiveness: one interesting library that was built in-house i
 </p>
 <p>
 
-    Java and C# IDEs have code generation features like "Generate constructor" or "Generate getters". In Scala, you don't need that. The ratio of useful code to boilerplate is very good.
+    Other than that, I like Scala's conciseness. Java and C# IDEs have code generation features like "Generate constructor" or "Generate getters". In Scala, you don't need that. The ratio of useful code to boilerplate is very good.
 
 </p> <p>
 
@@ -39,13 +45,13 @@ I like Scala's expressiveness: one interesting library that was built in-house i
 </span>
 </p> <p>
 
-    I already mentioned compilation time but besides that I think the biggest pain points are two things related to versioning: binary compatibility and the JAR hell. These are two separate problems. The binary (in)compatibility between Scala versions is a well known problem is the Scala community. It's probably the main reason of libraries being released for a specific Scala version which leads to various versioning issues. For example, the author of the <a href="http://dispatch.databinder.net/">
+    I already mentioned compilation time but besides that I think the biggest pain points are two things related to versioning: binary compatibility and the JAR hell. These are two separate problems. The binary (in)compatibility between Scala versions is a well known problem in the Scala community. It's probably the main reason of libraries being released for a specific Scala version which leads to various versioning issues. For example, the author of the <a href="http://dispatch.databinder.net/">
             Dispatch HTTP</a> client library said that he can't depend on
                 Scalaz because he wants to support older Scala versions with new releases of Dispatch while new releases of Scalaz won't do the same.
 
 </p> <p>
 
-    The second problem is the so called JAR hell and it's related to the JVM, not Scala itself. Yes, SBT can manage correct versions of dependencies for you (apart from conflicting transitive dependencies when one version is simply chosen, which is a problem as well). At runtime, however, there is no notion of class versions. If the JVM needs to load a class, it looks it up simply by its fully qualified name and if a wrong version of that class happens to be on the classpath, your program often blows up. To get around this problem, we build a full classpath for the start scripts of our backend web services (e.g. <span class="italic">-cp service_2.9.1-0.1.jar unfiltered_2.9.1-0.6.4.jar</span>) using a modified version of the
+    The second problem is the so called JAR hell and it's related to the JVM, not Scala itself. Yes, SBT can manage correct versions of dependencies for you (apart from conflicting transitive dependencies when one version is simply chosen, which is a problem as well). At runtime, however, there is no notion of class versions. If the JVM needs to load a class, it simply looks it up by its fully qualified name and if a wrong version of that class happens to be on the classpath, your program often blows up. To get around this problem, we build a full classpath for the start scripts of our backend web services (e.g. <span class="italic">-cp service_2.9.1-0.1.jar unfiltered_2.9.1-0.6.4.jar</span>) using a modified version of the
     <a href="https://github.com/sbt/sbt-native-packager">
         SBT packaging plugin</a>.
 </p>  <p>

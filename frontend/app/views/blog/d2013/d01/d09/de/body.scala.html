@@ -46,7 +46,7 @@
     Scala ist ein bisschen wie ein Cham&auml;leon; bis dir dann jemand sagt "mach es so". Aber der
     <a href="https://www.coursera.org/courses">
         Kurs</a>
-    den Martin Odersky <span class="italic">(Anm.: Erfinder von Scala)</span> bei Coursera gegeben hat, zeigt ganz deutlich, dass er funktionale Programmierung und unver&auml;nderliche ("immutable") Datenstrukturen bevorzugt. Das ist mir erst im Nachhinein klar geworden, aber so programmieren wir hier auch. Funktionale Programmierung kannte ich auch bereits aus dem Haskell-Kurs in meinem Studium, daher war es kein komplettes Neuland f&uuml;r mich.
+    den Martin Odersky <span class="italic">(Anm.: Erfinder von Scala)</span> bei Coursera gegeben hat, zeigt ganz deutlich, dass er funktionale Programmierung und unver&auml;nderliche ("immutable") Datenstrukturen bevorzugt. Das ist mir erst im Nachhinein klar geworden, aber so programmieren wir hier auch. Funktionale Programmierung kannte ich auch bereits aus dem Haskell-Kurs in meinem <a href="http://www.mff.cuni.cz/">Studium</a>, daher war es kein komplettes Neuland f&uuml;r mich.
 
 </p> <p>
 
@@ -72,7 +72,16 @@
     Besonders die Unver&auml;nderlichkeit macht den ganzen Code deutlich sicherer, denn Bugs schleichen sich einfach nicht so leicht ein. Wenn man etwas als unver&auml;nderlich definiert, ist es viel schwerer, Fehler zu begehen. Au&szlig;erdem ist es hilfreich f&uuml;r die Nebenl&auml;ufigkeit, Deadlocks
 </span> <span>treten nicht mehr auf.</span>
 
-</p> <p>
+</p>
+
+<p>
+    Nachfolgend ein gutes Beispiel das zeigt, wie einfach es ist eine unveränderliche Klasse in Scala zu definieren - inklusive Implementierungen für <span class="italic">equals</span> und <span class="italic">hashCode</span>:
+</p>
+<p>
+    <script src="https://gist.github.com/0885287301bf3e12d607.js"></script>
+</p>
+
+<p>
 
 <span class="bold">
     Welche Scala-Erfahrungen hat das Team, mit dem du arbeitest ?

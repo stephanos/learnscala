@@ -27,15 +27,15 @@
     How did you get to know Scala ?
 </span>
 </p> <p>
-    I first used Scala in 2008. I just had a look, liked what I saw but wasn't able to apply use professionally. I went through a few tutorials - for instance I found the
+    I first used Scala in 2008. I just had a look, liked what I saw but wasn't able to apply it professionally. I went through a few tutorials - for instance I found the
 <a href="http://aperiodic.net/phil/scala/s-99/">99-Scala-Problems</a>,
-    picked the last one and started programming. At first, I used a lot of mutable state because I didn't know best practices yet.
+    picked the last one and started coding. At first, I used a lot of mutable state because I didn't know best practices yet.
 </p> <p>
     Scala is a bit like a chameleon; until someone tells you "do it this way". But you can easily see from the
 
 <a href="https://www.coursera.org/courses">
     course</a>
-    Martin Odersky gave on Coursera that he prefers functional programming and immutable data structures. I just got that later, but that's how we program here as well. I also knew functional programming from university where we had a Haskell course. So functional programming wasn't too surprising for me.
+    Martin Odersky gave on Coursera that he prefers functional programming and immutable data structures. I just got that later, but that's how we program here as well. I also knew functional programming from <a href="http://www.mff.cuni.cz/">university</a> where we had a Haskell course. So functional programming wasn't too surprising for me.
 </p> <p>
     Professionally, I was developing in C# quite a bit, until I found a Scala job here in Berlin one year ago. When I started, I learned a lot about more "advanced Scala" on the job, for instance concepts like implicits and type classes. I would look at the code of my co-workers, talk about it and improve my own skills.
 </p> <p>
@@ -46,7 +46,14 @@
     Well, you're supposed to be more productive in Scala, right? And I feel like we are. I personally like Scala as a language, there are syntax advantages you don't have in Java. You can express concepts clearer. If the tooling wasn't so slow it would be a real killer.
 </p> <p>
     Especially immutability just makes your code safer since it is harder to introduce bugs. If you can make something immutable, it's harder to make mistakes. It also helps with concurrency, you don't run into deadlocks or race conditions that easily.
-</p> <p>
+</p>
+<p>
+    One nice example is how easy it is to define an immutable value object in Scala, including an implementation of <span class="italic">equals</span> and <span class="italic">hashCode</span>:
+</p>
+<p>
+    <script src="https://gist.github.com/0885287301bf3e12d607.js"></script>
+</p>
+<p>
 <span class="bold">
     What level of Scala experience does the team your work with have ?
 </span>
