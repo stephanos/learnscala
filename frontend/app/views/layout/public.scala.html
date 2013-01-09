@@ -1,4 +1,4 @@
-@(title: String = "", crawl: Boolean = true, hideNav: Boolean = false, subtitle: Html = null,  meta: String = "", classes: String = "")(content: Html)
+@(title: String = "", crawl: Boolean = true, hideNav: Boolean = false, subtitle: Html = null, descr: String = "", meta: Html = Html(""), classes: String = "")(content: Html)
 
 @import controllers.MyAssets._
 
@@ -16,8 +16,9 @@
         } else {
             <meta name="robots" content="NOINDEX"/>
         }
-        <meta name="description" content="@meta"/>
+        <meta name="description" content="@descr"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        @meta
 
         @* FAVICON *@
         @* For retina-display iPads *@

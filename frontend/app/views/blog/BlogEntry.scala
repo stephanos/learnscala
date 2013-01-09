@@ -22,4 +22,6 @@ abstract class BlogEntry {
             .replaceAllLiterally("ä", "ae")
             .replaceAllLiterally("ü", "ue")
             .replaceAllLiterally("ß", "ss")
+            .replaceAllLiterally("---", "-")
+            .replaceAllLiterally("--", "-")
 }

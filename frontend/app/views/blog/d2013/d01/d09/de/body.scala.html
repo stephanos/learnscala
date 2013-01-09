@@ -1,0 +1,144 @@
+<p class="c0 c2"><span class="bold"></span></p> <p>
+<span class="bold">
+    Hallo, Martin. Erz&auml;hl mal, was macht deine Firma genau ?
+</span>
+</p> <p>
+
+<span>
+    Die Firma f&uuml;r die ich arbeite,
+</span> 
+    <a href="http://www.commercetools.de/">
+        commercetools</a>, entwirft kundenspezifische eCommerce-L&ouml;sungen in der Cloud.
+        Das Headquarter in M&uuml;nchen erstellt Onlineshops f&uuml;r Kunden basierend auf der hauseigenen Java-Plattform, aber im Moment wird hier in Berlin eine komplett neue eCommerce-Plattform von Grund auf entwickelt. Es f&uuml;hlt sich ein bisschen an wie ein Start-up, wir arbeiten an einem nahezu unabh&auml;ngigen Projekt.
+</p> <p>
+
+<span class="bold">
+    Kannst du das Projekt von einem technischen Standpunkt aus beschreiben ?
+</span>
+</p> <p>
+<span>
+    Wir benutzen haupts&auml;chlich Scala, daneben auch etwas Java, dann Ruby f&uuml;r das Scripting und Coffeescript im Client. Das passende Werkzeug f&uuml;r jede Aufgabe ebend.
+</span>
+
+</p> <p>
+
+    Scala wird im Backend verwendet, im Kern der Plattformlogik, wenn man so will. Wir benutzen
+    <a href="http://unfiltered.databinder.net/">
+        Unfiltered
+    </a> f&uuml;r als HTTP-Bibliothek. Urspr&uuml;nglich hatten wir daf&uuml;r auch <a href="http://twitter.github.com/finagle/">Finagle</a> in Betracht gezogen, uns dann aber doch f&uuml;r Unfiltered entschieden, weil es angenehm einfach ist. Es tut nicht zu viel, sondern ist eher ein Toolkit als ein Framework und das ist genau das, was wir brauchten.
+    Außerdem verwenden wir <a href="https://github.com/scalaz/scalaz">Scalaz</a> recht häufig.
+</p>
+    <p>Das Frontend ist eine Single Page App. Es hat Sinn ergeben, Scala auch im Frontend einzusetzen, daher war es dann auch unkompliziert es ins Backend zu integrieren. Das Ganze basiert auf dem recht neuen <a href="http://www.playframework.org/">Play2-Framework</a>, das seit der 1.x komplett umgeschrieben wurde. Da es sich bei uns um einen Rich Client handelt, ist der Code haupts&auml;chlich in Coffeescript, und der Teil in Play sehr klein.
+
+</p> <p>
+
+<span class="bold">
+    Wie bist du urspr&uuml;nglich auf Scala aufmerksam geworden ?</span>
+</p> <p>
+
+    Ich habe 2008 angefangen, Scala zu benutzen. Zuerst habe ich nur einen Blick darauf geworfen und was ich sah, gefiel mir. Ich konnte es jedoch noch nicht im professionellen Umfeld anwenden. Also bin ich einige Tutorials durchgegangen - zum Beispiel habe ich die
+
+    <a href="http://aperiodic.net/phil/scala/s-99/">
+        99-Scala-Problems</a>
+    gefunden, mir das Letzte davon vorgenommen und einfach angefangen zu programmieren. Am Anfang habe ich noch viel ver&auml;nderliche ("mutable") Variablen eingesetzt, weil mir Scalas bew&auml;hrte Methoden noch nicht gel&auml;ufig waren.
+</p> <p>
+
+    Scala ist ein bisschen wie ein Cham&auml;leon; bis dir dann jemand sagt "mach es so". Aber der
+    <a href="https://www.coursera.org/courses">
+        Kurs</a>
+    den Martin Odersky <span class="italic">(Anm.: Erfinder von Scala)</span> bei Coursera gegeben hat, zeigt ganz deutlich, dass er funktionale Programmierung und unver&auml;nderliche ("immutable") Datenstrukturen bevorzugt. Das ist mir erst im Nachhinein klar geworden, aber so programmieren wir hier auch. Funktionale Programmierung kannte ich auch bereits aus dem Haskell-Kurs in meinem Studium, daher war es kein komplettes Neuland f&uuml;r mich.
+
+</p> <p>
+
+<span>
+    Beruflich habe ich eine ganze Weile in C# programmiert, bis ich dann letztes Jahr den Scala-Job hier in Berlin gefunden habe. Als ich anfing, habe ich bei der Arbeit eine Menge &uuml;ber fortgeschrittene Scala-Konzepte gelernt, zum Beispiel Implicits und Typklassen. Oft habe ich den Quellcode meiner Kollegen studiert, mit ihnen dar&uuml;ber gesprochen und dadurch meine F&auml;higkeiten St&uuml;ck f&uuml;r St&uuml;ck verbessert.
+</span>
+
+</p> <p>
+
+<span class="bold">
+    Inwieweit hilft Scala deiner Arbeit besser als Java ?
+</span>
+
+</p> <p>
+
+<span>
+    Nun ja, in Scala soll man ja produktiver sein, nicht wahr? Und ich habe das Gef&uuml;hl, dass wir es sind. Pers&ouml;nlich mag ich Scala als Sprache sehr, es gibt Vorteile bei der Syntax, die Java einfach nicht bietet. Man kann Konzepte einfach verst&auml;ndlicher darstellen. Wenn die Entwicklungswerkzeuge
+</span> <span>nicht so langsam w&auml;ren, könnte es ein echter Kn&uuml;ller sein.</span>
+
+</p> <p>
+
+<span>
+    Besonders die Unver&auml;nderlichkeit macht den ganzen Code deutlich sicherer, denn Bugs schleichen sich einfach nicht so leicht ein. Wenn man etwas als unver&auml;nderlich definiert, ist es viel schwerer, Fehler zu begehen. Au&szlig;erdem ist es hilfreich f&uuml;r die Nebenl&auml;ufigkeit, Deadlocks
+</span> <span>treten nicht mehr auf.</span>
+
+</p> <p>
+
+<span class="bold">
+    Welche Scala-Erfahrungen hat das Team, mit dem du arbeitest ?
+</span>
+
+</p> <p>
+
+    Jeder, der bei uns in Scala arbeitet, hatte schon Erfahrungen damit, bevor er hier angefangen hat. Aber um ehrlich zu sein, ist es ja auch nicht allzu schwer, Scala zu lernen. Wenn du gute Leute hast, die Erfahrungen damit haben, kannst du es problemlos von ihnen lernen. Solange man offen f&uuml;r Neues ist, kann man es sich leicht selbst aneignen. Sogar unser Frontend-Entwickler lernt gerade Scala.
+
+</p> <p>
+
+<span class="bold">
+    Wie stellt ihr sicher, dass alle Teammitglieder den gleichen "Scala-Stil" verwenden ?</span>
+
+</p> <p>
+
+<span>
+    Wir schauen immer wieder den Quellcode der jeweils Anderen an, f&uuml;hren Code-Reviews durch und &uuml;berpr&uuml;fen die Commits. Das Team hat ja bereits fundierte Erfahrung in Scala, daher haben wir alle die gleiche Vorstellung vom
+    "richtigen Stil". Selbst wenn ich mich einem neuen Projekt angeschlossen h&auml;tte, w&uuml;rde ich mir einfach den Projectcode ansehen, herausfinden welcher Stil benutzt wird und mir diesen dann aneignen.
+</span>
+
+</p> <p>
+
+<span>
+    Wenn du einen neuen Kollegen hast, schaust du dir doch logischerweise dessen Commits an. Es ist nat&uuml;rlich am Anfang ein bisschen aufwendig sicherzustellen, dass alle die gleiche Vorstellung davon haben, wie der Code aussehen sollte, aber mit Voranschreiten des Projekts tritt das nach und nach in den Hintergrund.
+</span>
+
+</p> <p>
+
+<span class="bold">
+    Welche Entwicklungswerkzeuge benutzt du ?
+</span>
+
+</p> <p>
+
+<span>
+    Um
+</span> <span>Scala zu bauen und die Abh&auml;ngigkeiten zu definieren, nutzen wir SBT. Man kann nat&uuml;rlich auch Maven einsetzen. Mir pers&ouml;nlich gef&auml;llt SBT und die anderen Kollegen hatten damit schon Erfahrungen, daher war die Entscheidung schnell getroffen.</span>
+
+</p> <p>
+
+<span>
+    Ich denke einfach, der Scala-Kompiler k&ouml;nnte schneller sein, aber das liegt ja nicht an SBT, soweit ich das sehe. Wenn man es mit dem Kompilieren von Java-Projekten vergleicht, ist es nunmal deutlich langsamer. Da habe ich schon das Gef&uuml;hl, dass meine Produktivit&auml;t davon beeinflusst wird. Ich habe mit SBT 0.7 angefangen, jetzt sind wir bei 0.12. Es ist definitiv schon besser geworden, aber es hat eben den Anschein, als ob Programmieren in Scala schon immer langsamer war. Leider.
+</span>
+
+</p> <p>
+
+<span class="bold">
+    Welche Entwicklungsumgebung verwendest du
+</span> <span class="bold">?</span>
+
+</p> <p>
+
+<span>Ich arbeite mit einem Macbook Pro und</span> <span>
+    IntelliJ. IntelliJ ist eine gro&szlig;artige IDE, aber das Scala-Plugin k&ouml;nnte performancetechnisch eindeutig besser sein. Sie benutzen nicht den Scala-Presentation-Compiler und verwenden ihre eigenen Implementierungen. Ich vertraue den IntelliJ-Leuten jedoch, dass sie es noch beschleunigt kriegen.
+</span>
+
+</p> <p>
+
+<span>
+    Ich verwende das SBT-Plugin f&uuml;r IntelliJ um inkrementelle Kompilierung und Testing durchzuf&uuml;hren. Einige meiner Kollegen benutzen hingegen gar keine IDE.
+</span>
+</p>
+
+<a style="font-size: 105%; float: right; margin-bottom: 30px;" href="/2013/01/09/de/teil2/scala-im-unternehmen-teil-2">
+    Details über Scalas Stärken und Schwächen in <strong>Teil 2</strong>
+</a>
+
+<div class="clrfix"></div>

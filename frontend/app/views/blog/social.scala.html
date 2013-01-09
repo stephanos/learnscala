@@ -1,23 +1,30 @@
-<table style="float: right; margin: 10px 0">
+@(title: String, url:String)
+
+<div class="clrfix"></div>
+
+<table style="float: right; margin: 30px 0 15px">
     <tr>
         <td style="padding-right: 15px">
             <!-- TWITTER -->
-            <a href="https://twitter.com/share" class="twitter-share-button" data-via="learnscala" data-size="large"
-               data-related="learnscala" data-count="none" data-hashtags="scala">Tweet</a>
-            <script>!function (d, s, id) {
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (!d.getElementById(id)) {
-                    js = d.createElement(s);
-                    js.id = id;
-                    js.src = "//platform.twitter.com/widgets.js";
-                    fjs.parentNode.insertBefore(js, fjs);
-                }
-            }(document, "script", "twitter-wjs");</script>
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="@url"
+                data-text="@title" data-via="learnscala" data-size="large"
+                data-related="learnscala" data-count="none" data-hashtags="scala">Tweet</a>
+            <script>
+                !function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = "//platform.twitter.com/widgets.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, "script", "twitter-wjs");
+            </script>
         </td>
 
         <td style="padding-right: 15px">
             <!-- GOOGLE+ -->
-            <div class="g-plusone" data-annotation="none" data-width="standard"></div>
+            <div class="g-plusone" data-href="@url" data-annotation="none" data-width="standard"></div>
 
             <script type="text/javascript">
                 (function () {

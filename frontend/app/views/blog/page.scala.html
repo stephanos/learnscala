@@ -1,17 +1,40 @@
 @(title: String, date: String, url: String, withComments: Boolean = true, langs: List[String])(head: Html)(body: Html)
 
-@layout.public(title) {
+@shareUrl = @{
+    "https://www.learnscala.de" +
+        url.
+            replaceAllLiterally("/part2/", "/").
+            replaceAllLiterally("/teil2/", "/").
+            replaceAllLiterally("-part-2", "").
+            replaceAllLiterally("-teil-2", "")
+}
+
+@shareTitle = @{
+    title.
+        replaceAllLiterally(": Part 2", "").
+        replaceAllLiterally(" - Part 2", "").
+        replaceAllLiterally(": Teil 2", "").
+        replaceAllLiterally(" - Teil 2", "")
+}
+
+@meta = {
+    <meta property="og:url" content="@shareUrl" />
+    <meta property="og:title" content="@shareTitle" />
+    <meta property="og:image" content="https://www.learnscala.de/assets/img/learnscala.png" />
+}
+
+@layout.public(shareTitle, meta = meta) {
 
     <div class="blog unit">
         <h2>
             @if(langs.size > 1) {
-                <div class="langchg">
+                <div class="langchg" style="margin-right: 22px">
                     <a style="display: inline-block" href='@{url.replace("/de/", "/en/").replace("/teil", "/part")}'>
-                        <img width="40" src="@MyAssets.urlOf("britain.jpeg", "img")">
+                        <img width="50" src="@MyAssets.urlOf("britain.jpeg", "img")">
                         </img>
                     </a>
                     <a href='@{url.replace("/en/", "/de/").replace("/part", "/teil")}'>
-                        <img width="40" src="@MyAssets.urlOf("german.png", "img")">
+                        <img width="50" src="@MyAssets.urlOf("german.png", "img")">
                         </img>
                     </a>
                 </div>
@@ -28,7 +51,7 @@
             @body
         </article>
 
-        @social()
+        @social(shareTitle, shareUrl)
 
         @if(withComments) {
             @comp.disqus()
