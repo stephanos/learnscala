@@ -3,10 +3,14 @@ package de.learnscala.api.impl
 import java.io._
 import scala.tools.nsc._
 import scala.tools.nsc.io.AbstractFile
-import interpreter.{IMain => Encoder}
+import interpreter.{IMain => Encoder, ReplGlobal}
 import scala.tools.nsc.reporters.Reporter
 import scala.tools.scalap._
 import sun.tools.javap._
+import com.loops101.util.EnvUtil
+import tools.util.PathResolver
+import util.DirectoryClassPath
+import reflect.io.PlainFile
 
 object CodeUtil {
 
@@ -17,19 +21,19 @@ object CodeUtil {
                 out: ByteArrayOutputStream = new ByteArrayOutputStream): (Encoder, ByteArrayOutputStream) = {
 
         val s = new Settings()
-        s.verbose.value = verbose
         s.optimise.value = false
-        s.Yreplsync.value = true
-        s.bootclasspath.value = scalaCP.map(_.toString).mkString(File.pathSeparator)
-        s.deprecation.value = deprecation
-        s.unchecked.value = unchecked
         s.usejavacp.value = true
+        s.Yreplsync.value = true
+        s.verbose.value = verbose
+        s.unchecked.value = unchecked
+        s.deprecation.value = deprecation
+        s.bootclasspath.value = scalaCP.map(_.toString).mkString(File.pathSeparator)
 
         (new Encoder(s, new PrintWriter(new OutputStreamWriter(out), true)) {
             // customize compiler initialization: remove SBT from classpath
             override protected def newCompiler(settings: Settings, reporter: Reporter) = {
-                /*
                 if (EnvUtil.isLocal) {
+                    println("COMPILE")
                     settings.outputDirs setSingleOutput virtualDirectory
                     settings.exposeEmptyPackage.value = true
                     new Global(settings, reporter) with ReplGlobal {
@@ -40,12 +44,15 @@ object CodeUtil {
                             }
                             val default = paths.result
                             val scala = scalaCP.map(p => new PlainFile(p)).map(new DirectoryClassPath(_, default.context))
-                            new MergedClassPath[AbstractFile](default :: scala, default.context)
+                            println(paths)
+                            println(scala)
+                            println(default)
+                            super.classPath
+                            //new MergedClassPath[AbstractFile](default :: scala, default.context)
                         }
                     }
                 } else
-                */
-                super.newCompiler(settings, reporter)
+                    super.newCompiler(settings, reporter)
             }
         }, out)
     }

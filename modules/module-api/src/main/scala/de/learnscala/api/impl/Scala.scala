@@ -32,7 +32,7 @@ class Scala {
                         }
                     case xs =>
                         val code = xs.mkString("\n")
-                        (if(ignoreCodeLine(code)) state else compiler.interpret(code)) match {
+                        (if (ignoreCodeLine(code)) state else compiler.interpret(code)) match {
                             case ir@IR.Success =>
                                 //log.info("{}", ir)
                                 lines match {

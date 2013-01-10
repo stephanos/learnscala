@@ -2,7 +2,7 @@ define [
   "jquery", "lib/util/underscore.str",
   "lib/editor/codemirror", "lib/util/mousetrap",
   "lib/util/spin", "lib/dom/splitter",
-  "lib/editor/clike", "lib/editor/runmode", "lib/editor/matchbrackets"
+  "lib/editor/clike", "lib/editor/runmode"
 ], ($, _, CodeMirror) ->
 
   class Editor

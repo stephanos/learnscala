@@ -37,10 +37,6 @@
             "deps":["lib/editor/codemirror"],
             "exports":"CodeMirror"
         },
-        "lib/editor/matchbrackets":{
-            "deps":["lib/editor/codemirror"],
-            "exports":"CodeMirror"
-        },
         "lib/dom/iframe":["jquery"],
         "lib/util/spin":["jquery"],
         "lib/dom/vanadium":["jquery"],
