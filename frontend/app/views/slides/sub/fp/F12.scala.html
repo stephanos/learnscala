@@ -15,12 +15,12 @@
         <!-- ################################################################################## -->
 
         @slide(title = "Schema") {
-            @image("functions.png", clazz = "naked", source = "http://en.wikipedia.org/wiki/Function_(mathematics)")
+            @image("functions.png", width = 450, clazz = "naked", source = "http://en.wikipedia.org/wiki/Function_(mathematics)")
         }
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Problemstellung") {
+        @titleslide(title = "Problemstellung") {
 
             @sourcecode() {
                 |def sumInts (a: Int, b: Int): Int =
@@ -53,7 +53,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Funktion höherer Ordnung") {
+        @titleslide(title = "Funktion höherer Ordnung") {
 
             @sourcecode(id = "sum1") {
                 | def sum(f: Int => Int, a: Int, b: Int): Int =
@@ -73,14 +73,14 @@
                     |def sumInts (a: Int, b: Int) = sum (id, a, b)
                 }
 
-                @spacer()
+                @spacer_half()
 
                 @callcode(reference = "sum1") {
                     |def quad (x: Int) = x * x
                     |def sumQuads (a: Int, b: Int) = sum (quad, a, b)
                 }
 
-                @spacer()
+                @spacer_half()
 
                 @callcode(reference = "sum1") {
                     |def cube (x: Int) = x * x * x
@@ -88,14 +88,14 @@
                 }
             }
 
-            @infobox() {
+            @*@infobox() {
                 Methoden werden automatisch als Funktion interpretiert.
-            }
+            }*@
         }
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Anonyme Funktion als Parameter") {
+        @titleslide(title = "Anonyme Funktion als Parameter") {
 
             @sourcecode(id = "sum2") {
                 | def sum(f: Int => Int, a: Int, b: Int): Int =
@@ -112,14 +112,14 @@
                     |   sum ((x: Int) => x, a, b)
                 }
 
-                @spacer()
+                @spacer_half()
 
                 @callcode(reference = "sum1") {
                     |def sumQuads (a: Int, b: Int) =
                     |   sum ((x: Int) => x * x, a, b)
                 }
 
-                @spacer()
+                @spacer_half()
 
                 @callcode(reference = "sum1") {
                     |def sumCubes (a: Int, b: Int) =
@@ -127,14 +127,14 @@
                 }
             }
 
-            @infobox() {
+            @*@infobox() {
                 Anonyme Funktionen eignen sich gut als Parameter.
-            }
+            }*@
         }
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Typinferenz") {
+        @titleslide(title = "Typinferenz") {
 
             @sourcecode(id = "sum2") {
                 | def sum (f: Int => Int, a: Int, b: Int): Int =
@@ -151,14 +151,14 @@
                     |   sum (x => x, a, b)
                 }
 
-                @spacer()
+                @spacer_half()
 
                 @callcode(reference = "sum1") {
                     |def sumQuads (a: Int, b: Int) =
                     |   sum (x => x * x, a, b)
                 }
 
-                @spacer()
+                @spacer_half()
 
                 @callcode(reference = "sum1") {
                     |def sumCubes (a: Int, b: Int) =
@@ -166,9 +166,9 @@
                 }
             }
 
-            @infobox() {
+            @*@infobox() {
                 Parametertypen übergebener Funktionen werden erkannt.
-            }
+            }*@
         }
 
         <!-- ################################################################################## -->

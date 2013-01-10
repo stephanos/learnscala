@@ -71,11 +71,11 @@
         <span>(4)</span>
     } {
         @snippet(clazz = "slim") {
-            @callblock(reference = "encrypt") {
+            @callblock(reference = "encrypt", fragment = false) {
                 |encrypt ("123", s =>
                 |  (s.toLong * 2).toString )
             }
-            @outblock(fragment = false) {
+            @outblock() {
                 |res0: String = "246"
             }
         }

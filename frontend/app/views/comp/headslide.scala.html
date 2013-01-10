@@ -1,5 +1,5 @@
 @(id: String = null, subsubtitle: String = null, subtitle: String = null, title: String = null, chapter: String = null, state: String = null,
-  hideFooter: Boolean = false, htmlTitle: xml.Elem = null, clazz: String = "")(head: Html = Html.empty)(body: Html = Html.empty)(implicit topic: String = null)
+  hideFooter: Boolean = false, htmlTitle: xml.Node = null, clazz: String = "")(head: Html = Html.empty)(body: Html = Html.empty)(implicit topic: String = null)
 
 @defining(Option(title).getOrElse(htmlTitle)) { theTitle =>
 
@@ -11,7 +11,15 @@
              @{if(subsubtitle == null) "" else "data-subsubtitle='" + subsubtitle + "'"}
              @{if(chapter == null) "" else "data-chapter='" + chapter + "'"}>
 
-        @headbody(clazz = clazz)(head)(body) {
+        @headbody(clazz = clazz) {
+            @if(htmlTitle == null) {
+                @head
+            } else {
+                @htmlTitle
+            }
+        } {
+            @body
+        } {
             @if(!hideFooter) {
                 <span class="topic">@topic</span>
                 @if(theTitle != "" && theTitle != null) {
