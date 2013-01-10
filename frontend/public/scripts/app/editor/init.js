@@ -1,5 +1,5 @@
 
-define(["jquery", "lib/util/underscore.str", "lib/editor/codemirror", "lib/util/mousetrap", "lib/util/spin", "lib/dom/splitter", "lib/editor/clike", "lib/editor/runmode", "lib/editor/matchbrackets"], function($, _, CodeMirror) {
+define(["jquery", "lib/util/underscore.str", "lib/editor/codemirror", "lib/util/mousetrap", "lib/util/spin", "lib/dom/splitter", "lib/editor/clike", "lib/editor/runmode"], function($, _, CodeMirror) {
   var Editor;
   Editor = (function() {
 

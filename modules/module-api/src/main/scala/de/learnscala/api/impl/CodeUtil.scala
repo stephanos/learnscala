@@ -29,7 +29,7 @@ object CodeUtil {
         s.deprecation.value = deprecation
         s.bootclasspath.value = scalaCP.map(_.toString).mkString(File.pathSeparator)
 
-        (new Encoder(s, new PrintWriter(new OutputStreamWriter(out), true)) {
+        (new Encoder(s, new PrintWriter(new OutputStreamWriter(out), true)) /*{
             // customize compiler initialization: remove SBT from classpath
             override protected def newCompiler(settings: Settings, reporter: Reporter) = {
                 if (EnvUtil.isLocal) {
@@ -54,7 +54,7 @@ object CodeUtil {
                 } else
                     super.newCompiler(settings, reporter)
             }
-        }, out)
+        }*/, out)
     }
 
     def asString(out: ByteArrayOutputStream) = {
