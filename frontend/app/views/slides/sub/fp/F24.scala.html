@@ -331,8 +331,12 @@
             @defining("") { subtitle =>
 
                 @slide(title = title, subtitle = subtitle) {
-                    @sourcecode(id = "people") {
-                        |val ppl = List("Anna" -> "Adams", "Adam" -> "Adams", "Barb" -> "Brown", "Bill" -> "Brown")
+
+                    @autocenter {
+                        @sourcecode(id = "people") {
+                            |val ppl = List("Anna" -> "Adams", "Adam" -> "Adams",
+                            |               "Barb" -> "Brown", "Bill" -> "Brown")
+                        }
                     }
 
                     @spacer()
@@ -424,8 +428,11 @@
 
                 @slide(title = title, subtitle = subtitle) {
 
-                    @sourcecode() {
-                        |val ppl = List("Anna" -> "Adams", "Adam" -> "Adams", "Barb" -> "Brown", "Bill" -> "Brown")
+                    @autocenter {
+                        @sourcecode() {
+                            |val ppl = List("Anna" -> "Adams", "Adam" -> "Adams",
+                            |               "Barb" -> "Brown", "Bill" -> "Brown")
+                        }
                     }
 
                     @spacer()
@@ -446,7 +453,7 @@
                                 |for {
                                 |  p1 <- ppl                 // Gener. #1
                                 |  p2 <- ppl filter(_ != p1) // Gener. #2
-                                |  if p1 == p2         // Filter
+                                |  if p1 == p2               // Filter
                                 |} yield (p1, p2)
                             }
                             @outblock() {
