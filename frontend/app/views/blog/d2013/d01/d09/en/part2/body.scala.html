@@ -3,8 +3,8 @@
 </span>
 <p>
 
-    We looked at a few testing frameworks and picked ScalaTest because it's straightforward and doesn't constrain the style in which you want to write your tests. We also use it to test our Java SDK that talks to our backend APIs. So I think ScalaTest offers a lot of possibilities even for pure Java projects. We also use <a href="https://github.com/rickynils/scalacheck">ScalaCheck</a> for some tests, for mocking we use <a href="https://github.com/paulbutcher/ScalaMock">ScalaMock</a>.
-    An Example of using ScalaTest:
+    We looked at a few testing frameworks and picked ScalaTest because it's straightforward and doesn't constrain the style in which you want to write your tests. We also use it to test the Java SDK that talks to our backend APIs. So I think ScalaTest offers a lot of possibilities even for pure Java projects. For mocking we use <a href="https://github.com/paulbutcher/ScalaMock">ScalaMock</a> as well as <a href="https://github.com/rickynils/scalacheck">ScalaCheck</a> to automate a few tests.
+    An example of using ScalaTest:
 </p>
 
 <p>
@@ -13,20 +13,20 @@
 
 <p>
 
-    We also use <a href="http://jenkins-ci.org/">Jenkins</a> as a continuous integration server to test our code base after every <span class="italic">git push</span>. It simply invokes SBT
+    Apart from that, we use <a href="http://jenkins-ci.org/">Jenkins</a> as a continuous integration server to test our code base after every <span class="italic">git push</span>. It simply invokes SBT
  <span class="c4">
     <span class="italic">clean test</span>
-    and the test reports are then exported to XML, so that Jenkins can parse and display them. All in all a very smooth integration.
+    and the test reports are then exported to XML, so that Jenkins can parse and display them. All in all, a very smooth integration.
  </span>
 </p>  <p>
 <span class="bold">
     What do you like about Scala ?
 </span>
 </p> <p>
-I like Scala's expressiveness: one interesting library that was built in-house is a type-safe query API for MongoDB. We first looked at
- <a href="https://github.com/foursquare/rogue">Rogue</a>,
-    but found it too intrusive because it makes assumptions about your domain model. So we created a query DSL ourselves. It's a bit like LINQ from .NET. It didn't take long to implement. You get all the operations of MongoDB and can compose them using the DSL. The best thing is that everything is type safe, so when a query uses a wrong field or operation the compiler can give you an error at compile time. That's a good example of how Scala can adapt to the problem domain.
-    For Example:
+I like Scala's expressiveness: one interesting library that was built in-house is a type-safe query API for MongoDB. At first, we looked at
+ <a href="https://github.com/foursquare/rogue">Rogue</a>
+    but found it too intrusive because it makes assumptions about your domain model. So we created a query DSL ourselves, it's a bit like LINQ from .NET. It didn't take long to implement. You get all the operations of MongoDB and can compose them using the DSL. The best thing is that everything is type safe, so when a query uses a wrong field or operation the compiler can give you an error at compile time. That's a good example of how Scala can adapt to the problem domain.
+    For example:
 </p>
 <p>
     <script src="https://gist.github.com/4474462.js"> </script>
@@ -37,7 +37,7 @@ I like Scala's expressiveness: one interesting library that was built in-house i
 
 </p> <p>
 
-    Apart from the language itself, I like the Scala community; it's quite active and I like what's been done for the 2.10 release, I think it's going in a right direction.
+    Apart from the language itself, I like the Scala community; it's quite active and I like what's been done for the 2.10 release, I think it's going in the right direction.
 
 </p>  <p>
 <span class="bold">
@@ -45,7 +45,7 @@ I like Scala's expressiveness: one interesting library that was built in-house i
 </span>
 </p> <p>
 
-    I already mentioned compilation time but besides that I think the biggest pain points are two things related to versioning: binary compatibility and the JAR hell. These are two separate problems. The binary (in)compatibility between Scala versions is a well known problem in the Scala community. It's probably the main reason of libraries being released for a specific Scala version which leads to various versioning issues. For example, the author of the <a href="http://dispatch.databinder.net/">
+    I already mentioned compilation time but besides that I think the biggest pain points are two things related to versioning: binary compatibility and the JAR hell. These are two separate problems. The binary (in)compatibility between Scala versions is a well known problem in the Scala community. It's the main reason why libraries are being released for a specific Scala version which leads to various versioning issues. For example, the author of the <a href="http://dispatch.databinder.net/">
             Dispatch HTTP</a> client library said that he can't depend on
                 Scalaz because he wants to support older Scala versions with new releases of Dispatch while new releases of Scalaz won't do the same.
 
@@ -72,7 +72,7 @@ I like Scala's expressiveness: one interesting library that was built in-house i
     Do you use the support offered by Typesafe ?
 </span>
 </p> <p>
-    No, we didn't need it so far. If you are in production and run into some issues you will probably happily pay. But if you are not in production yet, I didn't feel it would be necessary. We didn't run into things we couldn't figure out ourselves.
+    No, we didn't need it so far. If you are in production and run into some issues you will probably pay happily. But if you are not in production yet, I didn't feel it would be necessary. We didn't run into things we couldn't figure out ourselves.
 </p>
 
 <p class="bold">
