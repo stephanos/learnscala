@@ -32,7 +32,7 @@ object Content extends MyController {
 
     // === FUNKTIONEN
 
-    lazy val funcproc = Slide("F10", "FP", fp, Seq(kontrollstrukturen))
+    lazy val funcproc = Slide("F10", "FP", fp, Seq(kontrollstrukturen), status = "complete")
     lazy val funktionen1 = Slide("F11", "Funktionen I", fp, Seq(funcproc, uebungen))
     lazy val funktionen2 = Slide("F12", "Funktionen II", fp, Seq(funktionen1))
 
@@ -56,7 +56,7 @@ object Content extends MyController {
 
     // === OBJEKTE
 
-    lazy val typen1 = Slide("O20", "Typen", oop, Seq(klassen1))
+    lazy val typen1 = Slide("O20", "Typen", oop, Seq(klassen1), status = "complete")
     lazy val traits = Slide("O21", "Traits", oop, Seq(klassen1, vererbung1))
     lazy val klassen2 = Slide("O22", "Case Class", oop, Seq(vererbung1))
     lazy val generics1 = Slide("O24", "Typ-Parameter", oop, Seq(traits, klassen2))
@@ -83,7 +83,7 @@ object Content extends MyController {
     // === ALLGEMEIN
 
     lazy val dynamic = Slide("B30", "Dynamic", basic)
-    lazy val interpolation = Slide("B31", "String Interpolation", basic, Seq(implicit1))
+    lazy val interpolation = Slide("B31", "String Interpolation", basic, Seq(implicit1), status = "complete")
     lazy val reflection = Slide("B31", "Reflection", basic)
     lazy val macros = Slide("B32", "Makros", basic)
     lazy val implicit2 = Slide("B34", "Implicits II", basic, Seq())

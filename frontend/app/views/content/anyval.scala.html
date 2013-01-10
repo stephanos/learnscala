@@ -8,15 +8,18 @@
         @spacer()
         <div class="indent">
             <ul>
-                <li>"Value Types"</li>
+                <li>Value Types / Werttypen</li>
                 <li class="fragment">
-                    kann nicht direkt vererbt (final) oder instanziiert (abstrakt) werden
-                </li>
-                <li class="fragment">
-                    entspricht primitiven Datentypen aus <var>Java</var> <comment>(werden im Hintergrund auch verwendet)</comment>
+                    entspricht primitiven Datentypen aus <var>Java</var> <comment>(im Hintergrund auch verwendet)</comment>
                 </li>
                 <li class="fragment">
                     Ausnahme ist <em>Scala</em>-spezifischer Typ <code>Unit</code> <comment>(wie <code>void</code>)</comment>
+                </li>
+                <li class="fragment">
+                    kann nicht direkt instanziiert (abstrakt) ...
+                </li>
+                <li class="fragment">
+                    ... aber seit Version 2.10 vererbt werden <comment>(Value Class)</comment>
                 </li>
             </ul>
         </div>

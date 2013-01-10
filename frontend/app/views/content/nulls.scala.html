@@ -10,7 +10,7 @@
             <ul>
                 <li>"Bottom Type"</li>
                 <li class="fragment">
-                    Unterklasse von allen Reference Types
+                    Unterklasse von allen Referenztypen
                 </li>
                 <li class="fragment">
                     einziger möglicher Wert ist <code>null</code>
@@ -25,14 +25,17 @@
 
 @sidebyside() {
     @snippet() {
-         @callblock() {
-             |val i: Int = null
-         }
-         @outblock(error = true) {
-             |error   : type mismatch;
-             |found   : Null(null)
-             |required: Int
-         }
+        @callblock() {
+         |val i: Int = null
+        }
+        @outblock(error = true) {
+         |error   : type mismatch;
+         |found   : Null(null)
+         |required: Int
+        }
+        @codenote() {
+            <code>AnyVal</code> kann nicht <code>null</code> sein
+        }
     }
 } {
     @snippet() {
@@ -42,16 +45,8 @@
          @outblock() {
              |s: String = null
          }
-    }
-
-    @spacer_half()
-
-    @snippet() {
-         @callblock() {
-             |null.==("null")
-         }
-         @outblock() {
-             |res0: Boolean = false
-         }
+        @codenote() {
+            <code>AnyRef</code> darf <code>null</code> sein
+        }
     }
 }

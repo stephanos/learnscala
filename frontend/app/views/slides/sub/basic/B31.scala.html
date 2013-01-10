@@ -191,14 +191,10 @@
 
                 @snippet() {
                     @sourceblock(id = "xmlinterpol") {
-                        |class XmlHelper(val sc: StringContext) extends AnyVal {
+                        |implicit class XmlHelper(val sc: StringContext) {
                         |  def xml(args: Any*) =
                         |    scala.xml.XML.load(scala.xml.Source.fromString(sc.s(args)))
                         |}
-                    }
-                    @sourceblock() {
-                        |implicit final def sc2xmlhelper(val sc: StringContext) =
-                        |   new XmlHelper(n)
                     }
                 }
 
