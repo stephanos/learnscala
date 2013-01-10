@@ -8,8 +8,8 @@ resolvers += "Typesafe snapshots" at  "http://repo.typesafe.com/typesafe/snapsho
 
 
 // plugin: IntelliJ
-//addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.2.0")
+addSbtPlugin("com.github.mpeltonen" % "sbt-idea" % "1.2.0")
 
 
 // plugin: Play framework
-addSbtPlugin("play" % "sbt-plugin" % "2.1-RC1")
+addSbtPlugin("play" % "sbt-plugin" % "2.1-RC2")

@@ -23,7 +23,7 @@ object CodeUtil {
         s.bootclasspath.value = scalaCP.map(_.toString).mkString(File.pathSeparator)
         s.deprecation.value = deprecation
         s.unchecked.value = unchecked
-        //s.usejavacp.value = true
+        s.usejavacp.value = true
 
         (new Encoder(s, new PrintWriter(new OutputStreamWriter(out), true)) {
             // customize compiler initialization: remove SBT from classpath

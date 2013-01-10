@@ -4,7 +4,7 @@
     <facet type="scala" name="Scala">
       <configuration>
         <option name="compilerLibraryLevel" value="Project" />
-        <option name="compilerLibraryName" value="SBT: scala:2.10.0-RC1" />
+        <option name="compilerLibraryName" value="SBT: scala:2.10.0" />
         <option name="compilerOptions" value="-encoding UTF-8 -deprecation -unchecked -g:vars" />
         <option name="deprecationWarnings" value="true" />
         <option name="fsc" value="true" />
@@ -27,7 +27,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="SBT: org.scala-lang:scala-library:2.10.0-RC1" level="project" />
+    <orderEntry type="library" name="SBT: org.scala-lang:scala-library:2.10.0" level="project" />
     <orderEntry type="library" name="SBT: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="SBT: commons-codec:commons-codec:1.6" level="project" />
     <orderEntry type="library" name="SBT: org.apache.commons:commons-math:2.2" level="project" />
@@ -46,8 +46,10 @@
     <orderEntry type="library" name="SBT: javax.transaction:jta:1.1" level="project" />
     <orderEntry type="library" name="SBT: net.sf.ehcache:ehcache-core:2.6.0" level="project" />
     <orderEntry type="library" name="SBT: com.googlecode.xmemcached:xmemcached:1.3.8" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.specs2:specs2_2.10:1.12.3:test" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.specs2:specs2-scalaz-core_2.10.0-RC3:6.0.1:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.specs2:specs2_2.10:1.13:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.specs2:scalaz-core_2.10:7.0.0:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.specs2:scalaz-concurrent_2.10:7.0.0:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.specs2:scalaz-effect_2.10:7.0.0:test" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.mockito:mockito-all:1.9.0:test" level="project" />
     <orderEntry type="module" module-name="module-util" exported="" />
     <orderEntry type="module" module-name="module-test-unit" exported="" />

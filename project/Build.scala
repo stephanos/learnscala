@@ -7,7 +7,7 @@ object ProjectBuild extends MyBuild {
     val v = "0.2"
     val org = "de.learnscala"
     val modBase = "modules/commons/"
-    override val scalaV = "2.10.0-RC1"
+    override val scalaV = "2.10.0"
 
 
     lazy val root =
@@ -73,8 +73,8 @@ object ProjectBuild extends MyBuild {
 
 
     // modify inherited dependencies
-    V.Specs2 = "1.12.3"
-    playWeb = ("play" % "play_2.10" % "2.1-RC1")
+    V.Specs2 = "1.13"
+    playWeb = ("play" % "play_2.10" % "2.1-RC2")
     squeryl = playWeb
     liftMongo = playWeb
     rogue = playWeb

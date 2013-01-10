@@ -4,7 +4,7 @@
     <facet type="scala" name="Scala">
       <configuration>
         <option name="compilerLibraryLevel" value="Project" />
-        <option name="compilerLibraryName" value="SBT: scala:2.10.0-RC1" />
+        <option name="compilerLibraryName" value="SBT: scala:2.10.0" />
         <option name="compilerOptions" value="-encoding UTF-8 -deprecation -unchecked -g:vars" />
         <option name="deprecationWarnings" value="true" />
         <option name="fsc" value="true" />
@@ -27,7 +27,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="SBT: org.scala-lang:scala-library:2.10.0-RC1" level="project" />
+    <orderEntry type="library" name="SBT: org.scala-lang:scala-library:2.10.0" level="project" />
     <orderEntry type="library" name="SBT: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="SBT: commons-codec:commons-codec:1.6" level="project" />
     <orderEntry type="library" name="SBT: org.apache.commons:commons-math:2.2" level="project" />
@@ -41,23 +41,23 @@
     <orderEntry type="library" name="SBT: javax.activation:activation:1.1" level="project" />
     <orderEntry type="library" name="SBT: org.mindrot:jbcrypt:0.3m" level="project" />
     <orderEntry type="library" name="SBT: org.xerial.snappy:snappy-java:1.0.4.1" level="project" />
-    <orderEntry type="library" name="SBT: play:play_2.10:2.1-RC1" level="project" />
-    <orderEntry type="library" name="SBT: play:sbt-link:2.1-RC1" level="project" />
+    <orderEntry type="library" name="SBT: play:play_2.10:2.1-RC2" level="project" />
+    <orderEntry type="library" name="SBT: play:sbt-link:2.1-RC2" level="project" />
     <orderEntry type="library" name="SBT: org.javassist:javassist:3.16.1-GA" level="project" />
-    <orderEntry type="library" name="SBT: play:play-exceptions:2.1-RC1" level="project" />
-    <orderEntry type="library" name="SBT: play:templates_2.10:2.1-RC1" level="project" />
+    <orderEntry type="library" name="SBT: play:play-exceptions:2.1-RC2" level="project" />
+    <orderEntry type="library" name="SBT: play:templates_2.10:2.1-RC2" level="project" />
     <orderEntry type="library" name="SBT: com.github.scala-incubator.io:scala-io-file_2.10.0-RC1:0.4.1" level="project" />
     <orderEntry type="library" name="SBT: com.github.scala-incubator.io:scala-io-core_2.10.0-RC1:0.4.1" level="project" />
     <orderEntry type="library" name="SBT: com.jsuereth:scala-arm_2.10.0-RC1:1.2" level="project" />
-    <orderEntry type="library" name="SBT: play:play-iteratees_2.10:2.1-RC1" level="project" />
-    <orderEntry type="library" name="SBT: org.scala-stm:scala-stm_2.10.0-RC1:0.6" level="project" />
+    <orderEntry type="library" name="SBT: play:play-iteratees_2.10:2.1-RC2" level="project" />
+    <orderEntry type="library" name="SBT: org.scala-stm:scala-stm_2.10.0:0.6" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe:config:1.0.0" level="project" />
     <orderEntry type="library" name="SBT: io.netty:netty:3.5.9.Final" level="project" />
     <orderEntry type="library" name="SBT: org.slf4j:jul-to-slf4j:1.6.6" level="project" />
     <orderEntry type="library" name="SBT: ch.qos.logback:logback-core:1.0.7" level="project" />
     <orderEntry type="library" name="SBT: ch.qos.logback:logback-classic:1.0.7" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.akka:akka-actor_2.10.0-RC1:2.1.0-RC1" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe:config:1.0.0" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe.akka:akka-slf4j_2.10.0-RC1:2.1.0-RC1" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.akka:akka-actor_2.10:2.1.0" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.akka:akka-slf4j_2.10:2.1.0" level="project" />
     <orderEntry type="library" name="SBT: org.apache.commons:commons-lang3:3.1" level="project" />
     <orderEntry type="library" name="SBT: com.ning:async-http-client:1.7.6" level="project" />
     <orderEntry type="library" name="SBT: oauth.signpost:signpost-core:1.2.1.2" level="project" />
@@ -69,13 +69,14 @@
     <orderEntry type="library" name="SBT: org.codehaus.jackson:jackson-mapper-asl:1.9.10" level="project" />
     <orderEntry type="library" name="SBT: net.sf.ehcache:ehcache-core:2.6.0" level="project" />
     <orderEntry type="library" name="SBT: javax.transaction:jta:1.1" level="project" />
-    <orderEntry type="library" name="SBT: org.scala-lang:scala-compiler:2.10.0-RC1" level="project" />
-    <orderEntry type="library" name="SBT: org.scala-lang:scala-reflect:2.10.0-RC1" level="project" />
+    <orderEntry type="library" name="SBT: org.scala-lang:scala-reflect:2.10.0" level="project" />
     <orderEntry type="library" name="SBT: com.jolbox:bonecp:0.7.1.RELEASE" level="project" />
     <orderEntry type="library" name="SBT: com.google.guava:guava:r08" level="project" />
     <orderEntry type="library" name="SBT: postgresql:postgresql:9.1-901.jdbc4" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.specs2:specs2_2.10:1.12.3:test" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.specs2:specs2-scalaz-core_2.10.0-RC3:6.0.1:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.specs2:specs2_2.10:1.13:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.specs2:scalaz-core_2.10:7.0.0:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.specs2:scalaz-concurrent_2.10:7.0.0:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.specs2:scalaz-effect_2.10:7.0.0:test" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.mockito:mockito-all:1.9.0:test" level="project" />
     <orderEntry type="module" module-name="module-util" exported="" />
     <orderEntry type="module" module-name="module-test-unit" exported="" />

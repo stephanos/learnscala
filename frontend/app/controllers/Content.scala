@@ -34,7 +34,7 @@ object Content extends MyController {
 
     lazy val funcproc = Slide("F10", "FP", fp, Seq(kontrollstrukturen), status = "complete")
     lazy val funktionen1 = Slide("F11", "Funktionen I", fp, Seq(funcproc, uebungen))
-    lazy val funktionen2 = Slide("F12", "Funktionen II", fp, Seq(funktionen1))
+    lazy val funktionen2 = Slide("F12", "Funktionen II", fp, Seq(funktionen1), status = "complete")
 
     // === ERWEITERT
 
@@ -51,7 +51,7 @@ object Content extends MyController {
     lazy val annotationen = Slide("B21", "Annotationen", basic, Seq())
     lazy val operatoren = Slide("B22", "Operatoren", basic, Seq(methoden, klassen1))
     lazy val regexp = Slide("B23", "Reguläre Ausdrücke", basic, Seq())
-    lazy val recursion = Slide("B25", "Rekursion", basic, Seq(kontrollstrukturen, annotationen))
+    lazy val recursion = Slide("B25", "Rekursion", basic, Seq(kontrollstrukturen), status = "complete")
     lazy val implicit1 = Slide("B23", "Implicits", basic, Seq(klassen2))
 
     // === OBJEKTE

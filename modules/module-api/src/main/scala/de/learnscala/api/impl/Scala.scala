@@ -5,7 +5,6 @@ import scala.annotation.tailrec
 import scala.tools.nsc.interpreter.IR
 import scala.tools.nsc.interpreter.Results._
 
-// see https://github.com/vydra/gae-scala/tree/master/src
 class Scala {
 
     import CodeUtil._
@@ -33,8 +32,6 @@ class Scala {
                         }
                     case xs =>
                         val code = xs.mkString("\n")
-                        //val log = com.loops101.util.Logger("controllers")
-                        //log.info(code)
                         (if(ignoreCodeLine(code)) state else compiler.interpret(code)) match {
                             case ir@IR.Success =>
                                 //log.info("{}", ir)
@@ -45,7 +42,7 @@ class Scala {
                             case ir@IR.Incomplete =>
                                 //log.info("{}", ir)
                                 lines match {
-                                    case Nil => ir // // stop
+                                    case Nil => ir // stop
                                     case y :: ys => eval(ys, buffer ::: List(y), ir)
                                 }
                             case ir =>

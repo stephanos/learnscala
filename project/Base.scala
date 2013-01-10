@@ -1,6 +1,5 @@
 import sbt._
 import Keys._
-import org.sbtidea._
 
 trait MyBuild
     extends Build with Settings with Modules with Deps
