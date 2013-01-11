@@ -48,6 +48,18 @@
 
         <!-- ################################################################################## -->
 
+        @headslide(title = "Java") {
+            Scala ist ... <span><em>Java</em></span>
+        } {
+            @fragment {
+                @autocenter {
+                    @image("duke.png", width = 300, clazz = "naked")
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
         @headslide(title = "Flexibel") {
             Scala ist ... <span><em>flexibel</em></span>
         } {
@@ -62,66 +74,6 @@
 
         <!-- ################################################################################## -->
 
-        @*
-        @headslide(title = "Skriptsprache") {
-            Scala ist ... <span class='fragment'><em>eine Skriptsprache</em></span>
-        } {
-            @sidebyside((60,40)) {
-                @snippet() {
-                    @sourceblock() {
-                        |val i: Int = 5
-                    }
-                    @outblock() {
-                        |i: Int = 5
-                    }
-                    @callblock() {
-                        |println(5 * 5)
-                    }
-                    @outblock() {
-                        |25
-                    }
-                }
-            } {
-                @fragment {
-                    interaktive Konsole: <br/> Read-Eval-Print-Loop (REPL)
-                }
-            }
-
-            @spacer()
-
-            @sidebyside((60,40)) {
-                @callcode() {
-                    |println("Hello World")
-                }
-            } {
-                @fragment {
-                    keine Semikolons
-                }
-            }
-
-            @spacer()
-
-            @sidebyside((60,40)) {
-                @callcode() {
-                    |val i = 1 + 2 * 3      // type of i is Int
-                    |val s = "Scala rocks"  // type of s is String
-                }
-            } {
-                @fragment {
-                    Typinferenz
-                }
-            }
-
-            @spacer()
-
-            @tipbox() {
-                Das Beste von beiden Welten: Sieht dynamisch aus, ist aber statisch.
-            }
-        }
-        *@
-
-        <!-- ################################################################################## -->
-
         @headslide(title = "Objektorientiert") {
             Scala ist ... <span><em>objektorientiert</em></span>
         } {
@@ -132,47 +84,6 @@
                     @image("blocks.png", width = 550, clazz = "naked")
                 }
             }
-
-            @*
-            @sidebyside(fragment = true) {
-                @callcode() {
-                    |42.toFloat
-                    |(3.14f).floor
-                }
-            } {
-                @fragment {
-                    jeder Wert ist ein Objekt
-                }
-            }
-
-            @spacer()
-
-            @sidebyside(fragment = true) {
-                @sourcecode() {
-                    |class MonsterTruck extends Car
-                }
-            } {
-                @fragment {
-                    Klassen und Vererbung
-                }
-            }
-
-            @spacer()
-
-            @sidebyside(fragment = true) {
-                @sourcecode() {
-                    |class FlyingCar extends Car with Wings
-                }
-            } {
-                @fragment {
-                    Mixin-Mechanismus
-                }
-            }
-
-            @tipbox() {
-                Alles ist ein Objekt: Bekannte Objektorientierung mit Mehrfachvererbung.
-            }
-            *@
         }
 
         <!-- ################################################################################## -->
@@ -211,46 +122,6 @@
                     @image("dart.png", width = 450, clazz = "naked")
                 }
             }
-
-            @*
-            @sidebyside((60,40)) {
-                @sourcecode() {
-                    |class MyCar(wheels: Int = 4)
-                }
-            } {
-                @fragment {
-                    weniger Boilerplate-Code
-                }
-            }
-
-            @spacer()
-
-            @sidebyside((60,40)) {
-                @sourcecode() {
-                    |trait Logging
-                }
-            } {
-                @fragment {
-                    Traits zur Wiederverwendung
-                }
-            }
-
-            @spacer()
-
-            @sidebyside((60,40)) {
-                @sourcecode() {
-                    |def getUserAttributes[T](fn: (User) => List[T])
-                }
-            } {
-                @fragment {
-                    Closures
-                }
-            }
-
-            @tipbox() {
-                50% weniger Code: Schneller zu schreiben und leichter zu lesen.
-            }
-            *@
         }
 
         <!-- ################################################################################## -->
@@ -265,43 +136,6 @@
                     @image("fx.png", clazz = "naked", height = 300)
                 }
             }
-
-            @*
-            @sidebyside((66,33)) {
-                @callcode() {
-                    |val names =
-                    |   users.map(_.username)
-                    |
-                    |val minors =
-                    |   users.map(_.age()).filter(_ < 18)
-                }
-            } {
-                @fragment {
-                    wiederverwendbare Code-Blöcke ohne Nebeneffekte
-                }
-            }
-
-            @spacer()
-
-            @sidebyside((66,33)) {
-                @sourcecode() {
-                    |for {
-                    |  name <- futureName
-                    |  friends <- futureFriends
-                    |} yield {
-                    |  Profile(name, friends)
-                    |}
-                }
-            } {
-                @fragment {
-                    Komposition
-                }
-            }
-
-            @tipbox() {
-                Leichtgewichtige aber mächtige Funktionen für besseren Code und mehr Wiederverwendung.
-            }
-            *@
         }
 
         <!-- ################################################################################## -->
@@ -330,46 +164,6 @@
                     @image("static.jpeg", width = 650)
                 }
             }
-
-            @*
-            @sidebyside((66,33)) {
-                @callcode() {
-                    |val i = 1 + 2 * 3    // the type of i is Int
-                }
-            } {
-                @fragment {
-                    Typinferenz
-                }
-            }
-
-            @spacer()
-
-            @sidebyside((66,33)) {
-                @callcode() {
-                    |val j: Int = "test"  // COMPILER ERROR!
-                }
-            } {
-                @fragment {
-                    Typensicherheit
-                }
-            }
-
-            @spacer()
-
-            @sidebyside((66,33)) {
-                @sourcecode() {
-                    |def cloneAndReset(o: Cloneable with Resetable) = ..
-                }
-            } {
-                @fragment {
-                    Compound Types
-                }
-            }
-
-            @tipbox() {
-                Sicheres Refactoring, weniger Flüchtigkeitsfehler & Testaufwand
-            }
-            *@
         }
 
         <!-- ################################################################################## -->
@@ -386,96 +180,26 @@
 
         <!-- ################################################################################## -->
 
-        @headslide(title = "Java") {
-            Scala ist ... <span><em>Java</em></span>
+        @headslide(title = "Erweiterbar") {
+            Scala ist ... <span><em>erweiterbar</em></span>
         } {
+            @spacer2()
+
             @fragment {
                 @autocenter {
-                    @image("duke.png", width = 300, clazz = "naked")
+                    @image("forging.png", clazz = "naked", width = 500)
                 }
             }
-
-            @*
-            @sidebyside((60,40)) {
-                @sourcecode() {
-                    |import org.apache.http.client._
-                    |import org.apache.http.client.methods._
-                    |
-                    |val client = new DefaultHttpClient
-                    |val get = new HttpGet("www.google.de")
-                    |val resp = client.execute(get)
-                    |...
-                }
-            } {
-                <ul class="fragment no-bullets indent10">
-                    <li><var>Java</var> aus <em>Scala</em> aufrufen: <br/> &nbsp; fast reibungslos</li>
-                    <li><em>Scala</em> aus <var>Java</var> aufrufen: <br/> &nbsp; geht <comment>(mit Ausnahmen)</comment></li>
-                </ul>
-            }
-            *@
-
-            @*@tipbox() {
-                Leicht zu integrieren mit bestehendem Code und bekannten Bibliotheken.
-            }*@
         }
 
         <!-- ################################################################################## -->
 
-            @headslide(title = "In Benutzung", clazz = "wide") {
-                Scala ist ... <span><em>in Benutzung</em></span>
-            } {
-                @Images.users()
+        @headslide(title = "In Benutzung", clazz = "wide") {
+            Scala ist ... <span><em>in Benutzung</em></span>
+        } {
+            @Images.users()
 
-                @*
-                <table class="fragment">
-                    <colgroup>
-                        <col width="25%">
-                        <col width="25%">
-                        <col width="25%">
-                        <col width="25%">
-                    </colgroup>
-                    <tr>
-                        <td><var>LinkedIn</var></td>
-                        <td><var>Localytics</var></td>
-                        <td><em>Novell</em></td>
-                        <td><em>EDF</em></td>
-                    </tr>
-                    <tr>
-                        <td><var>Tumblr</var></td>
-                        <td><var>StumbleUpon</var></td>
-                        <td><em>VMware</em></td>
-                        <td><em>AOL</em></td>
-                    </tr>
-                    <tr>
-                        <td><var>TheNewMotion</var></td>
-                        <td><var>Klout</var></td>
-                        <td><em>Siemens</em></td>
-                        <td><em>SAP</em></td>
-                    </tr>
-                    <tr>
-                        <td><var>StackMob</var></td>
-                        <td><var>foursquare</var></td>
-                        <td><em>Sony</em></td>
-                        <td><em>o2 Telephonica</em></td>
-
-                    </tr>
-                    <tr>
-                        <td><var>eHarmony</var></td>
-                        <td><var>Twitter</var></td>
-                        <td><em>UK Guardian</em></td>
-                        <td><em>Xerox</em></td>
-                    </tr>
-                </table>
-                <br/>
-                @tipbox() {
-                    <strong><var>Startups</var></strong> und <strong><em>Konzerne</em></strong>
-                    setzen auf Scala.
-                }
-                <!--<h3 class="center fragment">
-                    <var>Startups</var> <big>&nbsp;&&nbsp;</big> <em>Konzerne</em>
-                </h3>-->
-                *@
-            }
+        }
 
         <!-- ################################################################################## -->
 
@@ -513,166 +237,9 @@
 
         <!-- ################################################################################## -->
 
-        @headslide(title = "Erweiterbar") {
-            Scala ist ... <span><em>erweiterbar</em></span>
-        } {
-            @spacer2()
-
-            @fragment {
-                @autocenter {
-                    @image("forging.png", clazz = "naked", width = 500)
-                }
-            }
-
-            @*
-            @sidebyside((60,40)) {
-                @sourcecode() {
-                    |retry(3) {
-                    |   connectToDatabase()
-                    |}
-                }
-            } {
-                @fragment {
-                    eigene Kontrollstrukturen
-                }
-            }
-
-            @spacer()
-
-            @sidebyside((60,40)) {
-                @sourcecode() {
-                    @Html("""
-                    |"The 'Hello world' string" should {
-                    |    "contain 11 characters" in {
-                    |        "Hello world" must have size(11)
-                    """)
-                }
-            } {
-                @fragment {
-                    eigene Sprachen: <br/>Domain Specific Language
-                }
-            }
-
-            @tipbox() {
-                Scala lässt sich flexibel an ein Problem anpassen.
-            }
-            *@
-        }
-
-        <!-- ################################################################################## -->
-
-        @*
-        @headslide(title = "Skalierbar") {
-            Scala ist ... <span><em>skalierbar</em></span>
-        } {
-            @sidebyside((60,40)) {
-                @sourcecode() {
-                    |class ReverseActor extends Actor {
-                    |
-                    |  override def receive = {
-                    |    case message =>
-                    |      sender ! message.toString.reverse
-                    |  }
-                    |}
-                }
-            } {
-                @fragment {
-                    Aktorenmodell
-                }
-            }
-
-            @tipbox() {
-                Aktoren lassen sich leicht über mehrere Prozessoren skalieren.
-            }
-        }
-        *@
-
-        <!-- ################################################################################## -->
-
-        @*
-        @slide(title = "Scala im Vergleich") {
-
-            <table style="border-collapse: separate; border-spacing: 25px;">
-                <thead>
-                <tr style="border-bottom: 5px">
-                    <th>
-                    </th>
-                    <th>
-                        @image("java.png", height = 120, clazz = "naked")
-                    </th>
-                    <th style="vertical-align: middle">
-                        @image("groovy.png", height = 90, clazz = "naked")
-                    </th>
-                    <th>
-                        @image("clojure.png", height = 120, clazz = "naked")
-                    </th>
-                    <th>
-                        @image("scala.png", height = 120, clazz = "naked")
-                    </th>
-                </tr>
-                </thead>
-                <tbody style="text-align: center">
-                    <tr class="fragment">
-                        <td><h3>Statisch</h3></td>
-                        <td>@check()</td>
-                        <td></td>
-                        <td></td>
-                        <td>@check()</td>
-                    </tr>
-                    <tr class="fragment">
-                        <td><h3>OOP</h3></td>
-                        <td>@check()</td>
-                        <td>@check()</td>
-                        <td></td>
-                        <td>@check()</td>
-                    </tr>
-                    <tr class="fragment">
-                        <td><h3>Funktional</h3></td>
-                        <td></td>
-                        <td></td>
-                        <td>@check()</td>
-                        <td>@check()</td>
-                    </tr>
-                </tbody>
-            </table>
-        }
-        *@
-
-        <!-- ################################################################################## -->
-
         @slide() {
             @spacer2()
             @image("scala-logo.png", clazz = "naked")
-
-            @*
-            @spacer2()
-
-            <h4 class="indent90">
-                @sidebyside(gap = 30) {
-                    <ul class="fragment w40p left">
-                        <li class="nobreak"><em>Java</em></li>
-                        <li class="nobreak"><em>funktional</em></li>
-                        <li class="nobreak"><em>skalierbar</em></li>
-                        <li class="nobreak"><em>statisch typisiert</em></li>
-                        <li class="nobreak"><em>in Benutzung</em></li>
-                        <li class="nobreak"><em>kurz und präzise</em></li>
-                        <li class="nobreak"><em>erweiterbar</em></li>
-                        <li class="nobreak"><em>objektorientiert</em></li>
-                    </ul>
-                } {
-                    <ul class="fragment w40p left">
-                        <li class="nobreak"><var>stabil</var></li>
-                        <li class="nobreak"><var>cool</var></li>
-                        <li class="nobreak"><var>eine Freude</var></li>
-                        <li class="nobreak"><var>produktiv</var></li>
-                        <li class="nobreak"><var>anspruchsvoll</var></li>
-                        <li class="nobreak"><var>eine neue Denkweise</var></li>
-                        <li class="nobreak"><var>flexibel</var></li>
-                        <li class="nobreak"><var>modern</var></li>
-                    </ul>
-                }
-            </h4>
-            *@
         }
     }
 }
