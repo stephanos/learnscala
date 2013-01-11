@@ -19,50 +19,56 @@
 
         @defining("Erstellen") { title =>
 
-            @slide(title = title, subtitle = "Literale") {
+            @defining("Literale") { subtitle =>
 
-                @snippet() {
-                    @sourceblock() {
-                        |val xml =
-                        |  &lt;html&gt;
-                        |    &lt;head&gt;
-                        |      &lt;title&gt;Homepage&lt;/title&gt;
-                        |    &lt;/head&gt;
-                        |    &lt;body&gt;
-                        |      Welcome!
-                        |    &lt;/body&gt;
-                        |  &lt;/html&gt;
+                @slide(title = title, subtitle = subtitle, subsubtitle = "Elem") {
+
+                    @snippet() {
+                        @sourceblock() {
+                            |val xml =
+                            |  &lt;html&gt;
+                            |    &lt;head&gt;
+                            |      &lt;title&gt;Homepage&lt;/title&gt;
+                            |    &lt;/head&gt;
+                            |    &lt;body&gt;
+                            |      Welcome!
+                            |    &lt;/body&gt;
+                            |  &lt;/html&gt;
+                        }
+                        @outblock() {
+                            |xml: scala.xml.Elem =
+                            |  &lt;html&gt;
+                            |    &lt;head&gt;
+                            |      &lt;title&gt;Homepage&lt;/title&gt;
+                            |    &lt;/head&gt;
+                            |    &lt;body&gt;
+                            |      Welcome!
+                            |    &lt;/body&gt;
+                            |  &lt;/html&gt;
+                        }
                     }
-                    @outblock() {
-                        |xml: scala.xml.Elem =
-                        |  &lt;html&gt;
-                        |    &lt;head&gt;
-                        |      &lt;title&gt;Homepage&lt;/title&gt;
-                        |    &lt;/head&gt;
-                        |    &lt;body&gt;
-                        |      Welcome!
-                        |    &lt;/body&gt;
-                        |  &lt;/html&gt;
+                    @codesub2() {
+                        <code>scala.xml.Elem</code> beschreibt ein allgemeines XML-Element
                     }
                 }
-                @codesub() {
-                    <code>scala.xml.Elem</code> beschreibt ein allgemeines XML-Element
-                }
 
-                @spacer()
+                <!-- ################################################################################## -->
 
-                @snippet() {
-                    @sourceblock() {
-                        |val xml =
-                        |   &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt;
+                @slide(title = title, subtitle = subtitle, subsubtitle = "NodeSeq") {
+
+                    @snippet() {
+                        @sourceblock() {
+                            |val xml =
+                            |   &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt;
+                        }
+                        @outblock() {
+                            |xml: scala.xml.NodeSeq =
+                            |   &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt;
+                        }
                     }
-                    @outblock() {
-                        |xml: scala.xml.NodeSeq =
-                        |   &lt;li&gt;Milk&lt;/li&gt; &lt;li&gt;Butter&lt;/li&gt; &lt;li&gt;Honey&lt;/li&gt;
+                    @codesub2() {
+                        Liste aus XML-Elementen ist vom Typ <code>scala.xml.NodeSeq</code>
                     }
-                }
-                @codesub() {
-                    Liste aus XML-Elementen ist vom Typ <code>scala.xml.NodeSeq</code>
                 }
             }
 
@@ -86,7 +92,7 @@
                     dynamische Blöcke mit Scala-Code werden von <code>@("{")</code> und <code>@("}")</code> umschlossen
                 }
 
-                @spacer()
+                @spacer2()
 
                 @snippet() {
                     @callblock() {
