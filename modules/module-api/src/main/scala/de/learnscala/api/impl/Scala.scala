@@ -21,7 +21,10 @@ class Scala {
 
     def interpret(code: (String, String)): (Result, String) = {
         val (compiler, out) = encoder()
+        val log = com.loops101.util.Logger("controllers")
+
         val r = Console.withOut(new PrintStream(out, true)) {
+
             @tailrec
             def eval(lines: List[String], buffer: List[String] = List(), state: Result = IR.Success): Result =
                 buffer match {
@@ -45,15 +48,18 @@ class Scala {
                                     case Nil => ir // stop
                                     case y :: ys => eval(ys, buffer ::: List(y), ir)
                                 }
-                            case ir =>
-                                ir // stop
+                            case ir@IR.Error =>
+                                ir // stop either way
                         }
                 }
-            eval(List(code._1))
-            eval(code._2.split('\n').toList)
+
+            val tmpr = eval(List(code._1))
+            if(tmpr == IR.Success)
+                eval(code._2.split('\n').toList)
+            else
+                tmpr
         }
-        val s = asString(out)
-        (r, s)
+        (r, asString(out))
     }
 
     private def ignoreCodeLine(line: String) = {

@@ -7,7 +7,8 @@ import play.api.mvc.RequestHeader
 import scala.tools.nsc.interpreter.IR
 import play.api.libs.concurrent._
 import scala.concurrent.ExecutionContext.Implicits.global
-import com.loops101.util.LogUtil
+import com.loops101.util.{EnvUtil, LogUtil}
+import play.api.http.HeaderNames
 
 trait API {
 
@@ -22,6 +23,7 @@ trait API {
     def execute = Action(parse.urlFormEncoded) {
         req =>
             runWithTimeout() {
+                //println("EXECUTE")
                 if (userIsAdmin(req)) {
                     val src = req.body("source").mkString("")
                     val call = req.body("call").mkString("")
@@ -30,15 +32,17 @@ trait API {
                         val (r, out) = Interpreter((src, call))
                         if (r == IR.Success)
                             withCORS(Ok(out))
-                        else
-                            BadRequest(out)
+                        else {
+                            log.warn(out, "invalid request")
+                            withCORS(BadRequest(out))
+                        }
                     } catch {
                         case e: Throwable =>
                             log.warn(e, "error for API call 'execute'")
                             InternalServerError
                     }
                 } else {
-                    Unauthorized("Only the admin can execute code")
+                    Unauthorized("only the admin can execute code")
                 }
             }
     }
@@ -61,14 +65,14 @@ trait API {
                         if (out != null)
                             withCORS(Ok(out))
                         else
-                            BadRequest(err)
+                            withCORS(BadRequest(err))
                     } catch {
                         case e: Throwable =>
                             log.warn(e, "error for API call 'decompile'")
                             InternalServerError
                     }
                 } else {
-                    Unauthorized("Only the admin can decompile code")
+                    Unauthorized("only the admin can decompile code")
                 }
             }
     }
@@ -83,7 +87,7 @@ trait API {
                         if (r == true)
                             withCORS(Ok(out))
                         else
-                            BadRequest(out)
+                            withCORS(BadRequest(out))
                     } catch {
                         case e: Throwable =>
                             log.warn(e, "error for API call 'compile'")
@@ -97,8 +101,12 @@ trait API {
 
     private def withCORS(r: SimpleResult[_]) =
         r.withHeaders(
-            "Access-Control-Allow-Origin" -> "https://www.learnscala.de",
-            "Access-Control-Allow-Methods" -> "POST, GET"
+            HeaderNames.ACCESS_CONTROL_ALLOW_ORIGIN ->
+                (if(EnvUtil.isCloud)
+                    "https://www.learnscala.de"
+                else
+                    "*"),
+            HeaderNames.ACCESS_CONTROL_ALLOW_METHODS -> "POST, GET"
         )
 
     private def runWithTimeout(timeoutMs: Long = 5000)(f: => Result): Result = {
@@ -108,7 +116,7 @@ trait API {
                 value =>
                     value.fold(
                         r => r,
-                        timeout => InternalServerError("timeout")
+                        timeout => withCORS(InternalServerError("timeout"))
                     )
             }
         }

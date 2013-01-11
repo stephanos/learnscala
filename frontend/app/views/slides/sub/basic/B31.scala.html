@@ -27,7 +27,7 @@
                         |             val age: Int) {
                         |
                         |  override def toString =
-                        |    name + “, “ + age + “ years old”
+                        |    name + ", " + age + " years old"
                         |}
                     }
                     @callblock() {
@@ -52,7 +52,7 @@
                         |             val age: Int) {
                         |
                         |  override def toString =
-                        |    s"$name, $age years old”
+                        |    s"$name, $age years old"
                         |}
                     }
                     @callblock() {
@@ -83,12 +83,12 @@
                         |             val height: Float) {
                         |
                         |  override def toString =
-                        |    String.format("%s, %1.2f meters”,
-                        |                  name, height)
+                        |    "%s, %1.2f meters"
+                        |      .format(name, height)
                         |}
                     }
                     @callblock() {
-                        |val p = new Person("Bob", 1.9)
+                        |val p = new Person("Bob", 1.9f)
                     }
                     @outblock() {
                         |p: Person = Bob, 1.90 meters
@@ -105,11 +105,11 @@
                         |             val height: Float) {
                         |
                         |  override def toString =
-                        |    f"$name, $age%1.2f meters”
+                        |    f"$name, $height%1.2f meters"
                         |}
                     }
                     @callblock() {
-                        |val p = new Person("Bob", 1.9)
+                        |val p = new Person("Bob", 1.9f)
                     }
                     @outblock() {
                         |p: Person = Bob, 1.90 meters
@@ -127,7 +127,7 @@
             @spacer()
 
             @snippet() {
-                @sourceblock() {
+                @callblock() {
                     |s"a\nb"
                 }
                 @outblock() {
@@ -135,7 +135,7 @@
                     |a
                     |b
                 }
-                @sourceblock() {
+                @callblock() {
                     |raw"a\nb"
                 }
                 @outblock() {
@@ -144,69 +144,61 @@
             }
         }
 
-        @defining("Eigene") { title =>
+        <!-- ################################################################################## -->
 
-            <!-- ################################################################################## -->
+        @titleslide(title = "Funktionsweise") {
+            @spacer()
 
-            @titleslide(title = "Funktionsweise") {
-                @spacer()
-
-                @snippet() {
-                    @sourceblock() {
-                        |s"Hello $name"
-                    }
+            @snippet() {
+                @callblock() {
+                    |s"Hello $name"
                 }
-                @iseq()
-                @snippet() {
-                    @sourceblock() {
-                        |StringContext("Hello ").s(name)
-                    }
-                }
-
-                @spacer2()
-
-                @snippet() {
-                    @sourceblock() {
-                        |f"Hello $name1 & $name2"
-                    }
-                }
-                @iseq()
-                @snippet() {
-                    @sourceblock() {
-                        |StringContext("Hello ", " & ").f(name1, name2)
-                    }
+            }
+            @iseq()
+            @snippet() {
+                @sourceblock() {
+                    |StringContext("Hello ").s(name)
                 }
             }
 
-            <!-- ################################################################################## -->
+            @spacer2()
 
-            @titleslide(htmlTitle = <span><em>eigene</em> Interpolation</span>) {
-                @spacer()
-
-                @snippet() {
-                    @sourceblock(id = "xmlinterpol") {
-                        |implicit class XmlHelper(val sc: StringContext) {
-                        |  def xml(args: Any*) =
-                        |    scala.xml.XML.load(scala.xml.Source.fromString(sc.s(args)))
-                        |}
-                    }
-                }
-
-                @spacer()
-
-                @snippet() {
-                    @callblock(reference = "xmlinterpol") {
-                        |xml"&lt;node&gt; ${1 + 1} &lt;/node&gt;"
-                    }
-                    @outblock() {
-                        |res0: XML = TODO
-                    }
+            @snippet() {
+                @callblock() {
+                    |f"Hello $name1 & $name2"
                 }
             }
-
-            <!-- ################################################################################## -->
-
-            @uebung(implicitSlide.id)
+            @iseq()
+            @snippet() {
+                @sourceblock() {
+                    |StringContext("Hello ", " & ").f(name1, name2)
+                }
+            }
         }
+
+        <!-- ################################################################################## -->
+
+        @titleslide(htmlTitle = <span><em>eigene</em>-Interpolation</span>) {
+            @spacer()
+
+            @snippet() {
+                @sourceblock() {
+                    |implicit class XmlHelper(val sc: StringContext) {
+                    |  def xml(args: Any*) =
+                    |    scala.xml.XML.load(scala.xml.Source.fromString(sc.s(args: _*)))
+                    |}
+                }
+                @callblock() {
+                    |xml"&lt;node&gt; ${1 + 1} &lt;/node&gt;"
+                }
+                @outblock() {
+                    |res0: scala.xml.Elem = &lt;node&gt; 2 &lt;/node&gt;
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @uebung(implicitSlide.id)
     }
 }

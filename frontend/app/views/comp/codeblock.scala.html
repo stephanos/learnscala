@@ -2,13 +2,13 @@
   reference: String = null, lang: String = null, hl: String = null, linebyline: Boolean = false)(data: Html)
 
 <div class="raw-block"
-     data-type='@typeOf @clazz'
-     data-fragment='@{if(fragment) "true" else "false"}'
-     @{if(id == null) "" else "id='snippet-" + id + "'"}
-     @{if(hl == null) "" else "data-hlight='" + hl + "'"}
-     @{if(lang == null) "" else "data-lang='" + lang + "'"}
-     @{if(include == null) "" else "data-include='snippet-" + include + "'"}
-     @{if(reference == null) "" else "data-reference='snippet-" + reference + "'"}
-     @{if(linebyline == false) "" else "data-linebyline='" + linebyline + "'"}>
+        data-type="@typeOf @clazz"
+        data-fragment="@{if(fragment) fragment}"
+        id="@{if(id != null) s"snippet-$id"}"
+        data-hlight="@{if(hl != null) hl}"
+        data-lang="@{if(lang != null) lang}"
+        data-include="@{if(include != null) s"snippet-$include"}"
+        data-reference="@{if(reference != null) s"snippet-$reference"}"
+        data-linebyline="@linebyline">
         @data
 </div>

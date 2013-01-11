@@ -1,5 +1,5 @@
 define [
-  "jquery", "lib/util/underscore", "lib/dom/bootstrap"
+  "jquery", "lib/util/underscore.str", "lib/dom/bootstrap"
 ], ($, _) ->
 
   class Progress

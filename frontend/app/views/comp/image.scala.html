@@ -1,6 +1,6 @@
 @(url: String, id: String = null, height: Int = 0, width: Int = 0, clazz: String = "", source: String = null)
 
 <img src="/assets/img/slides/@url" class="@clazz"
-    @{if(id == null) "" else "id='" + id + "'"}
-    @{if(width == 0) "" else "width='" + width + "'"}
-    @{if(height == 0) "" else "height='" + height + "'"}>
+    @{if(id == null) "" else s"id=$id"}
+    @{if(width == 0) "" else s"width=$width"}
+    @{if(height == 0) "" else s"height=$height"}>

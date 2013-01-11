@@ -3,13 +3,13 @@
 
 @defining(Option(title).getOrElse(htmlTitle)) { theTitle =>
 
-    <section @{if(id == null) "" else "data-id=slide-" + id}
-             @{if(state == null) "" else "data-state='" + state + "'"}
-             @{if(theTitle == null) "" else "data-title='" + theTitle + "'"}
-             @{if(topic == null) "" else "data-topic='" + topic + "'"}
-             @{if(subtitle == null) "" else "data-subtitle='" + subtitle + "'"}
-             @{if(subsubtitle == null) "" else "data-subsubtitle='" + subsubtitle + "'"}
-             @{if(chapter == null) "" else "data-chapter='" + chapter + "'"}>
+    <section data-id="@{if(id == null) "" else s"slide-$id" }"
+             data-state="@{if(state == null) "" else state }"
+             data-title="@{if(theTitle == null) "" else theTitle }"
+             data-topic="@{if(topic == null) "" else topic }"
+             data-subtitle="@{if(subtitle == null) "" else subtitle }"
+             data-subsubtitle="@{if(subsubtitle == null) "" else subsubtitle }"
+             data-chapter="@{if(chapter == null) "" else chapter }">
 
         @headbody(clazz = clazz) {
             @if(htmlTitle == null) {

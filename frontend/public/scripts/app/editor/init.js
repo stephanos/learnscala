@@ -268,7 +268,7 @@ define(["jquery", "lib/util/underscore.str", "lib/editor/codemirror", "lib/util/
       self = this;
       this.createCodeBlock("", output, "wait");
       uri = window.location.hostname;
-      apiBase = uri.indexOf("localhost") > -1 ? "" : "https://api.learnscala.de";
+      apiBase = uri.indexOf("localhost") > -1 ? "http://localhost:8080" : "https://api.learnscala.de";
       $.support.cors = true;
       return $.ajax({
         type: 'POST',
