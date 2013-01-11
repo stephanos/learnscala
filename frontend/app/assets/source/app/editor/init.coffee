@@ -243,7 +243,7 @@ define [
       uri = window.location.hostname
       apiBase =
         if(uri.indexOf("localhost") > -1)
-          ""
+          "http://localhost:8080"
         else
           "https://api.learnscala.de"
 
