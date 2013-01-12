@@ -298,19 +298,6 @@
 
             @sidebyside(gap = 10) {
                 @callcode() {
-                    |5 + 5 * 2
-                }
-                @iseq()
-                @callcode() {
-                    |(5).+((5).*(2))
-                }
-                @codesub2() {
-                    <code>*</code> hat Vorrang vor <code>+</code>
-                }
-
-                @spacer()
-
-                @callcode() {
                     |5 + 5 toString
                 }
                 @iseq()
@@ -321,7 +308,7 @@
                     Infix <code>+</code> hat Vorrang vor Postfix <code>toString</code>
                 }
 
-                @spacer()
+                @spacer_half()
 
                 @callcode() {
                     |-5 + 5
@@ -333,13 +320,27 @@
                 @codesub2() {
                     Prefix <code>-</code> hat Vorrang vor Infix <code>+</code>
                 }
+
+                @spacer_half()
+
+                @callcode() {
+                    |5 + 5 * 2
+                }
+                @iseq()
+                @callcode() {
+                    |(5).+((5).*(2))
+                }
+                @codesub2() {
+                    <code>*</code> hat Vorrang vor <code>+</code>
+                }
             } {
-                @infobox() {
+                @infobox(hr = false) {
                     <div>
-                        Ein Prefix- wird vor einem Infix-Operator und
-                        Infix- vor einem Postfix-Operator ausgeführt.
+                        Prefix hat Vorrang vor Infix und <br/> Infix vor Postfix.
                     </div>
-                    @spacer()
+                }
+
+                @infobox(hr = false) {
                     <div>
                         Ansonsten bestimmt das erste Zeichen des Operators die Reihenfolge:
                         @spacer_half()
@@ -389,30 +390,44 @@
 
         @titleslide(title = "Zuweisungsoperator") {
 
+            @sidebyside(gap = 10) {
+                @callcode() {
+                    |x *= y + 1
+                }
+                @iseq()
+                @callcode() {
+                    |x = x * (y + 1)
+                }
+                @codesub2() {
+                    Zeichen können mit <code>=</code> kombiniert werden
+                }
+
+            } {
+                @callcode() {
+                    |x *= y + 1
+                }
+                @iseq()
+                @callcode() {
+                    |x *= (y + 1)
+                }
+                @codesub2() {
+                    Zuweisungen haben die @uline("geringste") Priorität
+                }
+            }
+
             @spacer()
 
-            @callcode() {
-                |x *= y + 1
-            }
-            @iseq()
-            @callcode() {
-                |x = x.*((y).+(1))
-            }
-            @codesub2() {
-                Zuweisungen <code>=</code> haben die geringste Priorität
-            }
-
-            @spacer2()
-
-            @callcode() {
-                |1 == 1 + 1
-            }
-            @iseq()
-            @callcode() {
-                |1.==((1).+(1))
-            }
-            @codesub2() {
-                Vergleichsoperatoren wie <code>&lt;=</code> usw. sind keine Zuweisungen
+            @autocenter {
+                @callcode() {
+                    |1 == 1 || 1 == 2
+                }
+                @iseq()
+                @callcode() {
+                    |(1 == 1) || (1 == 2)
+                }
+                @codesub2() {
+                    Vergleichsoperatoren wie <code>==</code> sind keine Zuweisungen
+                }
             }
         }
 
@@ -420,7 +435,14 @@
 
         @titleslide(title = "Assoziativität") {
 
-            @autocenter {
+            @sidebyside(gap = 15) {
+
+                @subhead() {
+                    Regel
+                }
+
+                @spacer_half()
+
                 @callcode() {
                     |15 - 3 + 6
                 }
@@ -431,24 +453,11 @@
                 @codesub2() {
                     @uline("fast") alle Operatoren sind <em>links-assoziativ</em>
                 }
-            }
-
-            @spacer()
-
-            <h4 class="tcenter fragment">Ausnahmen:</h4>
-
-            @spacer_half()
-
-            @sidebyside(gap = 15) {
-
-                @callcode() {
-                    |val i = 1 + 1
-                }
-                @codesub2() {
-                    Zuweisungen
-                }
-
             } {
+                @subhead() {
+                    Ausnahme
+                }
+
                 @callcode() {
                     |1 :: 2 :: List()
                 }

@@ -6,11 +6,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val r = 1 toString toLong
+                |val `String` = "String"
             }
-            @outblock(error = true) {
-                |error: too many arguments
-                |       for method toString
+            @outblock() {
+                |String: String = String
             }
         }
     }
@@ -97,7 +96,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val r = !(true.unary_!)
+                |val r = !true.unary_!
             }
             @outblock() {
                 |r: Boolean = true
