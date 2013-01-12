@@ -1,7 +1,7 @@
 @(indent: Boolean = false, clazz: String = "")(head: Html = Html.empty)(body: Html = Html.empty)(foot: Html = Html.empty)
 
 <header>
-    @if(head.body != "") {
+    @if(head.body != "" && head.body.trim != "") {
         <h3 class="nobreak tcenter">@head</h3>
     }
 </header>

@@ -82,7 +82,7 @@ define(["jquery", "lib/util/underscore.str", "lib/editor/codemirror", "lib/util/
           'class': "wrapper " + type + (frag ? " fragment" : void 0),
           "data-num": num
         }).appendTo($(elem));
-        CodeMirror.runMode(text, "text/x-" + (lang != null ? lang : "scala"), code[0], {
+        CodeMirror.runMode(text, "text/x-" + (lang === "java" ? lang : "scala"), code[0], {
           "class": type,
           "num": num,
           "linebyline": linebyline

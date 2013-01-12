@@ -57,8 +57,8 @@
 
             @sourcecode(id = "sum1") {
                 | def sum(f: Int => Int, a: Int, b: Int): Int =
-                |   if (a > b) 0
-                |   else f(a) + sum(f, a + 1, b)
+                |   if (a > b)  0
+                |   else        f(a) + sum(f, a + 1, b)
             }
             @codesub2() {
                 allgemeine Summenfunktion - Funktionsparameter definiert Verfahren
@@ -99,8 +99,8 @@
 
             @sourcecode(id = "sum2") {
                 | def sum(f: Int => Int, a: Int, b: Int): Int =
-                |   if (a > b) 0
-                |   else f(a) + sum(f, a + 1, b)
+                |   if (a > b)  0
+                |   else        f(a) + sum(f, a + 1, b)
             }
 
             @spacer()
@@ -138,8 +138,8 @@
 
             @sourcecode(id = "sum2") {
                 | def sum (f: Int => Int, a: Int, b: Int): Int =
-                |   if (a > b) 0
-                |   else f(a) + sum(f, a + 1, b)
+                |   if (a > b)  0
+                |   else        f(a) + sum(f, a + 1, b)
             }
 
             @spacer()
@@ -234,6 +234,10 @@
                         |  def filesRegex (query: String) =
                         |    printf (_.matches(query))
                         |}
+                    }
+                    @codesub2() {
+                        Iterationslogik wird zentralisiert, <br/>
+                        Filterlogik auf das Wesentliche reduziert
                     }
                 }
             }

@@ -19,7 +19,7 @@ object Content extends MyController {
 
     lazy val einfuehrung = Slide("B10", "Einführung", basic, status = "complete")
     lazy val geschichte = Slide("B11", "Geschichte", basic, Seq(einfuehrung), status = "complete")
-    lazy val ersteSchritte = Slide("B12", "Erste Schritte", basic, Seq(werkzeuge1))
+    lazy val ersteSchritte = Slide("B12", "Erste Schritte", basic, Seq(werkzeuge1), status = "complete")
     lazy val methoden = Slide("B13", "Methoden", basic, Seq(ersteSchritte))
     lazy val kontrollstrukturen = Slide("B14", "Kontrollstrukturen", basic, Seq(uebungen))
 

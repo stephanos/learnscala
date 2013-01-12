@@ -89,7 +89,7 @@ define [
       if(!noText)
         type += " cm-s-ambiance "
         code = $("<div/>", {'class': "wrapper " + type + (if(frag) then " fragment"), "data-num": num}).appendTo($(elem))
-        CodeMirror.runMode(text, "text/x-" + (lang ? "scala"), code[0], { "class": type, "num": num, "linebyline": linebyline })
+        CodeMirror.runMode(text, "text/x-" + (if(lang == "java") then lang else "scala"), code[0], { "class": type, "num": num, "linebyline": linebyline })
         #btn = $("<div class='btn-group'><button class='btn btn-icon btn-fullscreen'></button></div>").appendTo($(code))
 
       if(hlights)

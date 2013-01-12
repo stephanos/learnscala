@@ -60,7 +60,7 @@
                 Methode <code>toString</code> von Objekt <code>42</code>
             }
 
-            @spacer()
+            @spacer2()
 
             @snippet() {
                 @callblock() {
@@ -75,6 +75,7 @@
                 Methode <code>isWhole</code> von Objekt <code>42</code>
             }
 
+            @*
             @spacer()
 
             @snippet() {
@@ -89,12 +90,13 @@
             @codesub2() {
                 Methode <code>==</code> von Objekt <code>42</code>
             }
+            *@
 
-            @*
+            @spacer()
+
             @infobox() {
                 Alles ist ein Objekt. Jedes Objekt hat Methoden.
             }
-            *@
         }
 
         <!-- ################################################################################## -->
@@ -177,6 +179,40 @@
 
             @tipbox() {
                 Semikolons weglassen, <br/> außer mehrere Anweisungen stehen in einer Zeile.
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide(htmlTitle = <span><var>Ohne</var> Semikolons</span>) {
+
+            @snippet() {
+                @sourceblock() {
+                    |val r = 1
+                    |+ 1
+                }
+                @outblock() {
+                    |r: Int = 1
+                    |res0: Int = 1
+                }
+            }
+            @codesub2() {
+                <var>Oh</var>, Scala erkennt 2 separate Ausdrücke
+            }
+
+            @spacer2()
+
+            @snippet() {
+                @sourceblock() {
+                    |val r = 1 +
+                    |1
+                }
+                @outblock() {
+                    |r: Int = 2
+                }
+            }
+            @codesub2() {
+                <em>Ah</em>, Scala erkennt 1 Ausdruck
             }
         }
 
