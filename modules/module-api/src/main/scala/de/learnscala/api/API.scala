@@ -39,10 +39,10 @@ trait API {
                     } catch {
                         case e: Throwable =>
                             log.warn(e, "error for API call 'execute'")
-                            InternalServerError
+                            withCORS(InternalServerError)
                     }
                 } else {
-                    Unauthorized("only the admin can execute code")
+                    withCORS(Unauthorized("only the admin can execute code"))
                 }
             }
     }
@@ -69,10 +69,10 @@ trait API {
                     } catch {
                         case e: Throwable =>
                             log.warn(e, "error for API call 'decompile'")
-                            InternalServerError
+                            withCORS(InternalServerError)
                     }
                 } else {
-                    Unauthorized("only the admin can decompile code")
+                  withCORS(Unauthorized("only the admin can decompile code"))
                 }
             }
     }
@@ -91,10 +91,10 @@ trait API {
                     } catch {
                         case e: Throwable =>
                             log.warn(e, "error for API call 'compile'")
-                            InternalServerError
+                            withCORS(InternalServerError)
                     }
                 } else {
-                    Unauthorized("Only the admin can compile code")
+                    withCORS(Unauthorized("Only the admin can compile code"))
                 }
             }
     }

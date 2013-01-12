@@ -1,5 +1,5 @@
 @(id: String = null, subsubtitle: String = null, subtitle: String = null, title: String = null, chapter: String = null, state: String = null,
-  hideFooter: Boolean = false, htmlTitle: xml.Node = null, clazz: String = "")(head: Html = Html.empty)(body: Html = Html.empty)(implicit topic: String = null)
+  hideFooter: Boolean = false, htmlTitle: xml.Node = null, narrow: Boolean = false, clazz: String = "")(head: Html = Html.empty)(body: Html = Html.empty)(implicit topic: String = null)
 
 @defining(Option(title).getOrElse(htmlTitle)) { theTitle =>
 
@@ -18,6 +18,10 @@
                 @htmlTitle
             }
         } {
+            @if(!narrow) {
+                @spacer()
+            }
+
             @body
         } {
             @if(!hideFooter) {

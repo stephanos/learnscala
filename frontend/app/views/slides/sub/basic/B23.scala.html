@@ -16,9 +16,9 @@
 
         <!-- ################################################################################## -->
 
-        @defining("Einführung") { title =>
+        @defining("Magie") { title =>
 
-            @slide(title = title) {
+            @titleslide(title = title) {
                 @snippet() {
                     @sourceblock(fragment = false) {
                         |def asSeconds(ms: Long) = ms / 1000
@@ -48,13 +48,12 @@
                 @spacer()
 
                 @sourcecode() {
-                    |// Predef.scala
+                    |// Int.scala
                     |implicit def int2long(x: Int): Long = x.toLong
                 }
 
                 @codesub2() {
-                    <code>Predef</code> definiert implizite Konvertierung von
-                    <code>Int</code> zu <code>Long</code>
+                    <code>Int</code> definiert implizite Konvertierung zu <code>Long</code>
                 }
 
                 <!--@infobox() {
@@ -65,8 +64,8 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title) {
-                @snippet() {
+            @titleslide(title = title, subtitle = "II", connector = "") {
+                @*@snippet() {
                     @callblock(fragment = false) {
                         |1 -> 'a'
                     }
@@ -78,44 +77,45 @@
                     Hm, <code>Int</code> hat keine Methode <code>-></code>
                 }
 
-                @spacer_half()
+                @spacer_half()*@
 
-                @snippet() {
-                    @callblock() {
-                        |1 to 10
+                @sidebyside(gap = 10) {
+                    @snippet() {
+                        @callblock() {
+                            |1.isWhole
+                        }
+                        @outblock() {
+                            |res0: Boolean = true
+                        }
                     }
-                    @outblock() {
-                        |res0: List[Int] = List(1,2,3,4,5,6,7,8,9,10)
+                    @codesub2() {
+                        Hm, <code>Int</code> hat keine Methode <code>isWhole</code>
+                    }
+                } {
+                    @snippet() {
+                        @callblock() {
+                            |(-5).signum
+                        }
+                        @outblock() {
+                            |res0: Int = -1
+                        }
+                    }
+                    @codesub2() {
+                        <span class="nobreak">Hmm, <code>Int</code> hat keine Methode <code>signum</code></span>
                     }
                 }
-                @codesub2() {
-                    Hmm, <code>Int</code> hat auch keine Methode <code>to</code>
-                }
 
-                @spacer_half()
+                @spacer2()
 
-                @snippet() {
-                    @callblock() {
-                        |(-5).signum
+                @autocenter {
+                    @sourcecode() {
+                        |// Predef.scala
+                        |implicit def intWrapper(x: Int) = new RichInt(x)
                     }
-                    @outblock() {
-                        |res0: Int = -1
+
+                    @codesub2() {
+                        <code>Predef</code> definiert implizite Konvertierung von <code>Int</code> zu <code>RichInt</code>
                     }
-                }
-                @codesub2() {
-                    Hmmm, <code>Int</code> hat ebenso keine Methode <code>signum</code>
-                }
-
-                @spacer()
-
-                @sourcecode() {
-                    |// Predef.scala
-                    |implicit def intWrapper (x: Int) = new runtime.RichInt(x)
-                }
-
-                @codesub2() {
-                    Objekt <code>Predef</code> definiert implizite Konvertierung von
-                    <code>Int</code> zu <code>RichInt</code>
                 }
 
                 <!--@infobox() {
@@ -129,43 +129,57 @@
 
         @defining("Regel") { title =>
 
-            @defining("Explizit hat Vorrang") { regel =>
-
-                @headslide(title = title, subtitle = regel) {
-                    @title<span class="fragment">: <em>@regel</em></span>
+            @defining("Die Regeln") { regel =>
+                @headslide(title = title) {
+                    Datenmodell
                 } {
+                    @spacer2()
+
                     @snippet() {
                         @sourceblock(id = "euro_dollar") {
                             |case class EUR(v: Float)
                             |case class USD(v: Float)
                         }
                     }
+                    @codesub2() {
+                        2 Case-Klassen zur Definition von Euro- und Dollar-Beträgen
+                    }
+                }
+            }
 
-                    @spacer_half()
+            @defining("Explizit hat Vorrang") { regel =>
 
-                    @indent() {
-
+                @headslide(title = title, subtitle = regel) {
+                    @title<span class="fragment">: <em>@regel</em></span>
+                } {
+                    @sidebyside() {
                         @snippet() {
                             @callblock(id = "euro_dollar_implicit", reference = "euro_dollar") {
-                                |implicit def USD2EUR(x: USD) = EUR(x.v * 0.8f)
+                                |implicit def USD2EUR(x: USD) =
+                                |  EUR(x.v * 0.8f)
                             }
                             @outblock() {
                                 |USD2EUR: (x: USD)EUR
                             }
                         }
-
-                        @*@codenote() {
+                    } {
+                        @codenote2() {
                             implizite Typ-Konvertierung von <br/>
                             <code>USD</code> in <code>EUR</code>
-                        }*@
+                        }
+                    }
 
-                        @spacer_half()
+                    @spacer_half()
 
+                    @sidebyside() {
                         @snippet() {
                            @sourceblock(reference = "euro_dollar_implicit") {
                                |object Cashier {
-                               |    def pay(x: EUR) = println("payed %.2f€".format(x.v))
-                               |    def pay(x: USD) = println("payed %.2f$".format(x.v))
+                               |  def pay(x: EUR) =
+                               |    println("payed %.2f€".format(x.v))
+                               |
+                               |  def pay(x: USD) =
+                               |    println("payed %.2f$".format(x.v))
                                |}
                            }
                            @callblock() {
@@ -175,12 +189,19 @@
                                |payed 5.00$
                            }
                         }
+                    } {
+                        @codenote2() {
+                            <code>Cashier</code> wird mit Wert vom Typ <code>USD</code> aufgerufen,<br/>
+                            eine Konvertierung findet @uline("nicht") statt
+                        }
                     }
+                }
 
+                @*@autocenter {
                     @infobox() {
                         Implicits werden nur bei Typenfehlern herangezogen.
                     }
-                }
+                }*@
             }
 
             <!-- ################################################################################## -->
@@ -190,20 +211,12 @@
                 @headslide(title = title, subtitle = regel) {
                     @title: <em>@regel</em>
                 } {
-                    @snippet() {
-                        @sourceblock() {
-                            |case class EUR(v: Float)
-                            |case class USD(v: Float)
-                        }
-                    }
-
-                    @spacer_half()
-
-                    @indent() {
-
+                    @sidebyside() {
                         @snippet() {
                             @callblock(reference = "euro_dollar") {
-                                |def USD2EUR(x: USD) = EUR(x.v * 0.8f)
+                                |def USD2EUR(x: USD) =
+                                |  EUR(x.v * 0.8f)
+                                |
                                 |val eur: EUR = USD(5)
                             }
                             @outblock(error = true) {
@@ -212,34 +225,38 @@
                                 |required: EUR
                             }
                         }
-
-                        @codenote() {
-                            Methode <var>ohne</var> <code>implicit</code>
+                    } {
+                        @codenote2() {
+                            Methode <var>ohne</var> <code>implicit</code><br/>
                             wird vom Compiler nicht verwendet
                         }
+                    }
 
-                        @spacer_half()
+                    @spacer_half()
 
-                        @snippet() {
+                    @sidebyside() {
+                        @snippet(clazz = "right") {
                             @callblock(reference = "euro_dollar") {
-                                |implicit def USD2EUR(x: USD) = EUR(x.v * 0.8f)
+                                |implicit def USD2EUR(x: USD) =
+                                |  EUR(x.v * 0.8f)
+                                |
                                 |val eur: EUR = USD(5)
                             }
                             @outblock() {
                                 |eur: EUR = EUR(4.0)
                             }
                         }
+                    } {
+                        @codenote2() {
+                            Methode <em>mit</em> <code>implicit</code><br/>
+                            führt zur Typkonvertierung
+                        }
                     }
 
-                    @codenote() {
-                        Methode <em>mit</em> <code>implicit</code>
-                        führt zur Typkonvertierung
-                    }
-
-                    @infobox() {
+                    @*@infobox() {
                         Zur impliziten Umwandlung werden nur Methoden verwendet,<br/>
                         die mit <code>implicit</code> markiert sind.
-                    }
+                    }*@
                 }
             }
 
@@ -250,40 +267,30 @@
                 @headslide(title = title, subtitle = regel) {
                     @title: <em>@regel</em>
                 } {
-                    @sourcecode(id = "euro_dollar", fragment = false) {
-                        |case class EUR(v: Float); case class USD(v: Float)
-                    }
-
-                    @spacer()
-
-                    @sidebyside((10,90)) {
-                        @codenote2() {
-                            <em>(A)</em>
-                        }
-                    } {
+                    @sidebyside() {
                         @snippet(clazz = "slim") {
                             @sourceblock(reference = "euro_dollar") {
-                                |implicit def USD2EUR(x: USD) = EUR(x.v * 0.8f)
+                                |implicit def USD2EUR(x: USD) =
+                                |  EUR(x.v * 0.8f)
+                                |
                                 |val eur: EUR = USD(5)
                             }
                         }
-                    }
 
-                    @codenote() {
-                        <em>(A)</em> Implicit wird direkt im Scope definiert
+                    } {
+                        @codenote2() {
+                            <em>(A)</em> <br/> Implicit wird direkt im Scope definiert
+                        }
                     }
 
                     @spacer_half()
 
-                    @sidebyside((10,90)) {
-                        @codenote2() {
-                            <em>(B)</em>
-                        }
-                    } {
+                    @sidebyside() {
                         @snippet(clazz = "slim") {
                             @sourceblock(reference = "euro_dollar") {
                                 |object Convert {
-                                |  implicit def USD2EUR(x: USD) = EUR(x.v * 0.8f)
+                                |  implicit def USD2EUR(x: USD) =
+                                |    EUR(x.v * 0.8f)
                                 |}
                             }
                             @callblock() {
@@ -291,38 +298,37 @@
                                 |val eur: EUR = USD(5)
                             }
                         }
-                    }
-
-                    @codenote() {
-                        <em>(B)</em> Implicit wird in einem Objekt definiert und importiert
+                    } {
+                        @codenote2() {
+                            <em>(B)</em> <br/> Implicit wird in einem Objekt definiert <br/> und importiert
+                        }
                     }
 
                     @spacer_half()
 
-                    @sidebyside((10,90)) {
+                    @sidebyside() {
                         @codenote2() {
-                            <em>(C)</em>
+                            @snippet(clazz = "slim") {
+                                @sourceblock(reference = "euro_dollar") {
+                                    |object USD {
+                                    |  implicit def USD2EUR(x: USD) =
+                                    |    EUR(x.v * 0.8f)
+                                    |}
+                                }
+                                @callblock() {
+                                    |val eur: EUR = USD(5)
+                                }
+                            }
                         }
                     } {
-                        @snippet(clazz = "slim") {
-                            @sourceblock(reference = "euro_dollar") {
-                                |object USD {
-                                |  implicit def USD2EUR(x: USD) = EUR(x.v * 0.8f)
-                                |}
-                            }
-                            @callblock() {
-                                |val eur: EUR = USD(5)
-                            }
+                        @codenote2() {
+                            <em>(C)</em> <br/> Implicit wird im Companion Object definiert
                         }
                     }
 
-                    @codenote() {
-                        <em>(C)</em> Implicit wird im Companion Object definiert
-                    }
-
-                    @infobox(hr = false) {
+                    @*@infobox(hr = false) {
                         Die Definition muss sich im aktuellen Scope befinden; <br/> oder im jeweiligen Companion-Objekt.
-                    }
+                    }*@
                 }
             }
 
@@ -333,44 +339,50 @@
                 @headslide(title = title, subtitle = regel) {
                     @title: <em>@regel</em>
                 } {
-                    @sourcecode(id = "euro_dollar_implicits2", reference = "euro_dollar") {
-                        |object Bank {
-                        |   implicit def USD2EUR_bank(x: USD) = EUR(x.v * 0.8f) }
-                        |
-                        |object ExchangeOffice {
-                        |   implicit def USD2EUR_xchg(x: USD) = EUR(x.v * 0.7f) }
+                    @sidebyside() {
+                        @sourcecode(id = "euro_dollar_implicits2", reference = "euro_dollar") {
+                            |object Bank {
+                            |  implicit def USD2EUR_bank(x: USD) =
+                            |    EUR(x.v * 0.8f)
+                            |}
+                            |
+                            |object ExchangeOffice {
+                            |  implicit def USD2EUR_xchg(x: USD) =
+                            |    EUR(x.v * 0.7f)
+                            |}
+                        }
+                    } {
+                        @codenote2() {
+                            2 implizite Konvertierungsmethoden <br/> mit unterschiedlichen Wechselkursen
+                        }
                     }
 
                     @spacer_half()
 
-                    @indent() {
+                    @sidebyside() {
                         @snippet() {
                             @callblock(reference = "euro_dollar_implicits2") {
                                 |import Bank._, ExchangeOffice._
+                                |
                                 |val eur: EUR = USD(5)
                             }
                             @outblock(error = true) {
                                 |error   : type mismatch;
                                 |found   : USD
                                 |required: EUR
-                                |Note that implicit conversions are not applicable because
-                                | they are ambiguous: both method
-                                |   USD2EUR_bank in object Bank of type (x: USD)EUR
-                                | and method
-                                |   USD2EUR_xchg in object ExchangeOffice of type (x: USD)EUR
-                                | are possible conversion functions from USD to EUR
+                                |Note that implicit conversions are not
+                                |applicable because they are ambiguous
                             }
+                        }
+                    } {
+                        @codenote2() {
+                            Compiler weiß nicht, <br/> welche Methode er bevorzugen soll
                         }
                     }
 
-                    @*@codenote() {
-                        2 Umwandlungsmethoden von <code>USD</code> nach <code>EUR</code> werden importiert -
-                        der Compiler weiß nicht, welche er bevorzugen soll
-                    }*@
-
-                    @infobox(hr = false) {
+                    @*@infobox(hr = false) {
                         Die Umwandlung muss eindeutig sein - bei mehreren Methoden wird ein Typfehler gemeldet.
-                    }
+                    }*@
                 }
             }
 
@@ -381,26 +393,38 @@
                 @headslide(title = title, subtitle = regel) {
                     @title: <em>@regel</em>
                 } {
-                    @sourcecode(id = "euro_dollar_pound") {
-                        |case class USD(v: Float)  // A
-                        |case class EUR(v: Float)  // B
-                        |case class GBP(v: Float)  // C
+                    @sidebyside() {
+                        @sourcecode(id = "euro_dollar_pound") {
+                            |case class USD(v: Float)   // A
+                            |case class EUR(v: Float)   // B
+                            |case class GBP(v: Float)   // C
+                        }
+                    } {
+                        @codenote2() {
+                            3 Währungen
+                        }
                     }
 
                     @spacer()
 
-                    @indent() {
-
+                    @sidebyside() {
                         @sourcecode(id = "euro_dollar_pound_implicit", reference = "euro_dollar_pound") {
-                            |implicit def USD2EUR(x: USD) = EUR(x.v * 0.8f) // A -> B
-                            |implicit def EUR2GBP(x: EUR) = GBP(x.v * 0.8f) // B -> C
+                            |implicit def USD2EUR(x: USD) =
+                            |  EUR(x.v * 0.8f)          // A -> B
+                            |
+                            |implicit def EUR2GBP(x: EUR) =
+                            |  GBP(x.v * 0.8f)          // B -> C
                         }
+                    } {
 
-                        @spacer()
+                    }
 
+                    @spacer()
+
+                    @sidebyside() {
                         @snippet() {
                             @callblock(reference = "euro_dollar_pound_implicit") {
-                                |val eur: GBP = USD(5)  // A -> C ?
+                                |val eur: GBP = USD(5)      // A -> C ?
                             }
                             @outblock(error = true) {
                                 |error   : type mismatch;
@@ -408,103 +432,151 @@
                                 |required: GBP
                             }
                         }
-
-                        @*@codenote() {
-                            <code>USD</code> kann @underline("nicht") auf <code>GBP</code> mittels
+                    } {
+                        @codenote2() {
+                            <code>USD</code> kann @underline("nicht") auf <code>GBP</code> mittels <br/>
                             Zwischenschritt <code>EUR</code> umgewandelt werden
-                        }*@
-
-                        @spacer_half()
+                        }
                     }
 
-                    @infobox() {
+                    @*@infobox() {
                         Es wird pro Typfehler stets nur maximal eine implizite Umwandlung eingesetzt.
-                    }
+                    }*@
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @headslide(title = title, subtitle = "Zusammenfassung") {
+                Die Regeln
+            } {
+                @middle(60) {
+                    <ol>
+                        <li>
+                            Implicits werden erst bei Typenfehlern herangezogen.
+                        </li>
+                        @spacer_half()
+                        <li>
+                            Es werden nur Methoden, die mit <code>implicit</code> markiert sind, verwendet.
+                        </li>
+                        @spacer_half()
+                        <li>
+                            Implicit muss sich im aktuellen Scope befinden; oder im jeweiligen Companion-Objekt.
+                        </li>
+                        @spacer_half()
+                        <li>
+                            Es darf nur eine implizierte Typkonvertierung möglich sein.
+                        </li>
+                        @spacer_half()
+                        <li>
+                            Es wird pro Typfehler stets nur maximal eine implizite Umwandlung eingesetzt.
+                        </li>
+                    </ol>
                 }
             }
         }
 
         <!-- ################################################################################## -->
 
-        @defining("Beispiele") { title =>
+        @titleslide(title = "implizite Klassen") {
+
+            @sourcecode() {
+                |class USD(v: Float) {
+                |  val cents = ("%.2f").format(v % 1).toFloat
+                |}
+                |
+                |implicit final def USD(v: Float) = new USD(v)
+            }
+
+            @iseq(true)
+
+            @sourcecode() {
+                |implicit class USD(v: Float) {
+                |  val cents = ("%.2f").format(v % 1).toFloat
+                |}
+            }
+            @codesub2() {
+                Scala generiert für <code>implicit</code>-Klassen die Konvertierungsmethode
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("Beispiel") { title =>
 
             <!--
                 - https://gist.github.com/1162307
                 - http://www.derekwyatt.org/2012/03/12/adding-squared-to-scala-numbers-with-implicts-and-type-classes/
             -->
 
-            @titleslide(title = title) {
+            @titleslide(title = title, subtitle = "I") {
 
                 @sourcecode(id = "factorial2") {
-                    |class MyInt(val i: Int) {
-                    |   def ! = (a : Int): Int = a match {
-                    |       case 0 => 1
-                    |       case n => (n) * factorial(n-1)
-                    |   }
+                    |implicit class MyInt(val i: Int) {
                     |
-                    |   def ! = factorial(i)
+                    |  def ! = fact(i)
                     |
-                    |   override def toString = i.toString
-                    |}
-                    |
-                    |object MyInt {
-                    |   implicit def intToMyInt(x : Int) = new MyInt(x)
+                    |  private def fact(num: Int): Int = num match {
+                    |    case 0 => 1
+                    |    case _ => (num) * fact(num-1)
+                    |  }
                     |}
                 }
 
                 @spacer()
 
                 @indent() {
-                    @callcode(reference = "factorial2") {
-                        |import MyInt._
-                        |println("factorial of 5 is " + (5!))
+                    @snippet() {
+                        @callblock(reference = "factorial2") {
+                            |println("factorial of 5 is " + (5!))
+                        }
+                        @outblock() {
+                            |factorial of 5 is 120
+                        }
                     }
                 }
             }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title) {
-
-                @snippet() {
-                    @sourceblock(id = "duration_unit") {
-                        |trait DurationUnit { val v: Long }
-                        |object Seconds extends DurationUnit { val v = 1000L }
-                        |object Minutes extends DurationUnit { val v = 60000L }
-                    }
-                }
-
-                @spacer_half()
-
-                @snippet() {
-                    @sourceblock(id = "duration_val", reference = "duration_unit") {
-                        |class DurationVal(val v: Long) {
-                        |    def minutes = new Duration(this, Minutes)
-                        |    def seconds = new Duration(this, Seconds)
-                        |}
-                    }
-                }
-
-                @spacer_half()
+            @titleslide(title = title, subtitle = "II", connector = "") {
 
                 @snippet() {
                     @sourceblock(id = "duration", reference = "duration_val") {
                         |case class Duration(v: DurationVal, u: DurationUnit) {
-                        |   override def toString = (v.v * u.v) + " ms"
-                        |}
-                        |
-                        |object Duration {
-                        |    implicit def int2TimeUnit(n: Int) = new DurationVal(n)
+                        |  override def toString = (v.n * u.ms) + " ms"
                         |}
                     }
                 }
 
                 @spacer_half()
 
+                @indent() {
+                    @snippet() {
+                        @sourceblock(id = "duration_unit") {
+                            |trait DurationUnit { def ms: Long }
+                            |object Seconds extends DurationUnit { val ms = 1000L }
+                            |object Minutes extends DurationUnit { val ms = 60000L }
+                        }
+                    }
+
+                    @spacer_half()
+
+                    @snippet() {
+                        @sourceblock(id = "duration_val", reference = "duration_unit") {
+                            |implicit class DurationVal(val n: Long) {
+                            |  def minutes = new Duration(this, Minutes)
+                            |  def seconds = new Duration(this, Seconds)
+                            |}
+                        }
+                    }
+                }
+
+                @spacer()
+
                 @sidebyside() {
                     @snippet() {
                         @callblock(reference = "duration") {
-                            |import Duration._
                             |println(2 seconds)
                         }
                         @outblock() {
@@ -514,7 +586,6 @@
                 } {
                     @snippet() {
                         @callblock(reference = "duration") {
-                            |import Duration._
                             |println(10 minutes)
                         }
                         @outblock() {

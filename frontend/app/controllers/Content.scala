@@ -52,7 +52,7 @@ object Content extends MyController {
     lazy val operatoren = Slide("B22", "Operatoren", basic, Seq(methoden, klassen1))
     lazy val regexp = Slide("B23", "Reguläre Ausdrücke", basic, Seq())
     lazy val recursion = Slide("B25", "Rekursion", basic, Seq(kontrollstrukturen), status = "complete")
-    lazy val implicit1 = Slide("B23", "Implicits", basic, Seq(klassen2))
+    lazy val implicit1 = Slide("B23", "Implicits", basic, Seq(operatoren, klassen2), status = "complete")
 
     // === OBJEKTE
 
