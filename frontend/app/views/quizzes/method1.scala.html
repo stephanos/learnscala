@@ -6,7 +6,7 @@
     } {
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
-                |def sub (x: Float, y: Float): Int =
+                |def sub(x: Float, y: Float): Int =
                 |   x - y
             }
             @outblock(error = true) {
@@ -21,7 +21,7 @@
     } {
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
-                |def negate (n: Int): Long = {
+                |def negate(n: Int): Long = {
                 |   -1 * n
                 |}
             }
@@ -32,7 +32,7 @@
     }
 }
 
-@spacer2()
+@spacer()
 
 @sidebyside() {
     @sidebyside((5, 90)) {
@@ -53,7 +53,7 @@
     } {
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
-                |def add (x, y) = x + y
+                |def add(x, y) = x + y
             }
             @outblock(error = true) {
                 |':' expected but ',' found.
@@ -62,7 +62,7 @@
     }
 }
 
-@spacer2()
+@spacer()
 
 @sidebyside() {
     @sidebyside((5, 90)) {
@@ -70,7 +70,7 @@
     } {
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
-                |def mult (x: Int, y: Int) {
+                |def mult(x: Int, y: Int) = {
                 |   println (x * y)
                 |}
             }
@@ -85,11 +85,43 @@
     } {
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
-                |def fn (n: Int) =
+                |def fn(n: Int) =
                 |   if (n == 0) 1 else n * fn(n - 1)
             }
             @outblock(error = true) {
                 |recursive method fn needs result type
+            }
+        }
+    }
+}
+
+@spacer()
+
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(7)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |def mult(x: Int, y: Int) {
+                |   x * y
+                |}
+            }
+            @outblock() {
+                |mult: (x: Int, y: Int)Unit
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(8)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |def add(x: Int, y: Int) = x / y
+            }
+            @outblock() {
+                |add: (x: Int, y: Int)Int
             }
         }
     }

@@ -148,9 +148,9 @@
         <!-- ################################################################################## -->
 
         <!--
-            http://stackoverflow.com/questions/1181533/
+            http://stackoverflow.com/questions/1181533/what-are-the-precise-rules-for-when-you-can-omit-parenthesis-dots-braces-f
         -->
-        @slide(title = "Optionales") {
+        @titleslide(title = "Optionales") {
 
             @sidebyside() {
                 @sourcecode(id = "hello") {
@@ -221,23 +221,26 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Unit") {
+        @titleslide(title = "Unit") {
 
             @sidebyside(gap = 10) {
                 @snippet() {
                     @sourceblock() {
-                        |def hello () = {
+                        |def hello() = {
                         |   println ("Hello World")
                         |}
                     }
                     @outblock() {
                         |hello: Unit
                     }
+                }
+                @codesub2() {
+                    <var>unüblich</var>
                 }
             } {
                 @snippet() {
                     @sourceblock() {
-                        |def hello () {
+                        |def hello() {
                         |   println ("Hello World")
                         |}
                     }
@@ -245,23 +248,26 @@
                         |hello: Unit
                     }
                 }
+                @codesub2() {
+                    <em>üblich</em>
+                }
             }
 
-            @spacer()
+            @spacer2()
 
-            @*@infobox() {
+            @infobox() {
                 Hat eine Methode keinen Rückgabewert, hat sie den Typ <code>Unit</code>.<br/>
-                Sie werden überlicherweise ohne <code>=</code> definiert.
-            }*@
+                Sie werden überlicherweise @uline("ohne") <code>=</code> definiert.
+            }
         }
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Parameter") {
+        @titleslide(title = "Parameter") {
 
             @snippet() {
                 @sourceblock(id = "double") {
-                    |def double (x: Int) =
+                    |def double(x: Int) =
                     |   2 * x
                 }
                 @outblock() {
@@ -273,7 +279,7 @@
                 Methode mit <em>1</em> Parameter
             }
 
-            @spacer()
+            @spacer_half()
 
             @snippet() {
                 @sourceblock(id = "add") {
@@ -289,12 +295,12 @@
                 Methode mit <em>2</em> Parametern
             }
 
-            @spacer()
+            @spacer_half()
 
             @snippet() {
                 @sourceblock(id = "print") {
                     |def printFirst(s: String *) =
-                    |   println (s(0))
+                    |   println(s(0))
                 }
                 @outblock() {
                     |printFirst: (s: String*)Unit
@@ -308,19 +314,19 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Verschachtelung") {
+        @titleslide(title = "interne Methoden") {
             @snippet() {
                 @sourceblock(id = "print") {
                     |def doubleAndPlusOne (x: Int) = {
-                    |   def double (x: Int) = {
+                    |   def double(x: Int) = {
                     |       x * 2
                     |   }
                     |
-                    |   def plusOne (x: Int) = {
+                    |   def plusOne(x: Int) = {
                     |       x + 1
                     |   }
                     |
-                    |   plusOne (double (x))
+                    |   plusOne(double (x))
                     |}
                 }
                 @outblock() {
@@ -360,7 +366,7 @@
 
                 @snippet() {
                     @callblock(reference = "double") {
-                        |double (1)
+                        |double(1)
                     }
                     @outblock() {
                         |res0: Int = 2
@@ -384,24 +390,24 @@
 
                 @snippet() {
                     @callblock(reference = "add") {
-                        |add (1, 2)
+                        |add(1, 2)
                     }
                     @outblock() {
                         |res0: Float = 3.0
                     }
                     @callblock() {
-                        |add (1, {
-                        |   add (2, 2)
+                        |add(1, {
+                        |   add(2, 2)
                         |})
                     }
                     @outblock() {
                         |res1: Float = 5.0
                     }
                     @callblock() {
-                        |add ({
-                        |   add (1, 1)
+                        |add({
+                        |   add(1, 1)
                         |}, {
-                        |   add (2, 2)
+                        |   add(2, 2)
                         |})
                     }
                     @outblock() {
