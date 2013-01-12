@@ -23,8 +23,8 @@
         @titleslide(title = "Problemstellung") {
 
             @sourcecode() {
-                |def sumInts (a: Int, b: Int): Int =
-                |   if (a > b) 0 else (a) + sumInts (a + 1, b)
+                |def sumInts(a: Int, b: Int): Int =
+                | if (a > b) 0 else (a) + sumInts(a + 1, b)
             }
             @codesub2() {
                 Summe natürlicher Zahlen
@@ -33,8 +33,8 @@
             @spacer()
 
             @sourcecode() {
-                |def sumQuads (a: Int, b: Int): Int =
-                |   if (a > b) 0 else (a * a) + sumQuads (a + 1, b)
+                |def sumQuads(a: Int, b: Int): Int =
+                | if (a > b) 0 else (a * a) + sumQuads(a + 1, b)
             }
             @codesub2() {
                 Summe Quadratzahlen
@@ -43,8 +43,8 @@
             @spacer()
 
             @sourcecode() {
-                |def sumCubes (a: Int, b: Int): Int =
-                |   if (a > b) 0 else (a * a * a) + sumCubes (a + 1, b)
+                |def sumCubes(a: Int, b: Int): Int =
+                | if (a > b) 0 else (a * a * a) + sumCubes(a + 1, b)
             }
             @codesub2() {
                 Summe Kubikzahlen
@@ -69,22 +69,22 @@
             @indent() {
 
                 @callcode(reference = "sum1") {
-                    |def id (x: Int) = x
-                    |def sumInts (a: Int, b: Int) = sum (id, a, b)
+                    |def id(x: Int) = x
+                    |def sumInts(a: Int, b: Int) = sum(id, a, b)
                 }
 
                 @spacer_half()
 
                 @callcode(reference = "sum1") {
-                    |def quad (x: Int) = x * x
-                    |def sumQuads (a: Int, b: Int) = sum (quad, a, b)
+                    |def quad(x: Int) = x * x
+                    |def sumQuads(a: Int, b: Int) = sum(quad, a, b)
                 }
 
                 @spacer_half()
 
                 @callcode(reference = "sum1") {
-                    |def cube (x: Int) = x * x * x
-                    |def sumCubes (a: Int, b: Int) = sum (cube, a, b)
+                    |def cube(x: Int) = x * x * x
+                    |def sumCubes(a: Int, b: Int) = sum(cube, a, b)
                 }
             }
 
@@ -108,21 +108,21 @@
             @indent() {
 
                 @callcode(reference = "sum1") {
-                    |def sumInts (a: Int, b: Int) =
+                    |def sumInts(a: Int, b: Int) =
                     |   sum ((x: Int) => x, a, b)
                 }
 
                 @spacer_half()
 
                 @callcode(reference = "sum1") {
-                    |def sumQuads (a: Int, b: Int) =
+                    |def sumQuads(a: Int, b: Int) =
                     |   sum ((x: Int) => x * x, a, b)
                 }
 
                 @spacer_half()
 
                 @callcode(reference = "sum1") {
-                    |def sumCubes (a: Int, b: Int) =
+                    |def sumCubes(a: Int, b: Int) =
                     |   sum ((x: Int) => x * x * x, a, b)
                 }
             }
@@ -137,7 +137,7 @@
         @titleslide(title = "Typinferenz") {
 
             @sourcecode(id = "sum2") {
-                | def sum (f: Int => Int, a: Int, b: Int): Int =
+                | def sum(f: Int => Int, a: Int, b: Int): Int =
                 |   if (a > b)  0
                 |   else        f(a) + sum(f, a + 1, b)
             }
@@ -147,22 +147,22 @@
             @indent() {
 
                 @callcode(reference = "sum1") {
-                    |def sumInts (a: Int, b: Int) =
-                    |   sum (x => x, a, b)
+                    |def sumInts(a: Int, b: Int) =
+                    |   sum(x => x, a, b)
                 }
 
                 @spacer_half()
 
                 @callcode(reference = "sum1") {
-                    |def sumQuads (a: Int, b: Int) =
-                    |   sum (x => x * x, a, b)
+                    |def sumQuads(a: Int, b: Int) =
+                    |   sum(x => x * x, a, b)
                 }
 
                 @spacer_half()
 
                 @callcode(reference = "sum1") {
-                    |def sumCubes (a: Int, b: Int) =
-                    |   sum (x => x * x * x, a, b)
+                    |def sumCubes(a: Int, b: Int) =
+                    |   sum(x => x * x * x, a, b)
                 }
             }
 
@@ -217,22 +217,22 @@
                         |  import java.io._
                         |  def files = new File(".").listFiles
                         |
-                        |  def printf (matcher: String => Boolean) {
+                        |  def printf(matcher: String => Boolean) {
                         |    for (i <- 0 until files.size) {
                         |      val f = files(i)
                         |      if (matcher(f.getName))
-                        |        println (f)
+                        |        println(f)
                         |    }
                         |  }
                         |
                         |  def filesEnding (query: String) =
-                        |    printf (_.endsWith(query))
+                        |    printf(_.endsWith(query))
                         |
                         |  def filesContaining (query: String) =
-                        |    printf (_.contains(query))
+                        |    printf(_.contains(query))
                         |
                         |  def filesRegex (query: String) =
-                        |    printf (_.matches(query))
+                        |    printf(_.matches(query))
                         |}
                     }
                     @codesub2() {

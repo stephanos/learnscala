@@ -31,7 +31,7 @@
                     <h3 class="tcenter">Lösung</h3>
 
                     @callcode(fragment = true) {
-                        |retry (2) {
+                        |retry(2) {
                         |   connectToDatabase()
                         |}
                     }
@@ -62,7 +62,7 @@
                         |object Logger {
                         |  var enabled = true
                         |
-                        |  def log (message: String) {
+                        |  def log(message: String) {
                         |    if (enabled) println (message)
                         |  }
                         |}
@@ -366,8 +366,8 @@
 
 <div class="hide">
     @sourcecode(id = "factorial", reference = "ctrl-time") {
-        |def factorial (n: Int): BigInt =
-        |   if (n == 0) BigInt (1) else n * factorial (n - 1)
+        |def factorial(n: Int): BigInt =
+        |   if (n == 0) BigInt (1) else n * factorial(n - 1)
     }
 
     @sourcecode(id = "connect2db", reference = "retry") {
