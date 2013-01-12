@@ -45,7 +45,7 @@
             @titleslide(title = title) {
 
                 @sourcecode() {
-                    |def max (x: Int, y: Int): Int = {
+                    |def max(x: Int, y: Int): Int = {
                     |  if (x > y) {
                     |    x
                     |  } else {
@@ -57,7 +57,7 @@
                 @iseq()
 
                 @sourcecode() {
-                    |def max (x: Int, y: Int) =
+                    |def max(x: Int, y: Int) =
                     |  if (x > y)
                     |    x
                     |  else
@@ -67,7 +67,7 @@
                 @iseq()
 
                 @sourcecode() {
-                    |def max (x: Int, y: Int) =
+                    |def max(x: Int, y: Int) =
                     |  if (x > y) x else y
                 }
             }
@@ -78,11 +78,11 @@
 
                 @snippet() {
                     @sourceblock() {
-                        |def check (x: Int) =
+                        |def isPositive(x: Int) =
                         |  if (x > 0) "positive"
                     }
                     @outblock() {
-                        |check: (x: Int)Any
+                        |isPositive: (x: Int)Any
                     }
                 }
                 @codesub2() {
@@ -93,13 +93,13 @@
 
                 @snippet() {
                     @sourceblock() {
-                        |def check (x: Int) =
+                        |def isPositiveOrNegative(x: Int) =
                         |  if (x == 0) 0
                         |  else if (x > 0) 'p'
                         |  else 'n'
                     }
                     @outblock() {
-                        |check: (x: Int)Int
+                        |isPositiveOrNegative: (x: Int)Int
                     }
                 }
                 @codesub2() {
@@ -156,10 +156,11 @@
                 }
             }
 
-            @*@warnbox(hr = false) {
-                Klassische Schleifen werden in Scala eher selten eingesetzt;
-                man sollte sich stets fragen ob es nicht eine funktionalere Variante gibt.
-            }*@
+            @autocenter {
+                @warnbox() {
+                    Klassische Schleifen werden in Scala @uline("sehr selten") eingesetzt.
+                }
+            }
         }
 
         <!-- ################################################################################## -->
@@ -214,7 +215,7 @@
             @titleslide(title = title, subtitle = "Konstante-Pattern", head = true) {
 
                 @sourcecode() {
-                    |def days (month: Int): Int =
+                    |def days(month: Int): Int =
                     |  month match {
                     |    case 1   => 31
                     |    case 2   => 28
@@ -240,7 +241,7 @@
             @titleslide(title = title, subtitle = "Alternativ-Pattern", head = true) {
 
                 @sourcecode(id = "days2") {
-                    |def days (month: Int): Int =
+                    |def days(month: Int): Int =
                     |  month match {
                     |    case 2                           => 28
                     |    case 4 | 6 | 9 | 11              => 30
@@ -279,7 +280,7 @@
             @titleslide(title = title, subtitle = "Wildcard-Pattern", head = true) {
 
                 @sourcecode() {
-                    |def days (month: Int): Int =
+                    |def days(month: Int): Int =
                     |  month match {
                     |    case 2              => 28
                     |    case 4 | 6 | 9 | 11 => 30
@@ -296,7 +297,7 @@
             @titleslide(title = title, subtitle = "Guarded-Pattern", head = true) {
 
                 @sourcecode() {
-                    |def days (month: Int, leap: Boolean): Int =
+                    |def days(month: Int, leap: Boolean): Int =
                     |  month match {
                     |    case 2 if leap       => 29
                     |    case 2               => 28
@@ -314,14 +315,14 @@
             @titleslide(title = title, subtitle = "Variable-Pattern", head = true) {
 
                 @sourcecode() {
-                    |def days (month: Int, leap: Boolean): Int =
+                    |def days(month: Int, leap: Boolean): Int =
                     |  month match {
                     |    case 2 if leap       => 29
                     |    case 2               => 28
                     |    case 4 | 6 | 9 | 11  => 30
                     |    case m               =>
-                    |       val msg = "Unknown month " + m
-                    |       throw new IllegalArgumentException(msg)
+                    |      val msg = "Unknown month " + m
+                    |      throw new IllegalArgumentException(msg)
                     |  }
                 }
                 @codesub2() {
@@ -338,17 +339,17 @@
 
                 @snippet() {
                     @sourceblock(id="try") {
-                        |def getWords (msg: String) =
-                        |   try {
-                        |       println (msg.split(' '))
-                        |   } catch {
-                        |       case ex: NullPointerException =>
-                        |           println ("No message")
-                        |       case _ =>
-                        |           println ("Unexpected internal error")
-                        |   } finally {
-                        |       // cleanup
-                        |   }
+                        |def getWords(msg: String) =
+                        |  try {
+                        |    println(msg.split(' '))
+                        |  } catch {
+                        |    case ex: NullPointerException =>
+                        |      println("No message")
+                        |    case _: Throwable =>
+                        |      println("Unexpected internal error")
+                        |  } finally {
+                        |    // cleanup
+                        |  }
                     }
                 }
                 @codesub2() {
