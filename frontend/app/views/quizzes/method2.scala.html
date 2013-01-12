@@ -7,7 +7,7 @@
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
                 |def f = 42
-                |println (f)
+                |println(f)
             }
             @outblock() {
                 |42
@@ -21,7 +21,7 @@
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
                 |def f = 42
-                |println (f())
+                |println(f())
             }
             @outblock(error = true) {
                 |Int does not take parameters
@@ -39,7 +39,7 @@
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
                 |def f = {42}
-                |println (f)
+                |println(f)
             }
             @outblock() {
                 |42
@@ -53,7 +53,7 @@
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
                 |def f {42}
-                |println (f())
+                |println(f())
             }
             @outblock(error = true) {
                 |Unit does not take parameters
@@ -71,7 +71,7 @@
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
                 |def f(i: Int = 42) = {i}
-                |println (f)
+                |println(f)
             }
             @outblock(error = true) {
                 |missing arguments for method f
@@ -85,7 +85,7 @@
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
                 |def f(i) = i
-                |println (f(42))
+                |println(f(42))
             }
             @outblock(error = true) {
                 |':' expected but ')' found
@@ -103,7 +103,7 @@
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
                 |def f(i: Int = 42) = i
-                |println (f())
+                |println(f())
             }
             @outblock() {
                 |42
@@ -117,7 +117,7 @@
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
                 |def f(i: Int, j: Int = 42) = i + j
-                |println (f(21, j=21))
+                |println(f(21, j=21))
             }
             @outblock() {
                 |42

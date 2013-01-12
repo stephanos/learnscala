@@ -348,7 +348,7 @@
 
         @defining("Aufruf") { title =>
 
-            @slide(title = title) {
+            @titleslide(title = title) {
 
                 @snippet() {
                     @callblock(reference = "hello") {
@@ -362,7 +362,7 @@
                     Aufruf einer <em>parameterlosen</em> Methode
                 }
 
-                @spacer()
+                @spacer2()
 
                 @snippet() {
                     @callblock(reference = "double") {
@@ -386,7 +386,7 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title) {
+            @titleslide(title = title) {
 
                 @snippet() {
                     @callblock(reference = "add") {
@@ -423,50 +423,61 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "default & named") {
+        @titleslide(title = "default & named Parameter") {
 
             @sourcecode(id = "method_default") {
-                |def announce (town: String,
-                |              time: String = "shortly", weather: String = "nice") {
-                |
-                |   println ("We will be landing in " + town + " " + time + ". " +
-                |            "The weather is " + weather + ".")
+                |def announce(town: String, time: String = "shortly", weather: String = "nice") {
+                |   println("We will be landing in " + town + " " + time + ". " +
+                |           "The weather is " + weather + ".")
                 |}
+            }
+
+            @spacer2()
+
+            @sidebyside() {
+                @snippet() {
+                    @callblock(reference = "method_default") {
+                        |announce("Berlin")
+                    }
+                    @outblock() {
+                        |We will be landing in Berlin shortly.
+                        |The weather is nice.
+                    }
+                }
+            } {
+                @snippet() {
+                    @callblock(reference = "method_default") {
+                        |announce("London", weather = "rainy")
+                    }
+                    @outblock() {
+                        |We will be landing in London shortly.
+                        |The weather is rainy.
+                    }
+                }
             }
 
             @spacer()
 
-            @snippet() {
-                @callblock(reference = "method_default") {
-                    |announce ("Berlin")
+            @sidebyside() {
+                @snippet() {
+                    @callblock(reference = "method_default") {
+                        |announce(time = "in 10 min",
+                        |         town = "Paris")
+                    }
+                    @outblock() {
+                        |We will be landing in Paris in 10 min.
+                        |The weather is nice.
+                    }
                 }
-                @outblock() {
-                    |We will be landing in Berlin shortly.
-                    |The weather is nice.
-                }
-            }
-
-            @spacer_half()
-
-            @snippet() {
-                @callblock(reference = "method_default") {
-                    |announce ("London", weather = "rainy")
-                }
-                @outblock() {
-                    |We will be landing in London shortly.
-                    |The weather is rainy.
-                }
-            }
-
-            @spacer_half()
-
-            @snippet() {
-                @callblock(reference = "method_default") {
-                    |announce (time = "in 10 minutes", town = "Paris")
-                }
-                @outblock() {
-                    |We will be landing in Paris in 10 minutes.
-                    |The weather is nice.
+            } {
+                @snippet() {
+                    @callblock(reference = "method_default") {
+                        |announce(weather = "sunny")
+                    }
+                    @outblock(error = true) {
+                        |not enough arguments:
+                        |Unspecified value parameter town
+                    }
                 }
             }
         }
