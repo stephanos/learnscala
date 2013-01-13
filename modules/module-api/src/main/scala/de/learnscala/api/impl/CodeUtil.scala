@@ -24,6 +24,7 @@ object CodeUtil {
         s.optimise.value = false
         s.usejavacp.value = true
         s.Yreplsync.value = true
+        s.language.value = List("_")
         s.verbose.value = verbose
         s.unchecked.value = unchecked
         s.deprecation.value = deprecation

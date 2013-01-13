@@ -84,11 +84,12 @@ object Content extends MyController {
 
     lazy val dynamic = Slide("B30", "Dynamic", basic)
     lazy val interpolation = Slide("B31", "String Interpolation", basic, Seq(implicit1), status = "complete")
-    lazy val reflection = Slide("B31", "Reflection", basic)
-    lazy val macros = Slide("B32", "Makros", basic)
+    lazy val errors = Slide("B33", "Fehlerbehandlung", basic)
     lazy val implicit2 = Slide("B34", "Implicits II", basic, Seq())
     lazy val extraktoren = Slide("B35", "Extraktoren", basic, Seq())
-    lazy val parser = Slide("B36", "Parser", basic, Seq())
+    lazy val reflection = Slide("B36", "Reflection", basic)
+    lazy val macros = Slide("B37", "Makros", basic)
+    lazy val parser = Slide("B38", "Parser", basic, Seq())
 
     // === OBJEKTE
 

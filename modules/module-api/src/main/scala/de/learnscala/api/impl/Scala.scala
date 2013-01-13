@@ -21,7 +21,7 @@ class Scala {
 
     def interpret(code: (String, String)): (Result, String) = {
         val (compiler, out) = encoder()
-        val log = com.loops101.util.Logger("controllers")
+        //val log = com.loops101.util.Logger("controllers")
 
         val r = Console.withOut(new PrintStream(out, true)) {
 
