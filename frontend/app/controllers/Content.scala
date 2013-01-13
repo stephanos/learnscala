@@ -49,7 +49,7 @@ object Content extends MyController {
     // === ALLGEMEIN
 
     lazy val annotationen = Slide("B21", "Annotationen", basic, Seq())
-    lazy val operatoren = Slide("B22", "Operatoren", basic, Seq(methoden, klassen1))
+    lazy val operatoren = Slide("B22", "Operatoren", basic, Seq(vererbung1), status = "complete")
     lazy val regexp = Slide("B23", "Reguläre Ausdrücke", basic, Seq())
     lazy val recursion = Slide("B25", "Rekursion", basic, Seq(kontrollstrukturen), status = "complete")
     lazy val implicit1 = Slide("B23", "Implicits", basic, Seq(operatoren, klassen2), status = "complete")

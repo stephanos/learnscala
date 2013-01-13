@@ -31,7 +31,7 @@ object ProjectBuild extends MyBuild {
     lazy val mod_api =
         MyProject("module-api", file("modules/module-api"))
             .settings(libraryDependencies ++= Seq(playWeb, scalaP, scalaR, scalaC, sun_tools))
-            .dependsOn(mod_web_play)
+            .dependsOn(mod_play)
 
     /*
     // use RootProject ("AttributeKey ID collisions detected for: 'pgp-signer'")

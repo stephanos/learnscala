@@ -12,7 +12,7 @@ import play.api.http.HeaderNames
 
 trait API {
 
-    self: Controller with LogUtil =>
+    self: Controller with LogUtil with EnvUtil =>
 
     protected def userIsAdmin(implicit req: RequestHeader): Boolean
 
@@ -102,7 +102,7 @@ trait API {
     private def withCORS(r: SimpleResult[_]) =
         r.withHeaders(
             HeaderNames.ACCESS_CONTROL_ALLOW_ORIGIN ->
-                (if(EnvUtil.isCloud)
+                (if(envUtil.isCloud)
                     "https://www.learnscala.de"
                 else
                     "*"),

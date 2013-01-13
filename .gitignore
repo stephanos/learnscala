@@ -16,9 +16,11 @@ target
 RUNNING_PID
 *.log
 media
+*.zip
 ext
 .DS_Store
 exercises
+dist
 external
 _old
 tmp

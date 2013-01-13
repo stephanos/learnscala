@@ -50,7 +50,7 @@ object Global
         !p.startsWith("/app") && !p.startsWith("/assets")  && !p.startsWith("/api")
 
     override protected def isRestrictedPath(p: String) =
-        EnvUtil.isCloud && p.startsWith("/app")
+        envUtil.isCloud && p.startsWith("/app")
 
     override protected def isEncryptedWhenLoggedOut(p: String): Boolean =
         !p.contains("/oeffentlich/") // encrypt everything except iframe pages

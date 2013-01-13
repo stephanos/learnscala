@@ -18,7 +18,7 @@ object Contact extends MyController {
                 f => {
                     val (mail, msg) = f
                     println("MESSAGE from '" + mail + "'")
-                    if (isProduction)
+                    if (envUtil.isProduction)
                         Mail.sendMail(mail, List("contact@learnscala.de"), Some(mail), "Kontakt", msg, None)
                     Redirect(routes.Home.contact()).flashing(("type", "success"), ("message", "Vielen Dank für Ihr Nachricht."))
                 }

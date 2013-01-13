@@ -7,23 +7,25 @@ import java.util.Properties
  * map of name->value.  Note that there is a default value of "", so
  * using a non-existent name will not cause an exception.
  */
-class PropUtil extends LogUtil {
+trait PropUtil extends JarUtil {
+
+  class PropUtilImpl {
 
     def loadFile(fname: String): Option[Map[String, String]] = {
-        try {
-            val props = new Properties()
-            props.load(JarUtil.getResourceAsStream(fname))
-            val iter = props.entrySet.iterator
-            val vals = scala.collection.mutable.Map[String, String]()
-            while (iter.hasNext) {
-                val item = iter.next
-                vals += (item.getKey.toString -> item.getValue.toString)
-            }
-            Some(vals.toMap.withDefaultValue(""))
+      try {
+        val props = new Properties()
+        props.load(jarUtil.getResourceAsStream(fname))
+        val iter = props.entrySet.iterator
+        val vals = scala.collection.mutable.Map[String, String]()
+        while (iter.hasNext) {
+          val item = iter.next
+          vals += (item.getKey.toString -> item.getValue.toString)
         }
-        catch {
-            case e: Exception => None
-        }
+        Some(vals.toMap.withDefaultValue(""))
+      }
+      catch {
+        case e: Exception => None
+      }
     }
 
     /*
@@ -42,7 +44,7 @@ class PropUtil extends LogUtil {
         }
     }
     */
+  }
 
+  lazy val propUtil = new PropUtilImpl
 }
-
-object PropUtil extends PropUtil

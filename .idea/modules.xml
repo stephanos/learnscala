@@ -7,15 +7,18 @@
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/learnscala.iml" filepath="$PROJECT_DIR$/.idea_modules/learnscala.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/learnscala-build.iml" filepath="$PROJECT_DIR$/.idea_modules/learnscala-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-api.iml" filepath="$PROJECT_DIR$/.idea_modules/module-api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-data-cache.iml" filepath="$PROJECT_DIR$/.idea_modules/module-data-cache.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-data-mongo.iml" filepath="$PROJECT_DIR$/.idea_modules/module-data-mongo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-data-redis.iml" filepath="$PROJECT_DIR$/.idea_modules/module-data-redis.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-data-sql.iml" filepath="$PROJECT_DIR$/.idea_modules/module-data-sql.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-cache.iml" filepath="$PROJECT_DIR$/.idea_modules/module-cache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-config.iml" filepath="$PROJECT_DIR$/.idea_modules/module-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-mail.iml" filepath="$PROJECT_DIR$/.idea_modules/module-mail.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-mongo.iml" filepath="$PROJECT_DIR$/.idea_modules/module-mongo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-play.iml" filepath="$PROJECT_DIR$/.idea_modules/module-play.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-queue.iml" filepath="$PROJECT_DIR$/.idea_modules/module-queue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-redis.iml" filepath="$PROJECT_DIR$/.idea_modules/module-redis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-sql.iml" filepath="$PROJECT_DIR$/.idea_modules/module-sql.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-test-net.iml" filepath="$PROJECT_DIR$/.idea_modules/module-test-net.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-test-unit.iml" filepath="$PROJECT_DIR$/.idea_modules/module-test-unit.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-test-web.iml" filepath="$PROJECT_DIR$/.idea_modules/module-test-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-util.iml" filepath="$PROJECT_DIR$/.idea_modules/module-util.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea_modules/module-web-play.iml" filepath="$PROJECT_DIR$/.idea_modules/module-web-play.iml" />
     </modules>
   </component>
 </project>

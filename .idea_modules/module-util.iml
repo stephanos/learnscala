@@ -39,14 +39,17 @@
     <orderEntry type="library" name="SBT: org.slf4j:jcl-over-slf4j:1.7.2" level="project" />
     <orderEntry type="library" name="SBT: org.slf4j:slf4j-api:1.7.2" level="project" />
     <orderEntry type="library" name="SBT: janino:janino:2.5.10" level="project" />
-    <orderEntry type="library" name="SBT: javax.mail:mail:1.4.4" level="project" />
-    <orderEntry type="library" name="SBT: javax.activation:activation:1.1" level="project" />
     <orderEntry type="library" name="SBT: org.mindrot:jbcrypt:0.3m" level="project" />
     <orderEntry type="library" name="SBT: org.xerial.snappy:snappy-java:1.0.4.1" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.specs2:specs2_2.10:1.13:test" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.specs2:scalaz-core_2.10:7.0.0:test" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.specs2:scalaz-concurrent_2.10:7.0.0:test" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.specs2:scalaz-effect_2.10:7.0.0:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.scalacheck:scalacheck_2.10:1.10.0:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.scala-tools.testing:test-interface:0.5:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.scala-lang:scala-actors:2.10.0:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.scalatest:scalatest_2.10:1.9.1:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.scala-lang:scala-reflect:2.10.0:test" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.mockito:mockito-all:1.9.0:test" level="project" />
     <orderEntry type="module" module-name="module-test-unit" exported="" />
   </component>

@@ -4,7 +4,7 @@ import org.joda.time._
 import com.loops101.model.dto.time.Day
 import java.util._
 
-class TimeUtil {
+trait TimeUtil {
 
     def epoch =
         new Date(0)
@@ -111,20 +111,25 @@ class TimeUtil {
 
 object TimeUtil extends TimeUtil {
 
+  /*
     val realStart = new Date
-    val debugStart = SystemUtil.getProperty("debug.time") match {
+    val debugStart = sysUtil.getProperty("debug.time") match {
         case None => 0L
         case Some(t) => t.toLong
     }
+    */
 
+    @inline
     def now = {
         val r = new Date
+        /*
         debugStart match {
             case 0 =>
             case t =>
                 val elapsed = r.getTime - realStart.getTime
                 r.setTime(debugStart + elapsed)
         }
+        */
         r
     }
 }

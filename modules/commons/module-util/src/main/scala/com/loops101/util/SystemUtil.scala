@@ -1,38 +1,36 @@
 package com.loops101.util
 
-import java.util.UUID
-
 trait SystemUtil {
 
+  class SystemUtilImpl {
+
     lazy val tempDir =
-        getProperty("java.io.tmpdir").get
+      getProperty("java.io.tmpdir").get
 
     lazy val userDir =
-        getProperty("user.dir").get
+      getProperty("user.dir").get
 
     lazy val isWindows =
-        getProperty("os.name") match {
-            case Some(n) => n.startsWith("Windows")
-            case _ => false
-        }
+      getProperty("os.name") match {
+        case Some(n) => n.startsWith("Windows")
+        case _ => false
+      }
 
     lazy val isUnitTest =
-        false //ClassUtil.checkIfClasspathContains("com.crashnote.spec")
+      false //ClassUtil.checkIfClasspathContains("com.crashnote.spec")
 
     lazy val getNewline =
-        getProperty("line.separator").get
-
-    def guid =
-        UUID.randomUUID().toString
+      getProperty("line.separator").get
 
     def getProperty(key: String): Option[String] =
-        Option(System.getProperty(key))
+      Option(System.getProperty(key))
 
     def getProperty(key: String, default: String = null): String =
-        getProperty(key).getOrElse(default)
+      getProperty(key).getOrElse(default)
 
     def getEnvProperty(key: String) =
-        Option(System.getenv(key))
-}
+      Option(System.getenv(key))
+  }
 
-object SystemUtil extends SystemUtil
+  lazy val sysUtil = new SystemUtilImpl
+}

@@ -11,7 +11,7 @@ class CompressUtil
 object CompressUtil
     extends CompressUtil
 
-trait IDeflate {
+protected trait IDeflate {
 
     self: StreamCompress =>
 
@@ -40,7 +40,7 @@ trait IDeflate {
         new String(inflate(data.getBytes(charset)), charset)
 }
 
-trait IGZip {
+protected trait IGZip {
 
     self: StreamCompress =>
 
@@ -69,7 +69,7 @@ trait IGZip {
         new String(unzip(data.getBytes(charset)), charset)
 }
 
-trait ISnappy {
+protected trait ISnappy {
 
     // === COMPRESS
 
@@ -89,7 +89,7 @@ trait ISnappy {
 
 }
 
-trait StreamCompress {
+protected trait StreamCompress {
 
     protected def _comp(data: Array[Byte], fn: ByteArrayOutputStream => DeflaterOutputStream): Array[Byte] = {
         val out = new ByteArrayOutputStream

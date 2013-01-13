@@ -7,7 +7,7 @@ import play.api.data.Forms._
 import controllers.base.MyController
 import com.loops101.util._
 
-object Auth extends MyController {
+object Auth extends MyController with PassUtil {
 
     def logout = Action {
         Redirect("/").withNewSession
@@ -30,7 +30,7 @@ object Auth extends MyController {
                     goToLoginPage(("message", "Bitte geben Sie Name und Passwort ein"), ("type", "warn"))
                 },
                 form => {
-                    if(PassUtil.isValid(PassUtil.encode("tbsdZjqFBdxXrkt8Gm2Z7MqA"), form._2))
+                    if(passUtil.isValid(passUtil.encode("tbsdZjqFBdxXrkt8Gm2Z7MqA"), form._2))
                         Redirect(routes.App.index().url).withSession((USER_ID, "stephanos"), (USER_NAME, "stephanos"))
                     else
                         goToLoginPage(("message", "Ihr Name oder Password ist falsch"), ("type", "warn"))

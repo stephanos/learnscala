@@ -396,22 +396,21 @@
                 }
                 @iseq()
                 @callcode() {
-                    |x = x * (y + 1)
+                    |x *= (y + 1)
                 }
                 @codesub2() {
-                    Zeichen können mit <code>=</code> kombiniert werden
+                    Zuweisungen haben die @uline("geringste") Priorität
                 }
-
             } {
                 @callcode() {
                     |x *= y + 1
                 }
                 @iseq()
                 @callcode() {
-                    |x *= (y + 1)
+                    |x = x * (y + 1)
                 }
                 @codesub2() {
-                    Zuweisungen haben die @uline("geringste") Priorität
+                    Zeichen können mit <code>=</code> kombiniert werden
                 }
             }
 
@@ -451,7 +450,7 @@
                     |(15 - 3) + 6
                 }
                 @codesub2() {
-                    @uline("fast") alle Operatoren sind <em>links-assoziativ</em>
+                    (fast) alle Operatoren sind <em>links-assoziativ</em>
                 }
             } {
                 @subhead() {
@@ -470,7 +469,7 @@
                     |(List().::(2)).::(1)
                 }
                 @codesub2() {
-                    Operatoren die mit <code>:</code> enden
+                    Operatoren die mit <code>:</code> enden sind <em class="nowrap">rechts-assoziativ</em>
                 }
             }
         }
