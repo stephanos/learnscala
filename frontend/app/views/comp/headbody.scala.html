@@ -1,13 +1,22 @@
-@(indent: Boolean = false, clazz: String = "")(head: Html = Html.empty)(body: Html = Html.empty)(foot: Html = Html.empty)
+@(indent: Boolean = false, clazz: String = "", narrow: Boolean = false)(head: Html = Html.empty)(body: Html = Html.empty)(foot: Html = Html.empty)
 
-<header>
-    @if(head.body != "" && head.body.trim != "") {
+@hasHeader = @{
+    head.body != "" && head.body.trim != ""
+}
+
+@if(hasHeader) {
+    <header>
         <h3 class="nobreak tcenter">@head</h3>
-    }
-</header>
+    </header>
+}
 
 <article class='@{clazz} @{if(indent) "indent" else ""}'>
     @middle(clazz = if(head.body != "") "indent20" else "") {
+
+        @if(hasHeader && !narrow) {
+            @spacer()
+        }
+
         @body
     }
 </article>

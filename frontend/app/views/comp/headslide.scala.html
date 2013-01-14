@@ -11,17 +11,13 @@
              data-subsubtitle="@{if(subsubtitle == null) "" else subsubtitle }"
              data-chapter="@{if(chapter == null) "" else chapter }">
 
-        @headbody(clazz = clazz) {
+        @headbody(clazz = clazz, narrow = narrow) {
             @if(htmlTitle == null) {
                 @head
             } else {
                 @htmlTitle
             }
         } {
-            @if(!narrow) {
-                @spacer()
-            }
-
             @body
         } {
             @if(!hideFooter) {
