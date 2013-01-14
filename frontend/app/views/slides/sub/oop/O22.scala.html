@@ -18,22 +18,32 @@
         @defining("Case Class") { title =>
 
             @slide(title = title) {
-                @sidebyside() {
-                    @sourcecode(id = "simple_class") {
-                        |class HttpStatus (val code: Int)
-                    }
-                } {
-                    @sourcecode(id = "case_class") {
-                        |case class HttpStatus (code: Int)
-                    }
-                    @codesub2() {
-                        <code>case</code> Schlüsselwort steht vor <code>class</code>
-                    }
-                }
 
                 @spacer()
 
-                @sidebyside() {
+                @sidebyside(gap = 10) {
+                    @subhead() {
+                        reguläre Klasse
+                    }
+                } {
+                    @subhead() {
+                        <code>case</code>-Klasse
+                    }
+                }
+
+                @sidebyside(gap = 10) {
+                    @sourcecode(id = "simple_class") {
+                        |class HttpStatus(val code: Int)
+                    }
+                } {
+                    @sourcecode(id = "case_class") {
+                        |case class HttpStatus(code: Int)
+                    }
+                }
+
+                @spacer2()
+
+                @sidebyside(gap = 10) {
                     @snippet(clazz = "slim") {
                         @sourceblock(reference = "simple_class", id = "simple_class_step1") {
                             |val s = new HttpStatus(404)
@@ -50,9 +60,9 @@
                     }
                 }
 
-                @spacer_half()
+                @spacer()
 
-                @sidebyside() {
+                @sidebyside(gap = 10) {
                     @snippet(clazz = "slim") {
                         @sourceblock(reference = "simple_class_step1") {
                             |s.code
@@ -74,10 +84,37 @@
                         Parameter <code>code</code> ist ein Feld der Klasse
                     }
                 }
+            }
 
-                @spacer_half()
+            <!-- ################################################################################## -->
 
-                @sidebyside() {
+            @slide(title = title, subtitle = "II") {
+
+                @spacer()
+
+                @sidebyside(gap = 10) {
+                    @subhead() {
+                        reguläre Klasse
+                    }
+                } {
+                    @subhead() {
+                        <code>case</code>-Klasse
+                    }
+                }
+
+                @sidebyside(gap = 10) {
+                    @sourcecode() {
+                        |class HttpStatus(val code: Int)
+                    }
+                } {
+                    @sourcecode() {
+                        |case class HttpStatus(code: Int)
+                    }
+                }
+
+                @spacer2()
+
+                @sidebyside(gap = 10) {
                     @snippet(clazz = "slim") {
                         @sourceblock(reference = "simple_class_step1") {
                             |s.toString
@@ -100,12 +137,12 @@
                     }
                 }
 
-                @spacer_half()
+                @spacer()
 
-                @sidebyside() {
+                @sidebyside(gap = 10) {
                     @snippet(clazz = "slim") {
                         @sourceblock(reference = "simple_class_step1", id = "simple_class_step3") {
-                            |val eq = s.equals (new HttpStatus(404))
+                            |val eq = s.equals(new HttpStatus(404))
                         }
                         @outblock() {
                             |eq: Boolean = false
@@ -114,7 +151,7 @@
                 } {
                     @snippet(clazz = "slim") {
                         @sourceblock(reference = "case_class_step1", id = "simple_class_step3") {
-                            |val eq = s.equals (HttpStatus(404))
+                            |val eq = s.equals(HttpStatus(404))
                         }
                         @outblock() {
                             |eq: Boolean = true
@@ -129,9 +166,9 @@
             <!-- ################################################################################## -->
 
             @slide(title = title) {
-                @sidebyside((45,55)) {
+                @sidebyside(gap = 10) {
                     @sourcecode() {
-                        |class HttpStatus (val code: Int) {
+                        |class HttpStatus(val code: Int) {
                         |
                         |  override def toString =
                         |    "HttpStatus(" + code + ")"
@@ -157,7 +194,7 @@
                     }
                 } {
                     @sourcecode(id = "case_class") {
-                        |case class HttpStatus (code: Int)
+                        |case class HttpStatus(code: Int)
                     }
 
                     @spacer()
@@ -167,13 +204,13 @@
                         @spacer_half()
                         <ul class="indent fragments">
                             <li>
-                                Parameter werden zu öffentlichen, unveränderlichen Feldern
+                                Parameter werden zu öffentlichen, <br/> unveränderlichen Feldern
                             </li>
                             <li>
                                 Aufruf von <code>equals()</code> vergleicht strukturell
                             </li>
                             <li>
-                                <code>toString()</code> gibt Klassenname und Parameterwerte aus
+                                <code>toString()</code> gibt Klassenname <br/> und Parameterwerte aus
                             </li>
                             <li>
                                 Factory-Methode <code>apply</code> in Companion Object
@@ -191,7 +228,7 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Vererbung") {
+            @titleslide(title = title, subtitle = "Vererbung") {
 
                 @snippet() {
                     @sourceblock(id = "case_point") {
@@ -207,9 +244,9 @@
                         |         dangerous bugs which are unlikely to be fixed.
                     }
                 }
-                @codesub2() {
+                @*@codesub2() {
                     <var>Warnung</var> bei Vererbung einer Case Class
-                }
+                }*@
 
                 @spacer()
 
@@ -224,92 +261,96 @@
                 @codesub2() {
                     <var>Problem:</var> <code>copy</code> liefert Basis-Klasse
                 }
-            }
 
-            <!-- ################################################################################## -->
-
-            @slide(title = title, subtitle = "Pattern Matching") {
-
-                @sidebyside() {
-                    @snippet() {
-                        @sourceblock(id = "empl") {
-                            |case class Employee (name: String,
-                            |                     age: Int)
-                        }
-                    }
-                } {
-
-                    @snippet() {
-                        @sourceblock(reference = "empl", hl = "3") {
-                            |def shouldRetire(empl: Employee) =
-                            |  empl match {
-                            |    case Employee(n, a) if(a > 66) => true
-                            |    case _ => false
-                            |  }
-                        }
-                    }
-
-                    @codesub2() {
-                        <em>Konstruktor Pattern</em> lässt Case Class zerlegen
-                    }
-
-                    @spacer_half()
-
-                    @snippet() {
-                        @sourceblock(reference = "empl", hl = "3") {
-                            |def shouldRetire(empl: Employee) =
-                            |  empl match {
-                            |    case Employee(n, 65) => true
-                            |    case _ => false
-                            |  }
-                        }
-                    }
-
-                    @codesub2() {
-                        Verwendung der Konstante <code>65</code> (<em class="nobreak">Konstante Pattern</em>)
-                    }
-
-                    @spacer_half()
-
-                    @snippet() {
-                        @sourceblock(reference = "empl", hl = "3") {
-                            |def shouldRetire(empl: Employee) =
-                            |  empl match {
-                            |    case Employee(_, a) if(a > 66) => true
-                            |    case _ => false
-                            |  }
-                        }
-                    }
-
-                    @codesub2() {
-                        Parameter können mit Wildcard <code>_</code> ignoriert werden
+                @autocenter {
+                    @warnbox() {
+                        Case Class sollte @uline("nicht") vererbt werden!
                     }
                 }
             }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "sealed") {
+            @titleslide(title = title, subtitle = "Pattern Matching") {
+
+                @sidebyside((60,40)) {
+                    @snippet() {
+                        @sourceblock(id = "empl") {
+                            |case class Employee (name: String, age: Int)
+                        }
+                    }
+                } {
+                }
+
+                @spacer()
+
+                @sidebyside((60,40)) {
+                    @indent() {
+                        @snippet() {
+                            @sourceblock(reference = "empl", hl = "3") {
+                                |def shouldRetire(empl: Employee) =
+                                |  empl match {
+                                |    case Employee(n, a) if(a > 66) => true
+                                |    case _ => false
+                                |  }
+                            }
+                        }
+                    }
+                } {
+                    @codenote2() {
+                        <em>Konstruktor-Pattern</em>: <br/> Zerlegen der Case Class
+                    }
+                    <br/>
+                    @codenote2() {
+                        <em>Guarded-Pattern</em>: <br/> Abfrage von <code>age</code>
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside((60,40)) {
+                    @indent() {
+                        @snippet() {
+                            @sourceblock(reference = "empl", hl = "3") {
+                                |def shouldRetire(empl: Employee) =
+                                |  empl match {
+                                |    case Employee(_, 65) => true
+                                |    case _ => false
+                                |  }
+                            }
+                        }
+                    }
+                } {
+                    @codenote2() {
+                        <em>Konstante-Pattern</em>: <br/> Konstante <code>65</code>
+                    }
+                    <br/>
+                    @codenote2() {
+                        <em>Wildcard-Pattern</em>: <br/> Parameter mit <code>_</code> ignorieren
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "sealed") {
 
                 @sourcecode(id = "case_class_match") {
-                    |sealed abstract class Employee { val age: Int }
+                    |sealed abstract class Empl { def age: Int }
                     |
-                    |case class Boss(age: Int) extends Employee
-                    |
-                    |case class Developer(age: Int, knowsScala: Boolean)
-                    |   extends Employee
+                    |case class Boss(age: Int) extends Empl
+                    |case class Developer(age: Int, knowsScala: Boolean) extends Empl
                 }
 
                 @spacer()
 
                 @sourcecode(id = "match_salary", linebyline = true, reference = "case_class_match") {
-                    |def getSalary(e: Employee) =
-                    |  e match {
-                    |    case Boss(age) if(age > 50) => 130000
-                    |    case p: Boss                => 80000 + (p.age * 1000)
-                    |    case Developer(_, true)     => 50000
-                    |    case Developer(_, _)        => 40000
-                    |  }
+                    |def getSalary(e: Empl) = e match {
+                    |  case Boss(age) if(age > 50) => 130000
+                    |  case p: Boss                => 80000 + (p.age * 1000)
+                    |  case Developer(_, true)     => 50000
+                    |  case Developer(_, _)        => 40000
+                    |}
                 }
 
                 @spacer()

@@ -126,4 +126,20 @@ object CodeUtil {
 
     private lazy val scalaCP =
         List() // List(ClassPath.info[Global], ClassPath.info[Dynamic]).map(_.locationFile)
+
+  def test = {
+    object Order {
+
+      sealed trait EntryOption
+
+      case object EmptyEntry extends EntryOption
+
+      trait Entry extends EntryOption
+
+      def isEmpty(a: EntryOption): Boolean = a match {
+        case EmptyEntry => true
+        //    case _: Entry   => false
+      }
+    }
+  }
 }
