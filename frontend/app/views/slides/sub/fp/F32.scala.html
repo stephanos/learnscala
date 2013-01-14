@@ -18,29 +18,37 @@
 
             <div class="w40p dcenter">
 
-                <h3 class="tcenter">Problem</h3>
+                @fragment {
+                    @subhead(fragment = false) {
+                        Problem
+                    }
 
-                <blockquote>
-                    Die Verbindung zu externen Systemen wie der Datenbank klappt manchmal erst beim 2. Mal;
-                    es müsste einen Mechanismus zum Erneuten versuchen geben.
-                </blockquote>
+                    <blockquote>
+                        Die Verbindung zu externen Systemen wie der Datenbank klappt manchmal erst beim 2. Mal;
+                        es müsste einen Mechanismus zum Erneuten versuchen geben.
+                    </blockquote>
+                }
 
-                @spacer()
+                @spacer2()
 
                 @fragment {
-                    <h3 class="tcenter">Lösung</h3>
+                    @subhead(fragment = false) {
+                        Lösung
+                    }
 
-                    @callcode(fragment = true) {
+                    @callcode(fragment = false) {
                         |retry(2) {
                         |   connectToDatabase()
                         |}
                     }
                 }
 
-                @spacer()
+                @spacer2()
 
                 @fragment {
-                    <h3 class="tcenter">Hilfsmittel</h3>
+                    @subhead(fragment = false) {
+                        Hilfsmittel
+                    }
 
                     <h4 class="tcenter">
                         <em>By-Name Parameter</em> und <em>Currying</em>
@@ -55,19 +63,19 @@
 
             @titleslide(title = title, subtitle = "call-by-value") {
 
+                @sourcecode(id = "logger1") {
+                    |object Logger {
+                    |  var enabled = true
+                    |
+                    |  def log(message: String) {
+                    |    if (enabled) println (message)
+                    |  }
+                    |}
+                }
+
                 @spacer()
 
-                @sidebyside(gap = 10) {
-                    @sourcecode(id = "logger1") {
-                        |object Logger {
-                        |  var enabled = true
-                        |
-                        |  def log(message: String) {
-                        |    if (enabled) println (message)
-                        |  }
-                        |}
-                    }
-                } {
+                @indent() {
                     @snippet() {
                         @callblock(reference = "logger1") {
                             |val now = new java.util.Date
@@ -77,12 +85,9 @@
                             |Startup at Sun Jan 01 00:00:00 CEST 2012
                         }
                     }
-                }
-
-                @spacer()
-
-                @codenote2(clazz = "tcenter") {
-                    <var>Problem:</var> Nachricht wird aufwendig formatiert - egal ob Logger aktiv ist
+                    @codesub2() {
+                        <var>Problem:</var> Nachricht wird aufwendig formatiert <br/> - egal ob Logger aktiv ist
+                    }
                 }
             }
 
@@ -90,19 +95,19 @@
 
             @titleslide(title = title, subtitle = "Parameter als Funktion") {
 
+                @sourcecode(id = "logger2") {
+                    |object Logger {
+                    |  var enabled = true
+                    |
+                    |  def log(message: () => String) {
+                    |    if (enabled) println (message())
+                    |  }
+                    |}
+                }
+
                 @spacer()
 
-                @sidebyside(gap = 10) {
-                    @sourcecode(id = "logger2") {
-                        |object Logger {
-                        |  var enabled = true
-                        |
-                        |  def log(message: () => String) {
-                        |    if (enabled) println (message())
-                        |  }
-                        |}
-                    }
-                } {
+                @indent() {
                     @snippet() {
                         @callblock(reference = "logger2") {
                             |val now = new java.util.Date
@@ -119,12 +124,9 @@
                             |(nothing)
                         }
                     }
-                }
-
-                @spacer()
-
-                @codenote2(clazz = "tcenter") {
-                    <var>Problem:</var> Syntax ist doch sehr gewöhnungsbedürftig
+                    @codesub2() {
+                        <var>Problem:</var> Syntax ist doch sehr gewöhnungsbedürftig
+                    }
                 }
             }
 
@@ -132,16 +134,21 @@
 
             @titleslide(title = title, subtitle = "call-by-name") {
 
-                @sidebyside(gap = 10) {
-                    @sourcecode(id = "logger3") {
-                        |object Logger {
-                        |  var enabled = true
-                        |
-                        |  def log(message: => String): Unit =
-                        |    if(enabled) println(message)
-                        |}
-                    }
-                } {
+                @sourcecode(id = "logger3") {
+                    |object Logger {
+                    |  var enabled = true
+                    |
+                    |  def log(message: => String): Unit =
+                    |    if(enabled) println(message)
+                    |}
+                }
+                @codesub2() {
+                    <code>=></code> wandelt Parameter <em>call-by-name</em> um
+                }
+
+                @spacer()
+
+                @indent() {
                     @snippet() {
                         @callblock(reference = "logger3") {
                             |val now = new java.util.Date
@@ -158,22 +165,16 @@
                             |(nothing)
                         }
                     }
-                }
-
-                @spacer()
-
-                <div class="w70p dcenter">
-                    @infobox() {
-                        <code>=></code> wandelt einen Parameter von call-by-value in <em>call-by-name</em> um;
-                        der Ausdruck wird damit nur bei Zugriff ausgewertet.
+                    @codesub2() {
+                        Ausdruck wird erst beim Zugriff ausgewertet
                     }
-                </div>
+                }
             }
         }
 
         <!-- ################################################################################## -->
 
-        @titleslide(title = "Resultat") {
+        @titleslide(title = "Problemlösung") {
 
             @sidebyside(gap = 10) {
                 @snippet() {
@@ -225,17 +226,17 @@
 
         <!-- ################################################################################## -->
 
-        @defining("Weitere Beispiele") { title =>
+        @defining("Beispiele") { title =>
 
-            @slide(title = title, subtitle = "Thread") {
+            @titleslide(title = title, subtitle = "Thread", head = true) {
 
                 @sourcecode(id = "ctrl-thread") {
                     |def runInThread(block: => Unit) {
-                    |   new Thread {
-                    |       override def run() {
-                    |           block
-                    |       }
-                    |   }.start()
+                    |  new Thread {
+                    |    override def run() {
+                    |      block
+                    |    }
+                    |  }.start()
                     |}
                 }
                 @codesub2() {
@@ -244,38 +245,40 @@
 
                 @spacer()
 
-                @snippet() {
-                    @callblock(reference = "ctrl-thread") {
-                        |println(Thread.currentThread.getName)
-                    }
-                    @outblock() {
-                        |Thread-767
-                    }
-                    @callblock() {
-                        |runInThread {
-                        |   println(Thread.currentThread.getName)
-                        |}
-                    }
-                    @outblock() {
-                        |Thread-1144
+                @indent() {
+                    @snippet() {
+                        @callblock(reference = "ctrl-thread") {
+                            |println(Thread.currentThread.getName)
+                        }
+                        @outblock() {
+                            |Thread-767
+                        }
+                        @callblock() {
+                            |runInThread {
+                            |   println(Thread.currentThread.getName)
+                            |}
+                        }
+                        @outblock() {
+                            |Thread-1144
+                        }
                     }
                 }
             }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Resource") {
+            @titleslide(title = title, subtitle = "Resource", head = true) {
 
                 @sourcecode(id = "ctrl-resource") {
                     |import java.io._
                     |
                     |def withResource[R &lt;: Closeable](res: => R)(f: (R) => Unit) = {
-                    |   val r = res
-                    |   try {
-                    |       f(r)
-                    |   } finally {
-                    |       r.close()
-                    |   }
+                    |  val r = res
+                    |  try {
+                    |    f(r)
+                    |  } finally {
+                    |    r.close()
+                    |  }
                     |}
                 }
 
@@ -285,23 +288,28 @@
 
                 @spacer()
 
-                @callcode(reference = "ctrl-resource") {
-                    |val f = new File("file.txt")
-                    |withResource (new FileInputStream (f)) {
-                    |   stream =>
-                    |       // read 'stream' ...
-                    |}
+                @autocenter {
+                    @indent() {
+                        @callcode(reference = "ctrl-resource") {
+                            |val f = new File("file.txt")
+                            |
+                            |withResource(new FileInputStream (f)) {
+                            |  stream =>
+                            |    // read 'stream' ...
+                            |}
+                        }
+                    }
                 }
             }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Unless") {
+            @titleslide(title = title, subtitle = "Unless", head = true) {
 
                 @sourcecode(id = "ctrl-unless") {
-                    |def unless (condition: => Boolean) (body: => Unit) {
-                    |   if (!condition)
-                    |      body
+                    |def unless(condition: => Boolean)(body: => Unit) {
+                    |  if (!condition)
+                    |    body
                     |}
                 }
 
@@ -311,28 +319,30 @@
 
                 @spacer()
 
-                @snippet() {
-                    @callblock(reference = "ctrl-unless") {
-                        |unless (1 == 42) {
-                        |   print ("unless!")
-                        |}
-                    }
-                    @outblock() {
-                        |unless!
+                @indent() {
+                    @snippet() {
+                        @callblock(reference = "ctrl-unless") {
+                            |unless(1 == 42) {
+                            |  print ("unless!")
+                            |}
+                        }
+                        @outblock() {
+                            |unless!
+                        }
                     }
                 }
             }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Timed") {
+            @titleslide(title = title, subtitle = "Timed", head = true) {
 
                 @sourcecode(id = "ctrl-time") {
                     |def timed[T](f: => T) = {
-                    |   val start = System.nanoTime
-                    |   val r = f
-                    |   val t = (System.nanoTime - start) / 1e9
-                    |   (r, t)
+                    |  val start = System.nanoTime
+                    |  val r = f
+                    |  val t = (System.nanoTime - start) / 1e9
+                    |  (r, t)
                     |}
                 }
                 @codesub2() {
@@ -341,18 +351,20 @@
 
                 @spacer()
 
-                @snippet() {
-                    @callblock(reference = "factorial") {
-                        |val (f, t) = timed { factorial(1000) }
-                    }
-                    @outblock() {
-                        |f: BigInt = 4023872600770937735437...
-                    }
-                    @callblock() {
-                        |println (t + " seconds")
-                    }
-                    @outblock() {
-                        |0.00150658 seconds
+                @indent() {
+                    @snippet() {
+                        @callblock(reference = "factorial") {
+                            |val (f, t) = timed { factorial(1000) }
+                        }
+                        @outblock() {
+                            |f: BigInt = 4023872600770937735437...
+                        }
+                        @callblock() {
+                            |println (t + " seconds")
+                        }
+                        @outblock() {
+                            |0.00150658 seconds
+                        }
                     }
                 }
             }
