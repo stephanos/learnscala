@@ -6,10 +6,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val m1 = (x: Int) => x - 1
+                |val r = (x: Int) => x - 1
             }
             @outblock() {
-                |m1: (Int) => Int = &lt;function1&gt;
+                |r: (Int) => Int = &lt;function1&gt;
             }
         }
     }
@@ -19,7 +19,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val m1 = (x: Int) = x - 1
+                |val r = (x: Int) = x - 1
             }
             @outblock(error = true) {
                 |error: ';' expected but '=' found
@@ -36,10 +36,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val t2 = (x: Long) => x * 2
+                |val r = (x: Int, y: Int) => x - y
             }
             @outblock() {
-                |t2: (Long) => Long = &lt;function1&gt;
+                |r: (Int, Int) => Int = &lt;function2&gt;
             }
         }
     }
@@ -49,10 +49,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val t2 = (x: Long) => x * 2.0
+                |val r = (x: Long) => x * 2.0
             }
             @outblock() {
-                |t2: (Long) => Double = &lt;function1&gt;
+                |r: (Long) => Double = &lt;function1&gt;
             }
         }
     }
@@ -66,10 +66,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |((x: Long) => x * 2).apply (5)
+                |val r = ((x: Long) => x * 2).apply(5)
             }
             @outblock() {
-                |res0: Long = 10
+                |r: Long = 10
             }
         }
     }
@@ -79,10 +79,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |((x: Int) => x % 2)(5)
+                |val r = ((x: Int) => x % 2)(5)
             }
             @outblock() {
-                |res0: Int = 1
+                |r: Int = 1
             }
         }
     }
@@ -96,7 +96,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |(() => println ("Hello"))()
+                |val r = (() => println("Hello"))()
             }
             @outblock() {
                 |Hello
@@ -109,10 +109,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val f = () => println ("Hello")
+                |val r = () => println("Hello")
             }
             @outblock() {
-                |f = () => Unit = &lt;function0&gt;
+                |r = () => Unit = &lt;function0&gt;
             }
         }
     }

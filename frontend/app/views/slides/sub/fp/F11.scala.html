@@ -16,16 +16,14 @@
 
         @defining("Syntax") { title =>
 
-            @slide(title = title) {
+            @titleslide(title = title) {
 
                 @spacer()
 
                 @sidebyside() {
                     @snippet() {
                         @sourceblock() {
-                            |(x: Int) => {
-                            |   x + 1
-                            |}
+                            |(x: Int) => x + 1
                         }
                         @outblock() {
                             |res0: (Int) => Int = &lt;function1&gt;
@@ -36,7 +34,9 @@
 
                     @snippet() {
                         @sourceblock() {
-                            |(x: Int) => x + 1
+                            |(x: Int) => {
+                            |   x + 1
+                            |}
                         }
                         @outblock() {
                             |res0: (Int) => Int = &lt;function1&gt;
@@ -82,11 +82,12 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Funktionen sind Objekte") {
+        @titleslide(title = "Funktionen sind Objekte") {
 
             @snippet() {
                 @callblock() {
-                    |val f1 = (x: Int) => x + 1
+                    |val f1 =
+                    |  (x: Int) => x + 1
                 }
                 @outblock() {
                     |f1: (Int) => Int = &lt;function1&gt;
@@ -98,10 +99,7 @@
             @snippet() {
                 @callblock() {
                     |val f2: (Int) => Int =
-                    |   (x: Int) => x + 1
-                }
-                @outblock() {
-                    |f2: (Int) => Int = &lt;function1&gt;
+                    |  (x: Int) => x + 1
                 }
             }
 
@@ -110,10 +108,7 @@
             @snippet() {
                 @callblock() {
                     |val f3: Function1[Int, Int] =
-                    |   (x: Int) => x + 1
-                }
-                @outblock() {
-                    |f3: (Int) => Int = &lt;function1&gt;
+                    |  (x: Int) => x + 1
                 }
             }
 
@@ -122,11 +117,8 @@
             @snippet() {
                 @callblock() {
                     |val f4 = new Function1[Int, Int] {
-                    |   def apply (x: Int): Int = x + 1
+                    |  def apply(x: Int): Int = x + 1
                     |}
-                }
-                @outblock() {
-                    |f4: (Int) => Int = &lt;function1&gt;
                 }
             }
 
@@ -137,7 +129,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Aufruf") {
+        @titleslide(title = "Aufruf") {
 
             @snippet(id = "call") {
                 @sourceblock() {
@@ -147,13 +139,10 @@
                     |plusOne: (Int) => Int = &lt;function1&gt;
                 }
             }
-            @codesub2() {
-                <code>apply</code> ruft die Funktion auf
-            }
 
             @spacer2()
 
-            @indent() {
+            @sidebyside(gap = 10) {
                 @snippet() {
                     @callblock(reference = "call") {
                         |plusOne(5)
@@ -165,9 +154,7 @@
                 @codesub2() {
                     impliziter Aufruf
                 }
-
-                @spacer()
-
+            } {
                 @snippet() {
                     @callblock(reference = "call") {
                         |plusOne.apply(5)
@@ -184,7 +171,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Beispiele") {
+        @titleslide(title = "Beispiele") {
 
             @snippet() {
                 @sourceblock() {
@@ -199,7 +186,7 @@
                 Funktion mit <em>2</em> Parametern
             }
 
-            @spacer()
+            @spacer_half()
 
             @snippet() {
                 @sourceblock() {
@@ -215,12 +202,12 @@
                 Funktion mit <em>1</em> Parameter
             }
 
-            @spacer()
+            @spacer_half()
 
             @snippet() {
                 @sourceblock() {
                     |val getUserDir =
-                    |   () => { System.getProperty("user.dir") }
+                    |   () => System.getProperty("user.dir")
                 }
                 @outblock() {
                     |getUserDir: () => java.lang.String = &lt;function0&gt;
@@ -239,9 +226,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Terminologie") {
-
-            <h3 class="tcenter">Arten von Funktionen</h3>
+        @titleslide(title = "Arten von Funktionen") {
 
             @sidebyside(gap = 5) {
                 @sourcecode() {
@@ -257,7 +242,7 @@
                 }
             }
 
-            @spacer()
+            @spacer_half()
 
             @sidebyside(gap = 5) {
                 @sourcecode() {
@@ -274,7 +259,7 @@
                 }
             }
 
-            @spacer()
+            @spacer_half()
 
             @sidebyside(gap = 5) {
                 @sourcecode() {
@@ -287,7 +272,7 @@
                 }
             }
 
-            @spacer()
+            @spacer_half()
 
             @sidebyside(gap = 5) {
                 @sourcecode() {
@@ -304,19 +289,16 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Closure") {
+        @titleslide(title = "Closure") {
 
             @snippet() {
                 @sourceblock(id = "adult") {
                     |var minAge = 18
                     |val isAdult = (age: Int) => age >= minAge
                 }
-                @outblock() {
-                    |res0: Int = 6
-                }
             }
             @codesub2() {
-                Closure hat Zugriff auf Variablen außerhalb der Funktion
+                Closure hat Zugriff auf Variablen @uline("außerhalb") der Funktion
             }
 
             @spacer2()
@@ -331,7 +313,7 @@
                     }
                 }
 
-                @spacer2()
+                @spacer()
 
                 @snippet() {
                     @callblock(reference = "adult") {
