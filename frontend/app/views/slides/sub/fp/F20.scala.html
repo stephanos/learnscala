@@ -99,7 +99,7 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title, subtitle = "Zugreifen", clazz = "wide", head = true) {
+            @titleslide(title = title, subtitle = "Zugriff", connector = ":") {
 
                 @autocenter {
                     @snippet() {
@@ -111,34 +111,32 @@
 
                 @spacer2()
 
-                <div class="w60p dcenter">
-                    @sidebyside(gap = 10) {
-                        @snippet() {
-                            @sourceblock(reference = "tuple2") {
-                                |val name = t2._1
-                            }
-                            @outblock() {
-                                |name: String = Bob
-                            }
-                            @sourceblock() {
-                                |val age = t2._2
-                            }
-                            @outblock() {
-                                |age: Int = 42
-                            }
+                @sidebyside(gap = 10) {
+                    @snippet() {
+                        @sourceblock(reference = "tuple2") {
+                            |val name = t2._1
                         }
-                    } {
-                        @snippet() {
-                            @sourceblock(reference = "tuple2") {
-                                |val (name, age) = t2
-                            }
-                            @outblock() {
-                                |name: String = Bob
-                                |age: Int = 42
-                            }
+                        @outblock() {
+                            |name: String = Bob
+                        }
+                        @sourceblock() {
+                            |val age = t2._2
+                        }
+                        @outblock() {
+                            |age: Int = 42
                         }
                     }
-                </div>
+                } {
+                    @snippet() {
+                        @sourceblock(reference = "tuple2") {
+                            |val (name, age) = t2
+                        }
+                        @outblock() {
+                            |name: String = Bob
+                            |age: Int = 42
+                        }
+                    }
+                }
             }
 
             <!-- ################################################################################## -->
@@ -147,7 +145,7 @@
 
                 @snippet() {
                     @sourceblock(id = "virgin") {
-                        |def doSacrifice (t: (Int, Boolean, Boolean)) = t match {
+                        |def doSacrifice(t: (Int, Boolean, Boolean)) = t match {
                         |  case (_, false, _) =>             println ("not female")
                         |  case (_, _, false) =>             println ("not a virgin")
                         |  case (age, _, _) if (age > 24) => println ("too old")
@@ -162,7 +160,7 @@
 
                     @snippet() {
                         @callblock(reference = "virgin") {
-                            |doSacrifice ((40, true, true))
+                            |doSacrifice((40, true, true))
                         }
                         @outblock() {
                             |too old
@@ -173,7 +171,7 @@
 
                     @snippet() {
                         @callblock(reference = "virgin") {
-                            |doSacrifice ((21, true, true))
+                            |doSacrifice((21, true, true))
                         }
                         @outblock() {
                             |sacrifice her!
@@ -188,7 +186,7 @@
 
                 @snippet() {
                     @sourceblock() {
-                        |val (div, mod) = BigInt (12345) /% 12
+                        |val (div, mod) = BigInt(12345) /% 12
                     }
                     @outblock() {
                         |div: BigInt = 1028
@@ -203,12 +201,12 @@
 
                 @snippet() {
                     @sourceblock() {
-                        |case class Circle (x: Int, y: Int, r: Int) {
+                        |case class Circle(x: Int, y: Int, r: Int) {
                         |
                         |  def location =
                         |    (x, y)
                         |
-                        |  def move (t: (Int, Int)) =
+                        |  def move(t: (Int, Int)) =
                         |    copy (x + t._1, y + t)
                         |}
                     }
@@ -250,7 +248,7 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title) {
+            @titleslide(title = title, subtitle = "Rückgabetyp") {
 
                 @sidebyside(gap = 10) {
 
@@ -406,7 +404,7 @@
                     eine "unsaubere" Methode (z.B. Java-Code)
                 }
 
-                @spacer()
+                @spacer2()
 
                 @indent() {
                     @sourcecode(reference = "getuser") {
@@ -417,7 +415,8 @@
                         |  }
                     }
                     @codesub2() {
-                        <code>Option</code> führt einen null-Test durch <br/> und liefert entsprechend None oder Some
+                        <code>Option</code> führt einen null-Test durch <br/>
+                        und liefert entsprechend <code>None</code> oder <code>Some</code>
                     }
                 }
             }
