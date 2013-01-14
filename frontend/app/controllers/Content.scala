@@ -49,7 +49,7 @@ object Content extends MyController {
     // === ALLGEMEIN
 
     lazy val annotationen = Slide("B21", "Annotationen", basic, Seq())
-    lazy val operatoren = Slide("B22", "Operatoren", basic, Seq(vererbung1), status = "complete")
+    lazy val operatoren = Slide("B22", "Operatoren", basic, Seq(vererbung1), status = "complete") // depends on 'override'
     lazy val regexp = Slide("B23", "Reguläre Ausdrücke", basic, Seq())
     lazy val recursion = Slide("B25", "Rekursion", basic, Seq(kontrollstrukturen), status = "complete")
     lazy val implicit1 = Slide("B23", "Implicits", basic, Seq(operatoren, klassen2), status = "complete")
@@ -58,7 +58,7 @@ object Content extends MyController {
 
     lazy val typen1 = Slide("O20", "Typen", oop, Seq(klassen1), status = "complete")
     lazy val traits = Slide("O21", "Traits", oop, Seq(klassen1, vererbung1))
-    lazy val klassen2 = Slide("O22", "Case Class", oop, Seq(vererbung1))
+    lazy val klassen2 = Slide("O22", "Case Class", oop, Seq(vererbung1), status = "complete")
     lazy val generics1 = Slide("O24", "Typ-Parameter", oop, Seq(traits, klassen2))
 
     // === FUNKTIONEN
