@@ -105,10 +105,12 @@
                 @sidebyside(gap = 10) {
                     @sourcecode() {
                         |class HttpStatus(val code: Int)
+                        |val s = new HttpStatus(404)
                     }
                 } {
                     @sourcecode() {
                         |case class HttpStatus(code: Int)
+                        |val s = HttpStatus(404)
                     }
                 }
 
@@ -335,24 +337,54 @@
 
             @titleslide(title = title, subtitle = "sealed") {
 
-                @sourcecode(id = "case_class_match") {
-                    |sealed abstract class Empl { def age: Int }
-                    |
-                    |case class Boss(age: Int) extends Empl
-                    |case class Developer(age: Int, knowsScala: Boolean) extends Empl
+                @autocenter {
+                    @sourcecode(id = "case_class_match") {
+                        |sealed abstract class Empl
+                        |case class Boss(age: Int) extends Empl
+                        |case class Developer(age: Int, knowsScala: Boolean) extends Empl
+                    }
                 }
 
                 @spacer()
 
-                @sourcecode(id = "match_salary", linebyline = true, reference = "case_class_match") {
-                    |def getSalary(e: Empl) = e match {
-                    |  case Boss(age) if(age > 50) => 130000
-                    |  case p: Boss                => 80000 + (p.age * 1000)
-                    |  case Developer(_, true)     => 50000
-                    |  case Developer(_, _)        => 40000
-                    |}
+                @sidebyside(gap = 10) {
+                    @snippet() {
+                        @sourceblock(id = "match_salary", reference = "case_class_match") {
+                            |def getSalary(e: Empl) = e match {
+                            |  case p: Boss =>
+                            |    80000 + (p.age * 1000)
+                            |  case Developer(_, true) =>
+                            |    50000
+                            |}
+                        }
+                        @outblock(error = true) {
+                            |warning: match may not be exhaustive.
+                            |It would fail on the following input:
+                            |  Developer(_, false)
+                        }
+                    }
+                    @codesub2() {
+                        Compiler warnt vor fehlenden Fällen
+                    }
+                } {
+                    @snippet() {
+                        @sourceblock(id = "match_salary2", reference = "case_class_match") {
+                            |def getSalary(e: Empl) = e match {
+                            |  case p: Boss =>
+                            |    80000 + (p.age * 1000)
+                            |  case Developer(_, true) =>
+                            |    50000
+                            |  case d: Developer =>
+                            |    40000
+                            |}
+                        }
+                        @outblock() {
+                            |getSalary: (e: Empl)Int
+                        }
+                    }
                 }
 
+                @*
                 @spacer()
 
                 @sidebyside() {
@@ -376,6 +408,7 @@
                         }
                     }
                 }
+                *@
             }
         }
 
