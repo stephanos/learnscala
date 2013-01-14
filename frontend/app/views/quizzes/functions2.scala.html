@@ -1,6 +1,6 @@
 @autocenter {
     @sourcecode(id = "matcher", clazz = "slim", fragment = false) {
-        |def matches (qry: String, m: (String) => Boolean) = m(qry)
+        |def matches(qry: String, m: (String) => Boolean) = m(qry)
     }
 }
 
@@ -12,7 +12,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "matcher", fragment = false) {
-                |matches ("www", {
+                |matches("www", {
                 |   s => s.startsWith("w") } )
             }
             @outblock() {
@@ -26,7 +26,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "matcher", fragment = false) {
-                |matches ("123", s => s.charAt(0))
+                |matches("123", s => s.charAt(0))
             }
             @outblock(error = true) {
                 |error: type mismatch;
@@ -41,7 +41,7 @@
 
 @autocenter {
     @sourcecode(id = "encrypt", clazz = "slim", fragment = false) {
-        |def encrypt (s: String, f: (String) => (String), it: Int = 1): String =
+        |def encrypt(s: String, f: (String) => (String), it: Int = 1): String =
         |  if (it == 0) s
         |  else encrypt(f(s), f, it - 1)
     }
@@ -55,7 +55,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "encrypt", fragment = false) {
-                |encrypt ("ABC", s => s.reverse, 3)
+                |encrypt("ABC", s => s.reverse, 3)
             }
             @outblock() {
                 |res0: String = CBA
@@ -68,7 +68,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "encrypt", fragment = false) {
-                |encrypt ("123", s =>
+                |encrypt("123", s =>
                 |  (s.toLong * 2).toString )
             }
             @outblock() {

@@ -109,27 +109,27 @@
 
                 @callcode(reference = "sum1") {
                     |def sumInts(a: Int, b: Int) =
-                    |   sum ((x: Int) => x, a, b)
+                    |   sum((x: Int) => x, a, b)
                 }
 
                 @spacer_half()
 
                 @callcode(reference = "sum1") {
                     |def sumQuads(a: Int, b: Int) =
-                    |   sum ((x: Int) => x * x, a, b)
+                    |   sum((x: Int) => x * x, a, b)
                 }
 
                 @spacer_half()
 
                 @callcode(reference = "sum1") {
                     |def sumCubes(a: Int, b: Int) =
-                    |   sum ((x: Int) => x * x * x, a, b)
+                    |   sum((x: Int) => x * x * x, a, b)
+                }
+
+                @codesub2() {
+                    Anonyme Funktionen eignen sich gut als Parameter
                 }
             }
-
-            @*@infobox() {
-                Anonyme Funktionen eignen sich gut als Parameter.
-            }*@
         }
 
         <!-- ################################################################################## -->
@@ -164,11 +164,11 @@
                     |def sumCubes(a: Int, b: Int) =
                     |   sum(x => x * x * x, a, b)
                 }
-            }
 
-            @*@infobox() {
-                Parametertypen übergebener Funktionen werden erkannt.
-            }*@
+                @codesub2() {
+                    Parametertypen übergebener Funktionen werden erkannt
+                }
+            }
         }
 
         <!-- ################################################################################## -->
@@ -189,21 +189,21 @@
                         |  import java.io._
                         |  def files = new File(".").listFiles
                         |
-                        |  def filesEnding (query: String) =
+                        |  def filesEnding(query: String) =
                         |    for (i <- 0 until files.size) {
                         |      val f = files(i)
                         |      if (f.getName.endsWith(query))
                         |        println (f)
                         |    }
                         |
-                        |  def filesContaining (query: String) =
+                        |  def filesContaining(query: String) =
                         |    for (i <- 0 until files.size) {
                         |      val f = files(i)
                         |      if (f.getName.contains(query))
                         |        println (f)
                         |    }
                         |
-                        |  def filesRegex (query: String) =
+                        |  def filesRegex(query: String) =
                         |    for (i <- 0 until files.size) {
                         |      val f = files(i)
                         |      if (f.getName.matches(query))
@@ -225,13 +225,13 @@
                         |    }
                         |  }
                         |
-                        |  def filesEnding (query: String) =
+                        |  def filesEnding(query: String) =
                         |    printf(_.endsWith(query))
                         |
-                        |  def filesContaining (query: String) =
+                        |  def filesContaining(query: String) =
                         |    printf(_.contains(query))
                         |
-                        |  def filesRegex (query: String) =
+                        |  def filesRegex(query: String) =
                         |    printf(_.matches(query))
                         |}
                     }
