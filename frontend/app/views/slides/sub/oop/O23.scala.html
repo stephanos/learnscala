@@ -281,38 +281,30 @@
                     @sourceblock(id = "case_point") {
                         |case class Employee(name: String)
                         |
-                        |case class Programmer(name2: String, knowsScala: Boolean)
-                        |   extends Employee(name2)
+                        |case class Programmer(name: String) extends Employee(name)
+                        |case class Accountant(name: String) extends Employee(name)
                     }
                     @outblock(error = true) {
-                        |warning: case class `class Programmer'
-                        |         has case ancestor `class Employee'.
-                        |         Case-to-case inheritance has potentially
-                        |         dangerous bugs which are unlikely to be fixed.
+                        |error: case class Programmer has case ancestor Employee,
+                        |but case-to-case inheritance is prohibited.
                     }
                 }
-                @*@codesub2() {
-                    <var>Warnung</var> bei Vererbung einer Case Class
-                }*@
+                @codesub2() {
+                    Case Class kann nicht vererbt werden
+                }
 
                 @spacer()
 
                 @snippet() {
-                    @callblock(reference = "case_point") {
-                        |Programmer("Bob", true).copy()
-                    }
-                    @outblock() {
-                        |res2: Employee = Employee(Bob)
+                    @sourceblock(id = "case_point") {
+                        |trait Employee { def name: String }
+                        |
+                        |case class Programmer(name: String) extends Employee
+                        |case class Accountant(name: String) extends Employee
                     }
                 }
                 @codesub2() {
-                    <var>Problem:</var> <code>copy</code> liefert Basis-Klasse
-                }
-
-                @autocenter {
-                    @warnbox() {
-                        Case Class sollte @uline("nicht") vererbt werden!
-                    }
+                    Alternative: gemeinsamer <code>trait</code>
                 }
             }
 
@@ -395,7 +387,8 @@
 
                 @autocenter {
                     @sourcecode(id = "case_class_match") {
-                        |sealed abstract class Empl
+                        |sealed trait Empl
+                        |
                         |case class Boss(age: Int) extends Empl
                         |case class Developer(age: Int, knowsScala: Boolean) extends Empl
                     }
