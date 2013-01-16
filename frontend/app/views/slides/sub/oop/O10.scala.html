@@ -72,48 +72,50 @@
 
         @defining("Konstuktor") { title =>
 
-            @slide(title = title, subtitle = "primär") {
+            @titleslide(title = title, subtitle = "primär", head = true) {
 
-                @snippet() {
-                    @sourceblock() {
-                        |class Employee (name: String)
-                    }
-                    @outblock() {
-                        |defined class Employee
-                    }
-                    @callblock() {
-                        |val e = new Employee ("Bob")
-                    }
-                    @outblock() {
-                        |e: Employee = Employee@@3ee32abc
-                    }
-                }
-                @codesub2() {
-                    Klassenparameter ähnlich den Methodenparametern
-                }
+                @sidebyside(gap = 10) {
 
-                @spacer()
+                    @subhead() {
+                        Parameter
+                    }
 
-                @snippet() {
-                    @sourceblock() {
-                        |class Employee (name: String) {
-                        |
-                        |   println ("My name is " + name)
-                        |}
+                    @snippet() {
+                        @sourceblock() {
+                            |class Employee(name: String)
+                        }
+                        @callblock() {
+                            |val e = new Employee("Bob")
+                        }
+                        @outblock() {
+                            |e: Employee = Employee@@3ee32abc
+                        }
                     }
-                    @outblock() {
-                        |defined class Employee
+                    @codesub2() {
+                        Parameter stehen direkt an der Klasse
                     }
-                    @callblock() {
-                        |val e = new Employee ("Bob")
+                } {
+                    @subhead() {
+                        Rumpf
                     }
-                    @outblock() {
-                        |My name is Bob
-                        |e: Employee = Employee@@3ee32abc
+
+                    @snippet() {
+                        @sourceblock() {
+                            |class Employee(name: String) {
+                            |   println ("My name is " + name)
+                            |}
+                        }
+                        @callblock() {
+                            |val e = new Employee("Bob")
+                        }
+                        @outblock() {
+                            |My name is Bob
+                            |e: Employee = Employee@@3ee32abc
+                        }
                     }
-                }
-                @codesub2() {
-                    Anweisungen im Rumpf werden bei der Initialisierung ausgeführt
+                    @codesub2() {
+                        Anweisungen im Rumpf der Klasse werden bei der Initialisierung ausgeführt
+                    }
                 }
 
                 @*@infobox() {
@@ -124,21 +126,21 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "sekundär") {
+            @titleslide(title = title, subtitle = "sekundär", connector = ":") {
 
                 @snippet() {
                     @sourceblock() {
-                        |class Employee (name: String, age: Int) {
+                        |class Employee(name: String, age: Int) {
                         |
                         |  def this =
                         |    this ("Unknown", -1)
                         |
-                        |  def this (firstname: String, lastname: String, age: Int) =
-                        |    this (firstname + " " + lastname, age)
+                        |  def this(firstname: String, lastname: String, age: Int) =
+                        |    this(firstname + " " + lastname, age)
                         |}
                     }
                     @callblock() {
-                        |val e = new Employee ("Bob", "Bobster", 35)
+                        |val e = new Employee("Bob", "Bobster", 35)
                     }
                 }
                 @codesub2() {
@@ -149,10 +151,10 @@
 
                 @snippet() {
                     @sourceblock() {
-                        |class Employee (name: String, age: Int) {
+                        |class Employee(name: String, age: Int) {
                         |
                         |  def this =
-                        |     println ("initialized")
+                        |     println("initialized")
                         |}
                     }
                     @outblock(error = true) {
@@ -180,12 +182,13 @@
 
         @defining("Felder") { title =>
 
-            @slide(title = title, subtitle = "val vs var") {
+            @titleslide(title = title, subtitle = "val & var") {
+
+                @spacer()
 
                 @sidebyside(gap = 10) {
                     @sourcecode(id = "empl-mutable") {
-                        |class Employee (_name: String) {
-                        |
+                        |class Employee(_name: String) {
                         |   var name = _name
                         |}
                     }
@@ -195,24 +198,25 @@
 
                     @spacer()
 
-                    @snippet() {
-                        @callblock(reference = "empl-mutable") {
-                            |val e = new Employee ("Bob")
-                        }
-                        @outblock() {
-                            |e: Employee = Employee@@404b50ed
-                        }
-                        @callblock() {
-                            |e.name = "Betty"
-                        }
-                        @outblock() {
-                            |e.name: String = Betty
+                    @indent() {
+                        @snippet() {
+                            @callblock(reference = "empl-mutable") {
+                                |val e = new Employee("Bob")
+                            }
+                            @outblock() {
+                                |e: Employee = Employee@@404b50ed
+                            }
+                            @callblock() {
+                                |e.name = "Betty"
+                            }
+                            @outblock() {
+                                |e.name: String = Betty
+                            }
                         }
                     }
                 } {
                     @sourcecode(id = "empl-immutable") {
-                        |class Employee (_name: String) {
-                        |
+                        |class Employee(_name: String) {
                         |   val name = _name
                         |}
                     }
@@ -222,18 +226,20 @@
 
                     @spacer()
 
-                    @snippet() {
-                        @callblock(reference = "empl-immutable") {
-                            |val e = new Employee ("Bob")
-                        }
-                        @outblock() {
-                            |e: Employee = Employee@@1cc17783
-                        }
-                        @callblock() {
-                            |e.name = "Betty"
-                        }
-                        @outblock(error = true) {
-                            |error: reassignment to val
+                    @indent() {
+                        @snippet() {
+                            @callblock(reference = "empl-immutable") {
+                                |val e = new Employee("Bob")
+                            }
+                            @outblock() {
+                                |e: Employee = Employee@@1cc17783
+                            }
+                            @callblock() {
+                                |e.name = "Betty"
+                            }
+                            @outblock(error = true) {
+                                |error: reassignment to val
+                            }
                         }
                     }
                 }
@@ -241,10 +247,12 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Parameter als Felder") {
+            @titleslide(title = title, subtitle = "Parameter als Felder") {
+
+                @spacer()
 
                 @sourcecode() {
-                    |class Employee (val name: String)
+                    |class Employee(val name: String)
                 }
                 @codesub2() {
                     Feld <code>name</code> mit Lesezugriff
@@ -253,7 +261,7 @@
                 @spacer2()
 
                 @sourcecode() {
-                    |class Employee (var name: String)
+                    |class Employee(var name: String)
                 }
                 @codesub2() {
                     Feld <code>name</code> mit Lese- und Schreibzugriff
@@ -262,14 +270,13 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Uniform Access Principle") {
+            @titleslide(title = title, subtitle = "Uniform Access Principle") {
 
                 @sidebyside(gap = 10) {
                     @snippet(id = "empl") {
                         @sourceblock() {
-                            |class Employee (val name: String,
+                            |class Employee(val name: String,
                             |                var age: Int) {
-                            |
                             |  val salary = 40000
                             |}
                         }
@@ -333,7 +340,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Sichtbarkeit") {
+        @titleslide(title = "Sichtbarkeit") {
 
             @codesplits((60,40)){
                 @splitstart() {
@@ -378,7 +385,7 @@
 
         @defining("Methoden") { title =>
 
-            @slide(title = title) {
+            @titleslide(title = title) {
 
                 @sidebyside(gap = 5) {
                     @snippet() {
@@ -440,33 +447,20 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "überladen") {
+            @titleslide(title = title, subtitle = "überladen", connector = ":") {
 
-                @autocenter {
+                @spacer()
+
+                @sidebyside(gap = 10) {
                     @snippet() {
-                        @sourceblock() {
-                            |class Employee (val name: String) {
+                        @sourceblock(hl = "6") {
+                            |class Employee(val name: String) {
                             |
-                            |  def fire = {
-                            |    println (name + ", you are fired!")
-                            |  }
-                            |}
-                        }
-                    }
-                }
-
-                @spacer2()
-
-                @sidebyside() {
-                    @snippet() {
-                        @sourceblock() {
-                            |class Employee (val name: String) {
-                            |
-                            |  def fire (nickname: String) =
+                            |  def fire(nickname: String) =
                             |    name + ", you are fired!"
                             |
-                            |  def fire () =
-                            |    fire (name)
+                            |  def fire =
+                            |    fire(name)
                             |}
                         }
                         @outblock(error = true) {
@@ -474,21 +468,27 @@
                             |       needs result type
                         }
                     }
+                    @codesub2() {
+                        überladene Methoden <var>ohne</var> Rückgabetyp
+                    }
                 } {
                     @snippet() {
-                        @sourceblock() {
-                            |class Employee (val name: String) {
+                        @sourceblock(hl = "6") {
+                            |class Employee(val name: String) {
                             |
-                            |  def fire (nickname: String): String =
+                            |  def fire(nickname: String) =
                             |    name + ", you are fired!"
                             |
-                            |  def fire (): String =
-                            |    fire (name)
+                            |  def fire: String =
+                            |    fire(name)
                             |}
                         }
                         @outblock() {
                             |defined class Employee
                         }
+                    }
+                    @codesub2() {
+                        überladene Methoden <em>mit</em> Rückgabetyp
                     }
                 }
             }
