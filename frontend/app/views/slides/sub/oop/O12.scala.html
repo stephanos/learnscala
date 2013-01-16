@@ -12,18 +12,13 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "static ?") {
+        @titleslide(title = "static ?") {
 
             @snippet() {
                 @sourceblock() {
                     |class AccountFactory {
                     |
                     |  static var lastNumber = 0
-                    |
-                    |  def newAccount (owner: String) = {
-                    |    lastNumber += 1
-                    |    new Accounts (lastNumber)
-                    |  }
                     |}
                 }
                 @outblock(error = true) {
@@ -48,46 +43,53 @@
 
         @defining("Singleton") { title =>
 
-            @slide(title = title) {
+            @titleslide(title = title) {
 
-                @sourcecode(id="accountfactory") {
-                    |object AccountFactory {
-                    |
-                    |   var lastNumber = 0
-                    |
-                    |   def newAccount (owner: String) = {
-                    |       lastNumber += 1
-                    |       new Account (owner, lastNumber)
-                    |   }
-                    |}
-                }
-                @codesub2() {
-                    ... aber Objekte, es existiert immer @uline("genau eine") Instanz
-                }
-
-                @spacer()
-
-                @snippet() {
-                    @callblock(reference = "accountfactory") {
-                        |val acc = AccountFactory.newAccount("Bob")
+                @sidebyside() {
+                    @sourcecode(id = "account") {
+                        |class Account(val name: String,
+                        |              val number: Int)
                     }
-                    @outblock() {
-                        |acc: Account = Account@@536502d
+                } {
+                    @sourcecode(reference = "account", id="accountfactory") {
+                        |object AccountFactory {
+                        |
+                        |  var lastNumber = 0
+                        |
+                        |  def newAccount(owner: String) = {
+                        |    lastNumber += 1
+                        |    new Account (owner, lastNumber)
+                        |  }
+                        |}
                     }
-                }
+                    @codesub2() {
+                        ... aber Objekte, es existiert immer @uline("genau eine") Instanz
+                    }
 
-                @codesub2() {
-                    ideal geeignet für <em>Factory</em>-Methoden
+                    @spacer()
+
+                    @snippet() {
+                        @callblock(reference = "accountfactory") {
+                            |val acc = AccountFactory.newAccount("Bob")
+                        }
+                        @outblock() {
+                            |acc: Account = Account@@536502d
+                        }
+                    }
+
+                    @codesub2() {
+                        ideal geeignet für <em>Factory</em>-Methoden
+                    }
                 }
             }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Parameter") {
+            @titleslide(title = title, subtitle = "Parameter", connector = ":") {
 
                 @snippet() {
                     @sourceblock() {
-                        |object AccountFactory (startNumber: Int) {
+                        |object AccountFactory(startNumber: Int) {
                         |
                         |  var lastNumber = startNumber
                         |}
@@ -98,13 +100,13 @@
                 }
 
                 @codesub2() {
-                    Parameter sind nicht erlaubt
+                    Parameter sind nicht natürlich erlaubt <br/> - der Compiler instanziiert es ja
                 }
             }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Instanz") {
+            @titleslide(title = title, subtitle = "Instanziierung", connector = ":") {
 
                 @snippet() {
                     @sourceblock() {
@@ -121,7 +123,7 @@
                         |defined module AccountFactory
                     }
                     @callblock() {
-                        |println (AccountFactory.lastNumber)
+                        |println(AccountFactory.lastNumber)
                     }
                     @outblock() {
                         |starting AccountFactory
@@ -136,51 +138,57 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Beispiele") {
+            @titleslide(title = title, subtitle = "Beispiele") {
 
-                @sourcecode() {
-                    |object MyApplication {
-                    |
-                    |  def main (args: Array[String]) {
-                    |    println ("Hello World!")
-                    |  }
-                    |}
-                }
-
-                    @codesub2() {
-                        <code>MyApplication</code> definiert
-                        den <em>Einstiegspunkt</em> <code>main</code> zum Ausführen
+                @sidebyside((60,40)) {
+                    @sourcecode() {
+                        |object MyApplication {
+                        |
+                        |  def main(args: Array[String]) {
+                        |    println("Hello World!")
+                        |  }
+                        |}
                     }
+                } {
+                    @codenote2() {
+                        <code>MyApplication</code> definiert <br/>
+                        den <em>Einstiegspunkt</em> <code>main</code>
+                    }
+                }
 
                 @spacer_half()
 
-                @sourcecode() {
-                    |object StringUtil {
-                    |
-                    |  def isEmpty(s: String) =
-                    |    if(s == null) true else s.isEmpty()
-                    |}
-                }
-
-                    @codesub2() {
-                        <code>StringUtil</code> definiert
-                        <em>nützliche Methoden</em> für die Arbeit mit Strings
+                @sidebyside((60,40)) {
+                    @sourcecode() {
+                        |object StringUtil {
+                        |
+                        |  def isEmpty(s: String) =
+                        |    if(s == null) true else s.isEmpty()
+                        |}
                     }
+                } {
+                    @codenote2() {
+                        <code>StringUtil</code> definiert <br/>
+                        <em>nützliche Methoden</em> für Strings
+                    }
+                }
 
                 @spacer_half()
 
-                @sourcecode() {
-                    |object Currency {
-                    |
-                    |  val euro   = "€"
-                    |  val dollar = "$"
-                    |}
-                }
-
-                    @codesub2() {
-                        <code>Currency</code> definiert
+                @sidebyside((60,40)) {
+                    @sourcecode() {
+                        |object Currency {
+                        |
+                        |  val euro   = "€"
+                        |  val dollar = "$"
+                        |}
+                    }
+                } {
+                    @codenote2() {
+                        <code>Currency</code> definiert  <br/>
                         Währungssymbole als <em>Konstanten</em>
                     }
+                }
             }
         }
 
@@ -188,9 +196,9 @@
 
         @defining("Companion") { title =>
 
-            @slide(title = title) {
+            @titleslide(title = title) {
 
-                @sidebyside() {
+                @sidebyside(gap = 10) {
                     @snippet() {
                         @sourceblock(id = "account_class") {
                             |class Account private (val owner: String,
@@ -204,7 +212,7 @@
                             |
                             |  private var lastNumber = 0
                             |
-                            |  def newAccount (owner: String) = {
+                            |  def newAccount(owner: String) = {
                             |    lastNumber += 1
                             |    new Account(owner, lastNumber)
                             |  }
@@ -216,17 +224,17 @@
                         Klasse <code>Account</code> hat ein Companion Object
                     }
                 } {
-                    @spacer()
+                    @spacer2()
 
                     @snippet() {
                         @callblock(reference = "account_obj") {
-                            |val acc = Account.newAccount ("Bob")
+                            |val acc = Account.newAccount("Bob")
                         }
                         @outblock() {
                             |acc: Account = Account@@536502d
                         }
                         @callblock() {
-                            |println (acc.totalCount)
+                            |println(acc.totalCount)
                         }
                         @outblock() {
                             |1
@@ -242,13 +250,97 @@
                     definiert werden, dann hat es privaten Zugriff - und umgekehrt.
                 *@
             }
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("apply") { title =>
+
+            @titleslide(title = title) {
+
+                @autocenter {
+                    @sidebyside((60,40)) {
+                        @sourcecode(id = "apply", reference = "account2") {
+                           |object Account {
+                           |  private var lastNumber = 0
+                           |
+                           |  def apply(owner: String) = {
+                           |    lastNumber += 1
+                           |    new Account(owner, lastNumber)
+                           |  }
+                           |}
+                        }
+                    } {
+                        @spacer2()
+
+                        @codenote2() {
+                            Objekt enthält <br/> Factory-Methode <code>apply</code>
+                        }
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside(gap = 10) {
+                    @subhead() {
+                        expliziter Aufruf
+                    }
+
+                    @snippet() {
+                       @callblock(reference = "apply") {
+                           val acc = Account.apply("Bob")
+                       }
+                       @outblock() {
+                           |acc: Account = Account@@536502d
+                       }
+                   }
+                } {
+                    @subhead() {
+                        impliziter Aufruf
+                    }
+
+                    @snippet() {
+                       @callblock(reference = "apply") {
+                           val acc = Account("Bob")
+                       }
+                       @outblock() {
+                           |acc: Account = Account@@536502d
+                       }
+                    }
+                    @codesub2() {
+                        impliziter Aufruf von <code>apply</code> <br/>
+                        durch Parameterliste hinter einem Objekt
+                    }
+
+                    @*
+                    @spacer()
+
+                    @snippet() {
+                       @callblock() {
+                           |val acc = Account()
+                       }
+                       @outblock(error = true) {
+                           |error: not enough arguments for method apply
+                       }
+                    }
+                    *@
+                }
+
+                <!--@infobox() {
+                   Die Methode <code>apply</code> kann implizit durch
+                   Angabe einer Parameterliste hinter einem Objekt <comment class="nobreak">(Object(arg1, ..., argN))</comment>
+                   aufgerufen werden - das verkürzt den Code!
+                }-->
+            }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Beispiele") {
+            @titleslide(title = title, subtitle = "Beispiele", connector = ":") {
+
+                @spacer()
 
                 @callcode() {
-                    |val bigNumber = BigInt ("1234567890")
+                    |val bigNumber = BigInt("1234567890")
                 }
 
                 @codesub2() {
@@ -258,7 +350,7 @@
                 @spacer2()
 
                 @callcode() {
-                    |val countdown = Array (10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
+                    |val countdown = Array(10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0)
                 }
 
                 @codesub2() {
@@ -274,83 +366,17 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "apply") {
-
-            @sidebyside((45,55)) {
-                @sourcecode(id = "apply", reference = "account2") {
-                    |object Account {
-                    |
-                    |  private var lastNumber = 0
-                    |
-                    |  def apply(owner: String) = {
-                    |    lastNumber += 1
-                    |    new Account(owner, lastNumber)
-                    |  }
-                    |}
-                }
-
-                @codesub2() {
-                    Objekt enthält Factory-Methode namens <code>apply</code>
-                }
-            } {
-                @snippet() {
-                    @callblock(reference = "apply") {
-                        val acc = Account.apply ("Bob")
-                    }
-                    @outblock() {
-                        |acc: Account = Account@@536502d
-                    }
-                }
-                @codesub2() {
-                    Methode <code>apply</code> wird @underline("explizit") aufgerufen
-                }
-
-                @spacer()
-
-                @snippet() {
-                    @callblock(reference = "apply") {
-                        val acc = Account("Bob")
-                    }
-                    @outblock() {
-                        |acc: Account = Account@@536502d
-                    }
-                }
-                @codesub2() {
-                    Methode <code>apply</code> wird @underline("implizit") aufgerufen
-                }
-
-                @spacer()
-
-                @snippet() {
-                    @callblock() {
-                        |val acc = Account()
-                    }
-                    @outblock(error = true) {
-                        |error: not enough arguments for method apply
-                    }
-                }
-            }
-
-            <!--@infobox() {
-                Die Methode <code>apply</code> kann implizit durch
-                Angabe einer Parameterliste hinter einem Objekt <comment class="nobreak">(Object(arg1, ..., argN))</comment>
-                aufgerufen werden - das verkürzt den Code!
-            }-->
-        }
-
-        <!-- ################################################################################## -->
-
-        @slide(title = "Predef") {
+        @titleslide(title = "Predef") {
 
             @snippet() {
                 @callblock() {
-                    |Predef.println ("Account was created")
+                    |Predef.println("Account was created")
                 }
                 @outblock() {
                     |Account was created
                 }
                 @callblock() {
-                    |println ("Account was created")
+                    |println("Account was created")
                 }
                 @outblock() {
                     |Account was created
