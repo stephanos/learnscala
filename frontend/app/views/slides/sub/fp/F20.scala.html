@@ -43,15 +43,17 @@
 
             @titleslide(title = title, subtitle = "Zugriff", connector = ":") {
 
-                @sourcecode(id = "enum") {
-                    |object WeekDay extends Enumeration {
-                    |  val Mon, Tue, Wed, Thu, Fri, Sat, Sun = Value
-                    |}
+                @autocenter {
+                    @sourcecode(id = "enum") {
+                        |object WeekDay extends Enumeration {
+                        |  val Mon, Tue, Wed, Thu, Fri, Sat, Sun = Value
+                        |}
+                    }
                 }
 
-                @spacer()
+                @spacer2()
 
-                @indent() {
+                @sidebyside(gap = 10) {
                     @snippet() {
                         @callblock(reference = "enum") {
                             |WeekDay.Tue.id
@@ -65,13 +67,23 @@
                         @outblock() {
                             |res1: WeekDay.Value = Tue
                         }
-                        @callblock() {
+                    }
+                    @codesub2() {
+                        Zugriff auf einzelne Elemente
+                    }
+                } {
+                    @snippet() {
+                        @callblock(reference = "enum") {
                             |WeekDay.values
                         }
                         @outblock() {
-                            |res2: WeekDay.ValueSet =
-                            |  WeekDay.ValueSet(Mon, Tue, Wed, Thu, Fri, Sat, Sun)
+                            |res0: WeekDay.ValueSet =
+                            |  WeekDay.ValueSet(Mon, Tue, Wed, Thu,
+                            |                   Fri, Sat, Sun)
                         }
+                    }
+                    @codesub2() {
+                        Zugriff auf alle Elemente
                     }
                 }
             }
