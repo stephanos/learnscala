@@ -69,7 +69,7 @@
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
                 |def mult(x: Int, y: Int) = {
-                |   println (x * y)
+                |   println(x * y)
                 |}
             }
             @outblock() {
@@ -83,11 +83,12 @@
     } {
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
-                |def fn(n: Int) =
-                |   if (n == 0) 1 else n * fn(n - 1)
+                |def mult(x: Int, y: Int) {
+                |   x * y
+                |}
             }
-            @outblock(error = true) {
-                |recursive method fn needs result type
+            @outblock() {
+                |mult: (x: Int, y: Int)Unit
             }
         }
     }
@@ -101,12 +102,11 @@
     } {
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
-                |def mult(x: Int, y: Int) {
-                |   x * y
-                |}
+                |def fn(n: Int) =
+                |   if (n == 0) 1 else n * fn(n - 1)
             }
-            @outblock() {
-                |mult: (x: Int, y: Int)Unit
+            @outblock(error = true) {
+                |recursive method fn needs result type
             }
         }
     }
