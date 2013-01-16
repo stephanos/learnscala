@@ -1,0 +1,475 @@
+@*
+    TODO:
+        - nested classes ?
+*@
+@implicitSlide = @{ Content.klassen2 }
+
+@defining(implicitSlide.label) { implicit topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slidehead() {
+            @topic
+        } {
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("Case Class") { title =>
+
+            @slide(title = title) {
+
+                @spacer()
+
+                @sidebyside(gap = 10) {
+                    @subhead() {
+                        reguläre Klasse
+                    }
+                } {
+                    @subhead() {
+                        <code>case</code>-Klasse
+                    }
+                }
+
+                @sidebyside(gap = 10) {
+                    @sourcecode(id = "simple_class") {
+                        |class Employee(val name: String)
+                    }
+                } {
+                    @sourcecode(id = "case_class") {
+                        |case class Employee(name: String)
+                    }
+                }
+
+                @spacer2()
+
+                @sidebyside(gap = 10) {
+                    @snippet(clazz = "slim") {
+                        @sourceblock(reference = "simple_class", id = "simple_class_step1") {
+                            |val e = new Employee("Bob")
+                        }
+                    }
+                } {
+                    @snippet(clazz = "slim") {
+                        @sourceblock(reference = "case_class", id = "case_class_step1") {
+                            |val e = Employee("Bob")
+                        }
+                    }
+                    @codesub2() {
+                        Instanziierung via Companion Object
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside(gap = 10) {
+                    @snippet(clazz = "slim") {
+                        @sourceblock(reference = "simple_class_step1") {
+                            |e.name
+                        }
+                        @outblock() {
+                            |res0: String = Bob
+                        }
+                    }
+                } {
+                    @snippet(clazz = "slim") {
+                        @sourceblock(reference = "case_class_step1") {
+                            |e.name
+                        }
+                        @outblock() {
+                            |res0: String = Bob
+                        }
+                    }
+                    @codesub2() {
+                        Parameter <code>name</code> ist ein Feld der Klasse
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "II") {
+
+                @spacer()
+
+                @sidebyside(gap = 10) {
+                    @subhead() {
+                        reguläre Klasse
+                    }
+                } {
+                    @subhead() {
+                        <code>case</code>-Klasse
+                    }
+                }
+
+                @sidebyside(gap = 10) {
+                    @sourcecode() {
+                        |class Employee(val name: String)
+                        |val e = new Employee("Bob")
+                    }
+                } {
+                    @sourcecode() {
+                        |case class Employee(val name: String)
+                        |val e = Employee("Bob")
+                    }
+                }
+
+                @spacer2()
+
+                @sidebyside(gap = 10) {
+                    @snippet(clazz = "slim") {
+                        @sourceblock(reference = "simple_class_step1") {
+                            |e.toString
+                        }
+                        @outblock() {
+                            |res0: String = Employee@@4c1b7143
+                        }
+                    }
+                } {
+                    @snippet(clazz = "slim") {
+                        @sourceblock(reference = "case_class_step1") {
+                            |e.toString
+                        }
+                        @outblock() {
+                            |res0: String = Employee("Bob")
+                        }
+                    }
+                    @codesub2() {
+                        <code>toString</code> liefert ein lesbares Ergebnis
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside(gap = 10) {
+                    @snippet(clazz = "slim") {
+                        @sourceblock(reference = "simple_class_step1", id = "simple_class_step3") {
+                            |val eq = e.equals(new Employee("Bob"))
+                        }
+                        @outblock() {
+                            |eq: Boolean = false
+                        }
+                    }
+                } {
+                    @snippet(clazz = "slim") {
+                        @sourceblock(reference = "case_class_step1", id = "simple_class_step3") {
+                            |val eq = e.equals(Employee("Bob"))
+                        }
+                        @outblock() {
+                            |eq: Boolean = true
+                        }
+                    }
+                    @codesub2() {
+                        <code>equals</code> funktioniert
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title) {
+                @sidebyside(gap = 10) {
+                    @sourcecode() {
+                        |class Employee(val name: String) {
+                        |  override def toString =
+                        |    "Employee(" + name + ")"
+                        |
+                        |  override def hashCode =
+                        |    name.hashCode
+                        |
+                        |  def copy(name: String = name) =
+                        |    new Employee(name)
+                        |
+                        |  override def equals(other: Any) =
+                        |    other match {
+                        |      case empl: Employee =>
+                        |        this.name == empl.name
+                        |      case _ => false
+                        |    }
+                        |}
+                        |
+                        |object Employee {
+                        |  def apply(name: String) =
+                        |    new Employee(name)
+                        |
+                        |  def unapply(empl: Employee) =
+                        |    Some(empl.name)
+                        |}
+                    }
+                } {
+                    @sourcecode(id = "case_class") {
+                        |case class Employee(name: String)
+                    }
+
+                    @spacer()
+
+                    @codenote2() {
+                        <code>case</code> bewirkt:
+                        @spacer_half()
+                        <ul class="indent fragments">
+                            <li>
+                                Parameter werden zu öffentlichen, <br/> unveränderlichen Feldern
+                            </li>
+                            <li>
+                                <code>equals()</code> vergleicht strukturell
+                            </li>
+                            <li>
+                                <code>toString()</code> gibt Klassenname <br/> und Parameterwerte aus
+                            </li>
+                            <li>
+                                Factory-Methode <code>apply</code> und <br/>
+                                Extraktor-Methode <code>unapply</code> <br/> in Companion Object
+                            </li>
+                            <li>
+                                Implementation von <code>hashCode</code>
+                            </li>
+                            @*<li>
+                                Extraktor-Methode <code>unapply</code> in Companion Object
+                            </li>*@
+                            <li>
+                                Methode <code>copy</code> erstellt Kopien
+                            </li>
+                        </ul>
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "copy") {
+
+                @snippet() {
+                    @sourceblock(id = "case_empl") {
+                        |case class Employee(name: String, department: String)
+                    }
+                }
+
+                @spacer()
+
+                @indent() {
+                    @snippet() {
+                        @callblock(reference = "case_empl") {
+                            |val bob = Employee("Bob", "IT")
+                        }
+                        @outblock() {
+                            |bob: Employee = Employee(Bob,IT)
+                        }
+                        @callblock() {
+                            |val barb = bob.copy("Barb")
+                        }
+                        @outblock() {
+                            |barb: Employee = Employee(Barb,IT
+                        }
+                        @callblock() {
+                            |val bob2 = bob.copy(department = "Accounting")
+                        }
+                        @outblock() {
+                            |bob2: Employee = Employee(Bob,Accounting
+                        }
+                    }
+                    @codesub2() {
+                        <code>copy</code> kann alle oder gar keine Parameter überschreiben
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "Vererbung") {
+
+                @snippet() {
+                    @sourceblock(id = "case_point") {
+                        |case class Employee(name: String)
+                        |
+                        |case class Programmer(name2: String, knowsScala: Boolean)
+                        |   extends Employee(name2)
+                    }
+                    @outblock(error = true) {
+                        |warning: case class `class Programmer'
+                        |         has case ancestor `class Employee'.
+                        |         Case-to-case inheritance has potentially
+                        |         dangerous bugs which are unlikely to be fixed.
+                    }
+                }
+                @*@codesub2() {
+                    <var>Warnung</var> bei Vererbung einer Case Class
+                }*@
+
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference = "case_point") {
+                        |Programmer("Bob", true).copy()
+                    }
+                    @outblock() {
+                        |res2: Employee = Employee(Bob)
+                    }
+                }
+                @codesub2() {
+                    <var>Problem:</var> <code>copy</code> liefert Basis-Klasse
+                }
+
+                @autocenter {
+                    @warnbox() {
+                        Case Class sollte @uline("nicht") vererbt werden!
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @defining("Pattern Matching") { subtitle =>
+
+                @titleslide(title = title, subtitle = subtitle) {
+
+                    @sidebyside((60,40)) {
+                        @snippet() {
+                            @sourceblock(id = "empl") {
+                                |case class Employee (name: String, age: Int)
+                            }
+                        }
+                    } {
+                    }
+
+                    @spacer()
+
+                    @sidebyside((60,40)) {
+                        @indent() {
+                            @snippet() {
+                                @sourceblock(reference = "empl", hl = "3") {
+                                    |def shouldRetire(empl: Employee) =
+                                    |  empl match {
+                                    |    case Employee(n, a) if(a > 66) => true
+                                    |    case _ => false
+                                    |  }
+                                }
+                            }
+                        }
+                    } {
+                        @codenote2() {
+                            <em>Konstruktor-Pattern</em>: <br/> Zerlegen der Case Class
+                        }
+                        <br/>
+                        @codenote2() {
+                            <em>Guarded-Pattern</em>: <br/> Abfrage von <code>age</code>
+                        }
+                    }
+
+                    @spacer()
+
+                    @sidebyside((60,40)) {
+                        @indent() {
+                            @snippet() {
+                                @sourceblock(reference = "empl", hl = "3") {
+                                    |def shouldRetire(empl: Employee) =
+                                    |  empl match {
+                                    |    case Employee(_, 65) => true
+                                    |    case _ => false
+                                    |  }
+                                }
+                            }
+                        }
+                    } {
+                        @codenote2() {
+                            <em>Konstante-Pattern</em>: <br/> Konstante <code>65</code>
+                        }
+                        <br/>
+                        @codenote2() {
+                            <em>Wildcard-Pattern</em>: <br/> Parameter mit <code>_</code> ignorieren
+                        }
+                    }
+                }
+
+                <!-- ################################################################################## -->
+
+                @headslide(title = title, subtitle = subtitle, subsubtitle = "DIY") {
+                    @{subtitle}: DIY
+                } {
+
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "sealed") {
+
+                @autocenter {
+                    @sourcecode(id = "case_class_match") {
+                        |sealed abstract class Empl
+                        |case class Boss(age: Int) extends Empl
+                        |case class Developer(age: Int, knowsScala: Boolean) extends Empl
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside(gap = 10) {
+                    @snippet() {
+                        @sourceblock(id = "match_salary", reference = "case_class_match") {
+                            |def getSalary(e: Empl) = e match {
+                            |  case p: Boss =>
+                            |    80000 + (p.age * 1000)
+                            |  case Developer(_, true) =>
+                            |    50000
+                            |}
+                        }
+                        @outblock(error = true) {
+                            |warning: match may not be exhaustive.
+                            |It would fail on the following input:
+                            |  Developer(_, false)
+                        }
+                    }
+                    @codesub2() {
+                        Compiler warnt vor fehlenden Fällen
+                    }
+                } {
+                    @snippet() {
+                        @sourceblock(id = "match_salary2", reference = "case_class_match") {
+                            |def getSalary(e: Empl) = e match {
+                            |  case p: Boss =>
+                            |    80000 + (p.age * 1000)
+                            |  case Developer(_, true) =>
+                            |    50000
+                            |  case d: Developer =>
+                            |    40000
+                            |}
+                        }
+                        @outblock() {
+                            |getSalary: (e: Empl)Int
+                        }
+                    }
+                }
+
+                @*
+                @spacer()
+
+                @sidebyside() {
+                    @snippet() {
+                        @callblock(reference = "match_salary") {
+                            |val e = Boss(25)
+                            |val s = getSalary(e)
+                        }
+                        @outblock() {
+                            |s: Int = 105000
+                        }
+                    }
+                } {
+                    @snippet() {
+                        @callblock() {
+                            |val e = Developer(30, false)
+                            |val s = getSalary(e)
+                        }
+                        @outblock() {
+                            |s: Int = 40000
+                        }
+                    }
+                }
+                *@
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @uebung(implicitSlide.id)
+    }
+}

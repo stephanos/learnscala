@@ -1,13 +1,16 @@
-@*
-    TODO:
-        - nested classes ?
-*@
-@implicitSlide = @{ Content.klassen2 }
+<!--
+   http://scalatutorial.wordpress.com/2011/12/04/teil-14-1-varianzen/
+   http://coding-time.blogspot.de/2011/05/covariance-and-contravariance-simple.html
+   http://entwickler.de/zonen/portale/psecom,id,101,online,3475,p,0.html
+   http://www.scala-lang.org/node/129
+   http://www.naildrivin5.com/scalatour/wiki_pages/TypeVariance
+-->
+@implicitSlide = @{ Content.generics1 }
 
 @defining(implicitSlide.label) { implicit topic =>
-
+    
     @layout.slidedeck(topic) {
-
+        
         @slidehead() {
             @topic
         } {
@@ -15,408 +18,335 @@
 
         <!-- ################################################################################## -->
 
-        @defining("Case Class") { title =>
+        @slide() {
 
-            @slide(title = title) {
-
-                @spacer()
-
-                @sidebyside(gap = 10) {
-                    @subhead() {
-                        reguläre Klasse
-                    }
-                } {
-                    @subhead() {
-                        <code>case</code>-Klasse
-                    }
+            @sidebyside(gap = 10) {
+                @sourcecode() {
+                    |class myClass[T] {
+                    |   // ...
+                    |}
                 }
-
-                @sidebyside(gap = 10) {
-                    @sourcecode(id = "simple_class") {
-                        |class HttpStatus(val code: Int)
-                    }
-                } {
-                    @sourcecode(id = "case_class") {
-                        |case class HttpStatus(code: Int)
-                    }
+                @codesub2() {
+                    <em>Klasse</em> mit 1 Typ-Parameter
                 }
 
                 @spacer2()
 
-                @sidebyside(gap = 10) {
-                    @snippet(clazz = "slim") {
-                        @sourceblock(reference = "simple_class", id = "simple_class_step1") {
-                            |val s = new HttpStatus(404)
-                        }
-                    }
-                } {
-                    @snippet(clazz = "slim") {
-                        @sourceblock(reference = "case_class", id = "case_class_step1") {
-                            |val s = HttpStatus(404)
-                        }
-                    }
-                    @codesub2() {
-                        Instanziierung via Companion Object
-                    }
+                @sourcecode() {
+                    |trait myTrait[T, S] {
+                    |   // ...
+                    |}
                 }
-
-                @spacer()
-
-                @sidebyside(gap = 10) {
-                    @snippet(clazz = "slim") {
-                        @sourceblock(reference = "simple_class_step1") {
-                            |s.code
-                        }
-                        @outblock() {
-                            |res0: Int = 404
-                        }
-                    }
-                } {
-                    @snippet(clazz = "slim") {
-                        @sourceblock(reference = "case_class_step1") {
-                            |s.code
-                        }
-                        @outblock() {
-                            |res0: Int = 404
-                        }
-                    }
-                    @codesub2() {
-                        Parameter <code>code</code> ist ein Feld der Klasse
-                    }
+                @codesub2() {
+                    <em>Trait</em> mit 2 Typ-Parametern
                 }
-            }
-
-            <!-- ################################################################################## -->
-
-            @slide(title = title, subtitle = "II") {
-
-                @spacer()
-
-                @sidebyside(gap = 10) {
-                    @subhead() {
-                        reguläre Klasse
-                    }
-                } {
-                    @subhead() {
-                        <code>case</code>-Klasse
-                    }
+            } {
+                @sourcecode() {
+                    |def myMethod[A, B, C] {
+                    |   // ...
+                    |}
                 }
-
-                @sidebyside(gap = 10) {
-                    @sourcecode() {
-                        |class HttpStatus(val code: Int)
-                        |val s = new HttpStatus(404)
-                    }
-                } {
-                    @sourcecode() {
-                        |case class HttpStatus(code: Int)
-                        |val s = HttpStatus(404)
-                    }
+                @codesub2() {
+                    <em>Methode</em> mit 3 Typ-Parametern
                 }
 
                 @spacer2()
-
-                @sidebyside(gap = 10) {
-                    @snippet(clazz = "slim") {
-                        @sourceblock(reference = "simple_class_step1") {
-                            |s.toString
-                        }
-                        @outblock() {
-                            |res0: String = HttpStatus@@4c1b7143
-                        }
-                    }
-                } {
-                    @snippet(clazz = "slim") {
-                        @sourceblock(reference = "case_class_step1") {
-                            |s.toString
-                        }
-                        @outblock() {
-                            |res0: String = HttpStatus(404)
-                        }
-                    }
-                    @codesub2() {
-                        <code>toString</code> liefert ein lesbares Ergebnis
-                    }
-                }
-
-                @spacer()
-
-                @sidebyside(gap = 10) {
-                    @snippet(clazz = "slim") {
-                        @sourceblock(reference = "simple_class_step1", id = "simple_class_step3") {
-                            |val eq = s.equals(new HttpStatus(404))
-                        }
-                        @outblock() {
-                            |eq: Boolean = false
-                        }
-                    }
-                } {
-                    @snippet(clazz = "slim") {
-                        @sourceblock(reference = "case_class_step1", id = "simple_class_step3") {
-                            |val eq = s.equals(HttpStatus(404))
-                        }
-                        @outblock() {
-                            |eq: Boolean = true
-                        }
-                    }
-                    @codesub2() {
-                        <code>equals</code> funktioniert
-                    }
-                }
-            }
-
-            <!-- ################################################################################## -->
-
-            @slide(title = title) {
-                @sidebyside(gap = 10) {
-                    @sourcecode() {
-                        |class HttpStatus(val code: Int) {
-                        |
-                        |  override def toString =
-                        |    "HttpStatus(" + code + ")"
-                        |
-                        |  override def hashCode =
-                        |    code.hashCode
-                        |
-                        |  def copy(code: Int = code) =
-                        |    new HttpStatus(code)
-                        |
-                        |  override def equals(other: Any) =
-                        |    other match {
-                        |      case status: HttpStatus =>
-                        |        this.code == status.code
-                        |      case _ => false
-                        |    }
-                        |}
-                        |
-                        |object HttpStatus {
-                        |  def apply(code: Int) =
-                        |    new HttpStatus(code)
-                        |}
-                    }
-                } {
-                    @sourcecode(id = "case_class") {
-                        |case class HttpStatus(code: Int)
-                    }
-
-                    @spacer()
-
-                    @codenote2() {
-                        <code>case</code> bewirkt:
-                        @spacer_half()
-                        <ul class="indent fragments">
-                            <li>
-                                Parameter werden zu öffentlichen, <br/> unveränderlichen Feldern
-                            </li>
-                            <li>
-                                Aufruf von <code>equals()</code> vergleicht strukturell
-                            </li>
-                            <li>
-                                <code>toString()</code> gibt Klassenname <br/> und Parameterwerte aus
-                            </li>
-                            <li>
-                                Factory-Methode <code>apply</code> in Companion Object
-                            </li>
-                            <li>
-                                Implementation von <code>hashCode</code>
-                            </li>
-                            @*<li>
-                                Extraktor-Methode <code>unapply</code> in Companion Object
-                            </li>*@
-                            <li>
-                                Methode <code>copy</code> erstellt Kopien
-                            </li>
-                        </ul>
-                    }
-                }
-            }
-
-            <!-- ################################################################################## -->
-
-            @titleslide(title = title, subtitle = "Vererbung") {
 
                 @snippet() {
-                    @sourceblock(id = "case_point") {
-                        |case class Employee(name: String)
-                        |
-                        |case class Programmer(name2: String, knowsScala: Boolean)
-                        |   extends Employee(name2)
+                    @sourceblock() {
+                        |object myObject[T] {
+                        |   // ...
+                        |}
                     }
                     @outblock(error = true) {
-                        |warning: case class `class Programmer'
-                        |         has case ancestor `class Employee'.
-                        |         Case-to-case inheritance has potentially
-                        |         dangerous bugs which are unlikely to be fixed.
-                    }
-                }
-                @*@codesub2() {
-                    <var>Warnung</var> bei Vererbung einer Case Class
-                }*@
-
-                @spacer()
-
-                @snippet() {
-                    @callblock(reference = "case_point") {
-                        |Programmer("Bob", true).copy()
-                    }
-                    @outblock() {
-                        |res2: Employee = Employee(Bob)
+                        |error: ';' expected but '[' found
                     }
                 }
                 @codesub2() {
-                    <var>Problem:</var> <code>copy</code> liefert Basis-Klasse
+                    <var>Objekte</var> unterstützen keine Typ-Parameter
                 }
-
-                @autocenter {
-                    @warnbox() {
-                        Case Class sollte @uline("nicht") vererbt werden!
-                    }
-                }
-            }
-
-            <!-- ################################################################################## -->
-
-            @titleslide(title = title, subtitle = "Pattern Matching") {
-
-                @sidebyside((60,40)) {
-                    @snippet() {
-                        @sourceblock(id = "empl") {
-                            |case class Employee (name: String, age: Int)
-                        }
-                    }
-                } {
-                }
-
-                @spacer()
-
-                @sidebyside((60,40)) {
-                    @indent() {
-                        @snippet() {
-                            @sourceblock(reference = "empl", hl = "3") {
-                                |def shouldRetire(empl: Employee) =
-                                |  empl match {
-                                |    case Employee(n, a) if(a > 66) => true
-                                |    case _ => false
-                                |  }
-                            }
-                        }
-                    }
-                } {
-                    @codenote2() {
-                        <em>Konstruktor-Pattern</em>: <br/> Zerlegen der Case Class
-                    }
-                    <br/>
-                    @codenote2() {
-                        <em>Guarded-Pattern</em>: <br/> Abfrage von <code>age</code>
-                    }
-                }
-
-                @spacer()
-
-                @sidebyside((60,40)) {
-                    @indent() {
-                        @snippet() {
-                            @sourceblock(reference = "empl", hl = "3") {
-                                |def shouldRetire(empl: Employee) =
-                                |  empl match {
-                                |    case Employee(_, 65) => true
-                                |    case _ => false
-                                |  }
-                            }
-                        }
-                    }
-                } {
-                    @codenote2() {
-                        <em>Konstante-Pattern</em>: <br/> Konstante <code>65</code>
-                    }
-                    <br/>
-                    @codenote2() {
-                        <em>Wildcard-Pattern</em>: <br/> Parameter mit <code>_</code> ignorieren
-                    }
-                }
-            }
-
-            <!-- ################################################################################## -->
-
-            @titleslide(title = title, subtitle = "sealed") {
-
-                @autocenter {
-                    @sourcecode(id = "case_class_match") {
-                        |sealed abstract class Empl
-                        |case class Boss(age: Int) extends Empl
-                        |case class Developer(age: Int, knowsScala: Boolean) extends Empl
-                    }
-                }
-
-                @spacer()
-
-                @sidebyside(gap = 10) {
-                    @snippet() {
-                        @sourceblock(id = "match_salary", reference = "case_class_match") {
-                            |def getSalary(e: Empl) = e match {
-                            |  case p: Boss =>
-                            |    80000 + (p.age * 1000)
-                            |  case Developer(_, true) =>
-                            |    50000
-                            |}
-                        }
-                        @outblock(error = true) {
-                            |warning: match may not be exhaustive.
-                            |It would fail on the following input:
-                            |  Developer(_, false)
-                        }
-                    }
-                    @codesub2() {
-                        Compiler warnt vor fehlenden Fällen
-                    }
-                } {
-                    @snippet() {
-                        @sourceblock(id = "match_salary2", reference = "case_class_match") {
-                            |def getSalary(e: Empl) = e match {
-                            |  case p: Boss =>
-                            |    80000 + (p.age * 1000)
-                            |  case Developer(_, true) =>
-                            |    50000
-                            |  case d: Developer =>
-                            |    40000
-                            |}
-                        }
-                        @outblock() {
-                            |getSalary: (e: Empl)Int
-                        }
-                    }
-                }
-
-                @*
-                @spacer()
-
-                @sidebyside() {
-                    @snippet() {
-                        @callblock(reference = "match_salary") {
-                            |val e = Boss(25)
-                            |val s = getSalary(e)
-                        }
-                        @outblock() {
-                            |s: Int = 105000
-                        }
-                    }
-                } {
-                    @snippet() {
-                        @callblock() {
-                            |val e = Developer(30, false)
-                            |val s = getSalary(e)
-                        }
-                        @outblock() {
-                            |s: Int = 40000
-                        }
-                    }
-                }
-                *@
             }
         }
 
         <!-- ################################################################################## -->
 
+        @*
+        @slide(title = "Beispiel") {
+
+            @sourcecode(linebyline = true) {
+                |class Config[T] (key: String, value: T) {
+                |
+                |  def get: T = value
+                |
+                |  def isEqualTo (k: String, v: T) =
+                |    key == k && value == v
+                |
+                |  override def toString =
+                |    key + "=" + value
+                |}
+            }
+            @codesub2() {
+                <code>T</code> als Parameter- und Rückgabetyp
+            }
+        }
+        *@
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Modell") {
+
+            @snippet() {
+                @sourceblock(id = "crew") {
+                    |trait Crew
+                    |
+                    |class Pilot extends Crew
+                    |class CoPilot extends Pilot
+                    |
+                    |class Stewardess() extends Crew
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Inferenz") {
+
+            @sourcecode(id = "cockpit2", reference = "crew") {
+                |case class Cockpit[T, S](left: T, right: S)
+            }
+
+            @spacer2()
+
+            @snippet() {
+                @sourceblock(reference = "cockpit2") {
+                    |val c: Cockpit[Pilot, Pilot] =
+                    |   new Cockpit[Pilot, Pilot](new Pilot, new Pilot)
+                }
+                @outblock() {
+                    |c: Cockpit[Pilot,Pilot] = Cockpit(Pilot,Pilot)
+                }
+            }
+
+            @iseq()
+
+            @snippet() {
+                @sourceblock(reference = "cockpit2") {
+                    |val c =
+                    |   new Cockpit[Pilot, Pilot](new Pilot, new Pilot)
+                }
+                @outblock() {
+                    |c: Cockpit[Pilot,Pilot] = Cockpit(Pilot,Pilot)
+                }
+            }
+
+            @iseq()
+
+            @snippet() {
+                @sourceblock(reference = "cockpit2") {
+                    |val c = new Cockpit (new Pilot, new Pilot)
+                }
+                @outblock() {
+                    |c: Cockpit[Pilot,Pilot] = Cockpit(Pilot,Pilot)
+                }
+            }
+            @codesub2() {
+                Typ-Parameter werden abgeleitet
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Typenüberprüfung") {
+
+            @sourcecode(id = "cockpit-check", reference = "crew") {
+                |case class Cockpit[T](left: T, right: T) {
+                |
+                |   require(left.isInstanceOf[Pilot] &&
+                |           right.isInstanceOf[Pilot])
+                |}
+            }
+            @codesub2() {
+                <code>isInstanceOf</code> überprüft den Typ
+            }
+
+            @spacer2()
+
+            @indent() {
+
+                @snippet() {
+                    @sourceblock(reference = "cockpit-check") {
+                        |val c = new Cockpit (new Pilot, new Pilot)
+                    }
+                    @outblock() {
+                        |c: Cockpit[Pilot,Pilot] = Cockpit(Pilot,Pilot)
+                    }
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @sourceblock(reference = "cockpit-check") {
+                        |val c = new Cockpit (new Pilot, new Stewardess)
+                    }
+                    @outblock(error = true) {
+                        |java.lang.IllegalArgumentException: requirement failed
+                        |    at scala.Predef$.require(Predef.scala:145)
+                        |    at Cockpit.&lt;init&gt;(&lt;console&gt;:16)
+                    }
+                }
+                @codesub2() {
+                    Fehler wird erst zur Laufzeit erkannt
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "Upper Bound") {
+
+            @sourcecode(id = "cockpit-upper", reference = "crew") {
+                |case class Cockpit[T &lt;: Pilot](left: T, right: T)
+            }
+            @codesub2() {
+                <code>T</code> muss mindestens vom Typ <code>Pilot</code> sein
+            }
+
+            @spacer2()
+
+            @indent() {
+
+                @snippet() {
+                    @callblock(reference = "cockpit-upper") {
+                        |new Cockpit(new Pilot, new CoPilot)
+                    }
+                    @outblock() {
+                        |res0: Cockpit[Pilot,CoPilot] = Cockpit(Pilot,CoPilot)
+                    }
+                }
+                @codesub2() {
+                    <code>CoPilot</code> und <code>Pilot</code> <em>sind erlaubt</em>
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference = "cockpit-upper") {
+                        |new Cockpit(new Pilot, new Stewardess)
+                    }
+                    @outblock(error = true) {
+                        |error: inferred type arguments [Crew]
+                        |       do not conform to class Cockpit's
+                        |       type parameter bounds [T &lt;: Pilot]
+                    }
+                }
+                @codesub2() {
+                    <code>Stewardess</code> ist <var>nicht erlaubt</var>
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @*
+        @slide(title = "Lower Bound") {
+
+            @sourcecode(id = "cockpit-lower", reference = "crew") {
+                |case class Cockpit[T &lt;: Pilot](left: T, right: T) {
+                |
+                |  def replaceLeft[R >: T](newLeft: R) =
+                |    new Cockpit(newLeft, right)
+                |}
+            }
+            @codesub2() {
+                <code>R</code> muss
+            }
+
+            @spacer()
+
+            @indent() {
+
+                @snippet() {
+                    @callblock(reference = "cockpit-lower") {
+                        |val b = new Cockpit(new Pilot, new CoPilot)
+                    }
+                    @outblock() {
+                        |b: Cockpit[Pilot,CoPilot] = Cockpit(Pilot,CoPilot)
+                    }
+                    @callblock() {
+                        |val b2 = b.replaceLeft(new Stewardess)
+                    }
+                    @outblock() {
+                        |b2: Cockpit[Apple] = Cockpit(Apple,CandyApple)
+                    }
+                }
+                @codesub2() {
+
+                }
+            }
+        }
+        *@
+
+        <!-- ################################################################################## -->
+
+        @*
+        @defining("Varianz") { title =>
+
+            @slide(title = title, subtitle = "Invarianz") {
+
+                @sourcecode(id = "cockpit-invariant", reference = "crew") {
+                    |case class Cockpit[T](left: T, right: T) {
+                    |
+                    |  def swap(newItem: T) =
+                    |    new Cockpit(newItem)
+                    |}
+                }
+
+                @spacer()
+
+                @sidebyside() {
+                    @sourcecode(reference = "cockpit-invariant") {
+                        |val b1 = new Cockpit(Apple())
+                    }
+                } {
+                    @sourcecode(reference = "cockpit-invariant") {
+                        |val b2: Cockpit[Fruit] = new Cockpit(Apple())
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Kovarianz") {
+
+            }
+
+            <!-- ################################################################################## -->
+
+            @slide(title = title, subtitle = "Kontravarianz") {
+
+            }
+        }
+        *@
+
+        <!-- ################################################################################## -->
+
+        @*
+        @slide(title = "Type Erasure") {
+            @sourcecode(reference = "crew") {
+                |case class Cockpit[T](left: T, right: T)
+                |
+                |def canFlyPlane(c: Cockpit[_]) = c match {
+                |    case c: Cockpit[Pilot] => true
+                |    case _ => false
+                |}
+                |
+                |canFlyPlane(new Cockpit)
+            }
+        }
+        *@
+
+        <!-- ################################################################################## -->
+        
         @uebung(implicitSlide.id)
-    }
+    }   
 }
