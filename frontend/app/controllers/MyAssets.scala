@@ -2,37 +2,40 @@ package controllers
 
 import base.MyController
 import com.loops101.web.controllers.impl.BaseAssets
+import com.loops101.util.TimeUtil
 
 object MyAssets
-    extends MyController with BaseAssets {
+  extends MyController
+  with BaseAssets
+  with TimeUtil {
 
-    def domain = "learnscala.de"
+  def domain = "learnscala.de"
 
-    // ==== JS
+  // ==== JS
 
-    lazy val js_libs_init =
-       List(
-           jsUrl("lib/init/require"),
-           jsUrl("main.dev")
-       )
+  lazy val js_libs_init =
+    List(
+      jsUrl("lib/init/require"),
+      jsUrl("main.dev")
+    )
 
-    lazy val js_libs_pub =
-        List(
-            jsUrl("lib/dom/jquery"),
-            jsUrl("lib/dom/vanadium")
-        )
+  lazy val js_libs_pub =
+    List(
+      jsUrl("lib/dom/jquery"),
+      jsUrl("lib/dom/vanadium")
+    )
 
-    lazy val js_base = jsUrl("base", false)
-    lazy val js_util = jsUrl("util", false)
-    lazy val js_slide = jsUrl("slide", false)
-    lazy val js_editor = jsUrl("editor", false)
+  lazy val js_base = jsUrl("base", false)
+  lazy val js_util = jsUrl("util", false)
+  lazy val js_slide = jsUrl("slide", false)
+  lazy val js_editor = jsUrl("editor", false)
 
 
-    // ==== CSS
+  // ==== CSS
 
-    lazy val css_pub = cssUrl("pub.css")
-    lazy val css_app = cssUrl("app.css")
-    lazy val css_ide = cssUrl("ide.css")
-    lazy val css_slide = cssUrl("slide.css")
-    lazy val css_slide_print = cssUrl("slide.print.css")
+  lazy val css_pub = cssUrl("pub.css")
+  lazy val css_app = cssUrl("app.css")
+  lazy val css_ide = cssUrl("ide.css")
+  lazy val css_slide = cssUrl("slide.css")
+  lazy val css_slide_print = cssUrl("slide.print.css")
 }

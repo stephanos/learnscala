@@ -7,7 +7,6 @@ object ProjectBuild extends MyBuild {
     val v = "0.2"
     val org = "de.learnscala"
     val modBase = "modules/commons/"
-    override val scalaV = "2.10.0"
 
 
     lazy val root =
@@ -21,7 +20,7 @@ object ProjectBuild extends MyBuild {
         MyProject("app-frontend", file("frontend"))
             .settings(myPlaySettings: _*)
             .settings(templatesImport += "views.html.comp._")
-            .dependsOn(mod_api, mod_test_unit % "test->test")
+            .dependsOn(mod_api, mod_mail, mod_test_unit % "test->test")
 
     lazy val app_api =
         MyProject("app-api", file("api"))
@@ -70,14 +69,6 @@ object ProjectBuild extends MyBuild {
     val scalaP = "org.scala-lang" % "scalap" % scalaV
     val scalaR = "org.scala-lang" % "scala-reflect" % scalaV
     val scalaC = "org.scala-lang" % "scala-compiler" % scalaV
-
-
-    // modify inherited dependencies
-    V.Specs2 = "1.13"
-    playWeb = ("play" % "play_2.10" % "2.1-RC2")
-    squeryl = playWeb
-    liftMongo = playWeb
-    rogue = playWeb
 
 
     // ==== OTHER

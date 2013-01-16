@@ -1,6 +1,6 @@
 package com.loops101.util
 
-import java.util.Date
+import org.joda.time.DateTime
 
 
 object IDUtil extends IDUtilImpl
@@ -42,8 +42,8 @@ private[util] class IDUtilImpl {
   def urlShrink(id: Long): String =
     BaseUtil.hash30(id)
 
-  def urlShrink(id: Date): String =
-    urlShrink(id.getTime)
+  def urlShrink(id: DateTime): String =
+    urlShrink(id.getMillis)
 
   def urlUnshrink(id: String): Long =
     BaseUtil.unhash30(id).longValue

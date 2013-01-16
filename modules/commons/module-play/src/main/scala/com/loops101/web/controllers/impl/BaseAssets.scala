@@ -1,12 +1,14 @@
 package com.loops101.web.controllers.impl
 
-import java.util.Date
 import controllers.Assets
 import com.loops101.web.util.WebUtil
+import com.loops101.util.TimeUtil
 
 trait BaseAssets {
 
-    self: WebUtil =>
+    self: WebUtil
+      with TimeUtil =>
+
 
     def domain: String
 
@@ -63,7 +65,7 @@ trait BaseAssets {
     //~ INTERNALS =================================================================================
 
     private def hash =
-        if (envUtil.isCloud) "" else "?" + new Date().getTime
+        if (envUtil.isCloud) "" else "?" + timeUtil.millis
 
     private def jsExt =
         ".js" // if (isCloud) ".min.js" else ".js"

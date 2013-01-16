@@ -5,19 +5,19 @@ import controllers.base.MyController
 
 object App extends MyController {
 
-    def index = Action {
-        Ok(views.html.app.index())
-    }
+  def index = Action {
+    Ok(views.html.app.index())
+  }
 
-    def waitingRoom = Action {
-        Ok(views.html.app.wait())
-    }
+  def waitingRoom = Action {
+    Ok(views.html.app.wait())
+  }
 
-    def invalidBrowser = Action {
-        implicit req =>
-            Ok(views.html.error.unsupported())
-    }
+  def invalidBrowser = Action {
+    implicit req =>
+      Ok(views.html.error.unsupported())
+  }
 
-    def index2 =
-        index
+  def index2 =
+    index
 }

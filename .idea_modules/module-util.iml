@@ -5,7 +5,7 @@
       <configuration>
         <option name="compilerLibraryLevel" value="Project" />
         <option name="compilerLibraryName" value="SBT: scala:2.10.0" />
-        <option name="compilerOptions" value="-encoding UTF-8 -deprecation -unchecked -g:vars" />
+        <option name="compilerOptions" value="-encoding UTF-8 -deprecation -unchecked -language _ -g:vars" />
         <option name="deprecationWarnings" value="true" />
         <option name="fsc" value="true" />
         <option name="uncheckedWarnings" value="true" />

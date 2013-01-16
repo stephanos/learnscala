@@ -5,6 +5,7 @@ import play.api.mvc._
 import com.loops101.util._
 import java.util.Date
 import com.loops101.web.util.WebUtil
+import org.joda.time.DateTime
 
 trait BaseController
     extends Controller
@@ -22,9 +23,9 @@ trait BaseController
     protected def id2code(id: Long): String =
       idUtil.obfuscate(id)
 
-    protected def date2code(id: Date): String =
+    protected def date2code(id: DateTime): String =
       idUtil.urlShrink(id)
 
-    protected def code2date(code: String): Date =
-        new Date(idUtil.urlUnshrink(code).toLong)
+    protected def code2date(code: String): DateTime =
+        new DateTime(idUtil.urlUnshrink(code))
 }

@@ -1,5 +1,7 @@
 import sbt._
 import Keys._
+import java.util.Date
+
 
 trait MyBuild
   extends Build with Settings with Modules with Deps
@@ -9,12 +11,12 @@ trait MyBuild
 // SETTINGS
 // ================================================================================================
 
-trait Settings extends TaskStage with Env {
+trait Settings extends Env {
 
   val v: String
   val org: String
   val modBase: String
-  val scalaV: String = "2.9.1"
+  val scalaV: String = "2.10.0"
 
   lazy val buildSettings =
     Seq(
@@ -29,17 +31,6 @@ trait Settings extends TaskStage with Env {
         f.getName == "_repo" && f.getName == "_old"
     }
 
-  /*
-  lazy val ideaSettings =
-      SbtIdeaPlugin.ideaSettings ++
-          Seq(
-              SbtIdeaPlugin.commandName := "idea",
-              SbtIdeaPlugin.includeScalaFacet := true,
-              SbtIdeaPlugin.addGeneratedClasses := true,
-              SbtIdeaPlugin.defaultClassifierPolicy := false
-          )
-  */
-
   lazy val baseSettings =
     Defaults.defaultSettings ++ Seq(
 
@@ -49,7 +40,7 @@ trait Settings extends TaskStage with Env {
       resolvers += "typesafe" at "http://repo.typesafe.com/typesafe/releases/",
 
       scalacOptions ++=
-        Seq("-encoding", "UTF-8", "-deprecation", "-unchecked") ++ (
+        Seq("-encoding", "UTF-8", "-deprecation", "-unchecked", "-language", "_") ++ (
           if (isCloud) Seq("-optimize") else Seq("-g:vars")), // -Xcheckinit ? (crashes with lift)
 
       javacOptions ++=
@@ -57,88 +48,74 @@ trait Settings extends TaskStage with Env {
           "-Xlint:unchecked", "-Xlint:deprecation", "-encoding", "utf8"),
       //javacOptions := Seq("-g"),
 
-      maxErrors := 20
+      maxErrors := 5
 
       // disable parallel tests
       // parallelExecution in Test := false
     )
 
-  lazy val stageSettings =
-    Seq(stage <<= stageTask) ++ Seq(packageProjects <<= packageProjectsTask)
-
   lazy val dummySettings =
-    Seq(stage <<= stageDummyTask)
+    Seq()
 
   lazy val moduleSettings =
-    appSettings ++ Seq(stage := Unit) // skip "stage"
+    appSettings
 
   lazy val playModuleSettings =
-    myPlaySettings ++ Seq(stage := Unit) // skip "stage"
+    myPlaySettings
 
   lazy val testModuleSettings =
     moduleSettings ++ Seq(testOptions in Test := Seq(Tests.Filter(s => false)))
 
   lazy val appSettings =
-    baseSettings ++ stageSettings ++ (mainClass := Some("boot.Main"))
+    baseSettings ++ (mainClass := Some("boot.Main"))
 
-  import PlayProject._
 
-  val assetoEntryPoints = SettingKey[PathFinder]("play-asseto-entry-points")
-  val assetoComp =
-    AssetsCompiler("asseto", _ / "assets" / "source" ** "*", assetoEntryPoints, {
-      (name, min) => name
-    }, {
-      (file, options) => {
-        if (!isCloud) {
-          val folder = file.getParentFile
-          println("[compiling " + folder.getName + "]")
-          val input = folder.getAbsolutePath
-          NodeJs.call("/usr/local/share/npm/lib/node_modules/asseto/bin/asseto",
-            "compile",
-            input,
-            input.replaceAllLiterally("app/assets/source", "public")
-          )
-        }
-        ("", None, Seq(file))
-      }
-    }, coffeescriptOptions)
+  import play.Project._
 
-  /*
-  val minifyEntryPoints = SettingKey[PathFinder]("play-minify-entry-points")
-  val minifyComp =
-      AssetsCompiler("minify", _ ** "*.js", minifyEntryPoints,
-      {
-          (name, min) => "scripts/" + name.replace(".js", ".min.js").replace("build", "")
-      }, {
-          (file, options) => {
-              if(isCloud) {
-                  val fname = file.getName
-                  println("[minifying " + fname + "]")
-                  val src = IO.read(file)
-                  (src, Some(play.core.jscompile.JavascriptCompiler.minify(src, Some(fname))), Seq(file))
-              }
-              else
-                  ("", None, Seq(file))
+  val assetoCompiler =
+    (state, sourceDirectory in Compile, resourceManaged in Compile) map {
+      (state, src, resources) =>
+
+        import java.io._
+        val assetDir = src / "assets" / "source"
+
+        if (assetDir.exists()) {
+
+          // find modified files
+          val watch = (f: File) => {
+            assetDir ** "**"
           }
-      }, coffeescriptOptions)
-  */
+          val wasModified =
+            !watch(assetDir).get
+              .map(f => FileInfo.lastModified(f).lastModified)
+              .filter(lm => lm > NodeJs.lastCall)
+              .isEmpty
+
+          if (wasModified) {
+            if (!isCloud) {
+              val assetsPath = assetDir.getAbsolutePath
+              println("[compiling " + assetsPath + "]")
+              NodeJs.call(
+                "/usr/local/share/npm/lib/node_modules/asseto/bin/asseto",
+                "compile",
+                assetsPath,
+                assetsPath.replaceAllLiterally("app/assets/source", "public")
+              )
+            }
+          }
+        }
+
+        Seq[File]()
+    }
 
   lazy val myPlaySettings =
-    buildSettings ++ defaultSettings ++ defaultScalaSettings ++ stageSettings ++ Seq(
+    buildSettings ++ defaultSettings ++ defaultScalaSettings ++ Seq(
 
       // add compiler settings
       //scalacOptions ++= Seq("-Yresolve-term-conflict:object"),
 
-      // define asset locations
-      assetoEntryPoints <<= baseDirectory(_ / "app" / "assets" / "source" ** "build.json"),
-
-      /*minifyEntryPoints <<= (sourceDirectory in Compile)(base =>
-          base / "assets" / "build" * "*.js"
-      ),*/
-
       // customize assets compilation
-      resourceGenerators in Compile <<= assetoComp(Seq(_)),
-      //resourceGenerators in Compile <+= minifyComp,
+      resourceGenerators in Compile <<= assetoCompiler(Seq(_)),
 
       // exclude old/repo resources
       excludeFilter in managedSources := excludes,
@@ -154,8 +131,6 @@ trait Settings extends TaskStage with Env {
 
       // experimental feature: only compile changed files
       //incrementalAssetsCompilation := true,
-
-
     )
 
   object MyModule {
@@ -191,7 +166,7 @@ trait Modules {
 
   lazy val mod_play =
     MyModule("module-play")
-      .settings(libraryDependencies ++= Seq(playWeb)) // Test.playTest
+      .settings(libraryDependencies ++= Seq(playWeb, playFilter)) // Test.playTest
       /*libraryDependencies <+= (sbtVersion) {
           sbtVersion => Defaults.sbtPluginExtra(module, sbtVersion, localScalaVersion)
       }*/
@@ -199,12 +174,12 @@ trait Modules {
 
   lazy val mod_sql =
     MyModule("module-sql")
-      .settings(libraryDependencies ++= Seq(squeryl, boneCP, Runtime.postgres))
+      .settings(libraryDependencies ++= Seq(slick, boneCP, Runtime.postgres))
       .dependsOn(mod_config, mod_test_unit % "test->test")
 
   lazy val mod_mongo =
     MyModule("module-mongo")
-      .settings(libraryDependencies ++= Seq(rogue, mongoDb, liftMongo))
+      .settings(libraryDependencies ++= Seq(slick, rogueCore, rogueField, rogueLift, mongoDb, liftMongo))
       .dependsOn(mod_config, mod_test_unit % "test->test")
 
   lazy val mod_redis =
@@ -214,12 +189,12 @@ trait Modules {
 
   lazy val mod_queue =
     MyModule("module-queue")
-      .settings(libraryDependencies ++= Seq(camel))
+      .settings(libraryDependencies ++= Seq(akkaCamel, camel))
       .dependsOn(mod_config, mod_test_unit % "test->test")
 
   lazy val mod_cache =
     MyModule("module-cache")
-      .settings(libraryDependencies ++= Seq(jta, ehCache, memcache))
+      .settings(libraryDependencies ++= Seq(jta, ehCache, memcached))
       .dependsOn(mod_config, mod_test_unit % "test->test")
 
   lazy val mod_mail =
@@ -268,7 +243,7 @@ trait Deps {
 
   object V {
 
-    var Akka2 = "2.0.2"
+    var Akka = "2.1.0"
     var AWS = "1.3.27"
     var BoneCP = "0.7.1.RELEASE"
     var Camel = "2.10.3"
@@ -292,34 +267,35 @@ trait Deps {
     var JodaTime = "2.1"
     var JSON = "20090211"
     var JTA = "1.1"
-    var Lift = "2.5-M2"
+    var JUnit = "4.7"
+    var Lift = "2.5-M4"
     var Logback = "1.0.3"
-    var XMemcached = "1.3.8"
+    var Memcached = "1.3.8"
     var Metrics = "2.1.2"
     var Mockito = "1.9.0"
     var MongoDB = "2.7.3"
     var Play = play.core.PlayVersion.current
     var Postgres = "9.1-901.jdbc4"
-    var Rogue = "1.1.8"
+    var Rogue = "2.0.0-beta22"
+    var ScalaCheck = "1.10.0"
+    var ScalaTest = "1.9.1"
     var Selenium = "2.20.0"
-    var SJSON = "0.15"
     var Slf4j = "1.7.2"
+    var Slick = "1.0.0-RC1"
     var Snappy = "1.0.4.1"
     var Smock = "3.0"
-    var Specs2 = "1.12.1"
+    var Specs2 = "1.13"
     var Spray = "1.0-M2.2"
-    var Squeryl = "0.9.5"
-    var Stest = "1.9.1"
   }
+
 
   // ==== Compile
 
-  var akka2 = "com.typesafe.akka" % "akka-actor" % V.Akka2
-  var akka2Slfj4 = "com.typesafe.akka" % "akka-slf4j" % V.Akka2
+  var akka = "com.typesafe.akka" %% "akka-actor" % V.Akka
+  var akkaCamel = "com.typesafe.akka" %% "akka-camel" % V.Akka excludeAll (ExclusionRule(organization = "org.apache.camel"))
   var aws = "com.amazonaws" % "aws-java-sdk" % V.AWS
   var boneCP = "com.jolbox" % "bonecp" % V.BoneCP
-  val camel = "org.apache.camel" % "camel-core" % V.Camel
-  var casbah = "org.mongodb" % "casbah_2.9.1" % V.Casbah
+  val camel = "org.apache.camel" % "camel-aws" % V.Camel excludeAll (ExclusionRule(organization = "com.amazonaws"))
   var commonsCodec = "commons-codec" % "commons-codec" % V.CommonsCodec
   var commonsLang = "commons-lang" % "commons-lang" % V.CommonsLang
   var commonsMath = "org.apache.commons" % "commons-math" % V.CommonsMath
@@ -344,26 +320,17 @@ trait Deps {
   var librato = "com.librato.metrics" % "metrics-librato" % "2.1.2.4"
   var metrics = "com.yammer.metrics" %% "metrics-scala" % V.Metrics
   var metricsGraphite = "com.yammer.metrics" % "metrics-graphite" % V.Metrics
-  var memcache = "com.googlecode.xmemcached" % "xmemcached" % V.XMemcached
+  var memcached = "com.googlecode.xmemcached" % "xmemcached" % V.Memcached
   var mongoDb = "org.mongodb" % "mongo-java-driver" % V.MongoDB
-  var playWeb = ("play" %% "play" % V.Play) excludeAll(
-    ExclusionRule(organization = "org.springframework"),
-    ExclusionRule(organization = "net.sf.ehcache"),
-    ExclusionRule(name = "closure-compiler"),
-    ExclusionRule(name = "bonecp"),
-    ExclusionRule(name = "ebean"),
-    ExclusionRule(name = "anorm"),
-    ExclusionRule(name = "h2"))
-  var rogue = "com.foursquare" %% "rogue" % V.Rogue intransitive()
-  var servlet30 = "org.glassfish" % "javax.servlet" % "3.0"
+  var playWeb = ("play" %% "play" % V.Play) excludeAll(ExclusionRule(organization = "net.sf.ehcache"), ExclusionRule(name = "oauth.signpost"))
+  var playFilter = "play" %% "filters-helpers" % V.Play
+  val rogueField = "com.foursquare" %% "rogue-field" % V.Rogue intransitive()
+  val rogueCore = "com.foursquare" %% "rogue-core" % V.Rogue intransitive()
+  val rogueLift = "com.foursquare" %% "rogue-lift" % V.Rogue intransitive()
   var slf4jApi = "org.slf4j" % "slf4j-api" % V.Slf4j
   var slf4jJCL = "org.slf4j" % "jcl-over-slf4j" % V.Slf4j
-  var sjson = "net.debasishg" %% "sjson" % V.SJSON
+  var slick = "com.typesafe" %% "slick" % V.Slick
   var snappy = "org.xerial.snappy" % "snappy-java" % V.Snappy
-  var spray = "cc.spray" % "spray-server" % V.Spray
-  var sprayIo = "cc.spray" % "spray-io" % V.Spray
-  var sprayCan = "cc.spray" % "spray-can" % V.Spray
-  var squeryl = "org.squeryl" %% "squeryl" % V.Squeryl
 
 
   // ==== Provided
@@ -383,7 +350,7 @@ trait Deps {
   object Test {
 
     val h2 = "com.h2database" % "h2" % V.H2 % "test"
-    val junit = "junit" % "junit" % "4.7"
+    val junit = "junit" % "junit" % V.JUnit
     val mockito = "org.mockito" % "mockito-all" % V.Mockito % "test"
 
     val playTest = "play" %% "play-test" % V.Play % "test"
@@ -393,76 +360,12 @@ trait Deps {
     val seleniumFF = "org.seleniumhq.selenium" % "selenium-firefox-driver" % V.Selenium % "test"
     val seleniumHU = "org.seleniumhq.selenium" % "selenium-htmlunit-driver" % V.Selenium % "test"
 
-    val scheck = "org.scalacheck" %% "scalacheck" % "1.10.0" % "test"
-    val smock =  "org.scalamock" %% "scalamock-scalatest-support" % V.Smock % "test"
-    val specs2 = "org.specs2" %% "specs2" % V.Specs2  % "test"
-    var stest = "org.scalatest" %% "scalatest" % V.Stest % "test"
+    val scheck = "org.scalacheck" %% "scalacheck" % V.ScalaCheck % "test"
+    val smock = "org.scalamock" %% "scalamock-scalatest-support" % V.Smock % "test"
+    val specs2 = "org.specs2" %% "specs2" % V.Specs2 % "test"
+    var stest = "org.scalatest" %% "scalatest" % V.ScalaTest % "test"
   }
 
-}
-
-
-// ================================================================================================
-// TASK: Stage
-// ================================================================================================
-
-trait TaskStage extends Env {
-
-  lazy val stage = TaskKey[Unit]("stage")
-
-  lazy val libFilter =
-    (fname: String) => true
-
-  //fname.contains("-compiler") || projName.contains("worker") // compiler is required in 'worker'
-
-  def stageDummyTask = (streams, update, packageProjects, baseDirectory, mainClass) map {
-    (s, updateReport, packaged, root, mainClass) =>
-      () // do nothing
-  }
-
-  def stageTask = (streams, dependencyClasspath in Runtime, packageProjects, baseDirectory, mainClass) map {
-    (s, dependencies, packaged, root, mainClass) =>
-
-      val projName = root.getName
-      println("staging '" + projName + "'")
-
-      // COPY JARs
-
-      val target = root / "target"
-      val destPath = target / "staged"
-      IO.delete(destPath)
-      IO.createDirectory(destPath)
-
-      val libs = dependencies.filter(_.data.ext == "jar").map(_.data) ++ packaged
-      libs foreach {
-        jar =>
-          val fname = jar.getName
-          if (libFilter(fname))
-            IO.copyFile(jar, new File(destPath, fname))
-      }
-
-      // WRITE SCRIPT
-
-      val start = target / "start"
-      val script = (
-        """|#!/usr/bin/env sh
-          |java $@ -cp "`dirname $0`/staged/*" """ + mainClass.get + """ `dirname $0`/..""").stripMargin
-      println(script)
-
-      IO.write(start, script)
-      if (isCloud) "chmod a+x %s".format(start.getAbsolutePath) !
-
-      s.log.info("")
-      s.log.info("Your application is ready to be run in place: target/start")
-      s.log.info("")
-
-      ()
-  }
-
-  val packageProjects = TaskKey[Seq[File]]("package-projects")
-  val packageProjectsTask = (state, thisProjectRef) flatMap {
-    (s, r) => PlayProject.inAllDependencies(r, (packageBin in Compile).task, Project structure s).join
-  }
 }
 
 
@@ -500,9 +403,11 @@ trait Env {
 object NodeJs {
 
   import scala.sys.process._
-  import org.mozilla.javascript._
+
+  var lastCall = 0L
 
   def call(cmd: String*) = {
+    lastCall = (new Date).getTime
     //println("exec " + cmd.mkString(" "))
 
     // I/O
@@ -523,7 +428,8 @@ object NodeJs {
     val err = stderr.toString
 
     if (exit != 0 && !err.isEmpty)
-      throw new JavaScriptException(stderr.toString)
+      throw new PlayExceptions.AssetCompilationException(None, err, None, None)
+
     stdout.toString
   }
 }

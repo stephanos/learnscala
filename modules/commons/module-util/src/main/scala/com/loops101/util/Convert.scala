@@ -1,11 +1,12 @@
 package com.loops101.util
 
+import scala.reflect.ClassTag
 import scala.collection.JavaConversions._
 import collection.immutable.HashMap
 
 object Convert {
 
-    def array[A <: Object](set: java.util.Set[A])(implicit m: ClassManifest[A]) = {
+    def array[A <: Object : ClassTag](set: java.util.Set[A]) = {
         val res = Array.ofDim[A](set.size)
         set.toArray(res)
         res

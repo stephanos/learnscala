@@ -5,42 +5,42 @@ import controllers.base.MyController
 
 object Home extends MyController {
 
-    def redirect = Action {
-        Redirect(routes.Blog.index())
-    }
+  def redirect = Action {
+    Redirect(routes.Blog.index())
+  }
 
-    def AGB = Action {
-        implicit req =>
-            Ok(views.html.agb())
-    }
+  def AGB = Action {
+    implicit req =>
+      Ok(views.html.agb())
+  }
 
-    def links = Action {
-        implicit req =>
-            Ok(views.html.links())
-    }
+  def links = Action {
+    implicit req =>
+      Ok(views.html.links())
+  }
 
-    def glossary = Action {
-        implicit req =>
-            Ok(views.html.links())
-    }
+  def glossary = Action {
+    implicit req =>
+      Ok(views.html.links())
+  }
 
-    def contact = Action {
-        implicit req =>
-            Ok(views.html.contact())
-    }
+  def contact = Action {
+    implicit req =>
+      Ok(views.html.contact())
+  }
 
-    def imprint = Action {
-        implicit req =>
-            Ok(views.html.imprint())
-    }
+  def imprint = Action {
+    implicit req =>
+      Ok(views.html.imprint())
+  }
 
-    def backdoor = Action {
-        implicit req =>
-            Ok(views.html.backdoor())
-    }
+  def backdoor = Action {
+    implicit req =>
+      Ok(views.html.backdoor())
+  }
 
 
-    def gverify = Action {
-        Ok("google-site-verification: google1388dbffebf166ff.html")
-    }
+  def gverify = Action {
+    Ok("google-site-verification: google1388dbffebf166ff.html")
+  }
 }

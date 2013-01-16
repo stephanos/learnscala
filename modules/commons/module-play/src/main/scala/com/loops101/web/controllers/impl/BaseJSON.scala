@@ -8,23 +8,22 @@ trait BaseJSON {
 
     self: Controller =>
 
-    // REPLY
 
-    val emptyJsObject = toJson(Map[String, JsValue]())
+    // REPLY
 
     protected lazy val jOk: Result = jOk()
 
-    protected def jOk(data: JsValue = emptyJsObject): Result =
+    protected def jOk(data: JsValue = Json.obj()): Result =
         jOk(stringify(data))
 
     protected def jOk(data: String): Result =
         Ok(data).as("application/json")
 
     protected def jBadRequest(msg: String) =
-        BadRequest(stringify(toJson(Map("errors" -> toJson(msg))))).as("application/json")
+        BadRequest(stringify(Json.obj("errors" -> msg))).as("application/json")
 
     protected def jNotFound(msg: String) =
-        NotFound(stringify(toJson(Map("msg" -> toJson(msg))))).as("application/json")
+        NotFound(stringify(Json.obj("msg" -> msg))).as("application/json")
 
 
     // PRODUCE

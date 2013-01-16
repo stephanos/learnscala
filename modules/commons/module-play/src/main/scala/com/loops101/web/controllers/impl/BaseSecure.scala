@@ -6,7 +6,9 @@ import com.loops101.util._
 
 trait BaseSecure {
 
-    self: BaseErrors with EnvUtil =>
+    self: BaseErrors
+      with EnvUtil =>
+
 
     protected val USER_ID = "id"
     protected val USER_SRC = "src"

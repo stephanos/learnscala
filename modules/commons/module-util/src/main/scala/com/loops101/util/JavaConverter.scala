@@ -1,8 +1,10 @@
 package com.loops101.util
 
+import scala.reflect.ClassTag
+
 class JavaConverter {
 
-    def array[A <: Object](set: java.util.Set[A])(implicit m: ClassManifest[A]) = {
+    def array[A <: Object](set: java.util.Set[A])(implicit m: ClassTag[A]) = {
         val res = Array.ofDim[A](set.size)
         set.toArray(res)
         res

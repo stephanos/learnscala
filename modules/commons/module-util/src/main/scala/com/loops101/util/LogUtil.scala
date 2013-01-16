@@ -270,7 +270,7 @@ object Logger {
      *
      * @return the `Logger`.
      */
-    def apply[C](implicit m: Manifest[C]): Logger = apply(m.erasure.getName)
+    def apply[C](implicit m: Manifest[C]): Logger = apply(m.runtimeClass.getName)
 
     /**
      * Get the root logger.

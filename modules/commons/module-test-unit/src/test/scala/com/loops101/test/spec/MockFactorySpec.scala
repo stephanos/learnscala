@@ -2,6 +2,7 @@ package com.loops101.test.spec
 
 import java.lang.reflect._
 import annotation.tailrec
+import reflect.ClassTag
 
 abstract class MockFactorySpec[T](implicit t: Manifest[T])
     extends UnitFactorySpec[T] with MockSpec {
@@ -21,13 +22,13 @@ abstract class MockFactorySpec[T](implicit t: Manifest[T])
 
     // ==== MOCKING
 
-    protected def _mock[F](implicit m: Manifest[F]): F =
+    protected def _mock[F](implicit m: ClassTag[F]): F =
         _set(mock(m))
 
-    protected def _mock[F](fieldName: String)(implicit m: Manifest[F]): F =
-        _mock[F](t.erasure.getDeclaredField(fieldName))
+    protected def _mock[F](fieldName: String)(implicit m: ClassTag[F]): F =
+        _mock[F](t.runtimeClass.getDeclaredField(fieldName))
 
-    protected def _mock[F](field: Field)(implicit m: Manifest[F]): F =
+    protected def _mock[F](field: Field)(implicit m: ClassTag[F]): F =
         _set(field, mock(m))
 
     protected def reset[T](mocks: T*) =
@@ -36,20 +37,20 @@ abstract class MockFactorySpec[T](implicit t: Manifest[T])
 
     // ==== REFLECTION
 
-    protected def _set[F](value: F)(implicit m: Manifest[F]): F = {
-        val clazz = t.erasure
+    protected def _set[F](value: F)(implicit m: ClassTag[F]): F = {
+        val clazz = t.runtimeClass
         val fields = findFields(clazz)
         for (fld <- fields)
-            if (fld.getType.equals(m.erasure))
+            if (fld.getType.equals(m.runtimeClass))
                 return _set(fld, value)
         for (fld <- fields)
-            if (fld.getType.isAssignableFrom(m.erasure))
+            if (fld.getType.isAssignableFrom(m.runtimeClass))
                 return _set(fld, value)
 
-        sys.error("was unable to set field of type '" + m.erasure + "' to '" + value + "'")
+        sys.error("was unable to set field of type '" + m.runtimeClass + "' to '" + value + "'")
     }
 
-    protected def _set[F](field: Field, value: F)(implicit m: Manifest[F]): F = {
+    protected def _set[F](field: Field, value: F)(implicit m: ClassTag[F]): F = {
         field.setAccessible(true)
 
         val modifier = classOf[Field].getDeclaredField("modifiers");

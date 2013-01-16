@@ -1,13 +1,13 @@
 package com.loops101.model.dto
 
-import java.util.Date
+import org.joda.time.DateTime
 
 trait ILogMsg {
 
     var msg: String
     var level: String
     var nlevel: Int
-    var time: Date
+    var time: DateTime
 
     var traces: Array[Byte] = Array()
 
