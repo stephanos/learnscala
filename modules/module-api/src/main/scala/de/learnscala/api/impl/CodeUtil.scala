@@ -26,6 +26,7 @@ object CodeUtil {
         s.Yreplsync.value = true
         s.language.value = List("_")
         s.verbose.value = verbose
+        s.encoding.value = "UTF-8"
         s.unchecked.value = unchecked
         s.deprecation.value = deprecation
         s.bootclasspath.value = scalaCP.map(_.toString).mkString(File.pathSeparator)

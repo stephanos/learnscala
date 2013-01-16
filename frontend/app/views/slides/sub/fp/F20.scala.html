@@ -12,6 +12,73 @@
 
         <!-- ################################################################################## -->
 
+        @defining("Enumeration") { title =>
+
+            @titleslide(title = title, subtitle = "Erstellen", head = true) {
+
+                @sourcecode() {
+                    |object WeekDay extends Enumeration {
+                    |  val Mon, Tue, Wed, Thu, Fri, Sat, Sun = Value
+                    |}
+                }
+                @codesub2() {
+
+                }
+
+                @spacer2()
+
+                @sourcecode() {
+                    |object Direction extends Enumeration {
+                    |  val North = Value("Norden")
+                    |  val East  = Value("Osten")
+                    |  val South = Value("Süden")
+                    |  val West  = Value("Westen")
+                    |}
+                }
+                @codesub2() {
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "Zugriff", connector = ":") {
+
+                @sourcecode(id = "enum") {
+                    |object WeekDay extends Enumeration {
+                    |  val Mon, Tue, Wed, Thu, Fri, Sat, Sun = Value
+                    |}
+                }
+
+                @spacer()
+
+                @indent() {
+                    @snippet() {
+                        @callblock(reference = "enum") {
+                            |WeekDay.Tue.id
+                        }
+                        @outblock() {
+                            |res0: Int = 1
+                        }
+                        @callblock() {
+                            |WeekDay(1)
+                        }
+                        @outblock() {
+                            |res1: WeekDay.Value = Tue
+                        }
+                        @callblock() {
+                            |WeekDay.values
+                        }
+                        @outblock() {
+                            |res2: WeekDay.ValueSet =
+                            |  WeekDay.ValueSet(Mon, Tue, Wed, Thu, Fri, Sat, Sun)
+                        }
+                    }
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
         @defining("Tuple") { title =>
 
             @titleslide(title = title, subtitle = "Erstellen", head = true) {
