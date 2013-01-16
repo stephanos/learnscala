@@ -371,60 +371,58 @@
                         }
                     }
                 }
+            }
 
-                <!-- ################################################################################## -->
+            <!-- ################################################################################## -->
 
-                @headslide(title = title, subtitle = subtitle, subsubtitle = "DIY") {
-                    @{subtitle}: DIY
-                } {
-                    @middle(70) {
-                        @sidebyside() {
-                            @sourcecode(id = "unapply_email") {
-                                |object EMail {
-                                |
-                                |  def unapply(str: String) = {
-                                |
-                                |    val parts = str.split("@@")
-                                |
-                                |    if (parts.length == 2)
-                                |      Some(parts(0), parts(1))
-                                |    else
-                                |      None
-                                |  }
-                                |}
-                            }
-                        } {
-                            @spacer2()
-                            @codenote2() {
-                                <code>unapply</code> liefert <code>Option</code> <br/>
-                                mit den Einzelteilen in Form eines Tupels
-                            }
-                        }
-                    }
-
-                    @spacer()
-
+            @titleslide(title = title, subtitle = "DIY", connector = ":") {
+                @middle(70) {
                     @sidebyside() {
-                        @snippet() {
-                            @callblock(reference = "unapply_email") {
-                                |"me@@home.de" match {
-                                |  case EMail(u, d) => u + " at " + d
-                                |}
-                            }
-                            @outblock() {
-                                |res0: String = me at home.de
-                            }
+                        @sourcecode(id = "unapply_email") {
+                            |object EMail {
+                            |
+                            |  def unapply(str: String) = {
+                            |
+                            |    val parts = str.split("@@")
+                            |
+                            |    if (parts.length == 2)
+                            |      Some(parts(0), parts(1))
+                            |    else
+                            |      None
+                            |  }
+                            |}
                         }
                     } {
-                        @snippet() {
-                            @callblock(reference = "unapply_email") {
-                                |"me" match {
-                                |  case EMail(u, d) => u + " at " + d
-                                |}
-                            }
-                            @outblock(error = true) {
-                                |scala.MatchError: me
-                            }
+                        @spacer2()
+                        @codenote2() {
+                            <code>unapply</code> liefert <code>Option</code> <br/>
+                            mit den Einzelteilen in Form eines Tupels
+                        }
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside() {
+                    @snippet() {
+                        @callblock(reference = "unapply_email") {
+                            |"me@@home.de" match {
+                            |  case EMail(u, d) => u + " at " + d
+                            |}
+                        }
+                        @outblock() {
+                            |res0: String = me at home.de
+                        }
+                    }
+                } {
+                    @snippet() {
+                        @callblock(reference = "unapply_email") {
+                            |"me" match {
+                            |  case EMail(u, d) => u + " at " + d
+                            |}
+                        }
+                        @outblock(error = true) {
+                            |scala.MatchError: me
                         }
                     }
                 }
