@@ -39,7 +39,8 @@
                     }
                 } {
                     @codenote2() {
-                        beliebig viele Klassen können in einem Paket platziert werden
+                        <em>erweiterbar</em>:
+                        @uline("beliebig viele") Klassen <br/> können in einem Paket platziert werden
                     }
                 }
 
@@ -54,8 +55,8 @@
                     }
                 } {
                     @codenote2() {
-                        <var>optional</var>:
-                        Dateipfad und Paketpfad müssen nicht übereinstimmen
+                        <em>flexibel</em>:
+                        Dateipfad und Paketpfad <br/> @uline("müssen nicht") übereinstimmen
                     }
                 }
             }
@@ -96,7 +97,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Öffnung von Paketen") {
+        @titleslide(title = "Öffnen von Paketen") {
 
             @autocenter {
                 @sourcecode() {
@@ -111,7 +112,7 @@
                 }
             }
 
-            @spacer2()
+            @spacer()
 
             @sidebyside(gap = 10) {
                 @sourcecode() {
@@ -151,7 +152,7 @@
                 }
 
                 @codesub2() {
-                    beschränkt den Zugriff auf
+                    beschränkt den Zugriff auf <br/>
                     das Paket <code>internal</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
                 }
 
@@ -164,7 +165,7 @@
                 }
 
                 @codesub2() {
-                    beschränkt den Zugriff auf
+                    beschränkt den Zugriff auf <br/>
                     das Paket <code>mycompany</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
                 }
         }
@@ -184,7 +185,7 @@
                 }
 
                 @codesub2() {
-                    <em>Package Object</em> kann Methoden und Variablen enthalten
+                    kann Methoden und Variablen enthalten
                 }
 
             @spacer()
@@ -330,22 +331,22 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "in Blöcken") {
+            @titleslide(title = title, subtitle = "in Blöcken", connector = ":") {
 
                 @sourcecode() {
                     |package com.mycompany
                     |
                     |class MyCompany {
                     |
-                    |   def develop() {
-                    |       import staff.Developer
-                    |       // ...
-                    |   }
+                    |  def develop() {
+                    |    import staff.Developer
+                    |    // ...
+                    |  }
                     |
-                    |   def clean() {
-                    |       import external.Cleaner
-                    |       // ...
-                    |   }
+                    |  def clean() {
+                    |    import external.Cleaner
+                    |    // ...
+                    |  }
                     |}
                 }
 
@@ -356,7 +357,7 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "implizit") {
+            @titleslide(title = title, subtitle = "implizit", connector = ":") {
 
                     @snippet() {
                         @callblock() {
