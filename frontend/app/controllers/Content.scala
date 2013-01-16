@@ -59,7 +59,7 @@ object Content extends MyController {
 
   lazy val typen1 = Slide("O20", "Typen", oop, Seq(klassen1), status = "complete")
   lazy val traits = Slide("O21", "Traits", oop, Seq(klassen1, vererbung1))
-  lazy val klassen2 = Slide("O22", "Case Class", oop, Seq(vererbung1), status = "complete")
+  lazy val klassen2 = Slide("O22", "Klassen II", oop, Seq(vererbung1), status = "complete")
   lazy val generics1 = Slide("O24", "Typ-Parameter", oop, Seq(traits, klassen2))
 
   // === FUNKTIONEN
@@ -87,17 +87,16 @@ object Content extends MyController {
   lazy val interpolation = Slide("B31", "String Interpolation", basic, Seq(implicit1), status = "complete")
   lazy val errors = Slide("B33", "Fehlerbehandlung", basic)
   lazy val implicit2 = Slide("B34", "Implicits II", basic, Seq())
-  lazy val extraktoren = Slide("B35", "Extraktoren", basic, Seq())
   lazy val reflection = Slide("B36", "Reflection", basic)
   lazy val macros = Slide("B37", "Makros", basic)
   lazy val parser = Slide("B38", "Parser", basic, Seq())
 
   // === OBJEKTE
 
-  lazy val vererbung2 = Slide("O30", "Vererbung II", oop, Seq(vererbung1))
-  lazy val typen2 = Slide("O31", "Typen II", oop, Seq(typen1, implicit1))
-  lazy val generics2 = Slide("O32", "Typ-Parameter II", oop, Seq(generics1))
-  lazy val valueclass = Slide("O33", "Value Class", oop, Seq())
+  lazy val klassen3 = Slide("O30", "Klassen III", oop, Seq(klassen2))
+  lazy val vererbung2 = Slide("O31", "Vererbung II", oop, Seq(vererbung1))
+  lazy val typen2 = Slide("O32", "Typen II", oop, Seq(typen1, implicit1))
+  lazy val generics2 = Slide("O33", "Typ-Parameter II", oop, Seq(generics1))
   lazy val typeclass = Slide("O34", "Type Class", oop, Seq())
 
   // === FUNKTIONEN
