@@ -11,6 +11,9 @@ body.print {
         // hide timer
         #timer { display: none; }
 
+        // show fragments
+        section .fragment { opacity: 100; }
+
         // hide slide end marker
         .slide-end { display: none; }
 
@@ -33,6 +36,6 @@ body.print {
 
     // disable animation
     .reveal.fade .slides {
-        .transition(none);
+        .transition(opacity 0ms linear);
     }
 }

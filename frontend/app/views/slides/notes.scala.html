@@ -94,19 +94,17 @@
 						var data = JSON.parse( event.data );
                         //console.log(data);
 
-                        if(initialized == false) {
+                        if(initialized === false) {
                             var editSlide = function(s) {
                                 var jq = s.contentWindow.jQuery;
-                                jq.ready(function() {
-                                    jq(".fragment").removeClass("fragment");
-                                    jq("footer").remove();
-                                    jq("#navi").remove();
-                                    jq("#timer").removeClass("hide");
-                                });
+                                jq("body").addClass("print");
+
+                                jq("footer").remove();
+                                jq("#timer").css("display", "block");
                             };
                             editSlide(currentSlide);
                             editSlide(nextSlide);
-                            initialized = true
+                            initialized = true;
                         }
 
 						// No need for updating the notes in case of fragment changes
@@ -115,16 +113,13 @@
                             var leadingWs = text.match(/^\n?(\s*)/)[1].length,
                                 leadingTabs = text.match(/^\n?(\t*)/)[1].length;
 
-                            console.log(text)
-
                             if( leadingTabs > 0 ) {
                                 text = text.replace( new RegExp('\\n?\\t{' + leadingTabs + '}','g'), '\n' );
                             }
-                            console.log(text)
                             if( leadingWs > 1 ) {
                                 text = text.replace( new RegExp('\\n? {' + leadingWs + '}','g'), '\n' );
                             }
-                            console.log(text)
+                            //console.log(text);
                             var md = (new Showdown.converter()).makeHtml( text );
                             console.log(md);
                             notes.innerHTML = md;
