@@ -334,6 +334,48 @@
 
             <!-- ################################################################################## -->
 
+            @titleslide(title = title, subtitle = "Felder und Methoden", connector = ":") {
+
+                @sidebyside(gap = 10) {
+                    @sourcecode(id = "mycompany") {
+                        |package com.mycompany
+                        |
+                        |object MyCompany {
+                        |
+                        |  val employeeCount = 42
+                        |
+                        |  def fireEmployee(num: Int) {
+                        |    println("Employee #"
+                        |            + num + " is fired!"
+                        |  }
+                        |}
+                    }
+                } {
+                    @snippet() {
+                        @callblock(reference = "mycompany") {
+                            |import com.mycompany.MyCompany._
+                        }
+                        @callblock() {
+                            |employeeCount
+                        }
+                        @outblock() {
+                            |res0: Int = 42
+                        }
+                        @callblock() {
+                            |fireEmployee(5)
+                        }
+                        @outblock() {
+                            |Employee #5 is fired!
+                        }
+                    }
+                    @codesub2() {
+                        Felder und Methoden können importiert werden
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
             @titleslide(title = title, subtitle = "in Blöcken", connector = ":") {
 
                 @sourcecode() {
