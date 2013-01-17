@@ -84,6 +84,7 @@ POST    /api/decompile/scala                        controllers.API.decompileAsS
 # === ASSETS
 
 GET     /assets/img/*file                           controllers.Assets.at(path="/public/images", file)
+GET     /assets/js/*file                            controllers.Assets.at(path="/public/scripts", file)
 GET     /assets/font/*file                          controllers.Assets.at(path="/public/font", file)
 GET     /assets/:ver/:typeOf/*file                  controllers.MyAssets.at(typeOf, file, ver)
 

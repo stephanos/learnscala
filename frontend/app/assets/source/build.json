@@ -17,11 +17,8 @@
             "exports":"Modernizr"
         },
         "lib/slide/reveal":{
-            "deps":["app/util/log", "lib/slide/notes", "lib/slide/markdown"],
+            "deps":["app/util/log", "lib/slide/notes"],
             "exports":"Reveal"
-        },
-        "lib/slide/markdown":{
-            "deps":["lib/slide/showdown"]
         },
         "lib/chart/piechart": {
             "deps":["jquery"]
