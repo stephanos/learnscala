@@ -334,6 +334,7 @@
 
             <!-- ################################################################################## -->
 
+            @*
             @titleslide(title = title, subtitle = "Felder und Methoden", connector = ":") {
 
                 @sidebyside(gap = 10) {
@@ -373,6 +374,7 @@
                     }
                 }
             }
+            *@
 
             <!-- ################################################################################## -->
 
@@ -397,6 +399,52 @@
 
                 @codesub2() {
                     Import kann überall im Code eingefügt werden
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "Felder und Methoden", connector = ":") {
+
+                @sidebyside(gap = 10) {
+                    @snippet(id = "sec") {
+                        @sourceblock() {
+                            |class Seconds(val v: Int)
+                            |
+                            |object Seconds {
+                            |  def convert(m: Minutes) =
+                            |    new Seconds(m.v * 60)
+                            |}
+                        }
+                    }
+                } {
+                    @snippet(id = "min") {
+                        @sourceblock(reference = "sec") {
+                            |class Minutes(val v: Int)
+                            |
+                            |object Minutes {
+                            |  def convert(s: Seconds) =
+                            |    new Minutes(s.v / 60)
+                            |}
+                        }
+                    }
+                }
+
+                @spacer()
+
+                @autocenter {
+                    @callcode(reference = "min") {
+                        |import Seconds.{convert => convertToSeconds}
+                        |import Minutes.{convert => convertToMinutes}
+                        |
+                        |val sec_60  = new Seconds(60)
+                        |val min_1   = convertToMinutes(sec_60)
+                        |
+                        |val sec_120 = convertToSeconds(new Minutes(2))
+                    }
+                    @codesub2() {
+                        Felder und Methoden können importiert und umbenannt werden
+                    }
                 }
             }
 
@@ -442,55 +490,6 @@
                     }
                 }
             }
-
-            <!-- ################################################################################## -->
-
-            @*
-            @slide(title = title, subtitle = "deep") {
-
-                @sidebyside(gap = 10) {
-                    @snippet(id = "sec") {
-                        @sourceblock() {
-                            |class Seconds (val v: Int)
-                            |
-                            |object Seconds {
-                            |  def convert (m: Minutes) =
-                            |    new Seconds (m.v * 60)
-                            |}
-                        }
-                    }
-                } {
-                    @snippet(id = "min") {
-                        @sourceblock(reference = "sec") {
-                            |class Minutes (val v: Int)
-                            |
-                            |object Minutes {
-                            |  def convert (s: Seconds) =
-                            |    new Minutes (s.v / 60)
-                            |}
-                        }
-                    }
-                }
-
-                @spacer2()
-
-                @autocenter {
-                    @callcode(reference = "min") {
-                        |import Seconds.{convert => convertToSeconds}
-                        |import Minutes.{convert => convertToMinutes}
-                        |
-                        |// 60 seconds
-                        |val s60 = new Seconds (60)
-                        |
-                        |// 60 seconds = 1 minute
-                        |val m1 = convertToMinutes (s60)
-                        |
-                        |// 2 minutes = 120 seconds
-                        |val s120 = convertToSeconds (new Minutes (2))
-                    }
-                }
-            }
-            *@
         }
 
         <!-- ################################################################################## -->
