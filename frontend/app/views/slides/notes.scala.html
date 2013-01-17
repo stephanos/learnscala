@@ -80,38 +80,54 @@
 		</div>
 
         <script src="/assets/js/lib/slide/showdown.js"></script>
-        <script src="/assets/js/lib/slide/markdown.js"></script>
 
 		<script>
 			window.addEventListener( 'load', function() {
 
 				(function( window, undefined ) {
-					var notes = document.getElementById( 'notes' ),
+					var initialized = false,
+                        notes = document.getElementById( 'notes' ),
 						currentSlide = document.getElementById( 'current-slide' ),
 						nextSlide = document.getElementById( 'next-slide' );
 
-                    var editSlide = function(s) {
-                        jq = s.contentWindow.jQuery;
-                        jq(".fragment").removeClass("fragment");
-                        jq("footer").remove();
-                        jq("#navi").remove();
-                        jq("#timer").removeClass("hide");
-                    }
-                    editSlide(currentSlide);
-                    editSlide(nextSlide);
-
 					window.addEventListener( 'message', function( event ) {
 						var data = JSON.parse( event.data );
-                        //console.log(data)
+                        //console.log(data);
+
+                        if(initialized == false) {
+                            var editSlide = function(s) {
+                                var jq = s.contentWindow.jQuery;
+                                jq.ready(function() {
+                                    jq(".fragment").removeClass("fragment");
+                                    jq("footer").remove();
+                                    jq("#navi").remove();
+                                    jq("#timer").removeClass("hide");
+                                });
+                            };
+                            editSlide(currentSlide);
+                            editSlide(nextSlide);
+                            initialized = true
+                        }
 
 						// No need for updating the notes in case of fragment changes
 						if ( data.notes !== undefined) {
-							if( data.markdown ) {
-								notes.innerHTML = (new Showdown.converter()).makeHtml( data.notes );
-							}
-							else {
-								notes.innerHTML = data.notes;
-							}
+                            var text = data.notes;
+                            var leadingWs = text.match(/^\n?(\s*)/)[1].length,
+                                leadingTabs = text.match(/^\n?(\t*)/)[1].length;
+
+                            console.log(text)
+
+                            if( leadingTabs > 0 ) {
+                                text = text.replace( new RegExp('\\n?\\t{' + leadingTabs + '}','g'), '\n' );
+                            }
+                            console.log(text)
+                            if( leadingWs > 1 ) {
+                                text = text.replace( new RegExp('\\n? {' + leadingWs + '}','g'), '\n' );
+                            }
+                            console.log(text)
+                            var md = (new Showdown.converter()).makeHtml( text );
+                            console.log(md);
+                            notes.innerHTML = md;
 						}
 
 						// Showing and hiding fragments
