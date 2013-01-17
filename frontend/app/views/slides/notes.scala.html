@@ -41,6 +41,13 @@
 				border: none;
 			}
 
+            iframe {
+                -webkit-transform-origin: 0% 0%;
+                -webkit-transform: scale(0.8);
+                width: 1024px;
+                height: 786px;
+            }
+
 			#wrap-next-slide {
                 width: 50%; height: 100%;
                 position: relative;
@@ -59,11 +66,11 @@
 
         <div id="slides">
             <div id="wrap-current-slide" class="slides">
-                <iframe src="../" width="800" height="600" class="slide"></iframe>
+                <iframe id="current-slide" src="../" class="slide"></iframe>
             </div>
 
             <div id="wrap-next-slide" class="slides">
-                <iframe src="../" width="800" height="600" class="slide"></iframe>
+                <iframe id="next-slide" src="../" class="slide"></iframe>
             </div>
         </div>
 
@@ -84,6 +91,8 @@
 
 					window.addEventListener( 'message', function( event ) {
 						var data = JSON.parse( event.data );
+                        console.log(data)
+
 						// No need for updating the notes in case of fragment changes
 						if ( data.notes !== undefined) {
 							if( data.markdown ) {
