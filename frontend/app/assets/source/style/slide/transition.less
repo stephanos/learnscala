@@ -370,13 +370,20 @@
 	overflow-y: auto;
 }
 
-.no-transforms .slides section {
-	-webkit-transform: none;
-	   -moz-transform: none;
-	    -ms-transform: none;
-	        transform: none;
+.no-transforms .slides {
 
-	display: block!important;
-	opacity: 1!important;
-	position: relative!important;
+    section {
+        -webkit-transform: none;
+           -moz-transform: none;
+            -ms-transform: none;
+                transform: none;
+
+        opacity: 1!important;
+        position: relative!important;
+
+        &.future, &.past {
+            opacity: 0!important;
+            display: none!important;
+        }
+    }
 }

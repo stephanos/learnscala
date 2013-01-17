@@ -1,0 +1,31 @@
+@(w: (Int, Int, Int) = (33, 33, 33), gap: Double = 3.0)(c1: Html = empty())(c2: Html = empty())(c3: Html = empty())
+
+<div class='sidebyside'>
+
+    <table>
+        <colgroup>
+            <col width="@{w._1 - gap / 3}%">
+            <col width="@{gap}%">
+            <col width="@{w._2 - gap / 3}%">
+            <col width="@{gap}%">
+            <col width="@{w._2 - gap / 3}%">
+        </colgroup>
+
+        <tbody>
+            <tr>
+                <td>
+                    @c1
+                </td>
+                <td></td>
+                <td>
+                    @c2
+                </td>
+                <td></td>
+                <td>
+                    @c3
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

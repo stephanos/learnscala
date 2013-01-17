@@ -101,6 +101,7 @@
 
                                 jq("footer").remove();
                                 jq("#timer").css("display", "block");
+                                jq("#slidedeck").removeClass().addClass("reveal no-transforms");
                             };
                             editSlide(currentSlide);
                             editSlide(nextSlide);

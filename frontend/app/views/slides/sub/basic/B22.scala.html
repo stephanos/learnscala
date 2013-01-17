@@ -16,11 +16,13 @@
 
             @slide(title = title) {
 
-                @sidebyside(gap = 15) {
+                @middle(60) {
+                    @sidebyside(gap = 10) {
 
-                    <em>erlaubt</em>
+                        @subhead() {
+                            <em>erlaubt</em>
+                        }
 
-                    @indent() {
                         @spacer_half()
 
                         @callcode() {
@@ -50,11 +52,11 @@
                         @callcode() {
                             |def √ = ()
                         }
-                    }
-                } {
-                    <var>verboten</var>
+                    } {
+                        @subhead() {
+                            <var>verboten</var>
+                        }
 
-                    @indent() {
                         @spacer_half()
 
                         @callcode() {
@@ -126,68 +128,66 @@
 
         @slide(title = "Notationen", clazz = "wide") {
 
-            @sidebyside((66,33), gap = 6) {
-                @sidebyside(gap = 8) {
-                    @subhead(false) {
-                        prefix
-                    }
+            @sidebysidebyside() {
+                @subhead(false) {
+                    prefix
+                }
 
-                    @spacer()
+                @spacer()
 
-                    @callcode() {
-                        |-1
-                    }
-                    @iseq()
-                    @callcode() {
-                        |1.unary_-()
-                    }
+                @callcode() {
+                    |-1
+                }
+                @iseq()
+                @callcode() {
+                    |1.unary_-()
+                }
 
-                    @spacer()
+                @spacer()
 
-                    @callcode() {
-                        |!true
-                    }
-                    @iseq()
-                    @callcode() {
-                        |true.unary_!
-                    }
+                @callcode() {
+                    |!true
+                }
+                @iseq()
+                @callcode() {
+                    |true.unary_!
+                }
 
-                    @spacer()
+                @spacer()
 
-                    @infobox() {
-                        Anwendbar für die Operatoren
-                        <code>!</code>, <code>~</code>, <code>+</code> und <code>-</code>.
-                    }
-                } {
-                    @subhead(false) {
-                        infix
-                    }
+                @infobox() {
+                    Anwendbar für die Operatoren
+                    <code>!</code>, <code>~</code>, <code>+</code> und <code>-</code>.
+                }
+            } {
+                @subhead(false) {
+                    infix
+                }
 
-                    @spacer()
+                @spacer()
 
-                    @callcode() {
-                        |1 + 1
-                    }
-                    @iseq()
-                    @callcode() {
-                        |1.+(1)
-                    }
+                @callcode() {
+                    |1 + 1
+                }
+                @iseq()
+                @callcode() {
+                    |1.+(1)
+                }
 
-                    @spacer()
+                @spacer()
 
-                    @callcode() {
-                        |"abc" contains 'a'
-                    }
-                    @iseq()
-                    @callcode() {
-                        |"abc".contains('a')
-                    }
+                @callcode() {
+                    |"abc" contains 'a'
+                }
+                @iseq()
+                @callcode() {
+                    |"abc".contains('a')
+                }
 
-                    @spacer()
+                @spacer()
 
-                    @infobox() {
-                        Anwendbar für Operatoren mit @uline("einem") Parameter.
-                    }
+                @infobox() {
+                    Anwendbar für Operatoren mit @uline("einem") Parameter.
                 }
             } {
                 @subhead(false) {

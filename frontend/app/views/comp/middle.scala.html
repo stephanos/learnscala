@@ -1,7 +1,7 @@
 @(w: Int = 0, clazz: String = "")(content: Html)
 
-<div class="middle @{clazz} @{if(w > 0) "fixed"} @{if(w == 0) "stretch"}" style="@{if(w > 0) "width: " + w + "%"}">
-    <div>
+<div class="middle @{clazz} @{if(w > 0) "fixed"} @{if(w == 0) "stretch"}">
+    <div style="@{if(w > 0) "width: " + w + "%"}">
         @content
     </div>
 </div>
