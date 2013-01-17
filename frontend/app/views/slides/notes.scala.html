@@ -89,9 +89,18 @@
 						currentSlide = document.getElementById( 'current-slide' ),
 						nextSlide = document.getElementById( 'next-slide' );
 
+                    editSlide = function(s) {
+                        jq = s.contentWindow.jQuery;
+                        jq(".fragment").removeClass("fragment");
+                        jq("footer").remove();
+                        jq("#navi").remove();
+                    }
+                    editSlide(currentSlide);
+                    editSlide(nextSlide);
+
 					window.addEventListener( 'message', function( event ) {
 						var data = JSON.parse( event.data );
-                        console.log(data)
+                        //console.log(data)
 
 						// No need for updating the notes in case of fragment changes
 						if ( data.notes !== undefined) {
@@ -105,10 +114,10 @@
 
 						// Showing and hiding fragments
 						if( data.fragment === 'next' ) {
-							currentSlide.contentWindow.Reveal.nextFragment();
+							//currentSlide.contentWindow.Reveal.nextFragment();
 						}
 						else if( data.fragment === 'prev' ) {
-							currentSlide.contentWindow.Reveal.prevFragment();
+							//currentSlide.contentWindow.Reveal.prevFragment();
 						}
 						else {
 							// Update the note slides
