@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - Slide Notes</title>
+
+		<style>
+			body {
+				font-family: Helvetica;
+
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+			}
+
+            #wrap-notes {
+                width: 100%; height: 30%;
+                position: relative;
+                left: 0; right: 0; top: 30%; bottom: 0;
+            }
+
+			#notes {
+                font-family: 'Yanone Kaffeesatz';
+				font-size: 40px;
+                margin: 0 25px;
+			}
+
+            #slides {
+                width: 100%; height: 70%;
+                position: relative;
+                left: 0; right: 0; top: 0; bottom: 70%;
+            }
+
+			#wrap-current-slide {
+                width: 50%; height: 100%;
+                position: absolute;
+                top: 0; bottom: 0; left: 0; right: 50%;
+
+				overflow: hidden;
+			}
+
+			.slide {
+				border: none;
+			}
+
+			#wrap-next-slide {
+                width: 50%; height: 100%;
+                position: relative;
+                top: 0; bottom: 0; left: 50%; right: 0;
+				overflow: hidden;
+			}
+
+			.slides {
+				position: relative;
+			}
+		</style>
+	</head>
+
+	<body>
+
+
+        <div id="slides">
+            <div id="wrap-current-slide" class="slides">
+                <iframe src="../" width="800" height="600" class="slide"></iframe>
+            </div>
+
+            <div id="wrap-next-slide" class="slides">
+                <iframe src="../" width="800" height="600" class="slide"></iframe>
+            </div>
+        </div>
+
+		<div id="wrap-notes">
+            <div id="notes">
+
+            </div>
+		</div>
+
+
+		<script>
+			window.addEventListener( 'load', function() {
+
+				(function( window, undefined ) {
+					var notes = document.getElementById( 'notes' ),
+						currentSlide = document.getElementById( 'current-slide' ),
+						nextSlide = document.getElementById( 'next-slide' );
+
+					window.addEventListener( 'message', function( event ) {
+						var data = JSON.parse( event.data );
+						// No need for updating the notes in case of fragment changes
+						if ( data.notes !== undefined) {
+							if( data.markdown ) {
+								notes.innerHTML = (new Showdown.converter()).makeHtml( data.notes );
+							}
+							else {
+								notes.innerHTML = data.notes;
+							}
+						}
+
+						// Showing and hiding fragments
+						if( data.fragment === 'next' ) {
+							currentSlide.contentWindow.Reveal.nextFragment();
+						}
+						else if( data.fragment === 'prev' ) {
+							currentSlide.contentWindow.Reveal.prevFragment();
+						}
+						else {
+							// Update the note slides
+							currentSlide.contentWindow.Reveal.slide( data.indexh, data.indexv );
+							nextSlide.contentWindow.Reveal.slide( data.nextindexh, data.nextindexv );
+						}
+
+					}, false );
+
+				})( window );
+
+			}, false );
+
+		</script>
+	</body>
+</html>

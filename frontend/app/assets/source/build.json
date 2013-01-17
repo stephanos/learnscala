@@ -16,9 +16,12 @@
         "lib/init/modernizr":{
             "exports":"Modernizr"
         },
-        "lib/reveal":{
-            "deps":["app/util/log"],
+        "lib/slide/reveal":{
+            "deps":["app/util/log", "lib/slide/notes", "lib/slide/markdown"],
             "exports":"Reveal"
+        },
+        "lib/slide/markdown":{
+            "deps":["lib/slide/showdown"]
         },
         "lib/chart/piechart": {
             "deps":["jquery"]

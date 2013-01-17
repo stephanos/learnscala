@@ -29,6 +29,10 @@ object Slide extends MyController {
     //Ok(views.html.slides.wrap(id1, id2))
   }
 
+  def loadNotes(id1: String, id2: String) = Action {
+    Ok(views.html.slides.notes())
+  }
+
   def loadSlide(id1: String, id2: String) = {
     val dir = if (id1 == null || id1 == "") "" else id1.replaceAllLiterally("-", "_") + "."
     val file = id2.replaceAllLiterally("-", "_")
