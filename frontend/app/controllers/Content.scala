@@ -18,7 +18,6 @@ object Content extends MyController {
   // === ALLGEMEIN
 
   lazy val einfuehrung = Slide("B10", "Einführung", basic, status = "complete")
-  lazy val geschichte = Slide("B11", "Geschichte", basic, Seq(einfuehrung), status = "complete")
   lazy val ersteSchritte = Slide("B12", "Erste Schritte", basic, Seq(werkzeuge1), status = "complete")
   lazy val methoden = Slide("B13", "Methoden", basic, Seq(ersteSchritte), status = "complete")
   lazy val kontrollstrukturen = Slide("B14", "Kontrollstrukturen", basic, Seq(uebungen), status = "complete")
@@ -38,7 +37,7 @@ object Content extends MyController {
 
   // === ERWEITERT
 
-  lazy val werkzeuge1 = Slide("E10", "Werkzeuge I", ext, Seq(geschichte), status = "complete")
+  lazy val werkzeuge1 = Slide("E10", "Werkzeuge I", ext, Seq(einfuehrung), status = "complete")
   lazy val werkzeuge2 = Slide("E11", "Werkzeuge II", ext, Seq(methoden), status = "complete")
   lazy val uebungen = Slide("E12", "Übungen", ext, Seq(werkzeuge2), status = "complete")
 
