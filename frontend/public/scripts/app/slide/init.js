@@ -1,5 +1,5 @@
 
-define(["jquery", "lib/util/underscore.str", "lib/reveal", "app/editor/init", "app/util/timer", "app/util/countdown", "app/util/overlay", "app/util/chart", "lib/dom/bootstrap"], function($, _, Reveal, Editor, Timer, Countdown, Overlay) {
+define(["jquery", "lib/util/underscore.str", "lib/slide/reveal", "app/editor/init", "app/util/timer", "app/util/countdown", "app/util/overlay", "app/util/chart", "lib/dom/bootstrap"], function($, _, Reveal, Editor, Timer, Countdown, Overlay) {
   var Slide;
   return Slide = (function() {
 
