@@ -1,5 +1,5 @@
-@(amount: Int = 50)(content: Html)
+@(amount: Int = 50, fragment: Boolean = false)(content: Html)
 
-<div class="indent@{amount}">
+<div class='indent@{amount} @{if(fragment) "fragment" else "" }'>
     @content
 </div>

@@ -30,4 +30,7 @@ object Quiz extends MyController {
 
   def method2() =
     views.html.quizzes.method2()
+
+  def packages() =
+    views.html.quizzes.packages()
 }

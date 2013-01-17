@@ -1,0 +1,99 @@
+@middle(80) {
+    @sidebyside(gap = 7) {
+        @sourcecode(fragment = false) {
+            |package org.zoo
+            |package park
+            |
+            |object Visitor
+        }
+
+        @spacer_half()
+
+        @sourcecode(fragment = false) {
+            |package org.zoo {
+            |  object Animals
+            |  object Zookeeper
+            |}
+        }
+
+        @spacer_half()
+
+        @sourcecode(fragment = false) {
+            |package org.zoo {
+            |  package park {
+            |    object Tickets
+            |
+            |    package business {
+            |      object Accountant
+            |    }
+            |  }
+            |}
+        }
+
+    } {
+        @spacer()
+
+        @sidebyside((5, 90)) {
+            <span>(1)</span>
+        } {
+            <div>
+                <code>Vistor</code> hat Zugriff auf?
+            </div>
+            @spacer_half()
+            @indent(10, fragment = true) {
+                <code><em>Tickets</em></code>,
+                <code><em>Animals</em></code> &
+                <code><em>Zookeeper</em></code>
+            }
+        }
+
+        @spacer()
+
+        @sidebyside((5, 90)) {
+            <span>(2)</span>
+        } {
+            <div>
+                <code>Zookeeper</code> hat Zugriff auf?
+            </div>
+            @spacer_half()
+            @indent(10, fragment = true) {
+                <code><em>Tickets</em></code>,
+                <code><em>Animals</em></code> &
+                <code><em>Zookeeper</em></code>
+            }
+        }
+
+        @spacer()
+
+        @sidebyside((5, 90)) {
+            <span>(3)</span>
+        } {
+            <div>
+                <code>Animal</code> hat Zugriff auf?
+            </div>
+            @spacer_half()
+            @indent(10, fragment = true) {
+                <code><em>Tickets</em></code>,
+                <code><em>Animals</em></code> &
+                <code><em>Zookeeper</em></code>
+            }
+        }
+
+        @spacer()
+
+        @sidebyside((5, 90)) {
+            <span>(4)</span>
+        } {
+            <div>
+                <code>Manager</code> hat Zugriff auf?
+            </div>
+            @spacer_half()
+            @indent(10, fragment = true) {
+                <code><em>Tickets</em></code>,
+                <code><em>Visitors</em></code>,
+                <code><em>Animals</em></code> &
+                <code><em>Zookeeper</em></code>
+            }
+        }
+    }
+}
