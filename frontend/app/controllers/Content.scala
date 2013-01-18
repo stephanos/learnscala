@@ -81,10 +81,10 @@ object Content extends MyController {
 
   // === ALLGEMEIN
 
-  lazy val dynamic = Slide("B30", "Dynamic", basic)
-  lazy val implicit2 = Slide("B34", "Implicits II", basic, Seq())
-  lazy val reflection = Slide("B36", "Reflection", basic)
-  lazy val macros = Slide("B37", "Makros", basic)
+  lazy val implicit2 = Slide("B30", "Implicits II", basic, Seq())
+  lazy val dynamic = Slide("B31", "Dynamic", basic)
+  lazy val reflection = Slide("B32", "Reflection", basic)
+  lazy val macros = Slide("B33", "Makros", basic)
 
   // === OBJEKTE
 
@@ -96,13 +96,13 @@ object Content extends MyController {
 
   lazy val kontrollabstraktion = Slide("F30", "Kontrollabstraktion", fp, Seq(funktionen4), status = "complete")
   lazy val funktionen4 = Slide("F31", "Funktionen IV", fp, Seq(funktionen3))
-  lazy val errors = Slide("F32", "Fehlerbehandlung", basic)
-  lazy val datatypes3 = Slide("F33", "Datenstrukturen III", fp, Seq(datatypes2))
-  lazy val dsl = Slide("F34", "DSL", basic)
+  lazy val errors = Slide("F32", "Fehlerbehandlung", fp, Seq())
+  lazy val dsl = Slide("F33", "DSL", fp, Seq())
+  lazy val datatypes3 = Slide("F34", "Datenstrukturen III", fp, Seq(datatypes2))
 
   // === ERWEITERT
 
-  lazy val tests1 = Slide("E30", "Testen", ext, Seq(traits, operatoren, implicit1))
+  lazy val tests1 = Slide("E30", "Testen I", ext, Seq(traits, operatoren, implicit1))
   lazy val tests2 = Slide("E31", "Testen II", ext, Seq(tests1))
 
   lazy val aktoren = Slide("E32", "Aktoren", ext, Seq(funktionen4, forexpr))

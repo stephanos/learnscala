@@ -1,6 +1,3 @@
-@*
-    Try: http://coderwall.com/p/qe0uca
-*@
 @defining(Content.ausblick.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
@@ -42,28 +39,46 @@
         <!-- ################################################################################## -->
 
         @titleslide("XML") {
-            @snippet() {
-                @sourceblock() {
-                    |class XML(title: String) {
-                    |
-                    | val page =
-                    |  &lt;html&gt;
-                    |    &lt;head&gt;
-                    |      &lt;title&gt;{title}&lt;/title&gt;
-                    |    &lt;/head&gt;
-                    |    &lt;body&gt;
-                    |      &lt;h1&gt;{title}&lt;/h1&gt;
-                    |      &lt;p&gt;&lt;a href="scala-lang.org"&gt;Scala&lt;/a&gt; talks XHTML&lt;/p&gt;
-                    |    &lt;/body&gt;
-                    |  &lt;/html&gt;
-                    |}
+
+            @autocenter {
+                @snippet(id = "xml") {
+                    @sourceblock() {
+                        |case class XML(title: String) {
+                        |  val page =
+                        |    &lt;html&gt;
+                        |      &lt;head&gt;
+                        |        &lt;title&gt;{title}&lt;/title&gt;
+                        |      &lt;/head&gt;
+                        |      &lt;body&gt;
+                        |        &lt;h1&gt;{title}&lt;/h1&gt;
+                        |        &lt;p&gt;
+                        |          &lt;a href="scala-lang.org"&gt;Scala&lt;/a&gt;
+                        |        &lt;/p&gt;
+                        |      &lt;/body&gt;
+                        |    &lt;/html&gt;
+                        |}
+                    }
+                    @callblock() {
+                        |val xml = XML("Hello World").page
+                    }
                 }
-                @callblock() {
-                    |val xml = new XML("Hello World").page
-                    |println(xml.toString())
+            }
+
+            @spacer()
+
+            @sidebyside() {
+                @callcode(reference = "xml") {
+                    println(xml.toString)
                 }
-                @callblock(reference = "xpath") {
-                    |(xml \\ "p")
+                @codesub2() {
+                    als String ausgeben
+                }
+            } {
+                @callcode(reference = "xml") {
+                    (xml \\ "a")
+                }
+                @codesub2() {
+                    <code>&lt;a&gt;</code> Elemente extrahieren
                 }
             }
         }
@@ -106,19 +121,23 @@
 
         <!-- ################################################################################## -->
 
-        @titleslide("Collections II") {
-            @sourcecode() {
-                |// sequentiell:
-                |listOfFiles foreach (file => sendToS3(file))
-            }
+        @titleslide("Parallel Collections") {
 
             @spacer()
 
             @sourcecode() {
-                |// parallel
-                |listOfFiles.par foreach (file => sendToS3(file))
+                |// sequential
+                |listOfFiles foreach { file => sendToS3(file) }
             }
 
+            @spacer2()
+
+            @sourcecode() {
+                |// parallel
+                |listOfFiles.par foreach { file => sendToS3(file) }
+            }
+
+            @*
             @spacer2()
 
             @snippet() {
@@ -131,33 +150,39 @@
                     |fib.take(15).print
                 }
             }
+            *@
         }
 
         <!-- ################################################################################## -->
 
-        @titleslide("Either") {
-            @sourcecode(id = "either") {
-                 |def toInt (s: String): Either[String,Int] = {
-                 |  try {
-                 |     Right (s.toInt)
-                 |  }
-                 |  catch {
-                 |    case e: Throwable =>
-                 |      Left ("Error: " + e.getMessage)
-                 |  }
-                 |}
+        @titleslide("Try") {
+            @sourcecode(id = "try") {
+                |import scala.util.Try
+                |import java.net.URL
+                |
+                |def parseURL(url: String): Try[URL] = Try { new URL(url) }
             }
 
-            @spacer()
+            @spacer2()
 
             @indent() {
                 @snippet() {
-                    @callblock(reference ="either") {
-                        |toInt("1") fold (
-                        |   l => println("Oops")
-                        |,
-                        |   r => println(r)
-                        |)
+                    @callblock(reference ="try") {
+                        |parseURL("invalid.url") getOrElse { new URL("http://google.com") }
+                    }
+                    @outblock() {
+                        |res0: java.net.URL = http://google.com
+                    }
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference ="try") {
+                        |parseURL("http://scala-lang.org") map { _.getProtocol }
+                    }
+                    @outblock() {
+                        |res0: scala.util.Try[String] = Success(http)
                     }
                 }
             }
@@ -165,13 +190,38 @@
 
         <!-- ################################################################################## -->
 
-        @titleslide("Funktionen IV") {
+        @titleslide("Macros") {
 
             @sourcecode() {
-                |mymap ("key").foreach (println)
+                |expect {
+                |  person.name == "Fred"
+                |  person.age  == 42
+                |}
+            }
+            @codesub2() {
+                Bibliothek <em>expecty</em> erlaubt Tests mit <code>==</code>
             }
 
-            @spacer()
+            @spacer2()
+
+            @sourcecode() {
+                |import play.api.libs.json._
+                |import play.api.libs.functional.syntax._
+                |
+                |case class Person(name: String, age: Int)
+                |
+                |implicit val personJSON = Json.writes[Person]
+                |Json.toJson(Person("Fred", 42))
+            }
+            @codesub2() {
+                Framework <em>Play2</em> generiert JSON-Serialisierung
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @*
+        @titleslide("Funktionen IV") {
 
             @sourcecode() {
                 |val f = (i: Int) => i.toString
@@ -181,14 +231,12 @@
 
             @spacer()
 
-            @*
             @sourcecode() {
                 |val u: Option[User] = getUser(id)
                 |u flatMap (_.username).
                 |  flatMap (_.toUpperCase).
                 |  map (_.charAt(0))
             }
-            *@
 
             @spacer()
 
@@ -200,34 +248,106 @@
                 |  getUser(id) flatMap { user => authenticate(user) }
             }
         }
+        *@
 
         <!-- ################################################################################## -->
 
+        @*
         @titleslide("lazy") {
 
             @snippet(clazz = "slim") {
                 @sourceblock() {
                     |lazy val random = {
-                    |   println("generating random number")
-                    |   util.Random.nextInt
+                    |  println("generating random number")
+                    |  util.Random.nextInt
                     |}
                 }
                 @outblock() {
                     |random: Int = &lt;lazy>&gt;
                 }
                 @callblock() {
-                    |println (random)
+                    |println(random)
                 }
                 @outblock() {
                     |generating random number
                     |1271069754
                 }
                 @callblock() {
-                    |println (random)
+                    |println(random)
                 }
                 @outblock() {
                     |1271069754
                 }
+            }
+        }
+        *@
+
+        <!-- ################################################################################## -->
+
+        @titleslide("String Interpolation") {
+
+            @spacer()
+
+            @sidebyside(gap = 10) {
+                @snippet() {
+                    @callblock() {
+                        |val age = 42
+                        |val name = "Bob"
+                        |
+                        |s"$name, $age years old"
+                    }
+                    @outblock() {
+                        |res0: String = Bob, 42 years old
+                    }
+                }
+                @codesub2() {
+                    <code>s</code> bettet Variablen ein
+                }
+            } {
+                @snippet() {
+                    @callblock() {
+                        |val name = "Bob"
+                        |val height = 1.9f
+                        |
+                        |f"$name, $height%1.2f meters"
+                    }
+                    @outblock() {
+                        |res0: String = Bob, 1.90 meters
+                    }
+                }
+                @codesub2() {
+                    <code>f</code> formatiert String
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide("Datenbank") {
+
+            @sourcecode() {
+                |@@table("COFFEES") case class Coffee(
+                |  @@column("COF_NAME") name:  String,
+                |  @@column("SUP_ID")   supID: Int,
+                |  @@column("PRICE")    price: Double
+                |)
+            }
+
+            @spacer()
+
+            @sourcecode() {
+                |val coffees = Queryable[Coffee]
+                |
+                |val l = for {
+                |  c <- coffees if c.supID == 101
+                |} yield(c.name, c.price)
+            }
+
+            @spacer()
+
+            @sourcecode() {
+                |backend.result(l, session)
+                |  .foreach { case (n, p) => println(n + ": " + p) }
             }
         }
 
@@ -237,19 +357,19 @@
 
             @snippet(clazz = "slim") {
                 @sourceblock(id = "dynamic") {
-                    |class Foo extends Dynamic {
+                    |class KeyVal extends Dynamic {
                     |
                     |  def selectDynamic(name: String) =
-                    |    println("select " + name)
+                    |    println(s"select '$name'")
                     |
                     |  def updateDynamic(name: String)(arg: Any) =
-                    |    println("update " + name + " with " + arg)
+                    |    println(s"update '$name' with $arg")
                     |
                     |  def applyDynamic(name: String)(args: Any*) =
-                    |    println("apply " + args.mkString(",") + " to " + name)
+                    |    println(s"apply ${args.mkString(",")} to '$name'")
                     |
                     |  def applyDynamicNamed(name: String)(args: (String, Any)*) =
-                    |    println("apply " + args.mkString(",") + " to " + name)
+                    |    println(s"apply ${args.mkString(",")} to '$name'")
                     |}
                 }
             }
@@ -258,34 +378,34 @@
 
             @sidebyside() {
                 @snippet(clazz = "slim") {
-                    @callblock(reference = "foo") {
-                        |val foo = new Foo
-                        |foo.bar(5)
+                    @callblock(reference = "dynamic") {
+                        |val kv = new KeyVal
+                        |kv.bar(5)
                     }
                     @outblock() {
-                        |apply 5 to bar
+                        |apply 5 to 'bar'
                     }
                     @callblock() {
-                        |foo.bar(x = 5)
+                        |kv.bar(x = 5)
                     }
                     @outblock() {
-                        |apply (x,5) to bar
+                        |apply (x,5) to 'bar'
                     }
                 }
             } {
                 @snippet(clazz = "slim") {
-                    @callblock(reference = "foo") {
-                        |val foo = new Foo
-                        |foo.bar
+                    @callblock(reference = "dynamic") {
+                        |val kv = new KeyVal
+                        |kv.bar
                     }
                     @outblock() {
-                        |select bar
+                        |select 'bar'
                     }
                     @callblock() {
-                        |foo.bar = 5
+                        |kv.bar = 5
                     }
                     @outblock() {
-                        |update bar with 5
+                        |update 'bar' with 5
                     }
                 }
             }
