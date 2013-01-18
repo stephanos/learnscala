@@ -10,7 +10,6 @@
 
         <!-- ################################################################################## -->
 
-        @*
         @titleslide("Testen") {
             @snippet() {
                 @sourceblock() {
@@ -34,7 +33,6 @@
                 }
             }
         }
-        *@
 
         <!-- ################################################################################## -->
 
@@ -151,6 +149,30 @@
                 }
             }
             *@
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide("Testen II") {
+            @sourcecode() {
+                |import org.specs2._
+                |import org.scalacheck._
+                |
+                |class ScalaCheckExamples
+                |   extends Specification with ScalaCheck {
+                |
+                |  "addition and multiplication are related" ! prop {
+                |    (a: Int) => a + a == 2 * a
+                |  }
+                |
+                |  "startsWith" ! check {
+                |    (a: String, b: String) => (a + b) startsWith a
+                |  }
+                |}
+            }
+            @codesub2() {
+                <em>ScalaCheck</em> generiert Testfälle
+            }
         }
 
         <!-- ################################################################################## -->
