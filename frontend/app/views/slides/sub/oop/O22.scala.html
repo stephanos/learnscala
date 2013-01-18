@@ -22,7 +22,7 @@
 
             @sidebyside(gap = 10) {
                 @sourcecode() {
-                    |class myClass[T] {
+                    |class myClass[A] {
                     |   // ...
                     |}
                 }
@@ -33,7 +33,7 @@
                 @spacer2()
 
                 @sourcecode() {
-                    |trait myTrait[T, S] {
+                    |trait myTrait[A, B] {
                     |   // ...
                     |}
                 }
@@ -54,7 +54,7 @@
 
                 @snippet() {
                     @sourceblock() {
-                        |object myObject[T] {
+                        |object myObject[A] {
                         |   // ...
                         |}
                     }
@@ -65,6 +65,10 @@
                 @codesub2() {
                     <var>Objekte</var> unterstützen keine Typ-Parameter
                 }
+            }
+
+            @notes {
+                - [STIL] beginne mit 'A' (nicht 'T') - außer extra Bedeutung, z.B. Map[K,V]
             }
         }
 

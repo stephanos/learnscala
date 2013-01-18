@@ -1,6 +1,344 @@
+@*
+    Try: http://coderwall.com/p/qe0uca
+*@
 @defining(Content.ausblick.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
+
+        @slidehead() {
+            @topic
+        } {
+
+        }
+
+        <!-- ################################################################################## -->
+
+        @*
+        @titleslide("Testen") {
+            @snippet() {
+                @sourceblock() {
+                    |import org.specs2.mutable._
+                    |
+                    |class HelloWorldSpec extends Specification {
+                    |
+                    |   "The 'Hello world' string" should {
+                    |
+                    |       "contain 11 characters" in {
+                    |           "Hello world" must have size(11)
+                    |       }
+                    |       "start with 'Hello'" in {
+                    |           "Hello world" must startWith("Hello")
+                    |       }
+                    |       "end with 'world'" in {
+                    |           "Hello world" must endWith("world")
+                    |       }
+                    |   }
+                    |}
+                }
+            }
+        }
+        *@
+
+        <!-- ################################################################################## -->
+
+        @titleslide("XML") {
+            @snippet() {
+                @sourceblock() {
+                    |class XML(title: String) {
+                    |
+                    | val page =
+                    |  &lt;html&gt;
+                    |    &lt;head&gt;
+                    |      &lt;title&gt;{title}&lt;/title&gt;
+                    |    &lt;/head&gt;
+                    |    &lt;body&gt;
+                    |      &lt;h1&gt;{title}&lt;/h1&gt;
+                    |      &lt;p&gt;&lt;a href="scala-lang.org"&gt;Scala&lt;/a&gt; talks XHTML&lt;/p&gt;
+                    |    &lt;/body&gt;
+                    |  &lt;/html&gt;
+                    |}
+                }
+                @callblock() {
+                    |val xml = new XML("Hello World").page
+                    |println(xml.toString())
+                }
+                @callblock(reference = "xpath") {
+                    |(xml \\ "p")
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @*
+        @titleslide("Swing") {
+            @sourcecode() {
+                |object SwingApp extends SimpleSwingApplication {
+                |
+                |  def top = new MainFrame {
+                |    title = "SwingApp"
+                |    var numclicks = 0
+                |
+                |        object label extends Label {
+                |            val prefix = "Number of button clicks: "
+                |            text = prefix + "0  "
+                |            listenTo(button)
+                |            reactions += {
+                |                case ButtonClicked(button) =>
+                |                    numclicks = numclicks + 1
+                |                    text = prefix + numclicks
+                |            }
+                |        }
+                |
+                |        object button extends Button {
+                |           text = "I am a button"
+                |       }
+                |
+                |       contents = new FlowPanel {
+                |          contents.append(button, label)
+                |          border = Swing.EmptyBorder(5, 5, 5, 5)
+                |        }
+                |    }
+                |}
+            }
+        }
+        *@
+
+        <!-- ################################################################################## -->
+
+        @titleslide("Collections II") {
+            @sourcecode() {
+                |// sequentiell:
+                |listOfFiles foreach (file => sendToS3(file))
+            }
+
+            @spacer()
+
+            @sourcecode() {
+                |// parallel
+                |listOfFiles.par foreach (file => sendToS3(file))
+            }
+
+            @spacer2()
+
+            @snippet() {
+                @sourceblock() {
+                    |// lazy
+                    |lazy val fib: Stream[Int] = Stream.cons(0, Stream.cons(1,
+                    |                                fib.zip(fib.tail).map(p => p._1 + p)))
+                }
+                @callblock() {
+                    |fib.take(15).print
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide("Either") {
+            @sourcecode(id = "either") {
+                 |def toInt (s: String): Either[String,Int] = {
+                 |  try {
+                 |     Right (s.toInt)
+                 |  }
+                 |  catch {
+                 |    case e: Throwable =>
+                 |      Left ("Error: " + e.getMessage)
+                 |  }
+                 |}
+            }
+
+            @spacer()
+
+            @indent() {
+                @snippet() {
+                    @callblock(reference ="either") {
+                        |toInt("1") fold (
+                        |   l => println("Oops")
+                        |,
+                        |   r => println(r)
+                        |)
+                    }
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide("Funktionen IV") {
+
+            @sourcecode() {
+                |mymap ("key").foreach (println)
+            }
+
+            @spacer()
+
+            @sourcecode() {
+                |val f = (i: Int) => i.toString
+                |val g = (s: String) => s+s+s
+                |val h: Int => String = g compose f
+            }
+
+            @spacer()
+
+            @*
+            @sourcecode() {
+                |val u: Option[User] = getUser(id)
+                |u flatMap (_.username).
+                |  flatMap (_.toUpperCase).
+                |  map (_.charAt(0))
+            }
+            *@
+
+            @spacer()
+
+            @sourcecode() {
+                |def getUser(id: Int): Future[User]
+                |def authenticate(user: User): Future[Boolean]
+                |
+                |def isIdAuthed(id: Int): Future[Boolean] =
+                |  getUser(id) flatMap { user => authenticate(user) }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide("lazy") {
+
+            @snippet(clazz = "slim") {
+                @sourceblock() {
+                    |lazy val random = {
+                    |   println("generating random number")
+                    |   util.Random.nextInt
+                    |}
+                }
+                @outblock() {
+                    |random: Int = &lt;lazy>&gt;
+                }
+                @callblock() {
+                    |println (random)
+                }
+                @outblock() {
+                    |generating random number
+                    |1271069754
+                }
+                @callblock() {
+                    |println (random)
+                }
+                @outblock() {
+                    |1271069754
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide("Dynamic") {
+
+            @snippet(clazz = "slim") {
+                @sourceblock(id = "dynamic") {
+                    |class Foo extends Dynamic {
+                    |
+                    |  def selectDynamic(name: String) =
+                    |    println("select " + name)
+                    |
+                    |  def updateDynamic(name: String)(arg: Any) =
+                    |    println("update " + name + " with " + arg)
+                    |
+                    |  def applyDynamic(name: String)(args: Any*) =
+                    |    println("apply " + args.mkString(",") + " to " + name)
+                    |
+                    |  def applyDynamicNamed(name: String)(args: (String, Any)*) =
+                    |    println("apply " + args.mkString(",") + " to " + name)
+                    |}
+                }
+            }
+
+            @spacer()
+
+            @sidebyside() {
+                @snippet(clazz = "slim") {
+                    @callblock(reference = "foo") {
+                        |val foo = new Foo
+                        |foo.bar(5)
+                    }
+                    @outblock() {
+                        |apply 5 to bar
+                    }
+                    @callblock() {
+                        |foo.bar(x = 5)
+                    }
+                    @outblock() {
+                        |apply (x,5) to bar
+                    }
+                }
+            } {
+                @snippet(clazz = "slim") {
+                    @callblock(reference = "foo") {
+                        |val foo = new Foo
+                        |foo.bar
+                    }
+                    @outblock() {
+                        |select bar
+                    }
+                    @callblock() {
+                        |foo.bar = 5
+                    }
+                    @outblock() {
+                        |update bar with 5
+                    }
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide("Cake Pattern") {
+            @sidebyside() {
+                @sourcecode() {
+                    |trait DatabaseContext {
+                    |  val dataSource: Datasource
+                    |}
+                }
+                @spacer_half()
+                @sourcecode() {
+                    |trait OrderRepoComp {
+                    |  this: DatabaseContext =>
+                    |
+                    |  trait OrderRepoImpl {
+                    |    // ...
+                    |  }
+                    |  val orderRepo: OrderRepoImpl
+                    |}
+                }
+                @spacer_half()
+                @sourcecode() {
+                    |trait ProductRepoComp {
+                    |  this: DatabaseContext =>
+                    |
+                    |  trait ProductRepoImpl {
+                    |    // ...
+                    |  }
+                    |  val productRepo: ProductRepoImpl
+                    |}
+                }
+            } {
+                @spacer()
+
+                @sourcecode() {
+                    |object Registry extends OrderRepoComp
+                    |                with ProductRepoComp
+                    |                with DatabaseContext {
+                    |
+                    |  val orderRepo = new OrderRepoImpl
+                    |  val dataSource = new DatasourceImpl
+                    |  val productRepo = new ProductRepoImpl
+                    |}
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
 
         @slide() {
             @spacer2()@spacer()
