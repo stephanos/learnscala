@@ -329,6 +329,37 @@
                     Variable-Pattern <comment>(muss mit Kleinbuchstaben beginnen)</comment>
                 }
             }
+
+            <!-- ################################################################################## -->
+
+            @*
+            @titleslide(title = title, subtitle = "Constant-Pattern", head = true) {
+
+                @sourcecode() {
+                    |def isPi(value: Float): Boolean =
+                    |  value match {
+                    |    case math.Pi => true
+                    |    case _       => false
+                    |  }
+                }
+                @codesub2() {
+
+                }
+
+                @spacer()
+
+                @sourcecode() {
+                    |def isSeperator(ch: Char): Boolean =
+                    |  value match {
+                    |    case `io.File.pathSeperator` => true
+                    |    case _                       => false
+                    |  }
+                }
+                @codesub2() {
+
+                }
+            }
+            *@
         }
 
         <!-- ################################################################################## -->

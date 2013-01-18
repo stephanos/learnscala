@@ -317,7 +317,7 @@
                     @sidebyside((60,40)) {
                         @snippet() {
                             @sourceblock(id = "empl") {
-                                |case class Employee (name: String, age: Int)
+                                |case class Employee(name: String, age: Int)
                             }
                         }
                     } {
@@ -339,7 +339,8 @@
                         }
                     } {
                         @codenote2() {
-                            <em>Konstruktor-Pattern</em>: <br/> Zerlegen der Case Class
+                            <em>Konstruktor-Pattern</em>: <br/> Zerlegen der Case Class, <br/>
+                            <code>@@</code> bindet Variablen
                         }
                         <br/>
                         @codenote2() {
@@ -355,7 +356,7 @@
                                 @sourceblock(reference = "empl", hl = "3") {
                                     |def shouldRetire(empl: Employee) =
                                     |  empl match {
-                                    |    case Employee(_, 65) => true
+                                    |    case e @@ Employee(_, 65) => true
                                     |    case _ => false
                                     |  }
                                 }
@@ -507,6 +508,10 @@
                 *@
             }
         }
+
+        <!-- ################################################################################## -->
+
+        <!-- TODO: Alternative zu Enumeration: case object & sealed -->
 
         <!-- ################################################################################## -->
 

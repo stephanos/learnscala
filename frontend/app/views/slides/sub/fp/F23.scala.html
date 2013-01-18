@@ -260,52 +260,54 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Beispiel") {
+        @titleslide(title = "Beispiel") {
 
             @sidebyside() {
                 @sourcecode(reference = "person") {
                     |def separate(persons: List[Person]) = {
-                    |  var boys = new ListBuffer[Person]()
-                    |  var men = new ListBuffer[Person]()
-                    |  var boyNames = new ListBuffer[String]()
-                    |  var menNames = new ListBuffer[String]()
+                    |  import scala.collection.mutable._
                     |
-                    |  for (person <- persons) {
-                    |    if (person.age < 18) {
-                    |      boys += person
-                    |    } else {
-                    |      men += person
-                    |    }
-                    |  }
+                    |  var boys, men = ListBuffer[Person]()
+                    |  for (i <- 0 to persons.length - 1)
+                    |    if (persons(i).age < 18)
+                    |      boys += persons(i)
+                    |    else
+                    |      men += persons(i)
                     |
-                    |  var sortedBoys = boys.toList.sortBy(_.age)
-                    |  var sortedMen = men.toList.sortBy(_.age)
-                    |
-                    |  for (boy <- sortedBoys) {
-                    |    boyNames += boy.name
-                    |  }
-                    |  for (man <- sortedMen) {
-                    |    menNames += man.name
-                    |  }
+                    |  var boyNames,
+                    |      menNames = ListBuffer[String]()
+                    |  for (i <- 0 to sortedBoys.length - 1)
+                    |    boyNames += boys(i).name
+                    |  for (i <- 0 to sortedMen.length - 1)
+                    |    menNames += men(i).name
                     |
                     |  (boyNames.toList, menNames.toList)
                     |}
+                }
+                @codesub2() {
+                    <var>Java</var>-Stil: Veränderlichkeit, Redundanz und Schleifen
                 }
             } {
                 @sourcecode(reference = "person") {
                     |def separate(persons: List[Person]) = {
                     |
-                    |  def sortAndMap(ppl: List[Person]) =
-                    |    ppl.sortBy(p => a.age)
-                    |       .map(p => p.name)
+                    |  def mapToName(ppl: List[Person]) =
+                    |    ppl.map(p => p.name)
                     |
-                    |  val (minors, adults) =
+                    |  val (boys, men) =
                     |    persons.partition(p => p.age < 18)
                     |
-                    |  (sortByAgeAndMapToName(minors),
-                    |    sortByAgeAndMapToName(adults))
+                    |  (mapToName(boys), mapToName(men))
                     |}
                 }
+                @codesub2() {
+                    <em>Scala</em>-Stil: Funktionen
+                }
+            }
+
+            @notes {
+                - [ASK] Was macht dieser Code?
+                - [HINT] '-1' Fehler
             }
         }
 
@@ -618,8 +620,16 @@
     }
 }
 
-@sourcecode(id = "person") {
-    |class Person(val name: String, val age: Int) {
-    |   override def toString = name
-    |}
+@snippet(id = "person") {
+    @sourceblock() {
+        |case class Person(val name: String, val age: Int)
+    }
+    @callcode() {
+        |val persons = List(
+        |   Person("Bob", 42), Person("Jim", 14),
+        |   Person("Joe", 12), Person("Alex", 25)
+        |)
+        |
+        |separate(persons)
+    }
 }

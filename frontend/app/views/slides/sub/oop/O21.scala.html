@@ -243,7 +243,7 @@
 
         <!-- ################################################################################## -->
 
-        @titleslide(title = "Mix-in") {
+        @titleslide(title = "with") {
 
             @sidebyside(gap = 10) {
                 @snippet(id = "logger4") {
@@ -424,14 +424,15 @@
 
                 @snippet() {
                     @sourceblock() {
-                        |trait Engine {
-                        |  println("Engine ready")
-                        |}
+                        |trait Engine(power: Int)
                     }
                     @outblock(error = true) {
                         |error: traits or objects
                         |       may not have parameters
                     }
+                }
+                @codesub2() {
+                    Unterschied zur <code>abstract class</code>: <br/> Parameter <var>verboten</var>
                 }
             } {
                 @subhead() {
@@ -440,15 +441,18 @@
 
                 @snippet() {
                     @sourceblock() {
-                        |trait Logger(test) {
-                        |  val enabled = true
+                        |trait Engine {
+                        |  def power: Int
                         |}
                     }
+                }
+                @codesub2() {
+                    <em>Alternative</em>: abstrakte Methode
                 }
             }
 
             @notes {
-                - [HINT] Trait kann keine Parameter haben
+                - [HINT] 'def' statt 'val': Flexibilität
             }
         }
 
