@@ -448,12 +448,36 @@
                         |    println("Welcome to" + name)
                         |  }
                         |
-                        |  def workingEmployees =
+                        |  def workingEmployees: Int =
                         |    if (open) employees else 0
                         |}
                     }
                 }
             }
+
+            <!-- ################################################################################## -->
+
+            <!--
+                Use active names for operations with side effects
+                    user.activate() not user.setActive()
+
+                Use descriptive names for methods that return values
+                    src.isDefined not src.defined
+
+                Don't prefix getters with get
+                    As per the previous rule, it's redundant: site.count not site.getCount
+
+                Don't repeat names that are already encapsulated in package or object name
+                    Prefer:
+                    object User {
+                      def get(id: Int): Option[User]
+                    }
+                    to
+                    object User {
+                      def getUser(id: Int): Option[User]
+                    }
+                They are redundant in use: User.getUser provides no more information than User.get.
+            -->
 
             <!-- ################################################################################## -->
 
