@@ -335,20 +335,20 @@
                         @sourceblock(id = "empl2") {
                             |class Employee {
                             |
-                            |  private var isPresent = false
+                            |  private var present = false
                             |
                             |  def clockIn() {
-                            |    isPresent = true
+                            |    present = true
                             |    println("Hi! I clocked in.")
                             |  }
                             |
                             |  def clockOut() {
-                            |    isPresent = false
+                            |    present = false
                             |    println("I clocked out. Bye!")
                             |  }
                             |
-                            |  def isInTheOffice: Boolean
-                            |    = isPresent
+                            |  def isInTheOffice: Boolean =
+                            |    present
                             |}
                         }
                     }
@@ -399,7 +399,63 @@
 
             <!-- ################################################################################## -->
 
-            <!-- TODO: Stil-Übung: konvertiere Klasse (live, zusammen ?)
+            <!-- TODO: Stil-Übung: konvertiere Klasse (live, zusammen ?) -->
+
+            @titleslide(title = title, subtitle = "Übung") {
+
+                @sidebyside(gap = 10) {
+
+                    @subhead() {
+                        Aufgabe
+                    }
+
+                    @sourcecode() {
+                        |class my_COMPANY {
+                        |  private var open: Boolean = true
+                        |  def fire_employee = {
+                        |    Employees -= 1
+                        |  }
+                        |  def setClose() = {
+                        |    open = false
+                        |  }
+                        |
+                        |  val NamE: String = "Scaloogle"
+                        |
+                        |  def say_HELLO = {
+                        |
+                        |    return println {
+                        |      "Welcome to " + name }
+                        |  }
+                        |
+                        |  private var Employees: Int = 101
+                        |}
+                    }
+                } {
+                    @subhead() {
+                        Lösung
+                    }
+
+                    @sourcecode(linebyline = true) {
+                        |class MyCompany {
+                        |  val name = "Scaloogle"
+                        |  private var open = true
+                        |  private var employees = 101
+                        |
+                        |  def close() {
+                        |    open = false
+                        |  }
+                        |
+                        |  def sayHello() {
+                        |    println("Welcome to" + name)
+                        |  }
+                        |
+                        |  def fireEmployee() {
+                        |    employees -= 1
+                        |  }
+                        |}
+                    }
+                }
+            }
 
             <!-- ################################################################################## -->
 
