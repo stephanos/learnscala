@@ -344,6 +344,78 @@
                 @infobox() {
                     Der Variablentyp kann weggelassen werden, <br/> der Compiler leitet ihn ab.
                 }
+
+                @notes {
+                    - [STIL] meistens weglassen! nur wenn nicht eindeutig ...
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "Typkonvertierung") {
+                @sidebyside(gap = 10) {
+                    @snippet() {
+                        @callblock() {
+                            |val i = "42".toInt
+                        }
+                        @outblock() {
+                            |i: Int = 42
+                        }
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock() {
+                            |val l = "42".toLong
+                        }
+                        @outblock() {
+                            |l: Long = 42
+                        }
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock() {
+                            |val b = "true".toBoolean
+                        }
+                        @outblock() {
+                            |b: Boolean = true
+                        }
+                    }
+                } {
+                    @snippet() {
+                        @callblock() {
+                            |val f = "3.14".toFloat
+                        }
+                        @outblock() {
+                            |f: Float = 3.14
+                        }
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock() {
+                            |val d = "1.0".toDouble
+                        }
+                        @outblock() {
+                            |d: Double = 1.0
+                        }
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock() {
+                            |val s = "42".toString
+                        }
+                        @outblock() {
+                            |s: String = 42
+                        }
+                    }
+                }
             }
 
             <!-- ################################################################################## -->

@@ -18,7 +18,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide() {
+        @titleslide("Typisierung") {
 
             @sidebyside(gap = 10) {
                 @sourcecode() {
@@ -93,7 +93,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Modell") {
+        @titleslide(title = "Modell") {
 
             @snippet() {
                 @sourceblock(id = "crew") {
@@ -109,7 +109,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Inferenz") {
+        @titleslide(title = "Inferenz") {
 
             @sourcecode(id = "cockpit2", reference = "crew") {
                 |case class Cockpit[T, S](left: T, right: S)
@@ -156,7 +156,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Typenüberprüfung") {
+        @titleslide(title = "Typenüberprüfung") {
 
             @sourcecode(id = "cockpit-check", reference = "crew") {
                 |case class Cockpit[T](left: T, right: T) {
@@ -202,7 +202,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Upper Bound") {
+        @titleslide(title = "Upper Bound") {
 
             @sourcecode(id = "cockpit-upper", reference = "crew") {
                 |case class Cockpit[T &lt;: Pilot](left: T, right: T)

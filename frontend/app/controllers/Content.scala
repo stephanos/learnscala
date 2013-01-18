@@ -48,9 +48,7 @@ object Content extends MyController {
   // === ALLGEMEIN
 
   //lazy val annotationen = Slide("B21", "Annotationen", basic, Seq()) // ERROR: USE JAVA !
-  lazy val operatoren = Slide("B22", "Operatoren", basic, Seq(vererbung1), status = "complete")
-  // depends on 'override'
-  lazy val regexp = Slide("B23", "Reguläre Ausdrücke", basic, Seq())
+  lazy val operatoren = Slide("B22", "Operatoren", basic, Seq(vererbung1), status = "complete") // depends on 'override'
   lazy val recursion = Slide("B25", "Rekursion", basic, Seq(kontrollstrukturen), status = "complete")
   lazy val implicit1 = Slide("B23", "Implicits", basic, Seq(operatoren, klassen2), status = "complete")
 
@@ -105,7 +103,9 @@ object Content extends MyController {
 
   // === ERWEITERT
 
-  lazy val tests = Slide("E30", "Testen", ext, Seq(traits))
+  lazy val tests1 = Slide("E30", "Testen", ext, Seq(traits, operatoren, implicit1))
+  lazy val tests2 = Slide("E30", "Testen II", ext, Seq(tests1))
+
   lazy val aktoren = Slide("E31", "Aktoren", ext, Seq(funktionen4, forexpr))
   lazy val dbase = Slide("E32", "Datenbanken", ext, Seq(funktionen4))
   lazy val web = Slide("E33", "Web-Entwicklung", ext, Seq(funktionen4))
