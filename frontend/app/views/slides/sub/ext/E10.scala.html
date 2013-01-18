@@ -219,6 +219,43 @@
 
         <!-- ################################################################################## -->
 
+        @headslide(title = "Binärkompatibilität") {
+            Binär<var>kompatibilität</var>
+        } {
+            <ul class="fragments">
+                <li>
+                    Major-Releases sind @uline("nicht") binärkompatibel
+                </li>
+                @spacer_half()
+                <li>
+                    d.h. eine Bibliothek kann nur mit der Version, <br/> für die sie kompiliert wurde, verwendet werden
+
+                    @spacer_half()
+                    <ul class="fragments">
+                        <li>
+                            Scala <code>2.9.1</code> & Bibliothek <code>2.9.2</code>: <em>kompatibel</em>
+                        </li>
+                        <li>
+                            Scala <code>2.10.0</code> & Bibliothek <code>2.9.0</code>: <var>inkompatibel</var>
+                        </li>
+                    </ul>
+                </li>
+                @spacer_half()
+                <li>
+                    Artifakte erhalten daher einen Versionszusatz:
+                    @spacer_half()
+                    <ul class="fragments">
+                        <li>scalatest_2.8.0</li>
+                        <li>scalatest_2.9.1</li>
+                        <li>scalatest_2.9.2</li>
+                        <li>scalatest_2.10</li>
+                    </ul>
+                </li>
+            </ul>
+        }
+
+        <!-- ################################################################################## -->
+
         @headslide(title = "Installation") {
             <em>Scala</em> installieren
         } {
