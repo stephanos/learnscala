@@ -220,6 +220,32 @@
 
         <!-- ################################################################################## -->
 
+        @titleslide("Value Class") {
+
+            @snippet() {
+                @sourceblock() {
+                    |case class Meter(value: Double) extends AnyVal {
+                    |  def +(m: Meter): Meter = Meter(value + m.value)
+                    |}
+                }
+                @callblock() {
+                    |val x = Meter(3.5)
+                    |val y = Meter(4.5)
+                    |val z = x + y
+                }
+            }
+            @codesub2() {
+                zur Laufzeit wird @uline("keine") Instanz erstellt <br/> sondern Primitives verwendet!
+            }
+
+            @notes {
+                - [LIMIT] nur '1' öffentliches Feld
+                - [LIMIT] no vals / vars or nested traits / classes / objects
+            }
+        }
+
+        <!-- ################################################################################## -->
+
         @*
         @titleslide("Funktionen IV") {
 
@@ -414,45 +440,40 @@
         <!-- ################################################################################## -->
 
         @titleslide("Cake Pattern") {
+
+            @spacer()
+
             @sidebyside() {
-                @sourcecode() {
+                @sourcecode(id = "cake1") {
+                    |import javax.sql.DataSource
+                    |
                     |trait DatabaseContext {
-                    |  val dataSource: Datasource
+                    |  val dataSource: DataSource
                     |}
                 }
+
                 @spacer_half()
-                @sourcecode() {
+
+                @sourcecode(reference = "cake1", id = "cake2") {
                     |trait OrderRepoComp {
                     |  this: DatabaseContext =>
                     |
-                    |  trait OrderRepoImpl {
+                    |  class OrderRepoImpl {
                     |    // ...
                     |  }
+                    |
                     |  val orderRepo: OrderRepoImpl
                     |}
                 }
-                @spacer_half()
-                @sourcecode() {
-                    |trait ProductRepoComp {
-                    |  this: DatabaseContext =>
-                    |
-                    |  trait ProductRepoImpl {
-                    |    // ...
-                    |  }
-                    |  val productRepo: ProductRepoImpl
-                    |}
-                }
             } {
-                @spacer()
+                @spacer2()
 
-                @sourcecode() {
+                @sourcecode(reference = "cake2") {
                     |object Registry extends OrderRepoComp
-                    |                with ProductRepoComp
                     |                with DatabaseContext {
                     |
-                    |  val orderRepo = new OrderRepoImpl
-                    |  val dataSource = new DatasourceImpl
-                    |  val productRepo = new ProductRepoImpl
+                    |  val orderRepo  = new OrderRepoImpl
+                    |  val dataSource = DatabaseDriver.getDS
                     |}
                 }
             }
