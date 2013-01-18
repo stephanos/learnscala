@@ -24,16 +24,16 @@
 
                     @snippet() {
                         @callblock() {
-                            |List (1, 2, 3, 4)
+                            |List(1, 2, 3, 4)
                         }
                         @outblock() {
-                            |res0: List[Int] = List(1, 2, 3, 4
+                            |res0: List[Int] = List(1, 2, 3, 4)
                         }
                         @callblock() {
                             |List apply (1,2,3,4)
                         }
                         @outblock() {
-                            |res1: List[Int] = List(1, 2, 3, 4
+                            |res1: List[Int] = List(1, 2, 3, 4)
                         }
                     }
                     @codesub2() {
@@ -111,7 +111,7 @@
                     |List()
                 }
                 @outblock() {
-                    |res0: List[Nothing] = List ()
+                    |res0: List[Nothing] = List()
                 }
             }
             @codesub2() {
@@ -125,7 +125,7 @@
                     |List(1, true)
                 }
                 @outblock() {
-                    |res0: List[AnyVal] = List (1, true)
+                    |res0: List[AnyVal] = List(1, true)
                 }
             }
             @codesub2() {
@@ -139,7 +139,7 @@
                     |List(1, "a")
                 }
                 @outblock() {
-                    |res0: List[Any] = List (1, a)
+                    |res0: List[Any] = List(1, a)
                 }
             }
             @codesub2() {

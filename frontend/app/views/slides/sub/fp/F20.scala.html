@@ -225,10 +225,10 @@
                 @snippet() {
                     @sourceblock(id = "virgin") {
                         |def doSacrifice(t: (Int, Boolean, Boolean)) = t match {
-                        |  case (_, false, _) =>             println ("not female")
-                        |  case (_, _, false) =>             println ("not a virgin")
-                        |  case (age, _, _) if (age > 24) => println ("too old")
-                        |  case (_) =>                       println ("sacrifice her!")
+                        |  case (_, false, _) =>             println("not female")
+                        |  case (_, _, false) =>             println("not a virgin")
+                        |  case (age, _, _) if (age > 24) => println("too old")
+                        |  case (_) =>                       println("sacrifice her!")
                         |}
                     }
                 }

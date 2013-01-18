@@ -45,13 +45,12 @@
             @titleslide(title = title) {
 
                 @sourcecode() {
-                    |def max(x: Int, y: Int): Int = {
+                    |def max(x: Int, y: Int) =
                     |  if (x > y) {
                     |    x
                     |  } else {
                     |    y
                     |  }
-                    |}
                 }
 
                 @iseq()
@@ -70,9 +69,19 @@
                     |def max(x: Int, y: Int) =
                     |  if (x > y) x else y
                 }
+
+                @notes {
+                    - [ASK] Welchen Typ hat die Methode?
+                    - [STIL] Leerzeichen zwischen Schlüsselwort "if"
+                    - [STIL] Klammern weglassen wenn nur je 1 Zeile
+                }
             }
 
             <!-- ################################################################################## -->
+
+            <!--
+                TODO: confusing: Any ? Char ?
+            -->
 
             @titleslide(title = title) {
 
@@ -164,6 +173,8 @@
 
             @notes {
                 - [HINT] break und continue gibt es nicht (Alternative: Boolean-Kontrollvariable / return)
+                - [STIL] (again) Leerzeichen zwischen Schlüsselwort "while"
+                - [STIL] immer mit geschweiften Klammern (weil kein Ausdruck)
             }
         }
 
@@ -205,6 +216,10 @@
                         |10 9 8 7 6 5 4 3 2 1 0
                     }
                 }
+            }
+
+            @notes {
+                - [STIL] immer mit geschweiften Klammern (weil kein Ausdruck)
             }
         }
 

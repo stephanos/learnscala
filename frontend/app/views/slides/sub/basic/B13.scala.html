@@ -60,6 +60,7 @@
 
             @notes {
                 - [STIL] (again) 2 Leerzeichen zum Einrücken
+                - [STIL] offene Klammer '@Html("{")' stets auf gleicher Zeile wie Definition
             }
         }
 
@@ -221,6 +222,11 @@
                     <strong><em>ohne</em></strong> Zeilenumbruch
                 }
             }
+
+            @notes {
+                - [STIL] sehr kurzen Rump (<30 Zeichen) in eine Zeile
+                - [STIL] recht kurzen Rump (< 70 Zeichen) ohne Klammern
+            }
         }
 
         <!-- ################################################################################## -->
@@ -231,7 +237,7 @@
                 @snippet() {
                     @sourceblock() {
                         |def hello() = {
-                        |  println ("Hello World")
+                        |  println("Hello World")
                         |}
                     }
                     @outblock() {
@@ -245,7 +251,7 @@
                 @snippet() {
                     @sourceblock() {
                         |def hello() {
-                        |  println ("Hello World")
+                        |  println("Hello World")
                         |}
                     }
                     @outblock() {
@@ -303,7 +309,7 @@
 
             @snippet() {
                 @sourceblock(id = "print") {
-                    |def printFirst(s: String *) =
+                    |def printFirst(s: String*) =
                     |  println(s(0))
                 }
                 @outblock() {
@@ -316,6 +322,7 @@
             }
 
             @notes {
+                - [STIL] Leerzeichen nach ','
                 - [STIL] Methoden mit mehr als 3 Parametern vermeiden!
             }
         }
@@ -487,6 +494,10 @@
                         |Unspecified value parameter town
                     }
                 }
+            }
+
+            @notes {
+                - [STIL] Leerzeichen um '='
             }
         }
 

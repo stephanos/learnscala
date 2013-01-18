@@ -12,7 +12,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "list123", fragment = false) {
-                |val r = l map {(i: Int) => i * 2}
+                |val r = l map { (i: Int) => i * 2 }
             }
             @outblock() {
                 |r: List[Int] = List(2, 4, 6)
@@ -25,7 +25,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "list123", fragment = false) {
-                |val r = l filter {(i: Int) => i/2}
+                |val r = l filter { (i: Int) => i/2 }
             }
             @outblock(error = true) {
                 |error: type mismatch;
@@ -43,7 +43,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "list123", fragment = false) {
-                |val r = l map {i => i / 2.0}
+                |val r = l map { i => i / 2.0 }
             }
             @outblock() {
                 |r: List[Double] = List(0.5, 1.0, 1.5)
@@ -59,7 +59,7 @@
                 |l foreach { i => }
             }
             @outblock() {
-                |(nothing)
+                |(nothing happens)
             }
         }
     }
@@ -86,7 +86,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "list123", fragment = false) {
-                |val r = l map ((i: Long) => i - 1)
+                |val r = l map { (i: Long) => i - 1) }
             }
             @outblock(error = true) {
                 |error:    type mismatch;

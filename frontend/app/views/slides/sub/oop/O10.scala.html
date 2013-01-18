@@ -106,7 +106,7 @@
                     @snippet() {
                         @sourceblock() {
                             |class Employee(name: String) {
-                            |   println ("My name is " + name)
+                            |   println("My name is " + name)
                             |}
                         }
                         @callblock() {
@@ -126,6 +126,10 @@
                     Der primäre Konstruktor <comment>("primary constructor")</comment>
                     entsteht aus <br/> den Parametern einer Klasse sowie deren Anweisungen im Rumpf.
                 }*@
+
+                @notes {
+                    - [STIL] Parameter in 1 Zeile wenn möglich
+                }
             }
 
             <!-- ################################################################################## -->
@@ -280,7 +284,7 @@
                     @snippet(id = "empl") {
                         @sourceblock() {
                             |class Employee(val name: String,
-                            |                var age: Int) {
+                            |               var age: Int) {
                             |  val salary = 40000
                             |}
                         }
@@ -320,13 +324,13 @@
                             |e: Employee = Employee@@53a1d1a8
                         }
                         @callblock() {
-                            |println (e.name)
+                            |println(e.name)
                         }
                         @outblock() {
                             |Bob
                         }
                         @callblock() {
-                            |println (e.salary)
+                            |println(e.salary)
                         }
                         @outblock() {
                             |40000
@@ -447,6 +451,10 @@
                     Methoden einer Klasse sind standardmäßig öffentlich, <br/>
                     bei nur lesenden Methoden sollte <code>()</code> weggelassen werden.
                 }*@
+
+                @notes {
+                    - [STIL] Variablen an den Anfang, Methoden danach (durch Zeile getrennt)
+                }
             }
 
             <!-- ################################################################################## -->

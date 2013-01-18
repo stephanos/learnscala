@@ -23,7 +23,7 @@
                 @sidebyside() {
                     @snippet() {
                         @sourceblock() {
-                            |(x: Int) => x + 1
+                            |(x: Int) => { x + 1 }
                         }
                         @outblock() {
                             |res0: (Int) => Int = &lt;function1&gt;
@@ -34,8 +34,8 @@
 
                     @snippet() {
                         @sourceblock() {
-                            |(x: Int) => {
-                            |   x + 1
+                            |{ (x: Int) =>
+                            |     x + 1
                             |}
                         }
                         @outblock() {
@@ -79,7 +79,9 @@
                 }
 
                 @notes {
-                    - [STIL] Leerzeichen links & rechts von =>
+                    - [STIL] 2 Varianten: umschließt alles oder nur Rumpf
+                    - [STIL] Leerzeichen links & rechts von '=>'
+                    - [STIL] Leerzeichen neben '@Html("{")' und '@Html("}")'
                 }
             }
         }
@@ -91,7 +93,7 @@
             @snippet() {
                 @callblock() {
                     |val f1 =
-                    |  (x: Int) => x + 1
+                    |  (x: Int) => { x + 1 }
                 }
                 @outblock() {
                     |f1: (Int) => Int = &lt;function1&gt;
@@ -103,7 +105,7 @@
             @snippet() {
                 @callblock() {
                     |val f2: (Int) => Int =
-                    |  (x: Int) => x + 1
+                    |  (x: Int) => { x + 1 }
                 }
             }
 
@@ -112,7 +114,7 @@
             @snippet() {
                 @callblock() {
                     |val f3: Function1[Int, Int] =
-                    |  (x: Int) => x + 1
+                    |  (x: Int) => { x + 1 }
                 }
             }
 
@@ -121,7 +123,7 @@
             @snippet() {
                 @callblock() {
                     |val f4 = new Function1[Int, Int] {
-                    |  def apply(x: Int): Int = x + 1
+                    |  def apply(x: Int): Int = { x + 1 }
                     |}
                 }
             }
@@ -137,7 +139,9 @@
 
             @snippet(id = "call") {
                 @sourceblock() {
-                    |val plusOne = (x: Int) => x + 1
+                    |val plusOne = { (x: Int) =>
+                    |  x + 1
+                    |}
                 }
                 @outblock() {
                     |plusOne: (Int) => Int = &lt;function1&gt;
@@ -179,8 +183,9 @@
 
             @snippet() {
                 @sourceblock() {
-                    |val max =
-                    |  (x: Int, y: Int) => if (x > y) x else y
+                    |val max = { (x: Int, y: Int) =>
+                    |  if (x > y) x else y
+                    |}
                 }
                 @outblock() {
                     |max: (Int, Int) => Int = &lt;function2&gt;
@@ -211,7 +216,7 @@
             @snippet() {
                 @sourceblock() {
                     |val getUserDir =
-                    |   () => System.getProperty("user.dir")
+                    |   () => { System.getProperty("user.dir") }
                 }
                 @outblock() {
                     |getUserDir: () => java.lang.String = &lt;function0&gt;
@@ -267,7 +272,7 @@
 
             @sidebyside(gap = 5) {
                 @sourcecode() {
-                    |(x: Int) => x + 1
+                    |(x: Int) => { x + 1 }
                 }
             } {
                 @codenote2() {
@@ -281,7 +286,7 @@
             @sidebyside(gap = 5) {
                 @sourcecode() {
                     |val i = 0
-                    |(x: Int) => x + i
+                    |(x: Int) => { x + i }
                 }
             } {
                 @codenote2() {
@@ -298,7 +303,7 @@
             @snippet() {
                 @sourceblock(id = "adult") {
                     |var minAge = 18
-                    |val isAdult = (age: Int) => age >= minAge
+                    |val isAdult = (age: Int) => { age >= minAge }
                 }
             }
             @codesub2() {

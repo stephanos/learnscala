@@ -27,7 +27,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "list123", fragment = false) {
-                |val r = l filter ( _ / 2)
+                |val r = l filter { _ / 2 }
             }
             @outblock(error = true) {
                 |error: type mismatch;
@@ -45,7 +45,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "list123", fragment = false) {
-                |val r = l map ( _ / 2.0)
+                |val r = l map { _ / 2.0 }
             }
             @outblock() {
                 |r: List[Double] = List(0.5, 1.0, 1.5)
@@ -75,7 +75,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "list123", fragment = false) {
-                |val r = l map ((i: Long) => _ - 1)
+                |val r = l map { (i: Long) => _ - 1 }
             }
             @outblock(error = true) {
                 |error: missing parameter type
@@ -88,7 +88,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "list123", fragment = false) {
-                |val r = l map ((i: Long) => i - 1)
+                |val r = l map { (i: Long) => i - 1 }
             }
             @outblock(error = true) {
                 |error: type mismatch;
@@ -119,7 +119,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "list123", fragment = false) {
-                |val r = l map (math.pow(_, 2))
+                |val r = l map { math.pow(_, 2) }
             }
             @outblock() {
                 |r: List[Double] = List(1.0, 4.0, 9.0)

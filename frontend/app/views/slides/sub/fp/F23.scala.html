@@ -27,7 +27,7 @@
                 } {
                     @sourcecode() {
                         |trait Traversable[A] {
-                        |  def foreach[A] (f: Elem => A): Unit
+                        |  def foreach[A](f: Elem => A): Unit
                         |}
                     }
                     @codesub2() {
@@ -38,9 +38,9 @@
 
                     @snippet() {
                         @callblock() {
-                            |val numbers = List (1, 2, 3, 4)
+                            |val nums = List(1, 2, 3, 4)
                             |
-                            |numbers foreach (n => println (n))
+                            |nums foreach { n => println(n) }
                         }
                         @outblock() {
                             |1
@@ -65,7 +65,7 @@
                     @autocenter {
                         @sourcecode() {
                             |trait Traversable[A] {
-                            |  def filter (f: A => Boolean): Traversable[A]
+                            |  def filter(f: A => Boolean): Traversable[A]
                             |}
                         }
                         @codesub2() {
@@ -77,10 +77,8 @@
 
                     @sidebyside(gap = 10) {
                         @snippet() {
-                            @callblock() {
-                                |val numbers = List (1, 2, 3, 4)
-                                |
-                                |numbers filter (n => n % 2 == 0)
+                            @callblock(reference = "nums") {
+                                |nums filter { n => n % 2 == 0 }
                             }
                             @outblock() {
                                 |res0: List[Int] = List(2, 4)
@@ -91,12 +89,10 @@
                         }
                     } {
                         @snippet() {
-                            @callblock() {
-                                |val numbers = List (1, 2, 3, 4)
-                                |
-                                |numbers filter { n =>
+                            @callblock(reference = "nums") {
+                                |nums filter { n =>
                                 |   val isEven = (n % 2 == 0)
-                                |   println (n + "? " + isEven)
+                                |   println(n + "? " + isEven)
                                 |   isEven
                                 |}
                             }
@@ -125,7 +121,7 @@
                     @autocenter {
                         @sourcecode() {
                             |trait Traversable[A] {
-                            |  def map[B] (f: (A) => B): Traversable[B]
+                            |  def map[B](f: (A) => B): Traversable[B]
                             |}
                         }
                         @codesub2() {
@@ -137,10 +133,8 @@
 
                     @sidebyside(gap = 10) {
                         @snippet() {
-                            @callblock() {
-                                |val numbers = List (1, 2, 3, 4)
-                                |
-                                |numbers map (n => n * 2)
+                            @callblock(reference = "nums") {
+                                |nums map { n => n * 2 }
                             }
                             @outblock() {
                                 |res0: List[Int] = List(2, 4, 6, 8)
@@ -151,12 +145,10 @@
                         }
                     } {
                         @snippet() {
-                            @callblock() {
-                                |val numbers = List (1, 2, 3, 4)
-                                |
-                                |numbers map {n =>
+                            @callblock(reference = "nums") {
+                                |nums map { n =>
                                 |   val res = (n * 2)
-                                |   println (n + " => " + res)
+                                |   println(n + " => " + res)
                                 |   res
                                 |}
                             }
@@ -180,33 +172,25 @@
             @headslide(title = title, subtitle = "Weitere") {
                 usw.
             } {
-                @autocenter {
-                    @sourcecode(id = "list1234") {
-                        |val nums = List(1, 2, 3, 4)
-                    }
-                }
-
-                @spacer2()
-
                 @sidebyside(gap = 10) {
                     @snippet() {
-                        @callblock(reference = "list1234") {
-                            |nums partition (n => n % 2 == 0)
+                        @callblock(reference = "nums") {
+                            |nums partition { n => n % 2 == 0 }
                         }
                         @outblock() {
                             |res0: (List[Int], List[Int]) =
-                            |   (List(2, 4),List(1, 3))
+                            |  (List(2, 4),List(1, 3))
                         }
                     }
                     @codesub2() {
                         teilt Liste nach Wahrheitswert der Funktion
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @snippet() {
-                        @callblock(reference = "list1234") {
-                            |nums exists (n => n % 4 == 0)
+                        @callblock(reference = "nums") {
+                            |nums exists { n => n % 4 == 0 }
                         }
                         @outblock() {
                             |res0: Boolean = true
@@ -216,10 +200,25 @@
                         überprüft ob ein Element die Bedingung erfüllt
                     }
 
+                    @spacer()
+
+                    @snippet() {
+                        @callblock(reference = "nums") {
+                            |nums zipWithIndex
+                        }
+                        @outblock() {
+                            |res0: List[(Int, Int)] =
+                            |  List((1,0), (2,1), (3,2), (4,3))
+                        }
+                    }
+                    @codesub2() {
+                        erstellt Liste aus Tupeln aus Element und Index
+                    }
+
                 } {
                     @snippet() {
-                        @callblock(reference = "list1234") {
-                            |nums groupBy (n => n % 2)
+                        @callblock(reference = "nums") {
+                            |nums groupBy { n => n % 2 }
                         }
                         @outblock() {
                             |res0: Map[Int,List[Int]] =
@@ -230,11 +229,11 @@
                         gruppiert Elemente
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @snippet() {
-                        @callblock(reference = "list1234") {
-                            |nums takeWhile (n => n <= 2)
+                        @callblock(reference = "nums") {
+                            |nums takeWhile { n => n <= 2 }
                         }
                         @outblock() {
                             |res0: List[Int] = List(1, 2)
@@ -242,6 +241,20 @@
                     }
                     @codesub2() {
                         extrahiert Teilliste für die die Funktion wahr ist
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock() {
+                            |List(List(1, 2), List(3, 4)).flatten
+                        }
+                        @outblock() {
+                            |res0: List[Int] = List(1, 2, 3, 4)
+                        }
+                    }
+                    @codesub2() {
+                        'plättet' eine Liste aus Listen
                     }
                 }
             }
@@ -342,7 +355,7 @@
                 @autocenter {
                     @sourcecode() {
                         |trait Traversable[A] {
-                        |  def foldLeft[B] (z: B) (f: (B, A) => B): B
+                        |  def foldLeft[B](z: B)(f: (B, A) => B): B
                         |}
                     }
                     @codesub2() {
@@ -355,12 +368,10 @@
                 @sidebyside(gap = 10) {
 
                     @snippet() {
-                        @callblock() {
-                            |val numbers = List (1, 2, 3, 4)
-                            |
-                            |numbers.foldLeft (0) (
-                            |   (res, num) => res + num
-                            |)
+                        @callblock(reference = "nums") {
+                            |nums foldLeft(0) { (res, num) =>
+                            |  res + num
+                            |}
                         }
                         @outblock() {
                             |res0: Int = 10
@@ -371,13 +382,10 @@
                     }
                 } {
                     @snippet() {
-                        @callblock() {
-                            |val numbers = List (1, 2, 3, 4)
-                            |
-                            |numbers.foldLeft (0) {
-                            |  (res, num) =>
-                            |    println ("= " + res + " + " + num)
-                            |    res + num
+                        @callblock(reference = "nums") {
+                            |nums foldLeft(0) { (res, num) =>
+                            |  println("= " + res + " + " + num)
+                            |  res + num
                             |}
                         }
                         @outblock() {
@@ -403,73 +411,62 @@
 
         @defining("flatMap") { title =>
 
-            @slide(title = title) {
+            @titleslide(title = title) {
 
                 @sidebyside(gap = 10) {
+
+                    @subhead() {
+                        (A) Systemparameter auslesen
+                    }
+
                     @snippet() {
                         @sourceblock(id = "config") {
-                            |def getConf (s: String) =
-                            |  Option (System getProperty s)
+                            |def getConf(s: String) =
+                            |  Option(System getProperty s)
                         }
                         @outblock() {
                             |getConf: (s: String)Option[String]
                         }
                     }
-                    @codesub2() {
-                        <em>(A)</em> Systemparameter auslesen
-                    }
                 } {
+                    @subhead() {
+                        (B) <code>String</code> in <code>Float</code> umwandeln
+                    }
+
                     @snippet() {
                         @sourceblock(id = "tonum", reference = "config") {
-                            |def toNum (s: String) =
-                            |  try {
-                            |    Some (s toDouble)
-                            |  } catch {
+                            |def toNum(s: String) =
+                            |  try { Some(s toFloat) }
+                            |  catch {
                             |    case e: Throwable => None
                             |  }
                         }
                         @outblock() {
-                            |toNum: (s: String)Option[Double]
+                            |toNum: (s: String)Option[Float]
                         }
-                    }
-                    @codesub2() {
-                        <em>(B)</em> String in Fließkommazahl umwandeln
                     }
                 }
 
-                @spacer2()
+                @spacer()
 
-                @sidebyside(gap = 10) {
-                    @fragment {
-                        <h4 class="tcenter">map</h4>
-                    }
-
-                    @spacer()
-
+                @autocenter {
                     @snippet() {
                         @callblock(reference = "tonum") {
                             |val n = "java.specification.version"
-                            |val r = getConf(n) map (s => toNum s)
+                            |val r1 = getConf(n) map { s => toNum(s) }
                         }
                         @outblock() {
-                            |r: Option[Option[Double]] = Some(Some(1.6))
+                            |r1: Option[Option[Float]] = Some(Some(1.6))
                         }
-                    }
-                } {
-                    @fragment {
-                        <h4 class="tcenter">flatMap</h4>
-                    }
-
-                    @spacer()
-
-                    @snippet() {
-                        @callblock(reference = "tonum") {
-                            |val n = "java.specification.version"
-                            |val r = getConf(n) flatMap (s => toNum s)
+                        @callblock() {
+                            |val r2 = getConf(n) flatMap { s => toNum(s) }
                         }
                         @outblock() {
-                            |r: Option[Double] = Some(10.6)
+                            |r2: Option[Float] = Some(10.6)
                         }
+                    }
+                    @codesub2() {
+                        <em>flatMap</em> 'plättet' das Ergebnis
                     }
                 }
             }
@@ -481,7 +478,7 @@
                 @autocenter {
                     @sourcecode() {
                         |trait Traversable[A] {
-                        |  def flatMap[B] (f: A => Traversable[B]): Traversable[B]
+                        |  def flatMap[B](f: A => Traversable[B]): Traversable[B]
                         |}
                     }
                 }
@@ -491,10 +488,7 @@
                 @sidebyside() {
                     @snippet() {
                         @callblock() {
-                            |val empl =
-                            |  Map (1->"Adam", 5->"Bob", 9->"Carl")
-                            |
-                            |(1 to 4) flatMap (n => empl get n)
+                            |(1 to 4) flatMap { n => empl get n }
                         }
                         @outblock() {
                             |res0: IndexedSeq[String] = Vector(Adam)
@@ -506,12 +500,9 @@
                 } {
                     @snippet() {
                         @callblock() {
-                            |val empl =
-                            |  Map (1->"Adam", 5->"Bob", 9->"Carl")
-                            |
-                            |(1 to 4) flatMap {n =>
+                            |(1 to 4) flatMap { n =>
                             |  val e = empl get n
-                            |  println (e)
+                            |  println(e)
                             |  e
                             |}
                         }
@@ -541,6 +532,10 @@
                     TODO
                 }
                 *@
+
+                @notes {
+                    - [PS] 'empl' is defined but hidden
+                }
             }
         }
 
@@ -558,7 +553,7 @@
                     |   nickname: Option[String] = None
                     |)
                     |
-                    |val empl = List (
+                    |val empl = List(
                     |    Empl ("Adam", 42, 20),
                     |    Empl ("Bob",  32, 10, Some("Mr B")),
                     |    Empl ("Carl", 46,  6),
@@ -585,7 +580,7 @@
                         |  } map { e =>
                         |    (e, e.age - e.started)
                         |  } foreach { t =>
-                        |    println (t._1.name +
+                        |    println(t._1.name +
                         |      " started at age " + t)
                         |  }
                     }
@@ -604,7 +599,7 @@
                         |  } map { e =>
                         |    (e, e.age - e.started)
                         |  } foreach { t =>
-                        |    println (t._1.name +
+                        |    println(t._1.name +
                         |      " started at age " + t)
                         |  }
                     }
@@ -616,6 +611,18 @@
             }
         }
         *@
+    }
+}
+
+@snippet(id = "nums") {
+    @callcode() {
+        |val nums = List(1, 2, 3, 4)
+    }
+}
+
+@snippet(id = "empl") {
+    @callcode() {
+        |val empl = Map(1 -> "Adam", 5 -> "Bob", 9 -> "Carl")
     }
 }
 
