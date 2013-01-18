@@ -66,6 +66,10 @@
                 <code>new</code> erstellt eine neue Instanz
             }
 
+            @notes {
+                - [STIL] camelCase mit Großbuchstabe - nicht '_' (wie Java)
+            }
+
             @*@infobox(hr = false) {
                 <code>class</code> definiert eine Klasse, sie ist standardmäßig öffentlich.
                 <code>new</code> erstellt eine Instanz.
@@ -141,7 +145,7 @@
                         |class Employee(name: String, age: Int) {
                         |
                         |  def this =
-                        |    this ("Unknown", -1)
+                        |    this("Unknown", -1)
                         |
                         |  def this(firstname: String, lastname: String, age: Int) =
                         |    this(firstname + " " + lastname, age)
@@ -275,75 +279,6 @@
                     Feld <code>name</code> mit Lese- und Schreibzugriff
                 }
             }
-
-            <!-- ################################################################################## -->
-
-            @titleslide(title = title, subtitle = "Uniform Access Principle") {
-
-                @sidebyside(gap = 10) {
-                    @snippet(id = "empl") {
-                        @sourceblock() {
-                            |class Employee(val name: String,
-                            |               var age: Int) {
-                            |  val salary = 40000
-                            |}
-                        }
-                    }
-
-                    @spacer()
-
-                    @outcode(lang = "java") {
-                       |public class Employee extends [...] {
-                       |
-                       |  private final String name;
-                       |  public String name();      // get
-                       |
-                       |  private final int salary;
-                       |  public int salary();       // get
-                       |
-                       |  private int age;
-                       |  public int age();          // get
-                       |  public void age_$eq(int);  // set
-                       |}
-                    }
-
-                    @codesub2() {
-                        <code>val</code> erhält eine Get-Methode,<br/>
-                        <code>var</code> erhält Get- @uline("und") Set-Methoden
-
-                        @*Scala generiert überschreibbare, öffentliche Zugriffsmethoden:<br/>*@
-                    }
-                } {
-                    @spacer()
-
-                    @snippet() {
-                        @callblock(reference = "empl") {
-                            |val e = new Employee ("Bob", 35)
-                        }
-                        @outblock() {
-                            |e: Employee = Employee@@53a1d1a8
-                        }
-                        @callblock() {
-                            |println(e.name)
-                        }
-                        @outblock() {
-                            |Bob
-                        }
-                        @callblock() {
-                            |println(e.salary)
-                        }
-                        @outblock() {
-                            |40000
-                        }
-                        @callblock() {
-                            |e.age = e.age - 1
-                        }
-                        @outblock() {
-                            |e.age: Int = 34
-                        }
-                    }
-                }
-            }
         }
 
         <!-- ################################################################################## -->
@@ -412,7 +347,8 @@
                             |    println("I clocked out. Bye!")
                             |  }
                             |
-                            |  def isInTheOffice = isPresent
+                            |  def isInTheOffice: Boolean
+                            |    = isPresent
                             |}
                         }
                     }
@@ -453,13 +389,23 @@
                 }*@
 
                 @notes {
+                    - [STIL] öffentliche Methoden sollten Rückgabetyp haben
+                    - [STIL] kein get- oder set-Prefix - höchstens 'is-'
                     - [STIL] Variablen an den Anfang, Methoden danach (durch Zeile getrennt)
+                    - [STIL] '()' weglassen, außer die Methode verändert den Zustand
+                        - [SHOW]? 'isInTheOffice()' (error)
                 }
             }
 
             <!-- ################################################################################## -->
 
+            <!-- TODO: Stil-Übung: konvertiere Klasse (live, zusammen ?)
+
+            <!-- ################################################################################## -->
+
             @titleslide(title = title, subtitle = "überladen", connector = ":") {
+
+                <!-- TODO: Problem mit default Parameter -->
 
                 @spacer()
 
@@ -503,6 +449,84 @@
                         überladene Methoden <em>mit</em> Rückgabetyp
                     }
                 }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide(title = "Uniform Access Principle") {
+
+            <!--
+                TODO
+                    http://docs.scala-lang.org/style/naming-conventions.html#accessorsmutators
+            -->
+
+            @sidebyside(gap = 10) {
+                @snippet(id = "empl") {
+                    @sourceblock() {
+                        |class Employee(val name: String,
+                        |               var age: Int) {
+                        |  val salary = 40000
+                        |}
+                    }
+                }
+
+                @spacer()
+
+                @outcode(lang = "java") {
+                   |public class Employee extends [...] {
+                   |
+                   |  private final String name;
+                   |  public String name();      // get
+                   |
+                   |  private final int salary;
+                   |  public int salary();       // get
+                   |
+                   |  private int age;
+                   |  public int age();          // get
+                   |  public void age_$eq(int);  // set
+                   |}
+                }
+
+                @codesub2() {
+                    <code>val</code> erhält eine Get-Methode,<br/>
+                    <code>var</code> erhält Get- @uline("und") Set-Methoden
+
+                    @*Scala generiert überschreibbare, öffentliche Zugriffsmethoden:<br/>*@
+                }
+            } {
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference = "empl") {
+                        |val e = new Employee("Bob", 35)
+                    }
+                    @outblock() {
+                        |e: Employee = Employee@@53a1d1a8
+                    }
+                    @callblock() {
+                        |println(e.name)
+                    }
+                    @outblock() {
+                        |Bob
+                    }
+                    @callblock() {
+                        |println(e.salary)
+                    }
+                    @outblock() {
+                        |40000
+                    }
+                    @callblock() {
+                        |e.age = e.age - 1
+                    }
+                    @outblock() {
+                        |e.age: Int = 34
+                    }
+                }
+            }
+
+            @notes {
+                - [STIL]
             }
         }
 

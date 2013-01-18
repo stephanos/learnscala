@@ -65,6 +65,13 @@
                             Dateipfad und Paketpfad <br/> @uline("müssen nicht") übereinstimmen
                         }
                     }
+
+                    @autocenter {
+                        @tipbox() {
+                            1 Klasse (ggf. mit Companion Object) in 1 Datei;<br/>
+                            Dateipfad entspricht Paketpfad.
+                        }
+                    }
                 }
             }
 
@@ -72,32 +79,38 @@
 
             @titleslide(title = title, subtitle = "Verschachtelung") {
 
-                @sourcecode() {
-                    |package com.mycompany.staff {
-                    |
-                    |  class Employee
-                    |}
-                }
-                @codesub2() {
-                    nur der Blockinhalt gehört zum Paket
+                @sidebyside(gap = 10) {
+                    @sourcecode() {
+                        |package com.mycompany.staff {
+                        |
+                        |  class Employee
+                        |}
+                    }
+                    @codesub2() {
+                        nur der Blockinhalt gehört zum Paket
+                    }
+                } {
+                    @sourcecode() {
+                        |package com.mycompany.staff {
+                        |
+                        |  class Employee
+                        |
+                        |  package test {
+                        |
+                        |    class EmployeeTest
+                        |       extends Employee
+                        |  }
+                        |}
+                    }
+                    @codesub2() {
+                        Paket <code>test</code> hat Zugriff auf <code>Employee</code>
+                    }
                 }
 
-                @spacer()
-
-                @sourcecode() {
-                    |package com.mycompany.staff {
-                    |
-                    |  class Employee
-                    |
-                    |  package test {
-                    |
-                    |    class EmployeeTest
-                    |       extends Employee
-                    |  }
-                    |}
-                }
-                @codesub2() {
-                    Paket <code>test</code> hat Zugriff auf Paket <code>com.mycompany.staff</code>
+                @autocenter {
+                    @warnbox() {
+                        Unüblich, sollte nicht verwendet werden.
+                    }
                 }
             }
 
@@ -174,6 +187,14 @@
                         beschränkt den Zugriff auf <br/>
                         das Paket <code>mycompany</code> <comment class="nobreak">(und dessen Unterpakete)</comment>
                     }
+
+                @spacer_half()
+
+                @autocenter {
+                    @tipbox() {
+                        Sehr nützlich um Zugriff gezielt einzuschränken.
+                    }
+                }
             }
 
             <!-- ################################################################################## -->
@@ -195,6 +216,12 @@
                     }
 
                 @spacer()
+
+                @autocenter {
+                    @tipbox() {
+                        Gute Alternative für Objekt mit Hilfsmethoden.
+                    }
+                }
 
                 @*
                     @sourcecode() {
@@ -230,34 +257,39 @@
 
             @titleslide(title = title, append = "I") {
 
-                    @sourcecode() {
-                        |import java.util.Date
+                @sourcecode() {
+                    |import java.util.Date
+                }
+                @codesub2() {
+                    importiert <em>1</em> Klasse namens <code>Date</code>
+                }
+
+                @spacer()
+
+                @sourcecode() {
+                    |import java.util.{Date, List}
+                }
+                @codesub2() {
+                    importiert die <em>2</em> Klassen <code>Date</code> und <code>List</code>
+                }
+
+                @spacer()
+
+                @sourcecode() {
+                    |import java.util._
+                }
+                @codesub2() {
+                    Wildcard <code>_</code> importiert <em>alles</em>
+                }
+
+                @spacer_half()
+
+                @autocenter {
+                    @tipbox() {
+                        Klammern für Gruppe von Importen verwenden, <br/>
+                        Wildcard nur bei mehr als 6 Elementen einsetzen.
                     }
-
-                    @codesub2() {
-                        importiert <em>1</em> Klasse namens <code>Date</code>
-                    }
-
-                @spacer2()
-
-                    @sourcecode() {
-                        |import java.util.{Date, List}
-                    }
-
-                    @codesub2() {
-                        importiert die <em>2</em> Klassen <code>Date</code> und <code>List</code>
-                    }
-
-                @spacer2()
-
-                    @sourcecode() {
-                        |import java.util._
-                    }
-
-                    @codesub2() {
-                        Wildcard <code>_</code> importiert <em>alles</em>
-                    }
-
+                }
             }
 
             <!-- ################################################################################## -->
@@ -279,7 +311,7 @@
                     }
 
                     @codesub2() {
-                        importiert <em>alles außer</em> <code>Date</code>
+                        importiert @uline("alles außer") <code>Date</code>
                     }
 
                 @*@infobox() {
@@ -299,7 +331,7 @@
                             |import com.mycompany.staff.Employee
                         }
 
-                        @iseq(true)
+                        @iseq()
                     } {
                         @codenote2() {
                             Importieren wie in Java
@@ -313,7 +345,7 @@
                             |import staff.Employee
                         }
 
-                        @iseq(true)
+                        @iseq()
                     } {
                         @codenote2() {
                             @uline("aber") zuerst sucht Scala relativ, dann erst absolut!
@@ -331,6 +363,12 @@
                         @codenote2() {
                             <code>_root_</code> erzwingt absolute Auflösung
                         }
+                    }
+                }
+
+                @autocenter {
+                    @tipbox() {
+                        Relative Importe vermeiden!
                     }
                 }
 
@@ -408,9 +446,14 @@
                     |  }
                     |}
                 }
-
                 @codesub2() {
                     Import kann überall im Code eingefügt werden
+                }
+
+                @autocenter {
+                    @tipbox() {
+                        Alle Importe am Dateianfang definieren!
+                    }
                 }
             }
 

@@ -59,6 +59,7 @@
             </details>
 
             @notes {
+                - [STIL] mit Kleinbuchstabe beginnen
                 - [STIL] (again) 2 Leerzeichen zum Einrücken
                 - [STIL] offene Klammer '@Html("{")' stets auf gleicher Zeile wie Definition
             }
@@ -207,7 +208,7 @@
             } {
                 @codenote2() {
                     <strong><em>ohne</em></strong> Rückgabetyp<br/>
-                    <comment>Wann? Kurz und nicht rekursiv oder überladen</comment>
+                    <comment>Wann? Nicht öffentlich und nicht rekursiv oder überladen</comment>
                 }
             }
 
@@ -333,15 +334,10 @@
             @snippet() {
                 @sourceblock(id = "print") {
                     |def doubleAndPlusOne(x: Int) = {
-                    |  def double(x: Int) = {
-                    |    x * 2
-                    |  }
+                    |  def double(x: Int)  =  x * 2
+                    |  def plusOne(x: Int) =  x + 1
                     |
-                    |  def plusOne(x: Int) = {
-                    |    x + 1
-                    |  }
-                    |
-                    |  plusOne(double (x))
+                    |  plusOne(double(x))
                     |}
                 }
                 @outblock() {

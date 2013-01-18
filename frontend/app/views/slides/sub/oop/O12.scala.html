@@ -32,13 +32,6 @@
             }
         }
 
-
-        <object>
-            @sourcecode(id = "account") {
-                |class Account(val owner: String, val number: Int)
-            }
-        </object>
-
         <!-- ################################################################################## -->
 
         @defining("Singleton") { title =>
@@ -80,6 +73,10 @@
                     @codesub2() {
                         ideal geeignet für <em>Factory</em>-Methoden
                     }
+                }
+
+                @notes {
+                    - [STIL] (again) camelCase mit Großbuchstabe - nicht '_' (wie Java)
                 }
             }
 

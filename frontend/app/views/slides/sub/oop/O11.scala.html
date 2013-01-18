@@ -389,7 +389,7 @@
 
             @snippet() {
                 @callblock(reference = "super") {
-                    |val p = new Employee ("Bob")
+                    |val p = new Employee("Bob")
                 }
                 @outblock() {
                     |p: Employee = Employee@@4088e7c9[name=Bob]
@@ -412,7 +412,7 @@
                     |class Employee (val name: String)
                 }
                 @callblock() {
-                    |val e = new Employee ("Bob") {
+                    |val e = new Employee("Bob") {
                     |   override def toString = name
                     |}
                 }
