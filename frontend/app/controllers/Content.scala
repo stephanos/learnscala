@@ -82,8 +82,8 @@ object Content extends MyController {
 
   // === ALLGEMEIN
 
+  lazy val interpolation = Slide("B30", "String Interpolation", basic, Seq(implicit1), status = "complete")
   lazy val dynamic = Slide("B30", "Dynamic", basic)
-  lazy val interpolation = Slide("B31", "String Interpolation", basic, Seq(implicit1), status = "complete")
   lazy val errors = Slide("B33", "Fehlerbehandlung", basic)
   lazy val implicit2 = Slide("B34", "Implicits II", basic, Seq())
   lazy val reflection = Slide("B36", "Reflection", basic)
@@ -93,7 +93,6 @@ object Content extends MyController {
   // === OBJEKTE
 
   lazy val klassen3 = Slide("O30", "Klassen III", oop, Seq(klassen2))
-  lazy val vererbung2 = Slide("O31", "Vererbung II", oop, Seq(vererbung1))
   lazy val typen2 = Slide("O32", "Typen II", oop, Seq(typen1, implicit1))
   lazy val generics2 = Slide("O33", "Typ-Parameter II", oop, Seq(generics1))
   lazy val typeclass = Slide("O34", "Type Class", oop, Seq())
