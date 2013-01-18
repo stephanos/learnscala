@@ -1,454 +1,111 @@
-@implicitSlide = @{ Content.kontrollabstraktion }
+<!--
+    TODO
+
+    - Composition
+    - Partial application
+    - partially applied functions
+
+    // These all have the same effect
+    val b = f _
+    val b: () => Int = f
+    val b: Function0[Int] = f
+
+    http://stackoverflow.com/questions/2173373/scala-foreach-strange-behaviour
+
+    http://www.codecommit.com/blog/scala/function-currying-in-scala
+
+    http://blogs.warwick.ac.uk/chrismay/entry/partial_and_curried/
+
+    http://www.ibm.com/developerworks/java/library/j-ft3/index.html
+
+    http://robpatro.com/blog/?p=53
+-->
+@implicitSlide = @{ Content.funktionen4 }
 
 @defining(implicitSlide.label) { implicit topic =>
 
     @layout.slidedeck(topic) {
-
         @slidehead() {
             @topic
         } {
-            @image("forging.png", clazz = "naked", height = 300)
+            @image("fx.png", clazz = "naked", height = 200)
             @spacer_half()
-            Die Werkzeugkiste erweitern
         }
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Problemstellung") {
+        @slide() {
 
-            <div class="w40p dcenter">
-
-                @fragment {
-                    @subhead(fragment = false) {
-                        Problem
-                    }
-
-                    <blockquote>
-                        Die Verbindung zu externen Systemen wie der Datenbank klappt manchmal erst beim 2. Mal;
-                        es müsste einen Mechanismus zum Erneuten versuchen geben.
-                    </blockquote>
-                }
-
-                @spacer2()
-
-                @fragment {
-                    @subhead(fragment = false) {
-                        Lösung
-                    }
-
-                    @callcode(fragment = false) {
-                        |retry(2) {
-                        |   connectToDatabase()
-                        |}
-                    }
-                }
-
-                @spacer2()
-
-                @fragment {
-                    @subhead(fragment = false) {
-                        Hilfsmittel
-                    }
-
-                    <h4 class="tcenter">
-                        <em>By-Name Parameter</em> und <em>Currying</em>
-                    </h4>
-                }
-            </div>
         }
 
         <!-- ################################################################################## -->
 
-        @defining("By-Name Parameter") { title =>
-
-            @titleslide(title = title, subtitle = "call-by-value") {
-
-                @sourcecode(id = "logger1") {
-                    |object Logger {
-                    |  var enabled = true
-                    |
-                    |  def log(message: String) {
-                    |    if (enabled) println (message)
-                    |  }
-                    |}
-                }
-
-                @spacer()
-
-                @indent() {
-                    @snippet() {
-                        @callblock(reference = "logger1") {
-                            |val now = new java.util.Date
-                            |Logger.log("Startup at %s".format(now))
-                        }
-                        @outblock() {
-                            |Startup at Sun Jan 01 00:00:00 CEST 2012
-                        }
-                    }
-                    @codesub2() {
-                        <var>Problem:</var> Nachricht wird aufwendig formatiert <br/> - egal ob Logger aktiv ist
-                    }
-                }
-            }
-
-            <!-- ################################################################################## -->
-
-            @titleslide(title = title, subtitle = "Parameter als Funktion") {
-
-                @sourcecode(id = "logger2") {
-                    |object Logger {
-                    |  var enabled = true
-                    |
-                    |  def log(message: () => String) {
-                    |    if (enabled) println (message())
-                    |  }
-                    |}
-                }
-
-                @spacer()
-
-                @indent() {
-                    @snippet() {
-                        @callblock(reference = "logger2") {
-                            |val now = new java.util.Date
-                            |Logger.log(() => "Startup at %s".format(now))
-                        }
-                        @outblock() {
-                            |Startup at Sun Jan 01 00:00:00 CEST 2012
-                        }
-                        @callblock() {
-                            |Logger.enabled = false
-                            |Logger.log(() => "Startup at %s".format(now))
-                        }
-                        @outblock() {
-                            |(nothing)
-                        }
-                    }
-                    @codesub2() {
-                        <var>Problem:</var> Syntax ist doch sehr gewöhnungsbedürftig
-                    }
-                }
-            }
-
-            <!-- ################################################################################## -->
-
-            @titleslide(title = title, subtitle = "call-by-name") {
-
-                @sourcecode(id = "logger3") {
-                    |object Logger {
-                    |  var enabled = true
-                    |
-                    |  def log(message: => String): Unit =
-                    |    if(enabled) println(message)
-                    |}
-                }
-                @codesub2() {
-                    <code>=></code> wandelt Parameter <em>call-by-name</em> um
-                }
-
-                @spacer()
-
-                @indent() {
-                    @snippet() {
-                        @callblock(reference = "logger3") {
-                            |val now = new java.util.Date
-                            |Logger.log("Startup at %s".format(now))
-                        }
-                        @outblock() {
-                            |Startup at Sun Jan 01 00:00:00 CEST 2012
-                        }
-                        @callblock() {
-                            |Logger.enabled = false
-                            |Logger.log("Startup at %s".format(now))
-                        }
-                        @outblock() {
-                            |(nothing)
-                        }
-                    }
-                    @codesub2() {
-                        Ausdruck wird erst beim Zugriff ausgewertet
-                    }
-                }
-            }
+        @slide(title = "") {
+            @*Haskell Brooks Curry (1900 – 1982) was an American mathematician and logician.*@
         }
 
         <!-- ################################################################################## -->
 
-        @titleslide(title = "Problemlösung") {
+        @slide() {
+            <!-- Funktionsliteral: ohne Parameterliste -->
 
-            @sidebyside(gap = 10) {
+            @sidebyside() {
                 @snippet() {
-                    @sourceblock(id = "retry") {
-                        |def retry[T](n: Int)(fn: => T): T = {
-                        |  try {
-                        |    fn
-                        |  } catch {
-                        |    case e if n > 1 =>
-                        |      retry(n - 1)(fn)
-                        |  }
-                        |}
+                    @callblock(reference = "nums", fragment = false) {
+                        |nums filter { _ < 3 }
                     }
                     @outblock() {
-                        |retry: [T](n: Int)(fn: => T)T
+                        |res0: List[Int] = List(1, 2)
+                    }
+                    @callblock() {
+                        |nums filter { _ > 0 && _ < 3 }
+                    }
+                    @outblock(error = true) {
+                        |error: wrong number of parameters;
+                        |       expected = 1
                     }
                 }
             } {
-                @callcode(reference = "connect2db") {
-                    |val r = retry(2) {
-                    |   connectToDatabase()
-                    |}
-                }
-
-                @spacer()
-
-                @outcode() {
-                    |connecting
-                    |connecting
-                    |r: Boolean = true
-                }
-
-                @codesub2() {
-                    <em>Erfolg:</em> 1. Ausnahme wird ignoriert
-                }
-
-                @spacer_half()
-
-                @outcode() {
-                    |connecting
-                    |connecting
-                    |RuntimeException: connection failed
-                }
-                @codesub2() {
-                    <var>Fehler:</var> Ausnahme erscheint nach 2 Versuchen
-                }
+                <div class="indent">
+                    <ul>
+                        <li class="fragment">
+                            Parameterliste kann weggelassen werden;
+                            mit <code>_</code> kann jeder Parameter einmal referenziert werden
+                        </li>
+                    </ul>
+                </div>
             }
-        }
 
-        <!-- ################################################################################## -->
+            @spacer2()
 
-        @defining("Beispiele") { title =>
-
-            @titleslide(title = title, subtitle = "Thread", head = true) {
-
-                @sourcecode(id = "ctrl-thread") {
-                    |def runInThread(block: => Unit) {
-                    |  new Thread {
-                    |    override def run() {
-                    |      block
-                    |    }
-                    |  }.start()
-                    |}
-                }
-                @codesub2() {
-                    <code>runInThread</code> führt Code in eigenem Thread aus
-                }
-
-                @spacer()
-
-                @indent() {
-                    @snippet() {
-                        @callblock(reference = "ctrl-thread") {
-                            |println(Thread.currentThread.getName)
-                        }
-                        @outblock() {
-                            |Thread-767
-                        }
-                        @callblock() {
-                            |runInThread {
-                            |   println(Thread.currentThread.getName)
-                            |}
-                        }
-                        @outblock() {
-                            |Thread-1144
-                        }
+            @sidebyside() {
+                @snippet() {
+                    @callblock(reference = "nums") {
+                        |nums sortWith { (x, y) => x > y }
+                    }
+                    @outblock() {
+                        |res0: List[Int] = List(3, 2, 1)
+                    }
+                    @callblock() {
+                        |numbers sortWith { _ > _ }
+                    }
+                    @outblock() {
+                        |res1: List[Int] = List(3, 2, 1)
                     }
                 }
+            } {
+                <div class="indent">
+                    <ul>
+                        <li class="fragment">
+                            Funktion "ist x größer als y" wird auf jedes Element angewendet
+                        </li>
+                        <li class="fragment">
+                            der erste <code>_</code> repäsentiert den ersten Parameter (x),
+                            der zweite <code>_</code> den zweiten Parameter (y)
+                        </li>
+                    </ul>
+                </div>
             }
-
-            <!-- ################################################################################## -->
-
-            @titleslide(title = title, subtitle = "Resource", head = true) {
-
-                @sourcecode(id = "ctrl-resource") {
-                    |import java.io._
-                    |
-                    |def withResource[R &lt;: Closeable](res: => R)(f: (R) => Unit) = {
-                    |  val r = res
-                    |  try {
-                    |    f(r)
-                    |  } finally {
-                    |    r.close()
-                    |  }
-                    |}
-                }
-
-                @codesub2() {
-                    <code>withResource</code> schließt verwendete Ressource
-                }
-
-                @spacer()
-
-                @autocenter {
-                    @indent() {
-                        @callcode(reference = "ctrl-resource") {
-                            |val f = new File("file.txt")
-                            |
-                            |withResource(new FileInputStream (f)) {
-                            |  stream =>
-                            |    // read 'stream' ...
-                            |}
-                        }
-                    }
-                }
-            }
-
-            <!-- ################################################################################## -->
-
-            @titleslide(title = title, subtitle = "Unless", head = true) {
-
-                @sourcecode(id = "ctrl-unless") {
-                    |def unless(condition: => Boolean)(body: => Unit) {
-                    |  if (!condition)
-                    |    body
-                    |}
-                }
-
-                @codesub2() {
-                    <code>unless</code> ist das Gegenstück zu <code>if</code>
-                }
-
-                @spacer()
-
-                @indent() {
-                    @snippet() {
-                        @callblock(reference = "ctrl-unless") {
-                            |unless(1 == 42) {
-                            |  print ("unless!")
-                            |}
-                        }
-                        @outblock() {
-                            |unless!
-                        }
-                    }
-                }
-            }
-
-            <!-- ################################################################################## -->
-
-            @titleslide(title = title, subtitle = "Timed", head = true) {
-
-                @sourcecode(id = "ctrl-time") {
-                    |def timed[T](f: => T) = {
-                    |  val start = System.nanoTime
-                    |  val r = f
-                    |  val t = (System.nanoTime - start) / 1e9
-                    |  (r, t)
-                    |}
-                }
-                @codesub2() {
-                    <code>timed</code> errechnet die Ausführungszeit
-                }
-
-                @spacer()
-
-                @indent() {
-                    @snippet() {
-                        @callblock(reference = "factorial") {
-                            |val (f, t) = timed { factorial(1000) }
-                        }
-                        @outblock() {
-                            |f: BigInt = 4023872600770937735437...
-                        }
-                        @callblock() {
-                            |println (t + " seconds")
-                        }
-                        @outblock() {
-                            |0.00150658 seconds
-                        }
-                    }
-                }
-            }
-        }
-
-        <!-- ################################################################################## -->
-
-        @uebung(implicitSlide.id)
-    }
-}
-
-<div class="hide">
-    @sourcecode(id = "factorial", reference = "ctrl-time") {
-        |def factorial(n: Int): BigInt =
-        |   if (n == 0) BigInt (1) else n * factorial(n - 1)
-    }
-
-    @sourcecode(id = "connect2db", reference = "retry") {
-        |def connectToDatabase = {
-        |   println("connecting")
-        |   if (util.Random.nextInt(2) == 1)
-        |      sys.error ("connection failed")
-        |   true
-        |}
-    }
-</div>
-
-<!--
-file:///Volumes/HOTSTUFF/LearnScala/slides/uni%20muenchen/06-kontrollabstraktion-syska-wilhelmi/praesentation.pdf
-
-object BreakLoop {
-
-    object Break extends RuntimeException
-
-    object Continue extends Exception
-
-    def break {
-        throw Break
-    }
-
-    def continue {
-        throw Continue
-    }
-
-    def whileTrue(block: => Unit) {
-        try {
-            try {
-                while (true) try {
-                    block
-                }
-                catch {
-                    case Continue =>
-                }
-            }
-            catch {
-                case Break =>
-            }
-        }
-    }
-
-    def whileTrue(condition: => Boolean)(block: => Unit) {
-        try {
-            while (condition)
-                try {
-                    block
-                }
-                catch {
-                    case Continue =>
-                }
-        }
-        catch {
-            case Break =>
         }
     }
 }
-
-import BreakLoop._
-object TestBreak extends App {
-    var i = 0
-    whileTrue {
-        i += 1
-        if (i < 3) continue
-        if (i >= 5) break
-        if (i >= 5) break
-    }
-}
--->
