@@ -412,8 +412,8 @@
                     @sourcecode() {
                         |class my_COMPANY {
                         |  private var open: Boolean = true
-                        |  def fire_employee = {
-                        |    Employees -= 1
+                        |  def working_employees = {
+                        |    if(open) Employees else 0
                         |  }
                         |  def setClose() = {
                         |    open = false
@@ -421,8 +421,7 @@
                         |
                         |  val NamE: String = "Scaloogle"
                         |
-                        |  def say_HELLO = {
-                        |
+                        |  def say_HELLO: Unit = {
                         |    return println {
                         |      "Welcome to " + name }
                         |  }
@@ -449,9 +448,8 @@
                         |    println("Welcome to" + name)
                         |  }
                         |
-                        |  def fireEmployee() {
-                        |    employees -= 1
-                        |  }
+                        |  def workingEmployees =
+                        |    if (open) employees else 0
                         |}
                     }
                 }
