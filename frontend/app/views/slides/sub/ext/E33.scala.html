@@ -1,4 +1,4 @@
-@implicitSlide = @{ Content.web }
+@implicitSlide = @{ Content.dbase }
 
 @defining(implicitSlide.label) { implicit topic =>
 
@@ -7,7 +7,6 @@
         @slidehead() {
             @topic
         } {
-
         }
 
         <!-- ################################################################################## -->
@@ -17,9 +16,10 @@
         <!-- ################################################################################## -->
 
         @*
-        @defining("Unfiltered") { title =>
+        @defining("SQueryl") { title =>
 
             @titleslide(title) {
+
             }
 
             <!-- ################################################################################## -->
@@ -36,57 +36,75 @@
 
         <!-- ################################################################################## -->
 
-        @defining("Spray") { title =>
+        @overview
+
+        <!-- ################################################################################## -->
+
+        @defining("Slick") { title =>
 
             @titleslide(title) {
-                <div class="indent">
-                    <ul>
-                        <li>
-                            Erstellen von RESTful Web Services
-                        </li>
-                        <li class="fragment">
-                            basiert auf <var>Akka</var>
-                        </li>
-                        <li class="fragment">
-                            <em>eventbasiert</em> & <em>asynchron</em>
-                        </li>
-                        <li class="fragment">
-                            flexible & erweiterbare <em>Domain Specific Language</em>
-                        </li>
-                        <li class="fragment">
-                            unabhängig vom Web Server / Container<br/>
-                            (unterstützt <em>Servlet 3.0</em> plus Jetty 7 und Tomcat 6)
-                        </li>
-                    </ul>
-                </div>
+
             }
 
-            <!-- ################################################################################## -->
+            @slide(title = title) {
 
-            @titleslide(title, subtitle = "Beispiel") {
-                @sourcecode(fragment = false) {
-                    |trait CalculatorService @("extends") Directives with CustomMarshallers {
-                    |
-                    |  val calculatorService = {
-                    |    path("add" / DoubleNumber / DoubleNumber) {  // z.B. '/add/40/2'
-                    |      (a, b) =>
-                    |        get {                                    // HTTP GET
-                    |          completeWith(a + b)
-                    |        }
-                    |      } ~
-                    |    path("factorial" / IntNumber) {              // z.B. '/factorial/4'
-                    |      (n) =>
-                    |        detach {                                 // calculate asynchronously
-                    |          get {                                  // HTTP GET
-                    |            completeWith(factorial(n))
-                    |          }
-                    |        }
-                    |      }
-                    |    }
-                    |
-                    |  private def factorial(n: Int): Int =
-                    |    if (n == 0) 1 else n * factorial(n - 1)
+                @sourcecode() {
+                    |object Coffees extends Table[(String, Int, Double)]("COFFEES") {
+                    |  def name = column[String]("COF_NAME", O.PrimaryKey)
+                    |  def supID = column[Int]("SUP_ID")
+                    |  def price = column[Double]("PRICE")
+                    |  def * = name ~ supID ~ price
                     |}
+                }
+
+                @spacer()
+
+                @sourcecode() {
+                    |Coffees.insertAll(
+                    |    ("Colombian",         101, 7.99),
+                    |    ("Colombian_Decaf",   101, 8.99),
+                    |    ("French_Roast_Decaf", 49, 9.99)
+                    |)
+                }
+
+                @spacer()
+
+                @sourcecode() {
+                    |val q = for {
+                    |    c <- Coffees if c.supID === 101
+                    |  } yield (c.name, c.price)
+                    |
+                    |  println(q.selectStatement)
+                    |
+                    |  q.foreach { case (n, p) => println(n + ": " + p) }
+                }
+            }
+
+            @slide(title = title) {
+
+                @sourcecode() {
+                    |@@table("COFFEES") case class Coffee(
+                    |  @@column("COF_NAME") name:  String,
+                    |  @@column("SUP_ID")   supID: Int,
+                    |  @@column("PRICE")    price: Double
+                    |)
+                }
+
+                @spacer()
+
+                @sourcecode() {
+                    |val coffees = Queryable[Coffee]
+                    |
+                    |val l = for {
+                    |    c <- coffees if c.supID == 101
+                    |} yield (c.name, c.price)
+                }
+
+                @spacer()
+
+                @sourcecode() {
+                    |backend.result (l, session)
+                    |  .foreach { case (n, p) => println(n + ": " + p) }
                 }
             }
         }
@@ -97,64 +115,26 @@
 
         <!-- ################################################################################## -->
 
-        @*
-        @defining("Scalatra") { title =>
+        @defining("Rogue") { title =>
 
             @titleslide(title) {
 
-            }
-
-            <!-- ################################################################################## -->
-
-            @titleslide(title, subtitle = "Demo") {
-                @demo()
-            }
-        }
-
-        <!-- ################################################################################## -->
-
-        @overview
-        *@
-
-        <!-- ################################################################################## -->
-
-        @defining("Play2") { title =>
-
-            @titleslide(title) {
                 <div class="indent">
                     <ul class="fragments">
                         <li>
-                            Web-Framework auf Basis von <em>JBoss Netty</em>
+                            <em>typsichere DSL</em> zum Lesen und Schreiben auf <var>MongoDB</var>
                         </li>
                         <li>
-                            Teil vom <var>Typesafe Stack</var>
+                            entwickelt von <var>Foursquare</var>
                         </li>
                         <li>
-                            basiert auf <var>sbt</var> und <var>Akka</var>
+                            bildet <em>MongoDBs Abfragesprache</em> in Scala ab
                         </li>
                         <li>
-                            komplette <em>Neuentwicklung</em> von Play 1
+                            Erkennung von inkorrekten Feldnamen, Operatoren oder Typen beim Kompilieren
                         </li>
                         <li>
-                            Schnittstellen zu Scala und Java
-                        </li>
-                        <li>
-                            inspiriert von <var>Ruby on Rails</var> und <var>Django</var>
-                        </li>
-                        <li>
-                            Besonderheiten:
-                            @spacer_half()
-                            <ul class ="fragments">
-                                <li>
-                                    <em>zustandslos</em>
-                                </li>
-                                <li>
-                                    <em>eventbasiert</em>
-                                </li>
-                                <li>
-                                    <em>on-the-fly recompile</em>
-                                </li>
-                            </ul>
+                            abhängig von <var>Lifts</var> Modellen
                         </li>
                     </ul>
                 </div>
@@ -162,155 +142,83 @@
 
             <!-- ################################################################################## -->
 
-            @headslide() {
-                @title
-            } {
-                @sidebyside() {
-                    @sourcecode(fragment = false) {
-                        |// app/views/hello.scala.html
-                        |@@(name: String)
-                        |
-                        |&lt;html&gt;
-                        |  &lt;body&gt;
-                        |    &lt;h1&gt;Hello @@name!&lt;/h1&gt;
-                        |  &lt;/body&gt;
-                        |&lt;/html&gt;
-                    }
-                    <sub>View</sub>
-                } {
-                    @fragment {
-                        @sourcecode(fragment = false) {
-                            |// app/controllers.Application.scala
-                            |package controllers
-                            |
-                            |import play.api.mvc._
-                            |
-                            |object Application extends Controller {
-                            |   def hello(name: String) = Action {
-                            |       Ok(views.html.hello(name))
-                            |   }
-                            |}
-                        }
-                        <sub>Controller</sub>
-                    }
-                }
+            @titleslide(title = title) {
 
-                @spacer2()
-
-                @fragment {
-                    @sourcecode(fragment = false) {
-                        |// conf/routes
-                        |GET   /hello/:name        controllers.Application.hello(name: String)
-                    }
-                    <sub>Routing</sub>
-                }
-            }
-
-            @headslide() {
-                @title
-            } {
                 @sourcecode() {
-                    |val userForm = Form (
-                    |  mapping (
-                    |    "user" -> nonEmptyText,
-                    |    "password" -> nonEmptyText,
-                    |    "age" -> number(min=0, max=100)
-                    |  )
-                    |)
+                    |class BlogPosts extends MongoRecord[BlogPosts]
+                    |                with MongoId[BlogPosts]
+                    |                with IndexedRecord[BlogPosts] {
                     |
-                    |val (user, password, age) = userForm.bindFromRequest.get
-                }
-
-                @spacer()
-
-                @sourcecode() {
-                    |val ok = Ok("Hello world!")
-                    |val notFound = NotFound
-                    |val pageNotFound = NotFound(&lt;h1&gt;Page not found&lt;/h1&gt;)
-                    |val badRequest = BadRequest(views.html.form(formWithErrors))
-                    |val oops = InternalServerError("Oops")
-                    |val anyStatus = Status(488)("Strange response type")
-                }
-            }
-
-            @headslide() {
-                @title
-            } {
-                @sourcecode() {
-                    |def feedTitle(feedUrl: String) = Action {
-                    |  Async {
-                    |    WS.url(feedUrl).get().map { response =>
-                    |      Ok("Feed title: " + (response.json \ "title").as[String])
-                    |    }
-                    |  }
+                    |  def meta = BlogPost
+                    |
+                    |  object title extends StringField(this, 255)
+                    |  object clicks extends LongField(this)
+                    |  object created extends DateTimeField(this)
+                    |  object tags extends MongoListField[BlogPosts, String](this)
                     |}
                 }
 
                 @spacer()
 
                 @sourcecode() {
-                    |def index = Action {
-                    |  val promiseOfInt = Akka.future { intensiveComputation() }
-                    |  Async {
-                    |    promiseOfInt.orTimeout("Oops", 1000).map { eitherIntOrTimeout =>
-                    |      eitherIntOrTimeout fold (
-                    |        i => Ok ("Got result: " + i),
-                    |        timeout => InternalServerError ("timeout")
-                    |      )
-                    |    }
-                    |  }
+                    |object BlogPost {
+                    |  override def collectionName = "blogposts"
+                    |
+                    |  val idIdx = BlogPosts.index(_._id, Asc)
+                    |  override val mongoIndexList = List(idIdx)
                     |}
                 }
             }
-        }
 
-        @*
-        <!-- ################################################################################## -->
+            <!-- ################################################################################## -->
 
-        @overview
+            @slide(title = title) {
 
-        <!-- ################################################################################## -->
+                @sourcecode(fragment = false) {
+                    |BlogPosts where (_.id eqs 1)
+                    |          get
+                }
+                <sub></sub>
 
-        @defining("Lift") { title =>
-
-            @titleslide(title) {
-
-            }
-        }
-        *@
-
-        <!-- ################################################################################## -->
-
-        @overview
-
-        @*
-        <!-- ################################################################################## -->
-
-        @defining("Dispatch") { title =>
-
-            @titleslide(title) {
+                @spacer()
 
                 @sourcecode() {
-                    |http(:/("dispatch.databinder.net") >:+ {
-                    |  (headers, req) =>
-                    |    headers("content-type") filter {
-                    |      _.contains("text/html")
-                    |    }.headOption map { _ =>
-                    |      req &lt;/&gt; { nodes => (nodes \\ "h1").text }
-                    |    } getOrElse {
-                    |      req >> { _ => "unknown content type" }
-                    |    }
-                    |})
+                    |BlogPosts where (_.clicks > 100)
+                    |          fetch(10)
                 }
+                <sub></sub>
+
+                @spacer()
+
+                @sourcecode() {
+                    |BlogPosts where (_.tags in List("scala", "mongodb"))
+                    |          fetch(10)
+                }
+                <sub></sub>
+
+                @spacer()
+
+                @sourcecode() {
+                    |BlogPosts where (_.created before new Date())
+                    |          fetch(10)
+                }
+                <sub></sub>
+
+                @spacer()
+
+                @sourcecode() {
+                    |BlogPosts where (_.id eqs 1)
+                    |          findAndModify (_.title setTo "Scala und MongoDB")
+                    |          updateOne
+                }
+                <sub></sub>
             }
         }
-        *@
     }
 }
 
-
 @overview(implicit topic: String) = {
     @slide(title = "Überblick der Bibliotheken") {
-        @Images.webTools()
+        @Images.dbTools()
     }
 }
