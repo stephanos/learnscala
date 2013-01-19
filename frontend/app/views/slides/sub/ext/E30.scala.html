@@ -16,256 +16,69 @@
 
         <!-- ################################################################################## -->
 
-        @defining("Unit Testing") { title =>
+        @titleslide(title = "TestNG & JUnit") {
+            @spacer()
 
-            @headslide(title = title) {
-                TestNG & JUnit
+            @sidebyside(gap = 10) {
+                @sourcecode(lang = "java", fragment = false) {
+                    |assertEquals(boolean expected,
+                    |             boolean actual)
+                }
+                @fragment {
+                    JUnit
+                }
             } {
-                @spacer()
-
-                @sidebyside(gap = 10) {
-                    @sourcecode(lang = "java", fragment = false) {
-                        |assertEquals(boolean expected,
-                        |             boolean actual)
-                    }
-                    @fragment {
-                        JUnit
-                    }
-                } {
-                    @sourcecode(lang = "java", fragment = false) {
-                        |assertEquals(boolean actual,
-                        |             boolean expected)
-                    }
-                    @fragment {
-                        TestNG
-                    }
+                @sourcecode(lang = "java", fragment = false) {
+                    |assertEquals(boolean actual,
+                    |             boolean expected)
+                }
+                @fragment {
+                    TestNG
                 }
             }
 
-            @defining("ScalaTest") { subtitle =>
-
-                @*
-                    http://www.slideshare.net/meetumaltiar/scala-test-10648513
-                *@
-
-                @headslide(title = title, subtitle = subtitle) {
-                    @subtitle
-                } {
-                }
-
-                @slide(title = title, subtitle = subtitle) {
-                    @sourcecode() {
-                        |class StackBDDSuite extends FunSpec with BeforeAndAfter {
-                        |
-                        |  var stack: Stack[Int] = _
-                        |
-                        |  before {
-                        |    stack = new Stack[Int]
-                        |  }
-                        |
-                        |  describe("A Stack") {
-                        |
-                        |    it("should pop values in last-in-first-out order") {
-                        |      stack.push (1)
-                        |      stack.push (2)
-                        |      assert (stack.pop() === 2)
-                        |      assert (stack.pop() === 1)
-                        |    }
-                        |
-                        |    it("should throw NoSuchElementException if empty stack is popped") {
-                        |      intercept[NoSuchElementException] {
-                        |        stack.pop()
-                        |      }
-                        |    }
-                        |  }
-                        |}
-                    }
-                }
+            @notes {
+                - hat jmd. TestNG verwendet? Ja, welches ist welches?
             }
         }
 
         <!-- ################################################################################## -->
 
-        @overview
+        @defining("ScalaTest") { title =>
 
-        <!-- ################################################################################## -->
+            @*
+                http://www.slideshare.net/meetumaltiar/scala-test-10648513
+            *@
 
-        @defining("Specificiation Testing") { title =>
-
-            @defining("Specs") { subtitle =>
-
-                @*
-                    - http://twitter.github.com/scala_school/specs.html
-                *@
-
-                <!-- ################################################################################## -->
-
-                @headslide(title = title, subtitle = subtitle, subsubtitle = "Beispiel") {
-                    @subtitle
-                } {
-                    @sourcecode() {
-                        |import org.specs2.mutable._
-                        |
-                        |class HelloWorldSpec extends Specification {
-                        |
-                        |  "The 'Hello world' string" should {
-                        |
-                        |    "contain 11 characters" in {
-                        |      "Hello world" must have size (11)
-                        |    }
-                        |
-                        |    "start with 'Hello'" in {
-                        |      "Hello world" must startWith ("Hello")
-                        |    }
-                        |
-                        |    "end with 'world'" in {
-                        |      "Hello world" must endWith ("world")
-                        |    }
-                        |  }
-                        |}
-                    }
-                }
-
-                @headslide(title = title, subtitle = subtitle, subsubtitle = "Beispiel") {
-                    @subtitle
-                } {
-                    @sourcecode() {
-                        |"must have list elements" in {
-                        |   val numbers = List(1, 2, 3)
-                        |   numbers must contain(1)
-                        |   numbers must not contain(4)
-                        |   numbers must containAll(List(1, 2, 3))
-                        |   numbers must contain(1, 2, 3)
-                        |   numbers must containInOrder(List(1, 2, 3))
-                        |   numbers must contain(1, 2, 3).only.inOrder
-                        |}
-                    }
-
-                    @spacer_half()
-
-                    @sourcecode() {
-                        |"must throw Exception" should {
-                        |  exec() must throwA[Exception]
-                        |}
-                    }
-
-                    @spacer_half()
-
-                    @sourcecode() {
-                        |"numbers" should {
-                        |  a must beGreaterThan(1)
-                        |  a must beLessThanOrEqualToo(2)
-                        |}
-                    }
-                }
-            }
-
-            <!-- ################################################################################## -->
-
-            @defining("ScalaCheck") { subtitle =>
-
-                @*
-                    https://github.com/rickynils/scalacheck/wiki/User-Guide
-                    http://www.slideshare.net/BeScala/scala-check
-                    http://blog.tmorris.net/automated-unit-testing-your-java-using-scalacheck/
-                *@
-
-                @slide(title = title, subtitle = subtitle) {
-
-                    <div class="bigger dcenter w50p">
-
-                        <div class="tcenter">
-                            @image("blacksheep.gif", clazz = "naked", height = 100,
-                                   source = "http://blog.urfix.com/blacksheep-alerts-networking-sniffing-tool-firesheep-passwords/")
-                        </div>
-
-                        @spacer()
-
-                        <blockquote class="fragment">
-                            <p>
-                                Drei Wissenschaftler - ein Astrophysiker, ein Physiker und ein Mathematiker -
-                                sind in einem Bus zu einer Konferenz in Schottland.
-                            </p>
-                            <p class="fragment">
-                                Kurz hinter der Grenze sehen Sie ein schwarzes Schaf auf einem Hügel stehen.
-                            </p>
-                            <p class="fragment">
-                                Der Astrophysiker sagt: »In Schottland sind alle Schafe schwarz.«
-                            </p>
-                            <p class="fragment">
-                                Der Physiker sagt: »Hm, alles was wir mit Sicherheit sagen können ist,
-                                dass in Schottland manche Schafe schwarz sind.«
-                            </p>
-                            <p class="fragment">
-                                Der Mathematiker seufzt und sagt: »Nein, Nein.
-                                Sicher ist nur: In Schottland gibt es @uline("ein") Schaf mit @uline("mindestens einer") schwarzen Seite.«
-                            </p>
-                        </blockquote>
-                    </div>
-                }
-
-                <!-- ################################################################################## -->
-
-                @*
-                @headslide(title = title, subtitle = subtitle) {
-                    @subtitle
-                } {
-                    <ul class="fragments">
-                        <li>
-                            Überprüfung der Eigenschaften von zufälligen Datensätzen
-                        </li>
-                    </ul>
-                }
-                *@
-
-                <!-- ################################################################################## -->
-
-                @headslide(title = title, subtitle = subtitle) {
-                    @subtitle
-                } {
-                    @sourcecode() {
-                        |import org.specs2._
-                        |import org.scalacheck._
-                        |
-                        |class ScalaCheckExamples
-                        |   extends Specification with ScalaCheck {
-                        |
-                        |  "addition and multiplication are related" ! prop {
-                        |    (a: Int) => a + a == 2 * a
-                        |  }
-                        |
-                        |  "startsWith" ! check {
-                        |    (a: String, b: String) => (a + b) startsWith a
-                        |  }
-                        |}
-                    }
+            @titleslide(title = title) {
+                @sourcecode() {
+                    |class StackBDDSuite extends FunSpec with BeforeAndAfter {
+                    |
+                    |  var stack: Stack[Int] = _
+                    |
+                    |  before {
+                    |    stack = new Stack[Int]
+                    |  }
+                    |
+                    |  describe("A Stack") {
+                    |
+                    |    it("should pop values in last-in-first-out order") {
+                    |      stack.push (1)
+                    |      stack.push (2)
+                    |      assert (stack.pop() === 2)
+                    |      assert (stack.pop() === 1)
+                    |    }
+                    |
+                    |    it("should throw NoSuchElementException if empty stack is popped") {
+                    |      intercept[NoSuchElementException] {
+                    |        stack.pop()
+                    |      }
+                    |    }
+                    |  }
+                    |}
                 }
             }
         }
-
-        <!-- ################################################################################## -->
-
-        @overview
-
-        <!-- ################################################################################## -->
-
-        @*
-        @defining("Mocking") { title =>
-
-            @defining("ScalaMock") { subtitle =>
-
-                @headslide(title = title, subtitle = subtitle) {
-                    @subtitle
-                } {
-                        <!-- TODO -->
-                }
-            }
-        }
-
-        <!-- ################################################################################## -->
-
-        @overview
-        *@
 
         <!-- ################################################################################## -->
 
