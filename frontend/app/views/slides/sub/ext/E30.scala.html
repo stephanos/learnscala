@@ -46,37 +46,281 @@
 
         @defining("ScalaTest") { title =>
 
-            @*
-                http://www.slideshare.net/meetumaltiar/scala-test-10648513
-            *@
-
             @titleslide(title = title) {
-                @sourcecode() {
-                    |class StackBDDSuite extends FunSpec with BeforeAndAfter {
-                    |
-                    |  var stack: Stack[Int] = _
-                    |
-                    |  before {
-                    |    stack = new Stack[Int]
-                    |  }
-                    |
-                    |  describe("A Stack") {
-                    |
-                    |    it("should pop values in last-in-first-out order") {
-                    |      stack.push (1)
-                    |      stack.push (2)
-                    |      assert (stack.pop() === 2)
-                    |      assert (stack.pop() === 1)
-                    |    }
-                    |
-                    |    it("should throw NoSuchElementException if empty stack is popped") {
-                    |      intercept[NoSuchElementException] {
-                    |        stack.pop()
-                    |      }
-                    |    }
-                    |  }
-                    |}
+
+                @indent() {
+                    <ul class="fragments">
+                        <li>
+                            etnwickelt seit 2007 von Bill Venners <br/> (Co-Autor von 'Programming in Scala')
+                        </li>
+                        @spacer_half()
+                        <li>
+                            ausdrucksstärker als JUnit/TestNG
+                        </li>
+                        @spacer_half()
+                        <li>
+                            sehr flexibel: erlaubt Testen in 7 Stilarten
+                        </li>
+                        @spacer_half()
+                        <li>
+                            integriert mit <em>JUnit4</em>, <em>ScalaCheck</em>, <em>Scala IDE</em>, <br/>
+                            <em>Mockito</em>, <em>EasyMock</em>, <em>Selenium</em>, <em>Maven</em>, <em>SBT</em> etc.
+                        </li>
+                    </ul>
                 }
+            }
+
+            <!-- ################################################################################## -->
+
+            @defining("Struktur") { subtitle =>
+
+                @titleslide(title = title, subtitle = subtitle) {
+
+                    @sidebyside() {
+                        @sourcecode() {
+                            |class SetSuite extends FunSuite {
+                            |  test("empty Set should have size 0") {
+                            |    assert(Set.empty.size === 0)
+                            |  }
+                            |}
+                        }
+                        @codesub2() {
+                            <code>FunSuite</code>: ähnlich JUNit
+                        }
+                    } {
+                        @sourcecode() {
+                            |class SetSpec extends FlatSpec {
+                            |  "empty Set" should "have size 0" in {
+                            |    assert(Set.empty.size === 0)
+                            |  }
+                            |}
+                        }
+                        @codesub2() {
+                            <code>FlatSpec</code>: JUnit mit Spezifikationsstil
+                        }
+                    }
+
+                    @spacer()
+
+                    @sidebyside() {
+                        @sourcecode() {
+                            |class SetSpec extends FunSpec {
+                            |  describe("A Set") {
+                            |    describe("when empty") {
+                            |      it("should have size 0") {
+                            |        assert(Set.empty.size === 0)
+                            |      }
+                            |    }
+                            |  }
+                            |}
+                        }
+                        @codesub2() {
+                            <code>FunSpec</code>: reiner Spezifikationsstil
+                        }
+                    } {
+                        @sourcecode() {
+                            |class SetSpec extends WordSpec {
+                            |  "A Set" when {
+                            |    "empty" should {
+                            |      "have size 0" in {
+                            |        assert(Set.empty.size === 0)
+                            |      }
+                            |    }
+                            |  }
+                            |}
+                        }
+                        @codesub2() {
+                            <code>WordSpec</code>
+                        }
+                    }
+                }
+
+                @titleslide(title = title, subtitle = subtitle + " II") {
+
+                    @sourcecode() {
+                        |class TVSetSpec extends FeatureSpec with GivenWhenThen {
+                        |
+                        |  feature("TV power button") {
+                        |    scenario("User presses power button when TV is off") {
+                        |
+                        |      Given("a TV set that is switched off")
+                        |      val tv = new TVSet
+                        |      assert(!tv.isOn)
+                        |
+                        |      When("the power button is pressed")
+                        |      tv.pressPowerButton()
+                        |
+                        |      Then("the TV should switch on")
+                        |      assert(tv.isOn)
+                        |    }
+                        |  }
+                        |}
+                    }
+                    @codesub2() {
+                        <code>FeatureSpec</code>: Akzeptanztests
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @defining("Matcher") { subtitle =>
+
+                @titleslide(title = title, subtitle = subtitle) {
+
+                    @sidebyside(gap = 10) {
+                        @snippet() {
+                            @sourceblock() {
+                                |val left = 2
+                                |val right = 1
+                                |assert(left === right)
+                            }
+                            @outblock(error = true) {
+                                |TestFailedException:
+                                |  2 did not equal 1
+                            }
+                        }
+                        @codesub2() {
+                            <code>assert</code> und <code>===</code>
+                        }
+                    } {
+                        @snippet() {
+                            @sourceblock() {
+                                |val a = 5
+                                |val b = 2
+                                |expectResult(2) { a - b }
+                            }
+                            @outblock(error = true) {
+                                |TestFailedException:
+                                |  Expected 2, but got 3
+                            }
+                        }
+                        @codesub2() {
+                            <code>expectResult</code>
+                        }
+                    }
+
+                    @spacer2()
+
+                    @autocenter {
+                        @snippet() {
+                            @sourceblock() {
+                                |val s = "hi"
+                                |intercept[IndexOutOfBoundsException] { s.charAt(0) }
+                            }
+                            @outblock(error = true) {
+                                |Expected exception java.lang.IndexOutOfBoundsException to be thrown,
+                                |but no exception was thrown.
+                            }
+                        }
+                        @codesub2() {
+                            <code>intercept</code> für Exceptions
+                        }
+                    }
+                }
+
+                <!-- ################################################################################## -->
+
+                @titleslide(title = title, subtitle = subtitle + " II") {
+
+                    @sidebyside(gap = 10) {
+                        @snippet() {
+                            @sourceblock() {
+                                |"abc" should be ("ab")
+                            }
+                            @outblock(error = true) {
+                                |"ab[c]" was not equal to "ab[]"
+                            }
+                        }
+                        @codesub2() {
+                            <code>be</code>
+                        }
+                    } {
+                        @snippet() {
+                            @sourceblock() {
+                                |42 should equal ("42")
+                            }
+                            @outblock(error = true) {
+                                |42 did not equal "42"
+                            }
+                        }
+                        @codesub2() {
+                            <code>equal</code>
+                        }
+                    }
+
+                    @spacer()
+
+                    @sidebyside(gap = 10) {
+                        @snippet() {
+                            @sourceblock() {
+                                |42 should be <= (7)
+                            }
+                            @outblock(error = true) {
+                                |42 was not less than or equal to 7
+                            }
+                        }
+                        @codesub2() {
+                            Vergleichsoperatoren
+                        }
+                    } {
+                        @snippet() {
+                            @sourceblock() {
+                                |11 should (be > (0) and be < (10))
+                            }
+                            @outblock(error = true) {
+                                |11 was greater than 0,
+                                |but 11 was not less than 10
+                            }
+                        }
+                        @codesub2() {
+                            Verknüpfung durch <code>and</code> & <code>or</code>
+                        }
+                    }
+
+                    @spacer()
+
+                    @sidebyside(gap = 10) {
+                        @snippet() {
+                            @sourceblock() {
+                                |"Stop" should include ("!")
+                            }
+                            @outblock(error = true) {
+                                |"Stop" did not include substring "!"
+                            }
+                        }
+                        @codesub2() {
+                            spezielle Tests für <code>String</code>
+                        }
+                    } {
+                        @snippet() {
+                            @sourceblock() {
+                                |Seq(1,2) should contain (3)
+                            }
+                            @outblock(error = true) {
+                                |List(1, 2) did not contain element 3
+                            }
+                        }
+                        @codesub2() {
+                            Unterstützung von Kollektionen
+                        }
+                    }
+
+                    @*
+                    @autocenter {
+                        @tipbox() {
+                            Trait <code>ShouldMatchers</code> erlaubt ausdrucksstarke Tests! <br/>
+                            Alternativ kann auch <code>MustMatchers</code> verwendet werden.
+                        }
+                    }
+                    *@
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "Before & After") {
+
             }
         }
 
