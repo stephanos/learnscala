@@ -12,7 +12,7 @@
 
         <!-- ################################################################################## -->
 
-        @slide(title = "Pakete") {
+        @titleslide(title = "Pakete") {
 
             @sidebyside() {
                 @Images.collectpckg()
@@ -50,14 +50,12 @@
 
         @defining("Traversable") { title =>
 
-            @slide(title = title, subtitle = "Hierarchie") {
+            @titleslide(title = title) {
 
                 @sidebyside() {
                     @Images.collection(title)
                 } {
                     @fragment {
-                        <h4>Traversable</h4>
-                        @spacer()
                         <div class="indent">
                             <ul class="fragments">
                                 <li>Super-Klasse von allen Collections</li>
@@ -81,7 +79,7 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Beispiele") {
+            @titleslide(title = title, subtitle = "Beispiele", connector = ":") {
 
                 @sidebyside(gap = 10) {
                     @snippet() {
@@ -96,7 +94,7 @@
                         Traversable verknüpfen
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @snippet() {
                         @callblock() {
@@ -110,7 +108,7 @@
                         Kopf vom Traversable
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @snippet() {
                         @callblock() {
@@ -134,8 +132,6 @@
                             |res3: Int = 3
                         }
                     }*@
-
-                    @spacer2()
 
                     @*
                     @snippet() {
@@ -171,7 +167,7 @@
                         Elemente extrahieren
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @snippet() {
                         @callblock() {
@@ -235,14 +231,12 @@
 
         @defining("Iterable") { title =>
 
-            @slide(title = title, subtitle = "Hierarchie") {
+            @titleslide(title = title) {
 
                 @sidebyside() {
                     @Images.collection(title)
                 } {
                     @fragment {
-                        <h4>Iterable</h4>
-                        @spacer()
                         <div class="indent">
                             <ul class="fragments">
                                 <li>erbt von <code>Traversable</code></li>
@@ -282,14 +276,12 @@
 
         @defining("Set") { title =>
 
-            @slide(title = title, subtitle = "Hierarchie") {
+            @titleslide(title = title) {
 
                 @sidebyside() {
                     @Images.collection(title)
                 } {
                     @fragment {
-                        <h4>Set</h4>
-                        @spacer()
                         <div class="indent">
                             <ul class="fragments">
                                 <li><code>Iterable</code> ohne gleiche Elemente</li>
@@ -323,7 +315,7 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Beispiele") {
+            @titleslide(title = title, subtitle = "Beispiele", connector = ":") {
 
                 @sidebyside(gap = 10) {
                     @snippet() {
@@ -338,7 +330,7 @@
                         Set initialisieren
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @snippet() {
                         @callblock() {
@@ -352,7 +344,7 @@
                         Vereinigungsmenge bilden
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @snippet() {
                         @callblock() {
@@ -378,7 +370,7 @@
                         Teilmenge überprüfen
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @snippet() {
                         @callblock() {
@@ -459,14 +451,12 @@
 
         @defining("Map") { title =>
 
-            @slide(title = title, subtitle = "Hierarchie") {
+            @titleslide(title = title) {
 
                 @sidebyside() {
                     @Images.collection(title)
                 } {
                     @fragment {
-                        <h4>Map</h4>
-                        @spacer()
                         <div class="indent">
                             <ul class="fragments">
                                 <li><code>Iterable</code> aus Schlüssel-Wert-Paaren</li>
@@ -504,12 +494,12 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Beispiele") {
+            @titleslide(title = title, subtitle = "Beispiele", connector = ":") {
 
                 @sidebyside(gap = 10) {
                     @snippet() {
                         @callblock() {
-                            |Map('a'->1, 'b'->2)
+                            |Map('a' -> 1, 'b' -> 2)
                         }
                         @outblock() {
                             |res0: Map[Char,Int] = Map(a->1, b->2)
@@ -519,11 +509,11 @@
                         Map initialisieren
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @snippet() {
                         @callblock() {
-                            |Map('a'->1) ++ Map('b'->2)
+                            |Map('a' -> 1) ++ Map('b' -> 2)
                         }
                         @outblock() {
                             |res1: Map[Char,Int] = Map(a->1, b->2)
@@ -535,7 +525,7 @@
                 } {
                     @snippet() {
                         @callblock() {
-                            |Map('a'->1, 'b'->2) keySet
+                            |Map('a' -> 1, 'b' -> 2) keySet
                         }
                         @outblock() {
                             |res2: Set[Char] = Set(a, b)
@@ -545,11 +535,11 @@
                         Schlüssel extrahieren
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @snippet() {
                         @callblock() {
-                            |Map('a'->1, 'b'->2) values
+                            |Map('a' -> 1, 'b' -> 2) values
                         }
                         @outblock() {
                             |res3: Iterable[Int] = MapLike(1, 2)
@@ -559,11 +549,11 @@
                         alle Werte extrahieren
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @snippet() {
                         @callblock() {
-                            |Map('a'->1, 'b'->2) get ('c')
+                            |Map('a' -> 1, 'b' -> 2) get ('c')
                         }
                         @outblock() {
                             |res4: Option[Int] = None
@@ -683,14 +673,12 @@
 
         @defining("Seq") { title =>
 
-            @slide(title = title, subtitle = "Hierarchie") {
+            @titleslide(title = title) {
 
                 @sidebyside() {
                     @Images.collection(title)
                 } {
                     @fragment {
-                        <h4>Seq</h4>
-                        @spacer()
                         <div class="indent">
                             <ul>
                                 <li>geordnete <code>Iterable</code></li>
@@ -743,7 +731,7 @@
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Beispiele") {
+            @titleslide(title = title, subtitle = "Beispiele", connector = ":") {
 
                 @sidebyside(gap = 10) {
                     @snippet() {
@@ -758,7 +746,7 @@
                         Sequenz initialisieren
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @snippet() {
                         @callblock() {
@@ -772,7 +760,7 @@
                         Reihenfolge umdrehen
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @snippet() {
                         @callblock() {
@@ -798,7 +786,7 @@
                         Element suchen
                     }
 
-                    @spacer2()
+                    @spacer()
 
                     @snippet() {
                         @callblock() {
@@ -915,6 +903,12 @@
                     - Scala hat spezialisierte Datentypen für 1-, 2-, 3-Einträge
                 }
             }
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide(title = "") {
+
         }
 
         <!-- ################################################################################## -->
