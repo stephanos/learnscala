@@ -535,5 +535,44 @@
         <!-- ################################################################################## -->
 
         @uebung(implicitSlide.id)
+
+        <!-- ################################################################################## -->
+
+        @titleslide(title = "Best Practice") {
+
+            @sidebyside(gap = 10) {
+                @sourcecode() {
+                    |trait IO {
+                    |  def write(bytes: Array[Byte])
+                    |  def read(n: Int): Array[Byte]
+                    |}
+                }
+                @codesub2() {
+                    1 Trait mit <var>2</var> Aufgaben
+                }
+            } {
+                @sourcecode() {
+                    |trait Reader {
+                    |  def read(n: Int): Array[Byte]
+                    |}
+                    |
+                    |trait Writer {
+                    |  def write(bytes: Array[Byte])
+                    |}
+                }
+                @codesub2() {
+                    besser: 2 Traits mit je <em>1</em> Aufgabe
+                }
+            }
+
+            @spacer()
+
+            @autocenter {
+                @tipbox() {
+                    Traits so klein wie möglich halten, <br/>
+                    das erhöht Wiederverwendung und Modularisierung.
+                }
+            }
+        }
     }
 }
