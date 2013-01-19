@@ -43,6 +43,11 @@
 
             @spacer2()
 
+            @subhead() {
+                Instanziierung
+            }
+            @spacer_half()
+
             @sidebyside() {
                 @snippet() {
                     @callblock(reference = "plane") {
@@ -78,7 +83,7 @@
 
         <!-- ################################################################################## -->
 
-        @defining("Konstuktor") { title =>
+        @defining("Konstruktor") { title =>
 
             @titleslide(title = title, subtitle = "primär", head = true) {
 
@@ -109,15 +114,15 @@
 
                     @snippet() {
                         @sourceblock() {
-                            |class Employee(name: String) {
-                            |   println("My name is " + name)
+                            |class Employee {
+                            |   println("I'm an Employee")
                             |}
                         }
                         @callblock() {
-                            |val e = new Employee("Bob")
+                            |val e = new Employee
                         }
                         @outblock() {
-                            |My name is Bob
+                            |I'm an Employee
                             |e: Employee = Employee@@3ee32abc
                         }
                     }
@@ -143,16 +148,12 @@
                 @snippet() {
                     @sourceblock() {
                         |class Employee(name: String, age: Int) {
-                        |
                         |  def this =
                         |    this("Unknown", -1)
                         |
                         |  def this(firstname: String, lastname: String, age: Int) =
                         |    this(firstname + " " + lastname, age)
                         |}
-                    }
-                    @callblock() {
-                        |val e = new Employee("Bob", "Bobster", 35)
                     }
                 }
                 @codesub2() {
@@ -164,7 +165,6 @@
                 @snippet() {
                     @sourceblock() {
                         |class Employee(name: String, age: Int) {
-                        |
                         |  def this =
                         |     println("initialized")
                         |}
@@ -174,7 +174,7 @@
                     }
                 }
                 @codesub2() {
-                    erste Anweisung muss einen zuvor definierten Konstruktor aufrufen
+                    @uline("Achtung:") erste Anweisung muss einen zuvor definierten Konstruktor aufrufen
                 }
 
                 @*
@@ -187,96 +187,84 @@
                     muss stets als erste Anweisung einen vor ihm definierten Konstruktor aufrufen.
                 }
                 *@
+
+                @notes {
+                    - [SHOW] val e = new Employee("Bob", "Bobster", 35)
+                }
             }
         }
 
         <!-- ################################################################################## -->
 
-        @defining("Felder") { title =>
+        @titleslide(title = "Variablen") {
 
-            @titleslide(title = title, subtitle = "val & var") {
-
-                @spacer()
-
-                @sidebyside(gap = 10) {
-                    @sourcecode(id = "empl-mutable") {
-                        |class Employee(_name: String) {
-                        |   var name = _name
-                        |}
-                    }
-                    @codesub2() {
-                        <var>veränderliches</var> Feld
-                    }
-
-                    @spacer()
-
-                    @indent() {
-                        @snippet() {
-                            @callblock(reference = "empl-mutable") {
-                                |val e = new Employee("Bob")
-                            }
-                            @outblock() {
-                                |e: Employee = Employee@@404b50ed
-                            }
-                            @callblock() {
-                                |e.name = "Betty"
-                            }
-                            @outblock() {
-                                |e.name: String = Betty
-                            }
-                        }
-                    }
-                } {
-                    @sourcecode(id = "empl-immutable") {
-                        |class Employee(_name: String) {
-                        |   val name = _name
-                        |}
-                    }
-                    @codesub2() {
-                        <em>unveränderliches</em> Feld
-                    }
-
-                    @spacer()
-
-                    @indent() {
-                        @snippet() {
-                            @callblock(reference = "empl-immutable") {
-                                |val e = new Employee("Bob")
-                            }
-                            @outblock() {
-                                |e: Employee = Employee@@1cc17783
-                            }
-                            @callblock() {
-                                |e.name = "Betty"
-                            }
-                            @outblock(error = true) {
-                                |error: reassignment to val
-                            }
-                        }
-                    }
-                }
-            }
-
-            <!-- ################################################################################## -->
-
-            @titleslide(title = title, subtitle = "Parameter als Felder") {
-
-                @spacer()
-
+            @sidebyside(gap = 10) {
                 @sourcecode() {
-                    |class Employee(val name: String)
-                }
-                @codesub2() {
-                    Feld <code>name</code> mit Lesezugriff
+                    |class Employee(_name: String) {
+                    |   var name = _name
+                    |}
                 }
 
-                @spacer2()
+                @iseq()
 
-                @sourcecode() {
+                @sourcecode(id = "empl-mutable") {
                     |class Employee(var name: String)
                 }
                 @codesub2() {
-                    Feld <code>name</code> mit Lese- und Schreibzugriff
+                    <var>veränderliches</var> Feld
+                }
+
+                @spacer()
+
+                @indent() {
+                    @snippet() {
+                        @callblock(reference = "empl-mutable") {
+                            |val e = new Employee("Bob")
+                        }
+                        @outblock() {
+                            |e: Employee = Employee@@404b50ed
+                        }
+                        @callblock() {
+                            |e.name = "Betty"
+                        }
+                        @outblock() {
+                            |e.name: String = Betty
+                        }
+                    }
+                }
+            } {
+                @sourcecode() {
+                    |class Employee(_name: String) {
+                    |   val name = _name
+                    |}
+                }
+
+                @iseq()
+
+                @sourcecode(id = "empl-immutable") {
+                    |class Employee(val name: String)
+                }
+                @codesub2() {
+                    <em>unveränderliches</em> Feld
+                }
+
+                @spacer()
+
+                @indent() {
+                    @snippet() {
+                        @callblock(reference = "empl-immutable") {
+                            |val e = new Employee("Bob")
+                        }
+                        @outblock() {
+                            |e: Employee = Employee@@1cc17783
+                        }
+                        @callblock() {
+                            |e.name = "Betty"
+                        }
+                        @outblock(error = true) {
+                            |error: reassignment to val
+                        }
+                    }
                 }
             }
         }
@@ -316,12 +304,10 @@
                 }(null)
             }
 
-            @*@infobox() {
-                Felder einer Klasse sind standardmäßig öffentlich - der Zugriff wird <br/>
-                &nbsp;via <code>protected</code> auf Sub-Klassen, <br/>
-                &nbsp;via <code>private</code> auf die Klasse und <br/>
-                &nbsp;via <code>private[this]</code> auf die Instanz begrenzt.
-            }*@
+            @notes {
+                - [HINT] standardmäßig alles 'öffentlich' (kein Keyword), weil unveränderlich..
+                - [HINT] private-Zugriff z.B. in 'equals()' erlaubt, private[this] nicht
+            }
         }
 
         <!-- ################################################################################## -->
@@ -532,6 +518,10 @@
 
         <!-- ################################################################################## -->
 
+        @uebung(implicitSlide.id)
+
+        <!-- ################################################################################## -->
+
         @titleslide(title = "Uniform Access Principle") {
 
             <!--
@@ -607,9 +597,5 @@
                 - [STIL]
             }
         }
-
-        <!-- ################################################################################## -->
-
-        @uebung(implicitSlide.id)
     }
 }
