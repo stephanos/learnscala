@@ -327,6 +327,45 @@
 
             <!-- ################################################################################## -->
 
+            @slide(title = title, subtitle = "None & Some") {
+
+                @spacer2()
+
+                <div>
+                    @sidebyside() {
+                        @subhead() {
+                            Some
+                        }
+                    } {
+                        @subhead() {
+                            None
+                        }
+                    }
+
+                    @spacer_half()
+
+                    @Images.option()
+
+                    @spacer_half()
+
+                    @sidebyside() {
+                        @subhead() {
+                            Inhalt der Box
+                        }
+                    } {
+                        @subhead() {
+                            Oh, Box ist leer
+                        }
+                    }
+                </div>
+
+                @notes {
+                    - Vergleich mit einer "Box"
+                }
+            }
+
+            <!-- ################################################################################## -->
+
             @titleslide(title = title, subtitle = "Rückgabetyp") {
 
                 @sidebyside(gap = 10) {
@@ -365,108 +404,82 @@
 
             <!-- ################################################################################## -->
 
-            @defining("None & Some") { subtitle =>
+            @titleslide(title = title, subtitle = "Beispiel", connector = ":") {
 
-                @slide(title = title, subtitle = subtitle) {
+                <div class="w70p dcenter">
+                    @sourcecode(id = "toInt") {
+                        |def toInt(s: String): Option[Int] =
+                        |  try {
+                        |    Some(s.toInt)
+                        |  } catch {
+                        |    case e: Throwable => None
+                        |  }
+                    }
+                </div>
 
-                    @spacer2()
+                @spacer()
 
-                    <div>
-                        @sidebyside() {
-                            <h4 class="tcenter fragment">
-                                Some
-                            </h4>
-                        } {
-                            <h4 class="tcenter fragment">
-                                None
-                            </h4>
+                @sidebyside(gap = 10) {
+                    @snippet(id = "toInt-some") {
+                        @callblock(reference = "toInt") {
+                            |val i = toInt("42")
                         }
+                    }
 
-                        @spacer_half()
+                    @spacer_half()
 
-                        @Images.option()
-                    </div>
-                }
-
-                <!-- ################################################################################## -->
-
-                @titleslide(title = title, subtitle = "Beispiel", connector = ":") {
-
-                    <div class="w70p dcenter">
-                        @sourcecode(id = "toInt") {
-                            |def toInt(s: String): Option[Int] =
-                            |  try {
-                            |    Some(s.toInt)
-                            |  } catch {
-                            |    case e: Throwable => None
-                            |  }
+                    @snippet() {
+                        @callblock(reference = "toInt-some") {
+                            |i.get
                         }
-                    </div>
-
-                    @spacer()
-
-                    @sidebyside(gap = 10) {
-                        @snippet(id = "toInt-some") {
-                            @callblock(reference = "toInt") {
-                                |val i = toInt("42")
-                            }
+                        @outblock() {
+                            |res0: Int = 42
                         }
+                    }
 
-                        @spacer_half()
+                    @spacer_half()
 
-                        @snippet() {
-                            @callblock(reference = "toInt-some") {
-                                |i.get
-                            }
-                            @outblock() {
-                                |res0: Int = 42
-                            }
+                    @snippet() {
+                        @callblock(reference = "toInt-some") {
+                            |i.getOrElse(0)
                         }
-
-                        @spacer_half()
-
-                        @snippet() {
-                            @callblock(reference = "toInt-some") {
-                                |i.getOrElse(0)
-                            }
-                            @outblock() {
-                                |res1: Int = 42
-                            }
+                        @outblock() {
+                            |res1: Int = 42
                         }
-                        @codesub2() {
-                            <code>@apilink("Some")</code>
+                    }
+                    @codesub2() {
+                        <code>@apilink("Some")</code>
+                    }
+                } {
+                    @snippet(id = "toInt-none") {
+                        @callblock(reference = "toInt") {
+                            |val i = toInt("abc")
                         }
-                    } {
-                        @snippet(id = "toInt-none") {
-                            @callblock(reference = "toInt") {
-                                |val i = toInt("abc")
-                            }
-                        }
+                    }
 
-                        @spacer_half()
+                    @spacer_half()
 
-                        @snippet() {
-                            @callblock(reference = "toInt-none") {
-                                |i.get
-                            }
-                            @outblock(error = true) {
-                                |NoSuchElementException
-                            }
+                    @snippet() {
+                        @callblock(reference = "toInt-none") {
+                            |i.get
                         }
+                        @outblock(error = true) {
+                            |NoSuchElementException
+                        }
+                    }
 
-                        @spacer_half()
+                    @spacer_half()
 
-                        @snippet() {
-                            @callblock(reference = "toInt-none") {
-                                |i.getOrElse(0)
-                            }
-                            @outblock() {
-                                |res1: Int = 0
-                            }
+                    @snippet() {
+                        @callblock(reference = "toInt-none") {
+                            |i.getOrElse(0)
                         }
-                        @codesub2() {
-                            <code>@apilink("None", isObject = true)</code>
+                        @outblock() {
+                            |res1: Int = 0
                         }
+                    }
+                    @codesub2() {
+                        <code>@apilink("None", isObject = true)</code>
                     }
                 }
             }
