@@ -67,7 +67,7 @@
 
             @autocenter {
                 @sourcecode(id = "empl1") {
-                    |class Employee (val name: String)
+                    |class Employee(val name: String)
                 }
                 @codesub2() {
                     <code>Employee</code> erwartet den Parameter <code>name</code>
@@ -79,32 +79,42 @@
             @sidebyside(gap = 10) {
 
                 @sourcecode(reference = "empl1") {
-                    |class Developer (name: String, val age: Int)
-                    |   extends Employee (name)
+                    |class Developer(
+                    |    name: String,
+                    |    val age: Int)
+                    |  extends Employee(name)
                 }
                 @codesub2() {
-                    <code>Developer</code> gibt den Parameter <code>name</code> an <code>Employee</code> weiter
+                    <code>Developer</code> gibt den Parameter <code>name</code> <br/>
+                    an <code>Employee</code> weiter
                 }
 
             } {
                 @sourcecode(reference = "empl1") {
                     |class Boss
-                    |   extends Employee ("Sir")
+                    |   extends Employee("Sir")
                 }
                 @codesub2() {
-                    <code>Boss</code> ruft primären Konstruktor von <code>Employee</code> mit Konstante auf
+                    <code>Boss</code> ruft primären Konstruktor von <code>Employee</code> <br/>
+                    mit Konstante auf
                 }
             }
 
-            @*@infobox() {
-                Bei der Vererbung muss der primäre Konstruktor der erbende Klasse
-                den primären Konstruktor der vererbten Klasse aufrufen.
-            }*@
+            @autocenter {
+                @infobox() {
+                    Bei der Vererbung muss der primäre Konstruktor der erbende Klasse <br/>
+                    den primären Konstruktor der vererbten Klasse aufrufen.
+                }
+            }
+
+            @notes {
+                - [ASK] Warum hat 'name' von Developer kein 'val' vorgestellt?
+            }
         }
 
         <!-- ################################################################################## -->
 
-        @slide(title = "sealed & final") {
+        @titleslide(title = "Einschränkung") {
 
             @spacer()
 
@@ -171,21 +181,23 @@
 
         @defining("override") { title =>
 
-            @spacer()
+            @titleslide(title = title) {
 
-            @slide(title = title) {
-
-                <div class="w40p dcenter">
+                @autocenter {
                     @sourcecode(id = "empl2") {
                         |class Employee {
                         |  val salary = 40000
                         |}
                     }
-                </div>
+                }
 
                 @spacer2()
 
                 @sidebyside(gap = 10) {
+                    @subhead() {
+                        (A)
+                    }
+
                     @snippet() {
                         @sourceblock(reference = "empl2") {
                             |class Boss extends Employee {
@@ -198,6 +210,10 @@
                         }
                     }
                 } {
+                    @subhead() {
+                        (B)
+                    }
+
                     @snippet() {
                         @sourceblock(reference = "empl2") {
                             |class Boss extends Employee {
@@ -209,31 +225,34 @@
                         }
                     }
                     @codesub2() {
-                        via <code>override</code> werden Felder & Methoden überschrieben
+                        <code>override</code> überschreibt Felder & Methoden
                     }
                 }
             }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title) {
+            @titleslide(title = title, subtitle = "II", connector = "") {
 
-                <div class="w40p dcenter">
+                @autocenter {
                     @sourcecode(id = "empl3") {
                         |class Employee {
                         |  val salary = 40000
                         |}
                     }
-                </div>
+                }
 
                 @spacer2()
 
                 @sidebyside(gap = 10) {
+                    @subhead() {
+                        (A)
+                    }
 
                     @snippet() {
                         @sourceblock(reference = "empl3") {
                             |class Boss extends Employee {
-                            |   override val salry = 100000
+                            |  override val salry = 100000
                             |}
                         }
                         @outblock(error = true) {
@@ -241,9 +260,13 @@
                         }
                     }
                     @codesub2() {
-                        überprüft Namen
+                        Compiler überprüft Namen
                     }
                 } {
+                    @subhead() {
+                        (B)
+                    }
+
                     @snippet() {
                         @sourceblock(reference = "empl3") {
                             |class Boss extends Employee {
@@ -252,12 +275,16 @@
                         }
                         @outblock(error = true) {
                             |error: overriding value salary;
-                            |       value salary has incompatible type
+                            |       salary has incompatible type
                         }
                     }
                     @codesub2() {
-                        überprüft Typen
+                        Compiler überprüft Typen
                     }
+                }
+
+                @notes {
+                    - [HINT] zusätzliche Sicherheit durch 'override'
                 }
 
                 @*
@@ -270,14 +297,11 @@
 
             <!-- ################################################################################## -->
 
-            @headslide(title = title, subtitle = "def <> val") {
-                def &lt;&gt; val
-            } {
-                @spacer()
+            @titleslide(title = title, subtitle = "def <> val") {
 
                 @sidebyside(gap = 10) {
                     @subhead() {
-                        def -> val
+                        <em>(A)</em> def -> val
                     }
 
                     @snippet() {
@@ -285,8 +309,11 @@
                             |class Employee (name: String) {
                             |
                             |  override val toString =
-                            |     "Employee[name=" + name + "]"
+                            |    "Employee[name=" + name + "]"
                             |}
+                        }
+                        @outblock() {
+                            |defined class Employee
                         }
                     }
                     @codesub2() {
@@ -295,20 +322,20 @@
 
                 } {
                     @subhead() {
-                        val -> def
+                        <var>(B)</var> val -> def
                     }
 
                     @snippet() {
                         @sourceblock() {
                             |class Employee {
-                            |   val salary = 40000
+                            |  val salary = 40000
                             |}
                             |
                             |class Developer (age: Int)
-                            |   extends Employee {
+                            |  extends Employee {
                             |
-                            |   override def salary =
-                            |      20000 + age * 1000
+                            |  override def salary =
+                            |    20000 + age * 1000
                             |}
                         }
                         @outblock(error = true) {
@@ -321,10 +348,16 @@
                     }
                 }
 
-                @*@infobox() {
-                    Eine Methode ohne Parameter kann durch ein <code>val</code> überschrieben werden;<br/>
-                    das erhöht den Speicherverbrauch, verbessert aber die Performance.
-                }*@
+                @autocenter {
+                    @infobox() {
+                        Eine Methode ohne Parameter kann durch ein <code>val</code> überschrieben werden;<br/>
+                        das erhöht den Speicherverbrauch, verbessert aber ggf. die Performance.
+                    }
+                }
+
+                @notes {
+                    - [ASK] fällt jmd. ein Anwendungsbeispiel ein? (TODO)
+                }
             }
 
             <!-- ################################################################################## -->
@@ -337,7 +370,7 @@
                 @snippet() {
                     @sourceblock(id = "final-members") {
                         |class Employee {
-                        |   final val salary = 40000
+                        |  final val salary = 40000
                         |}
                     }
                 }
@@ -348,7 +381,7 @@
                     @snippet() {
                         @sourceblock(reference = "final-members") {
                             |class Accountant extends Employee {
-                            |   override val salary = 50000
+                            |  override val salary = 50000
                             |}
                         }
                         @outblock(error = true) {
@@ -374,10 +407,10 @@
 
             @snippet() {
                 @sourceblock(id = "super") {
-                    |class Employee (name: String) {
+                    |class Employee(name: String) {
                     |
-                    |   override def toString =
-                    |       super.toString + "[name=" + name + "]"
+                    |  override def toString =
+                    |    super.toString + "[name=" + name + "]"
                     |}
                 }
             }
@@ -387,12 +420,14 @@
 
             @spacer()
 
-            @snippet() {
-                @callblock(reference = "super") {
-                    |val p = new Employee("Bob")
-                }
-                @outblock() {
-                    |p: Employee = Employee@@4088e7c9[name=Bob]
+            @indent() {
+                @snippet() {
+                    @callblock(reference = "super") {
+                        |val p = new Employee("Bob")
+                    }
+                    @outblock() {
+                        |p: Employee = Employee@@4088e7c9[name=Bob]
+                    }
                 }
             }
 
@@ -408,16 +443,23 @@
         @titleslide(title = "anonym") {
 
             @snippet() {
-                @sourceblock() {
-                    |class Employee (val name: String)
+                @sourceblock(id = "anonym") {
+                    |class Employee(val name: String)
                 }
-                @callblock() {
-                    |val e = new Employee("Bob") {
-                    |   override def toString = name
-                    |}
-                }
-                @outblock() {
-                    |e: Employee = Bob
+            }
+
+            @spacer()
+
+            @indent() {
+                @snippet() {
+                    @callblock(reference = "anonym") {
+                        |val e = new Employee("Bob") {
+                        |  override def toString = name
+                        |}
+                    }
+                    @outblock() {
+                        |e: Employee = Bob
+                    }
                 }
             }
             @codesub2() {
@@ -431,45 +473,54 @@
 
             @titleslide(title = title) {
 
-                @snippet() {
-                    @sourceblock() {
-                        |class Employee {
-                        |   val salary: Int
-                        |}
+                @sidebyside(gap = 10) {
+                    @subhead() {
+                        (A)
                     }
-                    @outblock(error = true) {
-                        |error: class Employee needs to be abstract,
-                        |       since value salary is not defined
-                    }
-                }
 
-                @spacer()
+                    @snippet() {
+                        @sourceblock() {
+                            |class Employee {
+                            |  val salary: Int
+                            |}
+                        }
+                        @outblock(error = true) {
+                            |error: class Employee needs
+                            |       to be abstract, since
+                            |       value salary is not defined
+                        }
+                    }
+                } {
+                    @subhead() {
+                        (B)
+                    }
 
-                @snippet() {
-                    @sourceblock() {
-                        |abstract class Employee {
-                        |   val salary: Int
-                        |}
+                    @snippet() {
+                        @sourceblock() {
+                            |abstract class Employee {
+                            |  val salary: Int
+                            |}
+                        }
+                        @outblock() {
+                            |defined class Employee
+                        }
                     }
-                    @outblock() {
-                        |defined class Employee
+                    @codesub2() {
+                        <code>abstract</code> markiert Klassen die mind. ein Feld <br/>
+                        oder eine Methode ohne Implementierung enthalten
                     }
-                }
-                @codesub2() {
-                    <code>abstract</code> markiert Klassen
-                    die mind. ein Feld oder eine Methode <br/> ohne Implementierung enthalten
                 }
             }
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title) {
+            @titleslide(title = title, subtitle = "II", connector = "") {
 
                 @autocenter {
                     @snippet() {
                         @sourceblock(id = "abstract") {
                             |abstract class Employee {
-                            |   val salary: Int
+                            |  val salary: Int
                             |}
                         }
                     }
@@ -494,7 +545,7 @@
                     @snippet() {
                         @sourceblock(reference = "abstract") {
                             |class Accountant extends Employee {
-                            |   val salary = 60000
+                            |  val salary = 60000
                             |}
                         }
                         @outblock() {
@@ -507,7 +558,7 @@
                     @snippet() {
                         @sourceblock(reference = "abstract") {
                             |class Accountant extends Employee {
-                            |   override val salary = 60000
+                            |  override val salary = 60000
                             |}
                         }
                         @outblock() {
@@ -517,6 +568,10 @@
                     @codesub2() {
                         <code>override</code> ist hier <em>optional</em>
                     }
+                }
+
+                @notes {
+                    - [ASK] warum optional? (Compiler warn ja schon vor 'not defined')
                 }
             }
         }

@@ -24,7 +24,7 @@ object Content extends MyController {
 
   // === OBJEKTE
 
-  lazy val klassen1 = Slide("O10", "Klassen", oop, Seq(methoden, uebungen))
+  lazy val klassen1 = Slide("O10", "Klassen", oop, Seq(methoden, uebungen), status = "complete")
   lazy val objekte = Slide("O12", "Objekte", oop, Seq(klassen1), status = "complete")
   lazy val vererbung1 = Slide("O11", "Vererbung", oop, Seq(objekte))
   lazy val pakete = Slide("O13", "Pakete", oop, Seq(vererbung1), status = "complete")

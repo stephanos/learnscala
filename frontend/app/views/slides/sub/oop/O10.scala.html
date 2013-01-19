@@ -530,11 +530,15 @@
             -->
 
             @sidebyside(gap = 10) {
+
+                @subhead() {
+                    Definition
+                }
+
                 @snippet(id = "empl") {
                     @sourceblock() {
-                        |class Employee(val name: String,
-                        |               var age: Int) {
-                        |  val salary = 40000
+                        |class Employee(val name: String) {
+                        |  def nickname = name + name.last + "y"
                         |}
                     }
                 }
@@ -544,30 +548,25 @@
                 @outcode(lang = "java") {
                    |public class Employee extends [...] {
                    |
-                   |  private final String name;
-                   |  public String name();      // get
+                   |  private final String name;  // field
+                   |  public String name();       // method
                    |
-                   |  private final int salary;
-                   |  public int salary();       // get
-                   |
-                   |  private int age;
-                   |  public int age();          // get
-                   |  public void age_$eq(int);  // set
+                   |  public String nickname();   // method
                    |}
                 }
 
                 @codesub2() {
-                    <code>val</code> erhält eine Get-Methode,<br/>
-                    <code>var</code> erhält Get- @uline("und") Set-Methoden
-
-                    @*Scala generiert überschreibbare, öffentliche Zugriffsmethoden:<br/>*@
+                    <code>def</code>, <code>val</code> und <code>var</code> werden intern als<br/>
+                    Methodenoperation implementiert
                 }
             } {
-                @spacer()
+                @subhead() {
+                    Verwendung
+                }
 
                 @snippet() {
                     @callblock(reference = "empl") {
-                        |val e = new Employee("Bob", 35)
+                        |val e = new Employee("Bob")
                     }
                     @outblock() {
                         |e: Employee = Employee@@53a1d1a8
@@ -579,17 +578,15 @@
                         |Bob
                     }
                     @callblock() {
-                        |println(e.salary)
+                        |println(e.nickname)
                     }
                     @outblock() {
-                        |40000
+                        |Bobby
                     }
-                    @callblock() {
-                        |e.age = e.age - 1
-                    }
-                    @outblock() {
-                        |e.age: Int = 34
-                    }
+                }
+
+                @infobox() {
+                    Anwender weiß nicht, ob <code>nickname</code> <br/> ein Feld oder eine Methode ist.
                 }
             }
 
