@@ -1,51 +1,44 @@
 @(id: String = null, subsubtitle: String = null, subtitle: String = null, title: String = null, chapter: String = null, state: String = null,
-  hideFooter: Boolean = false, htmlTitle: xml.Node = null, narrow: Boolean = false, clazz: String = "")(head: Html = Html.empty)(body: Html = Html.empty)(implicit topic: String = null)
+  hideFooter: Boolean = false, narrow: Boolean = false, clazz: String = "")(head: Html = Html.empty)(body: Html = Html.empty)(implicit topic: String = null)
 
-@defining(Option(title).getOrElse(htmlTitle)) { theTitle =>
+<section data-id="@{if(id == null) "" else s"slide-$id" }"
+         data-state="@{if(state == null) "" else state }"
+         data-title="@{if(title == null) "" else title }"
+         data-topic="@{if(topic == null) "" else topic }"
+         data-subtitle="@{if(subtitle == null) "" else subtitle }"
+         data-subsubtitle="@{if(subsubtitle == null) "" else subsubtitle }"
+         data-chapter="@{if(chapter == null) "" else chapter }">
 
-    <section data-id="@{if(id == null) "" else s"slide-$id" }"
-             data-state="@{if(state == null) "" else state }"
-             data-title="@{if(theTitle == null) "" else theTitle }"
-             data-topic="@{if(topic == null) "" else topic }"
-             data-subtitle="@{if(subtitle == null) "" else subtitle }"
-             data-subsubtitle="@{if(subsubtitle == null) "" else subsubtitle }"
-             data-chapter="@{if(chapter == null) "" else chapter }">
-
-        @headbody(clazz = clazz, narrow = narrow) {
-            @if(htmlTitle == null) {
-                @head
-            } else {
-                @htmlTitle
+    @headbody(clazz = clazz, narrow = narrow) {
+        @head
+    } {
+        @body
+    } {
+        @if(!hideFooter) {
+            @*
+            <span class="topic">@topic</span>
+            @if(theTitle != "" && theTitle != null) {
+                <span class="divider">/</span>
+                <span class="title">@theTitle</span>
             }
-        } {
-            @body
-        } {
-            @if(!hideFooter) {
-                @*
-                <span class="topic">@topic</span>
-                @if(theTitle != "" && theTitle != null) {
-                    <span class="divider">/</span>
-                    <span class="title">@theTitle</span>
-                }
-                @if(subtitle != "" && subtitle != null) {
-                    <span class="divider">/</span>
-                    <span class="title">@subtitle</span>
-                }
-                @if(subsubtitle != "" && subsubtitle != null) {
-                    <span class="divider">/</span>
-                    <span class="title">@subsubtitle</span>
-                }
-                *@
-
-                <div class="slide-end fragment">
-                    &#8226;
-                </div>
-
-                <div class="branding">
-                    @*<img src="/assets/img/tutego.jpg" height="20px"/>*@
-                    tutego.de @@ Beta Systems Software AG
-                </div>
+            @if(subtitle != "" && subtitle != null) {
+                <span class="divider">/</span>
+                <span class="title">@subtitle</span>
             }
+            @if(subsubtitle != "" && subsubtitle != null) {
+                <span class="divider">/</span>
+                <span class="title">@subsubtitle</span>
+            }
+            *@
+
+            <div class="slide-end fragment">
+                &#8226;
+            </div>
+
+            <div class="branding">
+                @*<img src="/assets/img/tutego.jpg" height="20px"/>*@
+                tutego.de @@ Beta Systems Software AG
+            </div>
         }
-    </section>
-}
+    }
+</section>

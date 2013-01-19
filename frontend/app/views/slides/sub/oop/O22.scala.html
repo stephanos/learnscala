@@ -1,9 +1,12 @@
 <!--
-   http://scalatutorial.wordpress.com/2011/12/04/teil-14-1-varianzen/
-   http://coding-time.blogspot.de/2011/05/covariance-and-contravariance-simple.html
-   http://entwickler.de/zonen/portale/psecom,id,101,online,3475,p,0.html
-   http://www.scala-lang.org/node/129
-   http://www.naildrivin5.com/scalatour/wiki_pages/TypeVariance
+    TODO
+       http://scalatutorial.wordpress.com/2011/12/04/teil-14-1-varianzen/
+       http://coding-time.blogspot.de/2011/05/covariance-and-contravariance-simple.html
+       http://entwickler.de/zonen/portale/psecom,id,101,online,3475,p,0.html
+       http://www.scala-lang.org/node/129
+       http://www.naildrivin5.com/scalatour/wiki_pages/TypeVariance
+
+    Wildcard
 -->
 @implicitSlide = @{ Content.generics1 }
 
@@ -22,40 +25,40 @@
 
             @sidebyside(gap = 10) {
                 @sourcecode() {
-                    |class myClass[A] {
-                    |   // ...
+                    |class MyClass[A] {
+                    |  // ...
                     |}
                 }
                 @codesub2() {
-                    <em>Klasse</em> mit 1 Typ-Parameter
+                    <em>Klasse</em> mit 1 Typparameter
                 }
 
                 @spacer2()
 
                 @sourcecode() {
-                    |trait myTrait[A, B] {
-                    |   // ...
+                    |trait MyTrait[A, B] {
+                    |  // ...
                     |}
                 }
                 @codesub2() {
-                    <em>Trait</em> mit 2 Typ-Parametern
+                    <em>Trait</em> mit 2 Typparametern
                 }
             } {
                 @sourcecode() {
-                    |def myMethod[A, B, C] {
-                    |   // ...
+                    |def MyMethod[A, B, C] {
+                    |  // ...
                     |}
                 }
                 @codesub2() {
-                    <em>Methode</em> mit 3 Typ-Parametern
+                    <em>Methode</em> mit 3 Typparametern
                 }
 
                 @spacer2()
 
                 @snippet() {
                     @sourceblock() {
-                        |object myObject[A] {
-                        |   // ...
+                        |object MyObject[A] {
+                        |  // ...
                         |}
                     }
                     @outblock(error = true) {
@@ -63,12 +66,31 @@
                     }
                 }
                 @codesub2() {
-                    <var>Objekte</var> unterstützen keine Typ-Parameter
+                    <var>Objekte</var> kann keine Typparameter haben
                 }
             }
 
             @notes {
                 - [STIL] beginne mit 'A' (nicht 'T') - außer extra Bedeutung, z.B. Map[K,V]
+                - [ASK] Warum kann ein Object keine Typparameter haben?
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide("Warum Typparameter?") {
+
+            @spacer()
+
+            @indent() {
+                @middle(50) {
+                    <blockquote class="bigger">
+                        <p>
+                            Typparameter erlauben es dem Compiler Überprüfungen vorzunehmen,
+                            um Typfehler zur Laufzeit zu verhindern.
+                        </p>
+                    </blockquote>
+                }
             }
         }
 
@@ -101,7 +123,10 @@
 
             @snippet() {
                 @sourceblock(id = "crew") {
-                    |trait Crew
+                    |trait Crew {
+                    |  override def toString =
+                    |    this.getClass().getName
+                    |}
                     |
                     |class Pilot extends Crew
                     |class CoPilot extends Pilot
@@ -109,65 +134,81 @@
                     |class Stewardess extends Crew
                 }
             }
+
+            @spacer2()
+
+            <div style="-webkit-transform: rotate(3deg);">
+                @autocenter {
+                    @image("crew.jpeg", clazz = "naked", height = 300)
+                }
+            </div>
         }
 
         <!-- ################################################################################## -->
 
-        @titleslide(title = "Inferenz") {
+        @titleslide(title = "Typinferenz") {
 
             @sourcecode(id = "cockpit2", reference = "crew") {
-                |class Cockpit[A, B](left: A, right: B)
+                |class Cockpit[A, B](left: A, right: B) {
+                |  override def toString = "Cockpit(" + left + "," + right + ")"
+                |}
             }
 
-            @spacer2()
+            @spacer()
 
-            @indent() {
+            @autocenter {
+                @indent() {
 
-                @snippet() {
-                    @sourceblock(reference = "cockpit2") {
-                        |val c: Cockpit[Pilot, Pilot] =
-                        |   new Cockpit[Pilot, Pilot](new Pilot, new Pilot)
+                    @snippet() {
+                        @sourceblock(reference = "cockpit2") {
+                            |val c: Cockpit[Pilot, Pilot] =
+                            |   new Cockpit[Pilot, Pilot](new Pilot, new Pilot)
+                        }
                     }
-                }
 
-                @iseq()
+                    @iseq()
 
-                @snippet() {
-                    @sourceblock(reference = "cockpit2") {
-                        |val c =
-                        |   new Cockpit[Pilot, Pilot](new Pilot, new Pilot)
+                    @snippet() {
+                        @sourceblock(reference = "cockpit2") {
+                            |val c =
+                            |   new Cockpit[Pilot, Pilot](new Pilot, new Pilot)
+                        }
                     }
-                }
 
-                @iseq()
+                    @iseq()
 
-                @snippet() {
-                    @sourceblock(reference = "cockpit2") {
-                        |val c = new Cockpit(new Pilot, new Pilot)
+                    @snippet() {
+                        @sourceblock(reference = "cockpit2") {
+                            |val c = new Cockpit(new Pilot, new Pilot)
+                        }
+                        @outblock() {
+                            |c: Cockpit[Pilot,Pilot] = Cockpit(Pilot,Pilot)
+                        }
                     }
-                    @outblock() {
-                        |c: Cockpit[Pilot,Pilot] = Cockpit(Pilot,Pilot)
+                    @codesub2() {
+                        Typparameter werden vom Compiler abgeleitet
                     }
-                }
-                @codesub2() {
-                    Typ-Parameter werden vom Compiler abgeleitet
                 }
             }
 
             @notes {
-                - [HINT] Typ-Parameter weglassen (außer ein allgemeiner Typ ist gewünscht)
+                - [HINT] Typparameter weglassen (außer ein allgemeiner Typ ist gewünscht)
             }
         }
 
         <!-- ################################################################################## -->
 
-        @defining("Typenüberprüfung") { title =>
+        @defining("Typeingrenzung") { title =>
 
             @titleslide(title = title, subtitle = "manuell", connector = ":") {
 
                 @sourcecode(id = "cockpit-check", reference = "crew") {
-                    |class Cockpit[T](left: T, right: T) {
-                    |  require(left.isInstanceOf[Pilot] && right.isInstanceOf[Pilot])
+                    |class Cockpit[A](left: A, right: A) {
+                    |
+                    |  // check: do we have 2 pilots ?
+                    |  require(left.isInstanceOf[Pilot] && right.isInstanceOf[Pilot], "no pilot")
+                    |
+                    |  override def toString = "Cockpit(" + left + "," + right + ")"
                     |}
                 }
                 @codesub2() {
@@ -176,27 +217,27 @@
 
                 @spacer()
 
-                @indent() {
-
+                @sidebyside(gap = 10) {
                     @snippet() {
                         @sourceblock(reference = "cockpit-check") {
-                            |val c = new Cockpit(new Pilot, new Pilot)
+                            |val c = new Cockpit(new Pilot,
+                            |                    new Pilot)
                         }
                         @outblock() {
-                            |c: Cockpit[Pilot,Pilot] = Cockpit(Pilot,Pilot)
+                            |c: Cockpit[Pilot,Pilot] =
+                            |  Cockpit(Pilot,Pilot)
                         }
                     }
-
-                    @spacer()
-
+                } {
                     @snippet() {
                         @sourceblock(reference = "cockpit-check") {
-                            |val c = new Cockpit(new Pilot, new Stewardess)
+                            |val c = new Cockpit(new Pilot,
+                            |                    new Stewardess)
                         }
                         @outblock(error = true) {
-                            |java.lang.IllegalArgumentException: requirement failed
-                            |    at scala.Predef$.require(Predef.scala:145)
-                            |    at Cockpit.&lt;init&gt;(&lt;console&gt;:16)
+                            |IllegalArgumentException: no pilot
+                            |  at scala.Predef$.require()
+                            |  at Cockpit.&lt;init&gt;()
                         }
                     }
                     @codesub2() {
@@ -214,7 +255,10 @@
             @titleslide(title = title, subtitle = "Upper Bound", connector = ":") {
 
                 @sourcecode(id = "cockpit-upper", reference = "crew") {
-                    |class Cockpit[T &lt;: Pilot](left: T, right: T)
+                    |class Cockpit[A &lt;: Pilot](left: A, right: A) {
+                    |
+                    |  override def toString = "Cockpit(" + left + "," + right + ")"
+                    |}
                 }
                 @codesub2() {
                     <code>T</code> muss mindestens vom Typ <code>Pilot</code> sein
@@ -222,30 +266,30 @@
 
                 @spacer2()
 
-                @indent() {
-
+                @sidebyside(gap = 10) {
                     @snippet() {
                         @callblock(reference = "cockpit-upper") {
-                            |new Cockpit(new Pilot, new CoPilot)
+                            |new Cockpit(new Pilot,
+                            |            new CoPilot)
                         }
                         @outblock() {
-                            |res0: Cockpit[Pilot,CoPilot] = Cockpit(Pilot,CoPilot)
+                            |res0: Cockpit[Pilot,CoPilot] =
+                            |  Cockpit(Pilot,CoPilot)
                         }
                     }
                     @codesub2() {
                         <code>CoPilot</code> und <code>Pilot</code> <em>sind erlaubt</em>
                     }
-
-                    @spacer()
-
+                } {
                     @snippet() {
                         @callblock(reference = "cockpit-upper") {
-                            |new Cockpit(new Pilot, new Stewardess)
+                            |new Cockpit(new Stewardess,
+                            |            new Stewardess)
                         }
                         @outblock(error = true) {
                             |error: inferred type arguments [Crew]
                             |       do not conform to class Cockpit's
-                            |       type parameter bounds [T &lt;: Pilot]
+                            |       type parameter bounds [A &lt;: Pilot]
                         }
                     }
                     @codesub2() {
@@ -260,10 +304,10 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = "Lower Bound") {
+            @titleslide(title = title, subtitle = "Lower Bound", connector = ":") {
 
                 @sourcecode(id = "cockpit-lower", reference = "crew") {
-                    |class Cockpit[T &lt;: Pilot](left: T, right: T) {
+                    |class Cockpit[A &lt;: Pilot](left: A, right: A) {
                     |
                     |  def replaceLeft[R >: T](newLeft: R) =
                     |    new Cockpit(newLeft, right)
@@ -300,61 +344,163 @@
 
         <!-- ################################################################################## -->
 
+        @uebung(implicitSlide.id)
+
+        <!-- ################################################################################## -->
+
+        @*
+        @titleslide(title = "Type Erasure") {
+
+           @sidebyside(gap = 10) {
+               @sourcecode(reference = "crew", id = "plane_te") {
+                   |class Cockpit[Pilot](left: T, right: T)
+                   |
+                   |class Plane(c: Cockpit[_]) {
+                   |  require(c match {
+                   |    case c: Cockpit[Pilot] => true
+                   |    case _ => false
+                   |  })
+                   |}
+               }
+               @codesub2() {
+                   Flugzeug stellt ein flugfähiges Cockpit sicher ... oder?
+               }
+           } {
+               @spacer()
+
+               @snippet() {
+                   @callblock(reference = "plane_te") {
+                       |new Plane(new Cockpit(new Stewardess,
+                       |                      new Stewardess))
+                   }
+                   @outblock(error = true) {
+                       |warning: non-variable type argument
+                       |         Pilot in type pattern
+                       |         Cockpit[Pilot] is unchecked
+                       |         since it is eliminated
+                       |         by erasure
+                   }
+                   @outblock() {
+                       |res0: Plane = Plane
+                   }
+               }
+               @codesub2() {
+                   <var>Oh Oh</var>, ob das gut geht ...
+               }
+           }
+
+           @spacer_half()
+
+           @autocenter {
+               @warnbox() {
+                   Typparameter fehlen zur Laufzeit ("type erasure"),<br/>
+                   also nicht darauf verlassen!
+               }
+           }
+        }
+        *@
+
+        <!-- ################################################################################## -->
+
         @defining("Varianz") { title =>
+
+            @titleslide(title = title) {
+
+                @indent() {
+                    <ul class="fragments">
+                        <li>
+                            Typvarianz definiert Vererbungsverhalten:
+                            @spacer_half()
+                            <ul class="fragment">
+                                <li>
+                                    Invarianz
+                                </li>
+                                <li>
+                                    Kovarianz
+                                </li>
+                                <li>
+                                    Kontravarianz
+                                </li>
+                            </ul>
+                        </li>
+                        @spacer_half()
+                        <li>
+                            Standardverhalten ist <em>Invarianz</em>
+                        </li>
+                        @spacer_half()
+                        <li>
+                            wird in Scala bei der Definition festgelegt,<br/>
+                            nicht wie in Java bei der Verwendung
+                        </li>
+                    </ul>
+                }
+            }
+
+            <!-- ################################################################################## -->
 
             @titleslide(title = title, subtitle = "Invarianz") {
 
-                @sourcecode(id = "cockpit-invariant", reference = "crew") {
-                    |class Cockpit[T](left: T, right: T) {
-                    |
-                    |  def swap(newItem: T) =
-                    |    new Cockpit(newItem)
-                    |}
-                }
+                @sidebyside(gap = 10) {
+                    @subhead() {
+                        Definition
+                    }
 
-                @spacer()
-
-                @sidebyside() {
-                    @sourcecode(reference = "cockpit-invariant") {
-                        |val b1 = new Cockpit(Apple())
+                    @sourcecode(id = "cockpit-invariant", reference = "crew") {
+                        |class Cockpit[A &lt;: Pilot](var person: A) {
+                        |
+                        |  def put(newPerson: A) {
+                        |    person = newPerson
+                        |  }
+                        |
+                        |  override def toString =
+                        |    "Cockpit(" + person + ")"
+                        |}
+                    }
+                    @codesub2() {
+                        Klasse ist <var>veränderlich</var>
                     }
                 } {
-                    @sourcecode(reference = "cockpit-invariant") {
-                        |val b2: Cockpit[Fruit] = new Cockpit(Apple())
+                    @subhead() {
+                        Verwendung
+                    }
+
+                    @snippet() {
+                        @callblock(reference = "cockpit-invariant") {
+                            |val c: Cockpit[Pilot] =
+                            |  new Cockpit(new CoPilot)
+                        }
+                        @outblock() {
+                            |c: Cockpit[Pilot] = Cockpit(CoPilot)
+                        }
+                        @callblock() {
+                            |c.put(new CoPilot)
+                        }
+                        @outblock() {
+                            |t
+                        }
+                        @callblock() {
+                            |c.put(new Pilot)
+                        }
+                        @outblock(error = true) {
+                            |error   : type mismatch;
+                            |found   : Pilot
+                            |required: CoPilot
+                        }
                     }
                 }
             }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Kovarianz") {
+            @titleslide(title = title, subtitle = "Kovarianz") {
 
             }
 
             <!-- ################################################################################## -->
 
-            @slide(title = title, subtitle = "Kontravarianz") {
+            @titleslide(title = title, subtitle = "Kontravarianz") {
 
             }
         }
-
-        <!-- ################################################################################## -->
-
-        @slide(title = "Type Erasure") {
-            @sourcecode(reference = "crew") {
-                |class Cockpit[T](left: T, right: T)
-                |
-                |def canFlyPlane(c: Cockpit[_]) = c match {
-                |    case c: Cockpit[Pilot] => true
-                |    case _ => false
-                |}
-                |
-                |canFlyPlane(new Cockpit)
-            }
-        }
-
-        <!-- ################################################################################## -->
-        
-        @uebung(implicitSlide.id)
     }   
 }
