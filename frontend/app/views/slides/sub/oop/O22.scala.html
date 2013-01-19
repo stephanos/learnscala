@@ -97,7 +97,7 @@
 
         <!-- ################################################################################## -->
 
-        @titleslide(title = "Modell") {
+        @titleslide(title = "Beispielmodell") {
 
             @snippet() {
                 @sourceblock(id = "crew") {
@@ -106,7 +106,7 @@
                     |class Pilot extends Crew
                     |class CoPilot extends Pilot
                     |
-                    |class Stewardess() extends Crew
+                    |class Stewardess extends Crew
                 }
             }
         }
@@ -116,61 +116,7 @@
         @titleslide(title = "Inferenz") {
 
             @sourcecode(id = "cockpit2", reference = "crew") {
-                |case class Cockpit[T, S](left: T, right: S)
-            }
-
-            @spacer2()
-
-            @snippet() {
-                @sourceblock(reference = "cockpit2") {
-                    |val c: Cockpit[Pilot, Pilot] =
-                    |   new Cockpit[Pilot, Pilot](new Pilot, new Pilot)
-                }
-                @outblock() {
-                    |c: Cockpit[Pilot,Pilot] = Cockpit(Pilot,Pilot)
-                }
-            }
-
-            @iseq()
-
-            @snippet() {
-                @sourceblock(reference = "cockpit2") {
-                    |val c =
-                    |   new Cockpit[Pilot, Pilot](new Pilot, new Pilot)
-                }
-                @outblock() {
-                    |c: Cockpit[Pilot,Pilot] = Cockpit(Pilot,Pilot)
-                }
-            }
-
-            @iseq()
-
-            @snippet() {
-                @sourceblock(reference = "cockpit2") {
-                    |val c = new Cockpit (new Pilot, new Pilot)
-                }
-                @outblock() {
-                    |c: Cockpit[Pilot,Pilot] = Cockpit(Pilot,Pilot)
-                }
-            }
-            @codesub2() {
-                Typ-Parameter werden abgeleitet
-            }
-        }
-
-        <!-- ################################################################################## -->
-
-        @titleslide(title = "Typenüberprüfung") {
-
-            @sourcecode(id = "cockpit-check", reference = "crew") {
-                |case class Cockpit[T](left: T, right: T) {
-                |
-                |   require(left.isInstanceOf[Pilot] &&
-                |           right.isInstanceOf[Pilot])
-                |}
-            }
-            @codesub2() {
-                <code>isInstanceOf</code> überprüft den Typ
+                |class Cockpit[A, B](left: A, right: B)
             }
 
             @spacer2()
@@ -178,127 +124,188 @@
             @indent() {
 
                 @snippet() {
-                    @sourceblock(reference = "cockpit-check") {
-                        |val c = new Cockpit (new Pilot, new Pilot)
+                    @sourceblock(reference = "cockpit2") {
+                        |val c: Cockpit[Pilot, Pilot] =
+                        |   new Cockpit[Pilot, Pilot](new Pilot, new Pilot)
+                    }
+                }
+
+                @iseq()
+
+                @snippet() {
+                    @sourceblock(reference = "cockpit2") {
+                        |val c =
+                        |   new Cockpit[Pilot, Pilot](new Pilot, new Pilot)
+                    }
+                }
+
+                @iseq()
+
+                @snippet() {
+                    @sourceblock(reference = "cockpit2") {
+                        |val c = new Cockpit(new Pilot, new Pilot)
                     }
                     @outblock() {
                         |c: Cockpit[Pilot,Pilot] = Cockpit(Pilot,Pilot)
                     }
                 }
-
-                @spacer()
-
-                @snippet() {
-                    @sourceblock(reference = "cockpit-check") {
-                        |val c = new Cockpit (new Pilot, new Stewardess)
-                    }
-                    @outblock(error = true) {
-                        |java.lang.IllegalArgumentException: requirement failed
-                        |    at scala.Predef$.require(Predef.scala:145)
-                        |    at Cockpit.&lt;init&gt;(&lt;console&gt;:16)
-                    }
-                }
                 @codesub2() {
-                    Fehler wird erst zur Laufzeit erkannt
+                    Typ-Parameter werden vom Compiler abgeleitet
                 }
+            }
+
+            @notes {
+                - [HINT] Typ-Parameter weglassen (außer ein allgemeiner Typ ist gewünscht)
             }
         }
 
         <!-- ################################################################################## -->
 
-        @titleslide(title = "Upper Bound") {
+        @defining("Typenüberprüfung") { title =>
 
-            @sourcecode(id = "cockpit-upper", reference = "crew") {
-                |case class Cockpit[T &lt;: Pilot](left: T, right: T)
-            }
-            @codesub2() {
-                <code>T</code> muss mindestens vom Typ <code>Pilot</code> sein
-            }
+            @titleslide(title = title, subtitle = "manuell", connector = ":") {
 
-            @spacer2()
-
-            @indent() {
-
-                @snippet() {
-                    @callblock(reference = "cockpit-upper") {
-                        |new Cockpit(new Pilot, new CoPilot)
-                    }
-                    @outblock() {
-                        |res0: Cockpit[Pilot,CoPilot] = Cockpit(Pilot,CoPilot)
-                    }
+                @sourcecode(id = "cockpit-check", reference = "crew") {
+                    |class Cockpit[T](left: T, right: T) {
+                    |  require(left.isInstanceOf[Pilot] && right.isInstanceOf[Pilot])
+                    |}
                 }
                 @codesub2() {
-                    <code>CoPilot</code> und <code>Pilot</code> <em>sind erlaubt</em>
+                    <code>isInstanceOf</code> überprüft den Typ
                 }
 
                 @spacer()
 
-                @snippet() {
-                    @callblock(reference = "cockpit-upper") {
-                        |new Cockpit(new Pilot, new Stewardess)
+                @indent() {
+
+                    @snippet() {
+                        @sourceblock(reference = "cockpit-check") {
+                            |val c = new Cockpit(new Pilot, new Pilot)
+                        }
+                        @outblock() {
+                            |c: Cockpit[Pilot,Pilot] = Cockpit(Pilot,Pilot)
+                        }
                     }
-                    @outblock(error = true) {
-                        |error: inferred type arguments [Crew]
-                        |       do not conform to class Cockpit's
-                        |       type parameter bounds [T &lt;: Pilot]
+
+                    @spacer()
+
+                    @snippet() {
+                        @sourceblock(reference = "cockpit-check") {
+                            |val c = new Cockpit(new Pilot, new Stewardess)
+                        }
+                        @outblock(error = true) {
+                            |java.lang.IllegalArgumentException: requirement failed
+                            |    at scala.Predef$.require(Predef.scala:145)
+                            |    at Cockpit.&lt;init&gt;(&lt;console&gt;:16)
+                        }
+                    }
+                    @codesub2() {
+                        <var>Problem</var>: Fehler wird erst zur Laufzeit erkannt
                     }
                 }
+
+                @notes {
+                    - [ASK] Wo kommt 'require' her?
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "Upper Bound", connector = ":") {
+
+                @sourcecode(id = "cockpit-upper", reference = "crew") {
+                    |class Cockpit[T &lt;: Pilot](left: T, right: T)
+                }
                 @codesub2() {
-                    <code>Stewardess</code> ist <var>nicht erlaubt</var>
+                    <code>T</code> muss mindestens vom Typ <code>Pilot</code> sein
+                }
+
+                @spacer2()
+
+                @indent() {
+
+                    @snippet() {
+                        @callblock(reference = "cockpit-upper") {
+                            |new Cockpit(new Pilot, new CoPilot)
+                        }
+                        @outblock() {
+                            |res0: Cockpit[Pilot,CoPilot] = Cockpit(Pilot,CoPilot)
+                        }
+                    }
+                    @codesub2() {
+                        <code>CoPilot</code> und <code>Pilot</code> <em>sind erlaubt</em>
+                    }
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock(reference = "cockpit-upper") {
+                            |new Cockpit(new Pilot, new Stewardess)
+                        }
+                        @outblock(error = true) {
+                            |error: inferred type arguments [Crew]
+                            |       do not conform to class Cockpit's
+                            |       type parameter bounds [T &lt;: Pilot]
+                        }
+                    }
+                    @codesub2() {
+                        <code>Stewardess</code> ist <var>nicht erlaubt</var>
+                    }
+                }
+
+                @notes {
+                    - [HINT] '<:' entspricht 'extends' aus Java
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = "Lower Bound") {
+
+                @sourcecode(id = "cockpit-lower", reference = "crew") {
+                    |class Cockpit[T &lt;: Pilot](left: T, right: T) {
+                    |
+                    |  def replaceLeft[R >: T](newLeft: R) =
+                    |    new Cockpit(newLeft, right)
+                    |}
+                }
+                @codesub2() {
+                    <code>R</code> muss
+                }
+
+                @spacer()
+
+                @indent() {
+
+                    @snippet() {
+                        @callblock(reference = "cockpit-lower") {
+                            |val b = new Cockpit(new Pilot, new CoPilot)
+                        }
+                        @outblock() {
+                            |b: Cockpit[Pilot,CoPilot] = Cockpit(Pilot,CoPilot)
+                        }
+                        @callblock() {
+                            |val b2 = b.replaceLeft(new Stewardess)
+                        }
+                        @outblock() {
+                            |b2: Cockpit[Apple] = Cockpit(Apple,CandyApple)
+                        }
+                    }
+                    @codesub2() {
+
+                    }
                 }
             }
         }
 
         <!-- ################################################################################## -->
 
-        @*
-        @slide(title = "Lower Bound") {
-
-            @sourcecode(id = "cockpit-lower", reference = "crew") {
-                |case class Cockpit[T &lt;: Pilot](left: T, right: T) {
-                |
-                |  def replaceLeft[R >: T](newLeft: R) =
-                |    new Cockpit(newLeft, right)
-                |}
-            }
-            @codesub2() {
-                <code>R</code> muss
-            }
-
-            @spacer()
-
-            @indent() {
-
-                @snippet() {
-                    @callblock(reference = "cockpit-lower") {
-                        |val b = new Cockpit(new Pilot, new CoPilot)
-                    }
-                    @outblock() {
-                        |b: Cockpit[Pilot,CoPilot] = Cockpit(Pilot,CoPilot)
-                    }
-                    @callblock() {
-                        |val b2 = b.replaceLeft(new Stewardess)
-                    }
-                    @outblock() {
-                        |b2: Cockpit[Apple] = Cockpit(Apple,CandyApple)
-                    }
-                }
-                @codesub2() {
-
-                }
-            }
-        }
-        *@
-
-        <!-- ################################################################################## -->
-
-        @*
         @defining("Varianz") { title =>
 
-            @slide(title = title, subtitle = "Invarianz") {
+            @titleslide(title = title, subtitle = "Invarianz") {
 
                 @sourcecode(id = "cockpit-invariant", reference = "crew") {
-                    |case class Cockpit[T](left: T, right: T) {
+                    |class Cockpit[T](left: T, right: T) {
                     |
                     |  def swap(newItem: T) =
                     |    new Cockpit(newItem)
@@ -330,14 +337,12 @@
 
             }
         }
-        *@
 
         <!-- ################################################################################## -->
 
-        @*
         @slide(title = "Type Erasure") {
             @sourcecode(reference = "crew") {
-                |case class Cockpit[T](left: T, right: T)
+                |class Cockpit[T](left: T, right: T)
                 |
                 |def canFlyPlane(c: Cockpit[_]) = c match {
                 |    case c: Cockpit[Pilot] => true
@@ -347,7 +352,6 @@
                 |canFlyPlane(new Cockpit)
             }
         }
-        *@
 
         <!-- ################################################################################## -->
         
