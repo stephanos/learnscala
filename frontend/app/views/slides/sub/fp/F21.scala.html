@@ -39,40 +39,11 @@
                     </li>
                 </ul>
             }
-        }
 
-        <!-- ################################################################################## -->
-
-        @titleslide(title = "immutable vs. mutable") {
-
-            <div class="w50p bigger dcenter">
-
-                <blockquote class="fragment">
-                    <p>
-                        Für manche Probleme sind veränderliche Datenstrukturen besser geeignet,
-                        für andere hingegen unveränderliche.
-                    </p>
-                    <p>
-                        Im Zweifelsfall sollte man mit einer unveränderlichen beginnen
-                        - und gegebenenfalls später wechseln.
-                    </p>
-                    <var class="who">
-                        Martin Odersky
-                    </var>
-                </blockquote>
-
-                @spacer2()
-
-                <blockquote class="fragment">
-                    <p>
-                        Es ist angebracht Low-Level-Datenstrukturen zu verwenden,
-                        wenn bessere Performance oder effizientere Speichernutzung erforderlich sind.
-                    </p>
-                    <var class="who">
-                        Effective Scala, Twitter
-                    </var>
-                </blockquote>
-            </div>
+            @notes {
+                - [ASK] Wo würden wir denn die Java Collections einordnen?
+                - [BP] Standardkonstruktor verwenden
+            }
         }
 
         <!-- ################################################################################## -->
@@ -115,10 +86,10 @@
                 @sidebyside(gap = 10) {
                     @snippet() {
                         @callblock() {
-                            |List(1,2) ++ List(3,4)
+                            |Traversable(1,2) ++ Traversable(3,4)
                         }
                         @outblock() {
-                            |res0: List[Int] = List(1, 2, 3, 4)
+                            |res0: Traversable[Int] = List(1, 2, 3, 4)
                         }
                     }
                     @codesub2() {
@@ -129,7 +100,7 @@
 
                     @snippet() {
                         @callblock() {
-                            |List(1,2,3) head
+                            |Traversable(1,2,3) head
                         }
                         @outblock() {
                             |res1: Int = 1
@@ -143,10 +114,10 @@
 
                     @snippet() {
                         @callblock() {
-                            |List(1,2,3) tail
+                            |Traversable(1,2,3) tail
                         }
                         @outblock() {
-                            |res2: List[Int] = List(2, 3)
+                            |res2: Traversable[Int] = List(2, 3)
                         }
                     }
                     @codesub2() {
@@ -157,7 +128,7 @@
                     @spacer_half()
                     @snippet() {
                         @callblock() {
-                            |List(1,2,3) last
+                            |Seq(1,2,3) last
                         }
                         @outblock() {
                             |res3: Int = 3
@@ -169,7 +140,7 @@
                     @*
                     @snippet() {
                         @callblock() {
-                            |List(1,2,3) mkString ","
+                            |Seq(1,2,3) mkString ","
                         }
                         @outblock() {
                             |res4: String = 1,2,3
@@ -180,7 +151,7 @@
 
                     @snippet() {
                         @callblock() {
-                            |List(1,2,3) sum
+                            |Seq(1,2,3) sum
                         }
                         @outblock() {
                             |res5: Int = 6
@@ -190,10 +161,10 @@
                 } {
                     @snippet() {
                         @callblock() {
-                            |List(1,2,3) take 2
+                            |Traversable(1,2,3) take 2
                         }
                         @outblock() {
-                            |res6: List[Int] = List(1, 2)
+                            |res6: Traversable[Int] = List(1, 2)
                         }
                     }
                     @codesub2() {
@@ -204,10 +175,10 @@
 
                     @snippet() {
                         @callblock() {
-                            |List(1,2,3) drop 2
+                            |Traversable(1,2,3) drop 2
                         }
                         @outblock() {
-                            |res7: List[Int] = List(3)
+                            |res7: Traversable[Int] = List(3)
                         }
                     }
                     @codesub2() {
@@ -217,7 +188,7 @@
                     @*
                     @snippet() {
                         @callblock() {
-                            |List(1,2,3) toArray
+                            |Seq(1,2,3) toArray
                         }
                         @outblock() {
                             |res8: Array[Int) = Array(1,2,3)
@@ -229,7 +200,7 @@
                     @spacer_half()
                     @snippet() {
                         @callblock() {
-                            |List(1,2,3) size
+                            |Seq(1,2,3) size
                         }
                         @outblock() {
                             |res9: Int = 3
@@ -240,19 +211,19 @@
                     @spacer_half()
                     @snippet() {
                         @callblock() {
-                            |List(1,2,3) map (_ * 2)
+                            |Seq(1,2,3) map (_ * 2)
                         }
                         @outblock() {
-                            |res10: List[Int] = List(2,4,6)
+                            |res10: Seq[Int] = List(2,4,6)
                         }
                     }
                     @spacer_half()
                     @snippet() {
                         @callblock() {
-                            |List(1,2,3) filter (_ % 2 == 0)
+                            |Seq(1,2,3) filter (_ % 2 == 0)
                         }
                         @outblock() {
-                            |res11: List[Int] = List(2)
+                            |res11: Seq[Int] = List(2)
                         }
                     }
                     *@
@@ -777,24 +748,24 @@
                 @sidebyside(gap = 10) {
                     @snippet() {
                         @callblock() {
-                            |List(1,2,3)
+                            |Seq(1,2,3)
                         }
                         @outblock() {
-                            |res0: List[Int] = List(3, 2, 1)
+                            |res0: Seq[Int] = List(3, 2, 1)
                         }
                     }
                     @codesub2() {
-                        Liste initialisieren
+                        Sequenz initialisieren
                     }
 
                     @spacer2()
 
                     @snippet() {
                         @callblock() {
-                            |List(1,2,3) reverse
+                            |Seq(1,2,3) reverse
                         }
                         @outblock() {
-                            |res1: List[Int] = List(3, 2, 1)
+                            |res1: Seq[Int] = List(3, 2, 1)
                         }
                     }
                     @codesub2() {
@@ -805,10 +776,10 @@
 
                     @snippet() {
                         @callblock() {
-                            |List(1,2,3,3,2,1) distinct
+                            |Seq(1,2,3,3,2,1) distinct
                         }
                         @outblock() {
-                            |res2: List[Int] = List(1, 2, 3)
+                            |res2: Seq[Int] = List(1, 2, 3)
                         }
                     }
                     @codesub2() {
@@ -817,7 +788,7 @@
                 } {
                     @snippet() {
                         @callblock() {
-                            |List(1,2,3) indexOf 2
+                            |Seq(1,2,3) indexOf 2
                         }
                         @outblock() {
                             |res3: Int = 1
@@ -831,10 +802,10 @@
 
                     @snippet() {
                         @callblock() {
-                            |List(3,2,1) sorted
+                            |Seq(3,2,1) sorted
                         }
                         @outblock() {
-                            |res4: List[Int] = List(1, 2, 3)
+                            |res4: Seq[Int] = List(1, 2, 3)
                         }
                     }
                     @codesub2() {
@@ -845,15 +816,103 @@
 
                     @snippet() {
                         @callblock() {
-                            |List(333,22,1) sortBy (_.toString.size)
+                            |Seq(333,22,1) sortBy (_.toString.size)
                         }
                         @outblock() {
-                            |res5: List[Int] = List(1, 22, 333)
+                            |res5: Seq[Int] = List(1, 22, 333)
                         }
                     }
                     @codesub2() {
                         manuell sortieren
                     }*@
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @defining("Best Practices") { title =>
+
+            @titleslide(title = title) {
+
+                <div class="w50p bigger dcenter">
+
+                    <blockquote class="fragment">
+                        <p>
+                            Für manche Probleme sind veränderliche Datenstrukturen besser geeignet,
+                            für andere hingegen unveränderliche.
+                        </p>
+                        <p>
+                            Im Zweifelsfall sollte man mit einer unveränderlichen beginnen
+                            - und gegebenenfalls später wechseln.
+                        </p>
+                        <var class="who">
+                            Martin Odersky
+                        </var>
+                    </blockquote>
+
+                    @spacer2()
+
+                    <blockquote class="fragment">
+                        <p>
+                            Es ist angebracht Low-Level-Datenstrukturen zu verwenden,
+                            wenn bessere Performance oder effizientere Speichernutzung erforderlich sind.
+                        </p>
+                        <var class="who">
+                            Effective Scala, Twitter
+                        </var>
+                    </blockquote>
+                </div>
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "II", connector = "") {
+
+                @autocenter {
+                    @sourcecode() {
+                        |val seq = Seq(1, 2, 3)
+                        |val set = Set(1, 2, 3)
+                        |val map = Map(1 -> "one", 2 -> "two", 3 -> "three")
+                    }
+                }
+
+                @autocenter {
+                    @tipbox() {
+                        Standardkonstruktor verwenden wenn möglich,<br/>
+                        Scala wählt dann geeignete Implementation.
+                    }
+                }
+
+                @spacer2()
+
+                @sidebyside(gap = 10) {
+                    @sourcecode() {
+                        |import scala.collection.mutable._
+                        |val set = Set()
+                    }
+                    @codesub2() {
+                        in längeren Quelltexten ist Verhalten <var>unklar</var>
+                    }
+                } {
+                    @sourcecode() {
+                        |import scala.collection.mutable
+                        |val set = mutable.Set()
+                    }
+                    @codesub2() {
+                        Prefix macht Verhalten <em>eindeutig</em>
+                    }
+                }
+
+                @autocenter {
+                    @tipbox() {
+                        Für veränderliche Datentypen sollte stets <br/>
+                        das <code>mutable</code> mitgeführt werden.
+                    }
+                }
+
+                @notes {
+                    - Scala hat spezialisierte Datentypen für 1-, 2-, 3-Einträge
                 }
             }
         }
