@@ -62,15 +62,15 @@ object Content extends MyController {
 
   // === FUNKTIONEN
 
-  lazy val datatypes1 = Slide("F20", "Datenstrukturen I", fp, Seq(generics1))
-  lazy val datatypes2 = Slide("F21", "Datenstrukturen II", fp, Seq(operatoren, datatypes1))
+  lazy val datatypes1 = Slide("F20", "Datenstrukturen I", fp, Seq(generics1), status = "complete")
+  lazy val datatypes2 = Slide("F21", "Datenstrukturen II", fp, Seq(operatoren, datatypes1), status = "complete")
   lazy val listen = Slide("F22", "Listenverarbeitung", fp, Seq(datatypes2))
   lazy val funktionen3 = Slide("F23", "Funktionen III", fp, Seq(datatypes2, funktionen2))
   lazy val forexpr = Slide("F24", "for-Ausdruck", fp, Seq(funktionen3), status = "complete")
 
   // === ERWEITERT
 
-  lazy val interop = Slide("E20", "Interoperabilität", ext, Seq(implicit1, datatypes2, traits))
+  lazy val interop = Slide("E20", "Interoperabilität", ext, Seq(implicit1, datatypes2, traits), status = "complete")
   lazy val xml = Slide("E21", "XML", ext, Seq(forexpr), status = "complete")
   lazy val jsond = Slide("E22", "JSON", ext, Seq())
   lazy val swing = Slide("E23", "Swing", ext, Seq())
@@ -102,8 +102,8 @@ object Content extends MyController {
 
   // === ERWEITERT
 
-  lazy val tests1 = Slide("E30", "Testen", ext, Seq(traits, operatoren, implicit1))
-  lazy val tests2 = Slide("E31", "Testen II", ext, Seq(tests1), status = "complete")
+  lazy val tests1 = Slide("E30", "Testen", ext, Seq(traits, operatoren, implicit1), status = "complete")
+  lazy val tests2 = Slide("E31", "Testen II", ext, Seq(tests1))
 
   lazy val aktoren = Slide("E32", "Aktoren", ext, Seq(funktionen4, forexpr))
   lazy val dbase = Slide("E33", "Datenbank", ext, Seq(funktionen4))

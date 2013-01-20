@@ -2,29 +2,28 @@
   hideFooter: Boolean = false, clazz: String = "", narrow: Boolean = false, append: String = "", prepend: String = "",
   htmlTitle: xml.Node = null, head: Boolean = false, connector: String = null)(body: Html = Html.empty)(implicit topic: String = null)
 
-@enhanceTitle(t: Any) = {
-    @prepend
+@defining(Option(htmlTitle).getOrElse(title)) { theTitle =>
 
-    @if(subtitle != null) {
-        @if(connector != null) {
-            @t
-            @connector
-        }
-        @if(head == true) {
-            @t
+    @headslide(id = id, subsubtitle = subsubtitle, subtitle = subtitle, title = theTitle.toString, narrow = narrow,
+               chapter = chapter, hideFooter = hideFooter, clazz = clazz) {
+        @prepend
+
+        @if(subtitle != null) {
+            @if(connector != null) {
+                @theTitle
+                @connector
+            }
+            @if(head == true) {
+                @theTitle
+            } else {
+                @subtitle
+            }
         } else {
-            @subtitle
+            @theTitle
         }
-    } else {
-        @t
+
+        @append
+    } {
+        @body
     }
-
-    @append
-}
-
-@headslide(id = id, subsubtitle = subsubtitle, subtitle = subtitle, title = title, narrow = narrow,
-           chapter = chapter, hideFooter = hideFooter, clazz = clazz) {
-    @enhanceTitle(if(htmlTitle != null) htmlTitle else title)
-} {
-    @body
 }

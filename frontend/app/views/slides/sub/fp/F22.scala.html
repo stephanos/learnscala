@@ -24,13 +24,16 @@
 
                     @snippet() {
                         @callblock() {
-                            |List(1, 2, 3, 4)
+                            |Seq(1, 2, 3, 4)
                         }
                         @outblock() {
-                            |res0: List[Int] = List(1, 2, 3, 4)
+                            |res0: Seq[Int] = List(1, 2, 3, 4)
                         }
+                    }
+                    @iseq()
+                    @snippet() {
                         @callblock() {
-                            |List apply (1,2,3,4)
+                            |Seq.apply(1,2,3,4)
                         }
                         @outblock() {
                             |res1: List[Int] = List(1, 2, 3, 4)
@@ -51,12 +54,18 @@
                         @outblock() {
                             |res0: List[Int] = List(1, 2, 3)
                         }
+                    }
+                    @iseq()
+                    @snippet() {
                         @callblock() {
                             |1 :: (2 :: (3 :: Nil))
                         }
                         @outblock() {
                             |res1: List[Int] = List(1, 2, 3)
                         }
+                    }
+                    @iseq()
+                    @snippet() {
                         @callblock() {
                             |Nil.::(3).::(2).::(1)
                         }
@@ -73,15 +82,187 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title) {
+            @titleslide(title = "Exkurs: Nichts und leer") {
+                <!--
+                    http://oldfashionedsoftware.com/2008/08/20/a-post-about-nothing/
+                    http://blog.sanaulla.info/2009/07/12/nothingness/
+                -->
+
+                @defining((10,20,70)) { layout =>
+
+                    @fragment {
+                        @sidebysidebyside(layout) {
+                            <code>Unit</code>
+                        } {
+                            @fragment {
+                                Typ einer Methode, ohne Rückgabe
+                            }
+                        } {
+                            @sidebyside() {
+                                @snippet(clazz = "slim") {
+                                    @callblock() {
+                                        |val r = println("Hello")
+                                    }
+                                    @outblock() {
+                                        |r: Unit = ()
+                                    }
+                                }
+                            } {
+                                @snippet(clazz = "slim") {
+                                    @callblock() {
+                                        |val r = ()
+                                    }
+                                    @outblock() {
+                                        |r: Unit = ()
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    @spacer_half()
+
+                    @fragment {
+                        @sidebysidebyside(layout) {
+                            <code>None</code>
+                        } {
+                            @fragment {
+                                Konstante für eine leere <code>Option</code>
+                            }
+                        } {
+                            @sidebyside() {
+                                @snippet(clazz = "slim") {
+                                    @callblock() {
+                                        |Option(null)
+                                    }
+                                    @outblock() {
+                                        |res0: Option[Null] = None
+                                    }
+                                }
+                            } {
+                                @snippet(clazz = "slim") {
+                                    @callblock() {
+                                        |Option(null).getOrElse(1)
+                                    }
+                                    @outblock() {
+                                        |res0: Any = 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    @spacer_half()
+
+                    @fragment {
+                        @sidebysidebyside(layout) {
+                            <code>Nil</code>
+                        } {
+                            @fragment {
+                                Konstante für eine leere Liste
+                            }
+                        } {
+                            @sidebyside() {
+                                @snippet(clazz = "slim") {
+                                    @callblock() {
+                                        |Nil == List()
+                                    }
+                                    @outblock() {
+                                        |res0: Boolean = true
+                                    }
+                                }
+                            } {
+                                @snippet(clazz = "slim") {
+                                    @callblock() {
+                                        |1 :: Nil
+                                    }
+                                    @outblock() {
+                                        |res0: List[Int] = List(1
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                    @spacer_half()
+
+                    @fragment {
+                        @sidebysidebyside(layout) {
+                            <code>Nothing</code>
+                        } {
+                            @fragment {
+                                Unterklasse von "allem"
+                            }
+                        } {
+                            @sidebyside() {
+                                @snippet(clazz = "slim") {
+                                    @callblock() {
+                                        |def m = sys.error("error")
+                                    }
+                                    @outblock() {
+                                        |m: Nothing
+                                    }
+                                }
+                            } {
+                                @snippet(clazz = "slim") {
+                                    @callblock() {
+                                        |val l = List()
+                                    }
+                                    @outblock() {
+                                        |l: List[Nothing] = List()
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    @spacer_half()
+
+                    @fragment {
+                        @sidebysidebyside(layout) {
+                            <code>Null</code>
+                        } {
+                            @fragment {
+                                Unterklasse aller Referentypen,
+                                einziger möglicher Wert: <code>null</code>
+                            }
+                        } {
+                            @sidebyside() {
+                                @snippet(clazz = "slim") {
+                                    @callblock() {
+                                        |val n = null
+                                    }
+                                    @outblock() {
+                                        |n: Null = null
+                                    }
+                                }
+                            } {
+                                @snippet(clazz = "slim") {
+                                    @callblock() {
+                                        |def n: String = null
+                                    }
+                                    @outblock() {
+                                        |n: String = null
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "II", connector = "") {
                 <h4 class="fragment tcenter">(C)</h4>
 
                 @spacer()
 
                 @snippet() {
                     @callblock() {
-                        |import scala.collection.mutable.ListBuffer
-                        |val buf = new ListBuffer[Int]
+                        |import scala.collection.mutable
+                        |val buf = new mutable.ListBuffer[Int]
                     }
                     @outblock() {
                         |buf: ListBuffer[Int] = ListBuffer()
@@ -104,7 +285,7 @@
 
         <!-- ################################################################################## -->
 
-        @titleslide(title = "Typ") {
+        @titleslide(title = "Typparameter") {
 
             @snippet() {
                 @callblock() {
@@ -115,7 +296,7 @@
                 }
             }
             @codesub2() {
-                leere Liste
+                Typ <code>Nothing</code>: leere Liste
             }
 
             @spacer()
@@ -129,7 +310,7 @@
                 }
             }
             @codesub2() {
-                Liste mit <code>Int</code> und <code>Boolean</code>
+                Typ <code>AnyVal</code>: Liste mit <code>Int</code> und <code>Boolean</code>
             }
 
             @spacer()
@@ -143,7 +324,7 @@
                 }
             }
             @codesub2() {
-                Liste mit <code>Int</code> und <code>String</code>
+                Typ <code>Any</code>: Liste mit <code>Int</code> und <code>String</code>
             }
         }
 
@@ -200,7 +381,7 @@
 
                 @snippet() {
                     @sourceblock(id = "sum-rec") {
-                        |def sum (lst: List[Int]): Int =
+                        |def sum(lst: List[Int]): Int =
                         |  if (lst == Nil)
                         |    0
                         |  else
@@ -217,7 +398,7 @@
 
                 @snippet() {
                     @sourceblock(id = "sum-pm") {
-                        |def sum (lst: List[Int]): Int =
+                        |def sum(lst: List[Int]): Int =
                         |  lst match {
                         |    case Nil => 0
                         |    case head :: t => head + sum(t)
