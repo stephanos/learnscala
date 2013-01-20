@@ -48,9 +48,9 @@ object Content extends MyController {
   // === ALLGEMEIN
 
   lazy val operatoren = Slide("B20", "Operatoren", basic, Seq(vererbung1), status = "complete") // depends on 'override'
-  lazy val recursion = Slide("B21", "Rekursion", basic, Seq(kontrollstrukturen), status = "complete")
+  lazy val recursion = Slide("B21", "Rekursion", basic, Seq(listen), status = "complete")
   lazy val implicit1 = Slide("B22", "Implicits", basic, Seq(operatoren, klassen2), status = "complete")
-  lazy val interpolation = Slide("B23", "String Interpolation", basic, Seq(implicit1), status = "complete")
+  lazy val interpolation = Slide("B23", "String Interpolation", basic, Seq(implicit1, funktionen3), status = "complete")
   lazy val annotationen = Slide("B24", "Annotationen", basic, Seq()) // ERROR: USE JAVA !
 
   // === OBJEKTE
