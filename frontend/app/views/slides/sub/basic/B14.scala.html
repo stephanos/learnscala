@@ -33,7 +33,7 @@
             @spacer()
 
             @infobox() {
-                Jede Kontrollstruktur ist ein Ausdruck;<br/>
+                Viele Kontrollstrukturen sind ein Ausdruck;<br/>
                 besitzt also Rückgabewert und -typ.
             }
         }
@@ -79,10 +79,6 @@
 
             <!-- ################################################################################## -->
 
-            <!--
-                TODO: confusing: Any ? Char ?
-            -->
-
             @titleslide(title = title) {
 
                 @snippet() {
@@ -95,7 +91,7 @@
                     }
                 }
                 @codesub2() {
-                    fehlt <code>else</code> hat der Zweig den Typ <code>Unit</code>
+                    <var>Achtung</var>: fehlt <code>else</code> hat der Zweig den Typ <code>Unit</code>
                 }
 
                 @spacer2()
@@ -112,7 +108,7 @@
                     }
                 }
                 @codesub2() {
-                    <code>Int</code> ist die Basisklasse von Typ <code>Char</code>
+                    <em>gemeinsamer Nenner</em>: <code>Int</code> ist die Basisklasse von Typ <code>Char</code>
                 }
             }
         }
@@ -276,13 +272,13 @@
                 @indent() {
                     @snippet() {
                         @callblock(reference = "days2") {
-                            |val febDays = days (2)
+                            |val febDays = days(2)
                         }
                         @outblock() {
                             |febDays: Int = 28
                         }
                         @callblock() {
-                            |days (13)
+                            |days(13)
                         }
                         @outblock(error = true) {
                             |scala.MatchError: 13
@@ -291,6 +287,10 @@
                     @codesub2() {
                         <code>MatchError</code> bei fehlendem case
                     }
+                }
+
+                @notes {
+                    - [ASK] Was passiert bei Parameter '13'
                 }
             }
 
@@ -308,6 +308,10 @@
                 }
                 @codesub2() {
                     Wildcard-Pattern via <code>_</code>
+                }
+
+                @notes {
+                    - [ASK] Was passiert bei Parameter '13'
                 }
             }
 
@@ -346,6 +350,10 @@
                 }
                 @codesub2() {
                     Variable-Pattern <comment>(muss mit Kleinbuchstaben beginnen)</comment>
+                }
+
+                @notes {
+                    - [ASK] Was passiert bei Parameter '13'
                 }
             }
 
@@ -404,6 +412,10 @@
                 }
                 @codesub2() {
                     Typ-Pattern
+                }
+
+                @notes {
+                    - [ASK] welchen Typ hat die Methode?
                 }
             }
         }
