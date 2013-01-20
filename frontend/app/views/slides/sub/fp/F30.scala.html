@@ -179,7 +179,7 @@
             @sidebyside(gap = 10) {
                 @snippet() {
                     @sourceblock(id = "retry") {
-                        |def retry[T](n: Int)(fn: => T): T = {
+                        |def retry[A](n: Int)(fn: => A): A = {
                         |  try {
                         |    fn
                         |  } catch {
@@ -189,7 +189,7 @@
                         |}
                     }
                     @outblock() {
-                        |retry: [T](n: Int)(fn: => T)T
+                        |retry: [A](n: Int)(fn: => A)A
                     }
                 }
             } {
@@ -267,6 +267,7 @@
 
             <!-- ################################################################################## -->
 
+            @*
             @titleslide(title = title, subtitle = "Resource", head = true) {
 
                 @sourcecode(id = "ctrl-resource") {
@@ -301,13 +302,14 @@
                     }
                 }
             }
+            *@
 
             <!-- ################################################################################## -->
 
             @titleslide(title = title, subtitle = "Unless", head = true) {
 
                 @sourcecode(id = "ctrl-unless") {
-                    |def unless(condition: => Boolean)(body: => Unit) {
+                    |def unless(condition: Boolean)(body: => Unit) {
                     |  if (!condition)
                     |    body
                     |}
@@ -338,7 +340,7 @@
             @titleslide(title = title, subtitle = "Timed", head = true) {
 
                 @sourcecode(id = "ctrl-time") {
-                    |def timed[T](f: => T) = {
+                    |def timed[A](f: => A) = {
                     |  val start = System.nanoTime
                     |  val r = f
                     |  val t = (System.nanoTime - start) / 1e9

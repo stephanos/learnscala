@@ -94,7 +94,7 @@ object Content extends MyController {
 
   // === FUNKTIONEN
 
-  lazy val kontrollabstraktion = Slide("F30", "Kontrollabstraktion", fp, Seq(funktionen4), status = "complete")
+  lazy val kontrollabstraktion = Slide("F30", "Kontrollabstraktion", fp, Seq(funktionen3, implicit1), status = "complete")
   lazy val funktionen4 = Slide("F31", "Funktionen IV", fp, Seq(funktionen3))
   lazy val errors = Slide("F32", "Fehlerbehandlung", fp, Seq())
   lazy val dsl = Slide("F33", "DSL", fp, Seq())
