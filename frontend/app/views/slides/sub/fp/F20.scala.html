@@ -191,6 +191,10 @@
                 @spacer2()
 
                 @sidebyside(gap = 10) {
+                    @subhead() {
+                        (A)
+                    }
+
                     @snippet() {
                         @sourceblock(reference = "tuple2") {
                             |val name = t2._1
@@ -206,6 +210,10 @@
                         }
                     }
                 } {
+                    @subhead() {
+                        (B)
+                    }
+
                     @snippet() {
                         @sourceblock(reference = "tuple2") {
                             |val (name, age) = t2

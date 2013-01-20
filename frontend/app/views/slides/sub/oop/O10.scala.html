@@ -189,7 +189,8 @@
                 *@
 
                 @notes {
-                    - [SHOW] val e = new Employee("Bob", "Bobster", 35)
+                    - [SHOW] default parameter: 'age: Int = 18'
+                    - [SHOW] val e = new Employee("Bob", "Bobster", 35) ?
                 }
             }
         }
@@ -479,7 +480,7 @@
                             |class Employee(val name: String) {
                             |
                             |  def fire(nickname: String) =
-                            |    name + ", you are fired!"
+                            |    nickname + ", you are fired!"
                             |
                             |  def fire =
                             |    fire(name)
@@ -499,7 +500,7 @@
                             |class Employee(val name: String) {
                             |
                             |  def fire(nickname: String) =
-                            |    name + ", you are fired!"
+                            |    nickname + ", you are fired!"
                             |
                             |  def fire: String =
                             |    fire(name)
@@ -512,6 +513,10 @@
                     @codesub2() {
                         überladene Methoden <em>mit</em> Rückgabetyp
                     }
+                }
+
+                @notes {
+                    - [SHOW] default parameter: 'def fire(nickname: String = name) = ..'
                 }
             }
         }

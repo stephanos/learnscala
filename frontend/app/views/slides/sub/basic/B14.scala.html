@@ -40,7 +40,7 @@
 
         <!-- ################################################################################## -->
 
-        @defining("if-else") { title =>
+        @defining("Bedingungen") { title =>
 
             @titleslide(title = title) {
 
@@ -115,7 +115,7 @@
 
         <!-- ################################################################################## -->
 
-        @titleslide(title = "while") {
+        @titleslide(title = "Schleifen") {
 
             @sidebyside(gap = 15) {
                 @snippet() {
@@ -176,7 +176,7 @@
 
         <!-- ################################################################################## -->
 
-        @titleslide(title = "for") {
+        @titleslide(title = "Schleifen", subtitle = "II", connector = "") {
 
             @spacer()
 
@@ -225,7 +225,7 @@
 
         <!-- ################################################################################## -->
 
-        @defining("match") { title =>
+        @defining("Pattern Matching") { title =>
 
             @titleslide(title = title, subtitle = "Konstante-Pattern", head = true) {
 
@@ -391,9 +391,27 @@
 
         <!-- ################################################################################## -->
 
-        @defining("try-catch-finally") { title =>
+        @defining("Ausnahmen") { title =>
 
-            @titleslide(title = title) {
+            @titleslide(title = title, subtitle = "Werfen", connector = ":") {
+
+                @sourcecode(id = "throw") {
+                    |def getWords(msg: String) = {
+                    |  if (str == null)
+                    |    throw new RuntimeException("null!")
+                    |
+                    |  str.split(' ')
+                    |}
+                }
+
+                @notes {
+                    - [ASK] welchen Typ hat die Methode?
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "Fangen", connector = ":") {
 
                 @snippet() {
                     @sourceblock(id="try") {
