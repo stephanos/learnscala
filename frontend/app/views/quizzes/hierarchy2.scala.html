@@ -1,0 +1,94 @@
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(1)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val r = null
+            }
+            @outblock() {
+                |r: Null = null
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(2)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val r: Int = null
+            }
+            @outblock(error = true) {
+                |error   : type mismatch;
+                |found   : Null;
+                |required: Int
+            }
+        }
+    }
+}
+
+@spacer2()
+
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(3)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val r: BigInt = null
+            }
+            @outblock() {
+                |r: BigInt = null
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(4)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |def half(n: Int) =
+                |  if (n % 2 != 0)
+                |    throw new RuntimeException
+                |  else
+                |    n / 2
+            }
+            @outblock() {
+                |half: (n: Int)Int
+            }
+        }
+    }
+}
+
+@spacer2()
+
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(5)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val r = new Nothing
+            }
+            @outblock(error = true) {
+                |error: trait Nothing is abstract
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(6)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |def r =
+                |   throw new RuntimeException
+            }
+            @outblock() {
+                |r: ()Nothing
+            }
+        }
+    }
+}

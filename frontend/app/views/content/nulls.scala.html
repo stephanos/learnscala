@@ -21,32 +21,34 @@
     }
 }
 
-@spacer()
+@spacer2()
 
-@sidebyside() {
-    @snippet() {
-        @callblock() {
-         |val i: Int = null
+@autocenter {
+    @sidebyside(gap = 10) {
+        @snippet() {
+            @callblock() {
+             |val i: Int = null
+            }
+            @outblock(error = true) {
+             |error   : type mismatch;
+             |found   : Null(null)
+             |required: Int
+            }
+            @codenote() {
+                <code>AnyVal</code> kann nicht <code>null</code> sein
+            }
         }
-        @outblock(error = true) {
-         |error   : type mismatch;
-         |found   : Null(null)
-         |required: Int
-        }
-        @codenote() {
-            <code>AnyVal</code> kann nicht <code>null</code> sein
-        }
-    }
-} {
-    @snippet() {
-         @callblock() {
-             |val s: String = null
-         }
-         @outblock() {
-             |s: String = null
-         }
-        @codenote() {
-            <code>AnyRef</code> darf <code>null</code> sein
+    } {
+        @snippet() {
+             @callblock() {
+                 |val s: String = null
+             }
+             @outblock() {
+                 |s: String = null
+             }
+            @codenote() {
+                <code>AnyRef</code> darf <code>null</code> sein
+            }
         }
     }
 }

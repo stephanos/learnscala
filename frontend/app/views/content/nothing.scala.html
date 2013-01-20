@@ -23,27 +23,29 @@
      }
 }
 
-@spacer()
+@spacer2()
 
-@sidebyside() {
-    @snippet() {
-        @sourceblock() {
-            |def error(msg: String) =
-            |  throw new RuntimeException(msg)
+@autocenter {
+    @sidebyside(gap = 10) {
+        @snippet() {
+            @sourceblock() {
+                |def error(msg: String) =
+                |  throw new RuntimeException(msg)
+            }
+            @outblock() {
+                |error: (msg: String)Nothing
+            }
         }
-        @outblock() {
-            |error: (msg: String)Nothing
-        }
-    }
-} {
-    @snippet() {
-        @sourceblock() {
-            |def divide(x: Int, y: Int): Int =
-            |  if (y != 0) x / y
-            |  else error("can't divide by zero")
-        }
-        @outblock() {
-            |divide: (x: Int, y: Int)Int
+    } {
+        @snippet() {
+            @sourceblock() {
+                |def divide(x: Int, y: Int): Int =
+                |  if (y != 0) x / y
+                |  else error("can't divide by zero")
+            }
+            @outblock() {
+                |divide: (x: Int, y: Int)Int
+            }
         }
     }
 }

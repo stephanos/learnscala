@@ -4,8 +4,11 @@ import controllers.base.MyController
 
 object Quiz extends MyController {
 
-  def hierarchy() =
-    views.html.quizzes.hierarchy()
+  def hierarchy1() =
+    views.html.quizzes.hierarchy1()
+
+  def hierarchy2() =
+    views.html.quizzes.hierarchy2()
 
   def variable() =
     views.html.quizzes.variable()

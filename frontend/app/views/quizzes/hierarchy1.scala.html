@@ -4,37 +4,6 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |val r = null
-            }
-            @outblock() {
-                |r: Null = null
-            }
-        }
-    }
-} {
-    @sidebyside((5, 90)) {
-        <span>(2)</span>
-    } {
-        @snippet(clazz = "slim") {
-            @callblock(fragment = false) {
-                |val r: Int = null
-            }
-            @outblock(error = true) {
-                |error: type mismatch;
-                |found: Null; required: Int
-            }
-        }
-    }
-}
-
-@spacer()
-
-@sidebyside() {
-    @sidebyside((5, 90)) {
-        <span>(3)</span>
-    } {
-        @snippet(clazz = "slim") {
-            @callblock(fragment = false) {
                 |var r: AnyVal = true
                 |r = 1
             }
@@ -46,7 +15,7 @@
     }
 } {
     @sidebyside((5, 90)) {
-        <span>(4)</span>
+        <span>(2)</span>
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
@@ -59,11 +28,11 @@
     }
 }
 
-@spacer()
+@spacer2()
 
 @sidebyside() {
     @sidebyside((5, 90)) {
-        <span>(5)</span>
+        <span>(3)</span>
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
@@ -71,8 +40,43 @@
                 |r = true
             }
             @outblock(error = true) {
-                |error: type mismatch;
-                |found: Int(1) required: AnyRef
+                |error   : type mismatch;
+                |found   : Int(1)
+                |required: AnyRef
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(4)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |def positiveOrNegative(x: Int) =
+                |  if (x == 0) 0
+                |  else if (x > 0) 'p'
+                |  else 'n'
+            }
+            @outblock() {
+                |positiveOrNegative: (x: Int)Int
+            }
+        }
+    }
+}
+
+@spacer2()
+
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(5)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |new Any
+            }
+            @outblock(error = true) {
+                |error: class Any is abstract;
+                |       cannot be instantiated
             }
         }
     }
@@ -82,41 +86,12 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |def r =
-                |   throw new RuntimeException
+                |var r: Any = "String"
+                |r = 1
             }
             @outblock() {
-                |r: ()Nothing
-            }
-        }
-    }
-}
-
-@spacer()
-
-@sidebyside() {
-    @sidebyside((5, 90)) {
-        <span>(7)</span>
-    } {
-        @snippet(clazz = "slim") {
-            @callblock(fragment = false) {
-                |val r = new Nothing
-            }
-            @outblock(error = true) {
-                |error: trait Nothing is abstract
-            }
-        }
-    }
-} {
-    @sidebyside((5, 90)) {
-        <span>(8)</span>
-    } {
-        @snippet(clazz = "slim") {
-            @callblock(fragment = false) {
-                |val r: BigInt = null
-            }
-            @outblock() {
-                |r: BigInt = null
+                |r: Any = String
+                |r: Any = 1
             }
         }
     }
