@@ -397,15 +397,11 @@
 
                 @sourcecode(id = "throw") {
                     |def getWords(msg: String) = {
-                    |  if (str == null)
+                    |  if (msg == null)
                     |    throw new RuntimeException("null!")
                     |
-                    |  str.split(' ')
+                    |  msg.split(' ')
                     |}
-                }
-
-                @notes {
-                    - [ASK] welchen Typ hat die Methode?
                 }
             }
 
