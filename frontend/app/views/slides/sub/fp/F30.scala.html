@@ -1,0 +1,23 @@
+<!--
+    TODO
+        - good flatMap & Option example
+-->
+@implicitSlide = @{ Content.funktionen4 }
+
+@defining(implicitSlide.label) { implicit topic =>
+
+    @layout.slidedeck(topic) {
+
+        @slidehead() {
+            @topic
+        } {
+            @image("fx.png", clazz = "naked", height = 200)
+            @spacer_half()
+            Funktionen und Kollektionen
+        }
+
+        <!-- ################################################################################## -->
+
+
+    }
+}
