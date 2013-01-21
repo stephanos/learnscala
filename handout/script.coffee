@@ -53,7 +53,7 @@ getPage = (path, cb) ->
 
       # return page (after short timeout)
       setTimeout(
-        () -> cb(page),
+        -> cb(page),
         delay)
     )
 
@@ -78,6 +78,7 @@ captureSlides = (page, slides, slide, outpath, cb) ->
     )
 
 captureLinks = (links, cb) ->
+  console.log("capture", links)
   if(links.length == 0)
     cb()
   else
@@ -88,6 +89,7 @@ captureLinks = (links, cb) ->
 
         # read title
         title = getTitle(page)
+        console.log(title)
         if(!title) then throw new Error("link " + link + " has no title (h3)!")
         title = title.replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/\s/g, "_")
 
@@ -140,19 +142,24 @@ page = webpage.create()
 #  console.log msg
 
 page.onLoadFinished = (status) ->
-  url = getUrl(page)
-  if(url.endsWith("/glossary") || url.endsWith("/slides"))
-    links = page.evaluate (-> Array::map.call ($(".slides a:not(.todo)")), (e) -> $(e).attr("href"))
-    captureLinks(links, () ->
-      phantom.exit()
-    )
-  else
-    if(status == "success")
-      if(url.indexOf("/glossary") >= 0 || url.indexOf("/slides") >= 0)
-        captureLinks([startPath], () ->
+  setTimeout( ->
+      page.evaluate (-> jQuery.ready())
+      url = getUrl(page)
+      console.log(url)
+
+      if(url.endsWith("/glossary") || url.endsWith("/slides"))
+        links = page.evaluate (-> Array::map.call ($(".slides a:not(.todo)")), (e) -> $(e).attr("href"))
+        captureLinks(links, () ->
           phantom.exit()
         )
-    else
-      phantom.exit()
+      else
+        if(status == "success")
+          if(url.indexOf("/glossary") >= 0 || url.indexOf("/slides") >= 0)
+            captureLinks([startPath], () ->
+              phantom.exit()
+            )
+        else
+          phantom.exit()
+  , 100)
 
 page.open(createUrl(startPath))
