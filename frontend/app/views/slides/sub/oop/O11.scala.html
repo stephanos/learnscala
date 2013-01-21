@@ -140,7 +140,6 @@
                 @sidebyside((60,40)) {
                     @sourcecode() {
                         |object MyApplication {
-                        |
                         |  def main(args: Array[String]) {
                         |    println("Hello World!")
                         |  }
@@ -153,12 +152,11 @@
                     }
                 }
 
-                @spacer_half()
+                @spacer()
 
                 @sidebyside((60,40)) {
                     @sourcecode() {
                         |object StringUtil {
-                        |
                         |  def isEmpty(s: String) =
                         |    if(s == null) true else s.isEmpty()
                         |}
@@ -170,12 +168,11 @@
                     }
                 }
 
-                @spacer_half()
+                @spacer()
 
                 @sidebyside((60,40)) {
                     @sourcecode() {
                         |object Currency {
-                        |
                         |  val euro   = "€"
                         |  val dollar = "$"
                         |}

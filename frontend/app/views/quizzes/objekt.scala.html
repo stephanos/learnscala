@@ -1,0 +1,97 @@
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(1)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |object QuadNum {
+                |  def apply(n: Int) =
+                |    n * n
+                |}
+                |QuadNum(6)
+            }
+            @outblock() {
+                |defined module QuadNum
+                |res0: Int = 36
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(2)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |object Hello {
+                |  println("Hello")
+                |}
+            }
+            @outblock() {
+                |defined module Hello
+            }
+        }
+    }
+}
+
+@spacer()
+
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(3)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |object Test
+                |new Test
+            }
+            @outblock(error = true) {
+                |error: not found: type Test
+            }
+        }
+    }
+
+    @spacer()
+
+    @sidebyside((5, 90)) {
+        <span>(4)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |object Test {
+                |  var i = 5
+                |}
+                |Test.i
+            }
+            @outblock() {
+                |res0: Int = 5
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(5)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |class Test private ()
+                |object Test {
+                |  def apply() =
+                |    new Test
+                |}
+                |Test()
+            }
+            @outblock() {
+                |defined class Test
+                |defined module Test
+                |res0: Test = Test@@1ee864c4
+            }
+        }
+    }
+}
+
+
+@notes {
+    - (2) füge Zeile "Hello" hinzu, was passiert?
+    - (5) Was passiert wenn 'apply' keine Parameterliste hat?
+    - (5) Was passiert wenn Objekt "Test2" heißt?
+}
