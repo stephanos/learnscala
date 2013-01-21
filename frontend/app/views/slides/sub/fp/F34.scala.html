@@ -1,0 +1,23 @@
+<!--
+    TODO
+        - https://coderwall.com/p/qe0uca
+        - http://helenaedelson.com/?p=939
+        - http://danielwestheide.com/blog/2012/12/26/the-neophytes-guide-to-scala-part-6-error-handling-with-try.html
+-->
+@implicitSlide = @{ Content.errors }
+
+@defining(implicitSlide.label) { implicit topic =>
+
+    @layout.slidedeck(topic) {
+        @slidehead() {
+            @topic
+        } {
+        }
+
+        <!-- ################################################################################## -->
+
+        @slide() {
+
+        }
+    }
+}
