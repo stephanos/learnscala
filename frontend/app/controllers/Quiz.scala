@@ -13,6 +13,15 @@ object Quiz extends MyController {
   def list() =
     views.html.quizzes.list()
 
+  def objekt() =
+    views.html.quizzes.objekt()
+
+  def klasse() =
+    views.html.quizzes.klasse()
+
+  def vererbung() =
+    views.html.quizzes.vererbung()
+
   def enum() =
     views.html.quizzes.enum()
 

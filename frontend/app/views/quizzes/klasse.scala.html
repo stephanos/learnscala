@@ -1,0 +1,103 @@
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(1)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |class A
+                |new A()
+            }
+            @outblock() {
+                |defined class A
+                |res0: A = A@@4482496e
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(2)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |class B(s: String) {
+                |  println(s)
+                |}
+                |new B
+            }
+            @outblock(error = true) {
+                |error: not enough arguments for
+                |       constructor B: (s: String)B
+            }
+        }
+    }
+}
+
+@spacer()
+
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(3)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |class A(val i: String) {
+                |  val i = 5
+                |}
+            }
+            @outblock(error = true) {
+                |error: i is already
+                |       defined as value i
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(4)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |class B() {
+                |  def this(i: Int) = this()
+                |}
+                |new B(5)
+            }
+            @outblock() {
+                |defined class B
+                |res0: B = B@@421b8264
+            }
+        }
+    }
+}
+
+@spacer()
+
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(4)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |class A(i: Int)
+                |
+                |(new A(5)).i
+            }
+            @outblock(error = false) {
+                |error: value i is not a member of A
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(5)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |class B(var s: String)
+                |println(new B("B").s)
+            }
+            @outblock() {
+                |B
+            }
+        }
+    }
+}
