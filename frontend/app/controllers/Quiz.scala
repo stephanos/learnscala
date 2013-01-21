@@ -13,11 +13,14 @@ object Quiz extends MyController {
   def list() =
     views.html.quizzes.list()
 
-  def data1_a() =
-    views.html.quizzes.data1_a()
+  def enum() =
+    views.html.quizzes.enum()
 
-  def data1_b() =
-    views.html.quizzes.data1_b()
+  def tupel() =
+    views.html.quizzes.tupel()
+
+  def opt() =
+    views.html.quizzes.opt()
 
   def variable() =
     views.html.quizzes.variable()
