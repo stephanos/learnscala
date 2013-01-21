@@ -1,6 +1,6 @@
 alias web   = ;project app-frontend ;run
-alias live  = ;project app-frontend ;start 80
-alias debug = ;project app-frontend ;run 80
+alias live  = ;project app-frontend ;start 8080
+alias debug = ;project app-frontend ;run 8080
 alias ass   = ;project app-frontend ;play-copy-assets;
 
 alias api   = ;project app-api; run
