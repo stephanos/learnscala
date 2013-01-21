@@ -46,6 +46,9 @@
             }
 
             @notes {
+                - verschiedene Paradigmen, vorher getrennt
+                - verschiedene Tools
+                - verschiedene Stilrichtungen
             }
         }
 
@@ -58,6 +61,13 @@
                 @autocenter {
                     @image("duke.png", width = 300, clazz = "naked")
                 }
+            }
+
+            @notes {
+                - läuft auf der Java VM
+                - kompatibel mit allen Java Bibliotheken
+                - Sprache  ist bewusst damit konzipiert worden
+                - erbt dadurch aber auch Nachteile der JVM (z.B. Type Erasure)
             }
         }
 
@@ -73,6 +83,13 @@
                     @image("swissarmyknife2.png", width = 550, clazz = "naked")
                 }
             }
+
+            @notes {
+                - es gibt nicht einen "Scala-Stil"
+                - zwar gibt es einen empfohlenen Stil, aber Abweichungen sind möglich
+                - viele verschiedene Wege etwas zu lösen
+                - bricht viele Regeln von Java
+            }
         }
 
         <!-- ################################################################################## -->
@@ -87,6 +104,12 @@
                     @image("blocks.png", width = 550, clazz = "naked")
                 }
             }
+
+            @notes {
+                - Klassen zur Modellierung der Welt
+                - mehr Funktionalität als Java
+                - höhere Wiederverwendung / Modularität
+            }
         }
 
         <!-- ################################################################################## -->
@@ -99,6 +122,13 @@
                     @image("lightning.png", width = 550, clazz = "naked")
                 }
             }
+
+            @notes {
+                - mächtig aber auch gefährlich
+                - 2-schneidiges Schwert
+                - elegantere, bessere Lösungen aber auch Potential sich in den Fuß zu schießen
+                - Balanceakt
+            }
         }
 
         <!-- ################################################################################## -->
@@ -110,6 +140,12 @@
                 @autocenter {
                     @image("chameleon.png", width = 550, clazz = "naked")
                 }
+            }
+
+            @notes {
+                - Flexibilität
+                - imperativ <> objektorientiert <> funktional
+                - richtiges Werkzeug für jedes Problem
             }
         }
 
@@ -125,33 +161,11 @@
                     @image("dart.png", width = 450, clazz = "naked")
                 }
             }
-        }
 
-        <!-- ################################################################################## -->
-
-        @headslide(title = "Funktional") {
-            Scala ist ... <span><em>funktional</em></span>
-        } {
-            @spacer()
-
-            @fragment {
-                @autocenter {
-                    @image("fx.png", clazz = "naked", height = 300)
-                }
-            }
-        }
-
-        <!-- ################################################################################## -->
-
-        @headslide(title = "Leichtgewichtig") {
-            Scala ist ... <span><em>leichtgewichtig</em></span>
-        } {
-            @spacer()
-
-            @fragment {
-                @autocenter {
-                    @image("feather.png", width = 650, clazz = "naked")
-                }
+            @notes {
+                - Code-Reduktion von durchschn. 20-30%
+                - kürzere Code heißt schneller lesen, weniger Wartungsaufwand
+                - erkauft durch mächtigere Werkzeuge (erhöht Lernaufwand, langfristig Vorteile)
             }
         }
 
@@ -167,6 +181,53 @@
                     @image("static.jpeg", width = 650)
                 }
             }
+
+            @notes {
+                - mutet dynamisch an, ist aber sehr statisch
+                - ausgefeiltes Typsystem, das mehr Fehler beim Kompilieren entdeckt als Java
+                - weniger Flüchtigkeitsfehler, weniger Tests (?)
+                - Problem: längere Kompilierzeiten
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @headslide(title = "Funktional") {
+            Scala ist ... <span><em>funktional</em></span>
+        } {
+            @spacer()
+
+            @fragment {
+                @autocenter {
+                    @image("fx.png", clazz = "naked", height = 300)
+                }
+            }
+
+            @notes {
+                - ganz neue Abstraktionsebene für Java-Entwickler
+                - spart viel Code, macht dabei aber lesbarer!
+                - ideal für Multi-Kern-Prozessoren
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @headslide(title = "Leichtgewichtig") {
+            Scala ist ... <span><em>leichtgewichtig</em></span>
+        } {
+            @spacer()
+
+            @fragment {
+                @autocenter {
+                    @image("feather.png", width = 650, clazz = "naked")
+                }
+            }
+
+            @notes {
+                - ließt sich wie eine dynamische Sprache
+                - gewisse Eleganz, ähnlich wie Python/Ruby
+                - macht Spaß!
+            }
         }
 
         <!-- ################################################################################## -->
@@ -178,6 +239,12 @@
                 @autocenter {
                     @image("rocket.png", width = 500, clazz = "naked")
                 }
+            }
+
+            @notes {
+                - läuft auf JVM (eine der schnellsten der Welt)
+                - ist statisch (im Gegensatz zu Groovy/JRuby)
+                - meist genauso schnell wie Java; manchmal leicht schneller/langsamer
             }
         }
 
@@ -193,6 +260,14 @@
                     @image("forging.png", clazz = "naked", width = 500)
                 }
             }
+
+            @notes {
+                - mitgelieferte Werkzeugkiste Lässt sich sehr leicht erweitern
+                - Methoden an bestehende Klassen anhängen
+                - neue Kontrollstrukturen erschaffen
+                - eigene DSLs
+                - mächtig!
+            }
         }
 
         <!-- ################################################################################## -->
@@ -202,6 +277,10 @@
         } {
             @Images.users()
 
+            @notes {
+                - Startups und Konzerne
+                - Twitter seit 2009, prominenter Fürsprecher
+            }
         }
 
         <!-- ################################################################################## -->
@@ -235,6 +314,11 @@
                     James Gosling
                 </var>
             </blockquote>
+            }
+
+            @notes {
+                - James Gosling sitzt im Aufsichtsrat von Typesafe
+                - genau wie Rod Johson
             }
         }
 
@@ -364,6 +448,11 @@
                     </tr>
                 </table>
             </div>
+
+            @notes {
+                - rapide Entwicklung, fast jedes Jahr ein Release
+                - aber trotzdem: sehr stabil, keine "breaking"-Releases
+            }
         }
 
         <!-- ################################################################################## -->
