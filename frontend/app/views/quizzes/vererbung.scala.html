@@ -1,0 +1,83 @@
+@autocenter {
+
+    @sourcecode(id="qplane", fragment = false) {
+        |class Plane(val seats: Int) {
+        |  val turbines = 4
+        |  def seats1stCls = (seats * 0.1).toInt
+        |}
+    }
+}
+
+@spacer()
+
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(1)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(reference = "qplane", fragment = false) {
+                |class Boeing747 extends Plane(412) {
+                |  override val turbines = 8
+                |}
+            }
+            @outblock() {
+                |defined class Plane
+                |defined class Boeing747
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(2)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(reference = "qplane", fragment = false) {
+                |class LuxuryPlane extends Plane(100) {
+                |  val seats1stCls = seats
+                |}
+            }
+            @outblock(error = true) {
+                |error: value seats1stCls needs
+                |       `override' modifier
+            }
+        }
+    }
+}
+
+@spacer()
+
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(3)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(reference = "qplane", fragment = false) {
+                |class FastPlane(s: Int)
+                |  extends Plane(s) {
+                |    override def turbines =
+                |      (seats / 100).toInt
+                |}
+            }
+            @outblock(error = true) {
+                |error: overriding value turbines
+                |       in class Plane of type Int
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(4)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(reference = "qplane", fragment = false) {
+                |object SmallPlane extends Plane(10) {
+                |  val trubines = 2
+                |}
+            }
+            @outblock() {
+                |defined class Plane
+                |defined module SmallPlane
+            }
+        }
+    }
+}
