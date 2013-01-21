@@ -66,7 +66,6 @@ object Content extends MyController {
   lazy val datatypes2 = Slide("F21", "Datenstrukturen II", fp, Seq(operatoren, datatypes1), status = "complete")
   lazy val listen = Slide("F22", "Listenverarbeitung", fp, Seq(datatypes2))
   lazy val funktionen3 = Slide("F23", "Funktionen III", fp, Seq(datatypes2, funktionen2))
-  lazy val forexpr = Slide("F24", "for-Ausdruck", fp, Seq(funktionen3), status = "complete")
 
   // === ERWEITERT
 
@@ -93,12 +92,14 @@ object Content extends MyController {
   lazy val generics2 = Slide("O32", "Typparameter II", oop, Seq(generics1))
 
   // === FUNKTIONEN
+  lazy val funktionen4 = Slide("F30", "Funktionen IV", fp, Seq(funktionen3))
+  lazy val forexpr = Slide("F31", "for-Ausdruck", fp, Seq(funktionen4), status = "complete")
+  lazy val kontrollabstraktion = Slide("F32", "Kontrollabstraktion", fp, Seq(funktionen4, implicit1), status = "complete")
+  lazy val errors = Slide("F32", "Fehlerbehandlung", fp, Seq(funktionen4))
 
-  lazy val kontrollabstraktion = Slide("F30", "Kontrollabstraktion", fp, Seq(funktionen3, implicit1), status = "complete")
-  lazy val funktionen4 = Slide("F31", "Funktionen IV", fp, Seq(funktionen3))
-  lazy val errors = Slide("F32", "Fehlerbehandlung", fp, Seq())
   lazy val dsl = Slide("F33", "DSL", fp, Seq())
   lazy val datatypes3 = Slide("F34", "Datenstrukturen III", fp, Seq(datatypes2))
+  lazy val funktionen5 = Slide("F37", "Funktionen IV", fp, Seq(funktionen4))
 
   // === ERWEITERT
 
