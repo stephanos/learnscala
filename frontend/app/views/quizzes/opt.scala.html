@@ -7,7 +7,7 @@
                 |Some("a").get
             }
             @outblock() {
-                |String: String = String
+                |res0: String = a
             }
         }
     }
@@ -20,13 +20,13 @@
                 |None.getOrElse(1)
             }
             @outblock() {
-                |r: Double = 25.0
+                |res0: Int = 1
             }
         }
     }
 }
 
-@spacer()
+@spacer2()
 
 @sidebyside() {
     @sidebyside((5, 90)) {
@@ -34,10 +34,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |Option(None).get
+                |None.get
             }
-            @outblock() {
-                |String: String = String
+            @outblock(error = true) {
+                |NoSuchElementException: None.get
             }
         }
     }
@@ -47,16 +47,17 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |Option(null).getOrElse(6)
+                |None(1)
             }
-            @outblock() {
-                |r: Double = 25.0
+            @outblock(error = true) {
+                |error: None.type
+                |       does not take parameters
             }
         }
     }
 }
 
-@spacer()
+@spacer2()
 
 @sidebyside() {
     @sidebyside((5, 90)) {
@@ -64,10 +65,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |Option(Option(null)).get
+                |None.getOrElse(Some("a")).get
             }
             @outblock() {
-                |String: String = String
+                |res0: String = a
             }
         }
     }
@@ -77,10 +78,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |Option(null).getOrElse(6)
+                |Some(1).get + None.getOrElse(1)
             }
             @outblock() {
-                |r: Double = 25.0
+                |res0: Int = 2
             }
         }
     }

@@ -1,16 +1,90 @@
-@*
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(1)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |("Hitchcock" -> "Alfred")._0
+            }
+            @outblock(error = true) {
+                |error: value _0 is not a member
+                |       of (String, String
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(2)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |("Hitchcock", "Alfred")._2
+            }
+            @outblock() {
+                |res0: String = "Alfred"
+            }
+        }
+    }
+}
 
+@spacer2()
 
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(3)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |("Europa" -> "BRD" -> "Berlin")
+            }
+            @outblock() {
+                |res0: ((String, String), String) =
+                |   ((Europa,BRD),Berlin
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(4)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |val t = ("Martin", 42)
+                |t._1 + " ist " + t._2
+            }
+            @outblock() {
+                |res0: String = Martin ist 42
+            }
+        }
+    }
+}
 
-def r1 =
-      ("Bayern" -> "München")._1 == TODO
+@spacer2()
 
-    def r2 =
-      ("Bayern", "München")._2 == TODO
-
-    def r3 = {
-      val t = ("Martin", 42)
-      t._1 + " ist " + t._2
-    } == TODO
-
-*@
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(5)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |(1,null)
+            }
+            @outblock() {
+                |res0: (Int, Null) = (1,null
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(6)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |(1 -> 1)._1
+            }
+            @outblock() {
+                |res0: Int = 1
+            }
+        }
+    }
+}
