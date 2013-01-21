@@ -10,6 +10,15 @@ object Quiz extends MyController {
   def hierarchy2() =
     views.html.quizzes.hierarchy2()
 
+  def list() =
+    views.html.quizzes.list()
+
+  def data1_a() =
+    views.html.quizzes.data1_a()
+
+  def data1_b() =
+    views.html.quizzes.data1_b()
+
   def variable() =
     views.html.quizzes.variable()
 
