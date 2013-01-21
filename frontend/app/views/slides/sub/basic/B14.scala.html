@@ -403,6 +403,17 @@
                     |  msg.split(' ')
                     |}
                 }
+
+                @iseq(true)
+
+                @sourcecode(id = "throw2") {
+                    |def getWords(msg: String) = {
+                    |  if (msg == null)
+                    |    sys.error("null!")
+                    |
+                    |  msg.split(' ')
+                    |}
+                }
             }
 
             <!-- ################################################################################## -->
