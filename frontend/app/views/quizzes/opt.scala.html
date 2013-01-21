@@ -1,18 +1,87 @@
-@*
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(1)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |Some("a").get
+            }
+            @outblock() {
+                |String: String = String
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(2)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |None.getOrElse(1)
+            }
+            @outblock() {
+                |r: Double = 25.0
+            }
+        }
+    }
+}
 
-def r1 =
-      Some("a").get == TODO
+@spacer()
 
-    def r2 =
-      None.getOrElse(1) == TODO
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(3)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |Option(None).get
+            }
+            @outblock() {
+                |String: String = String
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(4)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |Option(null).getOrElse(6)
+            }
+            @outblock() {
+                |r: Double = 25.0
+            }
+        }
+    }
+}
 
-    def r3 =
-      Option(null).getOrElse(6) == TODO
+@spacer()
 
-    def r4 =
-      Option(None).get == TODO
-
-    def r5 =
-      Option(Option(null)).get == TODO
-
-*@
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(5)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |Option(Option(null)).get
+            }
+            @outblock() {
+                |String: String = String
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(6)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |Option(null).getOrElse(6)
+            }
+            @outblock() {
+                |r: Double = 25.0
+            }
+        }
+    }
+}
