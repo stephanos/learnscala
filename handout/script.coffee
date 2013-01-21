@@ -2,7 +2,9 @@ webpage = require('webpage')
 
 delay = 500
 renderers = []
-viewport = { width: 1024, height: 768 }
+viewport =
+    width: 1024
+    height: 768
 
 startPath =
     if phantom.args.length > 0
@@ -23,12 +25,14 @@ getPage = (path, cb) ->
     page = webpage.create()
 
     # setup page & PDF
-    pscale = 1.5
+    pscale = 2.2
     page.paperSize =
         width: viewport.width * pscale
         height: viewport.height * pscale
         orientation: 'portrait'
+        format: "A4"
         margin: '0cm'
+        border: '0cm'
     page.viewportSize = viewport
 
     page.onError = (msg, trace) ->
