@@ -1,3 +1,39 @@
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(1)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |class A
+                |new A()
+            }
+            @outblock() {
+                |defined class A
+                |res0: A = A@@4482496e
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(2)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @sourceblock(fragment = false) {
+                |class B(s: String) {
+                |  println(s)
+                |}
+                |new B
+            }
+            @outblock(error = true) {
+                |error: not enough arguments for
+                |       constructor B: (s: String)B
+            }
+        }
+    }
+}
+
+@spacer()
+
 @*
     def r1 =
           "Hello" :: List("World") == List("Hello", "World")

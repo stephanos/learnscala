@@ -116,10 +116,10 @@
     } {
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
-                |def add(x: Int, y: Int) = x / y
+                |def div(x: Int, y: Int) = x / y
             }
             @outblock() {
-                |add: (x: Int, y: Int)Int
+                |div: (x: Int, y: Int)Int
             }
         }
     }

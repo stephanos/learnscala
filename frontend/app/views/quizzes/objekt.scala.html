@@ -4,14 +4,14 @@
     } {
         @snippet(clazz = "slim") {
             @sourceblock(fragment = false) {
-                |object QuadNum {
+                |object Square {
                 |  def apply(n: Int) =
                 |    n * n
                 |}
-                |QuadNum(6)
+                |Square(6)
             }
             @outblock() {
-                |defined module QuadNum
+                |defined module Square
                 |res0: Int = 36
             }
         }
