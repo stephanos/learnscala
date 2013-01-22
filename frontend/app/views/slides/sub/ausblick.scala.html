@@ -242,6 +242,92 @@
 
         <!-- ################################################################################## -->
 
+        @titleslide("TypeTag") {
+
+            <!--
+                http://stackoverflow.com/questions/12218641/scala-2-10-what-is-a-typetag-and-how-do-i-use-it
+            -->
+
+            @sidebyside() {
+                @subhead() {
+                    Vorher
+                }
+
+                @snippet() {
+                    @sourceblock() {
+                        |def descr[A](xs: List[A]) {
+                        |  xs match {
+                        |    case _: List[String] =>
+                        |      println("list of strings")
+                        |    case _: List[Int] =>
+                        |      println("list of ints")
+                        |  }
+                        |}
+                    }
+                    @callblock() {
+                        |descr(List(1, 2, 3))
+                    }
+                    @outblock() {
+                        |"list of strings"
+                    }
+                }
+            } {
+                @subhead() {
+                    Nachher
+                }
+
+                @snippet() {
+                    @sourceblock() {
+                        |import scala.reflect.runtime.universe._
+                        |
+                        |def descr[A : TypeTag](xs: List[A]) {
+                        |  typeOf[A] match {
+                        |    case t if t =:= typeOf[String] =>
+                        |      println("list of strings")
+                        |    case t if t =:= typeOf[Int] =>
+                        |      println("list of ints")
+                        |  }
+                        |}
+                    }
+                    @callblock() {
+                        |descr(List(1, 2, 3))
+                    }
+                    @outblock() {
+                        |"list of ints"
+                    }
+                }
+            }
+        }
+
+        <!-- ################################################################################## -->
+
+        @titleslide("Aktoren") {
+            @sourcecode() {
+                |import akka.actor._
+                |
+                |// define message
+                |case class Greeting (who: String)
+                |
+                |// define actor
+                |class GreetingActor extends Actor {
+                |  def receive = {
+                |    case Greeting(who) => println("Hello " + who)
+                |  }
+                |}
+                |
+                |// initialize actor system
+                |val system = ActorSystem("MySystem")
+                |
+                |// get an actor of type 'GreetingActor'
+                |val greeter = system.actorOf(Props[GreetingActor], "greeter")
+                |
+                |// send message to actor
+                |greeter ! Greeting("John")
+            }
+        }
+
+        <!-- ################################################################################## -->
+
         @titleslide("Value Class") {
 
             @snippet() {
