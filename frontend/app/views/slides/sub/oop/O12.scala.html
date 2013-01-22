@@ -491,7 +491,7 @@
                     @snippet() {
                         @sourceblock() {
                             |class Employee {
-                            |  val salary: Int
+                            |  def salary: Int
                             |}
                         }
                         @outblock(error = true) {
@@ -508,7 +508,7 @@
                     @snippet() {
                         @sourceblock() {
                             |abstract class Employee {
-                            |  val salary: Int
+                            |  def salary: Int
                             |}
                         }
                         @outblock() {
@@ -530,7 +530,7 @@
                     @snippet() {
                         @sourceblock(id = "abstract") {
                             |abstract class Employee {
-                            |  val salary: Int
+                            |  def salary: Int
                             |}
                         }
                     }
@@ -546,7 +546,7 @@
                         }
                         @outblock(error = true) {
                             |error: class Accountant needs to
-                            |       be abstract, since value
+                            |       be abstract, since method
                             |       salary is not defined
                         }
                     }
@@ -555,7 +555,7 @@
                     @snippet() {
                         @sourceblock(reference = "abstract") {
                             |class Accountant extends Employee {
-                            |  val salary = 60000
+                            |  def salary = 60000
                             |}
                         }
                         @outblock() {
@@ -568,7 +568,7 @@
                     @snippet() {
                         @sourceblock(reference = "abstract") {
                             |class Accountant extends Employee {
-                            |  override val salary = 60000
+                            |  override def salary = 60000
                             |}
                         }
                         @outblock() {

@@ -1,4 +1,4 @@
-body.print {
+.printView() {
     .reveal .slides {
 
         // remove any borders
@@ -33,6 +33,11 @@ body.print {
 
     // hide main navi
     #navi { display: none; }
+}
+
+body.print {
+
+    .printView();
 
     // HACK - PDF not rendered with Inconsolata ?!
     .cm-s-ambiance {
