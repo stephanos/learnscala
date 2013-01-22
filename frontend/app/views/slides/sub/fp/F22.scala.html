@@ -255,30 +255,59 @@
             <!-- ################################################################################## -->
 
             @titleslide(title = title, subtitle = "II", connector = "") {
-                <h4 class="fragment tcenter">(C)</h4>
 
-                @spacer()
+                @sidebyside(gap = 10) {
+                    @subhead() {
+                        (C)
+                    }
 
-                @snippet() {
-                    @callblock() {
-                        |import scala.collection.mutable
-                        |val buf = new mutable.ListBuffer[Int]
+                    @spacer()
+
+                    @snippet() {
+                        @callblock() {
+                            |import scala.collection.mutable
+                            |val buf = new mutable.ListBuffer[Int]
+                        }
+                        @outblock() {
+                            |buf: ListBuffer[Int] = ListBuffer()
+                        }
+                        @callblock() {
+                            |buf += 1
+                            |buf += 2
+                            |buf += 3
+                            |buf.toList
+                        }
+                        @outblock() {
+                            |res3: List[Int] = List(1, 2, 3)
+                        }
                     }
-                    @outblock() {
-                        |buf: ListBuffer[Int] = ListBuffer()
+                    @codesub2() {
+                        <code>ListBuffer</code> konstruiert sehr effizient
                     }
-                    @callblock() {
-                        |buf += 1
-                        |buf += 2
-                        |buf += 3
-                        |buf.toList
+                } {
+                    @subhead() {
+                        (D)*
                     }
-                    @outblock() {
-                        |res3: List[Int] = List(1, 2, 3)
+
+                    @spacer()
+
+                    @snippet() {
+                        @callblock() {
+                            |List(1, 2) ::: List(3, 4)
+                        }
+                        @outblock() {
+                            |res0: List[Int] = List(1, 2, 3, 4
+                        }
+                        @callblock() {
+                            |List(1, 2) ::: Nil
+                        }
+                        @outblock() {
+                            |res1: List[Int] = List(1, 2)
+                        }
                     }
-                }
-                @codesub2() {
-                    <code>ListBuffer</code> konstruiert sehr effizient
+                    @codesub2() {
+                        rechtsassoziativer Operator <code>:::</code> verknüpft 2 Listen
+                    }
                 }
             }
         }

@@ -3,13 +3,11 @@
         <span>(1)</span>
     } {
         @snippet(clazz = "slim") {
-            @sourceblock(fragment = false) {
-                |class A
-                |new A()
+            @callblock(fragment = false) {
+                |List("1") ::: List("2")
             }
             @outblock() {
-                |defined class A
-                |res0: A = A@@4482496e
+                |res1: List[String] = List(1, 2)
             }
         }
     }
@@ -18,44 +16,91 @@
         <span>(2)</span>
     } {
         @snippet(clazz = "slim") {
-            @sourceblock(fragment = false) {
-                |class B(s: String) {
-                |  println(s)
-                |}
-                |new B
+            @callblock(fragment = false) {
+                |List(1,2,3).head + List(3,2,1).head
             }
-            @outblock(error = true) {
-                |error: not enough arguments for
-                |       constructor B: (s: String)B
+            @outblock() {
+                |res0: Int = 4
             }
         }
     }
 }
 
-@spacer()
+@spacer2()
 
-@*
-    def r1 =
-          "Hello" :: List("World") == List("Hello", "World")
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(3)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |1 ::: List(2, 3)
+            }
+            @outblock(error = true) {
+                |error   : type mismatch;
+                |found   : Int
+                |required: List[?]
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(4)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |"Hi" :: List("World")
+            }
+            @outblock() {
+                |res0: List[String] = List(Hi, World)
+            }
+        }
+    }
+}
 
-        def r2 =
-          ("Hello" :: "World" :: Nil).mkString("", " ", "!") == "Hello World!"
+@spacer2()
 
-        def r3 =
-          Nil.size == 0
+@sidebyside() {
+    @sidebyside((5, 90)) {
+        <span>(5)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |Nil.size
+            }
+            @outblock() {
+                |res0: Int = 0
+            }
+        }
+    }
+} {
+    @sidebyside((5, 90)) {
+        <span>(6)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |Nil.::(4).::(3).::(2).::(1)
+            }
+            @outblock() {
+                |res0: List[String] = List(Hi, World)
+            }
+        }
+    }
+}
 
-        def r4 =
-          Nil.::(4).::(3).::(2).::(1) == List(1, 2, 3, 4)
+@spacer2()
 
-        def r5 =
-          List().headOption == None
-
-        def r6 =
-          List(1, 2, 3).tail == List(2, 3)
-
-        def r7 =
-          List('a', 'b', 'c').head == 'a'
-
-        def r8 =
-          List("1" :: "2" :: Nil, "3") == List(List("1", "2"), "3")
-*@
+@autocenter {
+    @sidebyside((5, 90)) {
+        <span>(7)</span>
+    } {
+        @snippet(clazz = "slim") {
+            @callblock(fragment = false) {
+                |List("1" :: "2" :: Nil)
+            }
+            @outblock() {
+                |res0: List[List[String]] = List(List(1, 2))
+            }
+        }
+    }
+}
