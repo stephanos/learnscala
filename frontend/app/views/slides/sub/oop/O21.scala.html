@@ -114,7 +114,7 @@
                 }
 
                 @snippet() {
-                    @sourceblock(reference = "logger2") {
+                    @sourceblock(id = "plane_log_ready", reference = "logger2") {
                         |class Plane extends Logger {
                         |
                         |  log("Ready for take-off")
@@ -238,6 +238,10 @@
                         Trait kann von einem anderen Trait erben
                     }
                 }
+            }
+
+            @notes {
+                - [HINT] 1 Trait kann auch von genau 1 Klasse erben (extends Exception)
             }
         }
 
@@ -452,6 +456,7 @@
             }
 
             @notes {
+                - [HINT] technisch gesehen der einzige Unterschied zu einer Klasse (nur Definition gesehen)
                 - [HINT] 'def' statt 'val': Flexibilität
             }
         }
@@ -467,7 +472,7 @@
                     @sourceblock(reference = "plane_log_ready") {
                         |trait Logger {
                         |
-                        |  def log (msg: String) {
+                        |  def log(msg: String) {
                         |    println(msg)
                         |  }
                         |}
@@ -475,12 +480,12 @@
                 }
             } {
                 @snippet(id = "timed_logger") {
-                    @sourceblock() {
+                    @sourceblock(reference = "plane_log_ready") {
                         |trait TimedLog extends Logger {
                         |
                         |  override def log (msg: String) {
-                        |    val now = java.util.Date
-                        |    super.log (now + " " + msg)
+                        |    val now = new java.util.Date
+                        |    super.log(now + " " + msg)
                         |  }
                         |}
                     }
@@ -493,7 +498,7 @@
                         |trait UpperLog extends Logger {
                         |
                         |  override def log (msg: String) {
-                        |    super.log (msg.toUpperCase)
+                        |    super.log(msg.toUpperCase)
                         |  }
                         |}
                     }
