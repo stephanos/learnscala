@@ -200,11 +200,11 @@
             @snippet() {
                 @sourceblock() {
                     |val isEven = { (x: Int) =>
-                    |   x + 1
+                    |   x % 2 == 0
                     |}
                 }
                 @outblock() {
-                    |isEven: Int => Int = &lt;function1&gt;
+                    |isEven: Int => Boolean = &lt;function1&gt;
                 }
             }
             @codesub2() {

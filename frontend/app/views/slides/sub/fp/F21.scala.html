@@ -64,7 +64,7 @@
                                     abstrakte Methode <code>foreach</code>: wendet eine Funktion auf alle Elemente an
                                     @spacer_half()
                                     @sourcecode() {
-                                        |def foreach[U](f: Elem => U): Unit
+                                        |def foreach[A](f: Elem => A): Unit
                                     }
                                 </li>
                                 @spacer_half()
@@ -74,6 +74,10 @@
                             </ul>
                         </div>
                     }
+                }
+
+                @notes {
+                    -
                 }
             }
 
@@ -245,7 +249,7 @@
                                     implementiert <code>foreach</code>
                                     @spacer_half()
                                     @sourcecode() {
-                                        |def foreach[U](f: Elem => U) {
+                                        |def foreach[A](f: Elem => A) {
                                         |  val it = iterator
                                         |  while (it.hasNext) f(it.next())
                                         |}
@@ -269,6 +273,10 @@
                         What is the difference between Traversable and Iterable traits?
                     </a>
                 </details>
+            }
+
+            @notes {
+                - manche Unterklassen überschreiben 'foreach' wieder: für Effizienz
             }
         }
 

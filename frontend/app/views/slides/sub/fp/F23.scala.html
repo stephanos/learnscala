@@ -22,9 +22,7 @@
 
             @defining("foreach") { subtitle =>
 
-                @headslide(title = title, subtitle = subtitle) {
-                    @subtitle
-                } {
+                @titleslide(title = title, subtitle = subtitle) {
                     @sourcecode() {
                         |trait Traversable[A] {
                         |  def foreach[A](f: Elem => A): Unit
@@ -56,6 +54,12 @@
 
                 @notes {
                     - [STIL] infix-Notation bevorzugen
+                }
+
+                <!-- ################################################################################## -->
+
+                @titleslide(title = title, subtitle = subtitle) {
+
                 }
             }
 
@@ -244,7 +248,7 @@
                         }
                     }
                     @codesub2() {
-                        extrahiert Teilliste für die die Funktion wahr ist
+                        extrahiert Teilliste bis die Funktion nicht mehr wahr ist
                     }
 
                     @spacer()
@@ -344,73 +348,136 @@
 
         <!-- ################################################################################## -->
 
-        <!-- TODO: Currying -->
+        @titleslide(title = "Kurzschreibweise") {
 
-        <!-- ################################################################################## -->
+            @sidebyside(gap = 15) {
+                @subhead() {
+                    Aufruf
+                }
 
-        @defining("foldLeft") { title =>
-
-            @titleslide(title = title) {
-
-                @*
-                println((1 to 1000000) reduceLeft(_ + _))  // tail rec
-                println((1 to 1000000) reduceRight(_ + _)) // overflow
-                *@
-
-                @autocenter {
-                    @sourcecode() {
-                        |trait Traversable[A] {
-                        |  def foldLeft[B](z: B)(f: (B, A) => B): B
-                        |}
+                @snippet() {
+                    @sourceblock(id = "add_double") {
+                        |def add(i: Int) = i + 1
                     }
-                    @codesub2() {
-                        transformiert Elemente vom Typ <code>A</code> in Ergebnis vom Typ <code>B</code>
+                }
+                @codesub2() {
+                    eine einfache Methode
+                }
+
+                @spacer2()
+
+                @snippet() {
+                    @callblock(reference = "add_double") {
+                        |List(1, 2, 3) map { i => add(i) }
+                    }
+                }
+                @iseq()
+                @snippet() {
+                    @callblock(reference = "add_double") {
+                        |List(1, 2, 3) map { add }
+                    }
+                }
+                @iseq()
+                @snippet() {
+                    @callblock(reference = "add_double") {
+                        |List(1, 2, 3) map add
                     }
                 }
 
-                @spacer()
+                @codesub2() {
+                    Parameter werden implizit weitergegeben
+                }
+            } {
+                @subhead() {
+                    Parameter
+                }
 
-                @sidebyside(gap = 10) {
-
-                    @snippet() {
-                        @callblock(reference = "nums") {
-                            |nums foldLeft(0) { (res, num) =>
-                            |  res + num
-                            |}
-                        }
-                        @outblock() {
-                            |res0: Int = 10
-                        }
-                    }
-                    @codesub2() {
-                        Summe der Elemente
-                    }
-                } {
-                    @snippet() {
-                        @callblock(reference = "nums") {
-                            |nums foldLeft(0) { (res, num) =>
-                            |  println("= " + res + " + " + num)
-                            |  res + num
-                            |}
-                        }
-                        @outblock() {
-                            |= 0 + 1
-                            |= 1 + 2
-                            |= 3 + 3
-                            |= 6 + 4
-                            |res1: Int = 10
-                        }
-                    }
-                    @codesub2() {
-                        mit Zwischenergebnissen
+                @snippet() {
+                    @callblock() {
+                        |List(1, 2, 3) map { i => i + 1 }
                     }
                 }
+                @iseq()
+                @snippet() {
+                    @callblock() {
+                        |List(1, 2, 3) map { _ + 1 }
+                    }
+                }
+                @codesub2() {
+                    <em>1</em> Wildcard <code>_</code> ersetzt Parameter
+                }
+
+                @spacer2()
+
+                @snippet() {
+                    @callblock() {
+                        |List(2, 3, 1) sortWith {
+                        |  (i1, i2) => i1 <= i2 }
+                    }
+                }
+                @iseq()
+                @snippet() {
+                    @callblock() {
+                        |List(2, 3, 1) sortWith { _ <= _ }
+                    }
+                }
+
+                @codesub2() {
+                    <em>2</em> Wildcards <code>_</code> ersetzen Parameter
+                }
+            }
+
+            @notes {
+                - [HINT] '_' kann je nur einmal verwendet werden
             }
         }
 
         <!-- ################################################################################## -->
 
-        @uebung(implicitSlide.code + "_b")
+        @defining("Kombination") { title =>
+
+            @titleslide(title = title) {
+
+                @snippet() {
+                    @sourceblock(id = "singles") {
+                        |val singles = List(
+                        |  ("George" -> 32), ("John" -> 42),
+                        |  ("Ringo"  -> 25), ("Paul" -> 59)
+                        |)
+                    }
+                    @codesub2() {
+                        Liste aus Tupeln: Name und Alter
+                    }
+                }
+
+                @spacer2()
+
+                @snippet() {
+                    @callblock(reference = "singles") {
+                        |singles filter {
+                        |  u => u._2 < 40
+                        |} map {
+                        |  u => u._1.take(3) + u._2
+                        |} foreach {
+                        |  u => println(u)
+                        |}
+                    }
+                    @outblock() {
+                        |Geo32
+                        |Rin25
+                    }
+                }
+                @codesub2() {
+                    Ausgabe der Spitznamen aller Singles unter 40
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "II", connector = "") {
+
+            }
+        }
 
         <!-- ################################################################################## -->
 
@@ -492,7 +559,7 @@
 
                 @sidebyside() {
                     @snippet() {
-                        @callblock() {
+                        @callblock(reference = "empl") {
                             |(1 to 4) flatMap { n => empl get n }
                         }
                         @outblock() {
@@ -504,7 +571,7 @@
                     }
                 } {
                     @snippet() {
-                        @callblock() {
+                        @callblock(reference = "empl") {
                             |(1 to 4) flatMap { n =>
                             |  val e = empl get n
                             |  println(e)
@@ -540,9 +607,14 @@
 
                 @notes {
                     - [PS] 'empl' is defined but hidden
+                    - [ASK] was passiert bei 'map'?
                 }
             }
         }
+
+        <!-- ################################################################################## -->
+
+        @uebung(implicitSlide.code + "_b")
 
         <!-- ################################################################################## -->
 
@@ -626,7 +698,7 @@
 }
 
 @snippet(id = "empl") {
-    @callcode() {
+    @sourcecode() {
         |val empl = Map(1 -> "Adam", 5 -> "Bob", 9 -> "Carl")
     }
 }

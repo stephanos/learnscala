@@ -161,7 +161,7 @@
 
                 @snippet() {
                     @sourceblock() {
-                        |val t3 = Tuple2("Bob", 42, true)
+                        |val t3 = Tuple3("Bob", 42, true)
                     }
                     @outblock() {
                         |t3: (String, Int, Boolean) = (Bob,42,true)
@@ -175,7 +175,7 @@
 
                 @snippet() {
                     @sourceblock() {
-                        |val t4 = Tuple2("Bob", 42, true, 1.79)
+                        |val t4 = Tuple4("Bob", 42, true, 1.79)
                     }
                     @outblock() {
                         |t4: (String, Int, Boolean, Float) = (Bob,42,true,1.79)
@@ -304,13 +304,13 @@
 
                 @snippet() {
                     @sourceblock() {
-                        |case class Circle(x: Int, y: Int, r: Int) {
+                        |class Circle(x: Int, y: Int, r: Int) {
                         |
                         |  def location =
                         |    (x, y)
                         |
                         |  def move(t: (Int, Int)) =
-                        |    copy (x + t._1, y + t)
+                        |    new Circle(x + t._1, y + t._2, r)
                         |}
                     }
                 }
@@ -440,7 +440,7 @@
                         |  try {
                         |    Some(s.toInt)
                         |  } catch {
-                        |    case e: Throwable => None
+                        |    case _: Throwable => None
                         |  }
                     }
                 </div>
@@ -450,7 +450,7 @@
                 @sidebyside(gap = 10) {
                     @snippet(id = "toInt-some") {
                         @callblock(reference = "toInt") {
-                            |val i = toInt("42")
+                            |val box = toInt("42")
                         }
                     }
 
@@ -458,10 +458,10 @@
 
                     @snippet() {
                         @callblock(reference = "toInt-some") {
-                            |i.get
+                            |val i = box.get
                         }
                         @outblock() {
-                            |res0: Int = 42
+                            |i: Int = 42
                         }
                     }
 
@@ -469,10 +469,10 @@
 
                     @snippet() {
                         @callblock(reference = "toInt-some") {
-                            |i.getOrElse(0)
+                            |val i = box.getOrElse(0)
                         }
                         @outblock() {
-                            |res1: Int = 42
+                            |i: Int = 42
                         }
                     }
                     @codesub2() {
@@ -481,7 +481,7 @@
                 } {
                     @snippet(id = "toInt-none") {
                         @callblock(reference = "toInt") {
-                            |val i = toInt("abc")
+                            |val box = toInt("abc")
                         }
                     }
 
@@ -489,7 +489,7 @@
 
                     @snippet() {
                         @callblock(reference = "toInt-none") {
-                            |i.get
+                            |val i = box.get
                         }
                         @outblock(error = true) {
                             |NoSuchElementException
@@ -500,10 +500,10 @@
 
                     @snippet() {
                         @callblock(reference = "toInt-none") {
-                            |i.getOrElse(0)
+                            |val i = box.getOrElse(0)
                         }
                         @outblock() {
-                            |res1: Int = 0
+                            |i: Int = 0
                         }
                     }
                     @codesub2() {

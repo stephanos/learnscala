@@ -8,7 +8,7 @@
             }
             @outblock(error = true) {
                 |error: value _0 is not a member
-                |       of (String, String
+                |       of (String, String)
             }
         }
     }
@@ -70,7 +70,7 @@
                 |(1,null)
             }
             @outblock() {
-                |res0: (Int, Null) = (1,null
+                |res0: (Int, Null) = (1,null)
             }
         }
     }
@@ -80,10 +80,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |(1 -> 1)._1
+                |(3 -> 2)._1
             }
             @outblock() {
-                |res0: Int = 1
+                |res0: Int = 3
             }
         }
     }
