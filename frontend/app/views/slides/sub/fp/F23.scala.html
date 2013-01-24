@@ -475,7 +475,17 @@
             <!-- ################################################################################## -->
 
             @titleslide(title = title, subtitle = "II", connector = "") {
-
+                @snippet() {
+                    @sourceblock(id = "user") {
+                        |class User(name: String, )
+                    }
+                    @sourceblock(id = "user") {
+                        |
+                    }
+                    @codesub2() {
+                        Liste aus Tupeln: Name und Alter
+                    }
+                }
             }
         }
 
@@ -509,9 +519,7 @@
                         @sourceblock(id = "tonum", reference = "config") {
                             |def toNum(s: String) =
                             |  try { Some(s toFloat) }
-                            |  catch {
-                            |    case e: Throwable => None
-                            |  }
+                            |  catch { case _: Throwable => None }
                         }
                         @outblock() {
                             |toNum: (s: String)Option[Float]
@@ -519,26 +527,38 @@
                     }
                 }
 
-                @spacer()
+                @spacer2()
 
-                @autocenter {
+                @subhead() {
+                    Aufruf
+                }
+
+                @sidebyside(gap = 10) {
                     @snippet() {
                         @callblock(reference = "tonum") {
-                            |val n = "java.specification.version"
-                            |val r1 = getConf(n) map { s => toNum(s) }
+                            |getConf("java.specification.version").
+                            |  map { s => toNum(s) }
                         }
                         @outblock() {
-                            |r1: Option[Option[Float]] = Some(Some(1.6))
-                        }
-                        @callblock() {
-                            |val r2 = getConf(n) flatMap { s => toNum(s) }
-                        }
-                        @outblock() {
-                            |r2: Option[Float] = Some(10.6)
+                            |res0: Option[Option[Float]] =
+                            |  Some(Some(1.6))
                         }
                     }
                     @codesub2() {
-                        <em>flatMap</em> 'plättet' das Ergebnis
+                        <code>map</code> packt Box in Box: <var>Oh Oh</var>
+                    }
+                } {
+                    @snippet() {
+                        @callblock() {
+                            |getConf("java.specification.version").
+                            |  flatMap { s => toNum(s) }
+                        }
+                        @outblock() {
+                            |res0: Option[Float] = Some(10.6)
+                        }
+                    }
+                    @codesub2() {
+                        <code>flatMap</code> 'plättet' das Ergebnis: <em>Ah</em>
                     }
                 }
             }
@@ -705,7 +725,7 @@
 
 @snippet(id = "person") {
     @sourceblock() {
-        |case class Person(val name: String, val age: Int)
+        |class Person(val name: String, val age: Int)
     }
     @callcode() {
         |val persons = List(
