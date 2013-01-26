@@ -1,3 +1,5 @@
+@spacer()
+
 @sidebyside() {
     @sidebyside((5, 90)) {
         <span>(1)</span>
@@ -27,7 +29,7 @@
     }
 }
 
-@spacer2()
+@spacer2()@spacer()
 
 @sidebyside() {
     @sidebyside((5, 90)) {
@@ -35,7 +37,7 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(fragment = false) {
-                |("Europa" -> "BRD" -> "Berlin")
+                |("Europa" -> "BRD") -> "Berlin"
             }
             @outblock() {
                 |res0: ((String, String), String) =
@@ -59,8 +61,7 @@
     }
 }
 
-@spacer2()
-
+@*
 @sidebyside() {
     @sidebyside((5, 90)) {
         <span>(5)</span>
@@ -88,3 +89,4 @@
         }
     }
 }
+*@

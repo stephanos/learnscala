@@ -22,7 +22,7 @@
                     |}
                 }
                 @codesub2() {
-
+                    Methode <code>Value</code> erstellt intern die Struktur
                 }
 
                 @spacer2()
@@ -36,6 +36,7 @@
                     |}
                 }
                 @codesub2() {
+                    optional kann <code>Value</code> auch mit einen Namen aufgerufen werden
                 }
 
                 @notes {
@@ -193,7 +194,7 @@
                 @autocenter {
                     @snippet() {
                         @sourceblock(id = "tuple2") {
-                            |val t2 = ("Bob", 42)
+                            |val t = ("Bob", 42)
                         }
                     }
                 }
@@ -207,13 +208,13 @@
 
                     @snippet() {
                         @sourceblock(reference = "tuple2") {
-                            |val name = t2._1
+                            |val name = t._1
                         }
                         @outblock() {
                             |name: String = Bob
                         }
                         @sourceblock() {
-                            |val age = t2._2
+                            |val age = t._2
                         }
                         @outblock() {
                             |age: Int = 42
@@ -226,7 +227,7 @@
 
                     @snippet() {
                         @sourceblock(reference = "tuple2") {
-                            |val (name, age) = t2
+                            |val (name, age) = t
                         }
                         @outblock() {
                             |name: String = Bob
@@ -251,15 +252,15 @@
                         |def doSacrifice(t: (Int, Boolean, Boolean)) = t match {
                         |  case (_, false, _) =>             println("not female")
                         |  case (_, _, false) =>             println("not a virgin")
-                        |  case (age, _, _) if (age > 24) => println("too old")
-                        |  case (_) =>                       println("sacrifice her!")
+                        |  case (age, _, _) if (age > 29) => println("too old")
+                        |  case _ =>                         println("sacrifice her!")
                         |}
                     }
                 }
 
                 @spacer()
 
-                @indent() {
+                @autocenter {
 
                     @snippet() {
                         @callblock(reference = "virgin") {

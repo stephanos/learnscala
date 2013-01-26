@@ -1,9 +1,9 @@
 @autocenter {
     @sourcecode(id = "qenum", fragment = false) {
         |object Categories extends Enumeration {
-        |  val Easy = Value("easy")
-        |  val Average = Value("average")
-        |  val Difficult = Value("difficult")
+        |  val Easy = Value("einfach")
+        |  val Average = Value("mittel")
+        |  val Difficult = Value("schwer")
         |}
     }
 }
@@ -29,10 +29,10 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "qenum", fragment = false) {
-                |Categories.Easy.toString
+                |Categories.Difficult.toString
             }
             @outblock() {
-                |res0: String = easy
+                |res0: String = schwer
             }
         }
     }
@@ -62,7 +62,7 @@
                 |Categories(0)
             }
             @outblock() {
-                |res0: Categories.Value = easy
+                |res0: Categories.Value = einfach
             }
         }
     }
