@@ -83,6 +83,23 @@
 
                 @snippet() {
                     @sourceblock() {
+                        |def isPositiveOrNegative(x: Int) =
+                        |  if (x == 0) 0
+                        |  else if (x > 0) "p"
+                        |  else "n"
+                    }
+                    @outblock() {
+                        |isPositiveOrNegative: (x: Int)Any
+                    }
+                }
+                @codesub2() {
+                    <var>Achtung</var>: Rückgabetyp ist der gemeinsame Nenner aller Zweige
+                }
+
+                @spacer2()
+
+                @snippet() {
+                    @sourceblock() {
                         |def isPositive(x: Int) =
                         |  if (x > 0) "positive"
                     }
@@ -92,23 +109,6 @@
                 }
                 @codesub2() {
                     <var>Achtung</var>: fehlt <code>else</code> hat der Zweig den Typ <code>Unit</code>
-                }
-
-                @spacer2()
-
-                @snippet() {
-                    @sourceblock() {
-                        |def isPositiveOrNegative(x: Int) =
-                        |  if (x == 0) 0
-                        |  else if (x > 0) 'p'
-                        |  else 'n'
-                    }
-                    @outblock() {
-                        |isPositiveOrNegative: (x: Int)Int
-                    }
-                }
-                @codesub2() {
-                    <em>gemeinsamer Nenner</em>: <code>Int</code> ist die Basisklasse von Typ <code>Char</code>
                 }
             }
         }

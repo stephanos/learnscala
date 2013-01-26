@@ -54,11 +54,11 @@
             @sourceblock(fragment = false) {
                 |def positiveOrNegative(x: Int) =
                 |  if (x == 0) 0
-                |  else if (x > 0) 'p'
-                |  else 'n'
+                |  else if (x > 0) "p"
+                |  else "n"
             }
             @outblock() {
-                |positiveOrNegative: (x: Int)Int
+                |positiveOrNegative: (x: Int)Any
             }
         }
     }

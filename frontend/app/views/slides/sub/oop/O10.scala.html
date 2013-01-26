@@ -90,44 +90,52 @@
                 @sidebyside(gap = 10) {
 
                     @subhead() {
-                        Parameter
+                        (1) Parameter
                     }
 
-                    @snippet() {
+                    @snippet(id = "empl_pc1") {
                         @sourceblock() {
                             |class Employee(name: String)
                         }
-                        @callblock() {
+                    }
+                    @codesub2() {
+                        Parameter stehen direkt an der Klasse
+                    }
+
+                    @spacer()
+                    @snippet() {
+                        @callblock(reference = "empl_pc1") {
                             |val e = new Employee("Bob")
                         }
                         @outblock() {
                             |e: Employee = Employee@@3ee32abc
                         }
                     }
-                    @codesub2() {
-                        Parameter stehen direkt an der Klasse
-                    }
                 } {
                     @subhead() {
-                        Rumpf
+                        (2) Rumpf
                     }
 
-                    @snippet() {
+                    @snippet(id = "empl_pc1") {
                         @sourceblock() {
                             |class Employee {
-                            |   println("I'm an Employee")
+                            |  println("I'm an Employee")
                             |}
                         }
-                        @callblock() {
+                    }
+                    @codesub2() {
+                        Anweisungen im Rumpf der Klasse werden bei der Initialisierung ausgeführt
+                    }
+
+                    @spacer()
+                    @snippet() {
+                        @callblock(reference = "empl_pc1") {
                             |val e = new Employee
                         }
                         @outblock() {
                             |I'm an Employee
                             |e: Employee = Employee@@3ee32abc
                         }
-                    }
-                    @codesub2() {
-                        Anweisungen im Rumpf der Klasse werden bei der Initialisierung ausgeführt
                     }
                 }
 

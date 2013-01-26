@@ -364,39 +364,87 @@
 
         @defining("Aufruf") { title =>
 
-            @titleslide(title = title) {
+            @titleslide(title = title, subtitle = "0 Parameter", connector = ":") {
 
-                @snippet() {
-                    @callblock(reference = "hello") {
-                        |hello()
+                @sidebyside(gap = 10) {
+                    @subhead() {
+                        mit Liste
                     }
-                    @outblock() {
-                        |res0: String = Hello World
-                    }
-                }
-                @codesub2() {
-                    Aufruf einer <em>parameterlosen</em> Methode
-                }
 
-                @spacer2()
+                    @sourcecode(id = "hello_w") {
+                        |def hello() {
+                        |  println("Hello World")
+                        |}
+                    }
 
-                @snippet() {
-                    @callblock(reference = "double") {
-                        |double(1)
-                    }
-                    @outblock() {
-                        |res0: Int = 2
-                    }
-                    @callblock() {
-                        |double { 1 + 1 }
-                    }
-                    @outblock() {
-                        |res1: Int = 4
-                    }
-                }
+                    @spacer()
 
-                @codesub2() {
-                    Aufruf einer <em>1-parametrigen</em> Methode
+                    @sidebyside(gap = 5) {
+                        @snippet() {
+                            @callblock(reference = "hello_w") {
+                                |hello()
+                            }
+                            @outblock() {
+                                |Hello World
+                            }
+                        }
+                    } {
+                        @snippet() {
+                            @callblock(reference = "hello_w") {
+                                |hello
+                            }
+                            @outblock() {
+                                |Hello World
+                            }
+                        }
+                    }
+
+                    @spacer()
+
+                    @infobox() {
+                        Methode mit Parameterliste kann ohne @uline("oder")
+                        mit <code>()</code> aufgerufen werden.
+                    }
+                } {
+                    @subhead() {
+                        ohne Liste
+                    }
+
+                    @sourcecode(id = "hello_wo") {
+                        |def hello {
+                        |  println("Hello World")
+                        |}
+                    }
+
+                    @spacer()
+
+                    @sidebyside(gap = 5) {
+                        @snippet() {
+                            @callblock(reference = "hello_wo") {
+                                |hello()
+                            }
+                            @outblock(error = true) {
+                                |error: Unit does
+                                |not take parameters
+                            }
+                        }
+                    } {
+                        @snippet() {
+                            @callblock(reference = "hello_wo") {
+                                |hello
+                            }
+                            @outblock() {
+                                |Hello World
+                            }
+                        }
+                    }
+
+                    @spacer_half()
+
+                    @infobox() {
+                        Methode ohne Parameterliste kann auch @uline("nur")
+                        ohne <code>()</code> aufgerufen werden.
+                    }
                 }
 
                 @notes {
@@ -406,32 +454,65 @@
 
             <!-- ################################################################################## -->
 
-            @titleslide(title = title) {
+            @titleslide(title = title, subtitle = "1 Parameter", connector = ":") {
+
+                @snippet() {
+                    @callblock(reference = "double") {
+                        |double(2)
+                    }
+                    @outblock() {
+                        |res0: Int = 2
+                    }
+                }
+                @iseq()
+                @snippet() {
+                    @callblock(reference = "double") {
+                        |double { 1 + 1 }
+                    }
+                    @outblock() {
+                        |res0: Int = 2
+                    }
+                }
+
+                @codesub2() {
+                    Aufruf einer <em>1-parametrigen</em> Methode
+                }
+            }
+
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "2 Parameter", connector = ":") {
 
                 @snippet() {
                     @callblock(reference = "add") {
-                        |add(1, 2)
+                        |add(2, 2)
                     }
                     @outblock() {
-                        |res0: Float = 3.0
+                        |res0: Float = 2.0
                     }
-                    @callblock() {
-                        |add(1, {
-                        |  add(2, 2)
+                }
+                @iseq()
+                @snippet() {
+                    @callblock(reference = "add") {
+                        |add(2, {
+                        |  add(1, 1)
                         |})
                     }
                     @outblock() {
-                        |res1: Float = 5.0
+                        |res0: Float = 2.0
                     }
-                    @callblock() {
+                }
+                @iseq()
+                @snippet() {
+                    @callblock(reference = "add") {
                         |add({
                         |  add(1, 1)
                         |}, {
-                        |  add(2, 2)
+                        |  add(1, 1)
                         |})
                     }
                     @outblock() {
-                        |res2: Float = 6.0
+                        |res0: Float = 2.0
                     }
                 }
 
@@ -492,7 +573,7 @@
             } {
                 @snippet() {
                     @callblock(reference = "method_default") {
-                        |announce(weather = "sunny")
+                        |announce(weather = "sunny", "Berlin")
                     }
                     @outblock(error = true) {
                         |not enough arguments:

@@ -309,112 +309,130 @@
 
         <!-- ################################################################################## -->
 
-        @titleslide(title = "Initialisierung") {
+        @defining("Initialisierung") { title =>
 
-            @sidebyside(gap = 10) {
-                @sourcecode(id = "vehicle") {
-                    |class Vehicle {
-                    |  println("Vehicle")
-                    |}
-                }
+            @titleslide(title = title) {
 
-                @spacer_half()
-
-                @indent() {
-                    @sourcecode(reference = "vehicle", id = "vehicle_flying") {
-                        |trait FlyingVehicle
-                        |  extends Vehicle {
-                        |
-                        |    println("Wings")
+                @sidebyside(gap = 10) {
+                    @sourcecode(id = "vehicle") {
+                        |class Vehicle {
+                        |  println("Vehicle")
                         |}
                     }
 
                     @spacer_half()
 
-                    @sourcecode(reference = "vehicle_flying", id = "vehicle_driving") {
-                        |trait DrivingEngine
-                        |  extends Vehicle {
-                        |
-                        |    println("Wheels")
-                        |}
-                    }
-                }
-            } {
-                @snippet() {
-                    @sourceblock(reference = "vehicle_driving") {
-                        |class Plane
-                        |  extends FlyingVehicle
-                        |  with DrivingEngine {
-                        |
-                        |    println("Plane")
-                        |}
-                    }
-                    @callblock() {
-                        |new Plane
-                    }
-                    @outblock() {
-                        |Vehicle
-                        |Wings
-                        |Wheels
-                        |Plane
-                    }
-                }
-                @codesub2() {
+                    @indent() {
+                        @sourcecode(reference = "vehicle", id = "vehicle_flying") {
+                            |trait FlyingVehicle
+                            |  extends Vehicle {
+                            |
+                            |    println("Wings")
+                            |}
+                        }
 
-                }
-            }
-        }
+                        @spacer_half()
 
-        <!-- ################################################################################## -->
+                        @sourcecode(reference = "vehicle_flying", id = "vehicle_driving") {
+                            |trait DrivingVehicle
+                            |  extends Vehicle {
+                            |
+                            |    println("Wheels")
+                            |}
+                        }
+                    }
+                } {
+                    @snippet() {
+                        @sourceblock(reference = "vehicle_driving") {
+                            |class Plane
+                            |  extends FlyingVehicle
+                            |  with DrivingVehicle {
+                            |
+                            |    println("Plane")
+                            |}
+                        }
+                        @callblock() {
+                            |new Plane
+                        }
+                        @outblock() {
+                            |Vehicle
+                            |Wings
+                            |Wheels
+                            |Plane
+                        }
+                    }
 
-        @titleslide(title = "Instanziierung") {
-
-            @snippet() {
-                @sourceblock(id = "engine") {
-                    |trait Engine { println("Engine ready") }
-                }
-            }
-
-            @spacer()
-
-            @sidebyside() {
-                @snippet() {
-                    @sourceblock(reference = "engine") {
-                        |class Plane extends Engine {
-                        |  println("Ready for take-off")
-                        |}
+                    @infobox() {
+                        Es geht von links nach rechts, <br/>
+                        Basisklassen werden dabei <br/>
+                        zuerst initialisiert.
                     }
-                    @callblock() {
-                        |new Plane
-                    }
-                    @outblock() {
-                        |Engine ready
-                        |Ready for take-off
-                    }
-                }
-            } {
-                @snippet() {
-                    @sourceblock(reference = "engine") {
-                        |class Plane {
-                        |  println("Ready for take-off")
-                        |}
-                    }
-                    @callblock() {
-                        |new Plane with Engine
-                    }
-                    @outblock() {
-                        |Ready for take-off
-                        |Engine ready
-                    }
-                }
-                @codesub2() {
-                    Trait wird erst bei Instanziierung hinzugefügt
                 }
             }
 
-            @*@infobox() {
-                Ein Trait kann auch erst bei der Erstellung einer Instanz "dazu gemixt" werden.
-            }*@
+            <!-- ################################################################################## -->
+
+            @titleslide(title = title, subtitle = "II", connector = "") {
+
+                @autocenter {
+                    @snippet() {
+                        @sourceblock(id = "engine") {
+                            |trait Engine {
+                            |  println("Engine ready")
+                            |}
+                        }
+                    }
+                }
+
+                @spacer()
+
+                @sidebyside(gap = 10) {
+                    @subhead() {
+                        (A) bei Definition
+                    }
+
+                    @snippet() {
+                        @sourceblock(reference = "engine") {
+                            |class Plane extends Engine {
+                            |  println("Ready for take-off")
+                            |}
+                        }
+                        @callblock() {
+                            |new Plane
+                        }
+                        @outblock() {
+                            |Engine ready
+                            |Ready for take-off
+                        }
+                    }
+                } {
+                    @subhead() {
+                        (B) bei Instanziierung
+                    }
+
+                    @snippet() {
+                        @sourceblock(reference = "engine") {
+                            |class Plane {
+                            |  println("Ready for take-off")
+                            |}
+                        }
+                        @callblock() {
+                            |new Plane with Engine
+                        }
+                        @outblock() {
+                            |Ready for take-off
+                            |Engine ready
+                        }
+                    }
+                    @codesub2() {
+                        Trait wird erst bei Instanziierung hinzugefügt
+                    }
+                }
+
+                @*@infobox() {
+                    Ein Trait kann auch erst bei der Erstellung einer Instanz "dazu gemixt" werden.
+                }*@
+            }
         }
 
         <!-- ################################################################################## -->
@@ -440,7 +458,7 @@
                 }
             } {
                 @subhead() {
-                    <em>Feld</em>
+                    <em>Methode</em>
                 }
 
                 @snippet() {
@@ -465,65 +483,84 @@
 
         @titleslide(title = "stackable") {
 
-            @sidebyside() {
-                @spacer2() @spacer()
-
+            @sidebyside(gap = 10) {
                 @snippet(id = "logger5") {
                     @sourceblock(reference = "plane_log_ready") {
                         |trait Logger {
-                        |
-                        |  def log(msg: String) {
-                        |    println(msg)
-                        |  }
-                        |}
-                    }
-                }
-            } {
-                @snippet(id = "timed_logger") {
-                    @sourceblock(reference = "plane_log_ready") {
-                        |trait TimedLog extends Logger {
-                        |
-                        |  override def log (msg: String) {
-                        |    val now = new java.util.Date
-                        |    super.log(now + " " + msg)
-                        |  }
+                        |  def log(msg: String) { println(msg) }
                         |}
                     }
                 }
 
                 @spacer_half()
 
-                @snippet(id = "upper_logger") {
-                    @sourceblock(reference = "timed_logger") {
-                        |trait UpperLog extends Logger {
-                        |
-                        |  override def log (msg: String) {
-                        |    super.log(msg.toUpperCase)
-                        |  }
-                        |}
+                @indent() {
+                    @snippet(id = "timed_logger") {
+                        @sourceblock(reference = "plane_log_ready") {
+                            |trait TimedLog extends Logger {
+                            |  override def log(msg: String) {
+                            |    val now = new java.util.Date
+                            |    super.log(now + " " + msg)
+                            |  }
+                            |}
+                        }
                     }
-                }
-            }
-
-            @spacer2()
-
-            @sidebyside() {
-                @snippet(clazz = "slim") {
-                    @callblock(reference = "upper_logger") {
-                        |new Plane with TimedLog with UpperLog
+                    @codesub2() {
+                        Trait fügt Zeitpunkt hinzu
                     }
-                    @outblock() {
-                        |Sun Jan 01 00:00:00 2012 READY FOR TAKE-OFF
+
+                    @spacer_half()
+
+                    @snippet(id = "upper_logger") {
+                        @sourceblock(reference = "timed_logger") {
+                            |trait ShoutLog extends Logger {
+                            |  override def log(msg: String) {
+                            |    super.log(msg.toUpperCase)
+                            |  }
+                            |}
+                        }
+                    }
+                    @codesub2() {
+                        Trait "schreit" Nachricht heraus
                     }
                 }
             } {
+                @spacer()
+
+                @subhead() {
+                    Verwendung
+                }
+
                 @snippet(clazz = "slim") {
                     @callblock(reference = "upper_logger") {
-                        |new Plane with UpperLog with TimedLog
+                        |new Plane with TimedLog
+                        |          with ShoutLog
                     }
                     @outblock() {
-                        |SUN JAN 01 00:00:00 2012 READY FOR TAKE-OFF
+                        |Jan 01 00:00:00 2012 READY FOR TAKE-OFF
                     }
+                }
+                @codesub2() {
+                    Zeitpunkt wird @uline("zuletzt") eingefügt
+                }
+
+                @spacer()
+
+                @snippet(clazz = "slim") {
+                    @callblock(reference = "upper_logger") {
+                        |new Plane with ShoutLog
+                        |          with TimedLog
+                    }
+                    @outblock() {
+                        |JAN 01 00:00:00 2012 READY FOR TAKE-OFF
+                    }
+                }
+                @codesub2() {
+                    Zeitpunkt wird @uline("zuerst") eingefügt
+                }
+
+                @infobox() {
+                    Ausführung von rechts nach links.
                 }
             }
 
@@ -566,7 +603,7 @@
                     |}
                 }
                 @codesub2() {
-                    besser: 2 Traits mit je <em>1</em> Aufgabe
+                    @uline("besser"): 2 Traits mit je <em>1</em> Aufgabe
                 }
             }
 
@@ -574,8 +611,8 @@
 
             @autocenter {
                 @tipbox() {
-                    Traits so klein wie möglich halten, <br/>
-                    das erhöht Wiederverwendung und Modularisierung.
+                    Traits so klein wie möglich halten,
+                    das erhöht <br/> Wiederverwendung und verbessert Modularisierung.
                 }
             }
         }

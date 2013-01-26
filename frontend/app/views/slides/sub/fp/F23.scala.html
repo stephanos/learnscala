@@ -58,9 +58,11 @@
 
                 <!-- ################################################################################## -->
 
+                @*
                 @titleslide(title = title, subtitle = subtitle) {
 
                 }
+                *@
             }
 
             <!-- ################################################################################## -->
@@ -292,9 +294,9 @@
                     |
                     |  var boyNames,
                     |      menNames = ListBuffer[String]()
-                    |  for (i <- 0 to sortedBoys.length - 1)
+                    |  for (i <- 0 to boys.length - 1)
                     |    boyNames += boys(i).name
-                    |  for (i <- 0 to sortedMen.length - 1)
+                    |  for (i <- 0 to men.length - 1)
                     |    menNames += men(i).name
                     |
                     |  (boyNames.toList, menNames.toList)
