@@ -1,5 +1,12 @@
 @(title: String, url: String, date: String)(content: Html)
 
+@readOn = @{
+    if (url.contains("/en/"))
+        "read more"
+    else
+        "weiterlesen"
+}
+
 <div class="blog snippet">
     <h2>
         <a href="@url">
@@ -12,6 +19,6 @@
         <p>
             @content
         </p>
-        <a href="@url">weiterlesen</a>
+        <a href="@url">@readOn</a>
     </article>
 </div>

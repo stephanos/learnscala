@@ -189,11 +189,11 @@
 .font(@name: "", @path: "", @weight: normal, @style: normal) {
     font-family: @name;
     // IE9 Compat Modes / IE6-IE8 / Modern Browsers / Safari, Android, iOS / Legacy iOS
-    src: e(%("url(%s%s.eot)", @fontPath, @path));
-    src: e(%("url(%s%s.eot?#iefix)", @fontPath, @path)) format('embedded-opentype'),
-         e(%("url(%s%s.woff)", @fontPath, @path)) format('woff'),
-         e(%("url(%s%s.ttf)", @fontPath, @path)) format('truetype'),
-         e(%("url(%s%s.svg#%s)", @fontPath, @path, @name)) format('svg');
+    src: e(%("url('%s%s.eot')", @fontPath, @path));
+    src: e(%("url('%s%s.eot?#iefix')", @fontPath, @path)) format('embedded-opentype'),
+         e(%("url('%s%s.woff')", @fontPath, @path)) format('woff'),
+         e(%("url('%s%s.ttf')", @fontPath, @path)) format('truetype'),
+         e(%("url('%s%s.svg#%s')", @fontPath, @path, @name)) format('svg');
     font-weight: @weight;
     font-style: @style;
 }

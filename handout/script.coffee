@@ -25,11 +25,11 @@ getPage = (path, cb) ->
     page = webpage.create()
 
     # setup page & PDF
-    pscale = 2.2
+    pscale = 1.5 #2.1
     page.paperSize =
         width: viewport.width * pscale
         height: viewport.height * pscale
-        orientation: 'portrait'
+        orientation: 'landscape'
         format: "A4"
         margin: '0cm'
         border: '0cm'
@@ -39,6 +39,9 @@ getPage = (path, cb) ->
         console.log(msg)
         #console.log(trace)
         phantom.exit()
+
+    page.onResourceReceived = (response) ->
+        console.log('Receive ' + response.url)
 
     console.log "opening", path
     page.open url, (status) ->
@@ -60,10 +63,10 @@ getPage = (path, cb) ->
                 page.evaluate(-> $(".fragment").removeClass("fragment"))
 
                 # remove exercise pages
-                page.evaluate(-> $("article.uebung").parent().remove())
+                #page.evaluate(-> $("article.uebung").parent().remove())
 
                 # remove quiz pages
-                page.evaluate(-> $("article.quiz").parent().remove())
+                #page.evaluate(-> $("article.quiz").parent().remove())
 
                 # return page (after short timeout)
                 setTimeout ->
@@ -74,7 +77,7 @@ getPage = (path, cb) ->
             100
 
 captureSlides = (page, slides, slide, outpath, cb) ->
-    if(slide == 0)
+    if(slide == 1) # skip before 'dummy' slide
         cb()
     else
         # make snapshot

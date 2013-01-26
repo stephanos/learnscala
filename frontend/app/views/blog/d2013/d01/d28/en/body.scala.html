@@ -1,0 +1,93 @@
+<p>
+    Exercises are a crucial part of my "Introduction to Scala" training course I developed
+    for German-speaking developers and companies. Nobody wants to listen to someone's
+    dialog for 8 hours, they want to get a feeling for the new language,
+    try out the new syntax, play around with new features.
+</p>
+
+<p>
+    <strong>
+        Designing training exercises
+    </strong>
+</p>
+
+<p>
+    But there is always the problem of making sure that the students are on the right track
+    when solving the exercises. Depending on the course's size you can not look everyone
+    over the shoulder all the time.
+</p>
+
+<p>
+    This is where I decided to leverage unit tests: Students can use existing tests
+    to work through the exercises step by step, always knowing whether they are
+    doing something wrong immediately. This prevents bad surprises when the
+    results are shared and discussed afterwards.
+</p>
+
+<p>
+    <strong>
+        Adding macros to it
+    </strong>
+</p>
+
+<p>
+    So, I hear you ask, what does that have to do with macros? Scala macros allow you to
+    make certain tests that were not possible earlier.
+</p>
+
+<table>
+    <tr>
+        <td>
+            <script src="https://gist.github.com/4643260.js"></script>
+        </td>
+        <td style="vertical-align: top; padding-left: 20px;">
+            <p>
+                The snippet on the left illustrates an exercise to teach pattern matching.
+                In the presentation the students listened to earlier,
+                various patterns like the alternative and wildcard pattern were introduced.
+            </p>
+
+            <p>
+                The exercise description declares:
+                <strong>Rewrite this code in 3 lines or less</strong>. This way
+                students have to think how to apply the new features.
+            </p>
+
+            <p>
+                Furthermore, they were taught that a <strong>var</strong> should be
+                used sparsely. The unit test is able to check for this as well.
+            </p>
+
+            <p>
+                So macros allow to test various code styles and metrics, cool!
+            </p>
+        </td>
+    </tr>
+</table>
+
+<p>
+    <strong>
+        How it works
+    </strong>
+</p>
+
+<p>
+    Behind the scenes the unit tests use
+    <a href="http://docs.scala-lang.org/overviews/macros/overview.html" target="_blank">
+        def macros</a>, since type macros are only available in an experimental Scala 2.11 branch.
+    First I thought it may not be possible with this limitation, but thanks to the help
+    of Eugene Burmako - member of the official Scala team - it worked out great.
+</p>
+
+<p>
+    The problem behind all this is that
+    The method <strong>task</strong> that you can see in the example above calls a macro.
+<p>
+
+<table>
+    <tr>
+        <td>
+            <script src="https://gist.github.com/4643398.js"></script>
+        </td>
+    </tr>
+</table>

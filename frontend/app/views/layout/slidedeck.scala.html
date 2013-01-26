@@ -2,7 +2,7 @@
 
 @head = {
     <link href='@MyAssets.css_slide' type="text/css" media="all" rel="stylesheet">
-    <link href='@MyAssets.css_slide_print' type="text/css" media="print" rel="stylesheet">
+    @*<link href='@MyAssets.css_slide_print' type="text/css" media="print" rel="stylesheet">*@
 }
 
 @internal(title, clazz=clazz + (if(open) " open" else " closed"), open=open, head=head) {
@@ -15,6 +15,9 @@
         <!-- slides -->
         <div class="slides">
             @content
+
+            <!-- dummy page -->
+            <section class="dummy"></section>
 
             <!-- timer -->
             <div id="timer" data-percent="100" class="hide">

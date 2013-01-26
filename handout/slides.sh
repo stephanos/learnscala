@@ -5,4 +5,4 @@ rm -Rf tmp/slides
 mkdir -p tmp/slides
 
 # create PDFs
-phantomjs script.coffee "/app/slides"
+phantomjs --disk-cache=no script.coffee "/app/slides"

@@ -44,7 +44,7 @@ blockquote,q{quotes:none;}
 blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
 table{border-collapse:collapse;border-spacing:0;}
 html,body{padding:0;margin:0;width:100%;height:100%;min-height:600px;}
-body{position:relative;padding:0;margin:0;overflow:hidden;}body .reveal{font-size:30px;font-weight:200;letter-spacing:-0.02em;color:#cda869;font-family:'Yanone Kaffeesatz',sans-serif;}body .reveal h1,body .reveal h2,body .reveal h3,body .reveal h4,body .reveal h4{font-family:'Yanone Kaffeesatz',sans-serif;}
+body{position:relative;padding:0;margin:0;overflow:hidden;}body .reveal{font-size:30px;font-weight:200;letter-spacing:-0.02em;color:#cda869;font-family:'YanoneKaffeesatz',sans-serif;}body .reveal h1,body .reveal h2,body .reveal h3,body .reveal h4,body .reveal h4{font-family:'YanoneKaffeesatz',sans-serif;}
 .reveal{}.reveal h1,.reveal h2,.reveal h3,.reveal h4{margin:0 0 20px 0;line-height:0.9em;letter-spacing:0.02em;}
 .reveal h1{font-size:136px;}
 .reveal h2{font-size:76px;}
@@ -168,6 +168,7 @@ div.modal.fullscreen{top:10px;bottom:10px;left:10px;right:10px;padding:0;margin:
 .reveal .slides{z-index:300;}.reveal .slides>section>header{min-height:15px;}.reveal .slides>section>header h2,.reveal .slides>section>header h3,.reveal .slides>section>header h4{margin-left:15px;margin-top:15px;}
 .reveal .slides>section>article{margin:0 15px;max-height:700px;overflow:visible;}.reveal .slides>section>article.wide .middle>div{width:100%;}
 .reveal .slides>section>footer{position:absolute;bottom:0;left:0;right:0;height:30px;with:100%;font-size:22.5px;line-height:30px;opacity:0.6;filter:alpha(opacity=60);}
+.reveal .slides.dummy{display:none;}
 .reveal .middle{text-align:center;margin:0 auto;}.reveal .middle>div{min-width:50%;display:inline-block;text-align:left;}
 .reveal .fragment .btn{display:none;}
 .reveal .fragment.visible{}.reveal .fragment.visible .btn{display:block;}
@@ -225,9 +226,9 @@ body.print .reveal .slides #timer{display:none;}
 body.print .reveal .slides section .fragment{opacity:1;}
 body.print .reveal .slides .slide-end{display:none;}
 body.print .reveal .slides .uebung-meta{display:none;}
+body.print .reveal .slides .dummy{display:block;}
 body.print .reveal .slides .branding{display:block;}
 body.print .reveal .slides a.api-link{text-decoration:none;color:#4e443c;}
 body.print .reveal .slides footer{opacity:0.9;filter:alpha(opacity=90);}
 body.print #navi{display:none;}
-body.print .cm-s-ambiance{font-family:"Andale Mono" !important;}
-@font-face{font-family:"Entypo";src:url(/assets/font/entypo/regular.eot);src:url(/assets/font/entypo/regular.eot?#iefix) format('embedded-opentype'),url(/assets/font/entypo/regular.woff) format('woff'),url(/assets/font/entypo/regular.ttf) format('truetype'),url(/assets/font/entypo/regular.svg#Entypo) format('svg');font-weight:normal;font-style:normal;}@font-face{font-family:"Inconsolata";src:url(/assets/font/inconsolata/regular.eot);src:url(/assets/font/inconsolata/regular.eot?#iefix) format('embedded-opentype'),url(/assets/font/inconsolata/regular.woff) format('woff'),url(/assets/font/inconsolata/regular.ttf) format('truetype'),url(/assets/font/inconsolata/regular.svg#Inconsolata) format('svg');font-weight:normal;font-style:normal;}@font-face{font-family:"Yanone Kaffeesatz";src:url(/assets/font/yanone/regular.eot);src:url(/assets/font/yanone/regular.eot?#iefix) format('embedded-opentype'),url(/assets/font/yanone/regular.woff) format('woff'),url(/assets/font/yanone/regular.ttf) format('truetype'),url(/assets/font/yanone/regular.svg#Yanone Kaffeesatz) format('svg');font-weight:normal;font-style:normal;font-family:"Yanone Kaffeesatz";src:url(/assets/font/yanone/bold.eot);src:url(/assets/font/yanone/bold.eot?#iefix) format('embedded-opentype'),url(/assets/font/yanone/bold.woff) format('woff'),url(/assets/font/yanone/bold.ttf) format('truetype'),url(/assets/font/yanone/bold.svg#Yanone Kaffeesatz) format('svg');font-weight:bold;font-style:normal;}
+@font-face{font-family:"Entypo";src:url('/assets/font/entypo/regular.eot');src:url('/assets/font/entypo/regular.eot?#iefix') format('embedded-opentype'),url('/assets/font/entypo/regular.woff') format('woff'),url('/assets/font/entypo/regular.ttf') format('truetype'),url('/assets/font/entypo/regular.svg#Entypo') format('svg');font-weight:normal;font-style:normal;}@font-face{font-family:"Inconsolata";src:url('/assets/font/inconsolata/regular.eot');src:url('/assets/font/inconsolata/regular.eot?#iefix') format('embedded-opentype'),url('/assets/font/inconsolata/regular.woff') format('woff'),url('/assets/font/inconsolata/regular.ttf') format('truetype'),url('/assets/font/inconsolata/regular.svg#Inconsolata') format('svg');font-weight:normal;font-style:normal;}@font-face{font-family:"YanoneKaffeesatz";src:url('/assets/font/yanone/regular.eot');src:url('/assets/font/yanone/regular.eot?#iefix') format('embedded-opentype'),url('/assets/font/yanone/regular.woff') format('woff'),url('/assets/font/yanone/regular.ttf') format('truetype'),url('/assets/font/yanone/regular.svg#YanoneKaffeesatz') format('svg');font-weight:normal;font-style:normal;}

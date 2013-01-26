@@ -244,16 +244,17 @@ body.print .reveal .slides #timer{display:none;}
 body.print .reveal .slides section .fragment{opacity:1;}
 body.print .reveal .slides .slide-end{display:none;}
 body.print .reveal .slides .uebung-meta{display:none;}
+body.print .reveal .slides .dummy{display:block;}
 body.print .reveal .slides .branding{display:block;}
 body.print .reveal .slides a.api-link{text-decoration:none;color:#4e443c;}
 body.print .reveal .slides footer{opacity:0.9;filter:alpha(opacity=90);}
 body.print #navi{display:none;}
-body.print .cm-s-ambiance{font-family:"Andale Mono" !important;}
 .reveal .slides{border:0;}.reveal .slides #btn-glossary{display:none;}
 .reveal .slides #timer{display:none;}
 .reveal .slides section .fragment{opacity:1;}
 .reveal .slides .slide-end{display:none;}
 .reveal .slides .uebung-meta{display:none;}
+.reveal .slides .dummy{display:block;}
 .reveal .slides .branding{display:block;}
 .reveal .slides a.api-link{text-decoration:none;color:#4e443c;}
 .reveal .slides footer{opacity:0.9;filter:alpha(opacity=90);}
