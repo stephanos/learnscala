@@ -20,7 +20,7 @@
                 }
 
                 @snippet() {
-                    @sourceblock() {
+                    @sourceblock(id = "s_person_b", hl = "5") {
                         |class Person(val name: String,
                         |             val age: Int) {
                         |
@@ -28,7 +28,12 @@
                         |    name + ", " + age + " years old"
                         |}
                     }
-                    @callblock() {
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference = "s_person_b") {
                         |val p = new Person("Bob", 42)
                     }
                     @outblock() {
@@ -45,7 +50,7 @@
                 }
 
                 @snippet() {
-                    @sourceblock() {
+                    @sourceblock(id = "s_person_a", hl = "5") {
                         |class Person(val name: String,
                         |             val age: Int) {
                         |
@@ -53,7 +58,12 @@
                         |    s"$name, $age years old"
                         |}
                     }
-                    @callblock() {
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference = "s_person_a") {
                         |val p = new Person("Bob", 42)
                     }
                     @outblock() {
@@ -74,7 +84,7 @@
                 }
 
                 @snippet() {
-                    @sourceblock() {
+                    @sourceblock(id = "f_person_b", hl = "5") {
                         |class Person(val name: String,
                         |             val height: Float) {
                         |
@@ -83,7 +93,12 @@
                         |      .format(name, height)
                         |}
                     }
-                    @callblock() {
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference = "f_person_a") {
                         |val p = new Person("Bob", 1.9f)
                     }
                     @outblock() {
@@ -96,15 +111,21 @@
                 }
 
                 @snippet() {
-                    @sourceblock() {
+                    @sourceblock(id = "f_person_b", hl = "5") {
                         |class Person(val name: String,
                         |             val height: Float) {
                         |
                         |  override def toString =
                         |    f"$name, $height%1.2f meters"
+                        |
                         |}
                     }
-                    @callblock() {
+                }
+
+                @spacer()
+
+                @snippet() {
+                    @callblock(reference = "f_person_b") {
                         |val p = new Person("Bob", 1.9f)
                     }
                     @outblock() {
@@ -186,17 +207,28 @@
             @spacer()
 
             @snippet() {
-                @sourceblock() {
+                @sourceblock(id = "xml") {
                     |implicit class XmlHelper(val sc: StringContext) {
+                    |
                     |  def xml(args: Any*) =
                     |    scala.xml.XML.load(scala.xml.Source.fromString(sc.s(args: _*)))
                     |}
                 }
-                @callblock() {
-                    |xml"&lt;node&gt; ${1 + 1} &lt;/node&gt;"
-                }
-                @outblock() {
-                    |res0: scala.xml.Elem = &lt;node&gt; 2 &lt;/node&gt;
+            }
+            @codesub2() {
+                <code>implicit</code>-Klasse mit Methode <code>xml</code>
+            }
+
+            @spacer2()
+
+            @autocenter {
+                @snippet() {
+                    @callblock(reference = "xml") {
+                        |xml"&lt;node&gt; ${1 + 1} &lt;/node&gt;"
+                    }
+                    @outblock() {
+                        |res0: scala.xml.Elem = &lt;node&gt; 2 &lt;/node&gt;
+                    }
                 }
             }
 

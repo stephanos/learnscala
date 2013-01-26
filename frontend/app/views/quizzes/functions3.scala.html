@@ -76,7 +76,9 @@
                 |l foreach { i => println (i) }
             }
             @outblock() {
-                |1 2 3
+                |1
+                |2
+                |3
             }
         }
     }
@@ -86,11 +88,11 @@
     } {
         @snippet(clazz = "slim") {
             @callblock(reference = "list123", fragment = false) {
-                |val r = l map { (i: Long) => i - 1) }
+                |val r = l map { (i: Float) => i - 1 }
             }
             @outblock(error = true) {
                 |error:    type mismatch;
-                |found:    Long => Long;
+                |found:    Float => Float;
                 |required: Int => ?
             }
         }

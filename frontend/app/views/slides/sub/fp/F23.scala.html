@@ -25,7 +25,7 @@
                 @titleslide(title = title, subtitle = subtitle) {
                     @sourcecode() {
                         |trait Traversable[A] {
-                        |  def foreach[A](f: Elem => A): Unit
+                        |  def foreach[A](f: A => Unit): Unit
                         |}
                     }
                     @codesub2() {
@@ -214,15 +214,14 @@
 
                     @snippet() {
                         @callblock(reference = "nums") {
-                            |nums zipWithIndex
+                            |nums count { n => n % 3 == 0 }
                         }
                         @outblock() {
-                            |res0: List[(Int, Int)] =
-                            |  List((1,0), (2,1), (3,2), (4,3))
+                            |res0: Int = 1
                         }
                     }
                     @codesub2() {
-                        erstellt Liste aus Tupeln (Element und Index)
+                        zählt wieviele Elemente die Bedingung erfüllen
                     }
 
                 } {
@@ -476,6 +475,7 @@
 
             <!-- ################################################################################## -->
 
+            @*
             @titleslide(title = title, subtitle = "II", connector = "") {
                 @snippet() {
                     @sourceblock(id = "user") {
@@ -489,6 +489,7 @@
                     }
                 }
             }
+            *@
         }
 
         <!-- ################################################################################## -->

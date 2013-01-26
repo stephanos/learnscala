@@ -568,7 +568,7 @@
 
                     @snippet() {
                         @sourceblock(id = "duration_val", reference = "duration_unit") {
-                            |implicit class DurationVal(val n: Long) {
+                            |implicit class DurationVal(val n: Int) {
                             |  def minutes = new Duration(this, Minutes)
                             |  def seconds = new Duration(this, Seconds)
                             |}

@@ -212,10 +212,11 @@
                     |}
                 }
                 @codesub2() {
-                    <code>isInstanceOf</code> überprüft den Typ
+                    <code>isInstanceOf</code> überprüft ob <code>left</code> und <code>right</code>
+                    vom Typ <code>Pilot</code> sind
                 }
 
-                @spacer()
+                @spacer2()
 
                 @sidebyside(gap = 10) {
                     @snippet() {
@@ -261,7 +262,7 @@
                     |}
                 }
                 @codesub2() {
-                    <code>T</code> muss mindestens vom Typ <code>Pilot</code> sein
+                    <code>A</code> muss mindestens vom Typ <code>Pilot</code> sein
                 }
 
                 @spacer2()
@@ -287,7 +288,7 @@
                             |            new Stewardess)
                         }
                         @outblock(error = true) {
-                            |error: inferred type arguments [Crew]
+                            |error: inferred type arguments [Stewardess]
                             |       do not conform to class Cockpit's
                             |       type parameter bounds [A &lt;: Pilot]
                         }

@@ -64,7 +64,7 @@
                                     abstrakte Methode <code>foreach</code>: wendet eine Funktion auf alle Elemente an
                                     @spacer_half()
                                     @sourcecode() {
-                                        |def foreach[A](f: Elem => A): Unit
+                                        |def foreach[A](f: A => Unit): Unit
                                     }
                                 </li>
                                 @spacer_half()
@@ -249,7 +249,7 @@
                                     implementiert <code>foreach</code>
                                     @spacer_half()
                                     @sourcecode() {
-                                        |def foreach[A](f: Elem => A) {
+                                        |def foreach[A](f: A => Unit) {
                                         |  val it = iterator
                                         |  while (it.hasNext) f(it.next())
                                         |}

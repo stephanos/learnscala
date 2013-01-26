@@ -105,7 +105,7 @@
                     }
                 } {
                     @sourcecode() {
-                        |case class Employee(val name: String)
+                        |case class Employee(name: String)
                         |val e = Employee("Bob")
                     }
                 }
@@ -286,7 +286,7 @@
                     }
                 }
                 @codesub2() {
-                    Case Class kann nicht vererbt werden
+                    Case Class kann <var>nicht vererbt</var> werden
                 }
 
                 @spacer()
@@ -300,7 +300,7 @@
                     }
                 }
                 @codesub2() {
-                    Alternative: gemeinsamer <code>trait</code>
+                    <em>Alternative</em>: gemeinsamer <code>trait</code>
                 }
             }
 
@@ -327,7 +327,9 @@
                                 @sourceblock(reference = "empl", hl = "3") {
                                     |def shouldRetire(empl: Employee) =
                                     |  empl match {
-                                    |    case Employee(n, a) if(a > 66) => true
+                                    |    case Employee(n, a) if(a > 66) =>
+                                    |      println(n + " should retire"
+                                    |      true
                                     |    case _ => false
                                     |  }
                                 }
@@ -335,8 +337,7 @@
                         }
                     } {
                         @codenote2() {
-                            <em>Konstruktor-Pattern</em>: <br/> Zerlegen der Case Class, <br/>
-                            <code>@@</code> bindet Variablen
+                            <em>Konstruktor-Pattern</em>: <br/> Zerlegen der Case Class
                         }
                         <br/>
                         @codenote2() {
@@ -352,7 +353,9 @@
                                 @sourceblock(reference = "empl", hl = "3") {
                                     |def shouldRetire(empl: Employee) =
                                     |  empl match {
-                                    |    case e @@ Employee(_, 65) => true
+                                    |    case e @@ Employee(_, 65) =>
+                                    |      println(e.name + " should retire"
+                                    |      true
                                     |    case _ => false
                                     |  }
                                 }
@@ -365,6 +368,10 @@
                         <br/>
                         @codenote2() {
                             <em>Wildcard-Pattern</em>: <br/> Parameter mit <code>_</code> ignorieren
+                        }
+                        <br/>
+                        @codenote2() {
+                            PS: <code>@@</code> bindet Variablen
                         }
                     }
                 }
@@ -379,11 +386,11 @@
                             |object EMail {
                             |
                             |  def unapply(str: String) = {
-                            |
                             |    val parts = str.split("@@")
-                            |
-                            |    if (parts.length == 2)
-                            |      Some((parts(0), parts(1)))
+                            |    if (parts.length == 2) {
+                            |      val res = (parts(0), parts(1))
+                            |      Some(res)
+                            |    }
                             |    else
                             |      None
                             |  }
@@ -440,7 +447,7 @@
 
                 @spacer()
 
-                @sidebyside(gap = 10) {
+                @autocenter {
                     @snippet() {
                         @sourceblock(id = "match_salary", reference = "case_class_match") {
                             |def getSalary(e: Empl) = e match {
@@ -459,23 +466,25 @@
                     @codesub2() {
                         Compiler warnt vor fehlenden Fällen
                     }
-                } {
-                    @snippet() {
-                        @sourceblock(id = "match_salary2", reference = "case_class_match") {
-                            |def getSalary(e: Empl) = e match {
-                            |  case p: Boss =>
-                            |    80000 + (p.age * 1000)
-                            |  case Developer(_, true) =>
-                            |    50000
-                            |  case d: Developer =>
-                            |    40000
-                            |}
-                        }
-                        @outblock() {
-                            |getSalary: (e: Empl)Int
-                        }
+                }
+
+                @*
+                @snippet() {
+                    @sourceblock(id = "match_salary2", reference = "case_class_match") {
+                        |def getSalary(e: Empl) = e match {
+                        |  case p: Boss =>
+                        |    80000 + (p.age * 1000)
+                        |  case Developer(_, true) =>
+                        |    50000
+                        |  case d: Developer =>
+                        |    40000
+                        |}
+                    }
+                    @outblock() {
+                        |getSalary: (e: Empl)Int
                     }
                 }
+                *@
 
                 @notes {
                     - [STIL] Ausnahmerlaubnis: mehrere Klassen in einer Datei
