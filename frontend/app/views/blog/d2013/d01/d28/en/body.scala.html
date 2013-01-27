@@ -32,7 +32,7 @@
 
 <p>
     So, I hear you ask, what does that have to do with macros? Scala macros allow you to
-    make certain tests that were not possible earlier.
+    make certain tests that were not possible before.
 </p>
 
 <table>
@@ -80,14 +80,53 @@
 </p>
 
 <p>
-    The problem behind all this is that
-    The method <strong>task</strong> that you can see in the example above calls a macro.
+    The method <strong>task</strong> - part of the trait <strong>Testable</strong>
+    that each exercise inherits from - calls a macro. Then it gets interesting. Since def macros
+    cannot add fields or methods to existing classes I had to create a class
+    <strong>Task</strong> with all fields I would later need, e.g. to count the number of
+    <strong>vars</strong> the code uses.
 <p>
 
 <table>
+    <colgroup>
+        <col width="40%">
+        <col width="60%">
+    </colgroup>
     <tr>
         <td>
             <script src="https://gist.github.com/4643398.js"></script>
         </td>
+        <td style="vertical-align: top; padding-left: 20px;">
+            <script src="https://gist.github.com/4647618.js"></script>
+        </td>
     </tr>
 </table>
+
+<p>
+    Then the macro would generate a call to the method <strong>registerTask</strong> that
+    takes an instance of type <strong>Task</strong>. Since the fields are already declared
+    they can simply be overridden by the macro on instantiation. Et voilà!
+</p>
+
+<p>
+    The complete macro code is rather ugly and contains a few workarounds, but the following
+    snippet shows the small part where the number of <strong>vars</strong> is determined
+    and the method to actually overwrite the field.
+</p>
+
+<p>
+    <script src="https://gist.github.com/4647666.js"></script>
+</p>
+
+<p>
+    All in all the macro worked pretty well in my last Scala training. The students
+    where quite astonished when the length and style of their solutions were judged.
+    I think it's a great way of making sure the students adhere to the rules and
+    concepts they just learned about; preventing them to just stick with their old
+    Java habits.
+</p>
+
+<p>
+    I'm looking forward to the possibilities the type macros will bring in 2.11.
+    Thanks for reading.
+</p>
