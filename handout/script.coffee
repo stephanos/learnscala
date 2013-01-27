@@ -40,41 +40,42 @@ getPage = (path, cb) ->
         #console.log(trace)
         phantom.exit()
 
-    page.onResourceReceived = (response) ->
-        console.log('Receive ' + response.url)
+    #page.onResourceReceived = (response) ->
+    #    console.log('Receive ' + response.url)
 
     console.log "opening", path
-    page.open url, (status) ->
-        if status isnt 'success'
-            console.log 'Unable to load address', path
-            phantom.exit()
+    loadPage = (url, reloads) ->
+        page.open url, (status) ->
+            if status isnt 'success'
+                console.log 'Unable to load address', path
+                phantom.exit()
 
-        console.log "loaded", path
+            console.log "loaded", path
 
-        # load page again
-        page.open url, ->
+            # wait a moment
             setTimeout ->
-                page.evaluate (-> jQuery.ready())
+                if reloads == 0
+                    page.evaluate (-> jQuery.ready())
 
-                # trigger "print" mode
-                page.evaluate(-> $("body").addClass("print"))
+                    # trigger "print" mode
+                    page.evaluate(-> $("body").addClass("print"))
 
-                # remove animations
-                page.evaluate(-> $(".fragment").removeClass("fragment"))
+                    # remove animations
+                    page.evaluate(-> $(".fragment").removeClass("fragment"))
 
-                # remove exercise pages
-                #page.evaluate(-> $("article.uebung").parent().remove())
+                    # remove exercise pages
+                    #page.evaluate(-> $("article.uebung").parent().remove())
 
-                # remove quiz pages
-                #page.evaluate(-> $("article.quiz").parent().remove())
+                    # remove quiz pages
+                    #page.evaluate(-> $("article.quiz").parent().remove())
 
-                # return page (after short timeout)
-                setTimeout ->
+                    # return page (after short timeout)
                     cb(page)
-                ,
-                delay
+                else
+                    loadPage url, reloads - 1
             ,
-            100
+            delay
+    loadPage(url, 2)
 
 captureSlides = (page, slides, slide, outpath, cb) ->
     if(slide == 1) # skip before 'dummy' slide
@@ -127,7 +128,7 @@ captureLinks = (links, cb) ->
 
                 # capture each slide
                 captureSlides(page, slides, slides, outpath, () ->
-                    page.release()
+                    page.close()
                     next()
                 )
             )
@@ -153,30 +154,25 @@ String.prototype.endsWith = (suffix) ->
 #######################################
 ## MAIN
 
-page = webpage.create()
-
-#page.onConsoleMessage = (msg) ->
-#  console.log msg
-
-page.onLoadFinished = (status) ->
+mainPage = webpage.create()
+mainPage.open createUrl(startPath), (status) ->
     setTimeout ->
-        page.evaluate (-> jQuery.ready())
-        url = getUrl(page)
+        mainPage.evaluate (-> jQuery.ready())
+        url = getUrl(mainPage)
         console.log(url)
 
-        if(url.endsWith("/glossary") || url.endsWith("/slides"))
-            links = page.evaluate (-> Array::map.call ($(".slides a:not(.todo)")), (e) -> $(e).attr("href"))
-            captureLinks(links, () ->
-                phantom.exit()
-            )
-        else
-            if(status == "success")
-                if(url.indexOf("/glossary") >= 0 || url.indexOf("/slides") >= 0)
+        if status == "success"
+            if url.endsWith("/glossary") || url.endsWith("/slides")
+                links = mainPage.evaluate (-> Array::map.call ($(".slides a:not(.todo)")), (e) -> $(e).attr("href"))
+                #links = links[1 ..]
+                captureLinks(links, () ->
+                    phantom.exit()
+                )
+            else
+                if url.indexOf("/glossary") >= 0 || url.indexOf("/slides") >= 0
                     captureLinks([startPath], () ->
                         phantom.exit()
                     )
-            else
-                phantom.exit()
+        else
+            phantom.exit()
     , 100
-
-page.open(createUrl(startPath))
