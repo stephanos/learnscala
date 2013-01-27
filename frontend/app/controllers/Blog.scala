@@ -42,7 +42,7 @@ object Blog extends MyController {
 
     val d = new Date(year, month - 1, day)
     val isOld = d.getTime < new Date(2012, 8, 25).getTime
-    val locale = if (lang.contains("en")) Locale.ENGLISH else Locale.GERMAN
+    val locale = if (Option(lang).getOrElse("").contains("en")) Locale.ENGLISH else Locale.GERMAN
     val dateStr = new SimpleDateFormat("MMM d", locale).format(d)
 
     lazy val head = getByName("views.html.blog." + dir + ".head")
