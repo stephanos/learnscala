@@ -1,5 +1,5 @@
 <p>
-    Exercises are a crucial part of my "Introduction to Scala" training course I developed
+    Exercises are a crucial part of the "Introduction to Scala" training course I developed
     for German-speaking software engineers. Nobody wants to listen to someone else's
     dialog for 8 hours - they want to get a feeling for the new language,
     try out the new syntax, play around with new features.
@@ -13,15 +13,15 @@
 
 <p>
     But there is always the problem of making sure that the students are on the right track
-    when solving the exercises. Depending on the course's size you can not look
+    when solving the exercises. Depending on the size of the course you cannot look
     over everyone's shoulder all the time.
 </p>
 
 <p>
-    This is where I decided to leverage unit tests: Students can use pre-written tests
+    This is why I decided to leverage unit tests: Students can use pre-written tests
     to work through the exercises step by step, knowing immediately whether they are
-    doing something wrong. This prevents bad surprises when the
-    results are shared and discussed in the end.
+    doing something wrong. When results are shared and discussed in the end,
+    unpleasant surprises can be avoided.
 </p>
 
 <p>
@@ -32,7 +32,7 @@
 
 <p>
     So, I hear you ask, what does that have to do with macros? Scala macros allow you to
-    make certain tests that were not possible before.
+    make certain tests that were not possible before. Let's have a look.
 </p>
 
 <table>
@@ -48,18 +48,18 @@
             </p>
 
             <p>
-                The exercise description declares:
-                <strong>Rewrite this code in 3 lines or less</strong>. This way
+                The exercise description states:
+                <strong>Rewrite this code in 3 lines or less</strong>. This way,
                 students have to think about how to apply the new features.
             </p>
 
             <p>
                 Furthermore, they were taught that a <strong>var</strong> should be
-                used sparsely. The unit test is able to check for this as well.
+                used sparsely. The unit test is able to check for that as well.
             </p>
 
             <p>
-                So macros allow to test various code styles and metrics, cool!
+                So macros allow to test various code styles and metrics. Cool!
             </p>
         </td>
     </tr>
@@ -72,18 +72,18 @@
 </p>
 
 <p>
-    Behind the scenes the unit tests use
+    Behind the scenes, the unit tests use
     <a href="http://docs.scala-lang.org/overviews/macros/overview.html" target="_blank">
-        def macros</a>, since type macros are only available in an experimental Scala 2.11 branch.
-    First I thought it may not be possible with this limitation, but thanks to the help
-    of Eugene Burmako - member of the official Scala team - it worked out great.
+        def macros</a> since type macros are only available in an experimental Scala 2.11 branch.
+    First, I thought it may not be possible with this limitation, but thanks to some help
+    from Eugene Burmako - member of the official Scala team - it worked out great.
 </p>
 
 <p>
     The method <strong>task</strong> - part of the trait <strong>Testable</strong>
-    that each exercise inherits from - calls a macro. Then it gets interesting. Since def macros
+    that each exercise inherits from - calls a macro. Now it's getting interesting. Since def macros
     cannot add fields or methods to existing classes I had to create a base class
-    <strong>Task</strong> with all fields I would later need, e.g. to count the number of
+    <strong>Task</strong> with all fields I would need later, e.g. to count the number of
     <strong>vars</strong> the code uses.
 <p>
 
@@ -104,14 +104,14 @@
 
 <p>
     Then the macro would generate a call to the method <strong>registerTask</strong> that
-    takes an instance of type <strong>Task</strong>. Since the fields are already declared
+    takes an instance of type <strong>Task</strong>. Since the fields are already declared,
     they can simply be overridden by the macro on instantiation. Et voilà!
 </p>
 
 <p>
-    The complete macro code is rather ugly and contains a few workarounds, but the following
-    snippet shows the small part where the number of <strong>vars</strong> is determined
-    and the method to actually overwrite the field.
+    The complete macro code is rather ugly and contains a few workarounds but the following
+    snippet shows the small part where the number of <strong>vars</strong> is determined.
+    Additionally, the method to actually overwrite the field can be seen.
 </p>
 
 <p>
@@ -119,10 +119,10 @@
 </p>
 
 <p>
-    All in all the macro worked pretty well in my last Scala training. The students
-    where quite astonished when the length and style of their solutions were judged.
+    All in all, the macro worked pretty well in my recent Scala training. The students
+    were quite astonished when the length and style of their solutions were judged.
     I think it's a great way of making sure the students adhere to the rules and
-    concepts they just learned about; preventing them to just stick with their old
+    concepts they just learned about; preventing them to just stick to their old
     Java habits.
 </p>
 
