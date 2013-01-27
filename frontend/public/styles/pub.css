@@ -431,8 +431,7 @@ body.links h2{margin-top:45px;}
 body.links h3{margin-top:25px;}
 body.links p{margin-top:10px;}
 body.links div.list{margin-left:20px;}
-body>div.container>section{margin:0 auto;}body>div.container>section .unit{width:100%;margin-top:40px;}body>div.container>section .unit p{margin-top:25px;line-height:1.7;}
-body>div.container>section .unit.first{margin-top:0;}
+body>div.container>section{margin:0 auto;}body>div.container>section .unit{width:100%;margin-top:40px;}body>div.container>section .unit.first{margin-top:0;}
 body>div.container>section>.embed{width:100%;height:100%;}
 ul.reasons li{padding:6px 0;}
 span.underline{text-decoration:underline;}
@@ -440,9 +439,10 @@ span.underline{text-decoration:underline;}
 .blog h3,.blog h4,.blog h4{margin-top:25px;}
 .blog>article .twitter-tweet,.blog>article .embed{text-align:center;display:block;margin-left:auto;margin-right:auto;padding:10px 0;}
 .blog>article ul li{padding-top:7px;}
-.blog.snippet{margin-top:40px;}.blog.snippet article{margin-left:20px;}.blog.snippet article p{margin-top:10px;}
+.blog.snippet{margin-top:55px;}.blog.snippet article{margin-left:20px;}.blog.snippet article p{margin-top:10px;}
 .blog #comments{margin-top:50px;}
-p{font-size:16px;line-height:26px;}
+.blog p{font-size:16px;margin-top:25px;line-height:1.7;}
+p{font-size:1em;line-height:1.6;}
 #entermail form{margin:16px 0 6px 0;text-align:center;}
 form.contact label{font-weight:bold;}
 form.contact input[type="text"],form.contact textarea{width:280px;}
