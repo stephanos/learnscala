@@ -1,7 +1,7 @@
 <p>
     Exercises are a crucial part of my "Introduction to Scala" training course I developed
-    for German-speaking developers and companies. Nobody wants to listen to someone's
-    dialog for 8 hours, they want to get a feeling for the new language,
+    for German-speaking software engineers. Nobody wants to listen to someone else's
+    dialog for 8 hours - they want to get a feeling for the new language,
     try out the new syntax, play around with new features.
 </p>
 
@@ -13,15 +13,15 @@
 
 <p>
     But there is always the problem of making sure that the students are on the right track
-    when solving the exercises. Depending on the course's size you can not look everyone
-    over the shoulder all the time.
+    when solving the exercises. Depending on the course's size you can not look
+    over everyone's shoulder all the time.
 </p>
 
 <p>
-    This is where I decided to leverage unit tests: Students can use existing tests
-    to work through the exercises step by step, always knowing whether they are
-    doing something wrong immediately. This prevents bad surprises when the
-    results are shared and discussed afterwards.
+    This is where I decided to leverage unit tests: Students can use pre-written tests
+    to work through the exercises step by step, knowing immediately whether they are
+    doing something wrong. This prevents bad surprises when the
+    results are shared and discussed in the end.
 </p>
 
 <p>
@@ -50,7 +50,7 @@
             <p>
                 The exercise description declares:
                 <strong>Rewrite this code in 3 lines or less</strong>. This way
-                students have to think how to apply the new features.
+                students have to think about how to apply the new features.
             </p>
 
             <p>
@@ -82,7 +82,7 @@
 <p>
     The method <strong>task</strong> - part of the trait <strong>Testable</strong>
     that each exercise inherits from - calls a macro. Then it gets interesting. Since def macros
-    cannot add fields or methods to existing classes I had to create a class
+    cannot add fields or methods to existing classes I had to create a base class
     <strong>Task</strong> with all fields I would later need, e.g. to count the number of
     <strong>vars</strong> the code uses.
 <p>
