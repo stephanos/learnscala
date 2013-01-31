@@ -4,9 +4,17 @@ import controllers._
 import play.api.mvc.RequestHeader
 import play.api.templates.Html
 import com.loops101.web.controllers.BaseController
+import system.MyConfig
+import com.loops101.system.config.AppVersion
 
 class MyController
-  extends BaseController with Errors {
+  extends BaseController
+  with MyConfig
+  with Errors {
+
+
+  lazy val build =
+    config.getString(AppVersion).get
 
   def pick(snippets: Html*): Html = {
     snippets(scala.util.Random.nextInt(snippets.length))

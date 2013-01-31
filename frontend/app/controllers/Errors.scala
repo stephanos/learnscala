@@ -2,13 +2,13 @@ package controllers
 
 import play.api.mvc._
 import controllers.base.MyController
-import com.loops101.web.controllers.impl.BaseErrors
+import com.loops101.web.controllers.impl.IError
 
 object Errors
   extends MyController
 
 trait Errors
-  extends BaseErrors {
+  extends IError {
 
   self: Controller =>
 

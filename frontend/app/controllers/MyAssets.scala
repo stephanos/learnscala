@@ -1,12 +1,12 @@
 package controllers
 
 import base.MyController
-import com.loops101.web.controllers.impl.BaseAssets
 import com.loops101.util.TimeUtil
+import com.loops101.web.controllers.impl.AssetsUtil
 
 object MyAssets
   extends MyController
-  with BaseAssets
+  with AssetsUtil
   with TimeUtil {
 
   def domain = "learnscala.de"

@@ -4,16 +4,20 @@ import play.api.mvc._
 import play.api.data.Form
 import play.api.data.Forms._
 import controllers.base.MyController
-import com.loops101.system.mail.MailUtil
+import com.loops101.system.mail.{Mail, MailUtil}
 import com.loops101.util._
+import com.loops101.system.config.ConfigUtil
+import system.MyConfig
 
 object Contact
   extends MyController
   with MailUtil
   with LogUtil
+  with MyConfig
   with SystemUtil
   with PropUtil
   with TimeUtil {
+
 
   private val mailForm = Form(tuple("mail" -> email, "text" -> text))
 
@@ -26,7 +30,7 @@ object Contact
           val (mail, msg) = f
           println("MESSAGE from '" + mail + "'")
           if (envUtil.isProduction)
-            mailUtil.sendMail(mail, List("contact@learnscala.de"), Some(mail), "Kontakt", msg, None)
+            mailSender.invoke(Mail(mail, List("contact@learnscala.de"), "Kontakt", msg))
           Redirect(routes.Home.contact()).flashing(("type", "success"), ("message", "Vielen Dank für Ihr Nachricht."))
         }
       )
