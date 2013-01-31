@@ -1,6 +1,6 @@
 package com.loops101.util
 
-import com.loops101.util.IDUtil._
+import com.loops101.util.IdUtil._
 import com.loops101.test.spec.UnitSpec
 
 class IDUtilSpec

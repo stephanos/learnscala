@@ -22,6 +22,12 @@ abstract class MockFactorySpec[T](implicit t: Manifest[T])
 
     // ==== MOCKING
 
+    def mocking[T : ClassTag](body: T => Unit): T = {
+      val m = mock[T]
+      body(m)
+      m
+    }
+
     protected def _mock[F](implicit m: ClassTag[F]): F =
         _set(mock(m))
 

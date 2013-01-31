@@ -32,8 +32,7 @@ trait Settings extends Env {
     }
 
   lazy val baseSettings =
-    Defaults.defaultSettings ++ Seq(
-
+    Seq(
       resolvers += DefaultMavenRepository,
       resolvers += "spray" at "http://repo.spray.cc",
       resolvers += "codahale" at "http://repo.codahale.com",
@@ -41,11 +40,10 @@ trait Settings extends Env {
 
       scalacOptions ++=
         Seq("-encoding", "UTF-8", "-deprecation", "-unchecked", "-language", "_") ++ (
-          if (isCloud) Seq("-optimize") else Seq("-g:vars")), // -Xcheckinit ? (crashes with lift)
+          if (isCloud) Seq("-optimize") else Seq("-g:vars", "-Xcheckinit")), //  ? (crashes with lift)
 
       javacOptions ++=
-        Seq("-source", "1.6", "-target", "1.6",
-          "-Xlint:unchecked", "-Xlint:deprecation", "-encoding", "utf8"),
+        Seq("-source", "1.6", "-target", "1.6", "-Xlint:unchecked", "-Xlint:deprecation", "-encoding", "utf8"),
       //javacOptions := Seq("-g"),
 
       maxErrors := 5
@@ -57,20 +55,9 @@ trait Settings extends Env {
   lazy val dummySettings =
     Seq()
 
-  lazy val moduleSettings =
-    appSettings
-
-  lazy val playModuleSettings =
-    myPlaySettings
-
   lazy val testModuleSettings =
-    moduleSettings ++ Seq(testOptions in Test := Seq(Tests.Filter(s => false)))
+    Seq(testOptions in Test := Seq(Tests.Filter(s => false)))
 
-  lazy val appSettings =
-    baseSettings ++ (mainClass := Some("boot.Main"))
-
-
-  import play.Project._
 
   val assetoCompiler =
     (state, sourceDirectory in Compile, resourceManaged in Compile) map {
@@ -109,11 +96,7 @@ trait Settings extends Env {
     }
 
   lazy val myPlaySettings =
-    buildSettings ++ defaultSettings ++ defaultScalaSettings ++ Seq(
-
-      // add compiler settings
-      //scalacOptions ++= Seq("-Yresolve-term-conflict:object"),
-
+    Seq(
       // customize assets compilation
       resourceGenerators in Compile <<= assetoCompiler(Seq(_)),
 
@@ -122,9 +105,6 @@ trait Settings extends Env {
       excludeFilter in unmanagedSources := excludes,
       excludeFilter in managedResources := excludes,
       excludeFilter in unmanagedResources := excludes,
-
-      // runnable main class
-      mainClass := Some("play.core.server.NettyServer"),
 
       // reset default dependencies
       libraryDependencies := Seq()
@@ -137,7 +117,6 @@ trait Settings extends Env {
 
     def apply(id: String, isDummy: Boolean = false): Project =
       MyProject.apply(id, file(modBase + id), isDummy)
-        .settings(moduleSettings: _*)
   }
 
   object MyProject {
@@ -167,9 +146,6 @@ trait Modules {
   lazy val mod_play =
     MyModule("module-play")
       .settings(libraryDependencies ++= Seq(playWeb, playFilter)) // Test.playTest
-      /*libraryDependencies <+= (sbtVersion) {
-          sbtVersion => Defaults.sbtPluginExtra(module, sbtVersion, localScalaVersion)
-      }*/
       .dependsOn(mod_config, mod_test_web % "test->test")
 
   lazy val mod_sql =
@@ -190,7 +166,7 @@ trait Modules {
   lazy val mod_queue =
     MyModule("module-queue")
       .settings(libraryDependencies ++= Seq(akkaCamel, camel))
-      .dependsOn(mod_config, mod_test_unit % "test->test")
+      .dependsOn(mod_config, mod_play, mod_test_unit % "test->test")
 
   lazy val mod_cache =
     MyModule("module-cache")
@@ -204,6 +180,7 @@ trait Modules {
 
   lazy val mod_config =
     MyModule("module-config")
+      .settings(libraryDependencies ++= Seq(akka))
       .dependsOn(mod_util, mod_test_unit % "test->test")
 
   lazy val mod_util =
@@ -252,6 +229,7 @@ trait Deps {
     var CommonsCodec = "1.6"
     var CommonsLang = "2.6"
     var CommonsMath = "2.2"
+    var Config = "1.0.0"
     var EhCache = "2.6.0"
     var H2 = "1.3.170"
     var HTTP = "4.2"
@@ -300,6 +278,7 @@ trait Deps {
   var commonsLang = "commons-lang" % "commons-lang" % V.CommonsLang
   var commonsMath = "org.apache.commons" % "commons-math" % V.CommonsMath
   var commonsIO = "commons-io" % "commons-io" % V.CommonsIO
+  var config = "com.typesafe" % "config" % V.Config
   var ehCache = "net.sf.ehcache" % "ehcache-core" % V.EhCache
   var http = "org.apache.httpcomponents" % "httpclient" % V.HTTP
   var janino = "janino" % "janino" % V.Janino

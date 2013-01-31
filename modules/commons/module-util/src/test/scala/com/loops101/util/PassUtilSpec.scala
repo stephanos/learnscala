@@ -3,7 +3,8 @@ package com.loops101.util
 import com.loops101.test.spec.UnitSpec
 
 class PassUtilSpec
-  extends UnitSpec with PassUtil {
+  extends UnitSpec
+  with PassUtil {
 
   "PassUtil" should {
 

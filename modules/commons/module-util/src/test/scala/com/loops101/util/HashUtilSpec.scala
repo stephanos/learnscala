@@ -3,7 +3,8 @@ package com.loops101.util
 import com.loops101.util.HashUtil._
 import com.loops101.test.spec.UnitSpec
 
-class HashUtilSpec extends UnitSpec {
+class HashUtilSpec
+  extends UnitSpec {
 
   "Hash Util" should {
 

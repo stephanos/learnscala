@@ -22,7 +22,7 @@ class TimeUtilSpec
         today === TimeUtil.today
       }
       "epoch" >> {
-        epoch.getTime === 0
+        epoch.getMillis === 0
       }
       "milliseconds" >> {
         millis must beCloseTo(ms, 10000)

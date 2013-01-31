@@ -1,14 +1,12 @@
 package com.loops101.util
 
 
-object EnvUtil extends EnvUtil with SystemUtil
+object EnvUtil extends EnvUtilImpl with SystemUtil
 
 
 trait EnvUtil {
 
-  self: SystemUtil =>
-
-  lazy val envUtil = new EnvUtilImpl with SystemUtil
+  lazy val envUtil = EnvUtil
 }
 
 

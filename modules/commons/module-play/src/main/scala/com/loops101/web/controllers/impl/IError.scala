@@ -2,7 +2,10 @@ package com.loops101.web.controllers.impl
 
 import play.api.mvc._
 
-trait BaseErrors {
+/**
+ * Defines default error responses
+ */
+trait IError {
 
     self: Controller =>
 

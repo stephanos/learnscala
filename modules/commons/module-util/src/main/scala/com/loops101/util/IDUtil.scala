@@ -3,10 +3,10 @@ package com.loops101.util
 import org.joda.time.DateTime
 
 
-object IDUtil extends IDUtilImpl
+object IdUtil extends IDUtilImpl
 
 
-trait IDUtil {
+trait IdUtil {
   lazy val idUtil = new IDUtilImpl
 }
 

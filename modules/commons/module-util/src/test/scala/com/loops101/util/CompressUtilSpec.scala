@@ -1,9 +1,10 @@
 package com.loops101.util
 
-import com.loops101.util.CompressUtil._
 import com.loops101.test.spec.UnitSpec
+import com.loops101.util.CompressUtil._
 
-class CompressUtilSpec extends UnitSpec {
+class CompressUtilSpec
+  extends UnitSpec {
 
   "Compress Util" should {
 

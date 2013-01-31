@@ -4,7 +4,7 @@ import Character._
 import java.util.regex.Pattern
 import scala.annotation.tailrec
 
-class StringUtil {
+trait StringUtil {
 
     private val wordRegex = Pattern.compile("\\w+")
 

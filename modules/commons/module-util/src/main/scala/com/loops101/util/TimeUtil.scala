@@ -37,7 +37,7 @@ private[util] class TimeUtilImpl {
     */
 
   def epoch =
-    new Date(0)
+    new DateTime(0)
 
   def millisOfDay(dt: DateTime = now) =
     dt.millisOfDay().get()

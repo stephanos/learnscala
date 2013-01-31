@@ -25,8 +25,14 @@ trait SystemUtil {
     def getProperty(key: String): Option[String] =
       Option(System.getProperty(key))
 
+    def getProperties =
+      System.getProperties
+
     def getProperty(key: String, default: String = null): String =
       getProperty(key).getOrElse(default)
+
+    def getEnvProperties =
+      System.getenv()
 
     def getEnvProperty(key: String) =
       Option(System.getenv(key))
