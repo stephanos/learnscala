@@ -165,7 +165,7 @@ trait Modules {
 
   lazy val mod_queue =
     MyModule("module-queue")
-      .settings(libraryDependencies ++= Seq(akkaCamel, camel))
+      .settings(libraryDependencies ++= Seq(akkaCamel, camelAws))
       .dependsOn(mod_config, mod_play, mod_test_unit % "test->test")
 
   lazy val mod_cache =
@@ -176,6 +176,11 @@ trait Modules {
   lazy val mod_mail =
     MyModule("module-mail")
       .settings(libraryDependencies ++= Seq(javaMail))
+      .dependsOn(mod_config, mod_test_unit % "test->test")
+
+  lazy val mod_dstore =
+    MyModule("module-dstore")
+      .settings(libraryDependencies ++= Seq(akkaCamel, camelAws))
       .dependsOn(mod_config, mod_test_unit % "test->test")
 
   lazy val mod_config =
@@ -221,23 +226,22 @@ trait Deps {
   object V {
 
     var Akka = "2.1.0"
-    var AWS = "1.3.27"
+    var AWS = "1.3.30"
     var BoneCP = "0.7.1.RELEASE"
     var Camel = "2.10.3"
     var Casbah = "3.0.0-M2"
-    var CommonsIO = "2.3"
-    var CommonsCodec = "1.6"
-    var CommonsLang = "2.6"
-    var CommonsMath = "2.2"
+    var CommonsIO = "2.4"
+    var CommonsCodec = "1.7"
+    var CommonsLang = "3.1"
+    var CommonsMath = "3.1.1"
     var Config = "1.0.0"
-    var EhCache = "2.6.0"
+    var EhCache = "2.6.3"
     var H2 = "1.3.170"
     var HTTP = "4.2"
     var Janino = "2.5.10"
     var Jasypt = "1.9.0"
-    var JavaMail = "1.4.4"
+    var JavaMail = "1.4.5"
     var jBcrypt = "0.3m"
-    var Jerkson = "0.5.0"
     var Jetty = "7.5.4.v20111024"
     var Jedis = "2.1.0"
     var JDBCP = "1.0.8.5"
@@ -247,23 +251,22 @@ trait Deps {
     var JTA = "1.1"
     var JUnit = "4.7"
     var Lift = "2.5-M4"
-    var Logback = "1.0.3"
-    var Memcached = "1.3.8"
-    var Metrics = "2.1.2"
-    var Mockito = "1.9.0"
-    var MongoDB = "2.7.3"
+    var Logback = "1.0.9"
+    var Memcached = "1.3.9"
+    var Metrics = "2.2.0"
+    var Mockito = "1.9.5"
+    var MongoDB = "2.10.1"
     var Play = play.core.PlayVersion.current
     var Postgres = "9.1-901.jdbc4"
     var Rogue = "2.0.0-beta22"
     var ScalaCheck = "1.10.0"
     var ScalaTest = "1.9.1"
-    var Selenium = "2.20.0"
+    var Selenium = "2.29.1"
     var Slf4j = "1.7.2"
-    var Slick = "1.0.0-RC1"
+    var Slick = "1.0.0-RC2"
     var Snappy = "1.0.4.1"
     var Smock = "3.0"
     var Specs2 = "1.13"
-    var Spray = "1.0-M2.2"
   }
 
 
@@ -273,10 +276,10 @@ trait Deps {
   var akkaCamel = "com.typesafe.akka" %% "akka-camel" % V.Akka excludeAll (ExclusionRule(organization = "org.apache.camel"))
   var aws = "com.amazonaws" % "aws-java-sdk" % V.AWS
   var boneCP = "com.jolbox" % "bonecp" % V.BoneCP
-  val camel = "org.apache.camel" % "camel-aws" % V.Camel excludeAll (ExclusionRule(organization = "com.amazonaws"))
+  val camelAws = "org.apache.camel" % "camel-aws" % V.Camel excludeAll (ExclusionRule(organization = "com.amazonaws"))
   var commonsCodec = "commons-codec" % "commons-codec" % V.CommonsCodec
-  var commonsLang = "commons-lang" % "commons-lang" % V.CommonsLang
-  var commonsMath = "org.apache.commons" % "commons-math" % V.CommonsMath
+  var commonsLang = "org.apache.commons" % "commons-lang3" % V.CommonsLang
+  var commonsMath = "org.apache.commons" % "commons-math3" % V.CommonsMath
   var commonsIO = "commons-io" % "commons-io" % V.CommonsIO
   var config = "com.typesafe" % "config" % V.Config
   var ehCache = "net.sf.ehcache" % "ehcache-core" % V.EhCache
@@ -285,7 +288,6 @@ trait Deps {
   var jasypt = "org.jasypt" % "jasypt" % V.Jasypt
   var javaMail = "javax.mail" % "mail" % V.JavaMail
   var jBcrypt = "org.mindrot" % "jbcrypt" % V.jBcrypt
-  var jerkson = "com.codahale" %% "jerkson" % V.Jerkson
   var jetty = "org.eclipse.jetty" % "jetty-servlet" % V.Jetty
   var jedis = "redis.clients" % "jedis" % V.Jedis
   var jdbcPool = "org.apache.tomcat" % "jdbc-pool" % V.JDBCP

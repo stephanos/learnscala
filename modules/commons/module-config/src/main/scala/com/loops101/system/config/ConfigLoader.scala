@@ -3,11 +3,11 @@ package com.loops101.system.config
 trait ConfigLoader {
 
 
-  class ConfigLoaderImpl {
+  trait ConfigLoaderImpl {
 
-    def get: Map[String, _ <: AnyRef] = Map()
+    def get: Map[String, _ <: AnyRef]
   }
 
 
-  lazy val confLoader = new ConfigLoaderImpl
+  def confLoader: ConfigLoaderImpl
 }

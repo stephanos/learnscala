@@ -48,3 +48,9 @@ case object MailUser extends InternalKey[String]("mail.user")
 case object CacheUser extends InternalKey[String]("cache.user")
 case object CachePass extends InternalKey[String]("cache.pass")
 case object CacheHost extends InternalKey[String]("cache.host")
+
+case object IronQueueToken extends InternalKey[String]("IRONMQ_TOKEN")
+case object IronQueueProjectId extends InternalKey[String]("IRONMQ_PROJECTID")
+
+case object AwsSecret extends InternalKey[String]("AWS_SECRET")
+case object AwsAccess extends InternalKey[String]("AWS_ACCESS")

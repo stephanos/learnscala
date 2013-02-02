@@ -5,7 +5,7 @@
       <configuration>
         <option name="compilerLibraryLevel" value="Project" />
         <option name="compilerLibraryName" value="SBT: scala:2.10.0" />
-        <option name="compilerOptions" value="-encoding UTF-8 -deprecation -unchecked -language _ -g:vars" />
+        <option name="compilerOptions" value="-encoding UTF-8 -deprecation -unchecked -language _ -g:vars -Xcheckinit" />
         <option name="deprecationWarnings" value="true" />
         <option name="fsc" value="true" />
         <option name="uncheckedWarnings" value="true" />
@@ -37,7 +37,7 @@
     <orderEntry type="library" scope="TEST" name="SBT: org.scala-lang:scala-actors:2.10.0:test" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.scalatest:scalatest_2.10:1.9.1:test" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.scala-lang:scala-reflect:2.10.0:test" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.mockito:mockito-all:1.9.0:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.mockito:mockito-all:1.9.5:test" level="project" />
     <orderEntry type="module" module-name="module-test-unit" exported="" />
   </component>
 </module>

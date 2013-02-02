@@ -5,7 +5,7 @@
       <configuration>
         <option name="compilerLibraryLevel" value="Project" />
         <option name="compilerLibraryName" value="SBT: scala:2.10.0" />
-        <option name="compilerOptions" value="-encoding UTF-8 -deprecation -unchecked -language _ -g:vars" />
+        <option name="compilerOptions" value="-encoding UTF-8 -deprecation -unchecked -language _ -g:vars -Xcheckinit" />
         <option name="deprecationWarnings" value="true" />
         <option name="fsc" value="true" />
         <option name="uncheckedWarnings" value="true" />
@@ -28,26 +28,26 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="SBT: org.scala-lang:scala-library:2.10.0" level="project" />
-    <orderEntry type="library" name="SBT: commons-lang:commons-lang:2.6" level="project" />
-    <orderEntry type="library" name="SBT: commons-codec:commons-codec:1.6" level="project" />
-    <orderEntry type="library" name="SBT: org.apache.commons:commons-math:2.2" level="project" />
-    <orderEntry type="library" name="SBT: commons-io:commons-io:2.3" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.commons:commons-lang3:3.1" level="project" />
+    <orderEntry type="library" name="SBT: commons-codec:commons-codec:1.7" level="project" />
+    <orderEntry type="library" name="SBT: org.apache.commons:commons-math3:3.1.1" level="project" />
+    <orderEntry type="library" name="SBT: commons-io:commons-io:2.4" level="project" />
     <orderEntry type="library" name="SBT: joda-time:joda-time:2.1" level="project" />
     <orderEntry type="library" name="SBT: org.joda:joda-convert:1.2" level="project" />
-    <orderEntry type="library" name="SBT: ch.qos.logback:logback-classic:1.0.3" level="project" />
-    <orderEntry type="library" name="SBT: ch.qos.logback:logback-core:1.0.3" level="project" />
-    <orderEntry type="library" name="SBT: org.slf4j:jcl-over-slf4j:1.7.2" level="project" />
+    <orderEntry type="library" name="SBT: ch.qos.logback:logback-classic:1.0.9" level="project" />
+    <orderEntry type="library" name="SBT: ch.qos.logback:logback-core:1.0.9" level="project" />
     <orderEntry type="library" name="SBT: org.slf4j:slf4j-api:1.7.2" level="project" />
+    <orderEntry type="library" name="SBT: org.slf4j:jcl-over-slf4j:1.7.2" level="project" />
     <orderEntry type="library" name="SBT: janino:janino:2.5.10" level="project" />
     <orderEntry type="library" name="SBT: org.mindrot:jbcrypt:0.3m" level="project" />
     <orderEntry type="library" name="SBT: org.xerial.snappy:snappy-java:1.0.4.1" level="project" />
-    <orderEntry type="library" name="SBT: com.typesafe:slick_2.10:1.0.0-RC1" level="project" />
-    <orderEntry type="library" name="SBT: org.scala-lang:scala-compiler:2.10.0" level="project" />
-    <orderEntry type="library" name="SBT: org.scala-lang:scala-reflect:2.10.0" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.akka:akka-actor_2.10:2.1.0" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe:config:1.0.0" level="project" />
+    <orderEntry type="library" name="SBT: com.typesafe.slick:slick_2.10:1.0.0-RC2" level="project" />
     <orderEntry type="library" name="SBT: com.foursquare:rogue-core_2.10:2.0.0-beta22" level="project" />
     <orderEntry type="library" name="SBT: com.foursquare:rogue-field_2.10:2.0.0-beta22" level="project" />
     <orderEntry type="library" name="SBT: com.foursquare:rogue-lift_2.10:2.0.0-beta22" level="project" />
-    <orderEntry type="library" name="SBT: org.mongodb:mongo-java-driver:2.7.3" level="project" />
+    <orderEntry type="library" name="SBT: org.mongodb:mongo-java-driver:2.10.1" level="project" />
     <orderEntry type="library" name="SBT: net.liftweb:lift-mongodb-record_2.10:2.5-M4" level="project" />
     <orderEntry type="library" name="SBT: net.liftweb:lift-record_2.10:2.5-M4" level="project" />
     <orderEntry type="library" name="SBT: net.liftweb:lift-proto_2.10:2.5-M4" level="project" />
@@ -59,6 +59,8 @@
     <orderEntry type="library" name="SBT: org.specs2:specs2_2.10:1.12.3" level="project" />
     <orderEntry type="library" name="SBT: net.liftweb:lift-json_2.10:2.5-M4" level="project" />
     <orderEntry type="library" name="SBT: org.scala-lang:scalap:2.10.0" level="project" />
+    <orderEntry type="library" name="SBT: org.scala-lang:scala-compiler:2.10.0" level="project" />
+    <orderEntry type="library" name="SBT: org.scala-lang:scala-reflect:2.10.0" level="project" />
     <orderEntry type="library" name="SBT: com.thoughtworks.paranamer:paranamer:2.4.1" level="project" />
     <orderEntry type="library" name="SBT: javax.mail:mail:1.4.4" level="project" />
     <orderEntry type="library" name="SBT: javax.activation:activation:1.1" level="project" />
@@ -73,7 +75,7 @@
     <orderEntry type="library" scope="TEST" name="SBT: org.scalacheck:scalacheck_2.10:1.10.0:test" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.scala-tools.testing:test-interface:0.5:test" level="project" />
     <orderEntry type="library" scope="TEST" name="SBT: org.scalatest:scalatest_2.10:1.9.1:test" level="project" />
-    <orderEntry type="library" scope="TEST" name="SBT: org.mockito:mockito-all:1.9.0:test" level="project" />
+    <orderEntry type="library" scope="TEST" name="SBT: org.mockito:mockito-all:1.9.5:test" level="project" />
     <orderEntry type="module" module-name="module-config" exported="" />
     <orderEntry type="module" module-name="module-test-unit" exported="" />
   </component>

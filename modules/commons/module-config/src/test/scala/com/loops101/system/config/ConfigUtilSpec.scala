@@ -1,7 +1,6 @@
 package com.loops101.system.config
 
 import com.loops101.test.spec.MockFactorySpec
-import com.typesafe.config.ConfigFactory
 
 class ConfigUtilSpec
   extends MockFactorySpec[ConfigUtil] {
@@ -18,7 +17,6 @@ class ConfigUtilSpec
     }
 
     "return Int" >> {
-
       "public" >> {
         target.config.getInt(pubint) must beSome(1)
       }
@@ -28,7 +26,6 @@ class ConfigUtilSpec
     }
 
     "return Double" >> {
-
       "public" >> {
         target.config.getInt(pubdbl) must beSome(0.0)
       }
@@ -42,26 +39,32 @@ class ConfigUtilSpec
   //~ SETUP =====================================================================================
 
   case object pubstr extends PublicKey("pubstr")
+
   case object pubint extends PublicKey("pubint")
+
   case object pubdbl extends PublicKey("pubdbl")
 
   case object intstr extends InternalKey("intstr")
+
   case object intint extends InternalKey("intint")
+
   case object intdbl extends InternalKey("intdbl")
 
   lazy val factory =
-    new ConfigUtil {
-      override lazy val confLoader = new ConfigLoaderImpl {
-        override def get = Map(
-          pubstr.toString -> "abc",
-          intstr.toString -> "xyz",
+    new DefaultConfig {
+      override def confHolder = new DefaultConfigHolderImpl {
+        override lazy val confLoader = new ConfigLoaderImpl {
+          override def get = Map(
+            pubstr.toString -> "abc",
+            intstr.toString -> "xyz",
 
-          pubint.toString -> "1",
-          intint.toString -> "42",
+            pubint.toString -> "1",
+            intint.toString -> "42",
 
-          pubdbl.toString -> "0.0",
-          intdbl.toString -> "1.0"
-        )
+            pubdbl.toString -> "0.0",
+            intdbl.toString -> "1.0"
+          )
+        }
       }
     }
 }

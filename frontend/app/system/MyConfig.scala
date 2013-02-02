@@ -1,23 +1,37 @@
 package system
 
-import com.loops101.system.config.ConfigUtil
+import com.loops101.system.config._
 
-// TODO: make singleton ???
 trait MyConfig
   extends ConfigUtil {
 
+  // access singleton instance - must be 'lazy' or app not launched yet
+  override lazy val confHolder =
+    MyConfig.confHolder
 
-  class MyConfigHolderImpl extends ConfigHolderImpl {
-
-    // override: use Play's actor system
-    override lazy val actorSystem =
-      play.libs.Akka.system
-
-    // override: use Play's file configuration
-    override lazy val fileConf =
-      play.api.Play.current.configuration.underlying
-  }
+  // make execution context implicitly available
+  implicit lazy val execContext =
+    confHolder.execContext
+}
 
 
-  override lazy val confHolder = new MyConfigHolderImpl
+private[system] object MyConfig {
+
+  val confHolder =
+    new {
+
+      // use Play's file configuration
+      val fileConf =
+        play.api.Play.current.configuration.underlying
+
+    } with ConfigHolder with ConfigLoader {
+
+      // use Play's actor system
+      def actorSystem =
+        play.libs.Akka.system
+
+      def confLoader = new ConfigLoaderImpl {
+        def get = Map()
+      }
+    }
 }
