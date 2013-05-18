@@ -17,6 +17,7 @@ atlassian-ide-plugin.xml
 RUNNING_PID
 *.log
 media
+*.mp4
 *.zip
 ext
 .DS_Store
