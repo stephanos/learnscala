@@ -1,7 +1,7 @@
 @(title: String, date: String, url: String, withComments: Boolean = true, langs: List[String])(head: Html)(body: Html)
 
 @shareUrl = @{
-    "https://www.learnscala.de" +
+    "http://www.learnscala.de" +
         url.
             replaceAllLiterally("/part2/", "/").
             replaceAllLiterally("/teil2/", "/").
@@ -20,7 +20,7 @@
 @meta = {
     <meta property="og:url" content="@shareUrl" />
     <meta property="og:title" content="@shareTitle" />
-    <meta property="og:image" content="https://www.learnscala.de/assets/img/learnscala.png" />
+    <meta property="og:image" content="http://www.learnscala.de/assets/img/learnscala.png" />
 }
 
 @layout.public(shareTitle, meta = meta) {
