@@ -74,5 +74,5 @@ trait AssetsUtil
 
   private lazy val baseDomain = if (envUtil.isProduction) "static." + domain else ""
   //private lazy val httpDomain = if (isProduction) "http://" + baseDomain else baseDomain
-  private lazy val httpsDomain = if (envUtil.isProduction) "https://" + baseDomain else baseDomain
+  private lazy val httpsDomain = if (envUtil.isProduction) "http://" + baseDomain else baseDomain
 }
