@@ -1,0 +1,55 @@
+- '()' weglassen erklären
+- Anm. scala-actors == Akka ?
+- .scala ausführen mit ./scala
+- IntelliJ remove: "use external build"
+- "Summenzeichen" etc. vorgeben
+- warum muss man beim Überladen den Typ angeben?
+- wrong: Char-Basisklasse von Int
+- Gradle ist auch flexibel wie SBT
+- q: kann man "if leap" auch rechts schreiben?
+- control_b: readFile does not test exceptions handling
+- val/var Feld Konstruktor unklar -> Feld
+- variable shadowing/method parameter vs class parameter
+- my_COMPANY - open?
+- Tests: "override def toString"
+- Unterschied zu "protected" in Java ausarbeiten
+- Unterschied: new Exception / throw new Exception
+- Betonung: Methode mit Unit hat immer Klammern
+- "Klase"
+- TODO unklar? Datei anlegen? auskommentieren? häh?
+- improve 'addTime' to 3 lines ! (totalMinutes, %59)
+- apply()-Sinn: spezielle Map-Implementation
+- "Objekt"-Test: count
+- "," / "." Locale
+- "Ampfel", ob ...
+- warum darf toString mit val toString überschieben werden? ("()")
+- 'Set'-Beispiel irreführend
+- Eselsbrücken ?
+- mehrere unapply
+- praxisnahere Beispiele
+- weniger edge cases
+- Trait: aufgebohrte Interfaces
+- Trait: LogTrait
+- SortedSet
+- Elem =>
+- Nil => New immutable List
+- 1\n2\n3\n
+
+
+# FEEDBACK
+
++ Übungen
++ Folien
++ Betonung
+- anfangs unsicher
++ alternative Erklärungen
++ Tempo gut
+- Test-Fehler
++ ausm Internet laden
++ Unit Tests
+- Ziel unklar: gemeinsam draufgucken
+- Übung gut
+- Lösungen mit drin
+- Quiz weniger Edge Cases
+- gefehlt: lazy val
+

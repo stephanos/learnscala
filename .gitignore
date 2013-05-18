@@ -13,6 +13,7 @@ target
 .idea/libraries
 
 # other
+atlassian-ide-plugin.xml
 RUNNING_PID
 *.log
 media
